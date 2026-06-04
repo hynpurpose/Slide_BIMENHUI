@@ -16,7 +16,7 @@ export default function Page_SearchEntryTrend() {
       <div className="absolute w-[500px] h-[500px] rounded-full bg-indigo-500/8 blur-[130px] left-24 bottom-24 pointer-events-none" />
 
       {/* Top Section: Title with glowing dot accent and gradient keyword */}
-      <div className="w-full flex items-center relative z-10 shrink-0 mb-10 gap-4">
+      <div className="w-full flex items-center relative z-10 shrink-0 mb-16 gap-4">
         <div className="w-2.5 h-8 bg-gradient-to-b from-blue-500 to-cyan-400 rounded-full shadow-[0_0_12px_rgba(6,182,212,0.6)]" />
         <h2 className="text-4xl xl:text-5xl font-black tracking-wide text-white leading-tight">
           为什么我们团队决定在 2024 年全力押注 <span className="text-transparent bg-clip-text bg-gradient-to-r from-blue-400 via-cyan-400 to-teal-400 font-extrabold drop-shadow-[0_0_10px_rgba(6,182,212,0.2)]">GEO</span>？
@@ -30,7 +30,7 @@ export default function Page_SearchEntryTrend() {
         <div className="flex flex-col h-full transition-all duration-300">
           
           {/* Image Slot 1 */}
-          <div className="w-full h-[460px] xl:h-[540px] flex items-center justify-center p-2 rounded-2xl bg-zinc-900/10 hover:bg-zinc-900/20 transition-all duration-300">
+          <div className="w-full h-[380px] xl:h-[460px] flex items-center justify-center p-2">
             {!leftImgFailed ? (
               <img 
                 src={leftImagePath} 
@@ -126,7 +126,7 @@ export default function Page_SearchEntryTrend() {
         <div className="flex flex-col h-full transition-all duration-300">
           
           {/* Image Slot 2 */}
-          <div className="w-full h-[460px] xl:h-[540px] flex items-center justify-center p-2 rounded-2xl bg-zinc-900/10 hover:bg-zinc-900/20 transition-all duration-300">
+          <div className="w-full h-[380px] xl:h-[460px] flex items-center justify-center p-2">
             {!rightImgFailed ? (
               <img 
                 src={rightImagePath} 
