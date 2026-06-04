@@ -16,7 +16,7 @@ export default function Page_SearchEntryTrend() {
       <div className="absolute w-[500px] h-[500px] rounded-full bg-indigo-500/8 blur-[130px] left-24 bottom-24 pointer-events-none" />
 
       {/* Top Section: Title with glowing dot accent and gradient keyword */}
-      <div className="w-full flex items-center relative z-10 shrink-0 mb-4 gap-4">
+      <div className="w-full flex items-center relative z-10 shrink-0 mb-10 gap-4">
         <div className="w-2.5 h-8 bg-gradient-to-b from-blue-500 to-cyan-400 rounded-full shadow-[0_0_12px_rgba(6,182,212,0.6)]" />
         <h2 className="text-4xl xl:text-5xl font-black tracking-wide text-white leading-tight">
           为什么我们团队决定在 2024 年全力押注 <span className="text-transparent bg-clip-text bg-gradient-to-r from-blue-400 via-cyan-400 to-teal-400 font-extrabold drop-shadow-[0_0_10px_rgba(6,182,212,0.2)]">GEO</span>？
@@ -115,8 +115,8 @@ export default function Page_SearchEntryTrend() {
           </div>
           
           {/* Conclusion 1 */}
-          <div className="mt-4 flex flex-col justify-center flex-grow border-l-2 border-blue-500 pl-4 py-1">
-            <h3 className="text-xl xl:text-2xl font-bold text-zinc-300 leading-relaxed">
+          <div className="mt-4 flex flex-col justify-center flex-grow py-1">
+            <h3 className="text-2xl xl:text-3xl font-bold text-zinc-300 leading-relaxed border-l-[3px] border-blue-500 pl-4">
               到 <span className="text-blue-400 font-extrabold">2029 年</span>，AI 搜索入口将超过传统搜索入口。
             </h3>
           </div>
@@ -174,8 +174,8 @@ export default function Page_SearchEntryTrend() {
           </div>
           
           {/* Conclusion 2 */}
-          <div className="mt-4 flex flex-col justify-center flex-grow border-l-2 border-cyan-400 pl-4 py-1">
-            <h3 className="text-xl xl:text-2xl font-bold text-zinc-300 leading-relaxed">
+          <div className="mt-4 flex flex-col justify-center flex-grow py-1">
+            <h3 className="text-2xl xl:text-3xl font-bold text-zinc-300 leading-relaxed border-l-[3px] border-cyan-400 pl-4">
               消费者<span className="text-cyan-400 font-extrabold">更信任AI</span>给出的答案，进不了AI的推荐的品牌，很难进入用户的购买选择。
             </h3>
           </div>
