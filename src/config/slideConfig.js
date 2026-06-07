@@ -4,8 +4,10 @@ import Page_SWOTStrategy from '../pages/Page_SWOTStrategy';
 import Page_ClosedMeetingIntro from '../pages/Page_ClosedMeetingIntro';
 import Page_FullImageIntro from '../pages/Page_FullImageIntro';
 import Page_SearchEntryTrend from '../pages/Page_SearchEntryTrend';
+import Page_SearchEntryWhyAI from '../pages/Page_SearchEntryWhyAI';
 import Page_GEOSalesConversionIntro from '../pages/Page_GEOSalesConversionIntro';
 import Page_GEOSalesConversion from '../pages/Page_GEOSalesConversion';
+import Page_GEOSalesFeedback from '../pages/Page_GEOSalesFeedback';
 import Page_GEOCaseStudies from '../pages/Page_GEOCaseStudies';
 import Page_GEOQuestionsOverview from '../pages/Page_GEOQuestionsOverview';
 import Page_GEOTestDifferenceIntro from '../pages/Page_GEOTestDifferenceIntro';
@@ -34,24 +36,16 @@ export const slideConfig = [
     serviceGuide: 'GEO SERVICE GUIDE',
   },
 
-  // ——— 篇章1: 品牌信息调研 ———
-  { type: 'chapter', title: '品牌信息调研', subtitle: 'BRAND DISCOVERY', backgroundImage: '/' },
-  { type: 'section', title: '目标行业信息' },
-  { type: 'page', title: '冰箱是什么？', components: [Page_ProposalNav, Page_SWOTAnalysis] },
-  { type: 'page', title: '冰箱卖给谁？', component: Page_SWOTAnalysis },
-
-
-  // ——— 篇章2: GEO体检报告 ———
-  { type: 'chapter', title: 'GEO体检报告', subtitle: 'GEO HEALTH CHECK', backgroundImage: '/proposal-chapters/proposal-chapter-cover-02.jpg' },
-
-  // ——— 篇章3: GEO闭门会 ———
+  // ——— 篇章1: GEO闭门会 ———
   { type: 'chapter', title: 'GEO闭门会', subtitle: 'GEO OPTIMIZATION', backgroundImage: '/proposal-chapters/proposal-chapter-cover-03.jpg' },
   { type: 'section', title: '一级标题1' },
   { type: 'page', title: '闭门会海报', component: Page_FullImageIntro, hideHeader: true },
   { type: 'page', title: '开场闭门会', component: Page_ClosedMeetingIntro, hideHeader: true },
   { type: 'page', title: '搜索入口趋势', component: Page_SearchEntryTrend, hideHeader: true },
+  { type: 'page', title: 'AI深入人心原因', component: Page_SearchEntryWhyAI, hideHeader: true },
   { type: 'page', title: 'GEO是否带来销售转化', component: Page_GEOSalesConversionIntro, hideHeader: true },
   { type: 'page', title: '销售转化率对比', component: Page_GEOSalesConversion, hideHeader: true },
+  { type: 'page', title: '线下销售反馈的真实现象', component: Page_GEOSalesFeedback, hideHeader: true },
   { type: 'page', title: '销售转化案例', component: Page_GEOCaseStudies, hideHeader: true },
   { type: 'page', title: 'GEO该怎么做', component: Page_GEOQuestionsOverview, hideHeader: true },
   { type: 'page', title: '服务商数据造假对比说明', component: Page_GEOTestDifferenceIntro, hideHeader: true },
