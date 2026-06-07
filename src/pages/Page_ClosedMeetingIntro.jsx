@@ -39,7 +39,7 @@ export default function Page_ClosedMeetingIntro() {
         </h2>
 
         <div className="flex items-center gap-5 text-red-500 pl-1 mt-6">
-          <CameraOff size={56} className="opacity-95 animate-pulse text-red-500" />
+          <CameraOff size={56} className="opacity-95 text-red-500" />
           <span
             className="font-medium tracking-wide text-zinc-300"
             style={{ fontSize: '3rem' }}
