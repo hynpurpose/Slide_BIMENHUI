@@ -3,40 +3,27 @@ import SlideLayout from '../components/SlideLayout';
 
 export default function Page_GEOSalesConversion() {
   const chartData = [
-    { industry: "Hotels & Resorts", overall: 3.6, chatgpt: 7.0, lift: 3.4 },
-    { industry: "Higher Education & College", overall: 2.8, chatgpt: 4.9, lift: 2.1 },
-    { industry: "Entertainment", overall: 2.9, chatgpt: 4.7, lift: 1.8 },
-    { industry: "Legal Services", overall: 3.8, chatgpt: 5.6, lift: 1.8 },
-    { industry: "Manufacturing", overall: 2.1, chatgpt: 3.8, lift: 1.7 },
-    { industry: "Luxury Goods", overall: 1.4, chatgpt: 1.9, lift: 0.5 },
-    { industry: "Biotech", overall: 1.8, chatgpt: 2.1, lift: 0.3 },
-    { industry: "Engineering", overall: 1.2, chatgpt: 1.4, lift: 0.2 },
-    { industry: "Heavy Equipment", overall: 1.7, chatgpt: 1.8, lift: 0.1 },
-    { industry: "Financial Services", overall: 1.8, chatgpt: 1.9, lift: 0.1 }
+    { industry: "酒店与度假村", overall: 3.6, chatgpt: 7.0, lift: 3.4 },
+    { industry: "高等教育与高校", overall: 2.8, chatgpt: 4.9, lift: 2.1 },
+    { industry: "娱乐与休闲", overall: 2.9, chatgpt: 4.7, lift: 1.8 },
+    { industry: "法律服务", overall: 3.8, chatgpt: 5.6, lift: 1.8 },
+    { industry: "制造业", overall: 2.1, chatgpt: 3.8, lift: 1.7 },
+    { industry: "奢侈品", overall: 1.4, chatgpt: 1.9, lift: 0.5 },
+    { industry: "生物技术", overall: 1.8, chatgpt: 2.1, lift: 0.3 },
+    { industry: "工程设计", overall: 1.2, chatgpt: 1.4, lift: 0.2 },
+    { industry: "重型设备", overall: 1.7, chatgpt: 1.8, lift: 0.1 },
+    { industry: "金融服务", overall: 1.8, chatgpt: 1.9, lift: 0.1 }
   ];
-
-  const labels = {
-    "Hotels & Resorts": ["Hotels &", "Resorts"],
-    "Higher Education & College": ["Higher Education", "& College"],
-    "Entertainment": ["Entertainment"],
-    "Legal Services": ["Legal Services"],
-    "Manufacturing": ["Manufacturing"],
-    "Luxury Goods": ["Luxury Goods"],
-    "Biotech": ["Biotech"],
-    "Engineering": ["Engineering"],
-    "Heavy Equipment": ["Heavy", "Equipment"],
-    "Financial Services": ["Financial", "Services"]
-  };
 
   // SVG dimensions
   const svgWidth = 1800;
-  const svgHeight = 580;
+  const svgHeight = 620;
   
   // Margins
   const xMarginLeft = 80;
   const plotWidth = 1680;
-  const yMarginTop = 60;
-  const plotHeight = 420;
+  const yMarginTop = 40;
+  const plotHeight = 480;
   
   // Math helper
   const scale = plotHeight / 8.0; // 8.0% max
@@ -66,8 +53,8 @@ export default function Page_GEOSalesConversion() {
 
       <div className="w-full h-full flex flex-col items-center justify-between relative z-10 pt-4 pb-2">
         
-        {/* Top Legend */}
-        <div className="w-full flex items-center justify-start px-10 mb-4">
+        {/* Top Legend (placed on the right side) */}
+        <div className="w-full flex items-center justify-end px-10 mb-4">
           <div className="flex items-center gap-8 text-[18px] font-medium text-zinc-400 font-['MiSans']">
             <div className="flex items-center gap-2">
               <div className="w-4 h-4 rounded-sm bg-[#1E40AF]" />
@@ -109,7 +96,7 @@ export default function Page_GEOSalesConversion() {
                     x={xMarginLeft - 15} 
                     y={y} 
                     fill="#9CA3AF" 
-                    fontSize="16" 
+                    fontSize="18" 
                     fontFamily="MiSans, sans-serif" 
                     textAnchor="end" 
                     dominantBaseline="middle"
@@ -135,7 +122,6 @@ export default function Page_GEOSalesConversion() {
               const liftY = overallY - liftHeight;
 
               const xCenter = barX + barWidth / 2;
-              const lines = labels[d.industry] || [d.industry];
 
               return (
                 <g key={i} className="transition-all duration-300 hover:opacity-95">
@@ -154,13 +140,13 @@ export default function Page_GEOSalesConversion() {
                     fill="url(#blueGrad)" 
                   />
 
-                  {/* Base Rate Text inside bottom bar */}
+                  {/* Base Rate Text inside bottom bar (min size 18px) */}
                   {overallHeight > 24 && (
                     <text 
                       x={xCenter} 
                       y={overallY + overallHeight / 2} 
                       fill="#93C5FD" 
-                      fontSize="14" 
+                      fontSize="18" 
                       fontWeight="bold" 
                       textAnchor="middle" 
                       dominantBaseline="middle"
@@ -170,30 +156,27 @@ export default function Page_GEOSalesConversion() {
                     </text>
                   )}
 
-                  {/* Stacked values on top of bar */}
-                  <text x={xCenter} y={liftY - 24} textAnchor="middle" fontFamily="MiSans, sans-serif">
-                    <tspan x={xCenter} dy="0" fill="#FFFFFF" fontSize="19" fontWeight="900">
+                  {/* Stacked values on top of bar (min size 18px) */}
+                  <text x={xCenter} y={liftY - 26} textAnchor="middle" fontFamily="MiSans, sans-serif">
+                    <tspan x={xCenter} dy="0" fill="#FFFFFF" fontSize="20" fontWeight="900">
                       {d.chatgpt.toFixed(1)}%
                     </tspan>
-                    <tspan x={xCenter} dy="18" fill="#60A5FA" fontSize="14" fontWeight="bold">
+                    <tspan x={xCenter} dy="22" fill="#60A5FA" fontSize="18" fontWeight="bold">
                       +{d.lift.toFixed(1)}%
                     </tspan>
                   </text>
 
-                  {/* X Axis Labels */}
+                  {/* X Axis Labels (Chinese, min size 18px) */}
                   <text
                     x={xCenter}
-                    y={baseLineY + 25}
+                    y={baseLineY + 30}
                     fill="#9CA3AF"
-                    fontSize="15"
+                    fontSize="18"
                     fontFamily="MiSans, sans-serif"
+                    fontWeight="bold"
                     textAnchor="middle"
                   >
-                    {lines.map((line, lineIdx) => (
-                      <tspan key={lineIdx} x={xCenter} dy={lineIdx === 0 ? 0 : 20} fontWeight={lineIdx === 0 ? "bold" : "normal"}>
-                        {line}
-                      </tspan>
-                    ))}
+                    {d.industry}
                   </text>
                 </g>
               );
