@@ -30,13 +30,13 @@ export default function Page_GEOSalesConversion() {
 
   // SVG dimensions
   const svgWidth = 1800;
-  const svgHeight = 520;
+  const svgHeight = 580;
   
   // Margins
   const xMarginLeft = 80;
   const plotWidth = 1680;
-  const yMarginTop = 80;
-  const plotHeight = 340;
+  const yMarginTop = 60;
+  const plotHeight = 420;
   
   // Math helper
   const scale = plotHeight / 8.0; // 8.0% max
@@ -66,16 +66,8 @@ export default function Page_GEOSalesConversion() {
 
       <div className="w-full h-full flex flex-col items-center justify-between relative z-10 pt-4 pb-2">
         
-        {/* Top Header Badge & Legend */}
-        <div className="w-full flex items-center justify-between px-10 mb-2">
-          {/* Badge */}
-          <div className="inline-flex items-center bg-blue-500/10 border border-blue-500/25 rounded-full px-5 py-1.5 shadow-[0_0_15px_rgba(59,130,246,0.1)]">
-            <span className="text-[18px] font-bold text-blue-400 tracking-wider font-['MiSans']">
-              ChatGPT各行业转化率数据
-            </span>
-          </div>
-
-          {/* Legend */}
+        {/* Top Legend */}
+        <div className="w-full flex items-center justify-start px-10 mb-4">
           <div className="flex items-center gap-8 text-[18px] font-medium text-zinc-400 font-['MiSans']">
             <div className="flex items-center gap-2">
               <div className="w-4 h-4 rounded-sm bg-[#1E40AF]" />
