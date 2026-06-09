@@ -185,7 +185,7 @@ export default function Page_GEOSalesConversion() {
         </div>
 
         {/* Formula Block at the bottom of the chart */}
-        <div className="w-full flex justify-center px-10 mb-4 mt-2 z-20">
+        <div className="w-full flex justify-center px-10 mb-6 -mt-[10px] z-20">
           <div className="flex items-center gap-4 py-3 px-10 bg-zinc-900/40 border border-zinc-800/80 rounded-2xl font-['MiSans'] text-[20px] text-zinc-350 shadow-md">
             <span className="font-extrabold text-blue-400">转化率</span>
             <span className="text-zinc-500 font-bold">=</span>
