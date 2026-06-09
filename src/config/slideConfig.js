@@ -15,6 +15,9 @@ import Page_GEOTestDifference from '../pages/Page_GEOTestDifference';
 import Page_GEOPlatformSelection from '../pages/Page_GEOPlatformSelection';
 import Page_GEOWordSelection from '../pages/Page_GEOWordSelection';
 import Page_GEOKpiSetting from '../pages/Page_GEOKpiSetting';
+import Page_GEOWordSelectionOther from '../pages/Page_GEOWordSelectionOther';
+import Page_GEOWordSelectionRule from '../pages/Page_GEOWordSelectionRule';
+import Page_GEOServiceProviderSelection from '../pages/Page_GEOServiceProviderSelection';
 
 export const slideConfig = [
   // ——— 封面 & 目录 ———
@@ -52,13 +55,12 @@ export const slideConfig = [
   { type: 'page', title: '搜索入口趋势', component: Page_SearchEntryTrend, hideHeader: true },
   { type: 'page', title: '销售转化率对比', component: Page_GEOSalesConversion, hideHeader: true },
   { type: 'page', title: '线下销售反馈的真实现象', component: Page_GEOSalesFeedback, hideHeader: true },
-  { type: 'page', title: '销售转化案例', component: Page_GEOCaseStudies, hideHeader: true },
-  { type: 'page', title: 'GEO该怎么做', component: Page_GEOQuestionsOverview, hideHeader: true },
-  { type: 'page', title: '服务商数据造假对比说明', component: Page_GEOTestDifferenceIntro, hideHeader: true },
+  // { type: 'page', title: '销售转化案例', component: Page_GEOCaseStudies, hideHeader: true },
   { type: 'page', title: '服务商测试结果差异原因', component: Page_GEOTestDifference, hideHeader: true },
+  { type: 'page', title: '服务商数据造假对比说明', component: Page_GEOTestDifferenceIntro, hideHeader: true },
   { type: 'page', title: 'GEO选词与选平台建议', component: Page_GEOPlatformSelection, hideHeader: true },
-  { type: 'page', title: 'GEO选词建议', component: Page_GEOWordSelection, hideHeader: true },
-  { type: 'page', title: 'GEO设定合理KPI建议', component: Page_GEOKpiSetting, hideHeader: true },
-
+  { type: 'page', title: 'GEO选词其他做法', component: Page_GEOWordSelectionOther, hideHeader: true },
+  { type: 'page', title: 'GEO选词核心法则', component: Page_GEOWordSelectionRule, hideHeader: true },
+  { type: 'page', title: '品牌方怎么定 KPI？', component: Page_GEOKpiSetting, hideHeader: true },
+  { type: 'page', title: '如何选出靠谱的服务商？', component: Page_GEOServiceProviderSelection, hideHeader: true },
 ];
-
