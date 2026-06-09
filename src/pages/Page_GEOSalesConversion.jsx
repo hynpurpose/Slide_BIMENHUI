@@ -53,16 +53,16 @@ export default function Page_GEOSalesConversion() {
 
       <div className="w-full h-full flex flex-col items-center justify-between relative z-10 pt-4 pb-2">
         
-        {/* Top Legend (placed on the right side) */}
+        {/* Top Legend (placed on the right side - size 20px) */}
         <div className="w-full flex items-center justify-end px-10 mb-4">
-          <div className="flex items-center gap-8 text-[18px] font-medium text-zinc-400 font-['MiSans']">
+          <div className="flex items-center gap-8 text-[20px] font-medium text-zinc-400 font-['MiSans']">
             <div className="flex items-center gap-2">
               <div className="w-4 h-4 rounded-sm bg-[#1E40AF]" />
-              <span>整体渠道平均转化率 (Overall Conversion Rate)</span>
+              <span>整体渠道平均转化率</span>
             </div>
             <div className="flex items-center gap-2">
               <div className="w-4 h-4 rounded-sm bg-gradient-to-t from-[#1A75FF] to-[#59B2FF]" />
-              <span>AI 搜索优化提升额 (ChatGPT Lift)</span>
+              <span>ChatGPT转化率</span>
             </div>
           </div>
         </div>
@@ -78,7 +78,7 @@ export default function Page_GEOSalesConversion() {
               </linearGradient>
             </defs>
 
-            {/* Y-axis grid lines */}
+            {/* Y-axis grid lines (size 20px) */}
             {[0, 2, 4, 6, 8].map((val) => {
               const y = yMarginTop + plotHeight - val * scale;
               return (
@@ -96,7 +96,7 @@ export default function Page_GEOSalesConversion() {
                     x={xMarginLeft - 15} 
                     y={y} 
                     fill="#9CA3AF" 
-                    fontSize="18" 
+                    fontSize="20" 
                     fontFamily="MiSans, sans-serif" 
                     textAnchor="end" 
                     dominantBaseline="middle"
@@ -140,13 +140,13 @@ export default function Page_GEOSalesConversion() {
                     fill="url(#blueGrad)" 
                   />
 
-                  {/* Base Rate Text inside bottom bar (min size 18px) */}
-                  {overallHeight > 24 && (
+                  {/* Base Rate Text inside bottom bar (size 20px) */}
+                  {overallHeight > 26 && (
                     <text 
                       x={xCenter} 
                       y={overallY + overallHeight / 2} 
                       fill="#93C5FD" 
-                      fontSize="18" 
+                      fontSize="20" 
                       fontWeight="bold" 
                       textAnchor="middle" 
                       dominantBaseline="middle"
@@ -156,22 +156,22 @@ export default function Page_GEOSalesConversion() {
                     </text>
                   )}
 
-                  {/* Stacked values on top of bar (min size 18px) */}
+                  {/* Stacked values on top of bar (size 20px / 22px) */}
                   <text x={xCenter} y={liftY - 26} textAnchor="middle" fontFamily="MiSans, sans-serif">
-                    <tspan x={xCenter} dy="0" fill="#FFFFFF" fontSize="20" fontWeight="900">
+                    <tspan x={xCenter} dy="0" fill="#FFFFFF" fontSize="22" fontWeight="900">
                       {d.chatgpt.toFixed(1)}%
                     </tspan>
-                    <tspan x={xCenter} dy="22" fill="#60A5FA" fontSize="18" fontWeight="bold">
+                    <tspan x={xCenter} dy="22" fill="#60A5FA" fontSize="20" fontWeight="bold">
                       +{d.lift.toFixed(1)}%
                     </tspan>
                   </text>
 
-                  {/* X Axis Labels (Chinese, min size 18px) */}
+                  {/* X Axis Labels (Chinese, size 20px) */}
                   <text
                     x={xCenter}
-                    y={baseLineY + 30}
+                    y={baseLineY + 32}
                     fill="#9CA3AF"
-                    fontSize="18"
+                    fontSize="20"
                     fontFamily="MiSans, sans-serif"
                     fontWeight="bold"
                     textAnchor="middle"
@@ -184,13 +184,25 @@ export default function Page_GEOSalesConversion() {
           </svg>
         </div>
 
-        {/* Data Source & Caption */}
+        {/* Formula Block at the bottom of the chart */}
+        <div className="w-full flex justify-center px-10 mb-4 mt-2 z-20">
+          <div className="flex items-center gap-6 py-3 px-10 bg-zinc-900/40 border border-zinc-800/80 rounded-2xl font-['MiSans'] text-[20px] text-zinc-350 shadow-md">
+            <span className="font-extrabold text-blue-400">转化率公式</span>
+            <span className="text-zinc-500 font-bold">=</span>
+            <div className="flex flex-col items-center justify-center px-2 leading-tight">
+              <span className="pb-1 border-b border-zinc-700 text-zinc-150 font-bold">完成特定行为（如购买、留资）的用户</span>
+              <span className="pt-1 text-zinc-400 font-medium">通过该渠道进入网站的用户</span>
+            </div>
+          </div>
+        </div>
+
+        {/* Data Source & Caption (size 20px) */}
         <div className="w-full flex justify-between items-center px-10 mt-2">
-          <span className="text-[18px] text-zinc-500 font-medium tracking-wider font-['MiSans']">
+          <span className="text-[20px] text-zinc-500 font-medium tracking-wider font-['MiSans']">
             数据来源：FirstPageSage
           </span>
-          <span className="text-[18px] text-blue-400/80 font-semibold tracking-wide font-['MiSans']">
-            * 调查数据证实：在各主要行业中，AI 渠道转化率（ChatGPT）均成倍提升，超越传统渠道平均水平。
+          <span className="text-[20px] text-blue-400/80 font-semibold tracking-wide font-['MiSans']">
+            * 调查数据证实：在部分细分的B2B行业中，ChatGPT带来的访客转化率已经能高出整整一倍。
           </span>
         </div>
 
