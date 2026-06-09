@@ -10,7 +10,7 @@ export default function ChapterNav({ chapterIndex, sectionIndex, pageIndex }) {
   const hasPages = activeSection?.pages?.length > 0;
 
   return (
-    <div className="relative z-10 w-full px-12 sm:px-16 pt-8 sm:pt-10">
+    <div className="relative z-10 w-full pl-10 pr-10 pt-8 sm:pt-10">
       <div className="flex flex-col gap-3">
         <div className="flex flex-col md:flex-row items-start md:items-center w-full gap-4 md:gap-8">
           <div className="flex items-center gap-3 pl-2 shrink-0">
@@ -34,14 +34,14 @@ export default function ChapterNav({ chapterIndex, sectionIndex, pageIndex }) {
                     }`}
                   >
                     <span
-                      className={`text-sm font-bold ${
+                      className={`text-[18px] font-bold ${
                         isActive ? 'text-[#004CE5]' : 'text-zinc-600'
                       }`}
                     >
                       {String(i + 1).padStart(2, '0')}
                     </span>
                     <span
-                      className={`text-sm sm:text-base font-medium tracking-wider ${
+                      className={`text-[18px] sm:text-lg font-medium tracking-wider ${
                         isActive ? 'text-white' : 'text-zinc-500'
                       }`}
                     >
@@ -66,7 +66,7 @@ export default function ChapterNav({ chapterIndex, sectionIndex, pageIndex }) {
                   }`}
                 >
                   <span
-                    className={`text-[0.95rem] sm:text-base tracking-wide ${
+                    className={`text-[18px] sm:text-lg tracking-wide ${
                       isChildActive
                         ? 'text-white font-medium'
                         : 'text-zinc-500'

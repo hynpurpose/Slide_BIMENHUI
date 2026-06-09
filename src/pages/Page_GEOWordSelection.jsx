@@ -2,7 +2,7 @@ import React from 'react';
 
 export default function Page_GEOWordSelection() {
   return (
-    <div className="w-full h-full flex flex-col relative bg-zinc-950 text-white font-sans select-none overflow-hidden justify-between pt-8 pb-16 px-12">
+    <div className="w-full h-full flex flex-col relative bg-zinc-950 text-white font-sans select-none overflow-hidden justify-between pt-8 pb-16 pl-10 pr-10">
 
       {/* Background glowing effects (ambient light) */}
       <div className="absolute w-[600px] h-[600px] rounded-full bg-blue-600/5 blur-[160px] -right-48 -top-48 pointer-events-none" />
@@ -54,7 +54,7 @@ export default function Page_GEOWordSelection() {
               <p className="text-lg xl:text-xl font-bold text-zinc-700 mb-2">
                 简单模板，用AI一秒批量生成词条。
               </p>
-              <p className="text-base xl:text-lg text-zinc-500 leading-relaxed font-medium">
+              <p className="text-[18px] xl:text-lg text-zinc-500 leading-relaxed font-medium">
                 脱离用户真实搜索习惯。买100个词，实际起效的可能只有10个。
               </p>
             </div>
@@ -66,7 +66,7 @@ export default function Page_GEOWordSelection() {
               <p className="text-lg xl:text-xl font-bold text-zinc-700 mb-2">
                 依赖不准确的外部爬取数据，盲目堆砌自相矛盾的卖点。
               </p>
-              <p className="text-base xl:text-lg text-zinc-500 leading-relaxed font-medium">
+              <p className="text-[18px] xl:text-lg text-zinc-500 leading-relaxed font-medium">
                 AI会判定产品信息不靠谱而不予推荐，未来更面临被标记为“恶意投毒”的合规风险。
               </p>
             </div>

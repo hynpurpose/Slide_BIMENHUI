@@ -7,7 +7,7 @@ export default function Page_GEOKpiSetting() {
   const imagePath = "/images/geo-kpi-check.png";
 
   return (
-    <div className="w-full h-full flex flex-col relative bg-zinc-950 text-white font-sans select-none overflow-hidden justify-between pt-8 pb-16 px-12">
+    <div className="w-full h-full flex flex-col relative bg-zinc-950 text-white font-sans select-none overflow-hidden justify-between pt-8 pb-16 pl-10 pr-10">
 
       {/* Background glowing effects (ambient light) */}
       <div className="absolute w-[600px] h-[600px] rounded-full bg-blue-600/5 blur-[160px] -right-48 -top-48 pointer-events-none" />
@@ -31,7 +31,7 @@ export default function Page_GEOKpiSetting() {
           
           {/* Card Top: Outline capsule badge */}
           <div className="self-start">
-            <span className="inline-block border border-blue-500/30 text-blue-400 bg-blue-500/5 px-6 py-2 rounded-full text-base font-black font-mono tracking-widest uppercase">
+            <span className="inline-block border border-blue-500/30 text-blue-400 bg-blue-500/5 px-6 py-2 rounded-full text-[18px] font-black font-mono tracking-widest uppercase">
               STEP 01
             </span>
           </div>
@@ -56,11 +56,11 @@ export default function Page_GEOKpiSetting() {
                 onError={() => setImgFailed(true)}
               />
             ) : (
-              <div className="flex flex-col items-center justify-center text-zinc-600 gap-2 p-6 w-full h-full">
+              <div className="flex flex-col items-center justify-center text-zinc-650 gap-2 p-6 w-full h-full">
                 <svg className="w-12 h-12 text-zinc-700 animate-pulse" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth="1.5">
                   <path strokeLinecap="round" strokeLinejoin="round" d="M2.25 15.75l5.159-5.159a2.25 2.25 0 013.182 0l5.159 5.159m-1.5-1.5l1.409-1.409a2.25 2.25 0 013.182 0l2.909 2.909m-18 3.75h16.5a1.5 1.5 0 001.5-1.5V6a1.5 1.5 0 00-1.5-1.5H3.75A1.5 1.5 0 002.25 6v12a1.5 1.5 0 001.5 1.5zm10.5-11.25h.008v.008h-.008V8.25zm.375 0a.375 0 11-.75 0 .375 0 01.75 0z" />
                 </svg>
-                <span className="text-sm font-bold text-zinc-500 font-mono bg-zinc-900/50 px-2 py-0.5 rounded border border-zinc-800/60">
+                <span className="text-[18px] font-bold text-zinc-500 font-mono bg-zinc-900/50 px-2 py-0.5 rounded border border-zinc-800/60">
                   geo-kpi-check.png
                 </span>
               </div>
@@ -75,7 +75,7 @@ export default function Page_GEOKpiSetting() {
           
           {/* Card Top: Outline capsule badge */}
           <div className="self-start">
-            <span className="inline-block border border-purple-500/30 text-purple-400 bg-purple-500/5 px-6 py-2 rounded-full text-base font-black font-mono tracking-widest uppercase">
+            <span className="inline-block border border-purple-500/30 text-purple-400 bg-purple-500/5 px-6 py-2 rounded-full text-[18px] font-black font-mono tracking-widest uppercase">
               STEP 02
             </span>
           </div>

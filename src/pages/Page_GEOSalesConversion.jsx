@@ -7,7 +7,7 @@ export default function Page_GEOSalesConversion() {
   const imagePath = "/images/geo-sales-conversion.png";
 
   return (
-    <div className="w-full h-full flex flex-col relative bg-zinc-950 text-white font-sans select-none overflow-hidden justify-between pt-8 pb-14 px-12">
+    <div className="w-full h-full flex flex-col relative bg-zinc-950 text-white font-sans select-none overflow-hidden justify-between pt-8 pb-14 pl-10 pr-10">
 
       {/* Background glowing effects (ambient light) */}
       <div className="absolute w-[600px] h-[600px] rounded-full bg-blue-600/5 blur-[160px] -right-48 -top-48 pointer-events-none" />
@@ -29,7 +29,7 @@ export default function Page_GEOSalesConversion() {
           <div className="flex flex-col items-start justify-center max-w-full">
             {/* Image Title in capsule shape */}
             <div className="inline-flex items-center bg-blue-500/10 border border-blue-500/20 rounded-full px-5 py-1.5 mb-6 shadow-[0_0_15px_rgba(59,130,246,0.1)]">
-              <span className="text-base xl:text-lg font-bold text-blue-400 tracking-wider">
+              <span className="text-[18px] xl:text-xl font-bold text-blue-400 tracking-wider">
                 ChatGPT各行业转化率数据
               </span>
             </div>
@@ -52,61 +52,61 @@ export default function Page_GEOSalesConversion() {
                   {/* Group 1: B2B 细分领域 (AI 6.8% vs 其它 2.2%) */}
                   <rect x="135" y="174" width="35" height="66" rx="4" fill="#1f2937" opacity="0.2" />
                   <rect x="135" y="174" width="35" height="66" rx="4" fill="#4b5563" />
-                  <text x="152.5" y="160" fill="#9ca3af" fontSize="14" fontWeight="bold" textAnchor="middle">2.2%</text>
+                  <text x="152.5" y="156" fill="#9ca3af" fontSize="18" fontWeight="bold" textAnchor="middle">2.2%</text>
 
                   <rect x="180" y="40" width="35" height="200" rx="4" fill="#3b82f6" />
-                  <text x="197.5" y="26" fill="#3b82f6" fontSize="15" fontWeight="bold" textAnchor="middle">6.8%</text>
+                  <text x="197.5" y="24" fill="#3b82f6" fontSize="18" fontWeight="bold" textAnchor="middle">6.8%</text>
 
                   {/* 3.1x Indicator */}
                   <path d="M 152.5 156 L 152.5 110 L 197.5 110 L 197.5 50" fill="none" stroke="#3b82f6" strokeWidth="1.2" strokeDasharray="3 3" />
                   <g transform="translate(175, 103)">
-                    <rect x="-18" y="-9" width="36" height="18" rx="4" fill="#3b82f6" />
-                    <text x="0" y="3" fill="#000" fontSize="12" fontWeight="bold" textAnchor="middle">3.1x</text>
+                    <rect x="-30" y="-13" width="60" height="26" rx="6" fill="#3b82f6" />
+                    <text x="0" y="5" fill="#000" fontSize="18" fontWeight="bold" textAnchor="middle">3.1x</text>
                   </g>
-                  <text x="166.25" y="264" fill="#a1a1aa" fontSize="13" fontWeight="bold" textAnchor="middle">B2B 细分领域</text>
+                  <text x="166.25" y="270" fill="#a1a1aa" fontSize="18" fontWeight="bold" textAnchor="middle">B2B 细分领域</text>
 
                   {/* Group 2: SaaS 行业 (AI 5.4% vs 其它 2.4%) */}
                   <rect x="335" y="168" width="35" height="72" rx="4" fill="#1f2937" opacity="0.2" />
                   <rect x="335" y="168" width="35" height="72" rx="4" fill="#4b5563" />
-                  <text x="352.5" y="154" fill="#9ca3af" fontSize="14" fontWeight="bold" textAnchor="middle">2.4%</text>
+                  <text x="352.5" y="150" fill="#9ca3af" fontSize="18" fontWeight="bold" textAnchor="middle">2.4%</text>
 
                   <rect x="380" y="80" width="35" height="160" rx="4" fill="#3b82f6" />
-                  <text x="397.5" y="66" fill="#3b82f6" fontSize="15" fontWeight="bold" textAnchor="middle">5.4%</text>
+                  <text x="397.5" y="64" fill="#3b82f6" fontSize="18" fontWeight="bold" textAnchor="middle">5.4%</text>
 
                   {/* 2.25x Indicator */}
                   <path d="M 352.5 150 L 352.5 115 L 397.5 115 L 397.5 90" fill="none" stroke="#3b82f6" strokeWidth="1.2" strokeDasharray="3 3" />
                   <g transform="translate(375, 108)">
-                    <rect x="-18" y="-9" width="36" height="18" rx="4" fill="#3b82f6" />
-                    <text x="0" y="3" fill="#000" fontSize="12" fontWeight="bold" textAnchor="middle">2.25x</text>
+                    <rect x="-30" y="-13" width="60" height="26" rx="6" fill="#3b82f6" />
+                    <text x="0" y="5" fill="#000" fontSize="18" fontWeight="bold" textAnchor="middle">2.25x</text>
                   </g>
-                  <text x="366.25" y="264" fill="#a1a1aa" fontSize="13" fontWeight="bold" textAnchor="middle">SaaS 软件服务</text>
+                  <text x="366.25" y="270" fill="#a1a1aa" fontSize="18" fontWeight="bold" textAnchor="middle">SaaS 软件服务</text>
 
                   {/* Group 3: 零售与消费品 (AI 4.2% vs 其它 2.1%) */}
                   <rect x="535" y="177" width="35" height="63" rx="4" fill="#1f2937" opacity="0.2" />
                   <rect x="535" y="177" width="35" height="63" rx="4" fill="#4b5563" />
-                  <text x="552.5" y="163" fill="#9ca3af" fontSize="14" fontWeight="bold" textAnchor="middle">2.1%</text>
+                  <text x="552.5" y="159" fill="#9ca3af" fontSize="18" fontWeight="bold" textAnchor="middle">2.1%</text>
 
                   <rect x="580" y="115" width="35" height="125" rx="4" fill="#3b82f6" />
-                  <text x="597.5" y="101" fill="#3b82f6" fontSize="15" fontWeight="bold" textAnchor="middle">4.2%</text>
+                  <text x="597.5" y="99" fill="#3b82f6" fontSize="18" fontWeight="bold" textAnchor="middle">4.2%</text>
 
                   {/* 2.0x Indicator */}
                   <path d="M 552.5 159 L 552.5 125 L 597.5 125 L 597.5 120" fill="none" stroke="#3b82f6" strokeWidth="1.2" strokeDasharray="3 3" />
                   <g transform="translate(575, 118)">
-                    <rect x="-18" y="-9" width="36" height="18" rx="4" fill="#3b82f6" />
-                    <text x="0" y="3" fill="#000" fontSize="12" fontWeight="bold" textAnchor="middle">2.0x</text>
+                    <rect x="-30" y="-13" width="60" height="26" rx="6" fill="#3b82f6" />
+                    <text x="0" y="5" fill="#000" fontSize="18" fontWeight="bold" textAnchor="middle">2.0x</text>
                   </g>
-                  <text x="566.25" y="264" fill="#a1a1aa" fontSize="13" fontWeight="bold" textAnchor="middle">零售与消费品</text>
+                  <text x="566.25" y="270" fill="#a1a1aa" fontSize="18" fontWeight="bold" textAnchor="middle">零售与消费品</text>
 
                   {/* Title & Legend */}
-                  <text x="60" y="24" fill="#e5e7eb" fontSize="14" fontWeight="bold" textAnchor="start" letterSpacing="0.05em">
+                  <text x="60" y="24" fill="#e5e7eb" fontSize="18" fontWeight="bold" textAnchor="start" letterSpacing="0.05em">
                     各行业销售转化率对比 (AI 搜索渠道 vs 传统渠道)
                   </text>
 
-                  <g transform="translate(480, 15)">
-                    <rect x="0" y="0" width="10" height="10" rx="2" fill="#4b5563" />
-                    <text x="16" y="9" fill="#71717a" fontSize="11" fontWeight="500">其他渠道平均</text>
-                    <rect x="100" y="0" width="10" height="10" rx="2" fill="#3b82f6" />
-                    <text x="116" y="9" fill="#71717a" fontSize="11" fontWeight="500">AI 搜索优化 (GEO)</text>
+                  <g transform="translate(420, 18)">
+                    <rect x="0" y="-6" width="12" height="12" rx="2" fill="#4b5563" />
+                    <text x="20" y="5" fill="#71717a" fontSize="18" fontWeight="500">其他渠道平均</text>
+                    <rect x="180" y="-6" width="12" height="12" rx="2" fill="#3b82f6" />
+                    <text x="200" y="5" fill="#71717a" fontSize="18" fontWeight="500">AI 搜索优化 (GEO)</text>
                   </g>
                 </svg>
               )}
@@ -114,7 +114,7 @@ export default function Page_GEOSalesConversion() {
 
             {/* Data Source Label */}
             <div className="text-center w-full mt-4 shrink-0">
-              <span className="text-sm xl:text-base text-zinc-400 font-medium tracking-wider">
+              <span className="text-[18px] text-zinc-400 font-medium tracking-wider">
                 数据来源：FirstPageSage
               </span>
             </div>
@@ -136,12 +136,12 @@ export default function Page_GEOSalesConversion() {
 
             {/* Fraction wrapper */}
             <div className="flex flex-col items-center justify-center flex-1 min-w-0">
-              {/* Numerator */}
+               {/* Numerator */}
               <div className="text-center pb-4 border-b border-zinc-800 w-fit mx-auto px-4 leading-relaxed">
                 <div className="text-xl xl:text-2xl font-bold text-zinc-100">
                   在官网完成特定转化行为
                 </div>
-                <div className="text-blue-400 font-semibold text-base xl:text-lg mt-1">
+                <div className="text-blue-400 font-semibold text-[18px] xl:text-[20px] mt-1">
                   （留资、咨询、购买）的人数
                 </div>
               </div>
@@ -150,7 +150,7 @@ export default function Page_GEOSalesConversion() {
                 <div className="text-xl xl:text-2xl font-bold text-zinc-300">
                   点击 ChatGPT 回答里的推荐链接
                 </div>
-                <div className="text-zinc-400 font-semibold text-base xl:text-lg mt-1">
+                <div className="text-zinc-400 font-semibold text-[18px] xl:text-[20px] mt-1">
                   进入官网的总访客数
                 </div>
               </div>

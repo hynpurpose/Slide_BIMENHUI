@@ -21,7 +21,7 @@ export default function Page_GEOQuestionsOverview() {
   ];
 
   return (
-    <div className="w-full h-full flex flex-col justify-center p-24 overflow-hidden bg-[#03020a] text-white font-sans relative">
+    <div className="w-full h-full flex flex-col justify-center pt-20 pb-20 pl-10 pr-10 overflow-hidden bg-[#03020a] text-white font-sans relative">
       {/* Background glowing gradients (ambient deep blue neon light) */}
       <div className="absolute top-[-10%] right-[-10%] w-[800px] h-[800px] rounded-full bg-blue-600/15 blur-[180px] pointer-events-none animate-pulse duration-[12s]" />
       <div className="absolute bottom-[-10%] left-[-10%] w-[700px] h-[700px] rounded-full bg-blue-900/20 blur-[160px] pointer-events-none" />
@@ -43,7 +43,7 @@ export default function Page_GEOQuestionsOverview() {
             className="group flex flex-col justify-center p-12 rounded-[24px] border border-zinc-800/40 bg-zinc-900/10 backdrop-blur-sm shadow-subtle-glow transition-all duration-500 hover:border-blue-500/30 hover:bg-zinc-900/20 hover:shadow-[0_20px_50px_-15px_rgba(59,130,246,0.15)] min-h-[220px]"
           >
             <div className="space-y-6">
-              <div className="inline-block px-5 py-1.5 text-base xl:text-lg font-mono font-black tracking-widest text-blue-400 bg-blue-500/10 rounded-full border border-blue-500/20 group-hover:bg-blue-500/20 group-hover:text-blue-300 transition-colors duration-300 w-fit">
+              <div className="inline-block px-5 py-1.5 text-[18px] xl:text-lg font-mono font-black tracking-widest text-blue-400 bg-blue-500/10 rounded-full border border-blue-500/20 group-hover:bg-blue-500/20 group-hover:text-blue-300 transition-colors duration-300 w-fit">
                 {q.num}
               </div>
               <h3 className="text-[32px] xl:text-[40px] font-black text-white leading-snug tracking-wide group-hover:text-blue-100 transition-colors duration-300">

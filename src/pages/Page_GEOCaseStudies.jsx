@@ -9,7 +9,7 @@ export default function Page_GEOCaseStudies() {
   const rightImagePath = "/images/geo-case-2c.png";
 
   return (
-    <div className="w-full h-full flex flex-col relative bg-zinc-950 text-white font-sans select-none overflow-hidden justify-between pt-8 pb-4 px-12">
+    <div className="w-full h-full flex flex-col relative bg-zinc-950 text-white font-sans select-none overflow-hidden justify-between pt-8 pb-4 pl-10 pr-10">
 
       {/* Background glowing effects (ambient light) */}
       <div className="absolute w-[600px] h-[600px] rounded-full bg-blue-600/5 blur-[160px] -right-48 -top-48 pointer-events-none" />
@@ -54,10 +54,10 @@ export default function Page_GEOCaseStudies() {
                 <svg className="w-10 h-10 text-zinc-700 animate-pulse" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth="1.5">
                   <path strokeLinecap="round" strokeLinejoin="round" d="M2.25 15.75l5.159-5.159a2.25 2.25 0 013.182 0l5.159 5.159m-1.5-1.5l1.409-1.409a2.25 2.25 0 013.182 0l2.909 2.909m-18 3.75h16.5a1.5 1.5 0 001.5-1.5V6a1.5 1.5 0 00-1.5-1.5H3.75A1.5 1.5 0 002.25 6v12a1.5 1.5 0 001.5 1.5zm10.5-11.25h.008v.008h-.008V8.25zm.375 0a.375 0 11-.75 0 .375 0 01.75 0z" />
                 </svg>
-                <span className="text-xs font-bold text-zinc-500 font-mono bg-zinc-900/50 px-2 py-0.5 rounded border border-zinc-800/60 block truncate max-w-full">
+                <span className="text-[18px] font-bold text-zinc-500 font-mono bg-zinc-900/50 px-2 py-0.5 rounded border border-zinc-800/60 block truncate max-w-full">
                   geo-case-2b.png
                 </span>
-                <span className="text-[10px] text-zinc-600">竖版图片位</span>
+                <span className="text-[18px] text-zinc-600">竖版图片位</span>
               </div>
             )}
           </div>
@@ -66,10 +66,10 @@ export default function Page_GEOCaseStudies() {
           <div className="w-[32%] flex flex-col justify-start py-2 h-full relative z-10 pl-2">
             {/* Pill Badges - Stacked vertically in the narrow column */}
             <div className="flex flex-col gap-2 mb-6 shrink-0">
-              <span className="self-start bg-blue-500/10 border border-blue-500/30 text-blue-400 font-extrabold px-4 py-1 rounded-full text-sm tracking-wide uppercase">
+              <span className="self-start bg-blue-500/10 border border-blue-500/30 text-blue-400 font-extrabold px-4 py-1 rounded-full text-[18px] tracking-wide uppercase">
                 2B领域
               </span>
-              <span className="self-start bg-zinc-800/60 border border-zinc-700/60 text-zinc-300 font-extrabold px-4 py-1 rounded-full text-sm tracking-wide">
+              <span className="self-start bg-zinc-800/60 border border-zinc-700/60 text-zinc-300 font-extrabold px-4 py-1 rounded-full text-[18px] tracking-wide">
                 广告公司
               </span>
             </div>
@@ -102,10 +102,10 @@ export default function Page_GEOCaseStudies() {
                 <svg className="w-10 h-10 text-zinc-700 animate-pulse" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth="1.5">
                   <path strokeLinecap="round" strokeLinejoin="round" d="M2.25 15.75l5.159-5.159a2.25 2.25 0 013.182 0l5.159 5.159m-1.5-1.5l1.409-1.409a2.25 2.25 0 013.182 0l2.909 2.909m-18 3.75h16.5a1.5 1.5 0 001.5-1.5V6a1.5 1.5 0 00-1.5-1.5H3.75A1.5 1.5 0 002.25 6v12a1.5 1.5 0 001.5 1.5zm10.5-11.25h.008v.008h-.008V8.25zm.375 0a.375 0 11-.75 0 .375 0 01.75 0z" />
                 </svg>
-                <span className="text-xs font-bold text-zinc-500 font-mono bg-zinc-900/50 px-2 py-0.5 rounded border border-zinc-800/60 block truncate max-w-full">
+                <span className="text-[18px] font-bold text-zinc-500 font-mono bg-zinc-900/50 px-2 py-0.5 rounded border border-zinc-800/60 block truncate max-w-full">
                   geo-case-2c.png
                 </span>
-                <span className="text-[10px] text-zinc-600">竖版图片位</span>
+                <span className="text-[18px] text-zinc-600">竖版图片位</span>
               </div>
             )}
           </div>
@@ -114,13 +114,13 @@ export default function Page_GEOCaseStudies() {
           <div className="w-[32%] flex flex-col justify-start py-2 h-full relative z-10 pl-2">
             {/* Pill Badges - Stacked vertically in the narrow column */}
             <div className="flex flex-col gap-2 mb-6 shrink-0">
-              <span className="self-start bg-purple-500/10 border border-purple-500/30 text-purple-400 font-extrabold px-4 py-1 rounded-full text-sm tracking-wide uppercase">
+              <span className="self-start bg-purple-500/10 border border-purple-500/30 text-purple-400 font-extrabold px-4 py-1 rounded-full text-[18px] tracking-wide uppercase">
                 2C领域
               </span>
-              <span className="self-start bg-zinc-800/60 border border-zinc-700/60 text-zinc-300 font-extrabold px-4 py-1 rounded-full text-sm tracking-wide">
+              <span className="self-start bg-zinc-800/60 border border-zinc-700/60 text-zinc-300 font-extrabold px-4 py-1 rounded-full text-[18px] tracking-wide">
                 家居行业
               </span>
-              <span className="self-start bg-zinc-800/60 border border-zinc-700/60 text-zinc-300 font-extrabold px-4 py-1 rounded-full text-sm tracking-wide">
+              <span className="self-start bg-zinc-800/60 border border-zinc-700/60 text-zinc-300 font-extrabold px-4 py-1 rounded-full text-[18px] tracking-wide">
                 有门店
               </span>
             </div>

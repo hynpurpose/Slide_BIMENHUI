@@ -7,7 +7,7 @@ export default function Page_GEOTestDifference() {
   const imagePath = "/images/geo-test-difference.png";
 
   return (
-    <div className="w-full h-full flex flex-col relative bg-zinc-950 text-white font-sans select-none overflow-hidden justify-between pt-8 pb-10 px-12">
+    <div className="w-full h-full flex flex-col relative bg-zinc-950 text-white font-sans select-none overflow-hidden justify-between pt-8 pb-10 pl-10 pr-10">
 
       {/* Background glowing effects (ambient light) */}
       <div className="absolute w-[600px] h-[600px] rounded-full bg-blue-600/5 blur-[160px] -right-48 -top-48 pointer-events-none" />
@@ -51,13 +51,13 @@ export default function Page_GEOTestDifference() {
             {/* Left: Fake Report Data (95%) */}
             <rect x="200" y="45" width="60" height="145" rx="4" fill="#ef4444" opacity="0.25" />
             <rect x="200" y="45" width="60" height="145" rx="4" fill="none" stroke="#ef4444" strokeWidth="2" strokeDasharray="4 2" />
-            <text x="230" y="32" fill="#ef4444" fontSize="14" fontWeight="bold" textAnchor="middle">95% (虚假汇报)</text>
-            <text x="230" y="206" fill="#71717a" fontSize="11" fontWeight="bold" textAnchor="middle">服务商测试报告</text>
+            <text x="230" y="30" fill="#ef4444" fontSize="18" fontWeight="bold" textAnchor="middle">95% (虚假汇报)</text>
+            <text x="230" y="210" fill="#71717a" fontSize="18" fontWeight="bold" textAnchor="middle">服务商测试报告</text>
 
             {/* Right: Real Verified Data (8%) */}
             <rect x="540" y="178" width="60" height="12" rx="2" fill="#3b82f6" />
-            <text x="570" y="166" fill="#3b82f6" fontSize="14" fontWeight="bold" textAnchor="middle">8% (真实转化)</text>
-            <text x="570" y="206" fill="#71717a" fontSize="11" fontWeight="bold" textAnchor="middle">客户独立核验</text>
+            <text x="570" y="162" fill="#3b82f6" fontSize="18" fontWeight="bold" textAnchor="middle">8% (真实转化)</text>
+            <text x="570" y="210" fill="#71717a" fontSize="18" fontWeight="bold" textAnchor="middle">客户独立核验</text>
 
             {/* Red Alert arrow indicating the drop */}
             <path d="M 270 110 L 530 170" fill="none" stroke="#ef4444" strokeWidth="2.5" strokeDasharray="4 4" />
@@ -65,12 +65,12 @@ export default function Page_GEOTestDifference() {
 
             {/* Badge for drop */}
             <g transform="translate(400, 125)">
-              <rect x="-45" y="-10" width="90" height="20" rx="4" fill="#ef4444" />
-              <text x="0" y="4" fill="#fff" fontSize="10" fontWeight="bold" textAnchor="middle">缩水率超过 90%</text>
+              <rect x="-80" y="-16" width="160" height="32" rx="6" fill="#ef4444" />
+              <text x="0" y="5" fill="#fff" fontSize="18" fontWeight="bold" textAnchor="middle">缩水率超过 90%</text>
             </g>
 
             {/* Warning text */}
-            <text x="400" y="232" fill="#ef4444" fontSize="10" fontWeight="bold" textAnchor="middle" opacity="0.8">
+            <text x="400" y="234" fill="#ef4444" fontSize="18" fontWeight="bold" textAnchor="middle" opacity="0.8">
               ⚠️ 服务商利用高频模拟机刷、关键词堆砌产生虚假的GEO收录报告，实则无任何销售转化效果
             </text>
           </svg>

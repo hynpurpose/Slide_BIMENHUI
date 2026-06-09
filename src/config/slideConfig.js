@@ -37,13 +37,19 @@ export const slideConfig = [
   },
 
   // ——— 篇章1: GEO闭门会 ———
-  { type: 'chapter', title: 'GEO闭门会', subtitle: 'GEO OPTIMIZATION', backgroundImage: '/proposal-chapters/proposal-chapter-cover-03.jpg' },
+  {
+    type: 'chapter',
+    title: 'GEO闭门会',
+    subtitle: 'GEO OPTIMIZATION',
+    coverTitle: '为什么我们团队\n在2024年\n全力押注 GEO',
+    coverSubtitle: 'Why\nGEO\nMatters?',
+    coverLabel: '——为什么要做GEO?',
+    backgroundImage: ''
+  },
   { type: 'section', title: '一级标题1' },
   { type: 'page', title: '闭门会海报', component: Page_FullImageIntro, hideHeader: true },
   { type: 'page', title: '开场闭门会', component: Page_ClosedMeetingIntro, hideHeader: true },
   { type: 'page', title: '搜索入口趋势', component: Page_SearchEntryTrend, hideHeader: true },
-  { type: 'page', title: 'AI深入人心原因', component: Page_SearchEntryWhyAI, hideHeader: true },
-  { type: 'page', title: 'GEO是否带来销售转化', component: Page_GEOSalesConversionIntro, hideHeader: true },
   { type: 'page', title: '销售转化率对比', component: Page_GEOSalesConversion, hideHeader: true },
   { type: 'page', title: '线下销售反馈的真实现象', component: Page_GEOSalesFeedback, hideHeader: true },
   { type: 'page', title: '销售转化案例', component: Page_GEOCaseStudies, hideHeader: true },

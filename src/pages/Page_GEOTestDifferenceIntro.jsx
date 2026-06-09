@@ -7,7 +7,7 @@ export default function Page_GEOTestDifferenceIntro() {
   const imagePath = "/images/geo-test-difference-intro.png";
 
   return (
-    <div className="w-full h-full flex flex-col relative bg-zinc-950 text-white font-sans select-none overflow-hidden justify-between pt-8 pb-10 px-12">
+    <div className="w-full h-full flex flex-col relative bg-zinc-950 text-white font-sans select-none overflow-hidden justify-between pt-8 pb-10 pl-10 pr-10">
 
       {/* Background glowing effects (ambient light) */}
       <div className="absolute w-[600px] h-[600px] rounded-full bg-blue-600/5 blur-[160px] -right-48 -top-48 pointer-events-none" />
@@ -60,7 +60,7 @@ export default function Page_GEOTestDifferenceIntro() {
             
             <div className="text-center relative z-10">
               <p className="text-xl font-bold text-zinc-400 tracking-wider">图片占位区域 (图片位已留)</p>
-              <p className="text-sm text-zinc-600 mt-3 max-w-md mx-auto leading-relaxed">
+              <p className="text-[18px] text-zinc-650 mt-3 max-w-md mx-auto leading-relaxed">
                 请放置对应的图片文件：<span className="text-blue-400 font-mono font-bold bg-blue-500/5 px-2 py-0.5 rounded border border-blue-500/10">/public/images/geo-test-difference-intro.png</span>
               </p>
             </div>
