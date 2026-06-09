@@ -4,7 +4,7 @@ import SlideLayout from '../components/SlideLayout';
 export default function Page_SearchEntryTrend() {
   // Data points mapped to SVG viewport coordinate space (1000 x 500)
   // X range: 100 to 920, Y range: 60 (1.00E+9) to 410 (0)
-  
+
   const traditionalData = [
     { x: 80, y: 347.0, label: '07/25', value: '1.8E+8' },
     { x: 154.5, y: 336.5, label: '01/26', value: '2.1E+8' },
@@ -59,19 +59,19 @@ export default function Page_SearchEntryTrend() {
 
   return (
     <SlideLayout
-      title="2030年，AI 搜索入口将超过传统搜索入口。"
-      subtitle="我们团队为什么在2024年决定全力押注 GEO？"
+      title="我们团队为什么在2024年决定全力押注 GEO？"
+      subtitle="互联网信息搜索入口趋势图"
     >
       <div className="grid grid-cols-12 gap-0 w-full h-full items-stretch relative">
-        
+
         {/* Left Column: Expanded Trend Curve Chart */}
         <div className="col-span-9 pr-8 flex flex-col justify-center py-4 select-none">
           <div className="relative w-full flex flex-col items-center">
-            
+
             {/* SVG Line Chart (Larger Container) */}
             <div className="w-full h-[640px] pt-6 pb-6 pr-6 pl-0 flex items-center justify-center relative">
               <svg viewBox="0 0 1000 500" className="w-full h-full overflow-visible">
-                
+
                 {/* Y Axis Grid Lines & Labels */}
                 {[
                   { y: 60, label: '1.00E+9' },
@@ -82,22 +82,22 @@ export default function Page_SearchEntryTrend() {
                 ].map((grid, idx) => (
                   <g key={idx}>
                     {/* Grid Line */}
-                    <line 
-                      x1="80" 
-                      y1={grid.y} 
-                      x2="900" 
-                      y2={grid.y} 
-                      stroke={grid.label === '0' ? "rgba(255, 255, 255, 0.25)" : "rgba(255, 255, 255, 0.08)"} 
-                      strokeWidth={grid.label === '0' ? "1.5" : "1"} 
+                    <line
+                      x1="80"
+                      y1={grid.y}
+                      x2="900"
+                      y2={grid.y}
+                      stroke={grid.label === '0' ? "rgba(255, 255, 255, 0.25)" : "rgba(255, 255, 255, 0.08)"}
+                      strokeWidth={grid.label === '0' ? "1.5" : "1"}
                     />
                     {/* Y Label */}
-                    <text 
-                      x="60" 
-                      y={grid.y} 
-                      fill="#71717a" 
-                      fontSize="18" 
-                      fontFamily="MiSans, sans-serif" 
-                      textAnchor="end" 
+                    <text
+                      x="60"
+                      y={grid.y}
+                      fill="#71717a"
+                      fontSize="18"
+                      fontFamily="MiSans, sans-serif"
+                      textAnchor="end"
                       dominantBaseline="middle"
                     >
                       {grid.label}
@@ -142,23 +142,23 @@ export default function Page_SearchEntryTrend() {
                 {/* Annotation Text for Traditional Curve (+12%) */}
                 <g transform="translate(400, 240)" className="text-center">
                   <text
-                     x="0"
-                     y="0"
-                     fill="#FFFFFF"
-                     fontSize="18"
-                     fontWeight="bold"
-                     fontFamily="MiSans, sans-serif"
-                     textAnchor="middle"
+                    x="0"
+                    y="0"
+                    fill="#FFFFFF"
+                    fontSize="18"
+                    fontWeight="bold"
+                    fontFamily="MiSans, sans-serif"
+                    textAnchor="middle"
                   >
                     +12%
                   </text>
                   <text
-                     x="0"
-                     y="18"
-                     fill="#A1A1AA"
-                     fontSize="18"
-                     fontFamily="MiSans, sans-serif"
-                     textAnchor="middle"
+                    x="0"
+                    y="18"
+                    fill="#A1A1AA"
+                    fontSize="18"
+                    fontFamily="MiSans, sans-serif"
+                    textAnchor="middle"
                   >
                     传统搜索入口
                   </text>
@@ -232,7 +232,7 @@ export default function Page_SearchEntryTrend() {
 
         {/* Right Column: Key Insights */}
         <div className="col-span-3 pl-3 flex flex-col justify-center gap-12 py-4">
-          
+
           {/* Insight 1: 趋势预测 */}
           <div className="flex flex-col justify-start">
             <div className="flex items-baseline justify-between border-b border-zinc-800/80 pb-3 mb-5">

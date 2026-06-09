@@ -1,11 +1,55 @@
-import React, { useState } from 'react';
+import React from 'react';
 import SlideLayout from '../components/SlideLayout';
 
 export default function Page_GEOSalesConversion() {
-  const [imgFailed, setImgFailed] = useState(false);
+  const chartData = [
+    { industry: "Hotels & Resorts", overall: 3.6, chatgpt: 7.0, lift: 3.4 },
+    { industry: "Higher Education & College", overall: 2.8, chatgpt: 4.9, lift: 2.1 },
+    { industry: "Entertainment", overall: 2.9, chatgpt: 4.7, lift: 1.8 },
+    { industry: "Legal Services", overall: 3.8, chatgpt: 5.6, lift: 1.8 },
+    { industry: "Manufacturing", overall: 2.1, chatgpt: 3.8, lift: 1.7 },
+    { industry: "Luxury Goods", overall: 1.4, chatgpt: 1.9, lift: 0.5 },
+    { industry: "Biotech", overall: 1.8, chatgpt: 2.1, lift: 0.3 },
+    { industry: "Engineering", overall: 1.2, chatgpt: 1.4, lift: 0.2 },
+    { industry: "Heavy Equipment", overall: 1.7, chatgpt: 1.8, lift: 0.1 },
+    { industry: "Financial Services", overall: 1.8, chatgpt: 1.9, lift: 0.1 }
+  ];
 
-  // Optional local image path - will fallback to premium SVG graphics if file is not found
-  const imagePath = "/images/geo-sales-conversion.png";
+  const labels = {
+    "Hotels & Resorts": ["Hotels &", "Resorts"],
+    "Higher Education & College": ["Higher Education", "& College"],
+    "Entertainment": ["Entertainment"],
+    "Legal Services": ["Legal Services"],
+    "Manufacturing": ["Manufacturing"],
+    "Luxury Goods": ["Luxury Goods"],
+    "Biotech": ["Biotech"],
+    "Engineering": ["Engineering"],
+    "Heavy Equipment": ["Heavy", "Equipment"],
+    "Financial Services": ["Financial", "Services"]
+  };
+
+  // SVG dimensions
+  const svgWidth = 1800;
+  const svgHeight = 520;
+  
+  // Margins
+  const xMarginLeft = 80;
+  const plotWidth = 1680;
+  const yMarginTop = 80;
+  const plotHeight = 340;
+  
+  // Math helper
+  const scale = plotHeight / 8.0; // 8.0% max
+
+  const getRoundedTopBarPath = (x, y, w, h, rx) => {
+    const radius = Math.min(rx, h);
+    return `M ${x} ${y + radius} 
+            Q ${x} ${y} ${x + radius} ${y} 
+            L ${x + w - radius} ${y} 
+            Q ${x + w} ${y} ${x + w} ${y + radius} 
+            L ${x + w} ${y + h} 
+            L ${x} ${y + h} Z`;
+  };
 
   return (
     <SlideLayout
@@ -14,150 +58,165 @@ export default function Page_GEOSalesConversion() {
           GEO到底能不能帮客户带来<span className="text-blue-400 font-extrabold drop-shadow-[0_0_10px_rgba(59,130,246,0.3)]">销售转化</span>？
         </>
       }
-      subtitle="各行业销售转化率对比 (AI 搜索渠道 vs 传统渠道)"
+      subtitle="各行业AI转化率对比"
     >
       {/* Background glowing effects (ambient light) */}
       <div className="absolute w-[600px] h-[600px] rounded-full bg-blue-600/5 blur-[160px] -right-48 -top-48 pointer-events-none" />
       <div className="absolute w-[500px] h-[500px] rounded-full bg-blue-900/5 blur-[130px] left-24 bottom-24 pointer-events-none" />
 
-      {/* Middle Section: Image / Chart Area and Formula Side-by-Side */}
-      <div className="w-full h-full grid grid-cols-12 gap-8 items-stretch relative z-10">
+      <div className="w-full h-full flex flex-col items-center justify-between relative z-10 pt-4 pb-2">
+        
+        {/* Top Header Badge & Legend */}
+        <div className="w-full flex items-center justify-between px-10 mb-2">
+          {/* Badge */}
+          <div className="inline-flex items-center bg-blue-500/10 border border-blue-500/25 rounded-full px-5 py-1.5 shadow-[0_0_15px_rgba(59,130,246,0.1)]">
+            <span className="text-[18px] font-bold text-blue-400 tracking-wider font-['MiSans']">
+              ChatGPT各行业转化率数据
+            </span>
+          </div>
 
-        {/* Left Column: Chart Area */}
-        <div className="col-span-8 flex flex-col items-start justify-center relative z-10 min-h-0 pr-12">
-          <div className="flex flex-col items-start justify-center max-w-full">
-            {/* Image Title in capsule shape */}
-            <div className="inline-flex items-center bg-blue-500/10 border border-blue-500/25 rounded-full px-5 py-1.5 mb-6 shadow-[0_0_15px_rgba(59,130,246,0.1)]">
-              <span className="text-[18px] xl:text-xl font-bold text-blue-400 tracking-wider">
-                ChatGPT各行业转化率数据
-              </span>
+          {/* Legend */}
+          <div className="flex items-center gap-8 text-[18px] font-medium text-zinc-400 font-['MiSans']">
+            <div className="flex items-center gap-2">
+              <div className="w-4 h-4 rounded-sm bg-[#1E40AF]" />
+              <span>整体渠道平均转化率 (Overall Conversion Rate)</span>
             </div>
-            {/* Image/SVG Container */}
-            <div className="w-full flex items-center justify-start min-h-0">
-              {!imgFailed ? (
-                <img
-                  src={imagePath}
-                  alt="GEO 销售转化率对比"
-                  className="max-w-full max-h-[500px] xl:max-h-[580px] object-contain rounded-2xl shadow-[0_20px_50px_rgba(0,0,0,0.3)] border border-zinc-800/50"
-                  onError={() => setImgFailed(true)}
-                />
-              ) : (
-                <svg viewBox="0 0 800 300" className="w-full h-auto max-h-[480px] xl:max-h-[580px] overflow-visible">
-                  {/* Y Axis Grid Lines */}
-                  <line x1="60" y1="240" x2="740" y2="240" stroke="#1f2937" strokeWidth="1.2" strokeDasharray="4 4" opacity="0.6" />
-                  <line x1="60" y1="145" x2="740" y2="145" stroke="#1f2937" strokeWidth="1.2" strokeDasharray="4 4" opacity="0.6" />
-                  <line x1="60" y1="50" x2="740" y2="50" stroke="#1f2937" strokeWidth="1.2" strokeDasharray="4 4" opacity="0.6" />
-
-                  {/* Group 1: B2B 细分领域 (AI 6.8% vs 其它 2.2%) */}
-                  <rect x="135" y="174" width="35" height="66" rx="4" fill="#1f2937" opacity="0.2" />
-                  <rect x="135" y="174" width="35" height="66" rx="4" fill="#4b5563" />
-                  <text x="152.5" y="156" fill="#9ca3af" fontSize="18" fontWeight="bold" textAnchor="middle">2.2%</text>
-
-                  <rect x="180" y="40" width="35" height="200" rx="4" fill="#3b82f6" />
-                  <text x="197.5" y="24" fill="#3b82f6" fontSize="18" fontWeight="bold" textAnchor="middle">6.8%</text>
-
-                  {/* 3.1x Indicator */}
-                  <path d="M 152.5 156 L 152.5 110 L 197.5 110 L 197.5 50" fill="none" stroke="#3b82f6" strokeWidth="1.2" strokeDasharray="3 3" />
-                  <g transform="translate(175, 103)">
-                    <rect x="-30" y="-13" width="60" height="26" rx="6" fill="#3b82f6" />
-                    <text x="0" y="5" fill="#000" fontSize="18" fontWeight="bold" textAnchor="middle">3.1x</text>
-                  </g>
-                  <text x="166.25" y="270" fill="#a1a1aa" fontSize="18" fontWeight="bold" textAnchor="middle">B2B 细分领域</text>
-
-                  {/* Group 2: SaaS 行业 (AI 5.4% vs 其它 2.4%) */}
-                  <rect x="335" y="168" width="35" height="72" rx="4" fill="#1f2937" opacity="0.2" />
-                  <rect x="335" y="168" width="35" height="72" rx="4" fill="#4b5563" />
-                  <text x="352.5" y="150" fill="#9ca3af" fontSize="18" fontWeight="bold" textAnchor="middle">2.4%</text>
-
-                  <rect x="380" y="80" width="35" height="160" rx="4" fill="#3b82f6" />
-                  <text x="397.5" y="64" fill="#3b82f6" fontSize="18" fontWeight="bold" textAnchor="middle">5.4%</text>
-
-                  {/* 2.25x Indicator */}
-                  <path d="M 352.5 150 L 352.5 115 L 397.5 115 L 397.5 90" fill="none" stroke="#3b82f6" strokeWidth="1.2" strokeDasharray="3 3" />
-                  <g transform="translate(375, 108)">
-                    <rect x="-30" y="-13" width="60" height="26" rx="6" fill="#3b82f6" />
-                    <text x="0" y="5" fill="#000" fontSize="18" fontWeight="bold" textAnchor="middle">2.25x</text>
-                  </g>
-                  <text x="366.25" y="270" fill="#a1a1aa" fontSize="18" fontWeight="bold" textAnchor="middle">SaaS 软件服务</text>
-
-                  {/* Group 3: 零售与消费品 (AI 4.2% vs 其它 2.1%) */}
-                  <rect x="535" y="177" width="35" height="63" rx="4" fill="#1f2937" opacity="0.2" />
-                  <rect x="535" y="177" width="35" height="63" rx="4" fill="#4b5563" />
-                  <text x="552.5" y="159" fill="#9ca3af" fontSize="18" fontWeight="bold" textAnchor="middle">2.1%</text>
-
-                  <rect x="580" y="115" width="35" height="125" rx="4" fill="#3b82f6" />
-                  <text x="597.5" y="99" fill="#3b82f6" fontSize="18" fontWeight="bold" textAnchor="middle">4.2%</text>
-
-                  {/* 2.0x Indicator */}
-                  <path d="M 552.5 159 L 552.5 125 L 597.5 125 L 597.5 120" fill="none" stroke="#3b82f6" strokeWidth="1.2" strokeDasharray="3 3" />
-                  <g transform="translate(575, 118)">
-                    <rect x="-30" y="-13" width="60" height="26" rx="6" fill="#3b82f6" />
-                    <text x="0" y="5" fill="#000" fontSize="18" fontWeight="bold" textAnchor="middle">2.0x</text>
-                  </g>
-                  <text x="566.25" y="270" fill="#a1a1aa" fontSize="18" fontWeight="bold" textAnchor="middle">零售与消费品</text>
-
-                  {/* Legend (centered) */}
-                  <g transform="translate(210, 18)">
-                    <rect x="0" y="-6" width="12" height="12" rx="2" fill="#4b5563" />
-                    <text x="20" y="5" fill="#71717a" fontSize="18" fontWeight="500">其他渠道平均</text>
-                    <rect x="180" y="-6" width="12" height="12" rx="2" fill="#3b82f6" />
-                    <text x="200" y="5" fill="#71717a" fontSize="18" fontWeight="500">AI 搜索优化 (GEO)</text>
-                  </g>
-                </svg>
-              )}
-            </div>
-
-            {/* Data Source Label */}
-            <div className="text-center w-full mt-4 shrink-0">
-              <span className="text-[18px] text-zinc-400 font-medium tracking-wider">
-                数据来源：FirstPageSage
-              </span>
+            <div className="flex items-center gap-2">
+              <div className="w-4 h-4 rounded-sm bg-gradient-to-t from-[#1A75FF] to-[#59B2FF]" />
+              <span>AI 搜索优化提升额 (ChatGPT Lift)</span>
             </div>
           </div>
         </div>
 
-        {/* Vertical Divider Line */}
-        <div className="absolute top-4 bottom-4 w-px bg-zinc-800/80" style={{ left: '1220px' }} />
+        {/* SVG Chart */}
+        <div className="w-full flex-grow flex items-center justify-center min-h-0 px-4">
+          <svg viewBox={`0 0 ${svgWidth} ${svgHeight}`} className="w-full h-auto max-h-[580px] overflow-visible">
+            {/* Gradients */}
+            <defs>
+              <linearGradient id="blueGrad" x1="0" y1="0" x2="0" y2="1">
+                <stop offset="0%" stopColor="#59B2FF" />
+                <stop offset="100%" stopColor="#1A75FF" />
+              </linearGradient>
+            </defs>
 
-        {/* Right Column: Formula Card */}
-        <div className="col-span-4 flex flex-col justify-center pl-8 relative">
-          <div className="border-b border-zinc-800/80 pb-3 mb-8">
-            <h3 className="text-3xl font-extrabold text-white tracking-wide">
-              转化率公式 <span className="text-zinc-500 text-xl font-normal ml-3 font-mono">FORMULA</span>
-            </h3>
-          </div>
+            {/* Y-axis grid lines */}
+            {[0, 2, 4, 6, 8].map((val) => {
+              const y = yMarginTop + plotHeight - val * scale;
+              return (
+                <g key={val}>
+                  <line 
+                    x1={xMarginLeft} 
+                    y1={y} 
+                    x2={xMarginLeft + plotWidth} 
+                    y2={y} 
+                    stroke={val === 0 ? "rgba(255,255,255,0.3)" : "rgba(255,255,255,0.1)"} 
+                    strokeWidth={val === 0 ? "2" : "1"}
+                    strokeDasharray={val === 0 ? "0" : "4 4"}
+                  />
+                  <text 
+                    x={xMarginLeft - 15} 
+                    y={y} 
+                    fill="#9CA3AF" 
+                    fontSize="16" 
+                    fontFamily="MiSans, sans-serif" 
+                    textAnchor="end" 
+                    dominantBaseline="middle"
+                  >
+                    {val.toFixed(1)}%
+                  </text>
+                </g>
+              );
+            })}
 
-          <div className="p-8 bg-zinc-900/40 border border-zinc-800/85 rounded-3xl backdrop-blur-md relative overflow-hidden shadow-[0_0_30px_rgba(59,130,246,0.02)]">
-            <div className="absolute -right-16 -bottom-16 w-36 h-36 rounded-full bg-blue-600/5 blur-[40px] pointer-events-none" />
+            {/* Bars */}
+            {chartData.map((d, i) => {
+              const bandWidth = plotWidth / 10;
+              const barWidth = 72;
+              const barX = xMarginLeft + i * bandWidth + (bandWidth - barWidth) / 2;
+              
+              const overallHeight = d.overall * scale;
+              const liftHeight = d.lift * scale;
+              const totalHeight = d.chatgpt * scale;
+              
+              const baseLineY = yMarginTop + plotHeight;
+              const overallY = baseLineY - overallHeight;
+              const liftY = overallY - liftHeight;
 
-            <div className="flex flex-col items-center justify-center gap-6 w-full text-white font-sans">
-              <div className="bg-blue-500/10 border border-blue-500/25 px-4 py-1.5 rounded-full text-blue-400 font-extrabold text-[18px] tracking-wider self-start mb-2 font-['MiSans']">
-                GEO 销售转化率计算方式
-              </div>
+              const xCenter = barX + barWidth / 2;
+              const lines = labels[d.industry] || [d.industry];
 
-              <div className="flex flex-col items-center justify-center w-full min-w-0">
-                {/* Numerator */}
-                <div className="text-center pb-5 border-b border-zinc-800 w-full leading-relaxed">
-                  <div className="text-2xl font-black text-zinc-100 font-['MiSans']">
-                    在官网完成特定转化行为
-                  </div>
-                  <div className="text-blue-400 font-semibold text-[20px] mt-2 font-['MiSans']">
-                    （留资、咨询、购买）的人数
-                  </div>
-                </div>
+              return (
+                <g key={i} className="transition-all duration-300 hover:opacity-95">
+                  {/* Bottom Bar: Overall Rate */}
+                  <rect 
+                    x={barX} 
+                    y={overallY} 
+                    width={barWidth} 
+                    height={overallHeight} 
+                    fill="#1E40AF" 
+                  />
 
-                {/* Denominator */}
-                <div className="text-center pt-5 w-full leading-relaxed">
-                  <div className="text-2xl font-black text-zinc-350 font-['MiSans']">
-                    点击 AI 回答里的推荐链接
-                  </div>
-                  <div className="text-zinc-400 font-semibold text-[20px] mt-2 font-['MiSans']">
-                    进入官网的总访客数
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div>
+                  {/* Top Bar: Lift */}
+                  <path 
+                    d={getRoundedTopBarPath(barX, liftY, barWidth, liftHeight, 8)} 
+                    fill="url(#blueGrad)" 
+                  />
+
+                  {/* Base Rate Text inside bottom bar */}
+                  {overallHeight > 24 && (
+                    <text 
+                      x={xCenter} 
+                      y={overallY + overallHeight / 2} 
+                      fill="#93C5FD" 
+                      fontSize="14" 
+                      fontWeight="bold" 
+                      textAnchor="middle" 
+                      dominantBaseline="middle"
+                      fontFamily="MiSans, sans-serif"
+                    >
+                      {d.overall.toFixed(1)}%
+                    </text>
+                  )}
+
+                  {/* Stacked values on top of bar */}
+                  <text x={xCenter} y={liftY - 24} textAnchor="middle" fontFamily="MiSans, sans-serif">
+                    <tspan x={xCenter} dy="0" fill="#FFFFFF" fontSize="19" fontWeight="900">
+                      {d.chatgpt.toFixed(1)}%
+                    </tspan>
+                    <tspan x={xCenter} dy="18" fill="#60A5FA" fontSize="14" fontWeight="bold">
+                      +{d.lift.toFixed(1)}%
+                    </tspan>
+                  </text>
+
+                  {/* X Axis Labels */}
+                  <text
+                    x={xCenter}
+                    y={baseLineY + 25}
+                    fill="#9CA3AF"
+                    fontSize="15"
+                    fontFamily="MiSans, sans-serif"
+                    textAnchor="middle"
+                  >
+                    {lines.map((line, lineIdx) => (
+                      <tspan key={lineIdx} x={xCenter} dy={lineIdx === 0 ? 0 : 20} fontWeight={lineIdx === 0 ? "bold" : "normal"}>
+                        {line}
+                      </tspan>
+                    ))}
+                  </text>
+                </g>
+              );
+            })}
+          </svg>
+        </div>
+
+        {/* Data Source & Caption */}
+        <div className="w-full flex justify-between items-center px-10 mt-2">
+          <span className="text-[18px] text-zinc-500 font-medium tracking-wider font-['MiSans']">
+            数据来源：FirstPageSage
+          </span>
+          <span className="text-[18px] text-blue-400/80 font-semibold tracking-wide font-['MiSans']">
+            * 调查数据证实：在各主要行业中，AI 渠道转化率（ChatGPT）均成倍提升，超越传统渠道平均水平。
+          </span>
         </div>
 
       </div>
