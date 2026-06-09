@@ -18,13 +18,13 @@ export default function Page_GEOSalesConversion() {
   // SVG dimensions
   const svgWidth = 1800;
   const svgHeight = 620;
-  
+
   // Margins
   const xMarginLeft = 80;
   const plotWidth = 1680;
   const yMarginTop = 40;
   const plotHeight = 480;
-  
+
   // Math helper
   const scale = plotHeight / 8.0; // 8.0% max
 
@@ -52,7 +52,7 @@ export default function Page_GEOSalesConversion() {
       <div className="absolute w-[500px] h-[500px] rounded-full bg-blue-900/5 blur-[130px] left-24 bottom-24 pointer-events-none" />
 
       <div className="w-full h-full flex flex-col items-center justify-between relative z-10 pt-4 pb-2">
-        
+
         {/* Top Legend (placed on the right side - size 20px) */}
         <div className="w-full flex items-center justify-end px-10 mb-4">
           <div className="flex items-center gap-8 text-[20px] font-medium text-zinc-400 font-['MiSans']">
@@ -83,22 +83,22 @@ export default function Page_GEOSalesConversion() {
               const y = yMarginTop + plotHeight - val * scale;
               return (
                 <g key={val}>
-                  <line 
-                    x1={xMarginLeft} 
-                    y1={y} 
-                    x2={xMarginLeft + plotWidth} 
-                    y2={y} 
-                    stroke={val === 0 ? "rgba(255,255,255,0.3)" : "rgba(255,255,255,0.1)"} 
+                  <line
+                    x1={xMarginLeft}
+                    y1={y}
+                    x2={xMarginLeft + plotWidth}
+                    y2={y}
+                    stroke={val === 0 ? "rgba(255,255,255,0.3)" : "rgba(255,255,255,0.1)"}
                     strokeWidth={val === 0 ? "2" : "1"}
                     strokeDasharray={val === 0 ? "0" : "4 4"}
                   />
-                  <text 
-                    x={xMarginLeft - 15} 
-                    y={y} 
-                    fill="#9CA3AF" 
-                    fontSize="20" 
-                    fontFamily="MiSans, sans-serif" 
-                    textAnchor="end" 
+                  <text
+                    x={xMarginLeft - 15}
+                    y={y}
+                    fill="#9CA3AF"
+                    fontSize="20"
+                    fontFamily="MiSans, sans-serif"
+                    textAnchor="end"
                     dominantBaseline="middle"
                   >
                     {val.toFixed(1)}%
@@ -112,11 +112,11 @@ export default function Page_GEOSalesConversion() {
               const bandWidth = plotWidth / 10;
               const barWidth = 72;
               const barX = xMarginLeft + i * bandWidth + (bandWidth - barWidth) / 2;
-              
+
               const overallHeight = d.overall * scale;
               const liftHeight = d.lift * scale;
               const totalHeight = d.chatgpt * scale;
-              
+
               const baseLineY = yMarginTop + plotHeight;
               const overallY = baseLineY - overallHeight;
               const liftY = overallY - liftHeight;
@@ -126,29 +126,29 @@ export default function Page_GEOSalesConversion() {
               return (
                 <g key={i} className="transition-all duration-300 hover:opacity-95">
                   {/* Bottom Bar: Overall Rate */}
-                  <rect 
-                    x={barX} 
-                    y={overallY} 
-                    width={barWidth} 
-                    height={overallHeight} 
-                    fill="#1E40AF" 
+                  <rect
+                    x={barX}
+                    y={overallY}
+                    width={barWidth}
+                    height={overallHeight}
+                    fill="#1E40AF"
                   />
 
                   {/* Top Bar: Lift */}
-                  <path 
-                    d={getRoundedTopBarPath(barX, liftY, barWidth, liftHeight, 8)} 
-                    fill="url(#blueGrad)" 
+                  <path
+                    d={getRoundedTopBarPath(barX, liftY, barWidth, liftHeight, 8)}
+                    fill="url(#blueGrad)"
                   />
 
                   {/* Base Rate Text inside bottom bar (size 20px) */}
                   {overallHeight > 26 && (
-                    <text 
-                      x={xCenter} 
-                      y={overallY + overallHeight / 2} 
-                      fill="#93C5FD" 
-                      fontSize="20" 
-                      fontWeight="bold" 
-                      textAnchor="middle" 
+                    <text
+                      x={xCenter}
+                      y={overallY + overallHeight / 2}
+                      fill="#93C5FD"
+                      fontSize="20"
+                      fontWeight="bold"
+                      textAnchor="middle"
                       dominantBaseline="middle"
                       fontFamily="MiSans, sans-serif"
                     >
@@ -186,13 +186,12 @@ export default function Page_GEOSalesConversion() {
 
         {/* Formula Block at the bottom of the chart */}
         <div className="w-full flex justify-center px-10 mb-4 mt-2 z-20">
-          <div className="flex items-center gap-6 py-3 px-10 bg-zinc-900/40 border border-zinc-800/80 rounded-2xl font-['MiSans'] text-[20px] text-zinc-350 shadow-md">
-            <span className="font-extrabold text-blue-400">转化率公式</span>
+          <div className="flex items-center gap-4 py-3 px-10 bg-zinc-900/40 border border-zinc-800/80 rounded-2xl font-['MiSans'] text-[20px] text-zinc-350 shadow-md">
+            <span className="font-extrabold text-blue-400">转化率</span>
             <span className="text-zinc-500 font-bold">=</span>
-            <div className="flex flex-col items-center justify-center px-2 leading-tight">
-              <span className="pb-1 border-b border-zinc-700 text-zinc-150 font-bold">完成特定行为（如购买、留资）的用户</span>
-              <span className="pt-1 text-zinc-400 font-medium">通过该渠道进入网站的用户</span>
-            </div>
+            <span className="text-zinc-150 font-bold">完成特定行为（如购买、留资）的用户</span>
+            <span className="text-zinc-500 font-bold">/</span>
+            <span className="text-zinc-400 font-medium">通过该渠道进入网站的用户</span>
           </div>
         </div>
 
