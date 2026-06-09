@@ -53,9 +53,22 @@ export default function Page_GEOSalesConversion() {
 
       <div className="w-full h-full flex flex-col items-center justify-between relative z-10 pt-4 pb-2">
 
-        {/* Top Legend (placed on the right side - size 20px) */}
-        <div className="w-full flex items-center justify-end px-10 mb-4">
-          <div className="flex items-center gap-8 text-[20px] font-medium text-zinc-400 font-['MiSans']">
+        {/* Top Header Row: Legend on the right, Formula centered */}
+        <div className="w-full flex items-center justify-between px-10 mb-4 relative">
+          {/* Left spacer to keep formula centered */}
+          <div className="w-[400px] hidden xl:block" /> 
+
+          {/* Formula centered */}
+          <div className="xl:absolute xl:left-1/2 xl:-translate-x-1/2 flex items-center gap-4 py-2 px-8 bg-zinc-900/40 border border-zinc-800/80 rounded-full font-['MiSans'] text-[20px] text-zinc-350 shadow-md">
+            <span className="font-extrabold text-blue-400">转化率</span>
+            <span className="text-zinc-500 font-bold">=</span>
+            <span className="text-zinc-150 font-bold">完成特定行为（如购买、留资）的用户</span>
+            <span className="text-zinc-500 font-bold">/</span>
+            <span className="text-zinc-400 font-medium">通过该渠道进入网站的用户</span>
+          </div>
+
+          {/* Right Legend */}
+          <div className="flex items-center gap-8 text-[20px] font-medium text-zinc-400 font-['MiSans'] z-10 ml-auto">
             <div className="flex items-center gap-2">
               <div className="w-4 h-4 rounded-sm bg-[#1E40AF]" />
               <span>整体渠道平均转化率</span>
@@ -184,24 +197,17 @@ export default function Page_GEOSalesConversion() {
           </svg>
         </div>
 
-        {/* Formula Block at the bottom of the chart */}
+        {/* Caption Block (placed in original formula position below the chart) */}
         <div className="w-full flex justify-center px-10 mb-6 -mt-[10px] z-20">
-          <div className="flex items-center gap-4 py-3 px-10 bg-zinc-900/40 border border-zinc-800/80 rounded-2xl font-['MiSans'] text-[20px] text-zinc-350 shadow-md">
-            <span className="font-extrabold text-blue-400">转化率</span>
-            <span className="text-zinc-500 font-bold">=</span>
-            <span className="text-zinc-150 font-bold">完成特定行为（如购买、留资）的用户</span>
-            <span className="text-zinc-500 font-bold">/</span>
-            <span className="text-zinc-400 font-medium">通过该渠道进入网站的用户</span>
+          <div className="flex items-center gap-3 py-3 px-10 bg-blue-950/20 border border-blue-900/30 rounded-2xl font-['MiSans'] text-[20px] text-blue-400 font-semibold shadow-md">
+            <span>* 调查数据证实：在部分细分的B2B行业中，ChatGPT带来的访客转化率已经能高出整整一倍。</span>
           </div>
         </div>
 
-        {/* Data Source & Caption (size 20px) */}
+        {/* Bottom Footer Row */}
         <div className="w-full flex justify-between items-center px-10 mt-2">
           <span className="text-[20px] text-zinc-500 font-medium tracking-wider font-['MiSans']">
             数据来源：FirstPageSage
-          </span>
-          <span className="text-[20px] text-blue-400/80 font-semibold tracking-wide font-['MiSans']">
-            * 调查数据证实：在部分细分的B2B行业中，ChatGPT带来的访客转化率已经能高出整整一倍。
           </span>
         </div>
 
