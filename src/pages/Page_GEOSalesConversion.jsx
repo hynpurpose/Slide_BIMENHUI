@@ -197,11 +197,11 @@ export default function Page_GEOSalesConversion() {
           </svg>
         </div>
 
-        {/* Caption Block (placed in original formula position below the chart) */}
+        {/* Caption Block (placed in original formula position below the chart - plain text) */}
         <div className="w-full flex justify-center px-10 mb-6 -mt-[10px] z-20">
-          <div className="flex items-center gap-3 py-3 px-10 bg-blue-950/20 border border-blue-900/30 rounded-2xl font-['MiSans'] text-[20px] text-blue-400 font-semibold shadow-md">
-            <span>* 调查数据证实：在部分细分的B2B行业中，ChatGPT带来的访客转化率已经能高出整整一倍。</span>
-          </div>
+          <span className="font-['MiSans'] text-[20px] text-blue-400/80 font-bold text-center tracking-wide">
+            * 调查数据证实：在部分细分的B2B行业中，ChatGPT带来的访客转化率已经能高出整整一倍。
+          </span>
         </div>
 
         {/* Bottom Footer Row */}
