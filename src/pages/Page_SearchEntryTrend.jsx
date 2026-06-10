@@ -9,10 +9,10 @@ export default function Page_SearchEntryTrend() {
     { x: 80, y: 230.0, label: '2024', value: '36.0' },
     { x: 216.7, y: 226.0, label: '2025', value: '36.8' },
     { x: 353.3, y: 222.0, label: '2026', value: '37.6' },
-    { x: 490.0, y: 218.0, label: '2027', value: '38.4' },
-    { x: 626.7, y: 214.0, label: '2028', value: '39.2' },
-    { x: 763.3, y: 209.5, label: '2029', value: '40.1' },
-    { x: 900.0, y: 205.0, label: '2030', value: '41.0' },
+    { x: 490.0, y: 212.0, label: '2027', value: '39.6' },
+    { x: 626.7, y: 204.0, label: '2028', value: '41.2' },
+    { x: 763.3, y: 196.0, label: '2029', value: '42.8' },
+    { x: 900.0, y: 188.0, label: '2030', value: '44.4' },
   ];
 
   const aiData = [

@@ -1,7 +1,7 @@
 import React from 'react';
 import SlideLayout from '../components/SlideLayout';
 
-export default function Page_ClosedMeetingIntro() {
+export default function Page_ClosedMeetingTrendValidation() {
   return (
     <SlideLayout>
       <div className="w-full h-full flex flex-col justify-center relative z-10">
@@ -22,10 +22,21 @@ export default function Page_ClosedMeetingIntro() {
               className="text-7xl xl:text-8xl font-black tracking-wide text-white text-center"
               style={{ lineHeight: '1.5' }}
             >
-              闭门会，<br />
-              讲点外面<span className="text-[#004CE5] font-extrabold ml-2">听不到的。</span>
+              这组数据所预测的趋势，<br />
+              正在被越来越多的<span className="text-[#004CE5] font-extrabold ml-2">真实变化验证。</span>
             </h2>
           </div>
+        </div>
+
+        {/* Bottom Left Label */}
+        <div className="absolute bottom-0 left-[40px] select-none flex items-center gap-3">
+          <div className="w-[2px] h-6 bg-[#004CE5]" />
+          <span
+            className="text-[26px] text-zinc-400 tracking-wider font-['AlimamaShuHeiTi']"
+            style={{ fontFamily: "'AlimamaShuHeiTi', sans-serif" }}
+          >
+            GEO 到底有没有用？
+          </span>
         </div>
 
       </div>
@@ -34,4 +45,4 @@ export default function Page_ClosedMeetingIntro() {
 }
 
 // Disable slide header/navigation bar for this presentation page
-Page_ClosedMeetingIntro.hideHeader = true;
+Page_ClosedMeetingTrendValidation.hideHeader = true;
