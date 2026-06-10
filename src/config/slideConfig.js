@@ -15,6 +15,8 @@ import Page_GEOTestDifference from '../pages/Page_GEOTestDifference';
 import Page_GEOPlatformSelection from '../pages/Page_GEOPlatformSelection';
 import Page_GEOWordSelection from '../pages/Page_GEOWordSelection';
 import Page_GEOKpiSetting from '../pages/Page_GEOKpiSetting';
+import Page_GEOKpiSettingBrand from '../pages/Page_GEOKpiSettingBrand';
+import Page_GEOKpiVerify from '../pages/Page_GEOKpiVerify';
 import Page_GEOWordSelectionOther from '../pages/Page_GEOWordSelectionOther';
 import Page_GEOWordSelectionRule from '../pages/Page_GEOWordSelectionRule';
 import Page_GEOServiceProviderSelection from '../pages/Page_GEOServiceProviderSelection';
@@ -62,5 +64,7 @@ export const slideConfig = [
   { type: 'page', title: 'GEO选词其他做法', component: Page_GEOWordSelectionOther, hideHeader: true },
   { type: 'page', title: 'GEO选词核心法则', component: Page_GEOWordSelectionRule, hideHeader: true },
   { type: 'page', title: '品牌方怎么定 KPI？', component: Page_GEOKpiSetting, hideHeader: true },
+  { type: 'page', title: '二线品牌怎么定KPI？', component: Page_GEOKpiSettingBrand, hideHeader: true },
+  { type: 'page', title: '如何验收效果？', component: Page_GEOKpiVerify, hideHeader: true },
   { type: 'page', title: '如何选出靠谱的服务商？', component: Page_GEOServiceProviderSelection, hideHeader: true },
 ];

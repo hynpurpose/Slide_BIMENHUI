@@ -6,33 +6,23 @@ export default function Page_SearchEntryTrend() {
   // X range: 100 to 920, Y range: 60 (1.00E+9) to 410 (0)
 
   const traditionalData = [
-    { x: 80, y: 347.0, label: '07/25', value: '1.8E+8' },
-    { x: 154.5, y: 336.5, label: '01/26', value: '2.1E+8' },
-    { x: 229.1, y: 326.0, label: '07/26', value: '2.4E+8' },
-    { x: 303.6, y: 315.5, label: '01/27', value: '2.7E+8' },
-    { x: 378.2, y: 305.0, label: '07/27', value: '3.0E+8' },
-    { x: 452.7, y: 294.5, label: '01/28', value: '3.3E+8' },
-    { x: 527.3, y: 280.5, label: '07/28', value: '3.7E+8' },
-    { x: 601.8, y: 266.5, label: '01/29', value: '4.1E+8' },
-    { x: 676.4, y: 252.5, label: '07/29', value: '4.5E+8' },
-    { x: 750.9, y: 235.0, label: '01/30', value: '5.0E+8' },
-    { x: 825.5, y: 217.5, label: '07/30', value: '5.5E+8' },
-    { x: 900.0, y: 200.0, label: '01/31', value: '6.0E+8' },
+    { x: 80, y: 230.0, label: '2024', value: '36.0' },
+    { x: 216.7, y: 226.0, label: '2025', value: '36.8' },
+    { x: 353.3, y: 222.0, label: '2026', value: '37.6' },
+    { x: 490.0, y: 218.0, label: '2027', value: '38.4' },
+    { x: 626.7, y: 214.0, label: '2028', value: '39.2' },
+    { x: 763.3, y: 209.5, label: '2029', value: '40.1' },
+    { x: 900.0, y: 205.0, label: '2030', value: '41.0' },
   ];
 
   const aiData = [
-    { x: 80, y: 404.8, label: '07/25', value: '0.15E+8' },
-    { x: 154.5, y: 401.3, label: '01/26', value: '0.25E+8' },
-    { x: 229.1, y: 396.0, label: '07/26', value: '0.4E+8' },
-    { x: 303.6, y: 389.0, label: '01/27', value: '0.6E+8' },
-    { x: 378.2, y: 378.5, label: '07/27', value: '0.9E+8' },
-    { x: 452.7, y: 364.5, label: '01/28', value: '1.3E+8' },
-    { x: 527.3, y: 343.5, label: '07/28', value: '1.9E+8' },
-    { x: 601.8, y: 315.5, label: '01/29', value: '2.7E+8' },
-    { x: 676.4, y: 273.5, label: '07/29', value: '3.9E+8' },
-    { x: 750.9, y: 217.5, label: '01/30', value: '5.5E+8' },
-    { x: 825.5, y: 147.5, label: '07/30', value: '7.5E+8' },
-    { x: 900.0, y: 53.0, label: '01/31', value: '10.2E+8' },
+    { x: 80, y: 360.0, label: '2024', value: '10.0' },
+    { x: 216.7, y: 320.0, label: '2025', value: '18.0' },
+    { x: 353.3, y: 270.0, label: '2026', value: '28.0' },
+    { x: 490.0, y: 240.0, label: '2027', value: '34.0' },
+    { x: 626.7, y: 220.0, label: '2028', value: '38.0' },
+    { x: 763.3, y: 170.0, label: '2029', value: '48.0' },
+    { x: 900.0, y: 110.0, label: '2030', value: '60.0' },
   ];
 
   // Helper to generate a smooth Catmull-Rom / Cubic Bezier path
@@ -72,122 +62,136 @@ export default function Page_SearchEntryTrend() {
             <div className="w-full h-[640px] pt-6 pb-6 pr-6 pl-0 flex items-center justify-center relative">
               <svg viewBox="0 0 1000 500" className="w-full h-full overflow-visible">
 
-                {/* Y Axis Grid Lines & Labels */}
-                {[
-                  { y: 60, label: '1.00E+9' },
-                  { y: 147.5, label: '7.50E+8' },
-                  { y: 235, label: '5.00E+8' },
-                  { y: 322.5, label: '2.50E+8' },
-                  { y: 410, label: '0' }
-                ].map((grid, idx) => (
-                  <g key={idx}>
-                    {/* Grid Line */}
-                    <line
-                      x1="80"
-                      y1={grid.y}
-                      x2="900"
-                      y2={grid.y}
-                      stroke={grid.label === '0' ? "rgba(255, 255, 255, 0.25)" : "rgba(255, 255, 255, 0.08)"}
-                      strokeWidth={grid.label === '0' ? "1.5" : "1"}
-                    />
-                    {/* Y Label */}
+                <g transform="translate(-25, -45) scale(1.06)">
+                  {/* Y Axis Grid Lines & Labels */}
+                  {[
+                    { y: 60, label: '70' },
+                    { y: 147.5, label: '52.5' },
+                    { y: 235, label: '35' },
+                    { y: 322.5, label: '17.5' },
+                    { y: 410, label: '0' }
+                  ].map((grid, idx) => (
+                    <g key={idx}>
+                      {/* Grid Line */}
+                      <line
+                        x1="80"
+                        y1={grid.y}
+                        x2="900"
+                        y2={grid.y}
+                        stroke={grid.label === '0' ? "rgba(255, 255, 255, 0.25)" : "rgba(255, 255, 255, 0.08)"}
+                        strokeWidth={grid.label === '0' ? "1.5" : "1"}
+                      />
+                      {/* Y Label */}
+                      <text
+                        x="60"
+                        y={grid.y}
+                        fill="#71717a"
+                        fontSize="18"
+                        fontFamily="MiSans, sans-serif"
+                        textAnchor="end"
+                        dominantBaseline="middle"
+                      >
+                        {grid.label}
+                      </text>
+                    </g>
+                  ))}
+
+                  {/* Unit label above the vertical axis */}
+                  <text
+                    x="60"
+                    y="45"
+                    fill="#71717a"
+                    fontSize="16"
+                    fontFamily="MiSans, sans-serif"
+                    textAnchor="end"
+                  >
+                    (亿次/日)
+                  </text>
+
+                  {/* X Axis Labels */}
+                  {traditionalData.map((p, i) => (
                     <text
-                      x="60"
-                      y={grid.y}
+                      key={i}
+                      x={p.x}
+                      y="445"
                       fill="#71717a"
                       fontSize="18"
                       fontFamily="MiSans, sans-serif"
-                      textAnchor="end"
-                      dominantBaseline="middle"
+                      textAnchor="middle"
                     >
-                      {grid.label}
+                      {p.label}
+                    </text>
+                  ))}
+
+                  {/* Traditional Search Curve (Cool White/Gray Line) */}
+                  <path
+                    d={traditionalPath}
+                    fill="none"
+                    stroke="#E4E4E7"
+                    strokeWidth="4.5"
+                    strokeLinecap="round"
+                  />
+
+                  {/* AI Search Curve (Theme Blue Line) */}
+                  <path
+                    d={aiPath}
+                    fill="none"
+                    stroke="#3B82F6"
+                    strokeWidth="5"
+                    strokeLinecap="round"
+                    className="drop-shadow-[0_4px_12px_rgba(59,130,246,0.4)]"
+                  />
+
+                  {/* Annotation Text for Traditional Curve (+11%) */}
+                  <g transform="translate(300, 160)" className="text-center">
+                    <text
+                      x="0"
+                      y="0"
+                      fill="#FFFFFF"
+                      fontSize="24"
+                      fontWeight="bold"
+                      fontFamily="MiSans, sans-serif"
+                      textAnchor="middle"
+                    >
+                      +11%
+                    </text>
+                    <text
+                      x="0"
+                      y="22"
+                      fill="#A1A1AA"
+                      fontSize="18"
+                      fontFamily="MiSans, sans-serif"
+                      textAnchor="middle"
+                    >
+                      传统搜索入口
                     </text>
                   </g>
-                ))}
 
-                {/* X Axis Labels */}
-                {traditionalData.map((p, i) => (
-                  <text
-                    key={i}
-                    x={p.x}
-                    y="445"
-                    fill="#71717a"
-                    fontSize="18"
-                    fontFamily="MiSans, sans-serif"
-                    textAnchor="middle"
-                  >
-                    {p.label}
-                  </text>
-                ))}
-
-                {/* Traditional Search Curve (Cool White/Gray Line) */}
-                <path
-                  d={traditionalPath}
-                  fill="none"
-                  stroke="#E4E4E7"
-                  strokeWidth="4.5"
-                  strokeLinecap="round"
-                />
-
-                {/* AI Search Curve (Theme Blue Line) */}
-                <path
-                  d={aiPath}
-                  fill="none"
-                  stroke="#3B82F6"
-                  strokeWidth="5"
-                  strokeLinecap="round"
-                  className="drop-shadow-[0_4px_12px_rgba(59,130,246,0.4)]"
-                />
-
-                {/* Annotation Text for Traditional Curve (+12%) */}
-                <g transform="translate(400, 240)" className="text-center">
-                  <text
-                    x="0"
-                    y="0"
-                    fill="#FFFFFF"
-                    fontSize="18"
-                    fontWeight="bold"
-                    fontFamily="MiSans, sans-serif"
-                    textAnchor="middle"
-                  >
-                    +12%
-                  </text>
-                  <text
-                    x="0"
-                    y="18"
-                    fill="#A1A1AA"
-                    fontSize="18"
-                    fontFamily="MiSans, sans-serif"
-                    textAnchor="middle"
-                  >
-                    传统搜索入口
-                  </text>
-                </g>
-
-                {/* Annotation Text for AI Curve (+38% - Theme Blue) */}
-                <g transform="translate(720, 110)" className="text-center">
-                  <text
-                    x="0"
-                    y="0"
-                    fill="#3B82F6"
-                    fontSize="24"
-                    fontWeight="black"
-                    fontFamily="MiSans, sans-serif"
-                    textAnchor="middle"
-                  >
-                    +38%
-                  </text>
-                  <text
-                    x="0"
-                    y="22"
-                    fill="#3B82F6"
-                    fontSize="18"
-                    fontWeight="bold"
-                    fontFamily="MiSans, sans-serif"
-                    textAnchor="middle"
-                  >
-                    AI 搜索入口
-                  </text>
+                  {/* Annotation Text for AI Curve (+500% - Theme Blue) */}
+                  <g transform="translate(750, 95)" className="text-center">
+                    <text
+                      x="0"
+                      y="0"
+                      fill="#3B82F6"
+                      fontSize="24"
+                      fontWeight="black"
+                      fontFamily="MiSans, sans-serif"
+                      textAnchor="middle"
+                    >
+                      +473%
+                    </text>
+                    <text
+                      x="0"
+                      y="22"
+                      fill="#3B82F6"
+                      fontSize="18"
+                      fontWeight="bold"
+                      fontFamily="MiSans, sans-serif"
+                      textAnchor="middle"
+                    >
+                      AI 搜索入口
+                    </text>
+                  </g>
                 </g>
 
                 {/* Legend at the bottom center */}
@@ -242,7 +246,7 @@ export default function Page_SearchEntryTrend() {
               <span className="text-blue-500 text-2xl font-light">↗</span>
             </div>
             <p className="text-[22px] font-medium text-zinc-200 leading-relaxed">
-              到 <span className="text-blue-400 font-extrabold">2030 年</span>，AI 搜索入口大概率会超过传统搜索入口。
+              到 <span className="text-blue-400 font-extrabold">2028 年</span>，AI 搜索入口大概率会超过传统搜索入口。
             </p>
           </div>
 
