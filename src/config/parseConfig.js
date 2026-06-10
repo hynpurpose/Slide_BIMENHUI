@@ -1,4 +1,4 @@
-import { slideConfig } from './slideConfig';
+import { slideConfig } from './slideConfig.js';
 
 export function parseConfig(flatConfig) {
   const result = { cover: null, toc: null, chapters: [] };
