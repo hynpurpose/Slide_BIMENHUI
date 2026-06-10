@@ -53,7 +53,7 @@ export default function Page_GEOKpiSetting() {
                 className="text-[78px] xl:text-[90px] font-black tracking-tight leading-none text-white"
                 style={{ fontFamily: "'Montserrat', sans-serif" }}
               >
-                88.9%
+                89.8%
               </div>
               <div className="text-[24px] xl:text-[26px] font-bold mt-4 tracking-wide text-white">
                 提及率
@@ -64,39 +64,39 @@ export default function Page_GEOKpiSetting() {
             </p>
           </div>
 
-          {/* Cell 2: 平均提及位次 */}
+          {/* Cell 2: Top1提及率 */}
           <div className="bg-[#DDE3EE] text-zinc-900 rounded-none p-10 flex flex-col justify-between relative">
             <div>
               <div 
                 className="text-[78px] xl:text-[90px] font-black tracking-tight leading-none text-zinc-900"
                 style={{ fontFamily: "'Montserrat', sans-serif" }}
               >
-                NO.1.5
+                75.3%
               </div>
               <div className="text-[24px] xl:text-[26px] font-bold mt-4 tracking-wide text-zinc-900">
-                平均提及位次
+                Top1提及率
               </div>
             </div>
             <p className="text-[21px] xl:text-[23px] leading-relaxed text-zinc-700 mt-6">
-              当品牌被普及时，在AI生成文本中出现的排位，越靠前权重越高。
+              「目标产品」在对话中排名第一的对话占所有对话的比例。
             </p>
           </div>
 
-          {/* Cell 3: 行业影响力排名 */}
+          {/* Cell 3: Top3提及率 */}
           <div className="bg-[#ADC9FF] text-zinc-900 rounded-none p-10 flex flex-col justify-between relative">
             <div>
               <div 
                 className="text-[78px] xl:text-[90px] font-black tracking-tight leading-none text-zinc-900"
                 style={{ fontFamily: "'Montserrat', sans-serif" }}
               >
-                NO.01
+                88.4%
               </div>
               <div className="text-[24px] xl:text-[26px] font-bold mt-4 tracking-wide text-zinc-900">
-                行业影响力排名
+                Top3提及率
               </div>
             </div>
             <p className="text-[21px] xl:text-[23px] leading-relaxed text-zinc-800 mt-6">
-              在AI生态中，各品牌的综合排名。影响力排名越高，说明AI认可度越高。
+              「目标产品」在对话中排名前三的对话占所有对话的比例。
             </p>
           </div>
 
@@ -107,7 +107,7 @@ export default function Page_GEOKpiSetting() {
                 className="text-[78px] xl:text-[90px] font-black tracking-tight leading-none text-zinc-900"
                 style={{ fontFamily: "'Montserrat', sans-serif" }}
               >
-                18.6%
+                4.6%
               </div>
               <div className="text-[24px] xl:text-[26px] font-bold mt-4 tracking-wide text-zinc-900">
                 负面信息回答率

@@ -48,7 +48,7 @@ export default function Page_GEOWordSelectionRule() {
 
           {/* Card Body */}
           <div className="flex-grow p-8 bg-zinc-100 flex flex-col justify-center gap-9">
-            
+
             {/* Step 1 */}
             <div className="flex gap-5 items-start pl-2">
               <div className="flex flex-col items-center shrink-0">
@@ -95,7 +95,7 @@ export default function Page_GEOWordSelectionRule() {
 
         {/* ==================== COLUMN 3: Card 2 (Brand Blue - Rule 02) ==================== */}
         <div className="w-[500px] flex-shrink-0 bg-[#004CE5] border border-blue-600/50 rounded-[28px] overflow-hidden flex flex-col justify-between shadow-[0_20px_50px_rgba(0,76,229,0.3)] animate-fade-in [animation-delay:200ms] relative">
-          
+
           {/* Card Header */}
           <div className="flex items-center justify-between p-6 border-b border-white/10 bg-[#004CE5]">
             <div className="flex items-center gap-3.5">
@@ -116,7 +116,7 @@ export default function Page_GEOWordSelectionRule() {
 
           {/* Card Body */}
           <div className="flex-grow p-8 bg-[#004CE5] flex flex-col justify-center gap-9">
-            
+
             {/* Step 1 */}
             <div className="flex gap-5 items-start pl-2">
               <div className="flex flex-col items-center shrink-0">
@@ -140,7 +140,7 @@ export default function Page_GEOWordSelectionRule() {
               <div className="flex flex-col">
                 <span className="text-[24px] font-black text-white">回答稳定性评估</span>
                 <span className="text-[18px] xl:text-[19px] font-bold text-blue-100 mt-2 leading-relaxed">
-                  评估各家 AI 的返回答案：是否有目标 brand？是否经常带出竞争对手？回答内容是否稳定、意图是否强烈？
+                  评估各家 AI 的返回答案：是否有目标品牌？是否经常带出竞争对手？回答内容是否稳定、意图是否强烈？
                 </span>
               </div>
             </div>

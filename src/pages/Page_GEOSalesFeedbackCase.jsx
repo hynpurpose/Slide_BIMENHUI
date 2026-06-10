@@ -121,12 +121,12 @@ export default function Page_GEOSalesFeedbackCase() {
           </div>
 
           {/* Right Image Container */}
-          <div className="absolute left-[980px] w-[800px] h-[700px] top-[37.5px] z-20 flex items-center justify-center">
+          <div className="absolute left-[980px] w-[800px] top-[20px] bottom-[20px] z-20 flex items-center justify-center">
             {!imgFailed ? (
               <img
                 src="/images/geo-sales-feedback.png"
                 alt="销售反馈案例截图"
-                className="w-full h-full object-contain rounded-3xl border border-zinc-800/80 shadow-2xl bg-zinc-950/20"
+                className="max-w-full max-h-full w-auto h-auto object-contain rounded-3xl border border-zinc-800/80 shadow-2xl bg-zinc-950/20"
                 onError={() => setImgFailed(true)}
               />
             ) : (

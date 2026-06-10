@@ -39,31 +39,104 @@ export default function Page_GEOWordSelectionOther() {
           </div>
 
           {/* Card Body */}
-          <div className="flex-grow p-8 bg-[#004CE5] relative overflow-hidden flex flex-col justify-center">
+          <div className="flex-grow p-6 bg-zinc-950 relative overflow-hidden flex flex-col justify-center">
+            {/* Background glowing effects for dark luxury feeling */}
+            <div className="absolute w-[300px] h-[300px] rounded-full bg-blue-600/5 blur-[80px] -left-12 -top-12 pointer-events-none" />
+            <div className="absolute w-[300px] h-[300px] rounded-full bg-blue-900/3 blur-[100px] -right-12 -bottom-12 pointer-events-none" />
+            <div className="absolute inset-0 opacity-[0.02] bg-[linear-gradient(to_right,#fff_1px,transparent_1px),linear-gradient(to_bottom,#fff_1px,transparent_1px)] bg-[size:14px_24px] pointer-events-none" />
 
-            {/* AI Generated mattress terms list - Clean 2-column list of 12 examples showing batch feeling */}
-            <div className="relative z-10 grid grid-cols-2 gap-3.5 w-full">
-              {[
-                "乳胶床垫厚度推荐",
-                "独立袋装弹簧优缺点",
-                "护脊硬床垫选购要点",
-                "椰棕床垫和乳胶哪个好",
-                "记忆棉床垫发热解决办法",
-                "双人床垫标准尺寸规格",
-                "儿童防螨床垫怎么挑",
-                "压缩卷包床垫好用吗",
-                "环保棕榈床垫价格区间",
-                "静音弹簧床垫品牌排行",
-                "软硬两用床垫使用寿命",
-                "智能电动床垫功能对比"
-              ].map((item, idx) => (
-                <div key={idx} className="bg-white/10 border border-white/10 px-6 py-4.5 rounded-[18px] text-white flex flex-col justify-center shadow-[0_8px_30px_rgb(0,0,0,0.12)] backdrop-blur-sm min-h-[70px] transition-all hover:scale-[1.02]">
-                  <span className="text-[19px] xl:text-[21px] font-black text-white leading-tight truncate">
-                    <span className="text-white/45 font-black mr-2.5 font-mono">{String(idx + 1).padStart(2, '0')}</span>
-                    {item}
+            <div className="relative z-10 grid grid-cols-2 gap-4 w-full">
+              {/* Category 1: 品牌词 */}
+              <div className="bg-zinc-900/40 border border-zinc-800/80 rounded-2xl p-4 flex flex-col gap-3">
+                <div className="flex items-center justify-between">
+                  <span className="text-[17px] xl:text-[18px] font-bold text-white border-l-3 border-[#004CE5] pl-2.5 leading-none">
+                    品牌词
                   </span>
                 </div>
-              ))}
+                <div className="flex flex-col gap-1.5">
+                  {[
+                    "慕思床垫防伪查询方法",
+                    "慕思太空漫步系列价格",
+                    "慕思智能床垫评测好用吗",
+                    "慕思3D乳胶床垫深度体验",
+                    "慕思弹簧床垫软硬度调整"
+                  ].map((term, i) => (
+                    <div key={i} className="bg-zinc-950/60 hover:bg-blue-950/20 border border-zinc-800 hover:border-[#004CE5]/40 px-3 py-1.5 rounded-xl text-zinc-300 hover:text-white text-[15px] xl:text-[16px] font-medium leading-normal flex items-center gap-2 transition-all duration-200">
+                      <span className="text-[#004CE5] font-black font-mono text-[12px] shrink-0">{String(i+1).padStart(2, '0')}</span>
+                      <span className="truncate">{term}</span>
+                    </div>
+                  ))}
+                </div>
+              </div>
+
+              {/* Category 2: 场景词 */}
+              <div className="bg-zinc-900/40 border border-zinc-800/80 rounded-2xl p-4 flex flex-col gap-3">
+                <div className="flex items-center justify-between">
+                  <span className="text-[17px] xl:text-[18px] font-bold text-white border-l-3 border-[#004CE5] pl-2.5 leading-none">
+                    场景词
+                  </span>
+                </div>
+                <div className="flex flex-col gap-1.5">
+                  {[
+                    "备孕期孕妇床垫推荐",
+                    "搬新家除甲醛硬床垫",
+                    "腰椎不好买什么床垫",
+                    "儿童房防螨透气床垫",
+                    "老人睡塌了怎么补救"
+                  ].map((term, i) => (
+                    <div key={i} className="bg-zinc-950/60 hover:bg-blue-950/20 border border-zinc-800 hover:border-[#004CE5]/40 px-3 py-1.5 rounded-xl text-zinc-300 hover:text-white text-[15px] xl:text-[16px] font-medium leading-normal flex items-center gap-2 transition-all duration-200">
+                      <span className="text-[#004CE5] font-black font-mono text-[12px] shrink-0">{String(i+6).padStart(2, '0')}</span>
+                      <span className="truncate">{term}</span>
+                    </div>
+                  ))}
+                </div>
+              </div>
+
+              {/* Category 3: 竞品词 */}
+              <div className="bg-zinc-900/40 border border-zinc-800/80 rounded-2xl p-4 flex flex-col gap-3">
+                <div className="flex items-center justify-between">
+                  <span className="text-[17px] xl:text-[18px] font-bold text-white border-l-3 border-[#004CE5] pl-2.5 leading-none">
+                    竞品词
+                  </span>
+                </div>
+                <div className="flex flex-col gap-1.5">
+                  {[
+                    "慕思对比金可儿床垫",
+                    "慕思和喜临门怎么选",
+                    "舒达和慕思哪个好",
+                    "慕思对比梦百合记忆棉",
+                    "丝涟与慕思床垫对比评测"
+                  ].map((term, i) => (
+                    <div key={i} className="bg-zinc-950/60 hover:bg-blue-950/20 border border-zinc-800 hover:border-[#004CE5]/40 px-3 py-1.5 rounded-xl text-zinc-300 hover:text-white text-[15px] xl:text-[16px] font-medium leading-normal flex items-center gap-2 transition-all duration-200">
+                      <span className="text-[#004CE5] font-black font-mono text-[12px] shrink-0">{String(i+11).padStart(2, '0')}</span>
+                      <span className="truncate">{term}</span>
+                    </div>
+                  ))}
+                </div>
+              </div>
+
+              {/* Category 4: 产品词 */}
+              <div className="bg-zinc-900/40 border border-zinc-800/80 rounded-2xl p-4 flex flex-col gap-3">
+                <div className="flex items-center justify-between">
+                  <span className="text-[17px] xl:text-[18px] font-bold text-white border-l-3 border-[#004CE5] pl-2.5 leading-none">
+                    产品词
+                  </span>
+                </div>
+                <div className="flex flex-col gap-1.5">
+                  {[
+                    "独立袋装弹簧床垫",
+                    "天然椰棕防螨硬床垫",
+                    "护脊记忆棉慢回弹床垫",
+                    "防尘螨乳胶双面床垫",
+                    "智能电动按摩加热床垫"
+                  ].map((term, i) => (
+                    <div key={i} className="bg-zinc-950/60 hover:bg-blue-950/20 border border-zinc-800 hover:border-[#004CE5]/40 px-3 py-1.5 rounded-xl text-zinc-300 hover:text-white text-[15px] xl:text-[16px] font-medium leading-normal flex items-center gap-2 transition-all duration-200">
+                      <span className="text-[#004CE5] font-black font-mono text-[12px] shrink-0">{String(i+16).padStart(2, '0')}</span>
+                      <span className="truncate">{term}</span>
+                    </div>
+                  ))}
+                </div>
+              </div>
             </div>
           </div>
 

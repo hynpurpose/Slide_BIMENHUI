@@ -18,15 +18,25 @@ import Page_GEOSalesFeedbackCase from '../pages/Page_GEOSalesFeedbackCase';
 import Page_GEOCaseStudies from '../pages/Page_GEOCaseStudies';
 import Page_GEOQuestionsOverview from '../pages/Page_GEOQuestionsOverview';
 import Page_GEOTestDifferenceIntro from '../pages/Page_GEOTestDifferenceIntro';
+import Page_GEOTestDifferenceTransition from '../pages/Page_GEOTestDifferenceTransition';
+import Page_GEOResponseTransition from '../pages/Page_GEOResponseTransition';
 import Page_GEOTestDifference from '../pages/Page_GEOTestDifference';
 import Page_GEOPlatformSelection from '../pages/Page_GEOPlatformSelection';
 import Page_GEOWordSelection from '../pages/Page_GEOWordSelection';
 import Page_GEOKpiSetting from '../pages/Page_GEOKpiSetting';
+import Page_GEOKpiReportTransition from '../pages/Page_GEOKpiReportTransition';
+import Page_GEOKpiSettingTransition from '../pages/Page_GEOKpiSettingTransition';
 import Page_GEOKpiSettingBrand from '../pages/Page_GEOKpiSettingBrand';
+import Page_GEOKpiVerifyBeforeTransition from '../pages/Page_GEOKpiVerifyBeforeTransition';
 import Page_GEOKpiVerify from '../pages/Page_GEOKpiVerify';
+import Page_GEOKpiVerifyDetail from '../pages/Page_GEOKpiVerifyDetail';
+import Page_GEOKpiVerifyTransition from '../pages/Page_GEOKpiVerifyTransition';
 import Page_GEOWordSelectionOther from '../pages/Page_GEOWordSelectionOther';
 import Page_GEOWordSelectionRule from '../pages/Page_GEOWordSelectionRule';
+import Page_GEOWordSelectionRuleCase from '../pages/Page_GEOWordSelectionRuleCase';
+import Page_GEOWordSelectionRuleDataCase from '../pages/Page_GEOWordSelectionRuleDataCase';
 import Page_GEOServiceProviderSelection from '../pages/Page_GEOServiceProviderSelection';
+import Page_GEOServiceProviderSelectionTransition from '../pages/Page_GEOServiceProviderSelectionTransition';
 
 export const slideConfig = [
   // ——— 封面 & 目录 ———
@@ -72,13 +82,28 @@ export const slideConfig = [
   { type: 'page', title: '销售转化率对比', component: Page_GEOSalesConversion, hideHeader: true },
   { type: 'page', title: '线下销售反馈的真实现象', component: Page_GEOSalesFeedback, hideHeader: true },
   { type: 'page', title: '线下销售反馈实测案例', component: Page_GEOSalesFeedbackCase, hideHeader: true },
+
+  { type: 'page', title: '测试差异过渡页', component: Page_GEOTestDifferenceTransition, hideHeader: true },
   { type: 'page', title: '服务商测试结果差异原因', component: Page_GEOTestDifference, hideHeader: true },
   { type: 'page', title: '服务商数据造假对比说明', component: Page_GEOTestDifferenceIntro, hideHeader: true },
+  { type: 'page', title: '品牌应对方式过渡页', component: Page_GEOResponseTransition, hideHeader: true },
+
   { type: 'page', title: 'GEO选词与选平台建议', component: Page_GEOPlatformSelection, hideHeader: true },
   { type: 'page', title: 'GEO选词其他做法', component: Page_GEOWordSelectionOther, hideHeader: true },
   { type: 'page', title: 'GEO选词核心法则', component: Page_GEOWordSelectionRule, hideHeader: true },
+  { type: 'page', title: 'GEO选词核心法则案例', component: Page_GEOWordSelectionRuleCase, hideHeader: true },
+  { type: 'page', title: 'GEO选词核心法则案例二', component: Page_GEOWordSelectionRuleDataCase, hideHeader: true },
+
+  { type: 'page', title: '先做 GEO 体检报告过渡页', component: Page_GEOKpiReportTransition, hideHeader: true },
+  { type: 'page', title: '品牌方怎么定 KPI 过渡页', component: Page_GEOKpiSettingTransition, hideHeader: true },
   { type: 'page', title: '品牌方怎么定 KPI？', component: Page_GEOKpiSetting, hideHeader: true },
   { type: 'page', title: '二线品牌怎么定KPI？', component: Page_GEOKpiSettingBrand, hideHeader: true },
+
+  { type: 'page', title: '如何验收效果过渡页', component: Page_GEOKpiVerifyBeforeTransition, hideHeader: true },
   { type: 'page', title: '如何验收效果？', component: Page_GEOKpiVerify, hideHeader: true },
+  { type: 'page', title: '人工抽查验收', component: Page_GEOKpiVerifyDetail, hideHeader: true },
+  { type: 'page', title: '效果验证过渡页', component: Page_GEOKpiVerifyTransition, hideHeader: true },
+
   { type: 'page', title: '如何选出靠谱的服务商？', component: Page_GEOServiceProviderSelection, hideHeader: true },
+  { type: 'page', title: '如何选出靠谱的服务商过渡页', component: Page_GEOServiceProviderSelectionTransition, hideHeader: true },
 ];
