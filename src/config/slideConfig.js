@@ -37,6 +37,10 @@ import Page_GEOWordSelectionRuleCase from '../pages/Page_GEOWordSelectionRuleCas
 import Page_GEOWordSelectionRuleDataCase from '../pages/Page_GEOWordSelectionRuleDataCase';
 import Page_GEOServiceProviderSelection from '../pages/Page_GEOServiceProviderSelection';
 import Page_GEOServiceProviderSelectionTransition from '../pages/Page_GEOServiceProviderSelectionTransition';
+import Page_GEOServiceProviderSelectionTransition2 from '../pages/Page_GEOServiceProviderSelectionTransition2';
+import Page_GEOServiceProviderSelectionTransition3 from '../pages/Page_GEOServiceProviderSelectionTransition3';
+import Page_GEOServiceProviderSelectionTransition4 from '../pages/Page_GEOServiceProviderSelectionTransition4';
+import Page_GEOServiceProviderSelectionTransition5 from '../pages/Page_GEOServiceProviderSelectionTransition5';
 import Page_GeoReport_BasicInfo1 from '../pages/Page_GeoReport_BasicInfo1';
 import Page_GeoReport_BasicInfo2 from '../pages/Page_GeoReport_BasicInfo2';
 import PB_GeoReportDashboard from '../pages/Page_GeoReportDashboard';
@@ -124,4 +128,8 @@ export const slideConfig = [
 
   { type: 'page', title: '如何选出靠谱的服务商？', component: Page_GEOServiceProviderSelection, hideHeader: true },
   { type: 'page', title: '如何选出靠谱的服务商过渡页', component: Page_GEOServiceProviderSelectionTransition, hideHeader: true },
+  { type: 'page', title: '做 GEO 必须要有数据监测系统', component: Page_GEOServiceProviderSelectionTransition2, hideHeader: true },
+  { type: 'page', title: '除了数量，更要看内容质量', component: Page_GEOServiceProviderSelectionTransition3, hideHeader: true },
+  { type: 'page', title: '还要看服务商投放逻辑', component: Page_GEOServiceProviderSelectionTransition4, hideHeader: true },
+  { type: 'page', title: '标准筛选不靠谱服务商', component: Page_GEOServiceProviderSelectionTransition5, hideHeader: true },
 ];
