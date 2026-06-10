@@ -37,6 +37,17 @@ import Page_GEOWordSelectionRuleCase from '../pages/Page_GEOWordSelectionRuleCas
 import Page_GEOWordSelectionRuleDataCase from '../pages/Page_GEOWordSelectionRuleDataCase';
 import Page_GEOServiceProviderSelection from '../pages/Page_GEOServiceProviderSelection';
 import Page_GEOServiceProviderSelectionTransition from '../pages/Page_GEOServiceProviderSelectionTransition';
+import Page_GeoReport_BasicInfo1 from '../pages/Page_GeoReport_BasicInfo1';
+import Page_GeoReport_BasicInfo2 from '../pages/Page_GeoReport_BasicInfo2';
+import PB_GeoReportDashboard from '../pages/Page_GeoReportDashboard';
+import PB_GeoReportDashboard2 from '../pages/Page_GeoReportDashboard2';
+import PB_GeoReportEntries from '../pages/Page_GeoReportEntries';
+import PB_GeoReportEntries_Analysis from '../pages/Page_GeoReportEntries_Analysis';
+import PB_GeoReportCompetitors_Analysis from '../pages/Page_GeoReportCompetitors_Analysis';
+import PB_GeoReportSources from '../pages/Page_GeoReportSources';
+import PB_GeoReportSources2 from '../pages/Page_GeoReportSources2';
+import PB_GeoReportSentiment_Pre from '../pages/Page_GeoReportSentiment_Pre';
+import PB_GeoReportSentiment from '../pages/Page_GeoReportSentiment';
 
 export const slideConfig = [
   // ——— 封面 & 目录 ———
@@ -95,6 +106,13 @@ export const slideConfig = [
   { type: 'page', title: 'GEO选词核心法则案例二', component: Page_GEOWordSelectionRuleDataCase, hideHeader: true },
 
   { type: 'page', title: '先做 GEO 体检报告过渡页', component: Page_GEOKpiReportTransition, hideHeader: true },
+  { type: 'section', title: '数据分析报告' },
+  { type: 'page', title: '报告说明', components: [Page_GeoReport_BasicInfo1, Page_GeoReport_BasicInfo2], hideHeader: true },
+  { type: 'page', title: '总览', components: [PB_GeoReportDashboard, PB_GeoReportDashboard2], hideHeader: true },
+  { type: 'page', title: '词条', components: [PB_GeoReportEntries, PB_GeoReportEntries_Analysis], hideHeader: true },
+  { type: 'page', title: '竞品', component: PB_GeoReportCompetitors_Analysis, hideHeader: true },
+  { type: 'page', title: '引用源', components: [PB_GeoReportSources, PB_GeoReportSources2], hideHeader: true },
+  { type: 'page', title: '正负面', components: [PB_GeoReportSentiment_Pre, PB_GeoReportSentiment], hideHeader: true },
   { type: 'page', title: '品牌方怎么定 KPI 过渡页', component: Page_GEOKpiSettingTransition, hideHeader: true },
   { type: 'page', title: '品牌方怎么定 KPI？', component: Page_GEOKpiSetting, hideHeader: true },
   { type: 'page', title: '二线品牌怎么定KPI？', component: Page_GEOKpiSettingBrand, hideHeader: true },

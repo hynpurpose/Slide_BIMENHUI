@@ -1,5 +1,4 @@
 import React from 'react';
-import ChapterNav from './ChapterNav';
 
 function DefaultPlaceholder({ title }) {
   return (
@@ -13,8 +12,6 @@ function DefaultPlaceholder({ title }) {
 }
 
 export default function ChapterPage({ chapterIndex, sectionIndex, pageIndex, component: ContentComponent, title }) {
-  const hideHeader = ContentComponent && ContentComponent.hideHeader;
-
   return (
     <div className="w-full h-full flex flex-col relative bg-black overflow-hidden text-white">
       <div className="absolute inset-0 z-0">
@@ -28,15 +25,7 @@ export default function ChapterPage({ chapterIndex, sectionIndex, pageIndex, com
         />
       </div>
 
-      {!hideHeader && (
-        <ChapterNav
-          chapterIndex={chapterIndex}
-          sectionIndex={sectionIndex}
-          pageIndex={pageIndex}
-        />
-      )}
-
-      <div className={hideHeader ? "w-full h-full relative z-10 flex items-stretch overflow-hidden" : "flex-1 relative z-10 w-full flex items-stretch mt-4 pb-8 overflow-hidden"}>
+      <div className="w-full h-full relative z-10 flex items-stretch overflow-hidden">
         {ContentComponent ? (
           <ContentComponent />
         ) : (
