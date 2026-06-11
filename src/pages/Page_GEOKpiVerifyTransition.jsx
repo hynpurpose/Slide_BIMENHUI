@@ -19,7 +19,7 @@ export default function Page_GEOKpiVerifyTransition() {
         <div className="flex items-center justify-center w-full relative" style={{ top: '-80px' }}>
           <div className="w-full">
             <h2
-              className="text-6xl xl:text-7xl font-black tracking-wide text-white text-center font-['MiSans']"
+              className="text-7xl xl:text-8xl font-black tracking-wide text-white text-center font-['MiSans']"
               style={{ lineHeight: '1.6' }}
             >
               问一个最简单的问题：<br />

@@ -19,7 +19,7 @@ export default function Page_GEOServiceProviderSelectionTransition4() {
         <div className="flex items-center justify-center w-full relative" style={{ top: '-80px' }}>
           <div className="w-full px-12">
             <h2
-              className="text-5xl xl:text-6xl font-black tracking-wide text-white text-center font-['MiSans']"
+              className="text-7xl xl:text-8xl font-black tracking-wide text-white text-center font-['MiSans']"
               style={{ lineHeight: '1.7' }}
             >
               另外，还要看服务商<br />

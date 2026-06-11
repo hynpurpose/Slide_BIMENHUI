@@ -19,7 +19,7 @@ export default function Page_ClosedMeetingTrendValidation() {
         <div className="flex items-center justify-center w-full relative" style={{ top: '-80px' }}>
           <div className="w-full">
             <h2
-              className="text-7xl xl:text-8xl font-black tracking-wide text-white text-center"
+              className="text-8xl xl:text-9xl font-black tracking-wide text-white text-center"
               style={{ lineHeight: '1.5' }}
             >
               这组数据所预测的趋势，<br />

@@ -19,7 +19,7 @@ export default function Page_GEOKpiReportTransition() {
         <div className="flex items-center justify-center w-full relative" style={{ top: '-80px' }}>
           <div className="w-full px-12">
             <h2
-              className="text-6xl xl:text-7xl font-black tracking-wide text-white text-center font-['MiSans']"
+              className="text-8xl xl:text-9xl font-black tracking-wide text-white text-center font-['MiSans']"
               style={{ lineHeight: '1.7' }}
             >
               先做 <span className="text-[#004CE5] font-extrabold">GEO 体检报告</span>

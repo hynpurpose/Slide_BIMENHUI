@@ -19,7 +19,7 @@ export default function Page_GEOResponseTransition() {
         <div className="flex items-center justify-center w-full relative" style={{ top: '-80px' }}>
           <div className="w-full">
             <h2
-              className="text-7xl xl:text-8xl font-black tracking-wide text-white text-center font-['MiSans']"
+              className="text-8xl xl:text-9xl font-black tracking-wide text-white text-center font-['MiSans']"
               style={{ lineHeight: '1.6' }}
             >
               品牌方<span className="text-[#004CE5] font-extrabold ml-2">该怎么应对？</span>

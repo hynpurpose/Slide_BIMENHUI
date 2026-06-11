@@ -19,7 +19,7 @@ export default function Page_ClosedMeetingWhyGEO() {
         <div className="flex items-center justify-center w-full relative" style={{ top: '-80px' }}>
           <div className="w-full">
             <h2
-              className="text-7xl xl:text-8xl font-black tracking-wide text-white text-center"
+              className="text-8xl xl:text-9xl font-black tracking-wide text-white text-center"
               style={{ lineHeight: '1.5' }}
             >
               我们团队为什么在2024年<br />

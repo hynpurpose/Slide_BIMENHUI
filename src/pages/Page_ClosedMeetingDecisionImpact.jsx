@@ -19,7 +19,7 @@ export default function Page_ClosedMeetingDecisionImpact() {
         <div className="flex items-center justify-center w-full relative" style={{ top: '-80px' }}>
           <div className="w-full">
             <h2
-              className="text-5xl xl:text-6xl font-black tracking-wide text-white text-center"
+              className="text-6xl xl:text-7xl font-black tracking-wide text-white text-center"
               style={{ lineHeight: '1.6' }}
             >
               当越来越多用户开始通过 AI 获取信息、做消费决策，<br />

@@ -19,7 +19,7 @@ export default function Page_GEOTestDifferenceTransition() {
         <div className="flex items-center justify-center w-full relative" style={{ top: '-80px' }}>
           <div className="w-full">
             <h2
-              className="text-7xl xl:text-8xl font-black tracking-wide text-white text-center font-['MiSans']"
+              className="text-8xl xl:text-9xl font-black tracking-wide text-white text-center font-['MiSans']"
               style={{ lineHeight: '1.6' }}
             >
               为什么服务商测试结果<br />

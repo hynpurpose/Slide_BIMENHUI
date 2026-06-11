@@ -19,7 +19,7 @@ export default function Page_GEOKpiSettingTransition() {
         <div className="flex items-center justify-center w-full relative" style={{ top: '-80px' }}>
           <div className="w-full px-12">
             <h2
-              className="text-5xl xl:text-6xl font-black tracking-wide text-white text-center font-['MiSans']"
+              className="text-7xl xl:text-8xl font-black tracking-wide text-white text-center font-['MiSans']"
               style={{ lineHeight: '1.7' }}
             >
               根据行业、品牌和竞品的综合情况<br />
