@@ -19,8 +19,8 @@ export default function Page_ClosedMeetingIntro() {
         <div className="flex items-center justify-center w-full relative" style={{ top: '-80px' }}>
           <div className="w-full">
             <h2
-              className="text-7xl xl:text-8xl font-black tracking-wide text-white text-center"
-              style={{ lineHeight: '1.5' }}
+              className="text-[128px] font-black tracking-wide text-white text-center"
+              style={{ lineHeight: '1.3' }}
             >
               闭门会，<br />
               讲点外面<span className="text-[#004CE5] font-extrabold ml-2">听不到的。</span>
