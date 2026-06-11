@@ -46,7 +46,7 @@ function Page_GeoReportEntries_Analysis() {
                                             <span className="bg-[#004CE5]/10 border border-[#004CE5]/30 text-blue-300 text-[14px] lg:text-[15px] px-3.5 py-0.5 rounded font-bold shrink-0">提及率 33.3%</span>
                                         </div>
                                         <p className="text-[16px] lg:text-[17px] xl:text-[18px] text-zinc-200 leading-relaxed font-normal">
-                                            在测试的 20 个词条中，萨米特在“符合现代家装审美的瓷砖推荐”、“能实现地面无缝效果的瓷砖推荐”、“符合年轻人审美的瓷砖推荐”、“密缝铺贴全套落地的瓷砖品牌推荐”这 4 个词条中录得了 <strong className="text-sky-400 font-bold">33.3%</strong> 的提及率。表明萨米特的“年轻化”和“密缝工艺”标签在部分 AI 模型中留下了一定痕迹，但远未形成坚固的护城河。
+                                            萨米特的“年轻化”和“密缝工艺”标签在部分 AI 模型中留下了一定痕迹，但远未形成坚固的护城河。
                                         </p>
                                     </div>
 
@@ -70,7 +70,7 @@ function Page_GeoReportEntries_Analysis() {
                                             <h4 className="text-[19px] lg:text-[21px] font-bold text-white flex items-center gap-2.5">
                                                 <span className="w-1.5 h-1.5 rounded-full bg-[#004CE5] shadow-[0_0_6px_rgba(0,76,229,0.8)]" />
                                                 表现垫底的“陪跑词”
-                                        </h4>
+                                            </h4>
                                             <span className="bg-[#004CE5]/10 border border-[#004CE5]/30 text-blue-300 text-[14px] lg:text-[15px] px-3.5 py-0.5 rounded font-bold shrink-0">均位跌至 NO. 10.3</span>
                                         </div>
                                         <p className="text-[16px] lg:text-[17px] xl:text-[18px] text-zinc-200 leading-relaxed font-normal">

@@ -76,7 +76,7 @@ function Page_GeoReportSentiment() {
                                                 <span className="w-1.5 h-1.5 rounded-full bg-rose-500" />
                                                 1. 终端渠道与服务折损
                                             </h4>
-                                            <p className="text-[16.5px] lg:text-[17.5px] xl:text-[18.5px] text-zinc-300 leading-relaxed font-normal overflow-y-auto">
+                                            <p className="text-[16.5px] lg:text-[17.5px] xl:text-[18.5px] text-zinc-300 leading-relaxed font-normal">
                                                 数据抓取到的核心负面标签之一是“<strong className="text-white font-semibold">执行存在差异</strong>”。当询问“萨米特瓷砖售后服务怎么样”或“好不好”时，AI 明确指出萨米特的售后服务呈现出明显的“<strong className="text-rose-300 font-semibold">两面性</strong>”。
                                             </p>
                                         </div>
@@ -89,7 +89,7 @@ function Page_GeoReportSentiment() {
                                                 <span className="w-1.5 h-1.5 rounded-full bg-rose-500" />
                                                 2. 品牌信息错误及价格错误
                                             </h4>
-                                            <p className="text-[16.5px] lg:text-[17.5px] xl:text-[18.5px] text-zinc-300 leading-relaxed font-normal overflow-y-auto">
+                                            <p className="text-[16.5px] lg:text-[17.5px] xl:text-[18.5px] text-zinc-300 leading-relaxed font-normal">
                                                 在部分回答中，因为AI抓取到了一篇具有错误信息的文章，导致在回答中出现了明显的<strong className="text-rose-300 font-semibold">价格错误</strong>以及<strong className="text-rose-300 font-semibold">产品规格错误</strong>，容易给用户造成误解。
                                             </p>
                                         </div>
