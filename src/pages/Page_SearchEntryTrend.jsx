@@ -235,7 +235,7 @@ export default function Page_SearchEntryTrend() {
         <div className="absolute top-4 bottom-4 w-px bg-zinc-800/80" style={{ left: '1370px' }} />
 
         {/* Right Column: Key Insights */}
-        <div className="col-span-3 pl-3 flex flex-col justify-center gap-[58px] py-4">
+        <div className="col-span-3 pl-3 flex flex-col justify-center gap-[88px] py-4">
 
           {/* Insight 1: 趋势预测 */}
           <div className="flex flex-col justify-start">
