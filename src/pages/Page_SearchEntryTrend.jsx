@@ -128,7 +128,7 @@ export default function Page_SearchEntryTrend() {
                     d={traditionalPath}
                     fill="none"
                     stroke="#E4E4E7"
-                    strokeWidth="4.5"
+                    strokeWidth="1.5"
                     strokeLinecap="round"
                   />
 
@@ -137,7 +137,7 @@ export default function Page_SearchEntryTrend() {
                     d={aiPath}
                     fill="none"
                     stroke="#3B82F6"
-                    strokeWidth="5"
+                    strokeWidth="1.5"
                     strokeLinecap="round"
                     className="drop-shadow-[0_4px_12px_rgba(59,130,246,0.4)]"
                   />
@@ -198,7 +198,7 @@ export default function Page_SearchEntryTrend() {
                 <g transform="translate(490, 480)">
                   {/* Legend 1: Traditional */}
                   <g transform="translate(-190, 0)">
-                    <line x1="-95" y1="-8" x2="-65" y2="-8" stroke="#E4E4E7" strokeWidth="4" strokeLinecap="round" />
+                    <line x1="-95" y1="-8" x2="-65" y2="-8" stroke="#E4E4E7" strokeWidth="1.5" strokeLinecap="round" />
                     <text x="0" y="-8" fill="#E4E4E7" fontSize="18" fontWeight="bold" fontFamily="MiSans, sans-serif" textAnchor="middle" dominantBaseline="middle">
                       传统搜索入口
                     </text>
@@ -208,7 +208,7 @@ export default function Page_SearchEntryTrend() {
                   </g>
                   {/* Legend 2: AI */}
                   <g transform="translate(190, 0)">
-                    <line x1="-95" y1="-8" x2="-65" y2="-8" stroke="#3B82F6" strokeWidth="4" strokeLinecap="round" />
+                    <line x1="-95" y1="-8" x2="-65" y2="-8" stroke="#3B82F6" strokeWidth="1.5" strokeLinecap="round" />
                     <text x="0" y="-8" fill="#3B82F6" fontSize="18" fontWeight="bold" fontFamily="MiSans, sans-serif" textAnchor="middle" dominantBaseline="middle">
                       AI 搜索入口
                     </text>
