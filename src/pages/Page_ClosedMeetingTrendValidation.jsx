@@ -19,8 +19,8 @@ export default function Page_ClosedMeetingTrendValidation() {
         <div className="flex items-center justify-center w-full relative" style={{ top: '-80px' }}>
           <div className="w-full">
             <h2
-              className="text-8xl xl:text-9xl font-black tracking-wide text-white text-center"
-              style={{ lineHeight: '1.5' }}
+              className="text-[124px] font-black tracking-wide text-white text-center"
+              style={{ lineHeight: '1.3' }}
             >
               这组数据所预测的趋势，<br />
               正在被越来越多的<span className="text-[#004CE5] font-extrabold ml-2">真实变化验证。</span>
