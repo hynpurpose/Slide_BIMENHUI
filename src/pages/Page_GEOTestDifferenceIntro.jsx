@@ -20,12 +20,12 @@ export default function Page_GEOTestDifferenceIntro() {
       <div className="grid grid-cols-12 gap-8 w-full h-full items-stretch relative z-10 py-2">
 
         {/* Left Column: Visualisation Card */}
-        <div className="col-span-7 flex items-center justify-center p-6 bg-zinc-900/10 border border-[#004CE5]/30 rounded-3xl shadow-[0_0_25px_rgba(0,76,229,0.15)] backdrop-blur-sm relative z-10 min-h-0">
+        <div className="col-span-7 flex items-center justify-center bg-zinc-900/10 border border-[#004CE5]/30 rounded-3xl shadow-[0_0_25px_rgba(0,76,229,0.15)] backdrop-blur-sm relative z-10 min-h-0 overflow-hidden w-full aspect-[3/2] self-center">
           {!imgFailed ? (
             <img
               src={imagePath}
               alt="服务商数据造假对比图"
-              className="max-w-full max-h-full object-contain rounded-2xl"
+              className="w-full h-full object-cover"
               onError={() => setImgFailed(true)}
             />
           ) : (

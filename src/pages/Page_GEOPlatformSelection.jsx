@@ -32,10 +32,10 @@ export default function Page_GEOPlatformSelection() {
   const paddingRight = 220;
   const paddingTop = 45;
   const paddingBottom = 25;
-  
+
   const graphWidth = chartWidth - paddingLeft - paddingRight;
   const graphHeight = chartHeight - paddingTop - paddingBottom;
-  
+
   const rowHeight = graphHeight / data.length;
 
   return (
@@ -49,7 +49,7 @@ export default function Page_GEOPlatformSelection() {
 
       {/* Main Container within Safe Zone (775px height): Two Columns */}
       <div className="w-full h-full grid grid-cols-12 gap-8 items-stretch relative z-10">
-        
+
         {/* Left Column: Chart Area (Span 8) */}
         <div className="col-span-8 bg-zinc-900/10 border border-zinc-800/80 rounded-3xl p-8 backdrop-blur-sm shadow-[0_0_30px_rgba(0,0,0,0.3)] flex flex-col justify-between h-full">
           <div className="flex items-center justify-between border-b border-zinc-800/80 pb-4">
@@ -97,7 +97,7 @@ export default function Page_GEOPlatformSelection() {
                 const y = paddingTop + index * rowHeight + (rowHeight - 22) / 2;
                 const barWidth = Math.max(2, (item.value / maxVal) * graphWidth);
                 const isTop3 = index < 3;
-                
+
                 return (
                   <g key={index} className="group">
                     {/* Rank label */}
@@ -207,10 +207,10 @@ export default function Page_GEOPlatformSelection() {
             <div className="flex flex-col gap-5">
               <div className="flex items-center gap-3">
                 <span className="w-3.5 h-3.5 rounded-full bg-[#004CE5]" />
-                <span className="text-[22px] font-black text-white">90% 的普通品牌</span>
+                <span className="text-[22px] font-black text-white">90% 的品牌</span>
               </div>
               <p className="text-[20px] xl:text-[21px] font-medium text-zinc-300 leading-relaxed pl-6 font-['MiSans']">
-                建议聚焦资源，<span className="text-white font-extrabold bg-[#004CE5]/15 border border-[#004CE5]/30 px-3 py-1.5 rounded-xl">只选择用户量最高的前三个平台</span>（豆包、DeepSeek、通义千问）进行重点优化。
+                聚焦资源，<span className="text-white font-extrabold bg-[#004CE5]/15 border border-[#004CE5]/30 px-3 py-1.5 rounded-xl">只选择用户量最高的前三个平台</span>（豆包、DeepSeek、通义千问）进行重点优化。
               </p>
             </div>
 
@@ -218,10 +218,10 @@ export default function Page_GEOPlatformSelection() {
             <div className="flex flex-col gap-5">
               <div className="flex items-center gap-3">
                 <span className="w-3.5 h-3.5 rounded-full bg-zinc-500" />
-                <span className="text-[22px] font-black text-zinc-300">其余 10% 预算充裕品牌</span>
+                <span className="text-[22px] font-black text-zinc-300">10% 预算充裕的品牌</span>
               </div>
               <p className="text-[20px] xl:text-[21px] font-medium text-zinc-400 leading-relaxed pl-6 font-['MiSans']">
-                可以在核心三个平台的基础上，把 <span className="text-zinc-200 font-bold">腾讯元宝、Kimi、文心一言</span> 也同步纳入优化范围。
+                可以把 <span className="text-zinc-200 font-bold">腾讯元宝、Kimi、文心一言</span> 也同步纳入优化范围。
               </p>
             </div>
           </div>
