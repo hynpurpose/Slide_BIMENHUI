@@ -145,14 +145,14 @@ export default function Page_GEOSalesConversionTrend() {
               <path
                 d={googlePathSolid}
                 fill="none"
-                stroke="#E4E4E7"
+                stroke="#FABB05"
                 strokeWidth="1.5"
                 strokeLinecap="round"
               />
               <path
                 d={googlePathDashed}
                 fill="none"
-                stroke="#E4E4E7"
+                stroke="#FABB05"
                 strokeWidth="1.5"
                 strokeLinecap="round"
                 strokeDasharray="6 4"
@@ -162,14 +162,14 @@ export default function Page_GEOSalesConversionTrend() {
               <path
                 d={metaPathSolid}
                 fill="none"
-                stroke="#01C096"
+                stroke="#FFFFFF"
                 strokeWidth="1.5"
                 strokeLinecap="round"
               />
               <path
                 d={metaPathDashed}
                 fill="none"
-                stroke="#01C096"
+                stroke="#FFFFFF"
                 strokeWidth="1.5"
                 strokeLinecap="round"
                 strokeDasharray="6 4"
@@ -195,8 +195,8 @@ export default function Page_GEOSalesConversionTrend() {
               />
 
               {/* End Values Labels */}
-              <text x="915" y="86" fill="#E4E4E7" fontSize="18" fontWeight="bold" fontFamily="MiSans, sans-serif">2,350</text>
-              <text x="915" y="282" fill="#01C096" fontSize="18" fontWeight="bold" fontFamily="MiSans, sans-serif">950</text>
+              <text x="915" y="86" fill="#FABB05" fontSize="18" fontWeight="bold" fontFamily="MiSans, sans-serif">2,350</text>
+              <text x="915" y="282" fill="#FFFFFF" fontSize="18" fontWeight="bold" fontFamily="MiSans, sans-serif">950</text>
               <text x="915" y="352" fill="#3B82F6" fontSize="18" fontWeight="bold" fontFamily="MiSans, sans-serif">450</text>
 
             </g>
@@ -205,15 +205,15 @@ export default function Page_GEOSalesConversionTrend() {
             <g transform="translate(490, 480)">
               {/* Legend 1: Google */}
               <g transform="translate(-250, 0)">
-                <line x1="-95" y1="0" x2="-65" y2="0" stroke="#E4E4E7" strokeWidth="1.5" strokeLinecap="round" />
-                <text x="0" y="0" fill="#E4E4E7" fontSize="18" fontWeight="bold" fontFamily="MiSans, sans-serif" textAnchor="middle" dominantBaseline="middle">
+                <line x1="-95" y1="0" x2="-65" y2="0" stroke="#FABB05" strokeWidth="1.5" strokeLinecap="round" />
+                <text x="0" y="0" fill="#FABB05" fontSize="18" fontWeight="bold" fontFamily="MiSans, sans-serif" textAnchor="middle" dominantBaseline="middle">
                   Google 搜索
                 </text>
               </g>
               {/* Legend 2: Facebook */}
               <g transform="translate(0, 0)">
-                <line x1="-95" y1="0" x2="-65" y2="0" stroke="#01C096" strokeWidth="1.5" strokeLinecap="round" />
-                <text x="0" y="0" fill="#01C096" fontSize="18" fontWeight="bold" fontFamily="MiSans, sans-serif" textAnchor="middle" dominantBaseline="middle">
+                <line x1="-95" y1="0" x2="-65" y2="0" stroke="#FFFFFF" strokeWidth="1.5" strokeLinecap="round" />
+                <text x="0" y="0" fill="#FFFFFF" fontSize="18" fontWeight="bold" fontFamily="MiSans, sans-serif" textAnchor="middle" dominantBaseline="middle">
                   Facebook广告
                 </text>
               </g>
