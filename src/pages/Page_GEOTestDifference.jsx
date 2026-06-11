@@ -46,7 +46,7 @@ export default function Page_GEOTestDifference() {
         <div className="w-[860px] flex items-stretch justify-start relative">
           
           {/* Smartphone mockup */}
-          <div className="absolute top-[-145px] bottom-0 w-[512px] left-[80px] border-[8px] border-zinc-800 bg-zinc-950 rounded-[48px] shadow-[0_25px_60px_rgba(0,0,0,0.85)] overflow-hidden">
+          <div className="absolute top-[-145px] bottom-0 w-[425px] left-[80px] border-[8px] border-zinc-800 bg-zinc-950 rounded-[48px] shadow-[0_25px_60px_rgba(0,0,0,0.85)] overflow-hidden">
             
             {/* Notch / Punch hole */}
             <div className="absolute top-4 left-1/2 -translate-x-1/2 w-28 h-5 bg-black rounded-full z-30 flex items-center justify-center">
