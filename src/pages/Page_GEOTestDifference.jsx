@@ -1,8 +1,21 @@
-import React, { useState } from 'react';
+import React, { useState, useRef } from 'react';
 import SlideLayout from '../components/SlideLayout';
 
 export default function Page_GEOTestDifference() {
   const [videoFailed, setVideoFailed] = useState(false);
+  const [isPlaying, setIsPlaying] = useState(false);
+  const videoRef = useRef(null);
+
+  const togglePlay = () => {
+    if (!videoRef.current) return;
+    if (isPlaying) {
+      videoRef.current.pause();
+      setIsPlaying(false);
+    } else {
+      videoRef.current.play();
+      setIsPlaying(true);
+    }
+  };
 
   return (
     <SlideLayout
@@ -41,17 +54,31 @@ export default function Page_GEOTestDifference() {
             </div>
 
             {/* Screen Content Container */}
-            <div className="absolute inset-0 z-10 w-full h-full bg-black">
+            <div 
+              className="absolute inset-0 z-10 w-full h-full bg-black cursor-pointer"
+              onClick={togglePlay}
+            >
               {!videoFailed ? (
-                <video
-                  src="/videos/geo-test-difference.mp4"
-                  className="w-full h-full object-cover"
-                  autoPlay
-                  muted
-                  loop
-                  playsInline
-                  onError={() => setVideoFailed(true)}
-                />
+                <div className="relative w-full h-full">
+                  <video
+                    ref={videoRef}
+                    src="/videos/geo-test-difference.mp4"
+                    className="w-full h-full object-contain"
+                    muted
+                    loop
+                    playsInline
+                    onError={() => setVideoFailed(true)}
+                    onPlay={() => setIsPlaying(true)}
+                    onPause={() => setIsPlaying(false)}
+                  />
+                  {!isPlaying && (
+                    <div className="absolute inset-0 flex items-center justify-center bg-black/40 transition-opacity duration-300">
+                      <div className="w-16 h-16 rounded-full bg-white/20 hover:bg-white/30 border border-white/40 flex items-center justify-center backdrop-blur-md shadow-lg transition-transform hover:scale-110">
+                        <span className="text-white text-3xl pl-1">▶</span>
+                      </div>
+                    </div>
+                  )}
+                </div>
               ) : (
                 <div className="w-full h-full flex flex-col items-center justify-center bg-gradient-to-b from-zinc-900 to-black p-8 text-center select-none">
                   <div className="w-20 h-20 rounded-full bg-blue-500/10 border border-blue-500/30 flex items-center justify-center mb-6 animate-pulse">
