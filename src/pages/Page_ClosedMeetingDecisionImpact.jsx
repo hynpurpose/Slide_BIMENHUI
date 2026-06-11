@@ -22,9 +22,9 @@ export default function Page_ClosedMeetingDecisionImpact() {
               className="text-6xl xl:text-7xl font-black tracking-wide text-white text-center"
               style={{ lineHeight: '1.6' }}
             >
-              当越来越多用户开始通过 AI 获取信息、做消费决策，<br />
+              当更多用户开始通过 AI 获取信息、做消费决策，<br />
               品牌能不能被 AI 正确理解和推荐，<br />
-              就会直接影响未来的<span className="text-[#004CE5] font-extrabold mx-2">流量入口</span>和<span className="text-[#004CE5] font-extrabold ml-2">用户选择。</span>
+              就会直接影响未来<span className="text-[#004CE5] font-extrabold ml-2">用户的选择。</span>
             </h2>
           </div>
         </div>

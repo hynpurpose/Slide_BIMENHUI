@@ -19,11 +19,11 @@ export default function Page_GEOKpiVerifyBeforeTransition() {
         <div className="flex items-center justify-center w-full relative" style={{ top: '-80px' }}>
           <div className="w-full px-12">
             <h2
-              className="text-7xl xl:text-8xl font-black tracking-wide text-white text-center font-['MiSans']"
-              style={{ lineHeight: '1.7' }}
+              className="text-8xl xl:text-9xl font-black tracking-wide text-white text-center font-['MiSans']"
+              style={{ lineHeight: '1.4' }}
             >
-              项目做完之后，<br />
-              <span className="text-[#004CE5] font-extrabold">品牌方到底怎么验收？</span>
+              第三关：<br />
+              <span className="text-[#004CE5] font-extrabold">如何验收效果</span>
             </h2>
           </div>
         </div>

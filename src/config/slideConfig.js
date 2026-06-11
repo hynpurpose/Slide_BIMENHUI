@@ -9,6 +9,7 @@ import Page_SearchEntryTrend from '../pages/Page_SearchEntryTrend';
 import Page_ClosedMeetingTrendValidation from '../pages/Page_ClosedMeetingTrendValidation';
 import Page_ClosedMeetingDecisionImpact from '../pages/Page_ClosedMeetingDecisionImpact';
 import Page_ClosedMeetingConversionIntro from '../pages/Page_ClosedMeetingConversionIntro';
+import Page_ClosedMeetingConversionDetail from '../pages/Page_ClosedMeetingConversionDetail';
 import Page_SearchEntryWhyAI from '../pages/Page_SearchEntryWhyAI';
 import Page_GEOSalesConversionIntro from '../pages/Page_GEOSalesConversionIntro';
 import Page_GEOSalesConversionTrend from '../pages/Page_GEOSalesConversionTrend';
@@ -19,12 +20,15 @@ import Page_GEOCaseStudies from '../pages/Page_GEOCaseStudies';
 import Page_GEOQuestionsOverview from '../pages/Page_GEOQuestionsOverview';
 import Page_GEOTestDifferenceIntro from '../pages/Page_GEOTestDifferenceIntro';
 import Page_GEOTestDifferenceTransition from '../pages/Page_GEOTestDifferenceTransition';
+import Page_GEOTestDifferenceQuestion from '../pages/Page_GEOTestDifferenceQuestion';
 import Page_GEOResponseTransition from '../pages/Page_GEOResponseTransition';
 import Page_GEOTestDifference from '../pages/Page_GEOTestDifference';
+import Page_GEOPlatformSelectionTransition from '../pages/Page_GEOPlatformSelectionTransition';
 import Page_GEOPlatformSelection from '../pages/Page_GEOPlatformSelection';
 import Page_GEOWordSelection from '../pages/Page_GEOWordSelection';
 import Page_GEOKpiSetting from '../pages/Page_GEOKpiSetting';
 import Page_GEOKpiReportTransition from '../pages/Page_GEOKpiReportTransition';
+import Page_GEOKpiSecondStageTransition from '../pages/Page_GEOKpiSecondStageTransition';
 import Page_GEOKpiSettingTransition from '../pages/Page_GEOKpiSettingTransition';
 import Page_GEOKpiSettingBrand from '../pages/Page_GEOKpiSettingBrand';
 import Page_GEOKpiVerifyBeforeTransition from '../pages/Page_GEOKpiVerifyBeforeTransition';
@@ -32,15 +36,27 @@ import Page_GEOKpiVerify from '../pages/Page_GEOKpiVerify';
 import Page_GEOKpiVerifyDetail from '../pages/Page_GEOKpiVerifyDetail';
 import Page_GEOKpiVerifyTransition from '../pages/Page_GEOKpiVerifyTransition';
 import Page_GEOWordSelectionOther from '../pages/Page_GEOWordSelectionOther';
+import Page_GEOWordSelectionOther2 from '../pages/Page_GEOWordSelectionOther2';
+import Page_GEOWordSelectionTransition from '../pages/Page_GEOWordSelectionTransition';
 import Page_GEOWordSelectionRule from '../pages/Page_GEOWordSelectionRule';
 import Page_GEOWordSelectionRuleCase from '../pages/Page_GEOWordSelectionRuleCase';
 import Page_GEOWordSelectionRuleDataCase from '../pages/Page_GEOWordSelectionRuleDataCase';
+import Page_GEOWordSelectionRuleDataCaseDetail from '../pages/Page_GEOWordSelectionRuleDataCaseDetail';
+import Page_GEOWordSelectionSemTransition from '../pages/Page_GEOWordSelectionSemTransition';
 import Page_GEOServiceProviderSelection from '../pages/Page_GEOServiceProviderSelection';
+import Page_GEOServiceProviderSelection2 from '../pages/Page_GEOServiceProviderSelection2';
+import Page_GEOServiceProviderSelection3 from '../pages/Page_GEOServiceProviderSelection3';
+import Page_GEOServiceProviderSelection3Detail1 from '../pages/Page_GEOServiceProviderSelection3Detail1';
+import Page_GEOServiceProviderSelection3Detail2 from '../pages/Page_GEOServiceProviderSelection3Detail2';
+import Page_GEOServiceProviderSelection4Detail1 from '../pages/Page_GEOServiceProviderSelection4Detail1';
+import Page_GEOServiceProviderSelection4 from '../pages/Page_GEOServiceProviderSelection4';
+import Page_GEOServiceProviderSelection5 from '../pages/Page_GEOServiceProviderSelection5';
 import Page_GEOServiceProviderSelectionTransition from '../pages/Page_GEOServiceProviderSelectionTransition';
 import Page_GEOServiceProviderSelectionTransition2 from '../pages/Page_GEOServiceProviderSelectionTransition2';
 import Page_GEOServiceProviderSelectionTransition3 from '../pages/Page_GEOServiceProviderSelectionTransition3';
 import Page_GEOServiceProviderSelectionTransition4 from '../pages/Page_GEOServiceProviderSelectionTransition4';
 import Page_GEOServiceProviderSelectionTransition5 from '../pages/Page_GEOServiceProviderSelectionTransition5';
+import Page_GEOPresentationEnding from '../pages/Page_GEOPresentationEnding';
 import Page_GeoReport_BasicInfo1 from '../pages/Page_GeoReport_BasicInfo1';
 import Page_GeoReport_BasicInfo2 from '../pages/Page_GeoReport_BasicInfo2';
 import PB_GeoReportDashboard from '../pages/Page_GeoReportDashboard';
@@ -93,22 +109,30 @@ export const slideConfig = [
   { type: 'page', title: '决策影响过渡页', component: Page_ClosedMeetingDecisionImpact, hideHeader: true },
 
   { type: 'page', title: '能否带来转化过渡页', component: Page_ClosedMeetingConversionIntro, hideHeader: true },
+  { type: 'page', title: '国内外转化归因对比', component: Page_ClosedMeetingConversionDetail, hideHeader: true },
   { type: 'page', title: '各渠道获客趋势', component: Page_GEOSalesConversionTrend, hideHeader: true },
   { type: 'page', title: '销售转化率对比', component: Page_GEOSalesConversion, hideHeader: true },
   { type: 'page', title: '线下销售反馈的真实现象', component: Page_GEOSalesFeedback, hideHeader: true },
   { type: 'page', title: '线下销售反馈实测案例', component: Page_GEOSalesFeedbackCase, hideHeader: true },
 
   { type: 'page', title: '测试差异过渡页', component: Page_GEOTestDifferenceTransition, hideHeader: true },
+  { type: 'page', title: '真实实测问答对比落差', component: Page_GEOTestDifferenceQuestion, hideHeader: true },
   { type: 'page', title: '服务商测试结果差异原因', component: Page_GEOTestDifference, hideHeader: true },
   { type: 'page', title: '服务商数据造假对比说明', component: Page_GEOTestDifferenceIntro, hideHeader: true },
   { type: 'page', title: '品牌应对方式过渡页', component: Page_GEOResponseTransition, hideHeader: true },
 
+  { type: 'page', title: '第一关选平台选词条过渡页', component: Page_GEOPlatformSelectionTransition, hideHeader: true },
   { type: 'page', title: 'GEO选词与选平台建议', component: Page_GEOPlatformSelection, hideHeader: true },
-  { type: 'page', title: 'GEO选词其他做法', component: Page_GEOWordSelectionOther, hideHeader: true },
+  { type: 'page', title: 'GEO选词其他做法一', component: Page_GEOWordSelectionOther, hideHeader: true },
+  { type: 'page', title: 'GEO选词其他做法二', component: Page_GEOWordSelectionOther2, hideHeader: true },
+  { type: 'page', title: 'GEO选词流量与定位过渡页', component: Page_GEOWordSelectionTransition, hideHeader: true },
   { type: 'page', title: 'GEO选词核心法则', component: Page_GEOWordSelectionRule, hideHeader: true },
   { type: 'page', title: 'GEO选词核心法则案例', component: Page_GEOWordSelectionRuleCase, hideHeader: true },
+  { type: 'page', title: 'GEO选词与SEM区别过渡页', component: Page_GEOWordSelectionSemTransition, hideHeader: true },
   { type: 'page', title: 'GEO选词核心法则案例二', component: Page_GEOWordSelectionRuleDataCase, hideHeader: true },
+  { type: 'page', title: 'GEO选词核心法则案例二数据对比', component: Page_GEOWordSelectionRuleDataCaseDetail, hideHeader: true },
 
+  { type: 'page', title: '第二关KPI怎么定过渡页', component: Page_GEOKpiSecondStageTransition, hideHeader: true },
   { type: 'page', title: '先做 GEO 体检报告过渡页', component: Page_GEOKpiReportTransition, hideHeader: true },
   { type: 'section', title: '数据分析报告' },
   { type: 'page', title: '报告说明', components: [Page_GeoReport_BasicInfo1, Page_GeoReport_BasicInfo2], hideHeader: true },
@@ -127,9 +151,13 @@ export const slideConfig = [
   { type: 'page', title: '效果验证过渡页', component: Page_GEOKpiVerifyTransition, hideHeader: true },
 
   { type: 'page', title: '如何选出靠谱的服务商？', component: Page_GEOServiceProviderSelection, hideHeader: true },
-  { type: 'page', title: '如何选出靠谱的服务商过渡页', component: Page_GEOServiceProviderSelectionTransition, hideHeader: true },
-  { type: 'page', title: '做 GEO 必须要有数据监测系统', component: Page_GEOServiceProviderSelectionTransition2, hideHeader: true },
-  { type: 'page', title: '除了数量，更要看内容质量', component: Page_GEOServiceProviderSelectionTransition3, hideHeader: true },
-  { type: 'page', title: '还要看服务商投放逻辑', component: Page_GEOServiceProviderSelectionTransition4, hideHeader: true },
+  { type: 'page', title: '全链路数据监测系统', component: Page_GEOServiceProviderSelection2, hideHeader: true },
+  { type: 'page', title: '看内容策略', component: Page_GEOServiceProviderSelection3, hideHeader: true },
+  { type: 'page', title: '内容质量细节一', component: Page_GEOServiceProviderSelection3Detail1, hideHeader: true },
+  { type: 'page', title: '内容质量细节二', component: Page_GEOServiceProviderSelection3Detail2, hideHeader: true },
+  { type: 'page', title: '721原则', component: Page_GEOServiceProviderSelection4Detail1, hideHeader: true },
+  { type: 'page', title: '看投放策略', component: Page_GEOServiceProviderSelection4, hideHeader: true },
+  { type: 'page', title: '看文章被 AI 引用的概率', component: Page_GEOServiceProviderSelection5, hideHeader: true },
   { type: 'page', title: '标准筛选不靠谱服务商', component: Page_GEOServiceProviderSelectionTransition5, hideHeader: true },
+  { type: 'page', title: 'GEO 索引未来 结束页', component: Page_GEOPresentationEnding, hideHeader: true },
 ];
