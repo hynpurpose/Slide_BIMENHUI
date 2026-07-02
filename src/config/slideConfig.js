@@ -28,12 +28,17 @@ import Page_ContentAgentIntro from '../pages/Page_ContentAgentIntro';
 import Page_ContentAgent from '../pages/Page_ContentAgent';
 import Page_UserCommentAnalysis from '../pages/Page_UserCommentAnalysis';
 import Page_OtherContentApproach from '../pages/Page_OtherContentApproach';
+import Page_SkyworthContentDetailsAI from '../pages/Page_SkyworthContentDetailsAI';
 import Page_HumanAiRatioApproach from '../pages/Page_HumanAiRatioApproach';
 import Page_ContentQualityValue from '../pages/Page_ContentQualityValue';
 import Page_SkyworthContentDirection from '../pages/Page_SkyworthContentDirection';
+import Page_SkyworthQAArticleDemo from '../pages/Page_SkyworthQAArticleDemo';
 import Page_GeoContentPrinciples from '../pages/Page_GeoContentPrinciples';
 import Page_DeliveryShortTerm from '../pages/Page_DeliveryShortTerm';
 import Page_DeliveryLongTerm from '../pages/Page_DeliveryLongTerm';
+import Page_DeliveryHighWeight from '../pages/Page_DeliveryHighWeight';
+import Page_PotentialVerticalCommunity from '../pages/Page_PotentialVerticalCommunity';
+import Page_EmergingMediaAttempts from '../pages/Page_EmergingMediaAttempts';
 
 export const slideConfig = [
   // ——— 封面 & 目录 ———
@@ -86,8 +91,8 @@ export const slideConfig = [
   { type: 'section', title: '如何选词条' },
   { type: 'page', title: '市场上其他做法（一）：AI批量生成', component: Page_GEOWordSelectionOther, hideHeader: true },
   { type: 'page', title: '市场上其他做法（二）：复制百度、社媒热词', component: Page_GEOWordSelectionOther2, hideHeader: true },
-  { type: 'page', title: 'AI 如何处理用户问题', component: Page_SkyworthAiProcess, hideHeader: true },
   { type: 'page', title: '影子算法', component: Page_SkyworthShadowAlgorithm, hideHeader: true },
+  { type: 'page', title: 'AI 如何处理用户问题', component: Page_SkyworthAiProcess, hideHeader: true },
 
   // ══════════════════════════════════════════════════════════
   // ——— 三、现状诊断报告 ———
@@ -106,14 +111,17 @@ export const slideConfig = [
 
   { type: 'section', title: '怎么做内容' },
   { type: 'page', title: '市面上其他做法', component: Page_OtherContentApproach, hideHeader: true },
+  { type: 'page', title: '内容投放明细 (案例)', component: Page_SkyworthContentDetailsAI, hideHeader: true },
   { type: 'page', title: '我们的策略', component: Page_HumanAiRatioApproach, hideHeader: true },
   { type: 'page', title: '优质内容的复利效应', component: Page_ContentQualityValue, hideHeader: true },
 
   { type: 'section', title: '创维的内容怎么做' },
   { type: 'page', title: '创维定制内容方向规划', component: Page_SkyworthContentDirection, hideHeader: true },
 
+
   { type: 'section', title: '内容标准' },
   { type: 'page', title: 'GEO内容编写原则', component: Page_GeoContentPrinciples, hideHeader: true },
+  { type: 'page', title: '问题解答类文章示意', component: Page_SkyworthQAArticleDemo, hideHeader: true },
 
   // ══════════════════════════════════════════════════════════
   // ——— 六、投放策略 ———
@@ -123,6 +131,9 @@ export const slideConfig = [
   { type: 'page', title: '短期投放', component: Page_DeliveryShortTerm, hideHeader: true },
   { type: 'section', title: '长期投放逻辑' },
   { type: 'page', title: '长期投放', component: Page_DeliveryLongTerm, hideHeader: true },
+  { type: 'page', title: '精准高权重账号', component: Page_DeliveryHighWeight, hideHeader: true },
+  { type: 'page', title: '有潜力的垂直社区', component: Page_PotentialVerticalCommunity, hideHeader: true },
+  { type: 'page', title: '新兴媒体尝试', component: Page_EmergingMediaAttempts, hideHeader: true },
 
   // ══════════════════════════════════════════════════════════
   // ——— 七、关于我们 ———

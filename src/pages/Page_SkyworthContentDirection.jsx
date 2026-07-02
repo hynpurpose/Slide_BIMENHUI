@@ -5,59 +5,63 @@ export default function Page_SkyworthContentDirection() {
   const directions = [
     {
       num: '1',
+      category: '问题解答类',
       desc: '用户在选壁纸电视、艺术电视时，最关心哪些问题',
-      accentColor: '#EC4899', // Pink
+      accentColor: '#D46096', // Desaturated Pink/Rose
       zIndex: 'z-30', // Bottom cards sit in front
-      width: 414,  // Top card width
-      height: 474, // Top card height
+      width: 440,  // Enlarged
+      height: 500, // Enlarged
       left: '0px',
-      top: '480px',
-      textSize: 'text-[30px] font-black text-zinc-100',
+      top: '420px',
+      textSize: 'text-[32px] font-black text-zinc-100',
       textPadding: 'pr-4'
     },
     {
       num: '2',
+      category: '人群匹配类', // Suggested category name for suits which group of people
       desc: '创维这几款产品分别适合什么人',
-      accentColor: '#06B6D4', // Cyan
+      accentColor: '#3CA0BA', // Desaturated Cyan/Steel Blue
       zIndex: 'z-20',
-      width: 334,
-      height: 364,
+      width: 360,
+      height: 390,
       left: '310px',
       top: '10px',
-      textSize: 'text-[24px] font-extrabold text-zinc-200',
+      textSize: 'text-[26px] font-extrabold text-zinc-200',
       textPadding: 'pr-4'
     },
     {
       num: '3',
+      category: '评测对比类',
       desc: '创维和竞品相比，优势和短板分别是什么',
-      accentColor: '#10B981', // Emerald
+      accentColor: '#4CA389', // Desaturated Emerald/Sage Green
       zIndex: 'z-20',
-      width: 374,
-      height: 414,
-      left: '600px',
+      width: 400,
+      height: 440,
+      left: '620px',
       top: '140px',
-      textSize: 'text-[26px] font-bold text-zinc-200',
+      textSize: 'text-[28px] font-bold text-zinc-200',
       textPadding: 'pr-20' // Avoid overlap with Card 4
     },
     {
       num: '4',
+      category: '选购指南类',
       desc: '不同预算、不同客厅场景下，应该怎么选',
-      accentColor: '#F59E0B', // Amber
+      accentColor: '#DDA343', // Desaturated Amber/Sand Gold
       zIndex: 'z-30',
-      width: 394,
-      height: 444,
-      left: '920px',
-      top: '380px',
-      textSize: 'text-[28px] font-bold text-zinc-200',
+      width: 420,
+      height: 470,
+      left: '950px',
+      top: '360px',
+      textSize: 'text-[30px] font-bold text-zinc-200',
       textPadding: 'pr-4'
     }
   ];
 
   return (
     <SlideLayout title="创维内容方向规划">
-      {/* ── 主排版区 (高度拉伸至 830px，顶部抵到 top guide line) ── */}
+      {/* ── 主排版区 (高度拉伸至 900px，顶部抵到 top guide line) ── */}
       <div
-        className="absolute w-[1840px] select-none animate-fadeIn flex justify-between"
+        className="absolute w-[1840px] select-none animate-fadeIn flex justify-between overflow-visible"
         style={{ top: '-145px', height: '900px' }}
       >
 
@@ -72,7 +76,7 @@ export default function Page_SkyworthContentDirection() {
         </div>
 
         {/* ==================== 右侧超大层叠区块 (宽度 1350px，完全错落且大小不一，拟物感更强) ==================== */}
-        <div className="w-[1350px] h-full relative">
+        <div className="w-[1350px] h-full relative overflow-visible">
 
           {directions.map((dir, i) => {
             const outerWidth = dir.width + 16;
@@ -109,7 +113,7 @@ export default function Page_SkyworthContentDirection() {
                   }}
                 />
 
-                {/* Layer 1: 最上层卡片 (直接呈现彩色边框，无 hover 过渡) */}
+                {/* Layer 1: 最上层卡片 */}
                 <div
                   className="absolute left-0 top-0 rounded-[28px] bg-black border p-10 flex flex-col justify-between shadow-2xl z-20"
                   style={{
@@ -118,18 +122,32 @@ export default function Page_SkyworthContentDirection() {
                     borderColor: dir.accentColor
                   }}
                 >
-                  {/* 卡片头部：文章方向 (Montserrat 字体) */}
+                  {/* 卡片头部：方向与序号 (字号加大) */}
                   <div className="pb-4 border-b border-zinc-900/80 flex items-baseline shrink-0">
-                    <span className="text-[24px] font-bold text-zinc-555 font-['MiSans']">
-                      文章方向
+                    <span className="text-[26px] font-bold text-zinc-400 font-['MiSans']">
+                      方向
                     </span>
-                    <span className="font-['Montserrat'] text-[42px] text-white font-black ml-3 leading-none">
+                    <span className="font-['Montserrat'] text-[48px] text-white font-black ml-3 leading-none">
                       {dir.num}
                     </span>
                   </div>
 
-                  {/* 卡片中部：主要文稿大字展示 (字号按卡片尺寸差异化放大) */}
-                  <div className="flex-grow flex items-center pt-4">
+                  {/* 卡片中部：主要文稿与胶囊标签 (胶囊放在文稿上面，字号 22px) */}
+                  <div className="flex-grow flex flex-col justify-center pt-6">
+                    {/* 类别胶囊标签 */}
+                    <div className="mb-4">
+                      <span 
+                        className="px-4 py-1.5 rounded-full text-[22px] font-black border font-['MiSans'] inline-block select-none"
+                        style={{ 
+                          color: dir.accentColor,
+                          borderColor: `${dir.accentColor}40`,
+                          backgroundColor: `${dir.accentColor}0D`
+                        }}
+                      >
+                        {dir.category}
+                      </span>
+                    </div>
+                    {/* 文稿内容 */}
                     <p className={`leading-relaxed font-sans ${dir.textSize} ${dir.textPadding}`}>
                       {dir.desc}
                     </p>
