@@ -4,7 +4,7 @@ import SlideLayout from '../components/SlideLayout';
 export default function Page_GEOWordSelectionOther() {
   return (
     <SlideLayout
-      title="GEO 应该怎么选词条？"
+      title="其他做法一：批量生成"
       subtitle="市场上其他做法（一）：AI批量生成"
     >
       {/* Background glowing effects (ambient light) */}
@@ -13,7 +13,7 @@ export default function Page_GEOWordSelectionOther() {
 
       {/* Main Container: Centered Card stretching to fill safe zone height */}
       <div className="w-full h-full flex items-center justify-center relative z-10 select-none">
-        
+
         {/* ==================== CARD 1: AI 批量生成 (Scaled Up Card - Full Width) ==================== */}
         <div className="w-full h-[715px] bg-zinc-950/90 border border-zinc-800 rounded-[28px] overflow-hidden flex flex-col shadow-[0_20px_50px_rgba(0,0,0,0.4)]">
           {/* Card Header */}
@@ -22,9 +22,9 @@ export default function Page_GEOWordSelectionOther() {
               {/* Double Arrow Circle Icon */}
               <div className="w-14 h-14 rounded-full bg-[#004CE5] flex items-center justify-center shadow-lg shadow-[#004CE5]/20">
                 <svg width="28" height="28" viewBox="0 0 100 100" fill="none" className="text-white">
-                  <path d="M22 78L78 22" stroke="currentColor" strokeWidth="10" strokeLinecap="square"/>
-                  <path d="M48 22H78V52" stroke="currentColor" strokeWidth="10" strokeLinecap="square" strokeLinejoin="miter"/>
-                  <path d="M52 78H22V48" stroke="currentColor" strokeWidth="10" strokeLinecap="square" strokeLinejoin="miter"/>
+                  <path d="M22 78L78 22" stroke="currentColor" strokeWidth="10" strokeLinecap="square" />
+                  <path d="M48 22H78V52" stroke="currentColor" strokeWidth="10" strokeLinecap="square" strokeLinejoin="miter" />
+                  <path d="M52 78H22V48" stroke="currentColor" strokeWidth="10" strokeLinecap="square" strokeLinejoin="miter" />
                 </svg>
               </div>
               <div className="flex flex-col">
@@ -55,19 +55,19 @@ export default function Page_GEOWordSelectionOther() {
                 </div>
                 <div className="flex flex-col gap-1.5">
                   {[
-                    "慕思床垫防伪查询方法",
-                    "慕思太空漫步系列价格",
-                    "慕思智能床垫评测好用吗",
-                    "慕思3D乳胶床垫深度体验",
-                    "慕思弹簧床垫软硬度调整",
-                    "慕思歌蒂娅系列口碑怎么样",
-                    "慕思床垫保养与清洁指南",
-                    "慕思床垫专卖店正品保障",
-                    "慕思床垫官方售后服务电话",
-                    "慕思床垫官方保修年限及政策"
+                    "创维电视防伪查询方法",
+                    "创维壁纸电视价格表2026",
+                    "创维智能电视评测好用吗",
+                    "创维壁纸电视深度体验",
+                    "创维电视色彩对比度调整",
+                    "创维壁纸电视口碑怎么样",
+                    "创维电视保养与屏幕清洁",
+                    "创维电视专卖店正品保障",
+                    "创维电视官方售后服务电话",
+                    "创维电视官方保修年限政策"
                   ].map((term, i) => (
                     <div key={i} className="bg-zinc-950/60 hover:bg-blue-950/20 border border-zinc-800 hover:border-[#004CE5]/40 px-3 py-1 rounded-xl text-zinc-300 hover:text-white text-[18px] xl:text-[20px] font-medium leading-normal flex items-center gap-2.5 transition-all duration-200">
-                      <span className="text-[#004CE5] font-black font-mono text-[13px] shrink-0">{String(i+1).padStart(2, '0')}</span>
+                      <span className="text-[#004CE5] font-black font-mono text-[13px] shrink-0">{String(i + 1).padStart(2, '0')}</span>
                       <span className="whitespace-nowrap">{term}</span>
                     </div>
                   ))}
@@ -83,19 +83,19 @@ export default function Page_GEOWordSelectionOther() {
                 </div>
                 <div className="flex flex-col gap-1.5">
                   {[
-                    "备孕期孕妇床垫推荐",
-                    "搬新家除甲醛硬床垫",
-                    "腰椎不好买什么床垫",
-                    "儿童房防螨透气床垫",
-                    "老人睡塌了怎么补救",
-                    "新婚婚房喜庆双人床垫",
-                    "小户型折叠多功能床垫",
-                    "大体重人群不塌陷床垫",
-                    "梅雨季节防潮防霉硬床垫",
-                    "夫妻体重差大防干扰静音床垫"
+                    "极简客厅背景墙电视推荐",
+                    "新房装修大平层护眼电视",
+                    "游戏党买什么刷新率电视",
+                    "卧室床头背景挂墙艺术电视",
+                    "老人视力不好买多大电视",
+                    "婚房影音室高画质电视",
+                    "小户型客厅超薄贴墙电视",
+                    "大别墅百寸巨幕分体电视",
+                    "梅雨季节防潮防爆电视",
+                    "开放式客厅防眩光电视"
                   ].map((term, i) => (
                     <div key={i} className="bg-zinc-950/60 hover:bg-blue-950/20 border border-zinc-800 hover:border-[#004CE5]/40 px-3 py-1 rounded-xl text-zinc-300 hover:text-white text-[18px] xl:text-[20px] font-medium leading-normal flex items-center gap-2.5 transition-all duration-200">
-                      <span className="text-[#004CE5] font-black font-mono text-[13px] shrink-0">{String(i+11).padStart(2, '0')}</span>
+                      <span className="text-[#004CE5] font-black font-mono text-[13px] shrink-0">{String(i + 11).padStart(2, '0')}</span>
                       <span className="whitespace-nowrap">{term}</span>
                     </div>
                   ))}
@@ -111,19 +111,19 @@ export default function Page_GEOWordSelectionOther() {
                 </div>
                 <div className="flex flex-col gap-1.5">
                   {[
-                    "慕思对比金可儿床垫",
-                    "慕思和喜临门怎么选",
-                    "舒达和慕思哪个好",
-                    "慕思对比梦百合记忆棉",
-                    "丝涟与慕思床垫对比评测",
-                    "慕思对比雅兰床垫优缺点",
-                    "慕思和芝华仕床垫谁更舒服",
-                    "慕思与泰普尔床垫选购对比",
-                    "顾家对比金可儿和慕思床垫",
-                    "金可儿对比舒达和慕思床垫"
+                    "创维对比三星画壁电视",
+                    "创维和海信壁纸电视选哪个",
+                    "TCL和创维电视哪个质量好",
+                    "创维对比索尼OLED电视",
+                    "LG与创维壁纸电视对比评测",
+                    "创维对比长虹壁纸电视优缺点",
+                    "创维和小米电视谁性价比高",
+                    "创维与卡萨帝艺术电视对比",
+                    "海信对比三星和创维电视",
+                    "TCL对比索尼和创维电视"
                   ].map((term, i) => (
                     <div key={i} className="bg-zinc-950/60 hover:bg-blue-950/20 border border-zinc-800 hover:border-[#004CE5]/40 px-3 py-1 rounded-xl text-zinc-300 hover:text-white text-[18px] xl:text-[20px] font-medium leading-normal flex items-center gap-2.5 transition-all duration-200">
-                      <span className="text-[#004CE5] font-black font-mono text-[13px] shrink-0">{String(i+21).padStart(2, '0')}</span>
+                      <span className="text-[#004CE5] font-black font-mono text-[13px] shrink-0">{String(i + 21).padStart(2, '0')}</span>
                       <span className="whitespace-nowrap">{term}</span>
                     </div>
                   ))}
@@ -139,19 +139,19 @@ export default function Page_GEOWordSelectionOther() {
                 </div>
                 <div className="flex flex-col gap-1.5">
                   {[
-                    "独立袋装弹簧床垫",
-                    "天然椰棕防螨硬床垫",
-                    "护脊记忆棉慢回弹床垫",
-                    "防尘螨乳胶双面床垫",
-                    "智能电动按摩加热床垫",
-                    "五区感应分区支撑床垫",
-                    "石墨烯恒温抗菌面料床垫",
-                    "高弹性冷泡绵舒压床垫",
-                    "深睡释压护脊慢回弹床垫",
-                    "无胶水环保热压3D纤维床垫"
+                    "哑光屏艺术画壁电视",
+                    "QD-Mini LED电视评测",
+                    "超薄无缝贴墙电视型号",
+                    "独立分体式客厅音响电视",
+                    "智能高刷抗光护眼电视",
+                    "多分区背光控光电视",
+                    "杜比全景声音画一体电视",
+                    "超高清艺术常亮壁纸电视",
+                    "智能语音控制护眼电视",
+                    "环保护脊一体化壁挂电视"
                   ].map((term, i) => (
                     <div key={i} className="bg-zinc-950/60 hover:bg-blue-950/20 border border-zinc-800 hover:border-[#004CE5]/40 px-3 py-1 rounded-xl text-zinc-300 hover:text-white text-[18px] xl:text-[20px] font-medium leading-normal flex items-center gap-2.5 transition-all duration-200">
-                      <span className="text-[#004CE5] font-black font-mono text-[13px] shrink-0">{String(i+31).padStart(2, '0')}</span>
+                      <span className="text-[#004CE5] font-black font-mono text-[13px] shrink-0">{String(i + 31).padStart(2, '0')}</span>
                       <span className="whitespace-nowrap">{term}</span>
                     </div>
                   ))}

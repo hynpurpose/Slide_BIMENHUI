@@ -1,73 +1,39 @@
-import Page_ProposalNav from '../pages/Page_ProposalNav';
-import Page_SWOTAnalysis from '../pages/Page_SWOTAnalysis';
-import Page_SWOTStrategy from '../pages/Page_SWOTStrategy';
-import Page_ClosedMeetingIntro from '../pages/Page_ClosedMeetingIntro';
-import Page_ClosedMeetingWhyGEO from '../pages/Page_ClosedMeetingWhyGEO';
-import Page_ClosedMeetingOutline from '../pages/Page_ClosedMeetingOutline';
-import Page_FullImageIntro from '../pages/Page_FullImageIntro';
-import Page_SearchEntryTrend from '../pages/Page_SearchEntryTrend';
-import Page_ClosedMeetingTrendValidation from '../pages/Page_ClosedMeetingTrendValidation';
-import Page_ClosedMeetingDecisionImpact from '../pages/Page_ClosedMeetingDecisionImpact';
-import Page_ClosedMeetingConversionIntro from '../pages/Page_ClosedMeetingConversionIntro';
-import Page_ClosedMeetingConversionDetail from '../pages/Page_ClosedMeetingConversionDetail';
-import Page_SearchEntryWhyAI from '../pages/Page_SearchEntryWhyAI';
-import Page_GEOSalesConversionIntro from '../pages/Page_GEOSalesConversionIntro';
-import Page_GEOSalesConversionTrend from '../pages/Page_GEOSalesConversionTrend';
-import Page_GEOSalesConversion from '../pages/Page_GEOSalesConversion';
-import Page_GEOSalesFeedback from '../pages/Page_GEOSalesFeedback';
-import Page_GEOSalesFeedbackCase from '../pages/Page_GEOSalesFeedbackCase';
-import Page_GEOCaseStudies from '../pages/Page_GEOCaseStudies';
-import Page_GEOQuestionsOverview from '../pages/Page_GEOQuestionsOverview';
-import Page_GEOTestDifferenceIntro from '../pages/Page_GEOTestDifferenceIntro';
-import Page_GEOTestDifferenceTransition from '../pages/Page_GEOTestDifferenceTransition';
-import Page_GEOTestDifferenceQuestion from '../pages/Page_GEOTestDifferenceQuestion';
-import Page_GEOResponseTransition from '../pages/Page_GEOResponseTransition';
-import Page_GEOTestDifference from '../pages/Page_GEOTestDifference';
-import Page_GEOPlatformSelectionTransition from '../pages/Page_GEOPlatformSelectionTransition';
-import Page_GEOPlatformSelection from '../pages/Page_GEOPlatformSelection';
-import Page_GEOWordSelection from '../pages/Page_GEOWordSelection';
-import Page_GEOKpiSetting from '../pages/Page_GEOKpiSetting';
-import Page_GEOKpiReportTransition from '../pages/Page_GEOKpiReportTransition';
-import Page_GEOKpiSecondStageTransition from '../pages/Page_GEOKpiSecondStageTransition';
-import Page_GEOKpiSettingTransition from '../pages/Page_GEOKpiSettingTransition';
-import Page_GEOKpiSettingBrand from '../pages/Page_GEOKpiSettingBrand';
-import Page_GEOKpiVerifyBeforeTransition from '../pages/Page_GEOKpiVerifyBeforeTransition';
-import Page_GEOKpiVerify from '../pages/Page_GEOKpiVerify';
-import Page_GEOKpiVerifyDetail from '../pages/Page_GEOKpiVerifyDetail';
-import Page_GEOKpiVerifyTransition from '../pages/Page_GEOKpiVerifyTransition';
+import Page_SkyworthIntro from '../pages/Page_SkyworthIntro';
+import Page_SkyworthDecisionAnalysis from '../pages/Page_SkyworthDecisionAnalysis';
+import Page_SkyworthPositioningShift from '../pages/Page_SkyworthPositioningShift';
+import Page_SkyworthBrandResearch from '../pages/Page_SkyworthBrandResearch';
+import Page_SkyworthResearchConclusions from '../pages/Page_SkyworthResearchConclusions';
+import Page_WallpaperVsConventional from '../pages/Page_WallpaperVsConventional';
+import Page_SkyworthVsCompetitor from '../pages/Page_SkyworthVsCompetitor';
+import Page_SkyworthFiveModels from '../pages/Page_SkyworthFiveModels';
+import Page_SkyworthKeywordLogic from '../pages/Page_SkyworthKeywordLogic';
 import Page_GEOWordSelectionOther from '../pages/Page_GEOWordSelectionOther';
 import Page_GEOWordSelectionOther2 from '../pages/Page_GEOWordSelectionOther2';
-import Page_GEOWordSelectionTransition from '../pages/Page_GEOWordSelectionTransition';
-import Page_GEOWordSelectionRule from '../pages/Page_GEOWordSelectionRule';
-import Page_GEOWordSelectionRuleCase from '../pages/Page_GEOWordSelectionRuleCase';
-import Page_GEOWordSelectionRuleDataCase from '../pages/Page_GEOWordSelectionRuleDataCase';
-import Page_GEOWordSelectionRuleDataCaseDetail from '../pages/Page_GEOWordSelectionRuleDataCaseDetail';
-import Page_GEOWordSelectionSemTransition from '../pages/Page_GEOWordSelectionSemTransition';
-import Page_GEOServiceProviderSelection from '../pages/Page_GEOServiceProviderSelection';
-import Page_GEOServiceProviderSelection2 from '../pages/Page_GEOServiceProviderSelection2';
-import Page_GEOServiceProviderSelection3 from '../pages/Page_GEOServiceProviderSelection3';
-import Page_GEOServiceProviderSelection3Detail1 from '../pages/Page_GEOServiceProviderSelection3Detail1';
-import Page_GEOServiceProviderSelection3Detail2 from '../pages/Page_GEOServiceProviderSelection3Detail2';
-import Page_GEOServiceProviderSelection4Detail1 from '../pages/Page_GEOServiceProviderSelection4Detail1';
-import Page_GEOServiceProviderSelection4 from '../pages/Page_GEOServiceProviderSelection4';
-import Page_GEOServiceProviderSelection5 from '../pages/Page_GEOServiceProviderSelection5';
-import Page_GEOServiceProviderSelectionTransition from '../pages/Page_GEOServiceProviderSelectionTransition';
-import Page_GEOServiceProviderSelectionTransition2 from '../pages/Page_GEOServiceProviderSelectionTransition2';
-import Page_GEOServiceProviderSelectionTransition3 from '../pages/Page_GEOServiceProviderSelectionTransition3';
-import Page_GEOServiceProviderSelectionTransition4 from '../pages/Page_GEOServiceProviderSelectionTransition4';
-import Page_GEOServiceProviderSelectionTransition5 from '../pages/Page_GEOServiceProviderSelectionTransition5';
-import Page_GEOPresentationEnding from '../pages/Page_GEOPresentationEnding';
-import Page_GeoReport_BasicInfo1 from '../pages/Page_GeoReport_BasicInfo1';
-import Page_GeoReport_BasicInfo2 from '../pages/Page_GeoReport_BasicInfo2';
-import PB_GeoReportDashboard from '../pages/Page_GeoReportDashboard';
-import PB_GeoReportDashboard2 from '../pages/Page_GeoReportDashboard2';
-import PB_GeoReportEntries from '../pages/Page_GeoReportEntries';
-import PB_GeoReportEntries_Analysis from '../pages/Page_GeoReportEntries_Analysis';
-import PB_GeoReportCompetitors_Analysis from '../pages/Page_GeoReportCompetitors_Analysis';
-import PB_GeoReportSources from '../pages/Page_GeoReportSources';
-import PB_GeoReportSources2 from '../pages/Page_GeoReportSources2';
-import PB_GeoReportSentiment_Pre from '../pages/Page_GeoReportSentiment_Pre';
-import PB_GeoReportSentiment from '../pages/Page_GeoReportSentiment';
+import Page_SkyworthAiProcess from '../pages/Page_SkyworthAiProcess';
+import Page_SkyworthShadowAlgorithm from '../pages/Page_SkyworthShadowAlgorithm';
+import Page_CompanyIntro from '../pages/Page_CompanyIntro';
+import Page_ServiceClients from '../pages/Page_ServiceClients';
+import Page_CaseStudy_Double_Combined from '../pages/Page_CaseStudy_Double_Combined';
+import Page_CaseStudy_Double_Combined_2 from '../pages/Page_CaseStudy_Double_Combined_2';
+import Page_CaseStudy_Double_Combined_3 from '../pages/Page_CaseStudy_Double_Combined_3';
+import Page_TeamEndorsement from '../pages/Page_TeamEndorsement';
+import Page_CompanyArchitecture from '../pages/Page_CompanyArchitecture';
+import Page_TeamIntro from '../pages/Page_TeamIntro';
+import Page_CoreCapabilities from '../pages/Page_CoreCapabilities';
+import Page_GeoMonitorIntro from '../pages/Page_GeoMonitorIntro';
+import Page_GeoMonitorModules from '../pages/Page_GeoMonitorModules';
+import Page_GeoMonitor from '../pages/Page_GeoMonitor';
+import Page_QuantitativeModel from '../pages/Page_QuantitativeModel';
+import Page_ContentAgentIntro from '../pages/Page_ContentAgentIntro';
+import Page_ContentAgent from '../pages/Page_ContentAgent';
+import Page_UserCommentAnalysis from '../pages/Page_UserCommentAnalysis';
+import Page_OtherContentApproach from '../pages/Page_OtherContentApproach';
+import Page_HumanAiRatioApproach from '../pages/Page_HumanAiRatioApproach';
+import Page_ContentQualityValue from '../pages/Page_ContentQualityValue';
+import Page_SkyworthContentDirection from '../pages/Page_SkyworthContentDirection';
+import Page_GeoContentPrinciples from '../pages/Page_GeoContentPrinciples';
+import Page_DeliveryShortTerm from '../pages/Page_DeliveryShortTerm';
+import Page_DeliveryLongTerm from '../pages/Page_DeliveryLongTerm';
 
 export const slideConfig = [
   // ——— 封面 & 目录 ———
@@ -75,9 +41,9 @@ export const slideConfig = [
     type: 'cover',
     title: '封面',
     backgroundImage: '/proposal-cover/proposal-cover-new.png',
-    brand: '方太冰箱',
-    subtitle: 'GEO\n年度规划方案',
-    date: 'March 2026',
+    brand: 'GEO索引未来',
+    subtitle: '创维电视\nGEO规划方案',
+    date: 'July 2026',
   },
 
   {
@@ -89,75 +55,97 @@ export const slideConfig = [
     serviceGuide: 'GEO SERVICE GUIDE',
   },
 
-  // ——— 篇章1: GEO闭门会 ———
-  {
-    type: 'chapter',
-    title: 'GEO闭门会',
-    subtitle: 'GEO OPTIMIZATION',
-    coverTitle: '为什么我们团队\n在2024年\n全力押注 GEO',
-    coverSubtitle: 'Why\nGEO\nMatters?',
-    coverLabel: '——为什么要做GEO?',
-    backgroundImage: ''
-  },
-  { type: 'section', title: '一级标题1' },
-  { type: 'page', title: '闭门会海报', component: Page_FullImageIntro, hideHeader: true },
-  { type: 'page', title: '开场闭门会', component: Page_ClosedMeetingIntro, hideHeader: true },
-  { type: 'page', title: '闭门会分享大纲', component: Page_ClosedMeetingOutline, hideHeader: true },
-  { type: 'page', title: '为什么做GEO过渡页', component: Page_ClosedMeetingWhyGEO, hideHeader: true },
-  { type: 'page', title: '搜索入口趋势', component: Page_SearchEntryTrend, hideHeader: true },
-  { type: 'page', title: '趋势验证过渡页', component: Page_ClosedMeetingTrendValidation, hideHeader: true },
-  { type: 'page', title: '决策影响过渡页', component: Page_ClosedMeetingDecisionImpact, hideHeader: true },
+  // ══════════════════════════════════════════════════════════
+  // ——— 一、消费者视角的AI brand定位 ———
+  // ══════════════════════════════════════════════════════════
+  { type: 'chapter', title: '消费者视角的\nAI品牌定位', subtitle: 'AI BRAND POSITIONING', backgroundImage: '' },
 
-  { type: 'page', title: '能否带来转化过渡页', component: Page_ClosedMeetingConversionIntro, hideHeader: true },
-  { type: 'page', title: '国内外转化归因对比', component: Page_ClosedMeetingConversionDetail, hideHeader: true },
-  { type: 'page', title: '各渠道获客趋势', component: Page_GEOSalesConversionTrend, hideHeader: true },
-  { type: 'page', title: '销售转化率对比', component: Page_GEOSalesConversion, hideHeader: true },
-  { type: 'page', title: '线下销售反馈的真实现象', component: Page_GEOSalesFeedback, hideHeader: true },
-  { type: 'page', title: '线下销售反馈实测案例', component: Page_GEOSalesFeedbackCase, hideHeader: true },
+  { type: 'section', title: '产品信息调研' },
+  { type: 'page', title: '没做品牌调研的“坑”', component: Page_SkyworthIntro, hideHeader: true },
+  { type: 'page', title: '创维壁纸电视用户决策分析', component: Page_SkyworthDecisionAnalysis, hideHeader: true },
+  { type: 'page', title: '策略转变', component: Page_SkyworthPositioningShift, hideHeader: true },
 
-  { type: 'page', title: '测试差异过渡页', component: Page_GEOTestDifferenceTransition, hideHeader: true },
-  { type: 'page', title: '真实实测问答对比落差', component: Page_GEOTestDifferenceQuestion, hideHeader: true },
-  { type: 'page', title: '服务商测试结果差异原因', component: Page_GEOTestDifference, hideHeader: true },
-  { type: 'page', title: '服务商数据造假对比说明', component: Page_GEOTestDifferenceIntro, hideHeader: true },
-  { type: 'page', title: '品牌应对方式过渡页', component: Page_GEOResponseTransition, hideHeader: true },
+  { type: 'section', title: '我们的方式' },
+  { type: 'page', title: '我们怎么调研品牌', component: Page_SkyworthBrandResearch, hideHeader: true },
 
-  { type: 'page', title: '第一关选平台选词条过渡页', component: Page_GEOPlatformSelectionTransition, hideHeader: true },
-  { type: 'page', title: 'GEO选词与选平台建议', component: Page_GEOPlatformSelection, hideHeader: true },
-  { type: 'page', title: 'GEO选词其他做法一', component: Page_GEOWordSelectionOther, hideHeader: true },
-  { type: 'page', title: 'GEO选词其他做法二', component: Page_GEOWordSelectionOther2, hideHeader: true },
-  { type: 'page', title: 'GEO选词流量与定位过渡页', component: Page_GEOWordSelectionTransition, hideHeader: true },
-  { type: 'page', title: 'GEO选词核心法则', component: Page_GEOWordSelectionRule, hideHeader: true },
-  { type: 'page', title: 'GEO选词核心法则案例', component: Page_GEOWordSelectionRuleCase, hideHeader: true },
-  { type: 'page', title: 'GEO选词与SEM区别过渡页', component: Page_GEOWordSelectionSemTransition, hideHeader: true },
-  { type: 'page', title: 'GEO选词核心法则案例二', component: Page_GEOWordSelectionRuleDataCase, hideHeader: true },
-  { type: 'page', title: 'GEO选词核心法则案例二数据对比', component: Page_GEOWordSelectionRuleDataCaseDetail, hideHeader: true },
 
-  { type: 'page', title: '第二关KPI怎么定过渡页', component: Page_GEOKpiSecondStageTransition, hideHeader: true },
-  { type: 'page', title: '先做 GEO 体检报告过渡页', component: Page_GEOKpiReportTransition, hideHeader: true },
-  { type: 'section', title: '数据分析报告' },
-  { type: 'page', title: '报告说明', components: [Page_GeoReport_BasicInfo1, Page_GeoReport_BasicInfo2], hideHeader: true },
-  { type: 'page', title: '总览', components: [PB_GeoReportDashboard, PB_GeoReportDashboard2], hideHeader: true },
-  { type: 'page', title: '词条', components: [PB_GeoReportEntries, PB_GeoReportEntries_Analysis], hideHeader: true },
-  { type: 'page', title: '竞品', component: PB_GeoReportCompetitors_Analysis, hideHeader: true },
-  { type: 'page', title: '引用源', components: [PB_GeoReportSources, PB_GeoReportSources2], hideHeader: true },
-  { type: 'page', title: '正负面', components: [PB_GeoReportSentiment_Pre, PB_GeoReportSentiment], hideHeader: true },
-  { type: 'page', title: '品牌方怎么定 KPI 过渡页', component: Page_GEOKpiSettingTransition, hideHeader: true },
-  { type: 'page', title: '品牌方怎么定 KPI？', component: Page_GEOKpiSetting, hideHeader: true },
-  { type: 'page', title: '二线品牌怎么定KPI？', component: Page_GEOKpiSettingBrand, hideHeader: true },
+  { type: 'section', title: '核心结论' },
+  { type: 'page', title: '品牌调研报告核心结论', component: Page_SkyworthResearchConclusions, hideHeader: true },
+  { type: 'page', title: '壁纸电视 VS 常规电视', component: Page_WallpaperVsConventional, hideHeader: true },
+  { type: 'page', title: '创维壁纸电视 VS 竞品壁纸电视', component: Page_SkyworthVsCompetitor, hideHeader: true },
+  { type: 'page', title: '创维五款壁纸电视的区别', component: Page_SkyworthFiveModels, hideHeader: true },
 
-  { type: 'page', title: '如何验收效果过渡页', component: Page_GEOKpiVerifyBeforeTransition, hideHeader: true },
-  { type: 'page', title: '如何验收效果？', component: Page_GEOKpiVerify, hideHeader: true },
-  { type: 'page', title: '人工抽查验收', component: Page_GEOKpiVerifyDetail, hideHeader: true },
-  { type: 'page', title: '效果验证过渡页', component: Page_GEOKpiVerifyTransition, hideHeader: true },
+  // ══════════════════════════════════════════════════════════
+  // ——— 二、关键词体系策略 ———
+  // ══════════════════════════════════════════════════════════
+  { type: 'chapter', title: '关键词体系策略', subtitle: 'KEYWORDS SYSTEM STRATEGY', backgroundImage: '' },
 
-  { type: 'page', title: '如何选出靠谱的服务商？', component: Page_GEOServiceProviderSelection, hideHeader: true },
-  { type: 'page', title: '全链路数据监测系统', component: Page_GEOServiceProviderSelection2, hideHeader: true },
-  { type: 'page', title: '看内容策略', component: Page_GEOServiceProviderSelection3, hideHeader: true },
-  { type: 'page', title: '内容质量细节一', component: Page_GEOServiceProviderSelection3Detail1, hideHeader: true },
-  { type: 'page', title: '内容质量细节二', component: Page_GEOServiceProviderSelection3Detail2, hideHeader: true },
-  { type: 'page', title: '721原则', component: Page_GEOServiceProviderSelection4Detail1, hideHeader: true },
-  { type: 'page', title: '看投放策略', component: Page_GEOServiceProviderSelection4, hideHeader: true },
-  { type: 'page', title: '看文章被 AI 引用的概率', component: Page_GEOServiceProviderSelection5, hideHeader: true },
-  { type: 'page', title: '标准筛选不靠谱服务商', component: Page_GEOServiceProviderSelectionTransition5, hideHeader: true },
-  { type: 'page', title: 'GEO 索引未来 结束页', component: Page_GEOPresentationEnding, hideHeader: true },
+  { type: 'section', title: '词条分类逻辑' },
+  { type: 'page', title: '我们的词条分类逻辑', component: Page_SkyworthKeywordLogic, hideHeader: true },
+
+  { type: 'section', title: '如何选词条' },
+  { type: 'page', title: '市场上其他做法（一）：AI批量生成', component: Page_GEOWordSelectionOther, hideHeader: true },
+  { type: 'page', title: '市场上其他做法（二）：复制百度、社媒热词', component: Page_GEOWordSelectionOther2, hideHeader: true },
+  { type: 'page', title: 'AI 如何处理用户问题', component: Page_SkyworthAiProcess, hideHeader: true },
+  { type: 'page', title: '影子算法', component: Page_SkyworthShadowAlgorithm, hideHeader: true },
+
+  // ══════════════════════════════════════════════════════════
+  // ——— 三、现状诊断报告 ———
+  // ══════════════════════════════════════════════════════════
+  { type: 'chapter', title: '现状诊断报告', subtitle: 'DIAGNOSTIC REPORT', backgroundImage: '' },
+
+  // ══════════════════════════════════════════════════════════
+  // ——— 四、核心优化策略 ———
+  // ══════════════════════════════════════════════════════════
+  { type: 'chapter', title: '核心优化策略', subtitle: 'CORE OPTIMIZATION STRATEGY', backgroundImage: '' },
+
+  // ══════════════════════════════════════════════════════════
+  // ——— 五、内容策略 ———
+  // ══════════════════════════════════════════════════════════
+  { type: 'chapter', title: '内容策略', subtitle: 'CONTENT STRATEGY', backgroundImage: '' },
+
+  { type: 'section', title: '怎么做内容' },
+  { type: 'page', title: '市面上其他做法', component: Page_OtherContentApproach, hideHeader: true },
+  { type: 'page', title: '我们的策略', component: Page_HumanAiRatioApproach, hideHeader: true },
+  { type: 'page', title: '优质内容的复利效应', component: Page_ContentQualityValue, hideHeader: true },
+
+  { type: 'section', title: '创维的内容怎么做' },
+  { type: 'page', title: '创维定制内容方向规划', component: Page_SkyworthContentDirection, hideHeader: true },
+
+  { type: 'section', title: '内容标准' },
+  { type: 'page', title: 'GEO内容编写原则', component: Page_GeoContentPrinciples, hideHeader: true },
+
+  // ══════════════════════════════════════════════════════════
+  // ——— 六、投放策略 ———
+  // ══════════════════════════════════════════════════════════
+  { type: 'chapter', title: '投放策略', subtitle: 'DELIVERY STRATEGY', backgroundImage: '' },
+  { type: 'section', title: '短期投放逻辑' },
+  { type: 'page', title: '短期投放', component: Page_DeliveryShortTerm, hideHeader: true },
+  { type: 'section', title: '长期投放逻辑' },
+  { type: 'page', title: '长期投放', component: Page_DeliveryLongTerm, hideHeader: true },
+
+  // ══════════════════════════════════════════════════════════
+  // ——— 七、关于我们 ———
+  // ══════════════════════════════════════════════════════════
+  { type: 'chapter', title: '关于我们', subtitle: 'ABOUT US', backgroundImage: '' },
+
+  { type: 'section', title: '公司介绍' },
+  { type: 'page', title: '「GEO 索引未来」整体介绍', component: Page_CompanyIntro, hideHeader: true },
+  { type: 'page', title: '服务客户', component: Page_ServiceClients, hideHeader: true },
+  { type: 'page', title: '服务案例', component: Page_CaseStudy_Double_Combined, hideHeader: true },
+  { type: 'page', title: '服务案例（二）', component: Page_CaseStudy_Double_Combined_2, hideHeader: true },
+  { type: 'page', title: '服务案例（三）', component: Page_CaseStudy_Double_Combined_3, hideHeader: true },
+  { type: 'page', title: '团队背书', component: Page_TeamEndorsement, hideHeader: true },
+  { type: 'page', title: '团队组织架构', component: Page_CompanyArchitecture, hideHeader: true },
+  { type: 'page', title: '核心成员', component: Page_TeamIntro, hideHeader: true },
+
+  { type: 'section', title: '核心能力' },
+  { type: 'page', title: '核心能力', component: Page_CoreCapabilities, hideHeader: true },
+  { type: 'page', title: 'GEO ONE 数据监测系统介绍', component: Page_GeoMonitorIntro, hideHeader: true },
+  { type: 'page', title: '数据系统核心模块', component: Page_GeoMonitorModules, hideHeader: true },
+  { type: 'page', title: 'GEO ONE 数据监测系统', component: Page_GeoMonitor, hideHeader: true },
+  { type: 'page', title: 'GEO量化竞争模型（Alpha模型）', component: Page_QuantitativeModel, hideHeader: true },
+  { type: 'page', title: '内容撰写Agent介绍', component: Page_ContentAgentIntro, hideHeader: true },
+  { type: 'page', title: '内容撰写Agent', component: Page_ContentAgent, hideHeader: true },
+  { type: 'page', title: '用户评论分析系统', component: Page_UserCommentAnalysis, hideHeader: true },
 ];

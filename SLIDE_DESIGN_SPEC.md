@@ -9,33 +9,39 @@
 
 ---
 
-## 2. 核心元素排版规范 (以 1920 × 1080 计)
+## 2. 核心字号与字体样式规范 (以 1920 × 1080 计)
 
-### 2.1 右上角品牌标识 (Brand Line)
-* **文字内容**: `GEOINDEXFUTURE // 2026`
-* **字体 (font-family)**: `'Montserrat', sans-serif`
-* **字号 (font-size)**: `26px` (Figma: 52px)
-* **字重 (font-weight)**: `400`
-* **字间距 (letter-spacing)**: `6px` (Figma: 12px)
-* **前置横线 (Horizontal Divider)**:
-  * 宽度: `174px` (Figma: 348px)
-  * 高度: `2px` (Figma: 4px)
-  * 颜色: `rgba(255, 255, 255, 0.2)`
-* **整体定位**: 右上角绝对定位 (`top: 24px`, `right: 40px`；Figma: `top: 48px`, `right: 80px`)
+所有出现的文字，除非特殊强调，不得使用这几种字号之外的字体样式：
 
-### 2.2 一级标题 (H1)
+### 2.1 一级标题 (H1)
+* **用途**: 页面大标题（位于 topguide 与 content top 之间）
 * **字体 (font-family)**: `'AlimamaShuHeiTi', sans-serif` (阿里妈妈数黑体)
-* **字号 (font-size)**: `48px` (Figma: 96px)
+* **字号 (font-size)**: `86px` (Figma: 172px)
 * **字重 (font-weight)**: `700`
-* **行高 (line-height)**: `58px`
-* **颜色**: `#FFFFFF`
+* **行高 (line-height)**: `96px`
+* **颜色**: `#FFFFFF` (白色)
 
-### 2.3 二级标题 (H2)
+### 2.2 二级标题 (H2)
 * **字体 (font-family)**: `'MiSans', sans-serif` (小米 MiSans)
-* **字号 (font-size)**: `32px` (Figma: 64px)
+* **字号 (font-size)**: `48px` (Figma: 96px)
 * **字重 (font-weight)**: `400`
-* **行高 (line-height)**: `42px`
-* **颜色**: `#FFFFFF`
+* **行高 (line-height)**: `58px`
+* **颜色**: `#FFFFFF` (白色)
+
+### 2.3 三级标题 (H3)
+* **字体 (font-family)**: `'MiSans', sans-serif`
+* **字号 (font-size)**: `36px` (Figma: 72px)
+* **字重 (font-weight)**: `500` / `700`
+* **行高 (line-height)**: `46px`
+* **颜色**: `#FFFFFF` (白色)
+
+### 2.4 正文 (Body)
+* **字体 (font-family)**: `'MiSans', sans-serif`
+* **字号 (font-size)**: `24px` (Figma: 48px)
+* **字重 (font-weight)**: `400`
+* **行高 (line-height)**: `34px`
+* **颜色**: `#A1A1AA` / `#71717A` (灰色)
+* **强调字颜色**: `#FFFFFF` (正文中的强调部分一律使用白色，不得使用其他彩色样式)
 
 ---
 
@@ -44,15 +50,15 @@
 根据参考线定义，1920 × 1080 空间下划分了如下区域：
 
 ### 3.1 底部避让区 (Subtitle Area) - ⚠️ 严禁排版文字
-* **底线范围**: 屏幕底部往上 `80px` (Figma: 160px) 的区域。
+* **底线范围**: 屏幕底部往上 `60px` (Figma: 120px) 的区域。
 * **规则**: 此区域预留给实时会议字幕。**绝对禁止**在此区域内排版任何关键文字、列表或图表内容。
 
 ### 3.2 顶部页眉区 (Header Area)
 * **顶线范围**: 屏幕顶部往下 `225px` (Figma: 450px) 的区域。
-* **规则**: 仅用于展示一级标题、二级标题和右上角品牌词。
+* **规则**: 在 topguide (80px) 和 content top (225px) 之间**只放置一级标题 H1**。顶部右侧的品牌标识等其他元素已被移除。
 
 ### 3.3 主要排版安全区 (Content Safe Zone)
-* **垂直范围**: `top: 225px` 至 `bottom: 80px` (高度为 `775px`)。
+* **垂直范围**: `top: 225px` 至 `bottom: 60px` (高度为 `795px`)。
 * **水平范围**: `left: 40px` 至 `right: 40px` (宽度为 `1840px`；Figma: 左右边距 `80px`，宽度 `3680px`)。
 * **规则**: 所有卡片、图片、数据指标、对比列表等主要内容，必须包含在此区域内。
 

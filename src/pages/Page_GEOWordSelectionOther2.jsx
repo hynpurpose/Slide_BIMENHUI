@@ -12,7 +12,7 @@ export default function Page_GEOWordSelectionOther2() {
 
   return (
     <SlideLayout
-      title="GEO 应该怎么选词条？"
+      title="其他做法二：照抄社媒"
       subtitle="市场上其他做法（二）：复制百度、社媒热词"
     >
       {/* Background glowing effects */}
@@ -31,9 +31,9 @@ export default function Page_GEOWordSelectionOther2() {
                 {/* Double Arrow Circle Icon */}
                 <div className="w-12 h-12 rounded-full bg-[#004CE5] flex items-center justify-center shadow-lg shadow-[#004CE5]/20">
                   <svg width="24" height="24" viewBox="0 0 100 100" fill="none" className="text-white">
-                    <path d="M22 78L78 22" stroke="currentColor" strokeWidth="10" strokeLinecap="square"/>
-                    <path d="M48 22H78V52" stroke="currentColor" strokeWidth="10" strokeLinecap="square" strokeLinejoin="miter"/>
-                    <path d="M52 78H22V48" stroke="currentColor" strokeWidth="10" strokeLinecap="square" strokeLinejoin="miter"/>
+                    <path d="M22 78L78 22" stroke="currentColor" strokeWidth="10" strokeLinecap="square" />
+                    <path d="M48 22H78V52" stroke="currentColor" strokeWidth="10" strokeLinecap="square" strokeLinejoin="miter" />
+                    <path d="M52 78H22V48" stroke="currentColor" strokeWidth="10" strokeLinecap="square" strokeLinejoin="miter" />
                   </svg>
                 </div>
                 <div className="flex flex-col">
@@ -52,7 +52,7 @@ export default function Page_GEOWordSelectionOther2() {
               {/* Background glowing effects for dark luxury feeling */}
               <div className="absolute w-[300px] h-[300px] rounded-full bg-blue-600/5 blur-[80px] -left-12 -top-12 pointer-events-none" />
               <div className="absolute w-[300px] h-[300px] rounded-full bg-blue-900/3 blur-[100px] -right-12 -bottom-12 pointer-events-none" />
-              
+
               {!imgFailed ? (
                 <img
                   src={middleImagePath}

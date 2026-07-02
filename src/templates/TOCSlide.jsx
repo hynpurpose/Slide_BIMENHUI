@@ -6,6 +6,12 @@ export default function TOCSlide({ bgImage, title, menuText, brandLabel, service
   const debug = false;
   const dbg = debug ? 'bg-red-500/40' : '';
 
+  const isLargeList = chapters.length > 5;
+  const numFontSize = isLargeList ? '54px' : '70px';
+  const textFontSize = isLargeList ? '52px' : '68px';
+  const itemGap = isLargeList ? '32px' : '43px';
+  const rowGap = isLargeList ? '10px' : '0px';
+
   return (
     <div className="w-full h-full flex flex-col relative overflow-hidden bg-black">
       {bgImage && (
@@ -15,15 +21,16 @@ export default function TOCSlide({ bgImage, title, menuText, brandLabel, service
         />
       )}
 
-      {/* Top-right brand line */}
-      <div className={`absolute z-10 flex items-center gap-[16px] ${dbg}`} style={{ top: '38px', right: '93px' }}>
-        <div className="h-[1px] bg-white/30" style={{ width: '200px' }} />
-        <span
-          className="text-white font-light"
-          style={{ fontSize: '26px', letterSpacing: '0.3em', fontFamily: "'Montserrat', sans-serif" }}
-        >
-          {brandLabel}
-        </span>
+      {/* Top-right brand logo */}
+      <div className="absolute z-10" style={{ top: '39px', right: '40px' }}>
+        <img 
+          src="/logo.png" 
+          alt="Brand Logo" 
+          style={{ height: '28px', width: 'auto', display: 'block' }}
+          onError={(e) => {
+            e.target.style.display = 'none';
+          }}
+        />
       </div>
 
       {/* Left: title */}
@@ -37,18 +44,18 @@ export default function TOCSlide({ bgImage, title, menuText, brandLabel, service
       </div>
 
       {/* Left: chapter list */}
-      <div className={`absolute z-10 flex flex-col ${dbg}`} style={{ top: '607px', left: '132px', gap: '0px' }}>
+      <div className={`absolute z-10 flex flex-col ${dbg}`} style={{ bottom: '100px', left: '132px', gap: rowGap }}>
         {chapters.map((chapter, i) => (
-          <div key={i} className="flex items-baseline" style={{ gap: '43px', lineHeight: '1.4' }}>
+          <div key={i} className="flex items-baseline" style={{ gap: itemGap, lineHeight: '1.3' }}>
             <span
               className="text-[#004CE5]"
-              style={{ fontSize: '70px', fontFamily: "'MiSans', sans-serif", fontWeight: 200 }}
+              style={{ fontSize: numFontSize, fontFamily: "'MiSans', sans-serif", fontWeight: 200 }}
             >
               {String(i + 1).padStart(2, '0')}.
             </span>
             <span
               className="text-white"
-              style={{ fontSize: '68px', letterSpacing: '0px', fontFamily: "'MiSans', sans-serif", fontWeight: 200 }}
+              style={{ fontSize: textFontSize, letterSpacing: '0px', fontFamily: "'MiSans', sans-serif", fontWeight: 200 }}
             >
               {chapter.title}
             </span>

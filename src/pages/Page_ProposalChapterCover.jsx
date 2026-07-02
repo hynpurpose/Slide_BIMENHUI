@@ -4,136 +4,125 @@ export default function Page_ProposalChapterCover({
     bgImage,
     title,
     subtitle,
-    coverTitle,
-    coverSubtitle,
-    coverLabel,
     brandLabel,
     chapterIndex = 0,
     chapters = [],
 }) {
-    const leftText = coverSubtitle || subtitle || "Why\nGEO\nMatters?";
-    const leftTextLines = leftText.split('\n');
-
-    const rightLabel = coverLabel || `— 为什么要做${title}?`;
-    const rightTitle = coverTitle || title || "为什么我们团队\n在2024年\n全力押注 GEO";
-    const rightTitleLines = rightTitle.split('\n');
+    const chapterNum = String(chapterIndex + 1).padStart(2, '0');
 
     return (
-        <div className="w-full h-full relative overflow-hidden bg-black text-white font-sans">
-            
-            {/* ── Background Image (Support) ── */}
+        <div className="w-full h-full relative overflow-hidden bg-black">
+
+            {/* ── 背景图 ── */}
             {bgImage && (
                 <div
-                    className="absolute inset-0 bg-cover bg-center z-0 opacity-40"
+                    className="absolute inset-0 bg-cover bg-center z-0"
                     style={{ backgroundImage: `url(${bgImage})` }}
                 />
             )}
 
-            {/* ── Top-Left: Brand Label with preceding line ── */}
-            <div 
-                className="absolute flex items-center gap-4 z-20" 
-                style={{ top: '80px', left: '80px' }}
-            >
-                <div className="w-12 h-[2px] bg-white/40" />
-                <span
-                    style={{
-                        fontFamily: "'Montserrat', sans-serif",
-                        fontWeight: '400',
-                        fontSize: '20px',
-                        letterSpacing: '5px',
-                        textTransform: 'uppercase',
-                        color: '#FFFFFF',
-                        opacity: 0.85
-                    }}
-                >
-                    {brandLabel || "GEOINDEXFUTURE // 2026"}
-                </span>
-            </div>
-
-            {/* ── Left Side: Multi-line Subtitle ── */}
-            <div 
-                className="absolute z-10 flex flex-col justify-center"
-                style={{ top: '50%', transform: 'translateY(-50%)', left: '80px' }}
-            >
-                <h3 
-                    className="text-white font-bold tracking-wide text-[56px] leading-[1.2] text-left"
-                    style={{ fontFamily: "'Montserrat', 'MiSans', sans-serif" }}
-                >
-                    {leftTextLines.map((line, i) => (
-                        <React.Fragment key={i}>
-                            {i > 0 && <br />}
-                            {line}
-                        </React.Fragment>
-                    ))}
-                </h3>
-            </div>
-
-            {/* ── Right Side: Giant Full-Height Blue Block ── */}
-            <div 
-                className="absolute bg-[#004CE5] rounded-l-[60px] shadow-[0_20px_60px_rgba(0,76,229,0.35)]"
-                style={{
-                    top: '0',
-                    bottom: '0',
-                    right: '0',
-                    width: '1440px',
-                }}
-            >
-                {/* Thin Vertical White Line running from top to bottom of the card */}
-                <div className="absolute top-0 bottom-0 w-px bg-white/20" style={{ right: '120px' }} />
-
-                {/* Arrow Icon in Top Right of the Main Area (left of vertical line) */}
-                <div className="absolute" style={{ top: '130px', right: '160px' }}>
-                    <svg className="w-28 h-28 text-white opacity-95" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth="1.2">
-                        <path strokeLinecap="round" strokeLinejoin="round" d="M7 17L17 7M17 7H9M17 7V15" />
-                    </svg>
-                </div>
-
-                {/* Subtitle sitting ABOVE the horizontal line */}
-                <span 
-                    className="absolute text-white text-[28px] font-medium tracking-widest text-right"
-                    style={{ 
-                        top: '310px', 
-                        right: '150px', 
-                        fontFamily: "'Montserrat', 'MiSans', sans-serif" 
-                    }}
-                >
-                    {rightLabel}
-                </span>
-
-                {/* Horizontal Divider Line running from left card border all the way to the right screen edge */}
-                <div 
-                    className="absolute h-[2px] bg-white/20" 
-                    style={{ 
-                        top: '370px', 
-                        left: '0', 
-                        right: '0' 
+            {/* ── 右上角：Logo 图片位 ── */}
+            <div className="absolute z-10" style={{ top: '39px', right: '40px' }}>
+                <img 
+                    src="/logo.png" 
+                    alt="Brand Logo" 
+                    style={{ height: '28px', width: 'auto', display: 'block' }}
+                    onError={(e) => {
+                        e.target.style.display = 'none';
                     }}
                 />
-
-                {/* Main Text (Right-Aligned in Bottom Area, left of vertical line) */}
-                <div 
-                    className="absolute" 
-                    style={{ 
-                        right: '150px', 
-                        bottom: '180px', 
-                        maxWidth: '850px' 
-                    }}
-                >
-                    <h2 
-                        className="text-white font-black leading-[1.25] tracking-wide text-[76px] text-right"
-                        style={{ fontFamily: "'Montserrat', 'MiSans', sans-serif" }}
-                    >
-                        {rightTitleLines.map((line, i) => (
-                            <React.Fragment key={i}>
-                                {i > 0 && <br />}
-                                {line}
-                            </React.Fragment>
-                        ))}
-                    </h2>
-                </div>
-
             </div>
 
+            {/* ── 左侧中偏上：章节大标题 ── */}
+            {title && (
+                <h1
+                    className="absolute text-white font-black"
+                    style={{
+                        fontFamily: "'AlimamaShuHeiTi', sans-serif",
+                        fontSize: '172px',
+                        lineHeight: '1.1',
+                        letterSpacing: '0.02em',
+                        bottom: '500px',
+                        left: '66px',
+                        maxWidth: '1400px',
+                        whiteSpace: 'pre-line',
+                    }}
+                >
+                    {title}
+                </h1>
+            )}
+
+            {/* ── 左下角：章节列表 ── */}
+            <div
+                className="absolute flex flex-col gap-[10px]"
+                style={{ bottom: '90px', left: '96px' }}
+            >
+                {chapters.map((ch, i) => {
+                    const isActive = i === chapterIndex;
+                    const num = String(i + 1).padStart(2, '0');
+                    return (
+                        <div
+                            key={i}
+                            className="flex items-center gap-[2px]"
+                            style={{ fontSize: '32px', lineHeight: '1.4' }}
+                        >
+                            <span
+                                style={{
+                                    color: isActive ? 'rgb(0, 76, 229)' : 'rgba(255,255,255,0.45)',
+                                    fontWeight: isActive ? '500' : '400',
+                                    letterSpacing: '0.02em',
+                                }}
+                            >
+                                {num}.
+                            </span>
+                            <span
+                                style={{
+                                    color: isActive ? 'rgb(0, 76, 229)' : 'rgba(255,255,255,0.45)',
+                                    fontWeight: isActive ? '500' : '400',
+                                    letterSpacing: '0.02em',
+                                    marginLeft: '2px',
+                                }}
+                            >
+                                {ch.title}
+                            </span>
+                        </div>
+                    );
+                })}
+            </div>
+
+            {/* ── 右下角：大章节编号 + 英文标签 ── */}
+            <div
+                className="absolute flex flex-col items-end"
+                style={{ right: '45px', bottom: '74px' }}
+            >
+                <span
+                    className="text-white leading-none"
+                    style={{
+                        fontFamily: "'Roboto', 'AlimamaShuHeiTi', sans-serif",
+                        fontSize: '428px',
+                        lineHeight: '0.85',
+                        letterSpacing: '-0.02em',
+                        fontWeight: 300,
+                    }}
+                >
+                    {chapterNum}
+                </span>
+                {subtitle && (
+                    <span
+                        className="text-white uppercase"
+                        style={{
+                            fontSize: '34px',
+                            marginTop: '42px',
+                            fontFamily: "'MiSans', sans-serif",
+                            letterSpacing: 0,
+                            fontWeight: 300,
+                            marginRight: '79px',
+                        }}
+                    >
+                        {subtitle}
+                    </span>
+                )}
+            </div>
         </div>
     );
 }

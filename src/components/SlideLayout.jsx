@@ -1,4 +1,6 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useContext } from 'react';
+import { SlideContext } from './SlideContext';
+import { parsedConfig } from '../config/parseConfig';
 
 export default function SlideLayout({
   title,
@@ -10,6 +12,7 @@ export default function SlideLayout({
   showGuidesDefault = false
 }) {
   const [showGuides, setShowGuides] = useState(showGuidesDefault);
+  const context = useContext(SlideContext);
 
   // Allow toggling guidelines by pressing 'g' or 'G' key
   useEffect(() => {
@@ -23,65 +26,92 @@ export default function SlideLayout({
     return () => window.removeEventListener('keydown', handleKeyDown);
   }, []);
 
+  const hasNav = context && context.chapterIndex !== undefined && context.chapterIndex !== null;
+  const chapter = hasNav ? parsedConfig.chapters[context.chapterIndex] : null;
+  const sections = chapter ? chapter.sections : [];
+
   return (
     <div className={`w-full h-full relative overflow-hidden bg-black text-white font-sans ${className}`}>
-      
-      {/* ── 顶部右侧：品牌标识线 ── */}
-      <div 
-        className="absolute flex items-center gap-[16px] z-20 cursor-pointer select-none" 
-        style={{ top: '24px', right: '40px' }}
-        onDoubleClick={() => setShowGuides(!showGuides)}
-        title="双击或按 'G' 键可以切换排版辅助参考线"
-      >
-        <div className="bg-white/20" style={{ width: '174px', height: '2px' }} />
-        <span
-          style={{
-            fontFamily: "'Montserrat', sans-serif",
-            fontWeight: '400',
-            fontSize: '26px',
-            lineHeight: '32px',
-            letterSpacing: '6px',
-            textTransform: 'uppercase',
-            color: '#FFFFFF'
-          }}
+
+      {/* ── 顶部导航栏 ── */}
+      {hasNav && chapter && (
+        <div 
+          className="absolute z-20 flex items-center gap-[30px] select-none"
+          style={{ top: '36px', left: '40px' }}
         >
-          {brandLabel}
-        </span>
+          <span 
+            className="text-white font-bold"
+            style={{ 
+              fontSize: '24px', 
+              fontFamily: "'MiSans', sans-serif",
+              letterSpacing: '0.02em'
+            }}
+          >
+            {String(context.chapterIndex + 1).padStart(2, '0')} {chapter.title.replace(/\n/g, '')}
+          </span>
+          {sections.length > 0 && <div className="w-[2px] h-[28px] bg-white/40 rounded-full" />}
+          <div className="flex items-center gap-[12px]">
+            {sections.map((sec, idx) => {
+              const isActive = idx === context.sectionIndex;
+              return (
+                <span
+                  key={idx}
+                  className="font-medium transition-all duration-300"
+                  style={{
+                    fontSize: '20px',
+                    fontFamily: "'MiSans', sans-serif",
+                    color: isActive ? '#000000' : 'rgba(255, 255, 255, 0.4)',
+                    border: isActive ? '1px solid #FFFFFF' : '1px solid transparent',
+                    padding: '0 12px',
+                    borderRadius: '6px',
+                    backgroundColor: isActive ? '#FFFFFF' : 'transparent',
+                    display: 'inline-flex',
+                    alignItems: 'center',
+                    justifyContent: 'center',
+                    height: '28px'
+                  }}
+                >
+                  {idx + 1}. {sec.title}
+                </span>
+              );
+            })}
+          </div>
+        </div>
+      )}
+
+      {/* ── 顶部右侧：Logo 图片位 ── */}
+      <div 
+        className="absolute z-20"
+        style={{ top: '39px', right: '40px' }}
+      >
+        <img 
+          src="/logo.png" 
+          alt="Brand Logo" 
+          style={{ height: '28px', width: 'auto', display: 'block' }}
+          onError={(e) => {
+            e.target.style.display = 'none';
+          }}
+        />
       </div>
 
-      {/* ── 顶部左侧：标题区域 (H1 / H2) ── */}
+      {/* ── 顶部左侧：标题区域 (H1) ── */}
       <div 
         className="absolute z-20 flex flex-col justify-start"
-        style={{ top: '100px', left: '40px', width: '1840px' }}
+        style={{ top: '112px', left: '40px', width: '1840px' }}
       >
         {title && (
           <h1 
             style={{
               fontFamily: "'AlimamaShuHeiTi', sans-serif",
               fontWeight: '700',
-              fontSize: '48px',
-              lineHeight: '58px',
+              fontSize: '86px',
+              lineHeight: '96px',
               color: '#FFFFFF',
               letterSpacing: '0.02em'
             }}
           >
             {title}
           </h1>
-        )}
-        {subtitle && (
-          <h2 
-            className="mt-2"
-            style={{
-              fontFamily: "'MiSans', sans-serif",
-              fontWeight: '400',
-              fontSize: '32px',
-              lineHeight: '42px',
-              color: '#A1A1AA', // zinc-400
-              letterSpacing: '0.01em'
-            }}
-          >
-            {subtitle}
-          </h2>
         )}
       </div>
 
@@ -92,7 +122,7 @@ export default function SlideLayout({
           top: '225px', 
           left: '40px', 
           width: '1840px', 
-          height: '775px', // 避让底部字幕区：1080px - 225px (top) - 80px (bottom subtitle height) = 775px
+          height: '795px', // 避让底部字幕区：1080px - 225px (top) - 60px (bottom subtitle height) = 795px
         }}
       >
         {children}
@@ -106,7 +136,7 @@ export default function SlideLayout({
             bottom: 0, 
             left: 0, 
             width: '1920px', 
-            height: '80px' 
+            height: '60px' 
           }}
         >
           <span className="text-red-400/60 font-bold tracking-wider text-lg font-['MiSans']">
@@ -129,8 +159,8 @@ export default function SlideLayout({
           </div>
 
           {/* Bottom Line (Line 2 in Figma) */}
-          <div className="absolute w-full border-t-2 border-dashed border-blue-500/40" style={{ bottom: '80px' }}>
-            <span className="absolute left-4 -top-3 text-[10px] text-blue-400/80 font-mono">Content Bottom (1000px)</span>
+          <div className="absolute w-full border-t-2 border-dashed border-blue-500/40" style={{ bottom: '60px' }}>
+            <span className="absolute left-4 -top-3 text-[10px] text-blue-400/80 font-mono">Content Bottom (1020px)</span>
           </div>
 
           {/* Left Margin Boundary Line */}

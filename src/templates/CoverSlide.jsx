@@ -14,18 +14,17 @@ export default function CoverSlide({ bgImage, brand, subtitle, date }) {
             )}
 
             {/* Text overlay - positioned to match background image */}
-            {/* Top-left: brand with blue bar */}
-            {brand && (
-                <div className="absolute z-10 flex items-center gap-[8px]" style={{ top: '36px', left: '62px' }}>
-                    <div className="w-[4px] h-[24px] bg-[#004CE5] rounded-sm" />
-                    <span
-                        className="text-white font-bold"
-                        style={{ fontSize: '32px', letterSpacing: '0.08em' }}
-                    >
-                        {brand}
-                    </span>
-                </div>
-            )}
+            {/* Top-left: brand logo */}
+            <div className="absolute z-10" style={{ top: '39px', left: '40px' }}>
+                <img 
+                    src="/logo.png" 
+                    alt="Brand Logo" 
+                    style={{ height: '28px', width: 'auto', display: 'block' }}
+                    onError={(e) => {
+                        e.target.style.display = 'none';
+                    }}
+                />
+            </div>
 
             {/* Center-left: GEO + 年度规划方案 */}
             <div className="absolute z-10" style={{ top: '430px', left: '65px' }}>
