@@ -2,178 +2,165 @@ import React from 'react';
 import SlideLayout from '../components/SlideLayout';
 
 export default function Page_SkyworthKeywordLogic() {
-  // SVG ribbon coordinates
-  // Left Master: center is around (330, 235)
-  // Middle Upper (监测词): input center is around (450, 120)
-  // Middle Lower (优化词): input center is around (450, 380)
-  // Right Upper (监测目标): input center is around (900, 120)
-  // Right Lower Upper (大品类): input center is around (900, 342)
-  // Right Lower Lower (产品专属): input center is around (900, 507)
-
   return (
     <SlideLayout title="词条分类逻辑">
-      {/* ── 顶部说明文字 (字号提升至 36px，大字号高阶展示，加粗白色强调) ── */}
+      {/* ── 顶部说明文字 ── */}
       <div className="absolute top-[0px] left-0 w-full select-none">
         <p
           className="text-zinc-400 font-normal font-['MiSans'] leading-relaxed"
-          style={{ fontSize: '36px', lineHeight: '52px' }}
+          style={{ fontSize: '38px', lineHeight: '54px' }}
         >
-          数据不会混淆，每类词的目标也更清楚。我们既能从<strong className="text-white font-bold">整体上评估创维在壁纸电视大品类的竞争力</strong>，也能<strong className="text-white font-bold">细到每一款产品与购买场景</strong>，精准判断 AI 推荐是否准确。
+          将原有的<strong className="text-white font-bold">无体系词条分类（左侧）</strong>，梳理规划为科学合理的<strong className="text-white font-bold">监测词与优化词体系（右侧）</strong>，精准对应评估与优化逻辑。
         </p>
       </div>
 
-      {/* ── 逻辑图画布区域 (下移至 top: 155px，防止与超大字号字幕重叠) ── */}
+      {/* ── 逻辑图画布区域 (拉伸抵到最底部 bottom) ── */}
       <div
         className="absolute w-[1840px] select-none animate-fadeIn"
-        style={{ top: '155px', height: '620px' }}
+        style={{ top: '135px', height: '660px' }}
       >
-        {/* ==================== SVG 背景连线 (蓝色发光彩带) ==================== */}
+        {/* ==================== SVG 背景连线 (粗线条发光彩带) ==================== */}
         <svg className="absolute inset-0 w-full h-full pointer-events-none z-0 overflow-visible">
           <defs>
-            <linearGradient id="blueRibbon" x1="330" y1="120" x2="900" y2="507" gradientUnits="userSpaceOnUse">
-              <stop offset="0%" stopColor="#004CE5" stopOpacity="0.85" />
-              <stop offset="50%" stopColor="#3B82F6" stopOpacity="0.95" />
-              <stop offset="100%" stopColor="#60A5FA" stopOpacity="0.85" />
+            {/* 蓝色渐变 (右侧连线) */}
+            <linearGradient id="blueRibbon" x1="500" y1="312.5" x2="1790" y2="312.5" gradientUnits="userSpaceOnUse">
+              <stop offset="0%" stopColor="#2563EB" stopOpacity="0.5" />
+              <stop offset="50%" stopColor="#3B82F6" stopOpacity="0.9" />
+              <stop offset="100%" stopColor="#60A5FA" stopOpacity="0.6" />
             </linearGradient>
-            <filter id="glow" filterUnits="userSpaceOnUse" x="0" y="0" width="1920" height="700">
-              <feGaussianBlur stdDeviation="6" result="blur" />
+            {/* 白色渐变 (左侧连线) */}
+            <linearGradient id="whiteRibbon" x1="50" y1="312.5" x2="500" y2="312.5" gradientUnits="userSpaceOnUse">
+              <stop offset="0%" stopColor="#FFFFFF" stopOpacity="0.3" />
+              <stop offset="50%" stopColor="#FFFFFF" stopOpacity="0.75" />
+              <stop offset="100%" stopColor="#FFFFFF" stopOpacity="0.3" />
+            </linearGradient>
+            {/* 发光滤镜 */}
+            <filter id="glow" filterUnits="userSpaceOnUse" x="-10%" y="-10%" width="120%" height="120%">
+              <feGaussianBlur stdDeviation="8" result="blur" />
               <feComposite in="SourceGraphic" in2="blur" operator="over" />
             </filter>
           </defs>
 
-          {/* Connection Lines (Bezier Curves) */}
-          {/* Left Master -> Middle Upper (监测词) */}
-          <path
-            d="M 330 235 C 390 235, 390 120, 450 120"
-            fill="none"
-            stroke="url(#blueRibbon)"
-            strokeWidth="12"
-            strokeLinecap="round"
-            filter="url(#glow)"
-            className="opacity-75"
-          />
-          {/* Left Master -> Middle Lower (优化词) */}
-          <path
-            d="M 330 235 C 390 235, 390 380, 450 380"
-            fill="none"
-            stroke="url(#blueRibbon)"
-            strokeWidth="12"
-            strokeLinecap="round"
-            filter="url(#glow)"
-            className="opacity-75"
-          />
-          {/* Middle Upper -> Right Upper */}
-          <path
-            d="M 770 120 L 900 120"
-            fill="none"
-            stroke="url(#blueRibbon)"
-            strokeWidth="12"
-            strokeLinecap="round"
-            filter="url(#glow)"
-            className="opacity-75"
-          />
-          {/* Middle Lower -> Right Lower Upper */}
-          <path
-            d="M 770 380 C 830 380, 840 342, 900 342"
-            fill="none"
-            stroke="url(#blueRibbon)"
-            strokeWidth="12"
-            strokeLinecap="round"
-            filter="url(#glow)"
-            className="opacity-75"
-          />
-          {/* Middle Lower -> Right Lower Lower */}
-          <path
-            d="M 770 380 C 830 380, 840 507, 900 507"
-            fill="none"
-            stroke="url(#blueRibbon)"
-            strokeWidth="12"
-            strokeLinecap="round"
-            filter="url(#glow)"
-            className="opacity-75"
-          />
+          {/* Column 1 (Left) -> Column 2 (Center) - 白色粗线条 */}
+          <path d="M 370 57.5 C 440 57.5, 440 312.5, 500 312.5" fill="none" stroke="url(#whiteRibbon)" strokeWidth="12" strokeLinecap="round" filter="url(#glow)" className="opacity-70" />
+          <path d="M 370 237.5 C 440 237.5, 440 312.5, 500 312.5" fill="none" stroke="url(#whiteRibbon)" strokeWidth="12" strokeLinecap="round" filter="url(#glow)" className="opacity-70" />
+          <path d="M 370 417.5 C 440 417.5, 440 312.5, 500 312.5" fill="none" stroke="url(#whiteRibbon)" strokeWidth="12" strokeLinecap="round" filter="url(#glow)" className="opacity-70" />
+          <path d="M 370 602.5 C 440 602.5, 440 312.5, 500 312.5" fill="none" stroke="url(#whiteRibbon)" strokeWidth="12" strokeLinecap="round" filter="url(#glow)" className="opacity-70" />
+
+          {/* Column 2 (Center) -> Column 3 - 蓝色粗线条 */}
+          <path d="M 740 312.5 C 810 312.5, 810 147.5, 870 147.5" fill="none" stroke="url(#blueRibbon)" strokeWidth="12" strokeLinecap="round" filter="url(#glow)" className="opacity-80" />
+          <path d="M 740 312.5 C 810 312.5, 810 512.5, 870 512.5" fill="none" stroke="url(#blueRibbon)" strokeWidth="12" strokeLinecap="round" filter="url(#glow)" className="opacity-80" />
+
+          {/* Column 3 -> Column 4 - 蓝色粗线条 */}
+          <path d="M 1110 147.5 C 1180 147.5, 1180 57.5, 1240 57.5" fill="none" stroke="url(#blueRibbon)" strokeWidth="12" strokeLinecap="round" filter="url(#glow)" className="opacity-85" />
+          <path d="M 1110 147.5 C 1180 147.5, 1180 237.5, 1240 237.5" fill="none" stroke="url(#blueRibbon)" strokeWidth="12" strokeLinecap="round" filter="url(#glow)" className="opacity-85" />
+          <path d="M 1110 512.5 C 1180 512.5, 1180 417.5, 1240 417.5" fill="none" stroke="url(#blueRibbon)" strokeWidth="12" strokeLinecap="round" filter="url(#glow)" className="opacity-85" />
+          <path d="M 1110 512.5 C 1180 512.5, 1180 602.5, 1240 602.5" fill="none" stroke="url(#blueRibbon)" strokeWidth="12" strokeLinecap="round" filter="url(#glow)" className="opacity-85" />
         </svg>
 
-        {/* ==================== 节点 1：左侧根节点 (Root Node) ==================== */}
+        {/* ==================== Column 1 (Leftmost): 客户原有的无体系词条 ==================== */}
+        {/* 品牌词 */}
         <div
-          className="absolute bg-[#0D0D10] border border-zinc-800 rounded-3xl p-8 flex flex-col justify-center items-center shadow-[0_12px_40px_rgba(0,0,0,0.8)] z-10"
-          style={{ left: '50px', top: '135px', width: '280px', height: '200px' }}
+          className="absolute bg-[#0D0D10]/80 border border-zinc-800 rounded-2xl px-6 py-4 flex flex-col justify-center shadow-lg z-10 hover:border-zinc-700 transition-colors"
+          style={{ left: '50px', top: '0px', width: '320px', height: '115px' }}
         >
-          <h3 className="text-[36px] font-black text-white font-['MiSans'] tracking-wider">
+          <span className="text-[30px] font-bold text-white font-['MiSans'] leading-none">品牌词</span>
+          <span className="text-[22px] text-zinc-400 font-sans mt-1.5 leading-normal">创维壁纸电视怎么样？</span>
+        </div>
+
+        {/* 竞品词 */}
+        <div
+          className="absolute bg-[#0D0D10]/80 border border-zinc-800 rounded-2xl px-6 py-4 flex flex-col justify-center shadow-lg z-10 hover:border-zinc-700 transition-colors"
+          style={{ left: '50px', top: '180px', width: '320px', height: '115px' }}
+        >
+          <span className="text-[30px] font-bold text-white font-['MiSans'] leading-none">竞品词</span>
+          <span className="text-[22px] text-zinc-400 font-sans mt-1.5 leading-normal">创维和TCL哪个好？</span>
+        </div>
+
+        {/* 舆情词 */}
+        <div
+          className="absolute bg-[#0D0D10]/80 border border-zinc-800 rounded-2xl px-6 py-4 flex flex-col justify-center shadow-lg z-10 hover:border-zinc-700 transition-colors"
+          style={{ left: '50px', top: '360px', width: '320px', height: '115px' }}
+        >
+          <span className="text-[30px] font-bold text-white font-['MiSans'] leading-none">舆情词</span>
+          <span className="text-[22px] text-zinc-400 font-sans mt-1.5 leading-normal">创维壁纸电视值吗？</span>
+        </div>
+
+        {/* 品类词 - 抵到最底部 */}
+        <div
+          className="absolute bg-[#0D0D10]/80 border border-zinc-800 rounded-2xl px-6 py-4 flex flex-col justify-center shadow-lg z-10 hover:border-zinc-700 transition-colors"
+          style={{ left: '50px', top: '545px', width: '320px', height: '115px' }}
+        >
+          <span className="text-[30px] font-bold text-white font-['MiSans'] leading-none">品类词</span>
+          <span className="text-[22px] text-zinc-400 font-sans mt-1.5 leading-normal">壁纸电视推荐</span>
+        </div>
+
+        {/* ==================== Column 2 (Center): 汇聚节点 ==================== */}
+        <div
+          className="absolute bg-[#0D0D10] border border-zinc-800 rounded-3xl p-6 flex flex-col justify-center items-center shadow-[0_12px_40px_rgba(0,0,0,0.8)] z-10 border-blue-900/50 hover:border-blue-700 transition-colors"
+          style={{ left: '500px', top: '235px', width: '240px', height: '155px' }}
+        >
+          <h3 className="text-[42px] font-black text-white font-['MiSans'] tracking-wider text-center leading-none">
             创维词条
           </h3>
         </div>
 
-        {/* ==================== 节点 2：中间第一分支 (监测词) ==================== */}
+        {/* ==================== Column 3: 中间第一分支 ==================== */}
+        {/* 监测词 */}
         <div
-          className="absolute bg-[#0D0D10] border border-zinc-800 rounded-3xl p-6 flex flex-col justify-center shadow-[0_12px_40px_rgba(0,0,0,0.8)] z-10"
-          style={{ left: '450px', top: '20px', width: '320px', height: '200px' }}
+          className="absolute bg-[#0D0D10] border border-zinc-800 rounded-2xl p-5 flex flex-col justify-center shadow-[0_12px_40px_rgba(0,0,0,0.6)] z-10 hover:border-zinc-700 transition-colors"
+          style={{ left: '870px', top: '85px', width: '240px', height: '125px' }}
         >
-          <h4 className="text-[32px] font-bold text-white font-['MiSans']">
+          <h4 className="text-[36px] font-extrabold text-white font-['MiSans'] text-center leading-none">
             监测词
           </h4>
-          <p className="text-[22px] text-zinc-400 leading-relaxed font-sans mt-3">
-            核心看：AI 基础认知是否准确。不与优化词混合统计。
-          </p>
         </div>
 
-        {/* ==================== 节点 3：中间第二分支 (优化词) ==================== */}
+        {/* 优化词 */}
         <div
-          className="absolute bg-[#0D0D10] border border-zinc-800 rounded-3xl p-6 flex flex-col justify-center shadow-[0_12px_40px_rgba(0,0,0,0.8)] z-10"
-          style={{ left: '450px', top: '280px', width: '320px', height: '200px' }}
+          className="absolute bg-[#0D0D10] border border-zinc-800 rounded-2xl p-5 flex flex-col justify-center shadow-[0_12px_40px_rgba(0,0,0,0.6)] z-10 hover:border-zinc-700 transition-colors"
+          style={{ left: '870px', top: '450px', width: '240px', height: '125px' }}
         >
-          <h4 className="text-[32px] font-bold text-white font-['MiSans']">
+          <h4 className="text-[36px] font-extrabold text-white font-['MiSans'] text-center leading-none">
             优化词
           </h4>
-          <p className="text-[22px] text-zinc-400 leading-relaxed font-sans mt-3">
-            核心看：提及率、推荐位次、入选率的动态提升。
-          </p>
         </div>
 
-        {/* ==================== 节点 4：右侧监测词目标说明 ==================== */}
+        {/* ==================== Column 4 (Rightmost): 梳理后的精细分类 (均包含典型例子) ==================== */}
+        {/* 创维品牌词 */}
         <div
-          className="absolute bg-[#0D0D10]/60 border border-zinc-850 rounded-3xl p-6 flex flex-col justify-between shadow-2xl z-10"
-          style={{ left: '900px', top: '20px', width: '850px', height: '200px' }}
+          className="absolute bg-[#0D0D10]/80 border border-zinc-800 rounded-2xl px-6 py-4 flex flex-col justify-center shadow-lg z-10 hover:border-zinc-700 transition-colors"
+          style={{ left: '1240px', top: '0px', width: '550px', height: '115px' }}
         >
-          <div className="flex justify-between items-center border-b border-zinc-900 pb-3 mb-2">
-            <span className="text-[22px] font-bold text-zinc-200 font-['MiSans']">创维品牌词 + 5款产品词</span>
-          </div>
-          <div className="flex-1 flex flex-col justify-center">
-            <p className="text-[22px] text-zinc-300 font-sans leading-relaxed">
-              主要考核 <span className="text-white font-bold">“信息、参数、价格、负面绑定、用户评价”</span> 是否准确客观。
-            </p>
-            <p className="text-[22px] text-zinc-400 font-sans mt-2 leading-relaxed">
-              因为用户直接搜索创维或机型时 AI 必然会提及，故不考核提及率，重点在于清理错误信息。
-            </p>
-          </div>
+          <span className="text-[30px] font-bold text-white font-['MiSans'] leading-none">创维品牌词</span>
+          <span className="text-[22px] text-zinc-400 font-sans mt-1.5 leading-normal">创维壁纸电视怎么样？</span>
         </div>
 
-        {/* ==================== 节点 5：右侧优化词两大细分分类 ==================== */}
+        {/* 五款产品词 */}
         <div
-          className="absolute bg-[#0D0D10]/60 border border-zinc-850 rounded-3xl p-6 flex flex-col justify-start gap-4 shadow-2xl z-10"
-          style={{ left: '900px', top: '260px', width: '850px', height: '330px' }}
+          className="absolute bg-[#0D0D10]/80 border border-zinc-800 rounded-2xl px-6 py-4 flex flex-col justify-center shadow-lg z-10 hover:border-zinc-700 transition-colors"
+          style={{ left: '1240px', top: '180px', width: '550px', height: '115px' }}
         >
-          {/* Sub-box 1: 大品类词 */}
-          <div className="flex-1 flex flex-col justify-start border-b border-zinc-900/80 pb-3">
-            <h5 className="text-[22px] font-bold text-white font-['MiSans'] mb-1.5">A. 壁纸电视大类词</h5>
-            <p className="text-[22px] text-zinc-400 font-sans leading-relaxed">
-              考核目标为进推荐池（任意一款上榜即算有效）。
-            </p>
-            <p className="text-[22px] text-white font-bold font-['MiSans'] mt-1">
-              核心看：<span className="underline decoration-zinc-600 decoration-2 underline-offset-4">创维有没有被推荐进这个品类</span>
-            </p>
-          </div>
+          <span className="text-[30px] font-bold text-white font-['MiSans'] leading-none">五款产品词</span>
+          <span className="text-[22px] text-zinc-400 font-sans mt-1.5 leading-normal">创维A10H壁纸电视价格？</span>
+        </div>
 
-          {/* Sub-box 2: 产品专属词 */}
-          <div className="flex-1 flex flex-col justify-start pt-1">
-            <h5 className="text-[22px] font-bold text-white font-['MiSans'] mb-1.5">B. 产品专属词</h5>
-            <p className="text-[22px] text-zinc-400 font-sans leading-relaxed">
-              考核目标为精准对齐（搜专属场景必须推荐对应的特定型号，不可替代）。
-            </p>
-            <p className="text-[22px] text-white font-bold font-['MiSans'] mt-1">
-              核心看：<span className="underline decoration-zinc-600 decoration-2 underline-offset-4">每一款产品有没有被 AI 正确理解和推荐</span>
-            </p>
-          </div>
+        {/* 壁纸电视大类词 */}
+        <div
+          className="absolute bg-[#0D0D10]/80 border border-zinc-800 rounded-2xl px-6 py-4 flex flex-col justify-center shadow-lg z-10 hover:border-zinc-700 transition-colors"
+          style={{ left: '1240px', top: '360px', width: '550px', height: '115px' }}
+        >
+          <span className="text-[30px] font-bold text-white font-['MiSans'] leading-none">壁纸电视大类词</span>
+          <span className="text-[22px] text-zinc-400 font-sans mt-1.5 leading-normal">壁纸电视哪个牌子好？</span>
+        </div>
+
+        {/* 产品专属词 - 抵到最底部 */}
+        <div
+          className="absolute bg-[#0D0D10]/80 border border-zinc-800 rounded-2xl px-6 py-4 flex flex-col justify-center shadow-lg z-10 hover:border-zinc-700 transition-colors"
+          style={{ left: '1240px', top: '545px', width: '550px', height: '115px' }}
+        >
+          <span className="text-[30px] font-bold text-white font-['MiSans'] leading-none">产品专属词</span>
+          <span className="text-[22px] text-zinc-400 font-sans mt-1.5 leading-normal">超薄无缝贴墙电视</span>
         </div>
 
       </div>

@@ -10,6 +10,8 @@ import Page_SkyworthKeywordLogic from '../pages/Page_SkyworthKeywordLogic';
 import Page_GEOWordSelectionOther from '../pages/Page_GEOWordSelectionOther';
 import Page_GEOWordSelectionOther2 from '../pages/Page_GEOWordSelectionOther2';
 import Page_SkyworthAiProcess from '../pages/Page_SkyworthAiProcess';
+import Page_SkyworthSearchEngineModel from '../pages/Page_SkyworthSearchEngineModel';
+import Page_SkyworthCrossCompare from '../pages/Page_SkyworthCrossCompare';
 import Page_SkyworthShadowAlgorithm from '../pages/Page_SkyworthShadowAlgorithm';
 import Page_CompanyIntro from '../pages/Page_CompanyIntro';
 import Page_ServiceClients from '../pages/Page_ServiceClients';
@@ -89,10 +91,12 @@ export const slideConfig = [
   { type: 'page', title: '我们的词条分类逻辑', component: Page_SkyworthKeywordLogic, hideHeader: true },
 
   { type: 'section', title: '如何选词条' },
-  { type: 'page', title: '市场上其他做法（一）：AI批量生成', component: Page_GEOWordSelectionOther, hideHeader: true },
-  { type: 'page', title: '市场上其他做法（二）：复制百度、社媒热词', component: Page_GEOWordSelectionOther2, hideHeader: true },
+  { type: 'page', title: '市场上其他做法', component: Page_GEOWordSelectionOther, hideHeader: true },
+  { type: 'page', title: '传统搜索 VS AI 搜索', component: Page_GEOWordSelectionOther2, hideHeader: true },
   { type: 'page', title: '影子算法', component: Page_SkyworthShadowAlgorithm, hideHeader: true },
   { type: 'page', title: 'AI 如何处理用户问题', component: Page_SkyworthAiProcess, hideHeader: true },
+  { type: 'page', title: '模拟搜索引擎', component: Page_SkyworthSearchEngineModel, hideHeader: true },
+  { type: 'page', title: '交叉对比锁定高频优化词', component: Page_SkyworthCrossCompare, hideHeader: true },
 
   // ══════════════════════════════════════════════════════════
   // ——— 三、现状诊断报告 ———
@@ -113,7 +117,7 @@ export const slideConfig = [
   { type: 'page', title: '市面上其他做法', component: Page_OtherContentApproach, hideHeader: true },
   { type: 'page', title: '内容投放明细 (案例)', component: Page_SkyworthContentDetailsAI, hideHeader: true },
   { type: 'page', title: '我们的策略', component: Page_HumanAiRatioApproach, hideHeader: true },
-  { type: 'page', title: '优质内容的复利效应', component: Page_ContentQualityValue, hideHeader: true },
+  { type: 'page', title: '优质内容的“保质期”', component: Page_ContentQualityValue, hideHeader: true },
 
   { type: 'section', title: '创维的内容怎么做' },
   { type: 'page', title: '创维定制内容方向规划', component: Page_SkyworthContentDirection, hideHeader: true },
@@ -121,7 +125,7 @@ export const slideConfig = [
 
   { type: 'section', title: '内容标准' },
   { type: 'page', title: 'GEO内容编写原则', component: Page_GeoContentPrinciples, hideHeader: true },
-  { type: 'page', title: '问题解答类文章示意', component: Page_SkyworthQAArticleDemo, hideHeader: true },
+  { type: 'page', title: '评测类文章示意', component: Page_SkyworthQAArticleDemo, hideHeader: true },
 
   // ══════════════════════════════════════════════════════════
   // ——— 六、投放策略 ———

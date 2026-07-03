@@ -12,7 +12,7 @@ export default function Page_GEOWordSelectionOther2() {
 
   return (
     <SlideLayout
-      title="其他做法二：照抄社媒"
+      title="传统搜索 VS AI 搜索"
       subtitle="市场上其他做法（二）：复制百度、社媒热词"
     >
       {/* Background glowing effects */}
@@ -37,7 +37,7 @@ export default function Page_GEOWordSelectionOther2() {
                   </svg>
                 </div>
                 <div className="flex flex-col">
-                  <span className="text-[22px] font-black text-white leading-tight">复制百度、社媒热词</span>
+                  <span className="text-[22px] font-black text-white leading-tight">百度、社媒常见搜索词</span>
                 </div>
               </div>
               <div className="flex gap-1.5">

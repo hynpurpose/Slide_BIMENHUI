@@ -3,7 +3,14 @@ import SlideLayout from '../components/SlideLayout';
 
 export default function Page_SkyworthAiProcess() {
   return (
-    <SlideLayout title="AI 如何处理用户问题">
+    <SlideLayout
+      title={
+        <div className="flex items-center gap-6">
+          <span className="w-[72px] h-[72px] rounded-full bg-zinc-800 text-white font-['Montserrat'] text-[42px] font-bold flex items-center justify-center shrink-0">1</span>
+          <span>穷举与拆解大问题</span>
+        </div>
+      }
+    >
       {/* ── 主流程泳道图区域 (高度拉伸至 705px, 底部抵住 content bottom) ── */}
       <div 
         className="absolute w-[1840px] select-none animate-fadeIn"

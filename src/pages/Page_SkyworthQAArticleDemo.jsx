@@ -3,13 +3,13 @@ import SlideLayout from '../components/SlideLayout';
 
 export default function Page_SkyworthQAArticleDemo() {
   return (
-    <SlideLayout title="问题解答类文章示意">
+    <SlideLayout title="评测类文章示意">
       <div className="w-full h-full flex flex-col gap-6 animate-fadeIn relative z-10">
-        
+
         {/* 单张大图展示，模拟 Mac 浏览器窗口 */}
         <div className="w-full flex-1 min-h-0 flex items-center justify-center group" style={{ perspective: '2000px' }}>
           <div className="w-full h-full rounded-2xl border border-white/10 bg-white/[0.02]/50 backdrop-blur-md overflow-hidden relative shadow-[0_20px_50px_rgba(0,0,0,0.5)] transition-all duration-700 hover:scale-[1.01] flex flex-col hover:border-blue-500/30">
-            
+
             {/* Mac Browser Header */}
             <div className="w-full h-[36px] bg-black/40 backdrop-blur-md border-b border-white/10 flex items-center px-4 shrink-0 relative z-20">
               <div className="flex items-center gap-2">
@@ -45,7 +45,7 @@ export default function Page_SkyworthQAArticleDemo() {
                 <span className="text-sm mt-3 text-zinc-600 opacity-80">请在 public/charts/ 中放入图片文件 geo-article-generation-demo.png</span>
               </div>
             </div>
-            
+
           </div>
         </div>
 

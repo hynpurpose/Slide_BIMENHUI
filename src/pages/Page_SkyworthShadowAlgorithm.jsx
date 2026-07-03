@@ -6,7 +6,7 @@ export default function Page_SkyworthShadowAlgorithm() {
     <SlideLayout title="影子算法">
       {/* ── 顶部说明结论 (大字号，加粗白色强调) ── */}
       <div className="absolute top-[0px] left-0 w-full select-none">
-        <p 
+        <p
           className="text-zinc-350 font-normal font-['MiSans'] leading-relaxed"
           style={{ fontSize: '24px', lineHeight: '36px' }}
         >
@@ -15,80 +15,80 @@ export default function Page_SkyworthShadowAlgorithm() {
       </div>
 
       {/* ── 核心内容排版区 ── */}
-      <div 
+      <div
         className="absolute w-[1840px] select-none animate-fadeIn flex justify-between"
         style={{ top: '90px', height: '705px' }}
       >
         {/* ==================== 左侧：逻辑阐述与突破口 (大字号，大白话) ==================== */}
         <div className="w-[580px] flex flex-col justify-center gap-6 pr-6">
-          
+
           {/* Step 1: 穷举与拆解问题 */}
-          <div className="bg-zinc-950/40 border border-zinc-800 rounded-2xl p-6 flex flex-col gap-3">
-            <div className="flex items-center gap-3.5">
-              <span className="w-10 h-10 rounded-full bg-zinc-800 text-white font-mono text-[22px] font-bold flex items-center justify-center">1</span>
-              <h4 className="text-[26px] font-bold text-white leading-none">
+          <div className="bg-zinc-950/40 border border-zinc-800 rounded-2xl p-6 flex flex-col gap-3.5 hover:border-zinc-700 transition-colors">
+            <div className="flex items-center gap-4">
+              <span className="w-12 h-12 rounded-full bg-zinc-800 text-white font-['Montserrat'] text-[24px] font-bold flex items-center justify-center shrink-0">1</span>
+              <h4 className="text-[28px] font-bold text-white leading-tight">
                 穷举与拆解大问题
               </h4>
             </div>
-            <p className="text-[24px] text-zinc-400 leading-relaxed font-sans pl-14">
-              将用户可能问的宽泛大提问，细化拆解为数十个更具体、更聚焦的<strong className="text-white">核心子问题</strong>。
+            <p className="text-[22px] text-zinc-400 leading-relaxed font-sans pl-16">
+              AI会把一个用户问题拆分和补全成若干个具体的问题
             </p>
           </div>
 
           {/* Step 2: 模拟搜索引擎检索 */}
-          <div className="bg-zinc-950/40 border border-zinc-800 rounded-2xl p-6 flex flex-col gap-3">
-            <div className="flex items-center gap-3.5">
-              <span className="w-10 h-10 rounded-full bg-blue-900/60 text-blue-300 border border-blue-800 font-mono text-[22px] font-bold flex items-center justify-center">2</span>
-              <h4 className="text-[26px] font-bold text-white leading-none">
-                模拟搜索引擎查索
+          <div className="bg-zinc-950/40 border border-zinc-800 rounded-2xl p-6 flex flex-col gap-3.5 hover:border-zinc-700 transition-colors">
+            <div className="flex items-center gap-4">
+              <span className="w-12 h-12 rounded-full bg-blue-900/60 text-blue-300 border border-blue-800 font-['Montserrat'] text-[24px] font-bold flex items-center justify-center shrink-0">2</span>
+              <h4 className="text-[28px] font-bold text-white leading-tight">
+                模拟搜索引擎
               </h4>
             </div>
-            <p className="text-[24px] text-zinc-400 leading-relaxed font-sans pl-14">
-              模拟 AI 的前置检索逻辑，到百度、Bing等大模型主要的<strong className="text-white">搜索接口中进行全网模拟抓取</strong>。
+            <p className="text-[22px] text-zinc-400 leading-relaxed font-sans pl-16">
+              不同的模型会调用不同的搜索引擎和索引逻辑
             </p>
           </div>
 
           {/* Step 3: 交叉验证锁定高频优化词 */}
-          <div className="bg-zinc-950/40 border border-zinc-800 rounded-2xl p-6 flex flex-col gap-3">
-            <div className="flex items-center gap-3.5">
-              <span className="w-10 h-10 rounded-full bg-teal-900/60 text-teal-300 border border-teal-850 font-mono text-[22px] font-bold flex items-center justify-center">3</span>
-              <h4 className="text-[26px] font-bold text-white leading-none">
+          <div className="bg-zinc-950/40 border border-zinc-800 rounded-2xl p-6 flex flex-col gap-3.5 hover:border-zinc-700 transition-colors">
+            <div className="flex items-center gap-4">
+              <span className="w-12 h-12 rounded-full bg-teal-900/60 text-teal-300 border border-teal-850 font-['Montserrat'] text-[24px] font-bold flex items-center justify-center shrink-0">3</span>
+              <h4 className="text-[28px] font-bold text-white leading-tight">
                 交叉比对锁定高频优化词
               </h4>
             </div>
-            <p className="text-[24px] text-zinc-400 leading-relaxed font-sans pl-14">
-              把检索到的网页结果与 AI 实际推荐结果做<strong className="text-white">交叉比对</strong>，反向筛出能决定 AI 推荐结果的高频关键词进行定向优化。
+            <p className="text-[22px] text-zinc-400 leading-relaxed font-sans pl-16">
+              找出AI 背后最常拆、最常搜的词条
             </p>
           </div>
         </div>
 
         {/* ==================== 右侧：CSS 3D 影子算法三层模型图 (宽度 1200px) ==================== */}
         <div className="w-[1200px] relative flex items-center justify-center">
-          
+
           {/* 3D Isometric Viewport Container */}
-          <div 
+          <div
             className="relative"
-            style={{ 
-              width: '650px', 
-              height: '520px', 
-              perspective: '1500px', 
+            style={{
+              width: '650px',
+              height: '520px',
+              perspective: '1500px',
               transformStyle: 'preserve-3d',
               left: '-140px',
               top: '40px'
             }}
           >
             {/* 3D Rotate Container */}
-            <div 
+            <div
               className="absolute w-full h-full"
-              style={{ 
-                transform: 'rotateX(55deg) rotateZ(-40deg)', 
-                transformStyle: 'preserve-3d' 
+              style={{
+                transform: 'rotateX(55deg) rotateZ(-40deg)',
+                transformStyle: 'preserve-3d'
               }}
             >
               {/* ── Layer 1: Bottom (影子算法模拟层 - 带有横纵交叉轴文字，大格网格) ── */}
-              <div 
+              <div
                 className="absolute inset-0 border-2 border-zinc-500 rounded-2xl shadow-[0_30px_70px_rgba(0,0,0,0.8)]"
-                style={{ 
+                style={{
                   transform: 'translateZ(0px)',
                   transformStyle: 'preserve-3d',
                   background: 'rgba(24, 24, 27, 0.85)',
@@ -97,7 +97,7 @@ export default function Page_SkyworthShadowAlgorithm() {
                 }}
               >
                 {/* Highlight cell: Facts */}
-                <div 
+                <div
                   className="absolute bg-zinc-800/90 border-2 border-zinc-400 rounded flex flex-col items-center justify-center shadow-lg"
                   style={{ left: '200px', top: '200px', width: '100px', height: '100px' }}
                 >
@@ -120,9 +120,9 @@ export default function Page_SkyworthShadowAlgorithm() {
               </div>
 
               {/* ── Layer 2: Middle (前置搜索检索层 - 实色控制透明度，大格网格) ── */}
-              <div 
+              <div
                 className="absolute inset-0 border-2 border-blue-500 rounded-2xl shadow-[0_20px_50px_rgba(59,130,246,0.18)]"
-                style={{ 
+                style={{
                   transform: 'translateZ(130px)',
                   transformStyle: 'preserve-3d',
                   background: 'rgba(30, 58, 138, 0.25)',
@@ -131,7 +131,7 @@ export default function Page_SkyworthShadowAlgorithm() {
                 }}
               >
                 {/* Highlight cell */}
-                <div 
+                <div
                   className="absolute bg-blue-950/90 border-2 border-blue-400 rounded flex items-center justify-center shadow-lg shadow-blue-500/20"
                   style={{ left: '200px', top: '200px', width: '200px', height: '100px' }}
                 >
@@ -140,9 +140,9 @@ export default function Page_SkyworthShadowAlgorithm() {
               </div>
 
               {/* ── Layer 3: Top (AI 最终推荐输出层 - 实色控制透明度，大格网格) ── */}
-              <div 
+              <div
                 className="absolute inset-0 border-2 border-teal-400 rounded-2xl shadow-[0_25px_60px_rgba(20,184,166,0.22)]"
-                style={{ 
+                style={{
                   transform: 'translateZ(260px)',
                   transformStyle: 'preserve-3d',
                   background: 'rgba(13, 148, 136, 0.6)',
@@ -151,7 +151,7 @@ export default function Page_SkyworthShadowAlgorithm() {
                 }}
               >
                 {/* Highlight cell */}
-                <div 
+                <div
                   className="absolute bg-teal-950/90 border-2 border-teal-300 rounded flex items-center justify-center shadow-xl shadow-teal-500/30"
                   style={{ left: '100px', top: '100px', width: '200px', height: '100px' }}
                 >
@@ -182,7 +182,7 @@ export default function Page_SkyworthShadowAlgorithm() {
 
           {/* ==================== 2D Overlay: Right Side Callouts (Absolutely positioned starting at left-[1000px]) ==================== */}
           <div className="absolute left-[1000px] top-[40px] w-[200px] h-[480px] z-30 select-none pointer-events-none">
-            
+
             {/* Callout 1 (Top Layer - Center y=123) */}
             <div className="absolute top-[105px] left-0">
               <span className="text-[28px] font-black text-teal-400 font-['MiSans'] block leading-none whitespace-nowrap">

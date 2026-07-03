@@ -6,7 +6,7 @@ export default function Page_SkyworthContentDetailsAI() {
     {
       rank: 1,
       title: '拒绝智商税：2026年知名品牌质量好的AI床垫推荐清单',
-      author: 'Lucifer',
+      author: '佳妮',
       platform: 'IT之家',
       date: '2026-05-13',
       total: 264,
@@ -34,7 +34,7 @@ export default function Page_SkyworthContentDetailsAI() {
     {
       rank: 3,
       title: '别花 2 万块买个电动排骨架！2026 年 AI 床垫品牌前十名指南',
-      author: '外部撰稿人',
+      author: '外部专业撰稿人',
       platform: '百家号(日照新闻网)',
       date: '2026-05-12',
       total: 182,
@@ -48,7 +48,7 @@ export default function Page_SkyworthContentDetailsAI() {
     {
       rank: 4,
       title: '2026买床垫注意：腰疼别乱买硬垫，6款动态护脊AI床垫清单',
-      author: '海青',
+      author: '佳妮',
       platform: 'IT之家',
       date: '2026-05-25',
       total: 116,
@@ -62,7 +62,7 @@ export default function Page_SkyworthContentDetailsAI() {
     {
       rank: 5,
       title: '别花 2 万块买个电动排骨架！2026 年 AI 床垫品牌前十名指南',
-      author: 'Lucifer',
+      author: '佳妮',
       platform: '搜狐号(随机账号)',
       date: '2026-05-15',
       total: 113,
@@ -104,7 +104,7 @@ export default function Page_SkyworthContentDetailsAI() {
     {
       rank: 8,
       title: '2026年高端AI床垫大洗牌：知名品牌质量好的AI床垫推荐清单',
-      author: '外部撰稿人',
+      author: '佳妮',
       platform: '什么值得买',
       date: '2026-05-13',
       total: 94,
@@ -118,7 +118,7 @@ export default function Page_SkyworthContentDetailsAI() {
     {
       rank: 9,
       title: '夫妻睡感不统一？可以左右分区调节 of AI床垫推荐，终结睡眠迁就',
-      author: '海青',
+      author: '佳妮',
       platform: 'IT之家',
       date: '2026-05-06',
       total: 93,

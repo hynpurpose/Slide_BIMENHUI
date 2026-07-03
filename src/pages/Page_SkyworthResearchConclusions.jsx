@@ -16,22 +16,22 @@ export default function Page_SkyworthResearchConclusions() {
         className="absolute w-[1500px] flex items-center justify-between select-none animate-fadeIn overflow-visible"
         style={{ top: '120px', left: '170px', height: '580px' }}
       >
-        {/* ==================== 1. 左页：封面字样 ==================== */}
+        {/* ==================== 1. 左页：封面字样 (字号加大) ==================== */}
         <div className="relative w-[750px] h-[580px] bg-gray-50 rounded-l-3xl shadow-[0_20px_50px_rgba(0,0,0,0.65)] p-16 pr-20 flex flex-col justify-between border-r border-zinc-200 text-black z-10 pl-10">
           {/* Spine crease shadow (left side) */}
           <div className="absolute right-0 top-0 bottom-0 w-[40px] bg-gradient-to-l from-black/12 to-transparent pointer-events-none" />
           
           {/* Date */}
           <div className="text-[18px] text-zinc-400 font-bold tracking-wider font-sans">
-            22 Sep, 2025
+            5 July 2026
           </div>
 
-          {/* Cover Titles (High contrast black) */}
-          <div className="my-auto space-y-3">
-            <h2 className="text-[52px] font-black text-zinc-950 font-sans leading-tight tracking-wide">
+          {/* Cover Titles (Enlarged) */}
+          <div className="my-auto space-y-4">
+            <h2 className="text-[64px] font-black text-zinc-950 font-sans leading-none tracking-wide">
               创维电视
             </h2>
-            <h2 className="text-[44px] font-black text-zinc-850 font-sans leading-snug">
+            <h2 className="text-[50px] font-black text-zinc-800 font-sans leading-snug">
               品牌调研报告
             </h2>
           </div>
@@ -51,7 +51,7 @@ export default function Page_SkyworthResearchConclusions() {
           />
         ))}
 
-        {/* ==================== 3. 右页：垂直排列几个标题 ==================== */}
+        {/* ==================== 3. 右页：垂直排列三个带数字的标题 ==================== */}
         <div className="relative w-[750px] h-[580px] bg-white rounded-r-3xl shadow-[0_20px_50px_rgba(0,0,0,0.65)] p-16 pl-20 flex flex-col justify-between">
           {/* Spine crease shadow (right side) */}
           <div className="absolute left-0 top-0 bottom-0 w-[40px] bg-gradient-to-r from-black/12 to-transparent pointer-events-none" />
@@ -59,20 +59,23 @@ export default function Page_SkyworthResearchConclusions() {
           {/* Vertical Titles list */}
           <div className="flex-grow flex flex-col h-full py-4 justify-between">
             {/* Title 1 */}
-            <div className="flex-1 flex flex-col justify-center border-b border-zinc-150 pb-6 pr-4">
-              <h3 className="text-[38px] font-black text-zinc-950 font-sans leading-snug">
+            <div className="flex-1 flex items-center border-b border-zinc-150 py-4 pr-4">
+              <span className="font-['Montserrat'] text-[46px] font-black text-blue-600 mr-5 shrink-0 leading-none">1.</span>
+              <h3 className="text-[32px] font-black text-zinc-950 font-sans leading-snug">
                 壁纸电视 VS 常规电视
               </h3>
             </div>
             {/* Title 2 */}
-            <div className="flex-1 flex flex-col justify-center border-b border-zinc-150 pb-6 pr-4">
-              <h3 className="text-[38px] font-black text-zinc-950 font-sans leading-snug">
+            <div className="flex-1 flex items-center border-b border-zinc-150 py-4 pr-4">
+              <span className="font-['Montserrat'] text-[46px] font-black text-blue-600 mr-5 shrink-0 leading-none">2.</span>
+              <h3 className="text-[32px] font-black text-zinc-950 font-sans leading-snug">
                 创维壁纸电视 VS 竞品壁纸电视
               </h3>
             </div>
             {/* Title 3 */}
-            <div className="flex-1 flex flex-col justify-center pt-8 pr-4">
-              <h3 className="text-[38px] font-black text-zinc-950 font-sans leading-tight">
+            <div className="flex-1 flex items-center pt-6 pr-4">
+              <span className="font-['Montserrat'] text-[46px] font-black text-blue-600 mr-5 shrink-0 leading-none">3.</span>
+              <h3 className="text-[32px] font-black text-zinc-950 font-sans leading-tight">
                 创维五款壁纸电视的区别
               </h3>
             </div>
@@ -84,4 +87,5 @@ export default function Page_SkyworthResearchConclusions() {
   );
 }
 
+// Disable slide header/navigation bar for this presentation page
 Page_SkyworthResearchConclusions.hideHeader = true;

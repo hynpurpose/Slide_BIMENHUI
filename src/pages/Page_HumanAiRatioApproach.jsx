@@ -10,7 +10,7 @@ export default function Page_HumanAiRatioApproach() {
 
   // Generate 100 cells for the 70% Human + 30% AI visualization
   const cells = [];
-  
+
   // Center for Teal (Human) gradient (columns 0 to 6)
   const cxTeal = 3;
   const cyTeal = 4.5;
@@ -29,7 +29,7 @@ export default function Page_HumanAiRatioApproach() {
     for (let c = 0; c < cols; c++) {
       const x = c * cellSize;
       const y = r * cellSize;
-      
+
       let fill = '';
       let rx = 35; // Center cells are round circles (cellSize 70 / 2)
 
@@ -37,9 +37,9 @@ export default function Page_HumanAiRatioApproach() {
         // Rightmost 3 columns (30% of cells) are Blue gradient representing "30% AI"
         const dc = Math.sqrt(Math.pow(c - cxBlue, 2) + Math.pow(r - cyBlue, 2));
         const factor = Math.min(dc / maxDBlue, 1.0);
-        
+
         rx = 35 - 29 * Math.pow(factor, 0.8);
-        
+
         const red = Math.round(colorCenterBlue[0] + factor * (colorEdgeBlue[0] - colorCenterBlue[0]));
         const green = Math.round(colorCenterBlue[1] + factor * (colorEdgeBlue[1] - colorCenterBlue[1]));
         const blue = Math.round(colorCenterBlue[2] + factor * (colorEdgeBlue[2] - colorCenterBlue[2]));
@@ -48,9 +48,9 @@ export default function Page_HumanAiRatioApproach() {
         // Leftmost 7 columns (70% of cells) are Teal gradient representing "70% Human"
         const dc = Math.sqrt(Math.pow(c - cxTeal, 2) + Math.pow(r - cyTeal, 2));
         const factor = Math.min(dc / maxDTeal, 1.0);
-        
+
         rx = 35 - 29 * Math.pow(factor, 0.8);
-        
+
         const red = Math.round(colorCenterTeal[0] + factor * (colorEdgeTeal[0] - colorCenterTeal[0]));
         const green = Math.round(colorCenterTeal[1] + factor * (colorEdgeTeal[1] - colorCenterTeal[1]));
         const blue = Math.round(colorCenterTeal[2] + factor * (colorEdgeTeal[2] - colorCenterTeal[2]));
@@ -74,13 +74,13 @@ export default function Page_HumanAiRatioApproach() {
   const line2Y = 525;
 
   return (
-    <SlideLayout title="我们的策略转变">
+    <SlideLayout title="我们的策略">
       {/* ── 主排版容器 (高度拉伸至 705px，底部抵满 content bottom) ── */}
-      <div 
+      <div
         className="absolute w-[1840px] select-none animate-fadeIn"
         style={{ top: '90px', height: '705px' }}
       >
-        
+
         {/* ==================== Left Column: 10x10 Content Ratio Grid (700px x 700px, touching top and bottom) ==================== */}
         <div className="absolute left-0 top-[2px] w-[700px] h-[700px]">
           <svg className="w-full h-full" viewBox="0 0 700 700" fill="none">
@@ -162,7 +162,7 @@ export default function Page_HumanAiRatioApproach() {
         </svg>
 
         {/* ==================== Right Column: Simplified Stacking Text Blocks (left: 770px) ==================== */}
-        
+
         {/* Main Title Header */}
         <div className="absolute left-[770px] top-[40px] w-[1070px]">
           <h3 className="text-[56px] font-black text-white font-['MiSans'] leading-none">
@@ -171,7 +171,7 @@ export default function Page_HumanAiRatioApproach() {
         </div>
 
         {/* Block 1: 70% Human (Aligned vertically with Line 1Y) */}
-        <div 
+        <div
           className="absolute left-[770px] w-[1070px] flex flex-col gap-2 font-['MiSans']"
           style={{ top: `${line1Y - 60}px` }}
         >
@@ -184,7 +184,7 @@ export default function Page_HumanAiRatioApproach() {
         </div>
 
         {/* Block 2: 30% AI (Aligned vertically with Line 2Y) */}
-        <div 
+        <div
           className="absolute left-[770px] w-[1070px] flex flex-col gap-2 font-['MiSans']"
           style={{ top: `${line2Y - 60}px` }}
         >

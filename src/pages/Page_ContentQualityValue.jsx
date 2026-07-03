@@ -12,13 +12,13 @@ export default function Page_ContentQualityValue() {
   ];
 
   return (
-    <SlideLayout title="优质内容的复利效应">
+    <SlideLayout title="优质内容的“保质期”">
       {/* ── 主排版区 (高度拉伸至 795px，顶部和底部完全抵齐页边距) ── */}
-      <div 
+      <div
         className="absolute w-[1840px] select-none animate-fadeIn flex flex-col justify-between"
         style={{ top: '0px', height: '795px' }}
       >
-        
+
         {/* ==================== 上半部分：高保真 Gantt/Timeline 视觉图板 (高度 645px, 纯黑底色，白色框线) ==================== */}
         <div className="w-full h-[645px] bg-black border border-white/15 rounded-[28px] p-6 relative overflow-hidden shadow-[0_25px_60px_rgba(0,0,0,0.5)]">
           {/* 背景光斑微弱点缀 */}
@@ -27,11 +27,11 @@ export default function Page_ContentQualityValue() {
           {/* 1. 顶部时间刻度 */}
           <div className="absolute left-0 right-0 top-[25px] h-[30px] px-8 flex pointer-events-none z-10">
             {timeTicks.map((tick, i) => (
-              <span 
-                key={i} 
+              <span
+                key={i}
                 className="text-[18px] font-semibold text-zinc-555 font-sans"
-                style={{ 
-                  position: 'absolute', 
+                style={{
+                  position: 'absolute',
                   left: `${tick.x}px`,
                   transform: 'translateX(-50%)'
                 }}
@@ -42,7 +42,7 @@ export default function Page_ContentQualityValue() {
           </div>
 
           {/* 2. 纵向“AI文章失效平均时间点”指示线 (白色虚线，字号放大) */}
-          <div 
+          <div
             className="absolute top-[65px] bottom-[35px] w-[1px] border-l border-dashed border-white/45 z-10"
             style={{ left: '300px' }}
           >
@@ -54,7 +54,7 @@ export default function Page_ContentQualityValue() {
           </div>
 
           {/* 2b. 纵向“人工文章失效平均时间点”指示线 (高亮白色虚线，字号放大，用更亮的白色) */}
-          <div 
+          <div
             className="absolute top-[65px] bottom-[35px] w-[1px] border-l border-dashed border-white z-10 shadow-[0_0_12px_rgba(255,255,255,0.4)]"
             style={{ left: '1400px' }}
           >
@@ -67,9 +67,9 @@ export default function Page_ContentQualityValue() {
 
           {/* 3. Staggered Gantt Bars (完全错落的瀑布流/蹉跎感排版，AI文章使用接近白色的浅灰色) */}
           <div className="absolute inset-x-8 top-[80px] bottom-[25px] relative z-20">
-            
+
             {/* Row 1: AI 创作文章 (起于 120px, 止于 300px, 极其接近白色的浅灰色) */}
-            <div 
+            <div
               className="absolute h-[42px] bg-zinc-100 border border-zinc-200 rounded-full flex items-center justify-center px-4 shadow-md"
               style={{ left: '120px', top: '15px', width: '180px' }}
             >
@@ -79,11 +79,11 @@ export default function Page_ContentQualityValue() {
             </div>
 
             {/* Row 2: 人工创作文章 (起于 200px, 止于 1650px, 渐变色) */}
-            <div 
+            <div
               className="absolute h-[42px] rounded-full flex items-center justify-start px-6 shadow-lg"
-              style={{ 
-                left: '200px', 
-                top: '73px', 
+              style={{
+                left: '200px',
+                top: '73px',
                 width: '1450px',
                 background: 'linear-gradient(to right, #004CE5 0%, #0D9488 100%)'
               }}
@@ -94,7 +94,7 @@ export default function Page_ContentQualityValue() {
             </div>
 
             {/* Row 3: AI 创作文章 (起于 320px, 止于 500px, 极其接近白色的浅灰色) */}
-            <div 
+            <div
               className="absolute h-[42px] bg-zinc-100 border border-zinc-200 rounded-full flex items-center justify-center px-4 shadow-md"
               style={{ left: '320px', top: '131px', width: '180px' }}
             >
@@ -104,11 +104,11 @@ export default function Page_ContentQualityValue() {
             </div>
 
             {/* Row 4: 人工创作文章 (起于 80px, 止于 1100px, 渐变色) */}
-            <div 
+            <div
               className="absolute h-[42px] rounded-full flex items-center justify-start px-6 shadow-lg"
-              style={{ 
-                left: '80px', 
-                top: '189px', 
+              style={{
+                left: '80px',
+                top: '189px',
                 width: '1020px',
                 background: 'linear-gradient(to right, #004CE5 0%, #0D9488 100%)'
               }}
@@ -119,7 +119,7 @@ export default function Page_ContentQualityValue() {
             </div>
 
             {/* Row 5: AI 创作文章 (起于 520px, 止于 700px, 极其接近白色的浅灰色) */}
-            <div 
+            <div
               className="absolute h-[42px] bg-zinc-100 border border-zinc-200 rounded-full flex items-center justify-center px-4 shadow-md"
               style={{ left: '520px', top: '247px', width: '180px' }}
             >
@@ -129,11 +129,11 @@ export default function Page_ContentQualityValue() {
             </div>
 
             {/* Row 6: 人工创作文章 (起于 410px, 止于 1550px, 渐变色) */}
-            <div 
+            <div
               className="absolute h-[42px] rounded-full flex items-center justify-start px-6 shadow-lg"
-              style={{ 
-                left: '410px', 
-                top: '305px', 
+              style={{
+                left: '410px',
+                top: '305px',
                 width: '1140px',
                 background: 'linear-gradient(to right, #004CE5 0%, #0D9488 100%)'
               }}
@@ -144,11 +144,11 @@ export default function Page_ContentQualityValue() {
             </div>
 
             {/* Row 7: 人工创作文章 (起于 730px, 止于 1380px, 渐变色) */}
-            <div 
+            <div
               className="absolute h-[42px] rounded-full flex items-center justify-start px-6 shadow-lg"
-              style={{ 
-                left: '730px', 
-                top: '363px', 
+              style={{
+                left: '730px',
+                top: '363px',
                 width: '650px',
                 background: 'linear-gradient(to right, #004CE5 0%, #0D9488 100%)'
               }}

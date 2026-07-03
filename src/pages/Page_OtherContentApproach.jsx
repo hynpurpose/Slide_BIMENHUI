@@ -13,7 +13,7 @@ export default function Page_OtherContentApproach() {
         <div className="absolute left-0 top-0 w-full h-[320px] bg-zinc-950/30 backdrop-blur-md rounded-[32px] p-8 flex flex-col justify-between shadow-[0_25px_60px_rgba(0,0,0,0.5)]">
           {/* 流程标题 */}
           <div className="flex items-center justify-between pb-4 border-b border-zinc-900/60 shrink-0">
-            <span className="text-[24px] font-black text-white font-['MiSans'] border-l-4 border-blue-500 pl-3 leading-none">
+            <span className="text-[28px] font-black text-white font-['MiSans'] border-l-4 border-blue-500 pl-3 leading-none">
               Agent 批量生成文章流程
             </span>
           </div>
@@ -24,24 +24,23 @@ export default function Page_OtherContentApproach() {
             <div className="absolute left-[80px] right-[80px] top-[45px] h-[2px] bg-zinc-800/30 z-0 pointer-events-none" />
 
             {[
-              { num: "01", title: "建立品牌知识库", desc: "汇聚品牌与产品基础数据" },
-              { num: "02", title: "设定目标用户", desc: "明确核心受众关注偏好" },
-              { num: "03", title: "总结高引用规律", desc: "分析高引用内容的结构特征" },
-              { num: "04", title: "生成文章大纲", desc: "AI 自动化构思大纲结构" },
-              { num: "05", title: "生成完整内容", desc: "大模型批量撰写全文" },
-              { num: "06", title: "人工核验发布", desc: "常识性校验与分发" }
+              { num: "01", title: "建立品牌知识库" },
+              { num: "02", title: "设定目标用户" },
+              { num: "03", title: "总结高引用规律" },
+              { num: "04", title: "生成文章大纲" },
+              { num: "05", title: "生成完整内容" },
+              { num: "06", title: "人工核验发布" }
             ].map((step, i) => (
               <div
                 key={i}
-                className="w-[240px] h-[170px] bg-zinc-900/40 backdrop-blur-sm rounded-2xl p-4 flex flex-col justify-between relative z-10 shadow-md hover:bg-zinc-800/30 transition-all duration-200"
+                className="w-[240px] h-[130px] bg-zinc-900/40 backdrop-blur-sm rounded-2xl p-4 flex flex-col justify-between relative z-10 shadow-md hover:bg-zinc-800/30 transition-all duration-200"
               >
                 <div className="flex items-center justify-between">
-                  <span className="text-[36px] font-black font-['Montserrat'] text-blue-550 leading-none">{step.num}</span>
+                  <span className="text-[42px] font-black font-['Montserrat'] text-blue-555 leading-none">{step.num}</span>
                   <span className="w-1.5 h-1.5 rounded-full bg-blue-500" />
                 </div>
                 <div className="flex flex-col gap-1">
-                  <span className="text-[22px] font-bold text-white font-['MiSans'] leading-tight">{step.title}</span>
-                  <span className="text-[16px] text-zinc-400 font-sans leading-normal mt-1">{step.desc}</span>
+                  <span className="text-[26px] font-bold text-white font-['MiSans'] leading-tight">{step.title}</span>
                 </div>
               </div>
             ))}
@@ -55,7 +54,7 @@ export default function Page_OtherContentApproach() {
           <div className="w-[1100px] h-full bg-zinc-950/30 backdrop-blur-md rounded-[32px] p-8 flex flex-col justify-between shadow-[0_25px_60px_rgba(0,0,0,0.5)]">
             {/* 标题 */}
             <div className="flex flex-col gap-1 shrink-0 pb-4 border-b border-zinc-900/60">
-              <span className="text-[24px] font-black text-white font-['MiSans'] border-l-4 border-blue-500 pl-3 leading-none">
+              <span className="text-[28px] font-black text-white font-['MiSans'] border-l-4 border-blue-500 pl-3 leading-none">
                 纯AI创作文章收录率趋势
               </span>
             </div>
@@ -105,7 +104,7 @@ export default function Page_OtherContentApproach() {
                         x={x}
                         y="20"
                         fill="#FFFFFF"
-                        className="text-[18px] font-bold font-['Montserrat']"
+                        className="text-[22px] font-bold font-['Montserrat']"
                         textAnchor="middle"
                       >
                         {item.val}%
@@ -116,7 +115,7 @@ export default function Page_OtherContentApproach() {
                         x={x}
                         y="270"
                         fill="rgba(255, 255, 255, 0.5)"
-                        className="text-[20px] font-bold font-sans"
+                        className="text-[24px] font-bold font-sans"
                         textAnchor="middle"
                       >
                         {item.month}
@@ -132,7 +131,7 @@ export default function Page_OtherContentApproach() {
           <div className="w-[716px] h-full bg-zinc-950/30 backdrop-blur-md rounded-[32px] p-8 flex flex-col justify-between shadow-[0_25px_60px_rgba(0,0,0,0.5)]">
             {/* 标题 */}
             <div className="flex flex-col gap-1 shrink-0 pb-4 border-b border-zinc-900/60">
-              <span className="text-[24px] font-black text-white font-['MiSans'] border-l-4 border-blue-500 pl-3 leading-none">
+              <span className="text-[28px] font-black text-white font-['MiSans'] border-l-4 border-blue-500 pl-3 leading-none">
                 纯AI创作文章引用率对比
               </span>
             </div>
@@ -162,12 +161,12 @@ export default function Page_OtherContentApproach() {
                   </svg>
                   {/* 环内百分比 */}
                   <div className="absolute inset-0 flex items-center justify-center">
-                    <span className="text-[64px] font-black font-['Montserrat'] text-white leading-none select-none">
-                      42<span className="text-[28px] font-bold align-super text-zinc-400">%</span>
+                    <span className="text-[76px] font-black font-['Montserrat'] text-white leading-none select-none">
+                      42<span className="text-[32px] font-bold align-super text-zinc-400">%</span>
                     </span>
                   </div>
                 </div>
-                <span className="text-[22px] font-black text-zinc-300 font-['MiSans']">2025年12月</span>
+                <span className="text-[26px] font-black text-zinc-300 font-['MiSans']">2025年12月</span>
               </div>
 
               {/* 2026年5月 */}
@@ -192,12 +191,12 @@ export default function Page_OtherContentApproach() {
                   </svg>
                   {/* 环内百分比 */}
                   <div className="absolute inset-0 flex items-center justify-center">
-                    <span className="text-[64px] font-black font-['Montserrat'] text-white leading-none select-none">
-                      8<span className="text-[28px] font-bold align-super text-zinc-400">%</span>
+                    <span className="text-[76px] font-black font-['Montserrat'] text-white leading-none select-none">
+                      8<span className="text-[32px] font-bold align-super text-zinc-400">%</span>
                     </span>
                   </div>
                 </div>
-                <span className="text-[22px] font-black text-zinc-300 font-['MiSans']">2026年5月</span>
+                <span className="text-[26px] font-black text-zinc-300 font-['MiSans']">2026年5月</span>
               </div>
 
             </div>
