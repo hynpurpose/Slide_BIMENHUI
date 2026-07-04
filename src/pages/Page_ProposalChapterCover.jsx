@@ -83,7 +83,7 @@ export default function Page_ProposalChapterCover({
                                     marginLeft: '2px',
                                 }}
                             >
-                                {ch.title}
+                                {ch.title.replace(/\n/g, '')}
                             </span>
                         </div>
                     );

@@ -53,6 +53,7 @@ export function parseConfig(flatConfig) {
             title: item.title,
             component: item.component || null,
             components: item.components || null,
+            variants: item.variants || null,
             hideHeader: item.hideHeader || false,
           });
         }
@@ -131,7 +132,8 @@ export function generateSlides(parsed) {
               sectionIndex: si,
               pageIndex: pi,
               subPageIndex: 0,
-              component: page.components?.[0] ?? page.component,
+              component: page.variants?.[0] ?? page.components?.[0] ?? page.component,
+              variants: page.variants && page.variants.length > 1 ? page.variants : null,
               hideHeader: page.hideHeader,
             });
           }

@@ -63,7 +63,7 @@ export default function TOCSlide({ bgImage, title, menuText, brandLabel, service
               className="text-white"
               style={{ fontSize: textFontSize, letterSpacing: '0px', fontFamily: "'MiSans', sans-serif", fontWeight: 200 }}
             >
-              {chapter.title}
+              {chapter.title.replace(/\n/g, '')}
             </span>
           </div>
         ))}
