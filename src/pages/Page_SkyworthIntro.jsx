@@ -95,6 +95,35 @@ export default function Page_SkyworthIntro() {
           <circle cx="1255" cy="365" r="5" fill="#F59E0B" />
         </svg>
 
+        {/* 曲线各月份提及率数值标注 (叠加在静态图表之上，坐标按图内数据点换算) */}
+        {[
+          { x: 168, y: 660, v: '22%' },
+          { x: 244, y: 588, v: '63%' },
+          { x: 313, y: 585, v: '66%' },
+          { x: 383, y: 605, v: '54%' },
+          { x: 453, y: 609, v: '51%' },
+          { x: 522, y: 632, v: '39%' },
+        ].map((p, i) => (
+          <div
+            key={i}
+            className="absolute z-40 pointer-events-none"
+            style={{ left: `${p.x}px`, top: `${p.y}px` }}
+          >
+            {/* 数据点圆点 */}
+            <div
+              className="absolute w-[11px] h-[11px] rounded-full bg-[#4285F4] border-2 border-white shadow-[0_1px_3px_rgba(0,0,0,0.35)]"
+              style={{ left: '-5.5px', top: '-5.5px' }}
+            />
+            {/* 数值标签 */}
+            <div
+              className="absolute -translate-x-1/2 whitespace-nowrap px-2 py-[2px] rounded-md bg-white border border-[#4285F4]/50 shadow-[0_2px_6px_rgba(0,0,0,0.18)]"
+              style={{ top: '-32px' }}
+            >
+              <span className="text-[16px] font-bold text-[#1a73e8] font-['Montserrat']">{p.v}</span>
+            </div>
+          </div>
+        ))}
+
       </div>
     </SlideLayout>
   );
