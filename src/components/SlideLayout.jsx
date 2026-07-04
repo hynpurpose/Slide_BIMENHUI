@@ -9,7 +9,8 @@ export default function SlideLayout({
   brandLabel = "GEOINDEXFUTURE // 2026",
   className = "",
   contentClassName = "",
-  showGuidesDefault = false
+  showGuidesDefault = false,
+  fullBleed = false
 }) {
   const [showGuides, setShowGuides] = useState(showGuidesDefault);
   const context = useContext(SlideContext);
@@ -95,38 +96,51 @@ export default function SlideLayout({
       </div>
 
       {/* ── 顶部左侧：标题区域 (H1) ── */}
-      <div 
-        className="absolute z-20 flex flex-col justify-start"
-        style={{ top: '112px', left: '40px', width: '1840px' }}
-      >
-        {title && (
-          <h1 
-            style={{
-              fontFamily: "'AlimamaShuHeiTi', sans-serif",
-              fontWeight: '700',
-              fontSize: '86px',
-              lineHeight: '96px',
-              color: '#FFFFFF',
-              letterSpacing: '0.02em'
-            }}
-          >
-            {title}
-          </h1>
-        )}
-      </div>
+      {!fullBleed && (
+        <div 
+          className="absolute z-20 flex flex-col justify-start"
+          style={{ top: '112px', left: '40px', width: '1840px' }}
+        >
+          {title && (
+            <h1 
+              style={{
+                fontFamily: "'AlimamaShuHeiTi', sans-serif",
+                fontWeight: '700',
+                fontSize: '86px',
+                lineHeight: '96px',
+                color: '#FFFFFF',
+                letterSpacing: '0.02em'
+              }}
+            >
+              {title}
+            </h1>
+          )}
+        </div>
+      )}
 
       {/* ── 核心内容排版安全区 ── */}
-      <div 
-        className={`absolute z-10 ${contentClassName}`}
-        style={{ 
-          top: '225px', 
-          left: '40px', 
-          width: '1840px', 
-          height: '795px', // 避让底部字幕区：1080px - 225px (top) - 60px (bottom subtitle height) = 795px
-        }}
-      >
-        {children}
-      </div>
+      {fullBleed ? (
+        // 整页模式：左右对齐 40px margin line（1840px 宽），
+        // 底部延伸至 content bottom（1020px）下方 24px 处。
+        <div
+          className={`absolute z-10 ${contentClassName}`}
+          style={{ top: '72px', left: '40px', width: '1840px', bottom: '36px' }}
+        >
+          {children}
+        </div>
+      ) : (
+        <div 
+          className={`absolute z-10 ${contentClassName}`}
+          style={{ 
+            top: '225px', 
+            left: '40px', 
+            width: '1840px', 
+            height: '795px', // 避让底部字幕区：1080px - 225px (top) - 60px (bottom subtitle height) = 795px
+          }}
+        >
+          {children}
+        </div>
+      )}
 
       {/* ── 底部字幕避让区占位说明 (仅在显示辅助线时可见) ── */}
       {showGuides && (
