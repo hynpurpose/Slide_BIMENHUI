@@ -46,10 +46,16 @@ export default function TOCSlide({ bgImage, title, menuText, brandLabel, service
       {/* Left: chapter list */}
       <div className={`absolute z-10 flex flex-col ${dbg}`} style={{ bottom: '100px', left: '132px', gap: rowGap }}>
         {chapters.map((chapter, i) => (
-          <div key={i} className="flex items-baseline" style={{ gap: itemGap, lineHeight: '1.3' }}>
+          <div key={i} className="flex items-baseline" style={{ lineHeight: '1.3' }}>
             <span
-              className="text-[#004CE5]"
-              style={{ fontSize: numFontSize, fontFamily: "'MiSans', sans-serif", fontWeight: 200 }}
+              className="text-[#004CE5] shrink-0"
+              style={{ 
+                fontSize: numFontSize, 
+                fontFamily: "'MiSans', sans-serif", 
+                fontWeight: 200,
+                display: 'inline-block',
+                width: isLargeList ? '100px' : '130px'
+              }}
             >
               {String(i + 1).padStart(2, '0')}.
             </span>
