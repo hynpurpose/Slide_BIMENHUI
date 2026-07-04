@@ -17,6 +17,10 @@ import Page_SkyworthAiProcess from '../pages/Page_SkyworthAiProcess';
 import Page_SkyworthSearchEngineModel from '../pages/Page_SkyworthSearchEngineModel';
 import Page_SkyworthCrossCompare from '../pages/Page_SkyworthCrossCompare';
 import Page_SkyworthShadowAlgorithm from '../pages/Page_SkyworthShadowAlgorithm';
+import Page_SkyworthStrategyFramework from '../pages/Page_SkyworthStrategyFramework';
+import Page_SkyworthBrandWordStrategy from '../pages/Page_SkyworthBrandWordStrategy';
+import Page_SkyworthProductStrategy from '../pages/Page_SkyworthProductStrategy';
+import Page_SkyworthMonitorWordStrategy from '../pages/Page_SkyworthMonitorWordStrategy';
 import Page_CompanyIntro from '../pages/Page_CompanyIntro';
 import Page_ServiceClients from '../pages/Page_ServiceClients';
 import Page_CaseStudy_Double_Combined from '../pages/Page_CaseStudy_Double_Combined';
@@ -50,6 +54,9 @@ import Page_DeliveryLongTerm from '../pages/Page_DeliveryLongTerm';
 import Page_DeliveryHighWeight from '../pages/Page_DeliveryHighWeight';
 import Page_PotentialVerticalCommunity from '../pages/Page_PotentialVerticalCommunity';
 import Page_EmergingMediaAttempts from '../pages/Page_EmergingMediaAttempts';
+import Page_SkyworthKpiAcceptance from '../pages/Page_SkyworthKpiAcceptance';
+import Page_SkyworthWorkAcceptance from '../pages/Page_SkyworthWorkAcceptance';
+import Page_SkyworthValueAddedServices from '../pages/Page_SkyworthValueAddedServices';
 
 export const slideConfig = [
   // ——— 封面 & 目录 ———
@@ -118,7 +125,19 @@ export const slideConfig = [
   // ══════════════════════════════════════════════════════════
   // ——— 四、核心优化策略 ———
   // ══════════════════════════════════════════════════════════
-  { type: 'chapter', title: '核心优化策略', subtitle: 'CORE OPTIMIZATION STRATEGY', backgroundImage: '' },
+  { type: 'chapter', title: '核心策略\n及KPI设定', subtitle: 'CORE OPTIMIZATION STRATEGY', backgroundImage: '' },
+
+  { type: 'section', title: '优化词策略' },
+  { type: 'page', title: '品牌词：一守一攻', component: Page_SkyworthBrandWordStrategy, hideHeader: true },
+  { type: 'page', title: '五款产品的分工', component: Page_SkyworthProductStrategy, hideHeader: true },
+
+  { type: 'section', title: '监测词策略' },
+  { type: 'page', title: '监测词的意义', component: Page_SkyworthMonitorWordStrategy, hideHeader: true },
+
+  { type: 'section', title: 'KPI及工作安排' },
+  { type: 'page', title: 'KPI 及验收标准', component: Page_SkyworthKpiAcceptance, hideHeader: true },
+  { type: 'page', title: '工作内容与预期效果', component: Page_SkyworthWorkAcceptance, hideHeader: true },
+  { type: 'page', title: '增值服务', component: Page_SkyworthValueAddedServices, hideHeader: true },
 
   // ══════════════════════════════════════════════════════════
   // ——— 五、内容策略 ———
