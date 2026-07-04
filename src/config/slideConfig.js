@@ -1,10 +1,28 @@
 import Page_SkyworthConsumerPerspective from '../pages/Page_SkyworthConsumerPerspective';
 import Page_SkyworthIntro from '../pages/Page_SkyworthIntro';
-import Page_SkyworthMentalInertia from '../pages/Page_SkyworthMentalInertia';
+import {
+  Page_SkyworthMentalInertia_A,
+  Page_SkyworthMentalInertia_B,
+  Page_SkyworthMentalInertia_C,
+} from '../pages/Page_SkyworthMentalInertia';
 import Page_SkyworthDecisionAnalysis from '../pages/Page_SkyworthDecisionAnalysis';
-import Page_SkyworthPositioningShift from '../pages/Page_SkyworthPositioningShift';
+import Page_SkyworthPositioningShift, {
+  Page_SkyworthPositioningShift_A,
+  Page_SkyworthPositioningShift_B,
+  Page_SkyworthPositioningShift_C,
+  Page_SkyworthPositioningShift_D,
+} from '../pages/Page_SkyworthPositioningShift';
 import Page_SkyworthBrandResearch from '../pages/Page_SkyworthBrandResearch';
-import Page_SkyworthDazhongZhenping from '../pages/Page_SkyworthDazhongZhenping';
+import {
+  Page_DazhongZhenpingDemo_A,
+  Page_DazhongZhenpingDemo_B,
+  Page_DazhongZhenpingDemo_C,
+} from '../pages/Page_DazhongZhenpingDemo';
+import {
+  Page_SkyworthDazhongZhenping_A,
+  Page_SkyworthDazhongZhenping_B,
+  Page_SkyworthDazhongZhenping_C,
+} from '../pages/Page_SkyworthDazhongZhenping';
 import Page_SkyworthResearchConclusions from '../pages/Page_SkyworthResearchConclusions';
 import Page_WallpaperVsConventional from '../pages/Page_WallpaperVsConventional';
 import Page_SkyworthVsCompetitor from '../pages/Page_SkyworthVsCompetitor';
@@ -80,13 +98,14 @@ export const slideConfig = [
   { type: 'section', title: '为什么要做' },
   { type: 'page', title: '消费者视角下的AI品牌定位', component: Page_SkyworthConsumerPerspective, hideHeader: true },
   { type: 'page', title: '没做品牌调研的“坑”', component: Page_SkyworthIntro, hideHeader: true },
-  { type: 'page', title: '一个思维惯性的误区', component: Page_SkyworthMentalInertia, hideHeader: true },
+  { type: 'page', title: '一个思维惯性的误区', variants: [Page_SkyworthMentalInertia_A, Page_SkyworthMentalInertia_B, Page_SkyworthMentalInertia_C], hideHeader: true },
   { type: 'page', title: '创维壁纸电视用户决策分析', component: Page_SkyworthDecisionAnalysis, hideHeader: true },
-  { type: 'page', title: '策略转变', component: Page_SkyworthPositioningShift, hideHeader: true },
+  { type: 'page', title: '策略转变', variants: [Page_SkyworthPositioningShift, Page_SkyworthPositioningShift_A, Page_SkyworthPositioningShift_B, Page_SkyworthPositioningShift_C, Page_SkyworthPositioningShift_D], hideHeader: true },
 
   { type: 'section', title: '我们怎么做' },
   { type: 'page', title: '我们怎么调研品牌', component: Page_SkyworthBrandResearch, hideHeader: true },
-  { type: 'page', title: '「大众真评」Agent', component: Page_SkyworthDazhongZhenping, hideHeader: true },
+  { type: 'page', title: '大众真评系统演示', variants: [Page_DazhongZhenpingDemo_A, Page_DazhongZhenpingDemo_B, Page_DazhongZhenpingDemo_C], hideHeader: true },
+  { type: 'page', title: '「大众真评」Agent', variants: [Page_SkyworthDazhongZhenping_A, Page_SkyworthDazhongZhenping_B, Page_SkyworthDazhongZhenping_C], hideHeader: true },
 
   { type: 'section', title: '定位结论' },
   { type: 'page', title: '品牌调研报告核心结论', component: Page_SkyworthResearchConclusions, hideHeader: true },
