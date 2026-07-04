@@ -13,7 +13,7 @@ export default function Page_EmergingMediaAttempts() {
     { name: "内容农场采集网站", base: 65, change: -41, type: 'down', label: '-41%' }
   ];
 
-  const maxHeight = 340; // 柱状图最大高度 (px)
+  const maxHeight = 456; // 柱状图最大高度 (px)
 
   return (
     <SlideLayout title="新兴媒体尝试">
@@ -46,7 +46,7 @@ export default function Page_EmergingMediaAttempts() {
           {/* ── 虚线引导连接线 (自左侧社交问答社区柱子至右侧大框) ── */}
           <svg className="absolute inset-0 pointer-events-none z-20" style={{ width: '1840px', height: '660px' }}>
             <path
-              d="M 1101 340 L 1660 340"
+              d="M 1101 264 L 1660 264"
               stroke="#3B82F6"
               strokeWidth="3"
               strokeDasharray="8 5"
@@ -82,13 +82,19 @@ export default function Page_EmergingMediaAttempts() {
               </div>
 
               {/* 柱状图主绘图区 */}
-              <div className="flex-grow w-full relative flex items-end justify-between px-16 mb-6 border-b border-zinc-800">
+              <div className="h-[492px] w-full relative flex items-end justify-between px-16 mb-6 border-b border-zinc-800">
 
                 {/* 背景刻度横线 */}
-                <div className="absolute inset-0 flex flex-col justify-between pointer-events-none pb-0">
+                <div className="absolute left-0 right-0 bottom-0 pointer-events-none" style={{ height: '456px' }}>
                   {[100, 75, 50, 25, 0].map((val, idx) => (
-                    <div key={idx} className="w-full flex items-center justify-between border-b border-zinc-800/40 relative" style={{ height: idx === 4 ? '0' : '25%' }}>
-                      <span className="absolute -left-12 -bottom-2 text-[16px] font-bold font-['Montserrat'] text-zinc-500">{val}%</span>
+                    <div 
+                      key={idx} 
+                      className="absolute w-full border-b border-zinc-800/40" 
+                      style={{ bottom: `${val}%` }}
+                    >
+                      <span className="absolute -left-12 -bottom-2.5 text-[16px] font-bold font-['Montserrat'] text-zinc-500">
+                        {val}%
+                      </span>
                     </div>
                   ))}
                 </div>

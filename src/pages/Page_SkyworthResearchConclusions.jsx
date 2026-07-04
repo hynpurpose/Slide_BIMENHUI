@@ -28,10 +28,10 @@ export default function Page_SkyworthResearchConclusions() {
 
           {/* Cover Titles (Enlarged) */}
           <div className="my-auto space-y-4">
-            <h2 className="text-[64px] font-black text-zinc-950 font-sans leading-none tracking-wide">
+            <h2 className="text-[76px] font-black text-zinc-950 font-sans leading-none tracking-wide">
               创维电视
             </h2>
-            <h2 className="text-[50px] font-black text-zinc-800 font-sans leading-snug">
+            <h2 className="text-[58px] font-black text-zinc-800 font-sans leading-snug">
               品牌调研报告
             </h2>
           </div>
@@ -61,21 +61,21 @@ export default function Page_SkyworthResearchConclusions() {
             {/* Title 1 */}
             <div className="flex-1 flex items-center border-b border-zinc-150 py-4 pr-4">
               <span className="font-['Montserrat'] text-[46px] font-black text-blue-600 mr-5 shrink-0 leading-none">1.</span>
-              <h3 className="text-[32px] font-black text-zinc-950 font-sans leading-snug">
+              <h3 className="text-[34px] font-black text-zinc-950 font-sans leading-snug">
                 壁纸电视 VS 常规电视
               </h3>
             </div>
             {/* Title 2 */}
             <div className="flex-1 flex items-center border-b border-zinc-150 py-4 pr-4">
               <span className="font-['Montserrat'] text-[46px] font-black text-blue-600 mr-5 shrink-0 leading-none">2.</span>
-              <h3 className="text-[32px] font-black text-zinc-950 font-sans leading-snug">
+              <h3 className="text-[34px] font-black text-zinc-950 font-sans leading-snug">
                 创维壁纸电视 VS 竞品壁纸电视
               </h3>
             </div>
             {/* Title 3 */}
             <div className="flex-1 flex items-center pt-6 pr-4">
               <span className="font-['Montserrat'] text-[46px] font-black text-blue-600 mr-5 shrink-0 leading-none">3.</span>
-              <h3 className="text-[32px] font-black text-zinc-950 font-sans leading-tight">
+              <h3 className="text-[34px] font-black text-zinc-950 font-sans leading-tight">
                 创维五款壁纸电视的区别
               </h3>
             </div>

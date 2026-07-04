@@ -1,16 +1,16 @@
 import React from 'react';
 import SlideLayout from '../components/SlideLayout';
 
-export default function Page_SkyworthQAArticleDemo() {
+export default function Page_SkyworthWordOfMouthDemo() {
   return (
-    <SlideLayout title="评测类文章示意">
+    <SlideLayout title="用户口碑类文章示意">
       <div className="w-full h-full flex flex-col gap-6 animate-fadeIn relative z-10">
 
         {/* Callout Text above Content Top Line on the Right */}
         <div className="absolute top-[-56px] right-0 z-30 flex items-center gap-2.5 text-zinc-400 text-[28px] font-bold">
           <div className="w-3 h-3 rounded-full bg-blue-500 animate-pulse shrink-0" />
           <span className="tracking-wide">
-            对比<span className="text-white font-extrabold">本品和竞品的真实优劣势</span>，避免AI感特别重的“一边倒”式吹捧。
+            结合单品，模拟<span className="text-white font-extrabold">真实屋主入住3个月后的惊艳现场</span>
           </span>
         </div>
 
@@ -31,8 +31,8 @@ export default function Page_SkyworthQAArticleDemo() {
             {/* Image Content Area */}
             <div className="flex-1 w-full relative flex flex-col items-center justify-start overflow-hidden bg-white">
               <img
-                src="/charts/geo-article-generation-demo.png"
-                alt="问题解答类文章示意图"
+                src="/charts/geo-article-generation-mouth.png"
+                alt="用户口碑类文章示意图"
                 className="w-full h-full object-contain z-10 relative"
                 onError={(e) => {
                   e.currentTarget.style.display = 'none';
@@ -48,8 +48,8 @@ export default function Page_SkyworthQAArticleDemo() {
                     <polyline points="21 15 16 10 5 21" />
                   </svg>
                 </div>
-                <span className="text-lg font-medium tracking-widest text-zinc-400 uppercase">问题解答类文章示意图</span>
-                <span className="text-sm mt-3 text-zinc-500 opacity-80">请在 public/charts/ 中放入图片文件 geo-article-generation-demo.png</span>
+                <span className="text-lg font-medium tracking-widest text-zinc-400 uppercase">用户口碑类文章示意图</span>
+                <span className="text-sm mt-3 text-zinc-500 opacity-80">请在 public/charts/ 中放入图片文件 geo-article-generation-mouth.png</span>
               </div>
             </div>
 
@@ -62,4 +62,4 @@ export default function Page_SkyworthQAArticleDemo() {
 }
 
 // Disable slide header/navigation bar for this presentation page
-Page_SkyworthQAArticleDemo.hideHeader = true;
+Page_SkyworthWordOfMouthDemo.hideHeader = true;

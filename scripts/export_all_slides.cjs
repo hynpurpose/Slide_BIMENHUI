@@ -7,7 +7,7 @@ const PptxGenJS = require('pptxgenjs');
 const PORT = 4002;
 const DIST_DIR = path.join(__dirname, '..', 'dist');
 const OUTPUT_FILE = path.join(__dirname, '..', 'Presentation_2026.pptx');
-const ARTIFACT_DIR = 'C:/Users/Administrator/.gemini/antigravity-ide/brain/d68a4324-5f0d-41c3-9b3f-8f81c4b40284';
+const ARTIFACT_DIR = 'C:/Users/Administrator/.gemini/antigravity-ide/brain/b43110de-9b96-4d3a-b034-e2b6de1985c1';
 const ARTIFACT_FILE = path.join(ARTIFACT_DIR, 'Presentation_2026.pptx');
 
 const SLIDE_W = 1920;

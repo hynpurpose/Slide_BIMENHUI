@@ -130,31 +130,32 @@ export default function Page_GEOWordSelectionOther() {
             </div>
           </div>
 
-          {/* Card Body: Taller Picture Slot & Custom Data Source Footnote */}
+          {/* Card Body: Taller Picture Slot */}
           <div className="flex-grow p-6 bg-zinc-950 flex flex-col justify-between">
             {/* Image Placeholder Frame (Taller) */}
-            <div className="flex-grow bg-[#0c0c0e] border border-zinc-850 rounded-xl relative overflow-hidden flex items-center justify-center h-[580px] shadow-inner mb-4">
+            <div className="flex-grow bg-white border border-zinc-200 rounded-xl relative overflow-hidden flex items-center justify-start h-[620px] shadow-inner">
               {!imgFailed ? (
                 <img
                   src={middleImagePath}
                   alt="百度社媒搜索词热度趋势"
-                  className="w-full h-full object-cover"
+                  className="w-full h-full object-contain object-left"
                   onError={() => setImgFailed(true)}
                 />
               ) : (
-                <div className="w-full h-full flex flex-col items-center justify-center gap-4 p-8">
-                  <ImageIcon className="w-16 h-16 text-zinc-700 opacity-60" />
+                <div className="w-full h-full flex flex-col items-center justify-center gap-4 p-8 bg-zinc-50">
+                  <ImageIcon className="w-16 h-16 text-zinc-400 opacity-60" />
                   <span className="text-zinc-500 font-bold text-[22px] font-['MiSans']">
                     [ 百度/社媒搜索数据图表 ]
                   </span>
                 </div>
               )}
             </div>
-
-            <div className="text-zinc-500 text-[18px] font-sans border-t border-zinc-900 pt-4 leading-relaxed font-medium">
-              数据来源：百度广告搜索指数
-            </div>
           </div>
+        </div>
+
+        {/* Footnote absolutely positioned below the right card */}
+        <div className="absolute bottom-[-48px] right-0 w-[880px] text-center text-white text-[22px] font-sans font-bold z-20">
+          数据来源：百度广告搜索指数
         </div>
 
       </div>

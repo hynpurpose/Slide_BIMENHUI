@@ -23,14 +23,14 @@ export default function Page_WallpaperVsConventional() {
         <div className="w-[860px] h-full flex flex-col justify-between pr-4">
           
           {/* 买的人卡片 */}
-          <div className="relative overflow-hidden bg-zinc-950/40 border border-zinc-800/80 rounded-3xl p-10 flex justify-between items-center w-full h-[325px] shadow-lg">
+          <div className="relative overflow-hidden bg-zinc-950/40 border border-[#00FF66] rounded-3xl p-10 flex justify-between items-center w-full h-[325px] shadow-[0_0_25px_rgba(0,255,102,0.25)]">
             {/* 占比背景填充 85% */}
             <div 
               className="absolute left-0 top-0 bottom-0 bg-gradient-to-r from-zinc-700/80 via-zinc-700/50 to-transparent" 
               style={{ width: '85%' }}
             />
             <div className="relative z-10 flex flex-col justify-center h-full">
-              <div className="bg-emerald-600 text-white font-extrabold text-[26px] px-8 py-2 rounded-full inline-block self-start font-sans select-none mb-6">
+              <div className="bg-[#00FF66] text-zinc-950 font-extrabold text-[26px] px-8 py-2 rounded-full inline-block self-start font-sans select-none mb-6">
                 买的人
               </div>
               <h3 className="text-[56px] leading-[66px] font-bold text-white font-['MiSans']">
@@ -45,14 +45,14 @@ export default function Page_WallpaperVsConventional() {
           </div>
 
           {/* 不买的人卡片 */}
-          <div className="relative overflow-hidden bg-zinc-950/40 border border-zinc-800/80 rounded-3xl p-10 flex justify-between items-center w-full h-[325px] shadow-lg">
+          <div className="relative overflow-hidden bg-zinc-950/40 border border-[#DC2626] rounded-3xl p-10 flex justify-between items-center w-full h-[325px] shadow-[0_0_25px_rgba(220,38,38,0.25)]">
             {/* 占比背景填充 63% */}
             <div 
               className="absolute left-0 top-0 bottom-0 bg-gradient-to-r from-zinc-700/80 via-zinc-700/50 to-transparent" 
               style={{ width: '63%' }}
             />
             <div className="relative z-10 flex flex-col justify-center h-full">
-              <div className="bg-orange-600 text-white font-extrabold text-[26px] px-8 py-2 rounded-full inline-block self-start font-sans select-none mb-6">
+              <div className="bg-[#DC2626] text-white font-extrabold text-[26px] px-8 py-2 rounded-full inline-block self-start font-sans select-none mb-6">
                 不买的人
               </div>
               <h3 className="text-[56px] leading-[66px] font-bold text-white font-['MiSans']">

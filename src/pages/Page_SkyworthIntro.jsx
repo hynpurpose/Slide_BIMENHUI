@@ -31,11 +31,21 @@ export default function Page_SkyworthIntro() {
             </div>
           </div>
           {/* Browser content area containing the full chart (White background) */}
-          <div className="flex-grow w-full bg-white flex items-center justify-center overflow-hidden">
+          <div className="flex-grow w-full bg-white flex items-center justify-center overflow-hidden relative">
             <img
               src="/images/stagnant_marketing_chart.png"
               alt="提及率瓶颈趋势"
               className="w-full h-full object-contain"
+            />
+            {/* Amber Focus Box */}
+            <div 
+              className="absolute border-[3px] border-amber-500 rounded-lg z-30 pointer-events-none shadow-[0_0_15px_rgba(245,158,11,0.4)]"
+              style={{
+                left: '56px',
+                top: '222px',
+                width: '552px',
+                height: '445px'
+              }}
             />
           </div>
         </div>
@@ -67,6 +77,24 @@ export default function Page_SkyworthIntro() {
             提及率做到 <span className="text-white font-bold">60% 左右</span> 之后，就怎么都上不去了。后面继续加内容、加资源，数据不但没有明显提升，甚至一段时间后还下滑了。
           </p>
         </div>
+
+        {/* SVG Connector Line from Amber Box to Right H3 */}
+        <svg className="absolute inset-0 z-20 pointer-events-none" style={{ width: '1840px', height: '795px' }}>
+          {/* Amber Connector Line */}
+          <path
+            d="M 608 519 C 800 519, 1000 365, 1255 365"
+            stroke="#F59E0B"
+            strokeWidth="3"
+            fill="none"
+            strokeDasharray="6 4"
+            className="opacity-90"
+          />
+          {/* Small Dot at start (on the amber box border) */}
+          <circle cx="608" cy="519" r="5" fill="#F59E0B" />
+          {/* Small Dot at end (pointing directly to H3) */}
+          <circle cx="1255" cy="365" r="5" fill="#F59E0B" />
+        </svg>
+
       </div>
     </SlideLayout>
   );

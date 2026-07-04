@@ -35,6 +35,11 @@ import Page_HumanAiRatioApproach from '../pages/Page_HumanAiRatioApproach';
 import Page_ContentQualityValue from '../pages/Page_ContentQualityValue';
 import Page_SkyworthContentDirection from '../pages/Page_SkyworthContentDirection';
 import Page_SkyworthQAArticleDemo from '../pages/Page_SkyworthQAArticleDemo';
+import Page_SkyworthContentStrategyDeconstruct from '../pages/Page_SkyworthContentStrategyDeconstruct';
+import Page_SkyworthTutorialDeconstruct from '../pages/Page_SkyworthTutorialDeconstruct';
+import Page_SkyworthTutorialDemo from '../pages/Page_SkyworthTutorialDemo';
+import Page_SkyworthWordOfMouthDeconstruct from '../pages/Page_SkyworthWordOfMouthDeconstruct';
+import Page_SkyworthWordOfMouthDemo from '../pages/Page_SkyworthWordOfMouthDemo';
 import Page_GeoContentPrinciples from '../pages/Page_GeoContentPrinciples';
 import Page_DeliveryShortTerm from '../pages/Page_DeliveryShortTerm';
 import Page_DeliveryLongTerm from '../pages/Page_DeliveryLongTerm';
@@ -125,7 +130,12 @@ export const slideConfig = [
 
   { type: 'section', title: '内容标准' },
   { type: 'page', title: 'GEO内容编写原则', component: Page_GeoContentPrinciples, hideHeader: true },
+  { type: 'page', title: '评测类爆款文章逆向拆解', component: Page_SkyworthContentStrategyDeconstruct, hideHeader: true },
   { type: 'page', title: '评测类文章示意', component: Page_SkyworthQAArticleDemo, hideHeader: true },
+  { type: 'page', title: '场景教程类文章逆向拆解', component: Page_SkyworthTutorialDeconstruct, hideHeader: true },
+  { type: 'page', title: '场景教程类文章示意', component: Page_SkyworthTutorialDemo, hideHeader: true },
+  { type: 'page', title: '用户口碑类文章逆向拆解', component: Page_SkyworthWordOfMouthDeconstruct, hideHeader: true },
+  { type: 'page', title: '用户口碑类文章示意', component: Page_SkyworthWordOfMouthDemo, hideHeader: true },
 
   // ══════════════════════════════════════════════════════════
   // ——— 六、投放策略 ———
