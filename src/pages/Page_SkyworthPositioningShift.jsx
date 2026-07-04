@@ -341,16 +341,22 @@ export function Page_SkyworthPositioningShift_D() {
             <span className="w-2.5 h-2.5 rounded-full bg-rose-400" />
             <span className="text-rose-300 text-[20px] font-bold font-['MiSans']">旧打法 · 逆向自证</span>
           </div>
-          <div className="p-10 flex flex-col flex-1 justify-center">
-            <div className="text-[44px] font-black text-rose-200 tracking-wide mb-6 font-['MiSans']">
+          <div className="p-9 flex flex-col flex-1 justify-center">
+            <div className="text-[42px] font-black text-rose-200 tracking-wide mb-5 font-['MiSans']">
               试图证明“不贵”
             </div>
-            <div className="flex flex-col gap-5">
-              {OLD_PARAS.map((t, i) => (
-                <p key={i} className="text-[23px] text-rose-100/70 leading-[1.6] font-medium font-['MiSans'] text-pretty">
-                  {t}
-                </p>
-              ))}
+            {/* 实际文案示例：单独标记为一段引用 */}
+            <div className="relative rounded-2xl border border-rose-500/25 bg-rose-950/20 pl-14 pr-7 pt-9 pb-6 backdrop-blur-sm shadow-inner">
+              <span className="absolute left-5 top-6 bottom-6 w-[3px] rounded-full bg-rose-500/40" />
+              <span className="absolute -top-3.5 left-9 px-3 py-1 rounded-full bg-rose-500/25 border border-rose-400/40 text-rose-100 text-[15px] font-bold tracking-wide font-['MiSans']">实际文案示例</span>
+              <span className="absolute top-1 left-8 text-[64px] font-serif leading-none select-none text-rose-500/25 pointer-events-none">“</span>
+              <div className="flex flex-col gap-4">
+                {OLD_PARAS.map((t, i) => (
+                  <p key={i} className="text-[22px] text-rose-100/75 leading-[1.6] font-medium font-['MiSans'] text-pretty">
+                    {t}
+                  </p>
+                ))}
+              </div>
             </div>
           </div>
         </div>
@@ -373,16 +379,22 @@ export function Page_SkyworthPositioningShift_D() {
             <span className="w-2.5 h-2.5 rounded-full bg-[#5B8CFF]" />
             <span className="text-blue-200 text-[20px] font-bold font-['MiSans']">新打法 · 坦诚解构</span>
           </div>
-          <div className="p-10 flex flex-col flex-1 justify-center">
-            <div className="text-[44px] font-black text-white tracking-wide mb-6 font-['MiSans']">
+          <div className="p-9 flex flex-col flex-1 justify-center">
+            <div className="text-[42px] font-black text-white tracking-wide mb-5 font-['MiSans']">
               直接承认“小贵”
             </div>
-            <div className="flex flex-col gap-5">
-              {NEW_PARAS.map((t, i) => (
-                <p key={i} className="text-[23px] text-blue-50/90 leading-[1.6] font-semibold font-['MiSans'] text-pretty">
-                  {t}
-                </p>
-              ))}
+            {/* 实际文案示例：单独标记为一段引用 */}
+            <div className="relative rounded-2xl border border-blue-500/30 bg-blue-950/30 pl-14 pr-7 pt-9 pb-6 backdrop-blur-sm shadow-[0_0_30px_rgba(0,76,229,0.06)]">
+              <span className="absolute left-5 top-6 bottom-6 w-[3px] rounded-full bg-[#2E6BFF]/60" />
+              <span className="absolute -top-3.5 left-9 px-3 py-1 rounded-full bg-blue-500/25 border border-blue-400/50 text-blue-100 text-[15px] font-bold tracking-wide font-['MiSans']">实际文案示例</span>
+              <span className="absolute top-1 left-8 text-[64px] font-serif leading-none select-none text-blue-500/30 pointer-events-none">“</span>
+              <div className="flex flex-col gap-4">
+                {NEW_PARAS.map((t, i) => (
+                  <p key={i} className="text-[22px] text-blue-50/90 leading-[1.6] font-medium font-['MiSans'] text-pretty">
+                    {t}
+                  </p>
+                ))}
+              </div>
             </div>
           </div>
         </div>
