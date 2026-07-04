@@ -1,5 +1,6 @@
 import Page_SkyworthConsumerPerspective from '../pages/Page_SkyworthConsumerPerspective';
 import Page_SkyworthIntro from '../pages/Page_SkyworthIntro';
+import Page_SkyworthMentalInertia from '../pages/Page_SkyworthMentalInertia';
 import Page_SkyworthDecisionAnalysis from '../pages/Page_SkyworthDecisionAnalysis';
 import Page_SkyworthPositioningShift from '../pages/Page_SkyworthPositioningShift';
 import Page_SkyworthBrandResearch from '../pages/Page_SkyworthBrandResearch';
@@ -76,17 +77,18 @@ export const slideConfig = [
   // ══════════════════════════════════════════════════════════
   { type: 'chapter', title: '消费者视角的\nAI品牌定位', subtitle: 'AI BRAND POSITIONING', backgroundImage: '' },
 
-  { type: 'section', title: '产品信息调研' },
-  { type: 'page', title: '从消费者视角重新定位', component: Page_SkyworthConsumerPerspective, hideHeader: true },
+  { type: 'section', title: '为什么要做' },
+  { type: 'page', title: '消费者视角下的AI品牌定位', component: Page_SkyworthConsumerPerspective, hideHeader: true },
   { type: 'page', title: '没做品牌调研的“坑”', component: Page_SkyworthIntro, hideHeader: true },
+  { type: 'page', title: '一个思维惯性的误区', component: Page_SkyworthMentalInertia, hideHeader: true },
   { type: 'page', title: '创维壁纸电视用户决策分析', component: Page_SkyworthDecisionAnalysis, hideHeader: true },
   { type: 'page', title: '策略转变', component: Page_SkyworthPositioningShift, hideHeader: true },
 
-  { type: 'section', title: '我们的方式' },
+  { type: 'section', title: '我们怎么做' },
   { type: 'page', title: '我们怎么调研品牌', component: Page_SkyworthBrandResearch, hideHeader: true },
   { type: 'page', title: '「大众真评」Agent', component: Page_SkyworthDazhongZhenping, hideHeader: true },
 
-  { type: 'section', title: '核心结论' },
+  { type: 'section', title: '定位结论' },
   { type: 'page', title: '品牌调研报告核心结论', component: Page_SkyworthResearchConclusions, hideHeader: true },
   { type: 'page', title: '壁纸电视 VS 常规电视', component: Page_WallpaperVsConventional, hideHeader: true },
   { type: 'page', title: '创维壁纸电视 VS 竞品壁纸电视', component: Page_SkyworthVsCompetitor, hideHeader: true },
