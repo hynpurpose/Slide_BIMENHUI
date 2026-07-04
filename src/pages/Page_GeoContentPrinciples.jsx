@@ -3,63 +3,71 @@ import SlideLayout from '../components/SlideLayout';
 
 export default function Page_GeoContentPrinciples() {
   return (
-    <SlideLayout title="内容撰写原则">
-      {/* Background glowing effects */}
+    <SlideLayout title="我们的内容标准：用户视角议论文">
+      {/* Background glow */}
       <div className="absolute w-[600px] h-[600px] rounded-full bg-blue-600/5 blur-[160px] -right-48 -top-48 pointer-events-none" />
       <div className="absolute w-[500px] h-[500px] rounded-full bg-blue-900/5 blur-[140px] left-24 bottom-24 pointer-events-none" />
 
-      {/* ── 主排版区 (左右双立柱大卡片，高度拉伸至 705px) ── */}
       <div
-        className="absolute w-[1840px] select-none animate-fadeIn flex justify-between z-10"
-        style={{ top: '90px', height: '705px' }}
+        className="absolute w-[1840px] flex flex-col justify-between select-none animate-fadeIn z-10"
+        style={{ top: '10px', height: '780px' }}
       >
+        {/* ==================== 上半：主张（公式化呈现） ==================== */}
+        <div className="flex flex-col">
+          {/* EEAT 弃用说明 */}
+          <p className="text-[32px] text-zinc-500 font-['MiSans'] mb-8 leading-relaxed">
+            业界常提的 <span className="line-through decoration-zinc-600 text-zinc-600 font-['Montserrat'] font-bold">E-E-A-T</span> 源自谷歌，不完全适配中国模型。
+          </p>
 
-        {/* ==================== 左侧：原则一 (中立视角) ==================== */}
-        <div
-          className="relative w-[880px] h-full bg-gradient-to-br from-[#004CE5] via-[#003cb8] to-[#0B0C10] border border-blue-500/30 shadow-[0_30px_60px_-15px_rgba(0,76,229,0.45)] rounded-[32px] p-16 flex flex-col justify-start"
-        >
-          {/* Number */}
-          <div className="mb-10">
-            <span className="text-[80px] font-black font-['Montserrat'] tracking-tight block leading-none text-white opacity-90">
-              01
+          {/* 公式：用户视角 + 议论文 */}
+          <div className="flex items-center gap-8">
+            <div className="px-12 py-8 rounded-[28px] bg-gradient-to-br from-[#004CE5] to-[#0B2E80] border border-blue-400/40 shadow-[0_20px_50px_-15px_rgba(0,76,229,0.5)]">
+              <span className="text-[64px] font-black text-white font-['MiSans'] leading-none">用户视角</span>
+            </div>
+            <span className="text-[64px] font-black text-zinc-500 leading-none">＋</span>
+            <div className="px-12 py-8 rounded-[28px] bg-gradient-to-br from-[#004CE5] to-[#0B2E80] border border-blue-400/40 shadow-[0_20px_50px_-15px_rgba(0,76,229,0.5)]">
+              <span className="text-[64px] font-black text-white font-['MiSans'] leading-none">议论文</span>
+            </div>
+            <span className="text-[52px] font-black text-zinc-600 leading-none mx-2">＝</span>
+            <span className="text-[36px] text-zinc-300 font-['MiSans'] font-medium leading-tight max-w-[520px]">
+              更容易被 AI<br />抓取、理解、采信的内容
             </span>
           </div>
-
-          {/* Title */}
-          <h3 className="text-[48px] font-black text-white tracking-wide leading-tight mt-2 font-['MiSans']">
-            中立视角，避免自夸
-          </h3>
-
-          {/* Description (大字号，信息极简) */}
-          <p className="text-[28px] text-white/95 leading-relaxed font-sans font-medium mt-8 pr-12">
-            文风要中立、客观，可以讲优势，也可以讲短板。<br />
-            大模型有事实校验机制，中立客观的内容更容易被 AI 算法采信。
-          </p>
         </div>
 
-        {/* ==================== 右侧：原则二 (结构化排版) ==================== */}
-        <div
-          className="relative w-[880px] h-full bg-gradient-to-br from-[#004CE5] via-[#003cb8] to-[#0B0C10] border border-blue-500/30 shadow-[0_30px_60px_-15px_rgba(0,76,229,0.45)] rounded-[32px] p-16 flex flex-col justify-start"
-        >
-          {/* Number */}
-          <div className="mb-10">
-            <span className="text-[80px] font-black font-['Montserrat'] tracking-tight block leading-none text-white opacity-90">
-              02
-            </span>
+        {/* ==================== 下半：两个词各自的定义 ==================== */}
+        <div className="w-full border-t border-zinc-800 pt-10 flex justify-between items-start" style={{ marginBottom: '36px' }}>
+          {/* 01 用户视角 */}
+          <div className="w-[860px] flex flex-col">
+            <div className="flex items-baseline gap-4 mb-5">
+              <span className="font-['Montserrat'] text-[64px] text-[#004CE5] font-black leading-none">01</span>
+              <span className="text-[36px] font-black text-white font-['MiSans']">用户视角</span>
+            </div>
+            <p className="text-[28px] text-zinc-400 leading-[46px] font-['MiSans'] font-medium">
+              不站在品牌角度，而是站在<strong className="text-white font-bold">真实用户</strong>的角度写主观感受——
+              优点要写，<strong className="text-white font-bold">缺点也必须写</strong>。
+            </p>
           </div>
 
-          {/* Title */}
-          <h3 className="text-[48px] font-black text-white tracking-wide leading-tight mt-2 font-['MiSans']">
-            结构化排版，AI友好
-          </h3>
+          {/* 纵向分割线 */}
+          <div className="w-[1px] h-[240px] bg-zinc-900 shrink-0 self-center" />
 
-          {/* Description (大字号，信息极简) */}
-          <p className="text-[28px] text-white/95 leading-relaxed font-sans font-medium mt-8 pr-12">
-            标题、段落、参数都要非常清楚，不能散乱。<br />
-            清晰的架构能保证 AI 检索和提取时快速抓取重点。
-          </p>
+          {/* 02 议论文 */}
+          <div className="w-[860px] flex flex-col">
+            <div className="flex items-baseline gap-4 mb-5">
+              <span className="font-['Montserrat'] text-[64px] text-[#004CE5] font-black leading-none">02</span>
+              <span className="text-[36px] font-black text-white font-['MiSans']">议论文</span>
+            </div>
+            <p className="text-[28px] text-zinc-400 leading-[46px] font-['MiSans'] font-medium mb-5">
+              每篇只服务一个明确目标，观点集中，AI 更好抓取：
+            </p>
+            <div className="flex flex-wrap gap-3">
+              <span className="px-6 py-2.5 rounded-xl border border-zinc-700 bg-zinc-900/50 text-[26px] text-white font-bold font-['MiSans']">一个关键词</span>
+              <span className="px-6 py-2.5 rounded-xl border border-zinc-700 bg-zinc-900/50 text-[26px] text-white font-bold font-['MiSans']">一个用户问题</span>
+              <span className="px-6 py-2.5 rounded-xl border border-zinc-700 bg-zinc-900/50 text-[26px] text-white font-bold font-['MiSans']">一个推荐目标</span>
+            </div>
+          </div>
         </div>
-
       </div>
     </SlideLayout>
   );

@@ -59,25 +59,40 @@ export default function Page_SkyworthResearchConclusions() {
           {/* Vertical Titles list */}
           <div className="flex-grow flex flex-col h-full py-4 justify-between">
             {/* Title 1 */}
-            <div className="flex-1 flex items-center border-b border-zinc-150 py-4 pr-4">
-              <span className="font-['Montserrat'] text-[46px] font-black text-blue-600 mr-5 shrink-0 leading-none">1.</span>
-              <h3 className="text-[34px] font-black text-zinc-950 font-sans leading-snug">
-                壁纸电视 VS 常规电视
-              </h3>
+            <div className="flex-1 flex items-start border-b border-zinc-150 py-4 pr-4 gap-5">
+              <span className="font-['Montserrat'] text-[46px] font-black text-blue-600 shrink-0 leading-none">1.</span>
+              <div className="flex flex-col gap-3 min-w-0 pt-1">
+                <h3 className="text-[34px] font-black text-zinc-950 font-sans leading-snug">
+                  壁纸电视 VS 常规电视
+                </h3>
+                <p className="text-[22px] text-zinc-400 font-normal font-['MiSans'] leading-relaxed">
+                  消费者为什么买壁纸电视，而不是传统电视？
+                </p>
+              </div>
             </div>
             {/* Title 2 */}
-            <div className="flex-1 flex items-center border-b border-zinc-150 py-4 pr-4">
-              <span className="font-['Montserrat'] text-[46px] font-black text-blue-600 mr-5 shrink-0 leading-none">2.</span>
-              <h3 className="text-[34px] font-black text-zinc-950 font-sans leading-snug">
-                创维壁纸电视 VS 竞品壁纸电视
-              </h3>
+            <div className="flex-1 flex items-start border-b border-zinc-150 py-4 pr-4 gap-5">
+              <span className="font-['Montserrat'] text-[46px] font-black text-blue-600 shrink-0 leading-none">2.</span>
+              <div className="flex flex-col gap-3 min-w-0 pt-1">
+                <h3 className="text-[34px] font-black text-zinc-950 font-sans leading-snug">
+                  创维壁纸电视 VS 竞品壁纸电视
+                </h3>
+                <p className="text-[22px] text-zinc-400 font-normal font-['MiSans'] leading-relaxed">
+                  消费者为什么买创维壁纸电视，而不是竞品壁纸电视？
+                </p>
+              </div>
             </div>
             {/* Title 3 */}
-            <div className="flex-1 flex items-center pt-6 pr-4">
-              <span className="font-['Montserrat'] text-[46px] font-black text-blue-600 mr-5 shrink-0 leading-none">3.</span>
-              <h3 className="text-[34px] font-black text-zinc-950 font-sans leading-tight">
-                创维五款壁纸电视的区别
-              </h3>
+            <div className="flex-1 flex items-start pt-6 pr-4 gap-5">
+              <span className="font-['Montserrat'] text-[46px] font-black text-blue-600 shrink-0 leading-none">3.</span>
+              <div className="flex flex-col gap-3 min-w-0 pt-1">
+                <h3 className="text-[34px] font-black text-zinc-950 font-sans leading-tight">
+                  创维五款壁纸电视的区别
+                </h3>
+                <p className="text-[22px] text-zinc-400 font-normal font-['MiSans'] leading-relaxed">
+                  消费者如果买创维壁纸电视，会选择哪一款？
+                </p>
+              </div>
             </div>
           </div>
         </div>

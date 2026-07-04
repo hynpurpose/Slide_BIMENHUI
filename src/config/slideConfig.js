@@ -1,11 +1,15 @@
+import Page_SkyworthConsumerPerspective from '../pages/Page_SkyworthConsumerPerspective';
 import Page_SkyworthIntro from '../pages/Page_SkyworthIntro';
 import Page_SkyworthDecisionAnalysis from '../pages/Page_SkyworthDecisionAnalysis';
 import Page_SkyworthPositioningShift from '../pages/Page_SkyworthPositioningShift';
 import Page_SkyworthBrandResearch from '../pages/Page_SkyworthBrandResearch';
+import Page_SkyworthDazhongZhenping from '../pages/Page_SkyworthDazhongZhenping';
 import Page_SkyworthResearchConclusions from '../pages/Page_SkyworthResearchConclusions';
 import Page_WallpaperVsConventional from '../pages/Page_WallpaperVsConventional';
 import Page_SkyworthVsCompetitor from '../pages/Page_SkyworthVsCompetitor';
 import Page_SkyworthFiveModels from '../pages/Page_SkyworthFiveModels';
+import Page_SkyworthKeywordWhySplit from '../pages/Page_SkyworthKeywordWhySplit';
+import Page_SkyworthKeywordOptTwoTypes from '../pages/Page_SkyworthKeywordOptTwoTypes';
 import Page_SkyworthKeywordLogic from '../pages/Page_SkyworthKeywordLogic';
 import Page_GEOWordSelectionOther from '../pages/Page_GEOWordSelectionOther';
 import Page_GEOWordSelectionOther2 from '../pages/Page_GEOWordSelectionOther2';
@@ -73,13 +77,14 @@ export const slideConfig = [
   { type: 'chapter', title: '消费者视角的\nAI品牌定位', subtitle: 'AI BRAND POSITIONING', backgroundImage: '' },
 
   { type: 'section', title: '产品信息调研' },
+  { type: 'page', title: '从消费者视角重新定位', component: Page_SkyworthConsumerPerspective, hideHeader: true },
   { type: 'page', title: '没做品牌调研的“坑”', component: Page_SkyworthIntro, hideHeader: true },
   { type: 'page', title: '创维壁纸电视用户决策分析', component: Page_SkyworthDecisionAnalysis, hideHeader: true },
   { type: 'page', title: '策略转变', component: Page_SkyworthPositioningShift, hideHeader: true },
 
   { type: 'section', title: '我们的方式' },
   { type: 'page', title: '我们怎么调研品牌', component: Page_SkyworthBrandResearch, hideHeader: true },
-
+  { type: 'page', title: '「大众真评」Agent', component: Page_SkyworthDazhongZhenping, hideHeader: true },
 
   { type: 'section', title: '核心结论' },
   { type: 'page', title: '品牌调研报告核心结论', component: Page_SkyworthResearchConclusions, hideHeader: true },
@@ -93,6 +98,8 @@ export const slideConfig = [
   { type: 'chapter', title: '关键词体系策略', subtitle: 'KEYWORDS SYSTEM STRATEGY', backgroundImage: '' },
 
   { type: 'section', title: '词条分类逻辑' },
+  { type: 'page', title: '监测词与优化词', component: Page_SkyworthKeywordWhySplit, hideHeader: true },
+  { type: 'page', title: '优化词的两类', component: Page_SkyworthKeywordOptTwoTypes, hideHeader: true },
   { type: 'page', title: '我们的词条分类逻辑', component: Page_SkyworthKeywordLogic, hideHeader: true },
 
   { type: 'section', title: '如何选词条' },
@@ -141,9 +148,8 @@ export const slideConfig = [
   // ——— 六、投放策略 ———
   // ══════════════════════════════════════════════════════════
   { type: 'chapter', title: '投放策略', subtitle: 'DELIVERY STRATEGY', backgroundImage: '' },
-  { type: 'section', title: '短期投放逻辑' },
-  { type: 'page', title: '短期投放', component: Page_DeliveryShortTerm, hideHeader: true },
-  { type: 'section', title: '长期投放逻辑' },
+
+  { type: 'section', title: '投放原则' },
   { type: 'page', title: '长期投放', component: Page_DeliveryLongTerm, hideHeader: true },
   { type: 'page', title: '精准高权重账号', component: Page_DeliveryHighWeight, hideHeader: true },
   { type: 'page', title: '有潜力的垂直社区', component: Page_PotentialVerticalCommunity, hideHeader: true },

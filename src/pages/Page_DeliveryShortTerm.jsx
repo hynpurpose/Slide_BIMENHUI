@@ -3,7 +3,7 @@ import SlideLayout from '../components/SlideLayout';
 
 export default function Page_DeliveryShortTerm() {
   return (
-    <SlideLayout title="短期投放">
+    <SlideLayout title="投放逻辑">
       {/* ── 背景竖向蓝色发光光柱 (致敬参考图片背景) ── */}
       {/* 左侧竖线群 */}
       <div className="absolute left-0 top-0 bottom-0 w-[300px] flex justify-between pointer-events-none opacity-25 z-0">

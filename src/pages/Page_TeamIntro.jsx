@@ -77,10 +77,10 @@ export default function Page_TeamIntro() {
           return (
             <div
               key={idx}
-              className={`flex items-stretch h-full w-full group cursor-default transition-all ${borderClasses}`}
+              className={`flex items-center h-full w-full group cursor-default transition-all px-8 py-7 gap-7 ${borderClasses}`}
             >
-              {/* Left Column: Portrait Image (上下顶格，w-[240px]) */}
-              <div className="w-[240px] h-full shrink-0 bg-zinc-900 border-r border-white/15 overflow-hidden relative shadow-md">
+              {/* Left: Portrait (小尺寸、直角、垂直居中) */}
+              <div className="w-[150px] h-[200px] shrink-0 bg-zinc-900 overflow-hidden relative shadow-md">
                 <img
                   src={`/team/${member.id}.jpg`}
                   alt={member.name}
@@ -98,9 +98,9 @@ export default function Page_TeamIntro() {
                 </div>
               </div>
 
-              {/* Right Column: Text Content (加内边距，垂直居中) */}
-              <div className="flex-1 flex flex-col justify-center px-8 py-6 min-w-0">
-                {/* Name & Role (字号进一步放大) */}
+              {/* Right: Text Content */}
+              <div className="flex-1 flex flex-col justify-center min-w-0">
+                {/* Name & Role */}
                 <div className="flex items-baseline mb-3">
                   <span className="text-[36px] font-black text-white font-['MiSans'] tracking-wide">
                     {member.name}
@@ -110,7 +110,7 @@ export default function Page_TeamIntro() {
                   </span>
                 </div>
 
-                {/* Description Body (字号缩减至 22px) */}
+                {/* Description Body */}
                 <p className="text-zinc-400 text-[22px] leading-relaxed font-sans font-medium text-justify">
                   {member.desc}
                 </p>
