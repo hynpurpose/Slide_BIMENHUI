@@ -117,9 +117,9 @@ export default function Page_SkyworthIntro() {
             {/* 数值标签 */}
             <div
               className="absolute -translate-x-1/2 whitespace-nowrap px-2 py-[2px] rounded-md bg-white border border-[#4285F4]/50 shadow-[0_2px_6px_rgba(0,0,0,0.18)]"
-              style={{ top: '-32px' }}
+              style={{ top: '-24px' }}
             >
-              <span className="text-[16px] font-bold text-[#1a73e8] font-['Montserrat']">{p.v}</span>
+              <span className="text-[14px] font-bold text-[#1a73e8] font-['Montserrat']">{p.v}</span>
             </div>
           </div>
         ))}
