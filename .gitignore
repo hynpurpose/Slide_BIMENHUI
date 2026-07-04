@@ -22,5 +22,5 @@ npm-debug.log*
 .DS_Store
 
 # Presentation files
-Presentation_2026.pptx
+*.pptx
 

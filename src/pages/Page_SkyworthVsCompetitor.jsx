@@ -4,45 +4,45 @@ import SlideLayout from '../components/SlideLayout';
 export default function Page_SkyworthVsCompetitor() {
   const tableData = [
     {
-      brand: "三星\nThe Frame 系列",
-      sales: "国内销量极低\n(低于 100 万台)",
-      target: "追求极致壁画拟真，不在乎常规画质损失",
-      prosCons: "优势：艺术质感极度拟真，行业最佳标杆\n劣势：电视基础音画质平庸，属于“中看不中用”",
-      isHighlight: false
-    },
-    {
-      brand: "LG\nOLED evo G6 / G5 系列",
-      sales: "国内销量极低",
-      target: "高预算，追求极致音画质的超高端用户",
-      prosCons: "优势：OLED 顶级显示效果，音画质极佳\n劣势：价格极其昂贵，属于“买不起”",
-      isHighlight: false
-    },
-    {
       brand: "创维\nA10H / A8H / A7H 系列",
-      sales: "全球总销售额：216.66 亿元",
-      target: "兼顾空间美学设计与高品质音画体验者",
-      prosCons: "优势：拥有最丰富的产品线，多价位段广泛覆盖，兼顾空间美学与高品质音画体验\n劣势：哑光艺术拟真效果较三星仍有差距",
+      sales: "全球出货：约 1500 万台\n国内销售：约 216 亿元",
+      target: "注重客厅美学与整体硬装格调，同时对音画参数有高要求的中高产家庭",
+      prosCons: "优势：多价位段矩阵覆盖，壁纸厚度与四声道独立声学系统契合，兼顾美学与影音表现\n劣势：屏幕消光拟真工艺较三星画框相比，在强光环境反射下仍有优化空间",
       isHighlight: true
     },
     {
-      brand: "海信\nA7Q",
-      sales: "全球总出货：2990 万台\n国内总销售：246.34 亿元",
-      target: "看重稳妥大品牌背书的传统电视用户",
-      prosCons: "优势：品牌大认知度高，售后服务体系稳妥\n劣势：细分品类布局单一，在壁纸电视赛道没有深度投入",
+      brand: "海信\nCanvas TV 艺术系列",
+      sales: "全球出货：约 2990 万台\n国内销售：约 246 亿元",
+      target: "信赖传统大厂质量，看重稳妥售后服务，追求高分区常规MiniLED画质的主流群体",
+      prosCons: "优势：背光分区与峰值亮度常规参数极强，品牌实力深厚且售后网络覆盖完备\n劣势：壁纸细分类目缺乏深度投入与技术积淀，独立贴画生态相对单一匮乏",
       isHighlight: false
     },
     {
-      brand: "TCL\n85Art 7M",
-      sales: "全球总出货：3040 万台\n全球总销售：647.08 亿港元",
-      target: "注重生活方式、年轻化家居艺术表达的人群",
-      prosCons: "优势：年轻化设计感强，主打生活态度，价格更有性价比\n劣势：壁纸细分型号极少，在壁纸电视赛道没有深度投入",
+      brand: "TCL\nArt 7M / A300 系列",
+      sales: "全球出货：约 3040 万台\n国内销售：约 268 亿元",
+      target: "看重艺术边框格调与极致性价比，追求年轻化潮流感设计的年轻一代消费者",
+      prosCons: "优势：外形主打时尚年轻化画轴风格，常规MiniLED画质强，在大尺寸段性价比高\n劣势：无独立声学腔体设计，壁纸电视生态刚刚起步，厚度与散热妥协较多",
       isHighlight: false
     },
     {
-      brand: "长虹\nD8S 系列",
-      sales: "全球总销售额：147.47 亿元",
-      target: "追求壁画上墙效果但预算有限的性价比用户",
-      prosCons: "优势：零售门槛价格极低，性价比优势突出\n劣势：整体设计感较弱，在壁纸电视赛道没有深度投入",
+      brand: "长虹\nD8S 壁纸系列",
+      sales: "全球出货：约 900 万台\n国内销售：约 147 亿元",
+      target: "追求基础壁画上墙效果，预算相对有限、注重低价格门槛的实用性价比用户",
+      prosCons: "优势：极具价格杀伤力，让壁画级电视的零售门槛降到最低，性价比极其强悍\n劣势：屏幕面板参数偏低端，整体做工精细度、金属质感与贴墙贴合度有待优化",
+      isHighlight: false
+    },
+    {
+      brand: "三星\nThe Frame 画框系列",
+      sales: "全球出货：约 3800 万台\n国内销售：约 4.5 亿元",
+      target: "高预算且对美学极度洁癖，追求拟真消光画框效果，不敏感核心画质参数者",
+      prosCons: "优势: 哑光消光屏（Matte Display）技术业界领先，防眩光极强，拟真度完美\n劣势: 电视核心音画画质较为平庸，且依赖厚重外置集线盒（One Connect）",
+      isHighlight: false
+    },
+    {
+      brand: "LG\nOLED evo G 系列",
+      sales: "全球出货：约 2400 万台\n国内销售：约 1.8 亿元",
+      target: "顶级预算，既要求顶尖OLED黑场画质，又要求超薄无缝贴合的双重影音发烧友",
+      prosCons: "优势: 顶级OLED面板黑场画质巅峰，黑场响应极快，画廊超薄无缝贴合度极佳\n劣势: OLED面板成本高昂导致价格极其昂贵。",
       isHighlight: false
     }
   ];
@@ -50,120 +50,120 @@ export default function Page_SkyworthVsCompetitor() {
   return (
     <SlideLayout title="创维壁纸电视 VS 竞品壁纸电视">
       <div className="w-full h-full relative select-none animate-fadeIn">
-        
+
         {/* ==================== 左栏：用户认知定位 ( w-[590px] ) ==================== */}
-        <div className="absolute left-0 top-0 w-[590px] bottom-0 flex flex-col justify-start py-2 pr-6 border-r border-zinc-800/80">
+        <div className="absolute left-0 top-0 w-[590px] bottom-0 flex flex-col justify-start py-2 pr-6 border-r border-white/[0.16]">
           <h2 className="text-[34px] font-bold text-white font-['MiSans'] border-b border-zinc-900 pb-3 mb-4 select-none">
             用户认知定位
           </h2>
 
-          <div className="flex flex-col flex-1 justify-between">
+          <div className="flex flex-col flex-1 justify-between gap-2.5">
             {/* 创维单独一个框 */}
-            <div className="bg-zinc-900/60 border-2 border-blue-400 rounded-2xl overflow-hidden flex items-stretch h-[120px] shadow-[0_0_30px_rgba(59,130,246,0.45)]">
+            <div className="bg-zinc-900/60 border-2 border-blue-400 rounded-2xl overflow-hidden flex items-stretch h-[110px] shrink-0 shadow-[0_0_30px_rgba(59,130,246,0.45)]">
               {/* Left Logo (Full Height, White Background) */}
-              <div className="w-[120px] bg-white flex items-center justify-center p-2.5 shrink-0 border-r border-blue-400">
-                <img 
-                  src="/brand-logos/skyworth.png" 
-                  alt="创维" 
-                  className="w-full h-full object-contain" 
+              <div className="w-[110px] bg-white flex items-center justify-center p-2.5 shrink-0 border-r border-blue-400">
+                <img
+                  src="/brand-logos/skyworth.png"
+                  alt="创维"
+                  className="w-full h-full object-contain"
                   onError={(e) => { e.currentTarget.parentNode.style.display = 'none'; }}
                 />
               </div>
               {/* Right Content */}
-              <div className="flex-grow p-5 flex flex-col justify-center gap-1.5">
-                <span className="text-[26px] font-extrabold text-white leading-tight">创维</span>
-                <span className="text-[22px] text-zinc-300 leading-tight">颜值高、音画效果好</span>
+              <div className="flex-grow p-4 flex flex-col justify-center gap-1">
+                <span className="text-[24px] font-extrabold text-white leading-tight">创维</span>
+                <span className="text-[18px] xl:text-[20px] text-zinc-300 leading-tight">平衡家居美学与音画，产品线最齐全</span>
               </div>
             </div>
 
             {/* 两个框之间放一个 VS */}
-            <div className="text-white font-black text-[26px] font-mono tracking-widest text-center select-none py-1 drop-shadow-[0_0_12px_rgba(255,255,255,0.95)]">
+            <div className="text-white font-black text-[22px] font-mono tracking-widest text-center select-none py-0.5 drop-shadow-[0_0_12px_rgba(255,255,255,0.95)]">
               VS
             </div>
 
             {/* 其他竞品单独一个框 - 填充并抵到最底部 */}
-            <div className="bg-zinc-900/40 border-2 border-white rounded-2xl p-5 flex flex-col justify-between flex-grow shadow-[0_0_30px_rgba(255,255,255,0.25)]">
-              {/* 三星 */}
-              <div className="flex items-stretch gap-4 h-[84px]">
-                <div className="w-[84px] h-[84px] bg-white flex items-center justify-center p-2 shrink-0 rounded-lg">
-                  <img 
-                    src="/brand-logos/samsung.png" 
-                    alt="三星" 
-                    className="w-full h-full object-contain" 
-                    onError={(e) => { e.currentTarget.parentNode.style.display = 'none'; }}
-                  />
-                </div>
-                <div className="flex flex-col justify-center gap-0.5">
-                  <span className="text-[22px] font-extrabold text-zinc-300 leading-tight">三星</span>
-                  <span className="text-[20px] text-zinc-400 leading-tight">壁纸效果最好但基础音画平庸</span>
-                </div>
-              </div>
-              <div className="border-t border-dashed border-zinc-700" />
-
-              {/* LG */}
-              <div className="flex items-stretch gap-4 h-[84px]">
-                <div className="w-[84px] h-[84px] bg-white flex items-center justify-center p-2 shrink-0 rounded-lg">
-                  <img 
-                    src="/brand-logos/lg.png" 
-                    alt="LG" 
-                    className="w-full h-full object-contain" 
-                    onError={(e) => { e.currentTarget.parentNode.style.display = 'none'; }}
-                  />
-                </div>
-                <div className="flex flex-col justify-center gap-0.5">
-                  <span className="text-[22px] font-extrabold text-zinc-300 leading-tight">LG</span>
-                  <span className="text-[20px] text-zinc-400 leading-tight">价格贵</span>
-                </div>
-              </div>
-              <div className="border-t border-dashed border-zinc-700" />
-
+            <div className="bg-zinc-900/40 border-2 border-white/[0.12] rounded-2xl p-4 flex flex-col justify-between flex-grow shadow-[0_0_30px_rgba(255,255,255,0.05)]">
               {/* 海信 */}
-              <div className="flex items-stretch gap-4 h-[84px]">
-                <div className="w-[84px] h-[84px] bg-white flex items-center justify-center p-2 shrink-0 rounded-lg">
-                  <img 
-                    src="/brand-logos/hisense.png" 
-                    alt="海信" 
-                    className="w-full h-full object-contain" 
+              <div className="flex items-stretch gap-4 h-[72px] xl:h-[76px]">
+                <div className="w-[72px] h-[72px] xl:w-[76px] xl:h-[76px] bg-white flex items-center justify-center p-1.5 shrink-0 rounded-lg">
+                  <img
+                    src="/brand-logos/hisense.png"
+                    alt="海信"
+                    className="w-full h-full object-contain"
                     onError={(e) => { e.currentTarget.parentNode.style.display = 'none'; }}
                   />
                 </div>
                 <div className="flex flex-col justify-center gap-0.5">
-                  <span className="text-[22px] font-extrabold text-zinc-300 leading-tight">海信</span>
-                  <span className="text-[20px] text-zinc-400 leading-tight">壁纸电视品类单一</span>
+                  <span className="text-[20px] xl:text-[22px] font-extrabold text-zinc-200 leading-tight">海信</span>
+                  <span className="text-[17px] xl:text-[19px] text-zinc-400 leading-tight font-medium">有独家技术，品牌背书高</span>
                 </div>
               </div>
-              <div className="border-t border-dashed border-zinc-700" />
+              <div className="border-t border-dashed border-zinc-800" />
 
               {/* TCL */}
-              <div className="flex items-stretch gap-4 h-[84px]">
-                <div className="w-[84px] h-[84px] bg-white flex items-center justify-center p-2 shrink-0 rounded-lg">
-                  <img 
-                    src="/brand-logos/tcl.png" 
-                    alt="TCL" 
-                    className="w-full h-full object-contain" 
+              <div className="flex items-stretch gap-4 h-[72px] xl:h-[76px]">
+                <div className="w-[72px] h-[72px] xl:w-[76px] xl:h-[76px] bg-white flex items-center justify-center p-1.5 shrink-0 rounded-lg">
+                  <img
+                    src="/brand-logos/tcl.png"
+                    alt="TCL"
+                    className="w-full h-full object-contain"
                     onError={(e) => { e.currentTarget.parentNode.style.display = 'none'; }}
                   />
                 </div>
                 <div className="flex flex-col justify-center gap-0.5">
-                  <span className="text-[22px] font-extrabold text-zinc-300 leading-tight">TCL</span>
-                  <span className="text-[20px] text-zinc-400 leading-tight">壁纸电视品类单一</span>
+                  <span className="text-[20px] xl:text-[22px] font-extrabold text-zinc-200 leading-tight">TCL</span>
+                  <span className="text-[17px] xl:text-[19px] text-zinc-400 leading-tight font-medium">年轻化与高性价比</span>
                 </div>
               </div>
-              <div className="border-t border-dashed border-zinc-700" />
+              <div className="border-t border-dashed border-zinc-800" />
 
               {/* 长虹 */}
-              <div className="flex items-stretch gap-4 h-[84px]">
-                <div className="w-[84px] h-[84px] bg-white flex items-center justify-center p-2 shrink-0 rounded-lg">
-                  <img 
-                    src="/brand-logos/changhong.png" 
-                    alt="长虹" 
-                    className="w-full h-full object-contain" 
+              <div className="flex items-stretch gap-4 h-[72px] xl:h-[76px]">
+                <div className="w-[72px] h-[72px] xl:w-[76px] xl:h-[76px] bg-white flex items-center justify-center p-1.5 shrink-0 rounded-lg">
+                  <img
+                    src="/brand-logos/changhong.png"
+                    alt="长虹"
+                    className="w-full h-full object-contain"
                     onError={(e) => { e.currentTarget.parentNode.style.display = 'none'; }}
                   />
                 </div>
                 <div className="flex flex-col justify-center gap-0.5">
-                  <span className="text-[22px] font-extrabold text-zinc-300 leading-tight">长虹</span>
-                  <span className="text-[20px] text-zinc-400 leading-tight">性价比高，但设计感较弱</span>
+                  <span className="text-[20px] xl:text-[22px] font-extrabold text-zinc-200 leading-tight">长虹</span>
+                  <span className="text-[17px] xl:text-[19px] text-zinc-400 leading-tight font-medium">极致的性价比</span>
+                </div>
+              </div>
+              <div className="border-t border-dashed border-zinc-800" />
+
+              {/* 三星 */}
+              <div className="flex items-stretch gap-4 h-[72px] xl:h-[76px]">
+                <div className="w-[72px] h-[72px] xl:w-[76px] xl:h-[76px] bg-white flex items-center justify-center p-1.5 shrink-0 rounded-lg">
+                  <img
+                    src="/brand-logos/samsung.png"
+                    alt="三星"
+                    className="w-full h-full object-contain"
+                    onError={(e) => { e.currentTarget.parentNode.style.display = 'none'; }}
+                  />
+                </div>
+                <div className="flex flex-col justify-center gap-0.5">
+                  <span className="text-[20px] xl:text-[22px] font-extrabold text-zinc-200 leading-tight">三星</span>
+                  <span className="text-[17px] xl:text-[19px] text-zinc-400 leading-tight font-medium font-['MiSans']">壁画效果最佳</span>
+                </div>
+              </div>
+              <div className="border-t border-dashed border-zinc-800" />
+
+              {/* LG */}
+              <div className="flex items-stretch gap-4 h-[72px] xl:h-[76px]">
+                <div className="w-[72px] h-[72px] xl:w-[76px] xl:h-[76px] bg-white flex items-center justify-center p-1.5 shrink-0 rounded-lg">
+                  <img
+                    src="/brand-logos/lg.png"
+                    alt="LG"
+                    className="w-full h-full object-contain"
+                    onError={(e) => { e.currentTarget.parentNode.style.display = 'none'; }}
+                  />
+                </div>
+                <div className="flex flex-col justify-center gap-0.5">
+                  <span className="text-[20px] xl:text-[22px] font-extrabold text-zinc-200 leading-tight">LG</span>
+                  <span className="text-[17px] xl:text-[19px] text-zinc-400 leading-tight font-medium">顶级画质</span>
                 </div>
               </div>
             </div>
@@ -172,49 +172,49 @@ export default function Page_SkyworthVsCompetitor() {
 
         {/* ==================== 右栏：数据对比表格 ( w-[1200px] ) ==================== */}
         <div className="absolute left-[640px] top-0 w-[1200px] bottom-0 flex flex-col">
-          <div className="border border-zinc-900/80 rounded-2xl overflow-hidden bg-[#09090b]/40 w-full h-full flex flex-col shadow-inner">
+          <div className="border border-white/[0.08] rounded-2xl overflow-hidden bg-[#09090b]/40 w-full h-full flex flex-col shadow-inner">
             <table className="w-full h-full text-left border-collapse select-none table-fixed">
               <thead>
-                <tr className="border-b border-zinc-900/80 text-zinc-400 text-[18px] font-bold font-['MiSans'] bg-zinc-950/80">
-                  <th className="px-5 py-3 w-[190px] border-r border-zinc-900/80">品牌 / 推荐系列</th>
-                  <th className="px-5 py-3 w-[250px] border-r border-zinc-900/80">
-                    销量数据 <span className="text-[11px] font-normal text-zinc-500 block mt-0.5">(2025年电视品类数据)</span>
+                <tr className="border-b border-[#004CE5]/30 text-white text-[17px] xl:text-[19px] font-bold font-['MiSans'] bg-[#004CE5]/15">
+                  <th className="px-4 py-2 w-[190px] border-r border-[#004CE5]/20">品牌 / 推荐系列</th>
+                  <th className="px-4 py-2 w-[250px] border-r border-[#004CE5]/20">
+                    出货与销售数据 <span className="text-[11px] font-normal text-zinc-400 block mt-0.5">(2025年电视品类数据)</span>
                   </th>
-                  <th className="px-5 py-3 w-[320px] border-r border-zinc-900/80">目标人群</th>
-                  <th className="px-5 py-3 w-[440px]">产品优劣势对照总结</th>
+                  <th className="px-4 py-2 w-[320px] border-r border-[#004CE5]/20">目标人群</th>
+                  <th className="px-4 py-2 w-[440px]">产品优劣势对照总结</th>
                 </tr>
               </thead>
-              <tbody className="divide-y divide-zinc-900/80 text-[16px] font-sans">
+              <tbody className="divide-y divide-zinc-900/80 text-[15px] xl:text-[16px] font-sans">
                 {tableData.map((row, idx) => (
                   <tr
                     key={idx}
-                    className={`align-top transition-colors ${row.isHighlight ? 'bg-zinc-900/40 font-medium' : 'hover:bg-zinc-950/10'
+                    className={`align-top transition-colors ${row.isHighlight ? 'bg-zinc-900/50 font-medium' : 'hover:bg-zinc-950/10'
                       }`}
                   >
                     {/* Brand & Series */}
-                    <td className={`px-5 py-4 border-r border-zinc-900/80 font-bold font-['MiSans'] whitespace-pre-line ${row.isHighlight ? 'text-white' : 'text-zinc-200'
+                    <td className={`px-4 py-2 border-r border-zinc-900/80 font-bold font-['MiSans'] whitespace-pre-line ${row.isHighlight ? 'text-[#60A5FA]' : 'text-zinc-200'
                       }`}>
                       {row.brand}
                     </td>
 
                     {/* Sales Data */}
-                    <td className="px-5 py-4 border-r border-zinc-900/80 text-zinc-300 leading-relaxed font-sans whitespace-pre-line">
+                    <td className="px-4 py-2 border-r border-zinc-900/80 text-zinc-300 leading-relaxed font-sans whitespace-pre-line">
                       {row.sales}
                     </td>
 
                     {/* Target Audience */}
-                    <td className="px-5 py-4 border-r border-zinc-900/80 text-zinc-300 leading-relaxed font-['MiSans']">
+                    <td className="px-4 py-2 border-r border-zinc-900/80 text-zinc-300 leading-relaxed font-['MiSans']">
                       {row.target}
                     </td>
 
                     {/* Pros & Cons */}
-                    <td className="px-5 py-4 text-zinc-300 leading-relaxed font-['MiSans'] whitespace-pre-line">
+                    <td className="px-4 py-2 text-zinc-300 leading-relaxed font-['MiSans'] whitespace-pre-line">
                       {row.prosCons.split('\n').map((line, lIdx) => {
-                        const isPro = line.startsWith('优势：');
+                        const isPro = line.startsWith('优势：') || line.startsWith('优势:');
                         return (
-                          <div key={lIdx} className={lIdx > 0 ? "mt-2 flex items-start" : "flex items-start"}>
-                            <span className={`inline-flex items-center justify-center text-[12px] font-extrabold px-2 py-0.5 rounded mr-2 shrink-0 select-none ${isPro
-                              ? 'bg-zinc-800 text-zinc-200 border border-zinc-700'
+                          <div key={lIdx} className={lIdx > 0 ? "mt-1 flex items-start" : "flex items-start"}>
+                            <span className={`inline-flex items-center justify-center text-[11px] font-extrabold px-1.5 py-0.5 rounded mr-2 shrink-0 select-none ${isPro
+                              ? 'bg-blue-950/50 text-[#60A5FA] border border-blue-900/50'
                               : 'bg-zinc-900/60 text-zinc-400 border border-zinc-800'
                               }`}>
                               {isPro ? "优势" : "劣势"}
@@ -232,7 +232,6 @@ export default function Page_SkyworthVsCompetitor() {
             </table>
           </div>
         </div>
-
       </div>
     </SlideLayout>
   );

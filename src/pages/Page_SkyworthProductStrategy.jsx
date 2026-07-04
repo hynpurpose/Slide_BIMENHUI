@@ -26,7 +26,7 @@ function ModelChip({ model, tier, focus }) {
 
 export default function Page_SkyworthProductStrategy() {
   return (
-    <SlideLayout title="五款产品的分工">
+    <SlideLayout title="产品词：明确分工">
       <div
         className="absolute w-[1840px] flex flex-col select-none animate-fadeIn"
         style={{ top: 0, height: '795px', paddingTop: '24px' }}

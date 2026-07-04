@@ -75,6 +75,12 @@ server.listen(PORT, async () => {
     // Inject styles to hide menu elements
     await page.addStyleTag({
       content: `
+        aside {
+          display: none !important;
+        }
+        div.bg-zinc-600 {
+          padding: 0 !important;
+        }
         div[style*="1920"] {
           zoom: 1 !important;
           box-shadow: none !important;
@@ -82,6 +88,8 @@ server.listen(PORT, async () => {
         }
         button[title="打开目录"],
         button[title="全屏演示"],
+        button[title="上一个版本"],
+        button[title="下一个版本"],
         div.pointer-events-none.opacity-20 {
           display: none !important;
         }

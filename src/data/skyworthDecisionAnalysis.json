@@ -1,0 +1,578 @@
+{
+  "meta": {
+    "source": "J:/GEO/Fake_App/src/data/dataset.json",
+    "sourceFile": "创维真评数据.xlsx",
+    "sampleSize": 64,
+    "sampleNote": "关键差评 64 条；赠品画框、客服售后不作为独立统计维度",
+    "generatedAt": "2026-07-04"
+  },
+  "chartData": [
+    {
+      "label": "价格高（不值）",
+      "value": 29.7,
+      "highlight": true
+    },
+    {
+      "label": "宣传与效果不符",
+      "value": 26.6,
+      "highlight": false
+    },
+    {
+      "label": "安装贴墙体验差",
+      "value": 18.8,
+      "highlight": false
+    },
+    {
+      "label": "售后及赠品争议",
+      "value": 12.5,
+      "highlight": false
+    },
+    {
+      "label": "系统及硬件缺陷",
+      "value": 7.8,
+      "highlight": false
+    },
+    {
+      "label": "其他问题",
+      "value": 4.6,
+      "highlight": false
+    }
+  ],
+  "headline": {
+    "primaryReason": "价格高（不值）",
+    "primaryPercent": 29.7
+  },
+  "wordCloud": [
+    {
+      "text": "价格高",
+      "size": 46,
+      "weight": "black",
+      "color": "white",
+      "left": 330,
+      "top": 60
+    },
+    {
+      "text": "客服",
+      "size": 24,
+      "weight": "bold",
+      "color": "zinc-200",
+      "left": 500,
+      "top": 100
+    },
+    {
+      "text": "安装",
+      "size": 29,
+      "weight": "black",
+      "color": "white",
+      "left": 756,
+      "top": 144
+    },
+    {
+      "text": "赠品",
+      "size": 24,
+      "weight": "black",
+      "color": "white",
+      "left": 7,
+      "top": 81
+    },
+    {
+      "text": "师傅",
+      "size": 23,
+      "weight": "black",
+      "color": "white",
+      "left": 801,
+      "top": 153
+    },
+    {
+      "text": "画框",
+      "size": 20,
+      "weight": "bold",
+      "color": "zinc-200",
+      "left": 559,
+      "top": 191
+    },
+    {
+      "text": "售后",
+      "size": 19,
+      "weight": "bold",
+      "color": "zinc-200",
+      "left": 482,
+      "top": 211
+    },
+    {
+      "text": "贴墙",
+      "size": 18,
+      "weight": "bold",
+      "color": "zinc-300",
+      "left": 436,
+      "top": 258
+    },
+    {
+      "text": "宣传",
+      "size": 16,
+      "weight": "semibold",
+      "color": "zinc-300",
+      "left": 71,
+      "top": 39
+    },
+    {
+      "text": "618",
+      "size": 16,
+      "weight": "semibold",
+      "color": "zinc-300",
+      "left": 358,
+      "top": 218
+    },
+    {
+      "text": "垃圾",
+      "size": 16,
+      "weight": "semibold",
+      "color": "zinc-300",
+      "left": 318,
+      "top": 242
+    },
+    {
+      "text": "保价",
+      "size": 14,
+      "weight": "semibold",
+      "color": "zinc-400",
+      "left": 585,
+      "top": 45
+    },
+    {
+      "text": "优惠",
+      "size": 14,
+      "weight": "semibold",
+      "color": "zinc-400",
+      "left": 809,
+      "top": 224
+    },
+    {
+      "text": "缝隙",
+      "size": 14,
+      "weight": "semibold",
+      "color": "zinc-400",
+      "left": 455,
+      "top": 20
+    },
+    {
+      "text": "会员",
+      "size": 14,
+      "weight": "semibold",
+      "color": "zinc-400",
+      "left": 69,
+      "top": 121
+    },
+    {
+      "text": "活动",
+      "size": 14,
+      "weight": "semibold",
+      "color": "zinc-400",
+      "left": 271,
+      "top": 70
+    },
+    {
+      "text": "退货",
+      "size": 13,
+      "weight": "semibold",
+      "color": "zinc-400",
+      "left": 679,
+      "top": 147
+    },
+    {
+      "text": "壁纸",
+      "size": 13,
+      "weight": "semibold",
+      "color": "zinc-400",
+      "left": 869,
+      "top": 200
+    },
+    {
+      "text": "旗舰",
+      "size": 13,
+      "weight": "semibold",
+      "color": "zinc-400",
+      "left": 211,
+      "top": 192
+    },
+    {
+      "text": "音响",
+      "size": 13,
+      "weight": "semibold",
+      "color": "zinc-400",
+      "left": 734,
+      "top": 104
+    },
+    {
+      "text": "不发货",
+      "size": 13,
+      "weight": "semibold",
+      "color": "zinc-400",
+      "left": 862,
+      "top": 165
+    },
+    {
+      "text": "无缝贴墙",
+      "size": 13,
+      "weight": "normal",
+      "color": "zinc-400",
+      "left": 657,
+      "top": 30
+    },
+    {
+      "text": "屏幕",
+      "size": 13,
+      "weight": "normal",
+      "color": "zinc-400",
+      "left": 286,
+      "top": 156
+    },
+    {
+      "text": "实付",
+      "size": 13,
+      "weight": "normal",
+      "color": "zinc-400",
+      "left": 193,
+      "top": 102
+    },
+    {
+      "text": "降了",
+      "size": 13,
+      "weight": "normal",
+      "color": "zinc-400",
+      "left": 707,
+      "top": 136
+    },
+    {
+      "text": "虚假宣传",
+      "size": 13,
+      "weight": "normal",
+      "color": "zinc-400",
+      "left": 734,
+      "top": 228
+    },
+    {
+      "text": "无缝",
+      "size": 13,
+      "weight": "normal",
+      "color": "zinc-400",
+      "left": 71,
+      "top": 147
+    },
+    {
+      "text": "包装箱",
+      "size": 13,
+      "weight": "normal",
+      "color": "zinc-400",
+      "left": 264,
+      "top": 270
+    },
+    {
+      "text": "催",
+      "size": 13,
+      "weight": "normal",
+      "color": "zinc-400",
+      "left": 688,
+      "top": 277
+    },
+    {
+      "text": "年卡",
+      "size": 13,
+      "weight": "normal",
+      "color": "zinc-400",
+      "left": 4,
+      "top": 213
+    },
+    {
+      "text": "无缝贴",
+      "size": 13,
+      "weight": "normal",
+      "color": "zinc-400",
+      "left": 149,
+      "top": 146
+    },
+    {
+      "text": "不值",
+      "size": 38,
+      "weight": "black",
+      "color": "white",
+      "left": 630,
+      "top": 150
+    },
+    {
+      "text": "降价",
+      "size": 12,
+      "weight": "normal",
+      "color": "zinc-600",
+      "left": 826,
+      "top": 60,
+      "rotate": -90
+    },
+    {
+      "text": "安装费",
+      "size": 12,
+      "weight": "normal",
+      "color": "zinc-600",
+      "left": 408,
+      "top": 151,
+      "rotate": -90
+    },
+    {
+      "text": "诱导消费",
+      "size": 12,
+      "weight": "normal",
+      "color": "zinc-600",
+      "left": 97,
+      "top": 205
+    },
+    {
+      "text": "hdmi",
+      "size": 12,
+      "weight": "normal",
+      "color": "zinc-600",
+      "left": 816,
+      "top": 115
+    },
+    {
+      "text": "后悔",
+      "size": 12,
+      "weight": "normal",
+      "color": "zinc-600",
+      "left": 313,
+      "top": 194,
+      "rotate": 90
+    },
+    {
+      "text": "厚度",
+      "size": 12,
+      "weight": "normal",
+      "color": "zinc-600",
+      "left": 220,
+      "top": 35
+    },
+    {
+      "text": "瑕疵",
+      "size": 12,
+      "weight": "normal",
+      "color": "zinc-600",
+      "left": 564,
+      "top": 136,
+      "rotate": 90
+    },
+    {
+      "text": "画质",
+      "size": 12,
+      "weight": "normal",
+      "color": "zinc-600",
+      "left": 639,
+      "top": 186
+    },
+    {
+      "text": "遥控器",
+      "size": 12,
+      "weight": "normal",
+      "color": "zinc-600",
+      "left": 127,
+      "top": 41,
+      "rotate": -90
+    },
+    {
+      "text": "避雷",
+      "size": 12,
+      "weight": "normal",
+      "color": "zinc-600",
+      "left": 271,
+      "top": 194
+    },
+    {
+      "text": "不如买",
+      "size": 12,
+      "weight": "normal",
+      "color": "zinc-600",
+      "left": 589,
+      "top": 17
+    },
+    {
+      "text": "回音壁",
+      "size": 12,
+      "weight": "normal",
+      "color": "zinc-600",
+      "left": 794,
+      "top": 280,
+      "rotate": -90
+    },
+    {
+      "text": "边框",
+      "size": 12,
+      "weight": "normal",
+      "color": "zinc-600",
+      "left": 777,
+      "top": 74
+    },
+    {
+      "text": "敷衍",
+      "size": 12,
+      "weight": "normal",
+      "color": "zinc-600",
+      "left": 196,
+      "top": 227,
+      "rotate": -90
+    },
+    {
+      "text": "比价",
+      "size": 11,
+      "weight": "normal",
+      "color": "zinc-600",
+      "left": 543,
+      "top": 75,
+      "rotate": -90
+    },
+    {
+      "text": "血亏",
+      "size": 11,
+      "weight": "normal",
+      "color": "zinc-600",
+      "left": 743,
+      "top": 42
+    },
+    {
+      "text": "差价",
+      "size": 11,
+      "weight": "normal",
+      "color": "zinc-600",
+      "left": 64,
+      "top": 80
+    },
+    {
+      "text": "不便宜",
+      "size": 11,
+      "weight": "normal",
+      "color": "zinc-600",
+      "left": 585,
+      "top": 243
+    },
+    {
+      "text": "不建议购买",
+      "size": 11,
+      "weight": "normal",
+      "color": "zinc-600",
+      "left": 70,
+      "top": 242
+    },
+    {
+      "text": "Vidda",
+      "size": 11,
+      "weight": "normal",
+      "color": "zinc-600",
+      "left": 866,
+      "top": 268
+    },
+    {
+      "text": "欺骗消费者",
+      "size": 11,
+      "weight": "normal",
+      "color": "zinc-600",
+      "left": 525,
+      "top": 279,
+      "rotate": 90
+    },
+    {
+      "text": "开机太慢",
+      "size": 11,
+      "weight": "normal",
+      "color": "zinc-600",
+      "left": 108,
+      "top": 68,
+      "rotate": -90
+    },
+    {
+      "text": "过保就坏",
+      "size": 11,
+      "weight": "normal",
+      "color": "zinc-600",
+      "left": 749,
+      "top": 262
+    },
+    {
+      "text": "坏屏",
+      "size": 11,
+      "weight": "normal",
+      "color": "zinc-600",
+      "left": 254,
+      "top": 95
+    },
+    {
+      "text": "音效一般",
+      "size": 11,
+      "weight": "normal",
+      "color": "zinc-600",
+      "left": 209,
+      "top": 274
+    },
+    {
+      "text": "壁画模式",
+      "size": 11,
+      "weight": "normal",
+      "color": "zinc-600",
+      "left": 9,
+      "top": 34
+    },
+    {
+      "text": "能吹",
+      "size": 11,
+      "weight": "normal",
+      "color": "zinc-600",
+      "left": 392,
+      "top": 96,
+      "rotate": 90
+    },
+    {
+      "text": "太贵了",
+      "size": 28,
+      "weight": "black",
+      "color": "white",
+      "left": 230,
+      "top": 40
+    },
+    {
+      "text": "性价比低",
+      "size": 26,
+      "weight": "bold",
+      "color": "zinc-200",
+      "left": 160,
+      "top": 90
+    },
+    {
+      "text": "不划算",
+      "size": 22,
+      "weight": "bold",
+      "color": "zinc-200",
+      "left": 120,
+      "top": 180
+    },
+    {
+      "text": "虚高",
+      "size": 20,
+      "weight": "semibold",
+      "color": "zinc-300",
+      "left": 310,
+      "top": 160
+    },
+    {
+      "text": "割韭菜",
+      "size": 18,
+      "weight": "semibold",
+      "color": "zinc-300",
+      "left": 660,
+      "top": 210
+    },
+    {
+      "text": "不推荐",
+      "size": 22,
+      "weight": "bold",
+      "color": "zinc-200",
+      "left": 720,
+      "top": 70
+    }
+  ]
+}

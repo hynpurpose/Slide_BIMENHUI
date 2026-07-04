@@ -7,10 +7,10 @@ export default function Page_WallpaperVsConventional() {
       {/* ── 顶部核心结论 (标白重点，无蓝色标) ── */}
       <div className="absolute top-[0px] left-0 w-full select-none">
         <h2 
-          className="text-white font-normal font-['MiSans'] leading-tight"
+          className="text-zinc-300 font-normal font-['MiSans'] leading-tight"
           style={{ fontSize: '42px', lineHeight: '52px' }}
         >
-          消费者购买决策心智：看重<span className="text-white font-bold">居家美学</span>VS顾虑<span className="text-white font-bold">高价低配与后期安装</span>
+          消费者购买决策心智：<span className="text-white font-extrabold">“看重”</span>家居美学 VS <span className="text-white font-extrabold">“顾虑”</span>高配低配与后期安装
         </h2>
       </div>
 
@@ -88,27 +88,27 @@ export default function Page_WallpaperVsConventional() {
                   <th className="py-2 w-[400px]">对应人群心理与画像</th>
                 </tr>
               </thead>
-              <tbody className="divide-y divide-zinc-900 text-[20px]">
+              <tbody className="divide-y divide-zinc-900 text-[19px] xl:text-[20px]">
                 <tr className="align-top">
-                  <td className="py-4 pr-2 font-bold text-white font-['MiSans']">
+                  <td className="py-4 pr-2 font-bold text-[#60A5FA] font-['MiSans']">
                     核心卖点
                   </td>
                   <td className="py-4 pr-4 text-zinc-200 leading-relaxed font-['MiSans']">
-                    追求家居美学：希望电视能与整体家居风格适配。
+                    <span className="text-white font-semibold">家居美学极致融入</span>：要求电视不再是冷冰冰的“电器黑洞”，而是通过极致薄贴墙工艺无缝嵌入，达到挂画般的视觉艺术格调。
                   </td>
                   <td className="py-4 text-zinc-400 leading-relaxed font-['MiSans']">
-                    预算较充足；不在乎/感知不到音画质折损。
+                    <span className="text-zinc-300 font-medium">品质追求者与家装主导者</span>：注重整体空间美感与硬装档次，对底层硬件参数敏锐度一般，愿意为设计外观及空间溢价付费。
                   </td>
                 </tr>
                 <tr className="align-top">
-                  <td className="py-4 pr-2 font-bold text-zinc-350 font-['MiSans']">
+                  <td className="py-4 pr-2 font-bold text-zinc-400 font-['MiSans']">
                     核心痛点
                   </td>
                   <td className="py-4 pr-4 text-zinc-200 leading-relaxed font-['MiSans']">
-                    性价比低：无法接受花高配的钱，买中低配的实际体验。
+                    <span className="text-white font-semibold">高配低配与安装繁琐</span>：难以接受因“超薄”带来的音画质硬件折损及高溢价，且担心墙体承重、排线隐藏与无缝施工等落地阻碍。
                   </td>
                   <td className="py-4 text-zinc-400 leading-relaxed font-['MiSans']">
-                    影音爱好者；看重性价比；预算有限或租房党。
+                    <span className="text-zinc-300 font-medium">理性消费者与影音发烧友</span>：追求同等价位下屏幕背光、亮度及音响的性价比极限，对厚度妥协较为警惕，抗拒高安装风险。
                   </td>
                 </tr>
               </tbody>
@@ -121,14 +121,14 @@ export default function Page_WallpaperVsConventional() {
           {/* Bottom: Main Disadvantages Progress bars */}
           <div className="flex flex-col gap-4 select-none">
             <span className="text-[20px] font-bold text-zinc-400 font-['MiSans']">
-              对比主流电视劣势及权重
+              对比主流常规电视劣势及权重
             </span>
             <div className="grid grid-cols-2 gap-x-8 gap-y-4">
               {/* 痛点 1 */}
               <div className="flex flex-col gap-1.5">
                 <div className="flex justify-between items-end">
                   <span className="text-[18px] font-bold text-zinc-300 font-['MiSans']">
-                    价格溢价严重
+                    同等配置价格溢价高
                   </span>
                   <span className="text-[20px] font-black text-white font-sans">
                     25% - 30%
@@ -143,7 +143,7 @@ export default function Page_WallpaperVsConventional() {
               <div className="flex flex-col gap-1.5">
                 <div className="flex justify-between items-end">
                   <span className="text-[18px] font-bold text-zinc-300 font-['MiSans']">
-                    安装与墙面适配
+                    后期安装与墙体适配
                   </span>
                   <span className="text-[20px] font-black text-white font-sans">
                     20% - 30%
@@ -158,7 +158,7 @@ export default function Page_WallpaperVsConventional() {
               <div className="flex flex-col gap-1.5">
                 <div className="flex justify-between items-end">
                   <span className="text-[18px] font-bold text-zinc-300 font-['MiSans']">
-                    哑光屏画质损耗
+                    音画质性能超薄妥协
                   </span>
                   <span className="text-[20px] font-black text-white font-sans">
                     20% - 25%
@@ -173,7 +173,7 @@ export default function Page_WallpaperVsConventional() {
               <div className="flex flex-col gap-1.5">
                 <div className="flex justify-between items-end">
                   <span className="text-[18px] font-bold text-zinc-300 font-['MiSans']">
-                    其他体验缺陷
+                    系统软件及配件限制
                   </span>
                   <span className="text-[20px] font-black text-white font-sans">
                     5% - 20%

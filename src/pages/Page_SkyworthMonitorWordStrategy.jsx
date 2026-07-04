@@ -16,7 +16,7 @@ export default function Page_SkyworthMonitorWordStrategy() {
         </p>
 
         {/* 阈值可视化 */}
-        <div className="shrink-0 mb-12 flex flex-col gap-4">
+        <div className="shrink-0 mb-12 mt-4 flex flex-col gap-4">
           {/* 进度条与霓虹红线 */}
           <div className="relative w-full h-[76px] bg-zinc-950 rounded-2xl border border-zinc-800 flex items-center overflow-visible shadow-[inset_0_2px_8px_rgba(0,0,0,0.8)]">
             {/* 0% - 10% 安全填充 */}
@@ -29,24 +29,22 @@ export default function Page_SkyworthMonitorWordStrategy() {
             </div>
 
             {/* 10% 危机红线 刻度线 (贯穿整条，带红色霓虹光晕) */}
-            <div className="absolute top-[-10px] bottom-[-10px] z-20 flex flex-col items-center" style={{ left: '33.33%' }}>
+            <div className="absolute top-[-10px] bottom-0 z-20 flex flex-col items-center" style={{ left: '33.33%' }}>
               {/* 顶部指示牌 */}
               <div className="absolute -top-[36px] bg-red-600 text-white text-[16px] font-black px-3.5 py-1 rounded-md shadow-[0_0_15px_rgba(239,68,68,0.8)] font-['MiSans'] tracking-wider">
                 10% 报警红线
               </div>
               {/* 红色发光线条 */}
               <div className="w-[4px] h-full bg-red-500 shadow-[0_0_15px_#ef4444,0_0_5px_#ef4444] rounded-full" />
-              {/* 底部三角形指示符 */}
-              <div className="absolute -bottom-[20px] w-0 h-0 border-l-[8px] border-l-transparent border-r-[8px] border-r-transparent border-b-[10px] border-b-red-500" />
             </div>
           </div>
 
           {/* 底部刻度尺轴 */}
-          <div className="relative w-full h-8 px-1">
+          <div className="relative w-full h-8 px-1 pt-1">
             <div className="absolute flex justify-between w-full text-[18px] text-zinc-500 font-bold font-sans">
               <span style={{ left: '0%', transform: 'translateX(-50%)' }} className="absolute">0%</span>
               <span style={{ left: '16.67%', transform: 'translateX(-50%)' }} className="absolute">5%</span>
-              <span style={{ left: '33.33%', transform: 'translateX(-50%)' }} className="absolute text-red-500 font-black">10% (红线)</span>
+              <span style={{ left: '33.33%', transform: 'translateX(-50%)' }} className="absolute text-red-500 font-black">10%</span>
               <span style={{ left: '50.0%', transform: 'translateX(-50%)' }} className="absolute">15%</span>
               <span style={{ left: '66.67%', transform: 'translateX(-50%)' }} className="absolute">20%</span>
               <span style={{ left: '83.33%', transform: 'translateX(-50%)' }} className="absolute">25%</span>
