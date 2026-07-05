@@ -1,19 +1,35 @@
 import React from 'react';
 import SlideLayout from '../components/SlideLayout';
+import { Radar, TrendingUp, Rocket, ShieldCheck, ChevronRight } from 'lucide-react';
 
 export default function Page_EmergingMediaAttempts() {
-  const chartData = [
-    { name: "企业官方网站", base: 45, change: 1.3, type: 'up', label: '+1.3%' },
-    { name: "行业权威百科", base: 55, change: 4.5, type: 'up', label: '+4.5%' },
-    { name: "专业垂直媒体", base: 50, change: -2.7, type: 'down', label: '-2.7%' },
-    { name: "自建独家信源", base: 40, change: 6.3, type: 'up', label: '+6.3%' },
-    { name: "短视频平台", base: 45, change: -0.9, type: 'down', label: '-0.9%' },
-    { name: "社交问答社区", base: 35, change: 37, type: 'up', label: '+37%' },
-    { name: "主流新闻媒体", base: 50, change: -0.7, type: 'down', label: '-0.7%' },
-    { name: "内容农场采集网站", base: 65, change: -41, type: 'down', label: '-41%' }
+  const steps = [
+    {
+      no: '01',
+      icon: Radar,
+      title: '监控模型动向',
+      desc: '持续追踪各 AI 模型的更新公告与引用偏好变化，第一时间捕捉规则调整的早期信号。'
+    },
+    {
+      no: '02',
+      icon: TrendingUp,
+      title: '预判权重迁移',
+      desc: '根据模型的更新方向，预测下一阶段哪些新兴媒体、内容形态会被优先采信。'
+    },
+    {
+      no: '03',
+      icon: Rocket,
+      title: '数据出来前抢先占位',
+      desc: '趁红利尚未真正体现、竞品还没察觉时，提前在这些新媒体上布局内容。'
+    },
+    {
+      no: '04',
+      icon: ShieldCheck,
+      title: '形成先发独家壁垒',
+      desc: '率先占住新的权重媒体，等竞对反应过来，早已慢了一步，我们已是难以撼动的先发方。',
+      highlight: true
+    }
   ];
-
-  const maxHeight = 456; // 柱状图最大高度 (px)
 
   return (
     <SlideLayout title="新兴媒体尝试">
@@ -34,176 +50,69 @@ export default function Page_EmergingMediaAttempts() {
         style={{ top: '40px', height: '750px' }}
       >
         {/* ==================== 上半部分：金句大总结 ==================== */}
-        <div className="w-full flex flex-col items-start mb-8 shrink-0">
-          <p className="text-[30px] text-white font-extrabold tracking-wide max-w-[1700px] leading-relaxed">
-            关注 AI 模型引用偏好变化趋势：在模型规则变更、红利真正表现出来之前，比竞争对手更早占领新兴媒体。
+        <div className="w-full flex flex-col items-start mb-6 shrink-0">
+          <p className="text-[30px] text-white font-extrabold tracking-wide max-w-[1760px] leading-relaxed">
+            最后 20% 预算用来押注新媒体：紧盯 AI 模型的更新方向，在红利真正兑现之前，比竞争对手更早占住新的权重媒体。
           </p>
         </div>
 
-        {/* ==================== 下半部分：两个大区块 (左右对照 + 虚线指向) ==================== */}
-        <div className="flex-grow w-full flex gap-[80px] items-stretch min-h-0 relative">
+        {/* ==================== 下半部分：方法论四步流程 ==================== */}
+        <div className="flex-grow w-full flex items-center min-h-0">
+          <div className="w-full flex items-stretch gap-3">
 
-          {/* ── 虚线引导连接线 (自左侧社交问答社区柱子至右侧大框) ── */}
-          <svg className="absolute inset-0 pointer-events-none z-20" style={{ width: '1840px', height: '660px' }}>
-            <path
-              d="M 1101 264 L 1660 264"
-              stroke="#3B82F6"
-              strokeWidth="3"
-              strokeDasharray="8 5"
-              fill="none"
-              className="opacity-90"
-            />
-          </svg>
+            {steps.map((step, idx) => {
+              const Icon = step.icon;
+              const isLast = step.highlight;
+              return (
+                <React.Fragment key={idx}>
 
-          {/* 左侧：柱状图卡片 (宽度扩为1580px，高度660px抵到底部) */}
-          <div className="w-[1580px] h-[660px] bg-zinc-950/40 backdrop-blur-md rounded-[32px] p-8 flex flex-col justify-between border border-zinc-800/80 shadow-[0_25px_60px_rgba(0,0,0,0.5)]">
-            <div className="flex flex-col w-full h-full justify-between">
-
-              {/* 标题与图例 */}
-              <div className="flex justify-between items-center pb-4 border-b border-zinc-900/60 shrink-0 mb-6">
-                <span className="text-[28px] font-black text-white font-['MiSans'] border-l-4 border-blue-500 pl-3 leading-none">
-                  豆包平台各渠道引用率分布预测
-                </span>
-                {/* 图例 */}
-                <div className="flex items-center gap-6 text-[16px] font-bold text-zinc-400 font-['MiSans']">
-                  <div className="flex items-center gap-2">
-                    <div className="w-4 h-4 bg-[#52525B] rounded" />
-                    <span>当前版本权重</span>
-                  </div>
-                  <div className="flex items-center gap-2">
-                    <div className="w-4 h-4 bg-white rounded border border-zinc-300" />
-                    <span>预测上调比例</span>
-                  </div>
-                  <div className="flex items-center gap-2">
-                    <div className="w-4 h-4 bg-[#60A5FA] rounded" />
-                    <span>预测下调比例</span>
-                  </div>
-                </div>
-              </div>
-
-              {/* 柱状图主绘图区 */}
-              <div className="h-[492px] w-full relative flex items-end justify-between px-16 mb-6 border-b border-zinc-800">
-
-                {/* 背景刻度横线 */}
-                <div className="absolute left-0 right-0 bottom-0 pointer-events-none" style={{ height: '456px' }}>
-                  {[100, 75, 50, 25, 0].map((val, idx) => (
-                    <div 
-                      key={idx} 
-                      className="absolute w-full border-b border-zinc-800/40" 
-                      style={{ bottom: `${val}%` }}
-                    >
-                      <span className="absolute -left-12 -bottom-2.5 text-[16px] font-bold font-['Montserrat'] text-zinc-500">
-                        {val}%
+                  {/* 单步卡片 */}
+                  <div
+                    className={`flex-1 h-[560px] rounded-[32px] p-9 flex flex-col backdrop-blur-md transition-all duration-200 ${isLast
+                        ? 'bg-blue-500/10 border-2 border-blue-500 shadow-[0_0_40px_rgba(59,130,246,0.25)]'
+                        : 'bg-zinc-950/40 border border-zinc-800/80 shadow-[0_25px_60px_rgba(0,0,0,0.5)]'
+                      }`}
+                  >
+                    {/* 顶部：图标 + 步骤水印数字 */}
+                    <div className="flex items-start justify-between shrink-0">
+                      <div
+                        className={`w-[76px] h-[76px] rounded-2xl flex items-center justify-center ${isLast ? 'bg-blue-500/20' : 'bg-blue-500/10'
+                          }`}
+                      >
+                        <Icon className={`w-10 h-10 ${isLast ? 'text-blue-300' : 'text-blue-400'}`} strokeWidth={2} />
+                      </div>
+                      <span
+                        className={`text-[80px] leading-none font-black font-['Montserrat'] tracking-tighter ${isLast ? 'text-blue-500/40' : 'text-white/10'
+                          }`}
+                      >
+                        {step.no}
                       </span>
                     </div>
-                  ))}
-                </div>
 
-                {/* 柱子循环 */}
-                {chartData.map((item, idx) => {
-                  const isUp = item.type === 'up';
-                  const isTarget = item.name === "社交问答社区";
-
-                  // 计算各个段的像素高度 (设定最小视觉高度 28px 以保证小百分比下的箭头能正常渲染)
-                  const baseHeight = (item.base / 100) * maxHeight;
-                  const lostHeight = (Math.abs(item.change) / 100) * maxHeight;
-                  const newBaseHeight = isUp ? baseHeight : (baseHeight - lostHeight);
-                  const changeHeight = Math.max(lostHeight, 28);
-                  const totalHeight = isUp ? (baseHeight + changeHeight) : (newBaseHeight + changeHeight);
-
-                  return (
-                    <div key={idx} className="flex flex-col items-center relative z-10 w-[120px]">
-
-                      {/* 37%上升柱子框出高亮包装 */}
-                      <div className={`flex flex-col items-center p-3 rounded-2xl transition-all duration-150 ${isTarget
-                          ? "border-2 border-blue-500 bg-blue-500/10 shadow-[0_0_20px_rgba(59,130,246,0.3)] -mx-3 -my-4 pt-4"
-                          : "border-2 border-transparent"
-                        }`}>
-
-                        {/* 柱状图组合框 */}
-                        <div className="relative w-[48px]" style={{ height: `${totalHeight}px` }}>
-
-                          {/* 1. 基础段 (灰色) */}
-                          <div
-                            className="absolute w-full bg-[#52525B] rounded-sm transition-all duration-300"
-                            style={{
-                              bottom: '0px',
-                              height: `${isUp ? baseHeight : newBaseHeight}px`
-                            }}
-                          />
-
-                          {/* 2. 变更段 (上升为白色，下降为蓝色) */}
-                          <div
-                            className={`absolute w-full rounded-sm transition-all duration-300 ${isUp ? 'bg-white' : 'bg-[#60A5FA]'}`}
-                            style={{
-                              bottom: `${isUp ? baseHeight : newBaseHeight}px`,
-                              height: `${changeHeight}px`
-                            }}
-                          />
-
-                          {/* 3. 分割线 (黑边效果) */}
-                          <div className="absolute w-full h-[3px] bg-zinc-950" style={{ bottom: '0px' }} />
-                          <div className="absolute w-full h-[3px] bg-zinc-950" style={{ bottom: `${isUp ? baseHeight : newBaseHeight}px` }} />
-                          <div className="absolute w-full h-[3px] bg-zinc-950" style={{ bottom: `${totalHeight}px` }} />
-
-                          {/* 4. 向上/向下的箭头 (SVG 动态线，精准连接各段) */}
-                          {isUp ? (
-                            <svg className="absolute w-full overflow-visible pointer-events-none" style={{ bottom: `${baseHeight}px`, height: `${changeHeight}px` }}>
-                              {/* 竖线 */}
-                              <line x1="50%" y1="100%" x2="50%" y2="8" stroke="#71717A" strokeWidth="2" />
-                              {/* 箭头帽 */}
-                              <path d="M 16 10 L 24 2 L 32 10" stroke="#71717A" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" fill="none" />
-                            </svg>
-                          ) : (
-                            <svg className="absolute w-full overflow-visible pointer-events-none" style={{ bottom: `${newBaseHeight}px`, height: `${changeHeight}px` }}>
-                              {/* 竖线 */}
-                              <line x1="50%" y1="0" x2="50%" y2={changeHeight - 8} stroke="#71717A" strokeWidth="2" />
-                              {/* 箭头帽 */}
-                              <path d={`M 16 ${changeHeight - 10} L 24 ${changeHeight - 2} L 32 ${changeHeight - 10}`} stroke="#71717A" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" fill="none" />
-                            </svg>
-                          )}
-
-                          {/* 5. 顶部的百分比数字 (上升在顶，下降在底段上方分割线以下) */}
-                          {isUp ? (
-                            <span className="absolute w-full text-center left-0 text-[18px] font-black font-['Montserrat'] -top-8 text-white">
-                              {item.label}
-                            </span>
-                          ) : (
-                            <span
-                              className="absolute w-full text-center left-0 text-[18px] font-black font-['Montserrat'] text-[#60A5FA]"
-                              style={{ bottom: `${newBaseHeight - 28}px` }}
-                            >
-                              {item.label}
-                            </span>
-                          )}
-
-                        </div>
-
-                        {/* X 轴文字标注 */}
-                        <span className="text-[20px] font-bold text-white mt-4 font-['MiSans'] whitespace-nowrap">
-                          {item.name}
-                        </span>
-
-                      </div>
+                    {/* 底部：标题 + 说明 */}
+                    <div className="mt-auto flex flex-col">
+                      <h3 className="text-[36px] font-black text-white font-['MiSans'] leading-tight mb-5">
+                        {step.title}
+                      </h3>
+                      <div className={`w-14 h-[4px] rounded-full mb-6 ${isLast ? 'bg-blue-400' : 'bg-blue-500/60'}`} />
+                      <p className="text-[24px] text-zinc-400 leading-relaxed font-normal">
+                        {step.desc}
+                      </p>
                     </div>
-                  );
-                })}
+                  </div>
 
-              </div>
+                  {/* 步骤间箭头 (最后一张卡片后不显示) */}
+                  {idx < steps.length - 1 && (
+                    <div className="flex items-center justify-center shrink-0 self-center">
+                      <ChevronRight className="w-9 h-9 text-blue-500/70" strokeWidth={3} />
+                    </div>
+                  )}
 
-            </div>
+                </React.Fragment>
+              );
+            })}
+
           </div>
-
-          {/* 右侧：尽快占领大框 (收窄为180px以刚好包住字，高度660px，字号96px，竖直排列) */}
-          <div className="w-[180px] h-[660px] bg-zinc-950/40 backdrop-blur-md rounded-[32px] py-8 px-4 flex flex-col justify-center items-center border-2 border-blue-500 shadow-[0_0_30px_rgba(59,130,246,0.2)]">
-            <span
-              className="text-[96px] font-black text-white font-['MiSans'] tracking-[0.25em] leading-none text-center select-none"
-              style={{ writingMode: 'vertical-rl', textOrientation: 'upright' }}
-            >
-              抢先占领
-            </span>
-          </div>
-
         </div>
       </div>
     </SlideLayout>

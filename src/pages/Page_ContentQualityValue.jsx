@@ -173,23 +173,44 @@ export default function Page_ContentQualityValue() {
           </div>
         </div>
 
-        {/* ==================== 下半部分：极简端点说明 (完美抵边，去除 icon) ==================== */}
-        <div className="w-full h-[130px] bg-zinc-950/40 border border-zinc-900 rounded-[28px] px-8 flex justify-between items-center shadow-md">
-          {/* 左观点 */}
-          <div className="w-[850px] flex items-center pl-4">
-            <h4 className="text-[28px] font-black text-white font-['MiSans'] leading-normal">
-              人工写的文章被 AI 长期采信，持续时间更长
-            </h4>
+        {/* ==================== 下半部分：两大好处 (保质期更长 / 一文两用·替代PR稿件) ==================== */}
+        <div className="w-full h-[130px] bg-zinc-950/40 border border-zinc-900 rounded-[28px] px-8 flex justify-between items-stretch shadow-md">
+          {/* 好处 ①：文章保质期更长 */}
+          <div className="w-[810px] flex items-center gap-5 pl-2">
+            <span className="shrink-0 w-[52px] h-[52px] rounded-2xl bg-white text-black text-[26px] font-black font-['Montserrat'] flex items-center justify-center shadow-md">
+              1
+            </span>
+            <div className="flex flex-col justify-center">
+              <h4 className="text-[27px] font-black text-white font-['MiSans'] leading-tight">
+                文章保质期更长
+              </h4>
+              <p className="text-[18px] font-medium text-zinc-400 font-['MiSans'] leading-snug mt-1">
+                年初发布的文章，<span className="text-white font-bold">至今仍被 AI 持续引用</span>
+              </p>
+            </div>
           </div>
 
           {/* 垂直分割线 */}
-          <div className="h-1/2 w-[1px] bg-zinc-900" />
+          <div className="self-center h-3/5 w-[1px] bg-zinc-800" />
 
-          {/* 右观点 */}
-          <div className="w-[850px] flex items-center pr-4">
-            <h4 className="text-[28px] font-black text-white font-['MiSans'] leading-normal">
-              人工文章阅读量更高，AI 和真实用户都会高频看
-            </h4>
+          {/* 好处 ②：一文两用 · 可替代传统 PR 稿件 */}
+          <div className="w-[880px] flex items-center gap-5 pr-2">
+            <span className="shrink-0 w-[52px] h-[52px] rounded-2xl text-white text-[26px] font-black font-['Montserrat'] flex items-center justify-center shadow-md" style={{ background: 'linear-gradient(135deg, #004CE5 0%, #0D9488 100%)' }}>
+              2
+            </span>
+            <div className="flex flex-col justify-center">
+              <div className="flex items-center gap-3">
+                <h4 className="text-[27px] font-black text-white font-['MiSans'] leading-tight">
+                  一文两用
+                </h4>
+                <span className="text-[16px] font-bold text-teal-300 font-['MiSans'] border border-teal-400/40 bg-teal-500/10 rounded-full px-3 py-[2px] whitespace-nowrap">
+                  可替代传统 PR 稿件
+                </span>
+              </div>
+              <p className="text-[18px] font-medium text-zinc-400 font-['MiSans'] leading-snug mt-1">
+                AI 抓取 + 真人阅读双高，<span className="text-white font-bold">品牌把 PR 预算直接拨给我们一起做</span>
+              </p>
+            </div>
           </div>
         </div>
 
