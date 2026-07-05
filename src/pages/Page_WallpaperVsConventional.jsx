@@ -72,7 +72,6 @@ export default function Page_WallpaperVsConventional() {
         <div className="w-[930px] h-full bg-[#09090b]/40 border border-zinc-800 rounded-3xl p-8 flex flex-col justify-between shadow-inner">
           {/* Label */}
           <div className="select-none">
-            <span className="text-[14px] text-zinc-500 font-mono font-bold tracking-wider block">SURVEY DATA</span>
             <h3 className="text-[28px] font-bold text-white mt-1 font-['MiSans']">
               调研数据
             </h3>

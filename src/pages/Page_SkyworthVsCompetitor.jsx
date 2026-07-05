@@ -5,42 +5,42 @@ export default function Page_SkyworthVsCompetitor() {
   const tableData = [
     {
       brand: "创维\nA10H / A8H / A7H 系列",
-      sales: "全球出货：约 1500 万台\n国内销售：约 216 亿元",
+      sales: "全球出货：约 1500 万台",
       target: "注重客厅美学与整体硬装格调，同时对音画参数有高要求的中高产家庭",
       prosCons: "优势：多价位段矩阵覆盖，壁纸厚度与四声道独立声学系统契合，兼顾美学与影音表现\n劣势：屏幕消光拟真工艺较三星画框相比，在强光环境反射下仍有优化空间",
       isHighlight: true
     },
     {
       brand: "海信\nCanvas TV 艺术系列",
-      sales: "全球出货：约 2990 万台\n国内销售：约 246 亿元",
+      sales: "全球出货：约 2990 万台",
       target: "信赖传统大厂质量，看重稳妥售后服务，追求高分区常规MiniLED画质的主流群体",
       prosCons: "优势：背光分区与峰值亮度常规参数极强，品牌实力深厚且售后网络覆盖完备\n劣势：壁纸细分类目缺乏深度投入与技术积淀，独立贴画生态相对单一匮乏",
       isHighlight: false
     },
     {
       brand: "TCL\nArt 7M / A300 系列",
-      sales: "全球出货：约 3040 万台\n国内销售：约 268 亿元",
+      sales: "全球出货：约 3040 万台",
       target: "看重艺术边框格调与极致性价比，追求年轻化潮流感设计的年轻一代消费者",
       prosCons: "优势：外形主打时尚年轻化画轴风格，常规MiniLED画质强，在大尺寸段性价比高\n劣势：无独立声学腔体设计，壁纸电视生态刚刚起步，厚度与散热妥协较多",
       isHighlight: false
     },
     {
       brand: "长虹\nD8S 壁纸系列",
-      sales: "全球出货：约 900 万台\n国内销售：约 147 亿元",
+      sales: "全球出货：约 900 万台",
       target: "追求基础壁画上墙效果，预算相对有限、注重低价格门槛的实用性价比用户",
       prosCons: "优势：极具价格杀伤力，让壁画级电视的零售门槛降到最低，性价比极其强悍\n劣势：屏幕面板参数偏低端，整体做工精细度、金属质感与贴墙贴合度有待优化",
       isHighlight: false
     },
     {
       brand: "三星\nThe Frame 画框系列",
-      sales: "全球出货：约 3800 万台\n国内销售：约 4.5 亿元",
+      sales: "全球出货：约 3800 万台",
       target: "高预算且对美学极度洁癖，追求拟真消光画框效果，不敏感核心画质参数者",
       prosCons: "优势: 哑光消光屏（Matte Display）技术业界领先，防眩光极强，拟真度完美\n劣势: 电视核心音画画质较为平庸，且依赖厚重外置集线盒（One Connect）",
       isHighlight: false
     },
     {
       brand: "LG\nOLED evo G 系列",
-      sales: "全球出货：约 2400 万台\n国内销售：约 1.8 亿元",
+      sales: "全球出货：约 2400 万台",
       target: "顶级预算，既要求顶尖OLED黑场画质，又要求超薄无缝贴合的双重影音发烧友",
       prosCons: "优势: 顶级OLED面板黑场画质巅峰，黑场响应极快，画廊超薄无缝贴合度极佳\n劣势: OLED面板成本高昂导致价格极其昂贵。",
       isHighlight: false

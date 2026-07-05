@@ -1,139 +1,206 @@
 import React from 'react';
 import SlideLayout from '../components/SlideLayout';
 
-function Page_SkyworthWorkAcceptance() {
-    return (
-        <SlideLayout fullBleed>
-        <div className="w-full h-full flex flex-col relative text-white font-sans pt-2.5 overflow-hidden animate-fade-in">
-            <div className="w-full flex flex-col flex-1 min-h-0 relative z-10 pt-0 gap-1.5 xl:gap-2">
+const FONT_IMPORT = `@import url('https://fonts.geekzu.org/css2?family=Montserrat:wght@400;500;600;700;800;900&family=Plus+Jakarta+Sans:wght@700;800&display=swap');`;
 
-                {/* Header Section */}
-                <div className="text-center shrink-0 mb-0 mt-0.5">
-                    <h1 className="text-[40px] font-extrabold text-white tracking-widest leading-tight">
-                        工作内容与预期效果
-                    </h1>
-                </div>
+const STAGES = [
+  {
+    step: '01',
+    timeLabel: '第一阶段 (W1)',
+    title: '现状大摸底',
+    tasks: '全量核心监测词/优化词 AI 数据大摸底，盘点创维品牌推荐份额与被提及现状。',
+    roles: '项目经理 / 数据分析师',
+    arrowLabel: 'preparation'
+  },
+  {
+    step: '02',
+    timeLabel: '第二阶段 (W1)',
+    title: '竞品拦截分析',
+    tasks: '对比海信、TCL 等核心竞品大模型推荐路径，定位本品流量流失点。',
+    roles: 'GEO 算法专家',
+    arrowLabel: 'start'
+  },
+  {
+    step: '03',
+    timeLabel: '第三阶段 (W2)',
+    title: '词条策略规划',
+    tasks: '规划品类大词、5 款专属产品词及高转化场景问题词，并做优先级分层。',
+    roles: 'GEO 策略总监',
+    arrowLabel: 'strategy'
+  },
+  {
+    step: '04',
+    timeLabel: '第四阶段 (W3)',
+    title: '语料内容构建',
+    tasks: '撰写极致薄贴墙、画质及场景评测语料，构建品牌核心采信信息。',
+    roles: '内容策划 / 文案师',
+    arrowLabel: 'building'
+  },
+  {
+    step: '05',
+    timeLabel: '第五阶段 (W3)',
+    title: '外部引用链搭建',
+    tasks: '部署权威官方信源及外部可信信号，引导大模型搜索引擎抓取。',
+    roles: '链路部署工程师',
+    arrowLabel: 'execute'
+  },
+  {
+    step: '06',
+    timeLabel: '第六阶段 (W4-W6)',
+    title: '高权分发植入',
+    tasks: '精选知乎、值得买等高权重平台发布评测内容，构建高强度引用源。',
+    roles: '媒介经理 / 分发专员',
+    arrowLabel: 'seeding'
+  },
+  {
+    step: '07',
+    timeLabel: '第七阶段 (W7+)',
+    title: '异常纠偏监测',
+    tasks: '日/周级监测大模型推荐走势，针对异常负面或错误认知动态纠偏。',
+    roles: '监测分析师 / 技术专家',
+    arrowLabel: 'monitoring'
+  },
+  {
+    step: '08',
+    timeLabel: '第八阶段 (W7+)',
+    title: '效果验收与迭代',
+    tasks: '输出月度 GEO 执行成果报告，依据最新算法更新持续滚动升级策略。',
+    roles: '项目经理 (PM)',
+    arrowLabel: 'finish'
+  }
+];
 
-                {/* Main Content Box */}
-                <div className="w-full mt-1 xl:mt-1.5 bg-white/[0.02] backdrop-blur-xl border border-white/[0.08] rounded-2xl py-[8px] px-[16px] xl:py-[12px] xl:px-[24px] shadow-2xl flex flex-col gap-1.5 xl:gap-2 flex-1 min-h-0">
+export function Page_SkyworthWorkAcceptance() {
+  // 按照流程顺序渲染在 grid 中的元素
+  // 第一行从左到右：Step 1, 2, 3, 4
+  // 第二行从右到左：Step 8, 7, 6, 5 (以 Col 1-4 的排布依次为: 8, 7, 6, 5)
+  const orderedStages = [
+    STAGES[0], // Col 1, Row 1 (Step 01)
+    STAGES[1], // Col 2, Row 1 (Step 02)
+    STAGES[2], // Col 3, Row 1 (Step 03)
+    STAGES[3], // Col 4, Row 1 (Step 04)
+    STAGES[7], // Col 1, Row 2 (Step 08)
+    STAGES[6], // Col 2, Row 2 (Step 07)
+    STAGES[5], // Col 3, Row 2 (Step 06)
+    STAGES[4]  // Col 4, Row 2 (Step 05)
+  ];
 
-                    {/* Table Container */}
-                    <div className="w-full flex-1 flex flex-col justify-center min-h-0">
-                        <table className="w-full text-left border-collapse h-full">
-                            <thead>
-                                <tr className="border-b-2 border-white/[0.22] text-zinc-200 text-[21px] xl:text-[23px] font-black">
-                                    <th className="pb-2.5 pl-3.5 w-[13%]">词组分类</th>
-                                    <th className="pb-2.5 w-[42%] pl-5">工作内容</th>
-                                    <th className="pb-2.5 w-[25%] pl-5">预期效果</th>
-                                    <th className="pb-2.5 pr-3.5 w-[20%] pl-6">需要品牌方协助的部分</th>
-                                </tr>
-                            </thead>
-                            <tbody className="text-[21px] xl:text-[23px] leading-snug">
+  return (
+    <SlideLayout fullBleed>
+      <div className="w-full h-full flex flex-col relative text-white font-sans px-16 sm:px-20 py-16 overflow-hidden animate-fade-in bg-[#08080a]">
+        <style dangerouslySetInnerHTML={{ __html: FONT_IMPORT }} />
 
-                                {/* Row 1: 优化词（品牌词 + 产品词） */}
-                                <tr className="hover:bg-white/[0.01] transition-colors duration-200">
-                                    <td className="py-2 xl:py-2.5 pl-3.5 font-semibold text-zinc-100 align-middle border-b border-white/[0.22]">
-                                        <div className="flex flex-col gap-1 mt-1">
-                                            <span className="text-[22px] xl:text-[25px] text-white font-black">优化词</span>
-                                            <span className="text-[18px] xl:text-[19px] text-zinc-400 font-bold">（品牌词 + 产品词）</span>
-                                        </div>
-                                    </td>
-                                    <td className="py-2 xl:py-2.5 text-zinc-300 align-middle pr-4 border-b border-white/[0.22] border-l border-white/[0.22] pl-5">
-                                        <div className="flex flex-col gap-2 xl:gap-2.5">
-                                            <div className="flex flex-col gap-1">
-                                                <div className="flex items-center gap-2 text-[21px] xl:text-[23px] font-black text-white mb-1">
-                                                    <span className="w-2 h-3.5 bg-[#004CE5] rounded-full shadow-[0_0_6px_rgba(0,76,229,0.8)]" />
-                                                    一、GEO 诊断
-                                                </div>
-                                                <ul className="list-none pl-4 text-zinc-300 flex flex-col gap-1 leading-snug text-[20px] xl:text-[22px]">
-                                                    <li>1、<span className="text-white font-semibold">品牌现状诊断：</span>监测创维品牌提及、推荐排名、竞品对比、负面信息和引用来源。</li>
-                                                    <li>2、<span className="text-white font-semibold">词条策略规划：</span>规划品牌词（好看的电视 / 常规电视）、5 款产品词及高转化问题词，并做优先级分层。</li>
-                                                    <li>3、<span className="text-white font-semibold">覆盖平台策略：</span>针对 DeepSeek、豆包、元宝、通义千问制定优化策略，统一品牌表达口径。</li>
-                                                </ul>
-                                            </div>
-                                            <div className="flex flex-col gap-1">
-                                                <div className="flex items-center gap-2 text-[21px] xl:text-[23px] font-black text-white mb-1">
-                                                    <span className="w-2 h-3.5 bg-[#004CE5] rounded-full shadow-[0_0_6px_rgba(0,76,229,0.8)]" />
-                                                    二、GEO 优化执行
-                                                </div>
-                                                <ul className="list-none pl-4 text-zinc-300 flex flex-col gap-1 leading-snug text-[20px] xl:text-[22px]">
-                                                    <li>1、<span className="text-white font-semibold">结构化内容工程：</span>优化内容结构以及引用信号，提升 AI 采信概率。</li>
-                                                    <li>2、<span className="text-white font-semibold">内容生成与分发：</span>生成品牌、评测、场景教程、口碑及负面优化类内容。</li>
-                                                    <li>3、<span className="text-white font-semibold">外部平台筛选与发布：</span>筛选高权重发布平台，完成合作沟通和内容发布。</li>
-                                                    <li>4、<span className="text-white font-semibold">媒体与信号构建：</span>建设可信信息源和多来源引用信号，提升内容权威性。</li>
-                                                </ul>
-                                            </div>
-                                            <div className="flex flex-col gap-1">
-                                                <div className="flex items-center gap-2 text-[21px] xl:text-[23px] font-black text-white mb-1">
-                                                    <span className="w-2 h-3.5 bg-[#004CE5] rounded-full shadow-[0_0_6px_rgba(0,76,229,0.8)]" />
-                                                    三、GEO 监测与反馈
-                                                </div>
-                                                <ul className="list-none pl-4 text-zinc-300 flex flex-col gap-1 leading-snug text-[20px] xl:text-[22px]">
-                                                    <li>1、<span className="text-white font-semibold">数据监测反馈：</span>持续监测核心指标，输出报告并调整优化策略。</li>
-                                                </ul>
-                                            </div>
-                                        </div>
-                                    </td>
-                                    <td className="py-2 xl:py-2.5 text-zinc-300 align-middle pr-4 border-b border-white/[0.22] border-l border-white/[0.22] pl-5">
-                                        <div className="flex flex-col gap-2 bg-[#004CE5]/6 border border-[#004CE5]/20 p-2.5 xl:p-3 rounded-xl mt-1 shadow-inner">
-                                            <p className="text-zinc-100 text-[22px] xl:text-[24px] leading-snug">
-                                                守住「好看的电视」<strong className="text-white font-bold">AI 推荐第一位次</strong>，推动常规电视<strong className="text-white font-bold">冲进 TOP3</strong>，辅助线上线下渠道转化提升约 <strong className="text-[#6494ff] font-extrabold">5% - 10%</strong>。
-                                            </p>
-                                        </div>
-                                    </td>
-                                    <td className="py-2 xl:py-2.5 text-zinc-300 align-middle pr-3 leading-relaxed border-l border-white/[0.22] pl-6 border-b border-white/[0.22]">
-                                        <div className="flex flex-col gap-2 bg-white/[0.025] border border-white/[0.06] p-2.5 xl:p-3 rounded-xl text-center shadow-lg">
-                                            <span className="text-[21px] xl:text-[23px] text-white font-extrabold tracking-widest">共建品牌资料库</span>
-                                            <p className="text-[19px] xl:text-[20px] text-zinc-300 leading-snug text-left mt-2 border-t border-white/10 pt-2">
-                                                需品牌方配合提供品牌画册、5 款壁纸电视产品手册、核心卖点（壁纸屏 / 超薄 / 画质芯片等）及近期技术宣发口径等权威信息源。
-                                            </p>
-                                        </div>
-                                    </td>
-                                </tr>
-
-                                {/* Row 2: 监测词（负面及错误） */}
-                                <tr className="hover:bg-white/[0.01] transition-colors duration-200">
-                                    <td className="py-2 xl:py-2.5 pl-3.5 font-semibold text-zinc-100 align-middle">
-                                        <div className="flex flex-col gap-1 mt-1">
-                                            <span className="text-[22px] xl:text-[25px] text-white font-black">监测词</span>
-                                            <span className="text-[18px] xl:text-[19px] text-zinc-400 font-bold">（负面及错误）</span>
-                                        </div>
-                                    </td>
-                                    <td className="py-2 xl:py-2.5 text-zinc-300 align-middle pr-4 border-l border-white/[0.22] pl-5">
-                                        <div className="flex flex-col gap-2 text-[20px] xl:text-[22px] leading-snug">
-                                            <p className="text-zinc-200">
-                                                <strong className="text-white font-bold">1、错误信息监测：</strong>建立错误信息监测机制，系统排查创维在 AI 回答中出现的负面信息、错误认知、错误价格、型号混淆及高频触发问题，定位主要问题类型和引用信源，并制定针对性优化策略。
-                                            </p>
-                                            <p className="text-zinc-200">
-                                                <strong className="text-white font-bold">2、纠偏处理执行：</strong>针对不同类型的错误信息进行分类处理，恶意/虚假信息走平台投诉清除，真实问题联合品牌公关协商解决，通过正确信息补充、权威内容发布、引用信号强化等方式修正 AI 回答中的异常信息，降低负面及错误内容的出现频率。
-                                            </p>
-                                        </div>
-                                    </td>
-                                    <td className="py-2 xl:py-2.5 text-zinc-300 align-middle pr-4 border-l border-white/[0.22] pl-5">
-                                        <div className="flex flex-col gap-2 bg-[#004CE5]/6 border border-[#004CE5]/20 p-2.5 xl:p-3 rounded-xl mt-1 shadow-inner">
-                                            <p className="text-zinc-100 text-[22px] xl:text-[24px] leading-snug">
-                                                负面信息占比守住 <strong className="text-white font-bold">10% 红线</strong>以内，提升品牌信息 <strong className="text-white font-bold">准确性和信任度</strong>，减少用户流失并辅助转化提升约 <strong className="text-[#6494ff] font-extrabold">20%</strong>。
-                                            </p>
-                                        </div>
-                                    </td>
-                                    <td className="py-2 xl:py-2.5 text-zinc-300 align-middle pr-3 leading-relaxed border-l border-white/[0.22] pl-6">
-                                        <div className="flex flex-col gap-2 bg-white/[0.025] border border-white/[0.06] p-2.5 xl:p-3 rounded-xl shadow-lg">
-                                            <p className="text-zinc-200 text-[19px] xl:text-[20px] leading-snug">
-                                                需品牌方提供 <strong className="text-white font-bold">官方口径、正确产品信息、最新价格说明及证明材料</strong>，并协助确认负面/错误信息的处理优先级和澄清口径。
-                                            </p>
-                                        </div>
-                                    </td>
-                                </tr>
-
-                            </tbody>
-                        </table>
-                    </div>
-                </div>
-
-            </div>
+        {/* 页面标题 (符合参考图的左上角排版) */}
+        <div className="shrink-0 mb-16 self-start">
+          <h1 
+            className="font-extrabold text-white tracking-wider uppercase leading-none"
+            style={{ fontFamily: "'Plus Jakarta Sans', sans-serif", fontSize: '42px' }}
+          >
+            STAGES OF WORK
+          </h1>
+          <p className="text-[17px] text-zinc-400 font-medium tracking-wide mt-2">
+            工作内容、时间节点与责任人员安排流程图
+          </p>
         </div>
-        </SlideLayout>
-    );
+
+        {/* 流程图 Grid 区域 */}
+        <div className="flex-grow flex items-center min-h-0 relative z-10 w-full max-w-[1740px] mx-auto mb-6">
+          <div className="grid grid-cols-4 gap-x-16 gap-y-20 w-full relative">
+            
+            {orderedStages.map((s, idx) => {
+              const isRow1 = idx < 4; // 0, 1, 2, 3
+              const isRow2 = idx >= 4; // 4, 5, 6, 7
+              const stepNum = parseInt(s.step);
+
+              return (
+                <div key={s.step} className="flex flex-col min-h-[170px] relative">
+                  
+                  {/* === 顶部点和箭头路线 === */}
+                  <div className="relative flex items-center h-6 mb-4">
+                    
+                    {/* 圆形节点 (Periwinkle Blue 色调) */}
+                    <div className="w-4 h-4 rounded-full bg-[#8F9FFF] shadow-[0_0_10px_#8F9FFF] shrink-0" />
+                    
+                    {/* 第一行从左往右的连接箭头 (Step 1, 2, 3) */}
+                    {isRow1 && stepNum < 4 && (
+                      <div className="absolute left-5 right-[-64px] h-[1px] bg-zinc-700/80 pointer-events-none" style={{ top: '8px' }}>
+                        {/* 箭头标签 */}
+                        <span className="absolute top-[-16px] left-1/2 -translate-x-1/2 text-[11px] text-zinc-500 font-mono tracking-wider">
+                          {s.arrowLabel}
+                        </span>
+                        {/* 箭头方向 */}
+                        <div className="absolute right-0 top-[-3.5px] w-2 h-2 border-t border-r border-zinc-500 transform rotate-45" />
+                      </div>
+                    )}
+
+                    {/* 第四步转折弯道 (Step 4 -> Step 5) */}
+                    {stepNum === 4 && (
+                      <div className="absolute top-[8px] right-[-32px] w-[56px] h-[230px] border-t border-r border-b border-zinc-700/80 rounded-r-3xl pointer-events-none z-0">
+                        {/* 弯道中间的连接文本 */}
+                        <span className="absolute right-[-14px] top-1/2 -translate-y-1/2 text-[11px] text-zinc-500 font-mono tracking-wider rotate-90">
+                          connect
+                        </span>
+                        {/* 弯道末端指向第五步的左向箭头 */}
+                        <div className="absolute bottom-[-4.5px] left-0 w-2.5 h-2.5 border-b border-l border-zinc-500 transform rotate-45" />
+                      </div>
+                    )}
+
+                    {/* 第二行从右往左的连接箭头 (Step 5, 6, 7 向左流) */}
+                    {isRow2 && stepNum > 5 && (
+                      <div className="absolute left-5 right-[-64px] h-[1px] bg-zinc-700/80 pointer-events-none" style={{ top: '8px' }}>
+                        {/* 箭头标签 */}
+                        <span className="absolute top-[-16px] left-1/2 -translate-x-1/2 text-[11px] text-zinc-500 font-mono tracking-wider">
+                          {s.arrowLabel}
+                        </span>
+                        {/* 向左箭头方向 */}
+                        <div className="absolute left-0 top-[-3.5px] w-2 h-2 border-b border-l border-zinc-500 transform rotate-45" />
+                      </div>
+                    )}
+
+                    {/* 第八步最后的 Finish 标签 */}
+                    {stepNum === 8 && (
+                      <span className="absolute top-[-16px] left-5 text-[11px] text-zinc-500 font-mono tracking-wider">
+                        {s.arrowLabel}
+                      </span>
+                    )}
+
+                  </div>
+
+                  {/* === 文字内容排版 === */}
+                  <div className="flex flex-col pr-4">
+                    
+                    {/* 时间周期与标题 */}
+                    <div className="flex flex-col mb-2">
+                      <span className="text-[13px] font-mono tracking-wider text-[#8F9FFF] font-bold">
+                        {s.timeLabel}
+                      </span>
+                      <h4 className="text-[20px] xl:text-[22px] font-bold text-white tracking-wide mt-0.5">
+                        {s.title}
+                      </h4>
+                    </div>
+
+                    {/* 具体任务 */}
+                    <p className="text-[15px] xl:text-[16px] text-zinc-400 leading-relaxed text-justify">
+                      {s.tasks}
+                    </p>
+
+                    {/* 责任人员安排 */}
+                    <span className="text-[13px] xl:text-[14px] text-[#8F9FFF]/70 font-semibold font-mono tracking-wider mt-3">
+                      [人员: {s.roles}]
+                    </span>
+
+                  </div>
+
+                </div>
+              );
+            })}
+
+          </div>
+        </div>
+
+      </div>
+    </SlideLayout>
+  );
 }
 
 Page_SkyworthWorkAcceptance.hideHeader = true;
