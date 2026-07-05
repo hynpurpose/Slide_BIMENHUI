@@ -3,14 +3,8 @@ import SlideLayout from '../components/SlideLayout';
 
 /* ============================================================
  * 讲稿核心逻辑（三个版本共用）：
- *   1. 破：业界常提 EEAT，源自谷歌《搜索质量评估指南》，
- *      适配国外模型，但不完全契合中国模型。
- *   2. 立：我们实践更有效的是 —— 写「用户视角的议论文」。
- *   3. 拆：
- *      · 用户视角 = 不站品牌角度，站真实用户角度写主观感受，
- *        优点要写，缺点也必须写。
- *      · 议论文   = 每篇只服务「一个关键词 / 一个用户问题 /
- *        一个推荐目标」，观点集中，AI 更易抓取理解。
+ *   左：EEAT 源自谷歌《搜索质量评估指南》……但不完全适配中国模型。
+ *   右：我们实践下来更有效的是写「用户视角的议论文」，并拆解两个词的定义。
  *
  * 统一配色：品牌蓝 #004CE5，浅蓝强调 #5B8CFF / #8CB0FF
  * ============================================================ */
@@ -36,110 +30,164 @@ const ONES = [
   { k: '一个', v: '推荐目标' },
 ];
 
+/* 共用：E-E-A-T 四词释义 */
+const EEAT_ITEMS = [
+  { en: 'Experience', zh: '经验' },
+  { en: 'Expertise', zh: '专业性' },
+  { en: 'Authoritativeness', zh: '权威性' },
+  { en: 'Trustworthiness', zh: '可靠性/信任度' },
+];
+
+function EeatExpansions({ className = '', cols = 2, variant = 'compact' }) {
+  if (variant === 'balanced') {
+    const Card = ({ en, zh }) => (
+      <div className="h-full rounded-[22px] border border-zinc-700/70 bg-zinc-900/35 px-8 py-6 flex flex-col justify-center min-h-0">
+        <span className="text-[24px] font-['Montserrat'] font-semibold text-zinc-500 leading-[1.25]">
+          {en}
+        </span>
+        <span className="text-[30px] font-black text-zinc-200 font-['MiSans'] mt-2.5 leading-none">
+          （{zh}）
+        </span>
+      </div>
+    );
+
+    return (
+      <div className={`flex-1 min-h-0 flex flex-col gap-5 ${className}`}>
+        <div className="flex-1 min-h-0 grid grid-cols-2 gap-5">
+          <Card {...EEAT_ITEMS[0]} />
+          <Card {...EEAT_ITEMS[1]} />
+        </div>
+        <div className="flex-1 min-h-0 grid grid-cols-2 gap-5">
+          <Card {...EEAT_ITEMS[2]} />
+          <Card {...EEAT_ITEMS[3]} />
+        </div>
+      </div>
+    );
+  }
+
+  return (
+    <div
+      className={`grid shrink-0 ${cols === 1 ? 'grid-cols-1 gap-y-2' : 'grid-cols-2 gap-x-6 gap-y-2.5'} ${className}`}
+    >
+      {EEAT_ITEMS.map(({ en, zh }) => (
+        <p key={en} className="text-[18px] leading-[26px] font-['MiSans'] min-w-0">
+          <span className="text-zinc-500 font-['Montserrat'] font-medium">{en}</span>
+          <span className="text-zinc-400">（{zh}）</span>
+        </p>
+      ))}
+    </div>
+  );
+}
+
+/* 共用：盖章打叉标识 */
+function RejectStamp() {
+  return (
+    <div
+      className="absolute -right-2 top-1/2 -translate-y-1/2 rotate-[-14deg] pointer-events-none select-none"
+      aria-hidden
+    >
+      <div className="relative flex items-center justify-center w-[148px] h-[148px] rounded-full border-[4px] border-red-500/85 text-red-500 shadow-[0_0_28px_rgba(239,68,68,0.22)]">
+        <span className="absolute inset-0 flex items-center justify-center text-[92px] font-black leading-none opacity-90">✕</span>
+        <span className="relative z-10 mt-14 text-[22px] font-black font-['MiSans'] tracking-[0.35em] text-red-400/95">
+          不适配
+        </span>
+      </div>
+    </div>
+  );
+}
+
 /* ============================================================
- * 版本 A — 「先破后立」叙事流
- *   顶部一条横向转向：业界做法 EEAT → 我们的标准；
- *   下方两栏定义，左右对称，逐句对应讲稿。
+ * 版本 A — 左右两栏等大方框
+ *   左：讨论最多的是；右：用户视角议论文及拆解。
  * ============================================================ */
 export function Page_GeoContentPrinciples_A() {
+  const headerH = '148px';
+
+  const RightCard = ({ index, title, children }) => (
+    <div
+      className="flex-1 min-h-0 rounded-[22px] px-8 py-6 flex flex-col"
+      style={{ background: 'rgba(255,255,255,0.06)', border: '1px solid rgba(255,255,255,0.12)' }}
+    >
+      <div className="flex items-baseline gap-3 mb-3 shrink-0">
+        <span className="font-['Montserrat'] text-[32px] font-black leading-none text-blue-200/80">{index}</span>
+        <span className="text-[32px] font-black text-white font-['MiSans']">{title}</span>
+      </div>
+      <p className="text-[24px] text-blue-100/85 leading-[40px] font-['MiSans']">{children}</p>
+    </div>
+  );
+
   return (
     <SlideLayout title="我们的内容标准：用户视角议论文">
       <Glow />
       <div
-        className="absolute w-[1840px] flex flex-col select-none animate-fadeIn z-10"
+        className="absolute w-[1840px] flex select-none animate-fadeIn z-10"
         style={{ top: 0, height: '795px', paddingTop: '18px' }}
       >
-        {/* —— 上半：从 EEAT 转向 —— */}
-        <div className="shrink-0 flex items-stretch gap-8">
-          {/* 业界做法：EEAT（被弃用） */}
-          <div className="w-[720px] shrink-0 rounded-[26px] border border-zinc-800 bg-[#0D0D10]/60 px-10 py-8">
-            <span className="text-[24px] font-bold tracking-[0.06em] text-zinc-500 font-['MiSans']">
-              业界常提的做法
-            </span>
-            <div className="mt-3 mb-4">
-              <span className="line-through decoration-zinc-600 decoration-[3px] text-zinc-500 font-['Montserrat'] font-black text-[56px] leading-none">
-                E-E-A-T
+        <div className="flex-1 min-h-0 grid grid-cols-2 gap-10 items-stretch">
+          {/* 左：EEAT */}
+          <div className="rounded-[30px] border border-zinc-800 bg-[#0D0D10]/60 px-11 py-10 flex flex-col min-h-0">
+            <div className="shrink-0 mb-8 flex flex-col justify-end" style={{ height: headerH }}>
+              <span className="text-[24px] font-bold tracking-[0.06em] text-zinc-500 font-['MiSans']">
+                讨论最多的是
               </span>
+              <div className="mt-5">
+                <span className="text-zinc-300 font-['Montserrat'] font-black text-[64px] leading-none">
+                  E-E-A-T
+                </span>
+              </div>
             </div>
-            <p className="text-[26px] text-zinc-400 leading-[42px] font-['MiSans']">
-              源自谷歌《搜索质量评估指南》，做国外模型优化常用，
-              但<strong className="text-zinc-200 font-bold">不完全适配中国模型</strong>。
-            </p>
+
+            <EeatExpansions variant="balanced" />
+
+            <div className="shrink-0 mt-6 space-y-3">
+              <p className="text-[26px] text-zinc-400 leading-[40px] font-['MiSans']">
+                最早来自谷歌《搜索质量评估指南》
+              </p>
+              <p className="text-[26px] text-zinc-400 leading-[40px] font-['MiSans']">
+                常用于国外模型优化
+              </p>
+              <div className="relative pr-[160px] pt-1">
+                <p className="text-[26px] text-zinc-300 leading-[40px] font-['MiSans']">
+                  但和中国模型实际情况
+                  <strong className="text-zinc-100 font-bold">并不适配</strong>。
+                </p>
+                <RejectStamp />
+              </div>
+            </div>
           </div>
 
-          {/* 箭头 */}
-          <div className="shrink-0 flex items-center justify-center">
-            <span className="text-[56px] text-zinc-600 leading-none">→</span>
-          </div>
-
-          {/* 我们的标准 */}
+          {/* 右：用户视角议论文 */}
           <div
-            className="flex-1 rounded-[26px] px-11 py-8 flex flex-col justify-center"
+            className="rounded-[30px] px-11 py-10 flex flex-col min-h-0"
             style={{
               background: `linear-gradient(135deg, ${BLUE} 0%, #0B2E80 100%)`,
               boxShadow: '0 20px 50px -15px rgba(0,76,229,0.5)',
               border: '1px solid rgba(96,143,255,0.4)',
             }}
           >
-            <span className="text-[24px] font-bold tracking-[0.06em] text-blue-100/80 font-['MiSans']">
-              我们实践下来更有效的
-            </span>
-            <div className="mt-3 flex items-center gap-5">
-              <span className="text-[60px] font-black text-white font-['MiSans'] leading-none">用户视角</span>
-              <span className="text-[44px] font-black text-blue-200/70 leading-none">＋</span>
-              <span className="text-[60px] font-black text-white font-['MiSans'] leading-none">议论文</span>
-            </div>
-            <p className="text-[24px] text-blue-100/80 font-['MiSans'] mt-4 leading-snug">
-              这样的内容，AI 更容易抓取、理解、采信。
-            </p>
-          </div>
-        </div>
-
-        {/* —— 下半：两个词的定义 —— */}
-        <div className="flex-1 min-h-0 grid grid-cols-2 gap-10 mt-10">
-          {/* 01 用户视角 */}
-          <div className="rounded-[30px] border border-zinc-800 bg-[#0D0D10]/60 px-11 py-9 flex flex-col">
-            <div className="flex items-baseline gap-4 shrink-0">
-              <span className="font-['Montserrat'] text-[56px] font-black leading-none" style={{ color: BLUE_LT }}>01</span>
-              <span className="text-[40px] font-black text-white font-['MiSans']">用户视角</span>
-            </div>
-            <p className="text-[27px] text-zinc-400 leading-[46px] font-['MiSans'] mt-6">
-              不站在品牌角度，而是站在<strong className="text-white font-bold">真实用户</strong>的角度，
-              写出主观感受。
-            </p>
-            <div className="flex-1" />
-            <div className="flex items-center gap-4 mt-6">
-              <span className="flex-1 rounded-2xl border border-zinc-700 bg-zinc-900/50 px-6 py-4 text-center">
-                <span className="text-[30px] font-bold text-white font-['MiSans']">优点要写</span>
+            <div className="shrink-0 mb-8 flex flex-col justify-end" style={{ height: headerH }}>
+              <span className="text-[24px] font-bold tracking-[0.06em] text-blue-100/80 font-['MiSans']">
+                我们实践有效的是
               </span>
-              <span
-                className="flex-1 rounded-2xl px-6 py-4 text-center"
-                style={{ border: `1px solid ${BLUE_LT}80`, background: `${BLUE_LT}1F` }}
-              >
-                <span className="text-[30px] font-black font-['MiSans']" style={{ color: BLUE_TX }}>缺点也必须写</span>
-              </span>
+              <p className="text-[44px] font-black text-white font-['MiSans'] leading-[1.2] mt-5">
+                写用户视角的议论文
+              </p>
             </div>
-          </div>
 
-          {/* 02 议论文 */}
-          <div className="rounded-[30px] border border-zinc-800 bg-[#0D0D10]/60 px-11 py-9 flex flex-col">
-            <div className="flex items-baseline gap-4 shrink-0">
-              <span className="font-['Montserrat'] text-[56px] font-black leading-none" style={{ color: BLUE_LT }}>02</span>
-              <span className="text-[40px] font-black text-white font-['MiSans']">议论文</span>
+            <div className="flex-1 min-h-0 flex flex-col gap-5">
+              <RightCard index="01" title="用户视角">
+                不要站在品牌角度写，而是站在<strong className="text-white font-bold">真实用户</strong>的角度
+                写主观感受，优点要有，缺点也必须要有。
+              </RightCard>
+
+              <RightCard index="02" title="议论文">
+                每篇文章都服务<strong className="text-white font-bold">一个明确的关键词、一个明确的用户问题、一个明确的推荐目标</strong>。
+              </RightCard>
             </div>
-            <p className="text-[27px] text-zinc-400 leading-[46px] font-['MiSans'] mt-6">
-              每篇文章只服务<strong className="text-white font-bold">一个明确目标</strong>，
-              观点集中，AI 更好抓取。
+
+            <p className="text-[26px] text-blue-100/80 font-['MiSans'] mt-6 shrink-0">
+              这样的内容，AI 更容易<strong className="text-white font-bold">抓取和理解</strong>。
             </p>
-            <div className="flex-1" />
-            <div className="flex items-center gap-4 mt-6">
-              {ONES.map((o) => (
-                <span key={o.v} className="flex-1 rounded-2xl border border-zinc-700 bg-zinc-900/50 px-4 py-4 text-center">
-                  <span className="block text-[20px] text-zinc-500 font-['MiSans']">{o.k}</span>
-                  <span className="block text-[30px] font-bold text-white font-['MiSans'] mt-0.5">{o.v}</span>
-                </span>
-              ))}
-            </div>
           </div>
         </div>
       </div>
@@ -163,7 +211,7 @@ export function Page_GeoContentPrinciples_B() {
         {/* 中心公式 */}
         <div className="shrink-0 flex flex-col items-center">
           <span className="text-[23px] font-bold tracking-[0.35em] text-zinc-500 font-['MiSans'] mb-6">
-            我们实践下来更有效的内容标准
+            我们实践有效的是
           </span>
           <div className="flex items-center gap-7">
             <div
@@ -181,8 +229,8 @@ export function Page_GeoContentPrinciples_B() {
             </div>
             <span className="text-[46px] font-black text-zinc-700 leading-none mx-1">＝</span>
             <span className="text-[32px] text-zinc-300 font-['MiSans'] font-medium leading-tight max-w-[440px]">
-              AI 更容易<br />
-              <strong className="text-white font-bold">抓取 · 理解 · 采信</strong>
+              这样的内容，AI 更容易<br />
+              <strong className="text-white font-bold">抓取 · 理解</strong>
             </span>
           </div>
         </div>
@@ -196,18 +244,19 @@ export function Page_GeoContentPrinciples_B() {
               <span className="text-[24px] text-zinc-400 font-['MiSans']">怎么写</span>
             </div>
             <p className="text-[27px] text-zinc-300 leading-[46px] font-['MiSans'] mt-6">
-              不站品牌角度，站在<strong className="text-white font-bold">真实用户</strong>角度写主观感受。
+              不要站在品牌角度写，而是站在<strong className="text-white font-bold">真实用户</strong>的角度
+              写主观感受，优点要有，缺点也必须要有。
             </p>
             <div className="flex-1" />
             <div className="flex items-center gap-4 mt-6">
               <span className="flex-1 rounded-2xl border border-zinc-700 bg-black/30 px-6 py-4 text-center text-[30px] font-bold text-white font-['MiSans']">
-                优点要写
+                优点要有
               </span>
               <span
                 className="flex-1 rounded-2xl px-6 py-4 text-center text-[30px] font-black font-['MiSans']"
                 style={{ border: `1px solid ${BLUE_LT}80`, background: `${BLUE_LT}26`, color: BLUE_TX }}
               >
-                缺点也必须写
+                缺点也必须要有
               </span>
             </div>
           </div>
@@ -219,7 +268,7 @@ export function Page_GeoContentPrinciples_B() {
               <span className="text-[24px] text-zinc-400 font-['MiSans']">怎么写</span>
             </div>
             <p className="text-[27px] text-zinc-300 leading-[46px] font-['MiSans'] mt-6">
-              每篇只服务<strong className="text-white font-bold">一个明确目标</strong>，观点集中不发散。
+              每篇文章都服务<strong className="text-white font-bold">一个明确的关键词、一个明确的用户问题、一个明确的推荐目标</strong>。
             </p>
             <div className="flex-1" />
             <div className="flex items-center gap-4 mt-6">
@@ -235,14 +284,13 @@ export function Page_GeoContentPrinciples_B() {
 
         {/* EEAT 脚注 */}
         <div className="shrink-0 mt-8 rounded-2xl border border-zinc-800 bg-[#0D0D10]/60 px-9 py-5 flex items-center gap-5">
-          <span className="shrink-0 w-[42px] h-[42px] rounded-full border-2 border-zinc-600 flex items-center justify-center text-[26px] font-black text-zinc-400 font-['MiSans'] leading-none">
-            !
+          <span className="shrink-0 text-[24px] font-bold tracking-[0.06em] text-zinc-500 font-['MiSans']">
+            讨论最多的是
           </span>
+          <span className="shrink-0 text-zinc-600">|</span>
           <p className="text-[26px] text-zinc-400 font-['MiSans'] leading-snug">
-            业界常提的
-            <span className="line-through decoration-zinc-600 text-zinc-500 font-['Montserrat'] font-bold mx-1.5">E-E-A-T</span>
-            源自谷歌《搜索质量评估指南》，做国外模型优化常用，但
-            <strong className="text-zinc-200 font-bold">不完全适配中国模型</strong>。
+            最早来自谷歌《搜索质量评估指南》，常用于国外模型优化，但
+            <strong className="text-zinc-200 font-bold">和中国模型实际情况并不适配</strong>。
           </p>
         </div>
       </div>
@@ -281,48 +329,63 @@ export function Page_GeoContentPrinciples_C() {
         style={{ top: 0, height: '795px', paddingTop: '20px' }}
       >
         <div className="flex-1 min-h-0 flex gap-12">
-          {/* 左：立论 */}
+          {/* 左：EEAT */}
           <div className="w-[560px] shrink-0 flex flex-col justify-center">
             <div className="w-[64px] h-[6px] rounded-full mb-8" style={{ background: BLUE }} />
-            <p className="text-[26px] text-zinc-400 font-['MiSans'] leading-relaxed">
-              业界常提的
-              <span className="line-through decoration-zinc-600 decoration-[2px] text-zinc-500 font-['Montserrat'] font-bold mx-1.5">E-E-A-T</span>
-              源自谷歌，适配国外模型，
-              <strong className="text-zinc-200 font-bold">但不完全契合中国模型</strong>。
-            </p>
-            <div className="my-7 flex items-center gap-4">
-              <span className="text-[24px] font-bold tracking-[0.28em] text-zinc-500 font-['MiSans']">我们更相信</span>
-              <div className="flex-1 h-px bg-zinc-800" />
+            <span className="text-[24px] font-bold tracking-[0.06em] text-zinc-500 font-['MiSans'] mb-5">
+              讨论最多的是
+            </span>
+            <div className="mb-2 shrink-0">
+              <span className="text-zinc-300 font-['Montserrat'] font-black text-[64px] leading-none">E-E-A-T</span>
             </div>
-            <p className="text-[52px] font-black text-white font-['MiSans'] leading-[1.2]">
-              写<span style={{ color: BLUE_LT }}>用户视角</span>的<span style={{ color: BLUE_LT }}>议论文</span>
-            </p>
-            <p className="text-[26px] text-zinc-400 font-['MiSans'] leading-relaxed mt-6">
-              这样的内容，AI 更容易
-              <strong className="text-white font-bold">抓取、理解、采信</strong>。
-            </p>
+            <EeatExpansions className="mb-8" cols={1} />
+            <div className="space-y-4">
+              <p className="text-[28px] text-zinc-400 font-['MiSans'] leading-[46px]">
+                最早来自谷歌《搜索质量评估指南》
+              </p>
+              <p className="text-[28px] text-zinc-400 font-['MiSans'] leading-[46px]">
+                常用于国外模型优化
+              </p>
+            </div>
+            <div className="relative pr-[160px] mt-10">
+              <p className="text-[28px] text-zinc-300 font-['MiSans'] leading-[46px]">
+                但和中国模型实际情况
+                <strong className="text-zinc-100 font-bold">并不适配</strong>。
+              </p>
+              <RejectStamp />
+            </div>
           </div>
 
-          {/* 右：两条定义行 */}
-          <div className="flex-1 min-w-0 flex flex-col gap-8">
+          {/* 右：用户视角议论文 */}
+          <div className="flex-1 min-w-0 flex flex-col gap-8 justify-center">
+            <div>
+              <span className="text-[24px] font-bold tracking-[0.06em] font-['MiSans'] mb-4 block" style={{ color: BLUE_LT }}>
+                我们实践有效的是
+              </span>
+              <p className="text-[44px] font-black text-white font-['MiSans'] leading-[1.25]">
+                写<span style={{ color: BLUE_LT }}>用户视角</span>的<span style={{ color: BLUE_LT }}>议论文</span>
+              </p>
+            </div>
+
             <Row
               index="01"
               name="用户视角"
               desc={
                 <>
-                  不站品牌角度，站在<strong className="text-white font-bold">真实用户</strong>角度写主观感受。
+                  不要站在品牌角度写，而是站在<strong className="text-white font-bold">真实用户</strong>的角度
+                  写主观感受，优点要有，缺点也必须要有。
                 </>
               }
             >
               <div className="flex items-center gap-4">
                 <span className="rounded-xl border border-zinc-700 bg-black/30 px-7 py-3 text-[28px] font-bold text-white font-['MiSans'] leading-none">
-                  优点要写
+                  优点要有
                 </span>
                 <span
                   className="rounded-xl px-7 py-3 text-[28px] font-black font-['MiSans'] leading-none"
                   style={{ border: `1px solid ${BLUE_LT}80`, background: `${BLUE_LT}26`, color: BLUE_TX }}
                 >
-                  缺点也必须写
+                  缺点也必须要有
                 </span>
               </div>
             </Row>
@@ -332,7 +395,7 @@ export function Page_GeoContentPrinciples_C() {
               name="议论文"
               desc={
                 <>
-                  每篇只服务<strong className="text-white font-bold">一个明确目标</strong>，观点集中，AI 更好抓取。
+                  每篇文章都服务<strong className="text-white font-bold">一个明确的关键词、一个明确的用户问题、一个明确的推荐目标</strong>。
                 </>
               }
             >
@@ -344,6 +407,10 @@ export function Page_GeoContentPrinciples_C() {
                 ))}
               </div>
             </Row>
+
+            <p className="text-[26px] text-zinc-400 font-['MiSans'] leading-relaxed shrink-0">
+              这样的内容，AI 更容易<strong className="text-white font-bold">抓取和理解</strong>。
+            </p>
           </div>
         </div>
       </div>
