@@ -40,5 +40,9 @@ export default defineConfig({
     port: 4466,
     strictPort: true,
     allowedHosts: true,
+    watch: {
+      // 忽略外部生成的临时目录（如 _tmp_*/report.zip），其被占用会导致 EBUSY 崩溃
+      ignored: ['**/_tmp_*/**', '**/*.zip'],
+    },
   },
 })

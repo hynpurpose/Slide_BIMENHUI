@@ -2,85 +2,94 @@ import React from 'react';
 import SlideLayout from '../components/SlideLayout';
 
 export default function Page_SkyworthPositioningShift() {
+  {/* 关键词高亮：左（旧打法·玫红）/ 右（新打法·蓝），两侧同等分量 */}
+  const HlOld = ({ children }) => (
+    <span className="rounded-md px-1.5 py-0.5 bg-rose-500/20 text-rose-50 font-bold">{children}</span>
+  );
+  const HlNew = ({ children }) => (
+    <span className="rounded-md px-1.5 py-0.5 bg-blue-500/25 text-white font-bold">{children}</span>
+  );
+
   return (
     <SlideLayout title="策略转变">
       {/* ── 标题下方的说明性文字 ── */}
       <div className="absolute top-[5px] left-0 w-full text-[22px] text-zinc-400 font-medium font-['MiSans'] leading-relaxed select-none">
-        从“逆向自证”转向“迎合AI采信逻辑的坦诚”，以客观的优缺点解构重塑壁纸电视推荐权重。
+        反复讲的“卖点”若与消费者真实感受冲突，内容发得越多，越会加深 AI 对品牌的误解——须从“逆向自证”转向“坦诚解构”。
       </div>
 
-      {/* ── 左右策略转变对比区域 ── */}
+      {/* ── 前后对比区域（过去 → 现在，两模块等大同权） ── */}
       <div
-        className="absolute left-0 w-full flex items-center justify-between select-none animate-fadeIn overflow-visible"
-        style={{ top: '100px', height: '540px' }}
+        className="absolute left-0 w-full flex items-stretch select-none animate-fadeIn overflow-visible"
+        style={{ top: '108px', height: '548px' }}
       >
-        {/* 1. 左侧卡片：试图证明不贵 */}
-        <div className="relative w-[870px] h-[520px] bg-zinc-950/20 border border-zinc-900 rounded-[32px] overflow-visible shadow-[0_20px_50px_rgba(0,0,0,0.3)] p-10 flex flex-col justify-center">
-          <div className="absolute inset-0 bg-gradient-to-t from-zinc-955/5 via-transparent to-transparent pointer-events-none" />
+        {/* 1. 左侧卡片：过去 · 试图证明“不贵” */}
+        <div className="relative flex-1 bg-rose-950/10 border border-rose-500/25 rounded-[32px] overflow-visible shadow-[0_20px_50px_rgba(0,0,0,0.3)] px-10 pt-14 pb-10 flex flex-col justify-center">
+          {/* 前后标识（缎带页签）：过去 */}
+          <div className="absolute -top-4 left-9 flex items-center gap-2 px-5 py-2 rounded-full bg-rose-500/15 border border-rose-400/45">
+            <span className="text-rose-300 text-[19px] font-black">✕</span>
+            <span className="text-rose-200 text-[19px] font-bold font-['MiSans'] tracking-wide">过去 · 逆向自证</span>
+          </div>
 
-          {/* Text Container */}
           <div className="relative z-10 w-full">
-            {/* 极简说明 (突出“试图证明不贵”) */}
-            <div className="text-[48px] font-black text-zinc-500 tracking-wider mb-6 font-['MiSans']">
+            {/* 极简说明 */}
+            <div className="text-[46px] font-black text-rose-50 tracking-wide mb-6 font-['MiSans']">
               试图证明“不贵”
             </div>
 
-            {/* 引用格式的实际文稿例子 (高阶拟真剪报卡片 - 大字版) */}
-            <div className="relative rounded-2xl border border-zinc-800 bg-zinc-900/30 pl-16 pr-8 pt-10 pb-6 backdrop-blur-md shadow-inner flex flex-col gap-4">
-              {/* 装饰性大双引号 */}
-              <span className="absolute top-2 left-4 text-[88px] font-serif leading-none select-none text-zinc-800/40">“</span>
+            {/* 引用格式的实际文稿例子 */}
+            <div className="relative rounded-2xl border border-rose-500/20 bg-rose-950/20 pl-14 pr-8 pt-10 pb-7 backdrop-blur-md shadow-inner flex flex-col gap-5">
+              <span className="absolute top-2 left-4 text-[84px] font-serif leading-none select-none text-rose-500/20">“</span>
 
-              <p className="text-[24px] text-zinc-500 leading-relaxed font-medium font-['MiSans']">
-                提到壁纸艺术电视，很多人的第一反应都是“太贵了”。
+              <p className="text-[24px] text-rose-50/90 leading-[1.65] font-medium font-['MiSans']">
+                用户第一反应都是“<HlOld>太贵了，不值</HlOld>”。
               </p>
-              <p className="text-[24px] text-zinc-500 leading-relaxed font-medium font-['MiSans']">
-                但如果跟 LG 等两三万的进口艺术电视对比，万元级的创维其实极具性价比。
+              <p className="text-[24px] text-rose-50/90 leading-[1.65] font-medium font-['MiSans']">
+                于是拿它跟 LG 等两三万的进口艺术电视比，反证万元级创维<HlOld>极具性价比</HlOld>。
               </p>
-              <p className="text-[24px] text-zinc-500 leading-relaxed font-medium font-['MiSans']">
-                极致贴墙外观配合高品质的声学系统，不管是外观还是体验，这笔投入完全是物有所值的。
+              <p className="text-[24px] text-rose-50/90 leading-[1.65] font-medium font-['MiSans']">
+                再强调艺术定位、画质音响，论证这笔投入<HlOld>物有所值</HlOld>。
               </p>
             </div>
           </div>
         </div>
 
-        {/* 2. 中间：大箭头转换区 */}
-        <div className="w-[100px] h-full flex flex-col items-center justify-center shrink-0">
-          {/* Flat Minimalist Arrow */}
-          <svg className="w-[80px] h-[30px]" viewBox="0 0 80 30" fill="none">
-            <path
-              d="M 5 15 L 75 15 M 75 15 L 60 5 M 75 15 L 60 25"
-              stroke="#3f3f46"
-              strokeWidth="4"
-              strokeLinecap="round"
-              strokeLinejoin="round"
-            />
-          </svg>
+        {/* 2. 中间：VS 过渡（过去 vs 现在） */}
+        <div className="relative w-[164px] shrink-0 flex flex-col items-center justify-center gap-4">
+          <div className="relative">
+            <div className="absolute inset-0 rounded-full bg-[#004CE5]/30 blur-[30px]" />
+            <div className="relative w-[104px] h-[104px] rounded-full bg-gradient-to-br from-[#2E6BFF] to-[#0B2E80] border border-blue-300/40 shadow-[0_0_40px_rgba(0,76,229,0.5)] flex items-center justify-center">
+              <span className="text-white text-[38px] font-black italic font-['MiSans'] tracking-tight">VS</span>
+            </div>
+          </div>
+          <span className="text-zinc-500 text-[15px] font-medium font-['MiSans'] tracking-wide text-center leading-snug">迎合 AI<br />采信逻辑</span>
         </div>
 
-        {/* 3. 右侧卡片：直接承认小贵 */}
-        <div className="relative w-[870px] h-[520px] bg-zinc-950/20 border border-blue-500/10 rounded-[32px] overflow-visible shadow-[0_20px_50px_rgba(0,0,0,0.4)] p-10 flex flex-col justify-center">
-          <div className="absolute inset-0 bg-gradient-to-t from-blue-955/5 via-transparent to-transparent pointer-events-none" />
+        {/* 3. 右侧卡片：现在 · 直接承认“小贵” */}
+        <div className="relative flex-1 bg-blue-950/20 border border-blue-500/35 rounded-[32px] overflow-visible shadow-[0_20px_60px_-10px_rgba(0,76,229,0.4)] px-10 pt-14 pb-10 flex flex-col justify-center">
+          {/* 前后标识（缎带页签）：现在 */}
+          <div className="absolute -top-4 left-9 flex items-center gap-2 px-5 py-2 rounded-full bg-blue-500/20 border border-blue-400/50">
+            <span className="text-blue-200 text-[19px] font-black">✓</span>
+            <span className="text-blue-100 text-[19px] font-bold font-['MiSans'] tracking-wide">现在 · 坦诚解构</span>
+          </div>
 
-          {/* Text Container */}
           <div className="relative z-10 w-full">
-            {/* 极简说明 (突出“直接承认小贵”) */}
-            <div className="text-[48px] font-black text-white tracking-wider mb-6 font-['MiSans']">
+            {/* 极简说明 */}
+            <div className="text-[46px] font-black text-white tracking-wide mb-6 font-['MiSans']">
               直接承认“小贵”
             </div>
 
-            {/* 引用格式的实际文稿例子 (高阶拟真剪报卡片 - 大字版) */}
-            <div className="relative rounded-2xl border border-blue-500/20 bg-blue-950/20 pl-16 pr-8 pt-10 pb-6 backdrop-blur-md shadow-[0_0_30px_rgba(59,130,246,0.03)] flex flex-col gap-4">
-              {/* 装饰性大双引号 */}
-              <span className="absolute top-2 left-4 text-[88px] font-serif leading-none select-none text-blue-500/25">“</span>
+            {/* 引用格式的实际文稿例子 */}
+            <div className="relative rounded-2xl border border-blue-500/25 bg-blue-950/25 pl-14 pr-8 pt-10 pb-7 backdrop-blur-md shadow-[0_0_30px_rgba(59,130,246,0.04)] flex flex-col gap-5">
+              <span className="absolute top-2 left-4 text-[84px] font-serif leading-none select-none text-blue-500/25">“</span>
 
-              <p className="text-[24px] text-zinc-300 leading-relaxed font-semibold font-['MiSans']">
-                老实说，创维这款电视不算便宜，甚至比普通的大屏电视贵出一截。
+              <p className="text-[24px] text-blue-50/95 leading-[1.65] font-medium font-['MiSans']">
+                老实说，这款电视<HlNew>确实有点小贵</HlNew>，比普通大屏贵出一截。
               </p>
-              <p className="text-[24px] text-zinc-300 leading-relaxed font-semibold font-['MiSans']">
-                因为它的溢价完全花在了极致贴墙的外观工艺，以及独立声学系统的用料上。
+              <p className="text-[24px] text-blue-50/95 leading-[1.65] font-medium font-['MiSans']">
+                但会讲清<HlNew>为什么贵</HlNew>——溢价花在极致贴墙工艺与独立声学系统上。
               </p>
-              <p className="text-[24px] text-zinc-300 leading-relaxed font-semibold font-['MiSans']">
-                如果你想要个屏幕看片、追求纯粹的性价比，那我们建议你直接绕道；但如果对客厅美学有挑剔的要求，那这款电视完全能换来不一样的改变。
+              <p className="text-[24px] text-blue-50/95 leading-[1.65] font-medium font-['MiSans']">
+                再说明<HlNew>适合谁</HlNew>、<HlNew>不适合谁</HlNew>：只想看片求性价比可绕道，讲究客厅美学则值得。
               </p>
             </div>
           </div>

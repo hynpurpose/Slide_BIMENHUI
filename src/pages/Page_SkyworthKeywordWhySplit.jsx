@@ -1,91 +1,293 @@
 import React from 'react';
 import SlideLayout from '../components/SlideLayout';
 
-export default function Page_SkyworthKeywordWhySplit() {
+/* ============================================================
+ * 讲稿核心：分类只看「一件事」——
+ *   这句话的答案里，「创维」一定会出现吗？
+ *     · 不一定出现 → 优化词（例：好看的电视推荐）→ 看 提及率 / 出现位置
+ *     · 一定会出现 → 监测词（例：创维跟海信比哪个好，问题里已带“创维”）→ 看 信息准确 / 有无负面
+ *   为什么要分：混在一起算，监测词天然 100% 提及，会把整体提及率虚高，数据失去意义。
+ *
+ * 统一配色：优化词 = 蓝 (#5B8CFF)；监测词 = 琥珀 (#F5A623)
+ * ============================================================ */
+
+const OPT = {
+  name: '优化词',
+  tag: '主动争取被推荐',
+  answer: '不一定出现',
+  mark: '✕',
+  example: '“好看的电视推荐”',
+  purpose: '答案里不一定有创维，要靠优化去争取',
+  metrics: ['提及率', '出现位置'],
+  accent: '#5B8CFF',
+  accentText: '#8CB0FF',
+};
+
+const MON = {
+  name: '监测词',
+  tag: '守住信息底线',
+  answer: '一定会出现',
+  mark: '✓',
+  example: '“创维跟海信比哪个好”',
+  purpose: '问题里已带“创维”，创维必然在场',
+  metrics: ['信息准确', '有无负面'],
+  accent: '#F5A623',
+  accentText: '#F5C574',
+};
+
+/* 底部提醒条 —— 三个版本共用 */
+function WhyBar({ className = '' }) {
   return (
-    <SlideLayout title="监测词与优化词">
+    <div
+      className={`shrink-0 rounded-2xl border border-zinc-800 bg-[#0D0D10]/60 px-8 py-5 flex items-center gap-6 ${className}`}
+    >
+      <span className="shrink-0 w-[46px] h-[46px] rounded-full border-2 border-zinc-600 flex items-center justify-center text-[30px] font-black text-zinc-400 font-['MiSans'] leading-none">
+        !
+      </span>
+      <p className="text-[27px] text-zinc-400 font-['MiSans'] leading-snug">
+        为什么要拆开算：混在一起，监测词天然
+        <strong className="text-white font-bold">「100% 提及」</strong>，会把整体
+        <strong className="text-white font-bold">提及率虚高</strong>，数据便失去意义。
+      </p>
+    </div>
+  );
+}
+
+/* ============================================================
+ * 版本 A — 极简对照 · 例子当主角
+ * 去掉一切装饰，把两个「例子问法」放到最大，用一句判定 + 顶部色条
+ * 区分两类，最克制、最聚焦。
+ * ============================================================ */
+export function Page_SkyworthKeywordWhySplit_A() {
+  const Card = ({ d }) => (
+    <div className="h-full rounded-[30px] border border-zinc-800 bg-[#0D0D10]/60 overflow-hidden flex flex-col">
+      {/* 顶部色条 + 分类名 */}
+      <div className="shrink-0 px-11 pt-9 pb-7" style={{ borderTop: `6px solid ${d.accent}` }}>
+        <div className="flex items-baseline justify-between">
+          <span className="text-[52px] font-black text-white font-['MiSans'] leading-none">{d.name}</span>
+          <span
+            className="px-5 py-2 rounded-full text-[24px] font-bold font-['MiSans'] leading-none"
+            style={{ background: `${d.accent}1F`, color: d.accentText }}
+          >
+            创维{d.answer}
+          </span>
+        </div>
+      </div>
+
+      {/* 例子当主角 */}
+      <div className="flex-1 min-h-0 px-11 flex flex-col justify-center">
+        <span className="text-[22px] text-zinc-500 font-['MiSans'] mb-3">用户会这么问</span>
+        <div className="text-[46px] text-white font-black font-['MiSans'] leading-[1.25]">{d.example}</div>
+        <div className="text-[25px] text-zinc-400 font-['MiSans'] mt-5 leading-snug">{d.purpose}</div>
+      </div>
+
+      {/* 底部分析维度 */}
+      <div className="shrink-0 px-11 py-8 border-t border-zinc-800">
+        <span className="text-[22px] text-zinc-500 font-['MiSans']">这类词主要分析</span>
+        <div className="flex items-center gap-4 mt-3.5">
+          {d.metrics.map((m, i) => (
+            <React.Fragment key={m}>
+              {i > 0 && <span className="text-[26px] text-zinc-600">·</span>}
+              <span className="text-[34px] font-black font-['MiSans'] leading-none" style={{ color: d.accentText }}>
+                {m}
+              </span>
+            </React.Fragment>
+          ))}
+        </div>
+      </div>
+    </div>
+  );
+
+  return (
+    <SlideLayout title="监测词与优化词怎么分类？">
       <div
         className="absolute w-[1840px] flex flex-col select-none animate-fadeIn"
-        style={{ top: 0, height: '795px', paddingTop: '36px' }}
+        style={{ top: 0, height: '795px', paddingTop: '20px' }}
       >
-        {/* 唯一重点：一句话点出分类依据 */}
-        <p
-          className="text-zinc-300 font-normal font-['MiSans'] shrink-0 mb-10"
-          style={{ fontSize: '40px', lineHeight: '1.2' }}
-        >
-          区分依据：这个问题里，<strong className="text-white font-bold">「创维」会不会一定出现？</strong>
+        {/* 顶部单行判断标准 */}
+        <p className="shrink-0 text-[38px] text-zinc-300 font-['MiSans'] leading-tight mb-8">
+          分类只看一件事：用户的搜索问法中，
+          <strong className="text-white font-bold" style={{ color: '#5B8CFF' }}>「创维」</strong>
+          <strong className="text-white font-bold">一定会出现吗？</strong>
         </p>
 
-        {/* 对比表：行高 135 / 135 / 170 / 135 px（各减 6px） */}
-        <div
-          className="shrink-0 grid rounded-[28px] border border-zinc-800 overflow-hidden bg-[#0D0D10]/60"
-          style={{
-            gridTemplateColumns: '300px 1fr 1fr',
-            gridTemplateRows: '135px 135px 170px 135px',
-          }}
-        >
-          {/* ── 表头行 ── */}
-          <div className="border-b border-zinc-800" />
-          <div className="border-b border-l border-zinc-800 px-10 flex items-center">
-            <div className="text-[44px] font-black text-white font-['MiSans'] leading-none">优化词</div>
-          </div>
-          <div className="border-b border-l border-zinc-800 px-10 flex items-center">
-            <div className="text-[44px] font-black text-white font-['MiSans'] leading-none">监测词</div>
-          </div>
-
-          {/* ── 例子行 ── */}
-          <div className="border-b border-zinc-800 px-8 flex items-center">
-            <span className="text-[26px] text-zinc-500 font-medium font-['MiSans']">举例</span>
-          </div>
-          <div className="border-b border-l border-zinc-800 px-10 flex items-center">
-            <span className="text-[30px] text-zinc-300 font-medium font-['MiSans']">“好看的电视推荐”</span>
-          </div>
-          <div className="border-b border-l border-zinc-800 px-10 flex items-center">
-            <span className="text-[30px] text-zinc-300 font-medium font-['MiSans']">“创维跟海信比哪个好”</span>
-          </div>
-
-          {/* ── 判定行（视觉焦点） ── */}
-          <div className="border-b border-zinc-800 px-8 flex items-center bg-white/[0.04]">
-            <span className="text-[26px] text-zinc-400 font-semibold font-['MiSans'] leading-snug">
-              「创维」会出现吗
-            </span>
-          </div>
-          <div className="border-b border-l border-zinc-800 px-10 flex items-center gap-5 bg-white/[0.04]">
-            <span className="text-[48px] text-zinc-600 font-black leading-none">✕</span>
-            <span className="text-[48px] font-black text-zinc-400 font-['MiSans'] leading-none">不一定</span>
-          </div>
-          <div className="border-b border-l border-zinc-800 px-10 flex items-center gap-5 bg-white/[0.04]">
-            <span className="text-[48px] text-white font-black leading-none">✓</span>
-            <span className="text-[48px] font-black text-white font-['MiSans'] leading-none">一定会</span>
-          </div>
-
-          {/* ── 关注指标行 ── */}
-          <div className="px-8 flex items-center">
-            <span className="text-[26px] text-zinc-500 font-medium font-['MiSans']">分析维度</span>
-          </div>
-          <div className="border-l border-zinc-800 px-10 flex items-center gap-4">
-            <span className="px-6 py-2.5 rounded-xl bg-zinc-800 text-[28px] text-white font-bold font-['MiSans']">提及率</span>
-            <span className="px-6 py-2.5 rounded-xl bg-zinc-800 text-[28px] text-white font-bold font-['MiSans']">出现位置</span>
-          </div>
-          <div className="border-l border-zinc-800 px-10 flex items-center gap-4">
-            <span className="px-6 py-2.5 rounded-xl bg-zinc-800 text-[28px] text-white font-bold font-['MiSans']">信息准确</span>
-            <span className="px-6 py-2.5 rounded-xl bg-zinc-800 text-[28px] text-white font-bold font-['MiSans']">有无负面</span>
-          </div>
+        <div className="flex-1 min-h-0 grid grid-cols-2 gap-10">
+          <Card d={OPT} />
+          <Card d={MON} />
         </div>
 
-        <div className="flex-1 min-h-0" />
-
-        {/* 底部一句：贴底对齐 */}
-        <p
-          className="text-zinc-400 font-normal font-['MiSans'] shrink-0 mt-8"
-          style={{ fontSize: '28px', lineHeight: '1.4' }}
-        >
-          若混在一起算，监测词天然 100% 出现，会把整体
-          <strong className="text-white font-bold">提及率虚高</strong>，数据失去意义。
-        </p>
+        <WhyBar className="mt-8" />
       </div>
     </SlideLayout>
   );
 }
 
-Page_SkyworthKeywordWhySplit.hideHeader = true;
+/* ============================================================
+ * 版本 B — 中心问句 · 二分岔
+ * 顶部把「唯一判断标准」做成居中大问句，下方两张卡片各自顶着一枚
+ * 「答案徽标」，让 问题 → 答案 → 分类 一眼连成线。
+ * ============================================================ */
+export function Page_SkyworthKeywordWhySplit_B() {
+  const Card = ({ d }) => (
+    <div className="relative h-full">
+      {/* 答案徽标（骑在卡片上沿） */}
+      <span
+        className="absolute left-1/2 -translate-x-1/2 -top-5 z-10 px-8 py-3 rounded-full bg-[#0b0b0f] text-[28px] font-black font-['MiSans'] leading-none whitespace-nowrap"
+        style={{ border: `1.5px solid ${d.accent}80`, color: d.accentText }}
+      >
+        {d.mark} 创维{d.answer}
+      </span>
+
+      <div
+        className="h-full rounded-[30px] pt-16 px-11 pb-10 flex flex-col"
+        style={{ border: `1px solid ${d.accent}40`, background: `${d.accent}0D` }}
+      >
+        <div className="flex items-baseline gap-4 shrink-0">
+          <span className="text-[50px] font-black text-white font-['MiSans'] leading-none">{d.name}</span>
+          <span className="text-[25px] text-zinc-400 font-['MiSans']">{d.tag}</span>
+        </div>
+
+        <div className="shrink-0 mt-8 rounded-2xl border border-zinc-700/70 bg-zinc-900/40 px-8 py-6">
+          <span className="text-[22px] text-zinc-500 font-['MiSans']">典型问法</span>
+          <div className="text-[36px] text-zinc-100 font-semibold font-['MiSans'] mt-1.5">{d.example}</div>
+        </div>
+
+        <div className="flex-1" />
+
+        <div className="shrink-0">
+          <span className="text-[23px] text-zinc-500 font-['MiSans']">主要分析</span>
+          <div className="flex gap-4 mt-3">
+            {d.metrics.map((m) => (
+              <span
+                key={m}
+                className="px-7 py-3.5 rounded-xl text-[31px] font-bold font-['MiSans'] leading-none"
+                style={{ background: `${d.accent}26`, border: `1px solid ${d.accent}55`, color: d.accentText }}
+              >
+                {m}
+              </span>
+            ))}
+          </div>
+        </div>
+      </div>
+    </div>
+  );
+
+  return (
+    <SlideLayout title="监测词与优化词怎么分类？">
+      <div
+        className="absolute w-[1840px] flex flex-col select-none animate-fadeIn"
+        style={{ top: 0, height: '795px', paddingTop: '18px' }}
+      >
+        {/* 顶部：唯一判断标准 */}
+        <div className="shrink-0 flex flex-col items-center text-center mb-11">
+          <span className="text-[23px] font-bold tracking-[0.35em] text-zinc-500 font-['MiSans'] mb-4">
+            分类只看一件事
+          </span>
+          <p className="text-[54px] font-black text-white font-['MiSans'] leading-[1.1]">
+            用户的搜索问法中，<span style={{ color: '#5B8CFF' }}>「创维」</span>一定会出现吗？
+          </p>
+        </div>
+
+        {/* 两分岔卡片 */}
+        <div className="flex-1 min-h-0 grid grid-cols-2 gap-10">
+          <Card d={OPT} />
+          <Card d={MON} />
+        </div>
+
+        <WhyBar className="mt-8" />
+      </div>
+    </SlideLayout>
+  );
+}
+
+/* ============================================================
+ * 版本 C — 一道判断题 · 横向决策流
+ * 左栏立住「判断标准」，右栏两条横向行卡：判定 → 例子 → 分析维度，
+ * 从左读到右就是一条完整的分类逻辑。
+ * ============================================================ */
+export function Page_SkyworthKeywordWhySplit_C() {
+  const Row = ({ d }) => (
+    <div
+      className="flex-1 rounded-[26px] flex items-center px-10 gap-9"
+      style={{ border: `1px solid ${d.accent}3A`, background: `${d.accent}0A` }}
+    >
+      {/* 判定 + 分类名 */}
+      <div className="w-[300px] shrink-0">
+        <div className="text-[44px] font-black text-white font-['MiSans'] leading-none">{d.name}</div>
+        <div
+          className="inline-flex items-center gap-2.5 mt-4 px-5 py-2 rounded-full text-[24px] font-bold font-['MiSans'] leading-none"
+          style={{ background: `${d.accent}20`, color: d.accentText }}
+        >
+          <span className="text-[26px] leading-none">{d.mark}</span> 创维{d.answer}
+        </div>
+      </div>
+
+      <div className="w-px self-stretch my-6 bg-zinc-800" />
+
+      {/* 例子 */}
+      <div className="flex-1 min-w-0">
+        <span className="text-[21px] text-zinc-500 font-['MiSans']">典型问法</span>
+        <div className="text-[33px] text-zinc-100 font-semibold font-['MiSans'] mt-1 truncate">{d.example}</div>
+        <div className="text-[21px] text-zinc-500 font-['MiSans'] mt-1.5">{d.purpose}</div>
+      </div>
+
+      {/* 分析维度 */}
+      <div className="shrink-0">
+        <span className="text-[21px] text-zinc-500 font-['MiSans']">主要分析</span>
+        <div className="flex gap-3 mt-2.5">
+          {d.metrics.map((m) => (
+            <span
+              key={m}
+              className="px-6 py-3 rounded-xl text-[28px] font-bold font-['MiSans'] leading-none"
+              style={{ background: `${d.accent}26`, border: `1px solid ${d.accent}55`, color: d.accentText }}
+            >
+              {m}
+            </span>
+          ))}
+        </div>
+      </div>
+    </div>
+  );
+
+  return (
+    <SlideLayout title="监测词与优化词怎么分类？">
+      <div
+        className="absolute w-[1840px] flex flex-col select-none animate-fadeIn"
+        style={{ top: 0, height: '795px', paddingTop: '20px' }}
+      >
+        <div className="flex-1 min-h-0 flex gap-12">
+          {/* 左：判断标准 */}
+          <div className="w-[560px] shrink-0 flex flex-col justify-center">
+            <div className="w-[64px] h-[6px] rounded-full mb-8" style={{ background: '#5B8CFF' }} />
+            <span className="text-[24px] font-bold tracking-[0.28em] text-zinc-500 font-['MiSans'] mb-5">
+              先做一道判断题
+            </span>
+            <p className="text-[46px] font-black text-white font-['MiSans'] leading-[1.2]">
+              用户的搜索问法中，<br />
+              <span style={{ color: '#5B8CFF' }}>「创维」</span>一定会出现吗？
+            </p>
+            <p className="text-[26px] text-zinc-400 font-['MiSans'] leading-relaxed mt-8">
+              答案不同，<strong className="text-white font-bold">归类不同</strong>，
+              盯的<strong className="text-white font-bold">指标</strong>也完全不同。
+            </p>
+          </div>
+
+          {/* 右：两条决策行 */}
+          <div className="flex-1 min-w-0 flex flex-col gap-8">
+            <Row d={OPT} />
+            <Row d={MON} />
+          </div>
+        </div>
+
+        <WhyBar className="mt-9" />
+      </div>
+    </SlideLayout>
+  );
+}
+
+/* 默认导出保留（指向版本 A），兼容旧的 component 引用 */
+export default Page_SkyworthKeywordWhySplit_A;
+
+Page_SkyworthKeywordWhySplit_A.hideHeader = true;
+Page_SkyworthKeywordWhySplit_B.hideHeader = true;
+Page_SkyworthKeywordWhySplit_C.hideHeader = true;

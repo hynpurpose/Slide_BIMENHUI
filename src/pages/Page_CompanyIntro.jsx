@@ -65,11 +65,11 @@ export default function Page_CompanyIntro() {
       {/* ── 主排版容器 (无右侧线框阻隔，文字浮于底纹之上，起于 top: 90px) ── */}
       <div 
         className="absolute w-[1840px] select-none animate-fadeIn flex flex-col justify-start z-10 pl-0"
-        style={{ top: '90px', height: '705px' }}
+        style={{ top: '150px', height: '705px' }}
       >
         
-        {/* ==================== 左侧/中偏左：超大字号文字内容 (宽 1300px，字号 38px) ==================== */}
-        <div className="w-[1300px] flex flex-col justify-start gap-12 mt-6">
+        {/* ==================== 左侧/中偏左：超大字号文字内容 (宽 1180px，字号 38px) ==================== */}
+        <div className="w-[1180px] flex flex-col justify-start gap-12 mt-6">
           <p className="text-white text-[38px] font-normal leading-[62px] font-['MiSans'] text-justify">
             <span className="text-white font-black">「GEO 索引未来」</span>是国内头部 GEO 服务商，主要服务中大品牌客户，并已经在多个行业积累了实战经验。
           </p>
