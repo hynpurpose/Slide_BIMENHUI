@@ -1,4 +1,4 @@
-import React, { useMemo } from 'react';
+import React, { useMemo, useRef, useState, useLayoutEffect } from 'react';
 import SlideLayout from '../components/SlideLayout';
 import analysisData from '../data/skyworthDecisionAnalysis.json';
 
@@ -23,6 +23,156 @@ const WEIGHT_MAP = {
   semibold: 'font-semibold',
   normal: '',
 };
+
+// ─────────────────────────────────────────────────────────────
+// 词云自动布局：按字号从大到小放置，螺旋搜索空位，矩形碰撞检测，
+// 保证任何两个词（尤其是大词）之间留有间隙、绝不重叠。
+// ─────────────────────────────────────────────────────────────
+
+const CJK_RE = /[\u2E80-\u303F\u3400-\u9FFF\uF900-\uFAFF\uFF00-\uFFEF]/;
+
+function measureText(text, fontSize, weight) {
+  let w = 0;
+  for (const ch of text) {
+    w += CJK_RE.test(ch) ? fontSize : fontSize * 0.58;
+  }
+  if (weight === 'black' || weight === 'bold') w *= 1.04;
+  return { w, h: fontSize * 1.24 };
+}
+
+function rectsOverlap(a, b) {
+  return a.x < b.x + b.w && a.x + a.w > b.x && a.y < b.y + b.h && a.y + a.h > b.y;
+}
+
+// 大词的起始锚点（占容器宽高的比例），刻意分散在四角与中心，
+// 避免几个又大又亮的词挤在一起。
+const BIG_WORD_ANCHORS = [
+  [0.5, 0.46],
+  [0.16, 0.3],
+  [0.84, 0.34],
+  [0.3, 0.76],
+  [0.72, 0.74],
+  [0.5, 0.14],
+  [0.1, 0.66],
+  [0.9, 0.68],
+];
+
+function layoutWordCloud(words, width, height, options = {}) {
+  const { fontScale = 1.45, gap = 10, bigGap = 28 } = options;
+
+  const sorted = [...words].sort((a, b) => b.size - a.size);
+  const placedRects = [];
+  const result = [];
+  const GOLDEN = 0.618033988749895;
+
+  sorted.forEach((word, i) => {
+    const fontSize = word.size * fontScale;
+    const { w: textW, h: textH } = measureText(word.text, fontSize, word.weight);
+    const pad = word.size >= 20 ? bigGap : gap;
+
+    // 起始点：前几个大词用分散锚点，其余用黄金比例序列均匀撒点
+    let sx, sy;
+    if (i < BIG_WORD_ANCHORS.length && word.size >= 18) {
+      sx = BIG_WORD_ANCHORS[i][0] * width;
+      sy = BIG_WORD_ANCHORS[i][1] * height;
+    } else {
+      sx = (((i + 1) * GOLDEN) % 1) * (width - textW) + textW / 2;
+      sy = (((i + 1) * GOLDEN * GOLDEN * 7) % 1) * (height - textH) + textH / 2;
+    }
+
+    let pos = null;
+    // 椭圆螺旋向外搜索空位（容器宽>高，纵向步进压扁）
+    for (let t = 0; t < 5000; t++) {
+      const r = 2 + t * 0.26;
+      const a = i * 2.39996 + t * 0.32;
+      const cx = sx + r * Math.cos(a);
+      const cy = sy + r * Math.sin(a) * 0.6;
+      const x = cx - textW / 2;
+      const y = cy - textH / 2;
+      if (x < 2 || y < 1 || x + textW > width - 2 || y + textH > height - 1) continue;
+      const rect = { x: x - pad / 2, y: y - pad / 2, w: textW + pad, h: textH + pad };
+      if (!placedRects.some((p) => rectsOverlap(rect, p))) {
+        pos = { x, y };
+        placedRects.push(rect);
+        break;
+      }
+    }
+
+    // 兜底：网格扫描找任意空位（理论上极少触发）
+    if (!pos) {
+      outer: for (let y = 1; y <= height - textH - 1; y += 6) {
+        for (let x = 2; x <= width - textW - 2; x += 6) {
+          const rect = { x: x - gap / 2, y: y - gap / 2, w: textW + gap, h: textH + gap };
+          if (!placedRects.some((p) => rectsOverlap(rect, p))) {
+            pos = { x, y };
+            placedRects.push(rect);
+            break outer;
+          }
+        }
+      }
+    }
+
+    if (pos) {
+      result.push({
+        ...word,
+        fontSize,
+        textW,
+        textH,
+        cx: pos.x + textW / 2,
+        cy: pos.y + textH / 2,
+      });
+    }
+  });
+
+  return result;
+}
+
+function wordSpanClasses(word, extra = '') {
+  const shadowClass =
+    word.weight === 'black' ? 'drop-shadow-[0_0_20px_rgba(255,255,255,0.12)] z-10' : '';
+  return `select-none transition-all duration-300 hover:scale-110 cursor-default hover:text-[#004CE5] ${COLOR_MAP[word.color] || 'text-zinc-400'} ${WEIGHT_MAP[word.weight] || ''} ${shadowClass} ${extra}`;
+}
+
+function WordCloud({ words }) {
+  const containerRef = useRef(null);
+  const [bounds, setBounds] = useState(null);
+
+  useLayoutEffect(() => {
+    const el = containerRef.current;
+    if (!el) return;
+    const update = () =>
+      setBounds({ w: el.clientWidth, h: el.clientHeight });
+    update();
+    const ro = new ResizeObserver(update);
+    ro.observe(el);
+    return () => ro.disconnect();
+  }, []);
+
+  const laidOut = useMemo(() => {
+    if (!bounds || bounds.w < 50 || bounds.h < 50) return [];
+    return layoutWordCloud(words, bounds.w, bounds.h);
+  }, [words, bounds]);
+
+  return (
+    <div ref={containerRef} className="relative w-full h-full overflow-hidden font-['MiSans']">
+      {laidOut.map((word) => (
+        <span
+          key={word.text}
+          className={wordSpanClasses(word, 'absolute origin-center')}
+          style={{
+            left: `${word.cx - word.textW / 2}px`,
+            top: `${word.cy - word.textH / 2}px`,
+            fontSize: `${word.fontSize}px`,
+            lineHeight: `${word.fontSize * 1.24}px`,
+            whiteSpace: 'nowrap',
+          }}
+        >
+          {word.text}
+        </span>
+      ))}
+    </div>
+  );
+}
 
 export default function Page_SkyworthDecisionAnalysis() {
   const { headline, wordCloud } = analysisData;
@@ -151,42 +301,7 @@ export default function Page_SkyworthDecisionAnalysis() {
 
           {/* 词云 */}
           <div className="flex-1 min-h-0 bg-[#09090b]/40 border border-zinc-800 rounded-2xl p-4 shadow-inner overflow-hidden">
-            <div className="relative w-full h-full overflow-hidden font-['MiSans']">
-              {wordCloud.map((word) => {
-                const rotateClass =
-                  word.rotate === 90
-                    ? 'origin-center rotate-90'
-                    : word.rotate === -90
-                      ? 'origin-center -rotate-90'
-                      : '';
-                const shadowClass =
-                  word.weight === 'black' ? 'drop-shadow-[0_0_20px_rgba(255,255,255,0.12)] z-10' : '';
-
-                // 配合大字号等比拉伸坐标以防字词重叠
-                const fontScale = 1.45;
-                const posScaleX = 1.05;
-                const posScaleY = 1.02;
-
-                const scaledSize = word.size * fontScale;
-                const newLeft = Math.max(8, Math.min(880, word.left * posScaleX));
-                const newTop = Math.max(8, Math.min(350, word.top * posScaleY));
-
-                return (
-                  <span
-                    key={word.text}
-                    className={`absolute select-none transition-all duration-300 hover:scale-110 cursor-default hover:text-[#004CE5] ${COLOR_MAP[word.color] || 'text-zinc-400'} ${WEIGHT_MAP[word.weight] || ''} ${rotateClass} ${shadowClass}`}
-                    style={{
-                      left: `${newLeft}px`,
-                      top: `${newTop}px`,
-                      fontSize: `${scaledSize}px`,
-                      lineHeight: `${scaledSize + 8}px`,
-                    }}
-                  >
-                    {word.text}
-                  </span>
-                );
-              })}
-            </div>
+            <WordCloud words={wordCloud} />
           </div>
         </div>
 

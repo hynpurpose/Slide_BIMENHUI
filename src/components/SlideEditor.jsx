@@ -1,4 +1,15 @@
 import React, { useState, useEffect, useRef, useCallback } from 'react';
+import {
+  Undo2,
+  Bold,
+  Italic,
+  Underline,
+  Strikethrough,
+  AlignLeft,
+  AlignCenter,
+  AlignRight,
+  AlignJustify,
+} from 'lucide-react';
 
 const STORAGE_KEY = 'slide-visual-edits';
 const SLIDE_WIDTH = 1920;
@@ -62,7 +73,7 @@ function rgbToHex(rgb) {
   );
 }
 
-/* 记录元素被修改前的原始 style 和内容，用于「重置」还原到源码状态 */
+/* 记录元素被修改前的原始 style 和内容，用于「重置 / 撤销」还原到源码状态 */
 const originals = new WeakMap();
 function ensureOriginal(el) {
   if (!originals.has(el)) {
@@ -83,8 +94,23 @@ function applyOverride(el, o) {
   el.style.rotate = o.rotate ? `${o.rotate}deg` : '';
   if (o.fontSize) el.style.fontSize = `${o.fontSize}px`;
   if (o.color) el.style.color = o.color;
+  if (o.fontFamily) el.style.fontFamily = o.fontFamily;
+  if (o.fontWeight) el.style.fontWeight = String(o.fontWeight);
+  if (o.italic !== undefined) el.style.fontStyle = o.italic ? 'italic' : 'normal';
+  if (o.underline !== undefined || o.strikethrough !== undefined) {
+    const dec = [o.underline ? 'underline' : '', o.strikethrough ? 'line-through' : '']
+      .filter(Boolean)
+      .join(' ');
+    el.style.textDecorationLine = dec || 'none';
+  }
+  if (o.textAlign) el.style.textAlign = o.textAlign;
+  if (o.lineHeight) el.style.lineHeight = String(o.lineHeight);
   if (o.letterSpacing !== undefined && o.letterSpacing !== '')
     el.style.letterSpacing = `${o.letterSpacing}px`;
+  if (o.marginTop !== undefined && o.marginTop !== '')
+    el.style.marginTop = `${o.marginTop}px`;
+  if (o.marginBottom !== undefined && o.marginBottom !== '')
+    el.style.marginBottom = `${o.marginBottom}px`;
   // 只有文案真的被改过才写入（避免把嵌套的 span 格式意外压平）
   if (typeof o.text === 'string' && el.textContent !== o.text) {
     el.textContent = o.text;
@@ -114,14 +140,56 @@ function describe(el) {
   return text ? `${tag} · ${text.slice(0, 24)}${text.length > 24 ? '…' : ''}` : tag;
 }
 
-export default function SlideEditor({ enabled, slideId, slideKey, rootRef }) {
+/* Keynote 风格的字体 / 字重选项 */
+const FONT_FAMILIES = [
+  { label: '默认字体', value: '' },
+  { label: '苹方（PingFang SC）', value: '"PingFang SC", sans-serif' },
+  { label: '冬青黑体', value: '"Hiragino Sans GB", sans-serif' },
+  { label: '宋体（Songti SC）', value: '"Songti SC", serif' },
+  { label: '楷体（Kaiti SC）', value: '"Kaiti SC", serif' },
+  { label: 'Helvetica Neue', value: '"Helvetica Neue", Helvetica, sans-serif' },
+  { label: 'Arial', value: 'Arial, sans-serif' },
+  { label: 'Georgia', value: 'Georgia, serif' },
+  { label: 'Times New Roman', value: '"Times New Roman", Times, serif' },
+  { label: '等宽（Menlo）', value: 'Menlo, "Courier New", monospace' },
+];
+
+const FONT_WEIGHTS = [
+  { label: '细体', value: 300 },
+  { label: '常规体', value: 400 },
+  { label: '中黑体', value: 500 },
+  { label: '半粗体', value: 600 },
+  { label: '粗体', value: 700 },
+  { label: '特粗体', value: 900 },
+];
+
+function normalizeAlign(v) {
+  if (v === 'start') return 'left';
+  if (v === 'end') return 'right';
+  return v;
+}
+
+export default function SlideEditor({ enabled, slideId, slideKey, rootRef, initialTargetRef }) {
   const [selected, setSelected] = useState(null); // DOM 元素
   const [ov, setOv] = useState(null); // 当前选中元素的 override 数据
   const [box, setBox] = useState(null); // 高亮框在屏幕上的位置
-  const [prefill, setPrefill] = useState({ fontSize: '', color: '#ffffff' });
+  const [prefill, setPrefill] = useState({
+    fontSize: '',
+    color: '#ffffff',
+    fontFamily: '',
+    fontWeight: 400,
+    italic: false,
+    underline: false,
+    strikethrough: false,
+    textAlign: 'left',
+    lineHeight: '',
+  });
   const [inlineEditing, setInlineEditing] = useState(false); // 直接在画面中改字
+  const [tab, setTab] = useState('text'); // 'text' | 'arrange'
+  const [, setHistVer] = useState(0); // 撤销栈变化时触发重渲染
   const dragRef = useRef(null);
   const patchRef = useRef(null);
+  const historyRef = useRef([]); // 撤销栈：{ slideId, path, prev, time }
 
   /* 读取 / 写入当前 slide 的全部 override */
   const getSlideEdits = useCallback(() => loadAll()[slideId] || {}, [slideId]);
@@ -135,6 +203,29 @@ export default function SlideEditor({ enabled, slideId, slideKey, rootRef }) {
         if (Object.keys(all[slideId]).length === 0) delete all[slideId];
       }
       saveAll(all);
+    },
+    [slideId]
+  );
+
+  /* ---------------- 撤销栈 ---------------- */
+  const pushHistory = useCallback(
+    (path, prevOverride) => {
+      const h = historyRef.current;
+      const last = h[h.length - 1];
+      const now = Date.now();
+      // 同一元素的连续快速修改（拖拽、滑杆、打字）合并成一步
+      if (last && last.slideId === slideId && last.path === path && now - last.time < 600) {
+        last.time = now;
+        return;
+      }
+      h.push({
+        slideId,
+        path,
+        prev: prevOverride ? { ...prevOverride } : null,
+        time: now,
+      });
+      if (h.length > 100) h.shift();
+      setHistVer((v) => v + 1);
     },
     [slideId]
   );
@@ -171,29 +262,30 @@ export default function SlideEditor({ enabled, slideId, slideKey, rootRef }) {
     setBox({ left: r.left, top: r.top, width: r.width, height: r.height });
   }, []);
 
-  /* 双击选中元素 */
-  useEffect(() => {
-    if (!enabled) return;
-    const root = rootRef.current;
-    if (!root) return;
-
-    const onDblClick = (e) => {
-      const el = e.target;
-      if (!(el instanceof HTMLElement) || !root.contains(el)) return;
-      e.preventDefault();
-      e.stopPropagation();
-
+  /* 选中一个元素：读取现有 override + 计算样式作为面板默认值 */
+  const selectElement = useCallback(
+    (el) => {
+      const root = rootRef.current;
+      if (!root || !el || el === root || !root.contains(el)) return;
       const path = getPath(root, el);
       if (path === null) return;
 
       const edits = getSlideEdits();
       const existing = edits[path] || {};
       const cs = getComputedStyle(el);
+      const fs = parseFloat(cs.fontSize) || 0;
+      const lh = parseFloat(cs.lineHeight);
       setPrefill({
-        fontSize: Math.round(parseFloat(cs.fontSize)) || '',
+        fontSize: Math.round(fs) || '',
         color: rgbToHex(cs.color),
+        fontFamily: cs.fontFamily,
+        fontWeight: Number(cs.fontWeight) || 400,
+        italic: cs.fontStyle === 'italic',
+        underline: (cs.textDecorationLine || '').includes('underline'),
+        strikethrough: (cs.textDecorationLine || '').includes('line-through'),
+        textAlign: normalizeAlign(cs.textAlign),
+        lineHeight: fs && !Number.isNaN(lh) ? Number((lh / fs).toFixed(2)) : '',
       });
-      setInlineEditing(false);
       setSelected(el);
       setOv({
         path,
@@ -202,17 +294,80 @@ export default function SlideEditor({ enabled, slideId, slideKey, rootRef }) {
         rotate: existing.rotate || 0,
         fontSize: existing.fontSize || '',
         color: existing.color || '',
+        fontFamily: existing.fontFamily || '',
+        fontWeight: existing.fontWeight || '',
+        italic: existing.italic,
+        underline: existing.underline,
+        strikethrough: existing.strikethrough,
+        textAlign: existing.textAlign || '',
+        lineHeight: existing.lineHeight || '',
         letterSpacing: existing.letterSpacing ?? '',
+        marginTop: existing.marginTop ?? '',
+        marginBottom: existing.marginBottom ?? '',
         // 文案：已有改动就用改过的；否则取当前文字。_baseText 用来判断是否真的改过
         text: existing.text !== undefined ? existing.text : el.textContent,
         _baseText: existing.text !== undefined ? null : el.textContent,
       });
       updateBox(el);
+    },
+    [rootRef, getSlideEdits, updateBox]
+  );
+
+  /* 单击选中元素；双击进入画面内改字（Keynote 习惯） */
+  useEffect(() => {
+    if (!enabled) return;
+    const root = rootRef.current;
+    if (!root) return;
+
+    const onClick = (e) => {
+      const el = e.target;
+      if (!(el instanceof HTMLElement) || !root.contains(el)) return;
+      // 正在画面内改字：点击选中元素内部只是移动光标，放行
+      if (inlineEditing && selected && selected.contains(el)) return;
+      e.preventDefault();
+      e.stopPropagation();
+      setInlineEditing(false);
+      if (el === root) {
+        // 点空白处取消选中
+        setSelected(null);
+        setOv(null);
+        setBox(null);
+        return;
+      }
+      selectElement(el);
     };
 
+    const onDblClick = (e) => {
+      const el = e.target;
+      if (!(el instanceof HTMLElement) || !root.contains(el)) return;
+      if (inlineEditing && selected && selected.contains(el)) return;
+      e.preventDefault();
+      e.stopPropagation();
+      if (el === root) return;
+      selectElement(el);
+      setInlineEditing(true);
+    };
+
+    root.addEventListener('click', onClick, true);
     root.addEventListener('dblclick', onDblClick, true);
-    return () => root.removeEventListener('dblclick', onDblClick, true);
-  }, [enabled, slideKey, rootRef, getSlideEdits, updateBox]);
+    return () => {
+      root.removeEventListener('click', onClick, true);
+      root.removeEventListener('dblclick', onDblClick, true);
+    };
+  }, [enabled, slideKey, rootRef, selectElement, inlineEditing, selected]);
+
+  /* 双击幻灯片进入编辑模式时，直接选中当初双击的那个元素
+     （等画布缩小的过渡动画结束后再定位高亮框） */
+  useEffect(() => {
+    if (!enabled || !initialTargetRef) return;
+    const el = initialTargetRef.current;
+    if (!el) return;
+    initialTargetRef.current = null;
+    if (el instanceof HTMLElement) {
+      const t = setTimeout(() => selectElement(el), 350);
+      return () => clearTimeout(t);
+    }
+  }, [enabled, initialTargetRef, selectElement]);
 
   /* 选中元素后，同步高亮框（窗口尺寸变化 / 滚动） */
   useEffect(() => {
@@ -236,17 +391,36 @@ export default function SlideEditor({ enabled, slideId, slideKey, rootRef }) {
     }
   }, [enabled]);
 
-  /* 应用并持久化一个字段的变化 */
+  /* 应用并持久化一个字段的变化（写入前先记一步撤销） */
   const patch = useCallback(
     (changes) => {
       if (!selected || !ov) return;
       const next = { ...ov, ...changes };
       setOv(next);
 
+      pushHistory(ov.path, getSlideEdits()[ov.path] || null);
+
       // 文案是否真的被改过（没改过就不写 textContent，避免压平内部格式）
       const textActive =
         next._baseText === null ||
         (typeof next.text === 'string' && next.text !== next._baseText);
+
+      // 被清空的字段，把内联样式一并清掉（回退到源码样式）
+      const clearable = {
+        fontSize: 'fontSize',
+        color: 'color',
+        fontFamily: 'fontFamily',
+        fontWeight: 'fontWeight',
+        textAlign: 'textAlign',
+        lineHeight: 'lineHeight',
+        letterSpacing: 'letterSpacing',
+        marginTop: 'marginTop',
+        marginBottom: 'marginBottom',
+      };
+      Object.entries(clearable).forEach(([key, prop]) => {
+        const v = next[key];
+        if (v === '' || v === undefined) selected.style[prop] = '';
+      });
 
       applyOverride(selected, {
         ...next,
@@ -256,8 +430,21 @@ export default function SlideEditor({ enabled, slideId, slideKey, rootRef }) {
 
       // 只有真正有调整时才写入存储
       const meaningful =
-        next.dx || next.dy || next.rotate || next.fontSize || next.color ||
+        next.dx ||
+        next.dy ||
+        next.rotate ||
+        next.fontSize ||
+        next.color ||
+        next.fontFamily ||
+        next.fontWeight ||
+        next.textAlign ||
+        next.lineHeight ||
+        next.italic !== undefined ||
+        next.underline !== undefined ||
+        next.strikethrough !== undefined ||
         (next.letterSpacing !== '' && next.letterSpacing !== undefined) ||
+        (next.marginTop !== '' && next.marginTop !== undefined) ||
+        (next.marginBottom !== '' && next.marginBottom !== undefined) ||
         textActive;
       setElementEdit(
         ov.path,
@@ -268,15 +455,71 @@ export default function SlideEditor({ enabled, slideId, slideKey, rootRef }) {
               rotate: Number(next.rotate) || 0,
               fontSize: next.fontSize || '',
               color: next.color || '',
+              fontFamily: next.fontFamily || '',
+              fontWeight: next.fontWeight || '',
+              textAlign: next.textAlign || '',
+              lineHeight: next.lineHeight || '',
               letterSpacing: next.letterSpacing,
+              ...(next.italic !== undefined ? { italic: next.italic } : {}),
+              ...(next.underline !== undefined ? { underline: next.underline } : {}),
+              ...(next.strikethrough !== undefined
+                ? { strikethrough: next.strikethrough }
+                : {}),
+              ...(next.marginTop !== '' && next.marginTop !== undefined
+                ? { marginTop: next.marginTop }
+                : {}),
+              ...(next.marginBottom !== '' && next.marginBottom !== undefined
+                ? { marginBottom: next.marginBottom }
+                : {}),
               ...(textActive ? { text: next.text } : {}),
             }
           : null
       );
     },
-    [selected, ov, setElementEdit, updateBox]
+    [selected, ov, setElementEdit, updateBox, pushHistory, getSlideEdits]
   );
   patchRef.current = patch;
+
+  /* 撤销上一步操作（⌘Z） */
+  const undo = useCallback(() => {
+    const h = historyRef.current;
+    const last = h[h.length - 1];
+    if (!last || last.slideId !== slideId) return;
+    h.pop();
+    setHistVer((v) => v + 1);
+
+    const root = rootRef.current;
+    const el = root ? resolvePath(root, last.path) : null;
+    setElementEdit(last.path, last.prev);
+    if (el) {
+      restoreOriginal(el);
+      if (last.prev) applyOverride(el, last.prev);
+    }
+    setInlineEditing(false);
+    if (el && ov && ov.path === last.path) {
+      selectElement(el);
+    }
+  }, [slideId, rootRef, setElementEdit, ov, selectElement]);
+
+  const canUndo =
+    historyRef.current.length > 0 &&
+    historyRef.current[historyRef.current.length - 1].slideId === slideId;
+
+  /* ⌘Z / Ctrl+Z 全局撤销（正在打字时交给系统自带的文字撤销） */
+  useEffect(() => {
+    if (!enabled) return;
+    const onKey = (e) => {
+      if ((e.metaKey || e.ctrlKey) && !e.shiftKey && e.key.toLowerCase() === 'z') {
+        const t = e.target;
+        if (t.tagName === 'TEXTAREA' || t.isContentEditable) return;
+        e.preventDefault();
+        e.stopPropagation();
+        undo();
+      }
+    };
+    window.addEventListener('keydown', onKey, true);
+    return () => window.removeEventListener('keydown', onKey, true);
+  }, [enabled, undo]);
 
   /* 拖拽高亮框来移动元素 */
   const onBoxPointerDown = (e) => {
@@ -297,7 +540,7 @@ export default function SlideEditor({ enabled, slideId, slideKey, rootRef }) {
       if (!d) return;
       const dx = Math.round(d.baseDx + (ev.clientX - d.startX) / d.scale);
       const dy = Math.round(d.baseDy + (ev.clientY - d.startY) / d.scale);
-      patch({ dx, dy });
+      patchRef.current({ dx, dy });
     };
     const onUp = () => {
       dragRef.current = null;
@@ -327,6 +570,7 @@ export default function SlideEditor({ enabled, slideId, slideKey, rootRef }) {
         e.target.isContentEditable
       )
         return;
+      if (e.metaKey || e.ctrlKey) return;
       const step = e.shiftKey ? 10 : 1;
       let handled = true;
       if (e.key === 'ArrowLeft') patch({ dx: (Number(ov.dx) || 0) - step });
@@ -381,6 +625,7 @@ export default function SlideEditor({ enabled, slideId, slideKey, rootRef }) {
 
   const resetElement = () => {
     if (!selected || !ov) return;
+    pushHistory(ov.path, getSlideEdits()[ov.path] || null);
     setInlineEditing(false);
     restoreOriginal(selected);
     setElementEdit(ov.path, null);
@@ -393,7 +638,8 @@ export default function SlideEditor({ enabled, slideId, slideKey, rootRef }) {
     const root = rootRef.current;
     const edits = getSlideEdits();
     if (root) {
-      Object.keys(edits).forEach((path) => {
+      Object.entries(edits).forEach(([path, override]) => {
+        pushHistory(path, override);
         const el = resolvePath(root, path);
         if (el) restoreOriginal(el);
       });
@@ -412,16 +658,39 @@ export default function SlideEditor({ enabled, slideId, slideKey, rootRef }) {
     const lines = [];
     if (ov.dx || ov.dy) lines.push(`translate: ${Number(ov.dx) || 0}px ${Number(ov.dy) || 0}px;`);
     if (ov.rotate) lines.push(`rotate: ${ov.rotate}deg;`);
+    if (ov.fontFamily) lines.push(`font-family: ${ov.fontFamily};`);
+    if (ov.fontWeight) lines.push(`font-weight: ${ov.fontWeight};`);
     if (ov.fontSize) lines.push(`font-size: ${ov.fontSize}px;`);
+    if (ov.italic !== undefined) lines.push(`font-style: ${ov.italic ? 'italic' : 'normal'};`);
+    if (ov.underline !== undefined || ov.strikethrough !== undefined) {
+      const dec = [ov.underline ? 'underline' : '', ov.strikethrough ? 'line-through' : '']
+        .filter(Boolean)
+        .join(' ');
+      lines.push(`text-decoration-line: ${dec || 'none'};`);
+    }
     if (ov.color) lines.push(`color: ${ov.color};`);
+    if (ov.textAlign) lines.push(`text-align: ${ov.textAlign};`);
+    if (ov.lineHeight) lines.push(`line-height: ${ov.lineHeight};`);
     if (ov.letterSpacing !== '' && ov.letterSpacing !== undefined)
       lines.push(`letter-spacing: ${ov.letterSpacing}px;`);
+    if (ov.marginTop !== '' && ov.marginTop !== undefined)
+      lines.push(`margin-top: ${ov.marginTop}px;`);
+    if (ov.marginBottom !== '' && ov.marginBottom !== undefined)
+      lines.push(`margin-bottom: ${ov.marginBottom}px;`);
     navigator.clipboard?.writeText(lines.join('\n'));
   };
 
   if (!enabled) return null;
 
   const editCount = Object.keys(getSlideEdits()).length;
+
+  /* 面板显示用的「当前值」：override 优先，否则用计算样式 */
+  const curWeight = Number(ov?.fontWeight || prefill.fontWeight) || 400;
+  const isBold = curWeight >= 600;
+  const isItalic = ov?.italic !== undefined ? ov.italic : prefill.italic;
+  const isUnderline = ov?.underline !== undefined ? ov.underline : prefill.underline;
+  const isStrike = ov?.strikethrough !== undefined ? ov.strikethrough : prefill.strikethrough;
+  const curAlign = ov?.textAlign || prefill.textAlign || 'left';
 
   return (
     <>
@@ -446,26 +715,47 @@ export default function SlideEditor({ enabled, slideId, slideKey, rootRef }) {
             e.stopPropagation();
             setInlineEditing(true);
           }}
-          title="拖拽移动 · 再次双击改文字"
+          title="拖拽移动 · 双击改文字"
         >
           <span
             className={`absolute -top-6 left-0 px-2 py-0.5 rounded text-white text-[11px] font-mono whitespace-nowrap pointer-events-none ${
               inlineEditing ? 'bg-green-600' : 'bg-blue-600'
             }`}
           >
-            {inlineEditing ? '正在改文字 · Esc 或点空白处结束' : '拖拽移动 · 再次双击改文字'}
+            {inlineEditing ? '正在改文字 · Esc 或点空白处结束' : '拖拽移动 · 双击改文字'}
           </span>
         </div>
       )}
 
-      {/* 右侧编辑面板 */}
+      {/* 右侧格式面板（Keynote 风格） */}
       <div className="fixed top-0 right-0 h-full w-[340px] z-[95] bg-zinc-950/95 backdrop-blur-md border-l border-zinc-800 text-zinc-200 flex flex-col shadow-2xl">
-        <div className="px-5 py-4 border-b border-zinc-800 flex items-center justify-between">
-          <div>
-            <h3 className="text-sm font-semibold tracking-wide text-white">元素编辑面板</h3>
-            <p className="text-[11px] text-zinc-500 mt-0.5">
-              双击幻灯片中的文字进行编辑
-            </p>
+        {/* 标题栏 + 撤销 */}
+        <div className="px-5 py-3 border-b border-zinc-800 flex items-center justify-between">
+          <h3 className="text-sm font-semibold tracking-wide text-white">格式</h3>
+          <button
+            onClick={undo}
+            disabled={!canUndo}
+            title="撤销上一步（⌘Z）"
+            className={`flex items-center gap-1.5 px-3 py-1.5 rounded-lg text-[12px] font-medium transition-colors ${
+              canUndo
+                ? 'bg-zinc-800 hover:bg-zinc-700 text-zinc-200'
+                : 'bg-zinc-900 text-zinc-600 cursor-not-allowed'
+            }`}
+          >
+            <Undo2 size={14} />
+            撤销 ⌘Z
+          </button>
+        </div>
+
+        {/* 文本 / 排列 选项卡 */}
+        <div className="px-5 pt-3">
+          <div className="flex bg-zinc-900 rounded-lg p-1 gap-1">
+            <TabBtn active={tab === 'text'} onClick={() => setTab('text')}>
+              文本
+            </TabBtn>
+            <TabBtn active={tab === 'arrange'} onClick={() => setTab('arrange')}>
+              排列
+            </TabBtn>
           </div>
         </div>
 
@@ -476,17 +766,167 @@ export default function SlideEditor({ enabled, slideId, slideKey, rootRef }) {
             </div>
             <p className="text-sm">还没有选中元素</p>
             <p className="text-[12px] leading-relaxed">
-              在左侧幻灯片里 <span className="text-blue-400 font-medium">双击</span> 任意文字，
-              就可以在这里改文案、调位置。
-              选中后 <span className="text-blue-400 font-medium">再双击一次</span> 可直接在画面里打字。
+              在左侧幻灯片里 <span className="text-blue-400 font-medium">单击</span> 任意文字即可选中，
+              <span className="text-blue-400 font-medium">双击</span> 可直接在画面里改字。
+              <br />
+              ⌘Z 撤销上一步 · Esc 取消选中
             </p>
           </div>
-        ) : (
+        ) : tab === 'text' ? (
           <div className="flex-1 overflow-y-auto custom-scrollbar px-5 py-4 flex flex-col gap-5">
             {/* 选中信息 */}
             <div className="text-[12px] text-zinc-400 bg-zinc-900 rounded-lg px-3 py-2 break-all">
               {describe(selected)}
             </div>
+
+            {/* 字体 */}
+            <Section label="字体">
+              <select
+                value={ov.fontFamily || ''}
+                onChange={(e) => patch({ fontFamily: e.target.value })}
+                className="w-full bg-zinc-900 border border-zinc-800 rounded-lg px-2 py-2 text-sm text-white focus:border-blue-500 focus:outline-none"
+              >
+                {FONT_FAMILIES.map((f) => (
+                  <option key={f.label} value={f.value}>
+                    {f.label}
+                  </option>
+                ))}
+              </select>
+              <div className="flex gap-2 mt-2">
+                <select
+                  value={String(ov.fontWeight || prefill.fontWeight || 400)}
+                  onChange={(e) => patch({ fontWeight: Number(e.target.value) })}
+                  className="flex-1 bg-zinc-900 border border-zinc-800 rounded-lg px-2 py-2 text-sm text-white focus:border-blue-500 focus:outline-none"
+                >
+                  {FONT_WEIGHTS.map((w) => (
+                    <option key={w.value} value={String(w.value)}>
+                      {w.label}
+                    </option>
+                  ))}
+                  {!FONT_WEIGHTS.some(
+                    (w) => w.value === (Number(ov.fontWeight || prefill.fontWeight) || 400)
+                  ) && (
+                    <option value={String(ov.fontWeight || prefill.fontWeight)}>
+                      {ov.fontWeight || prefill.fontWeight}
+                    </option>
+                  )}
+                </select>
+                <div className="flex items-center bg-zinc-900 border border-zinc-800 rounded-lg px-2">
+                  <input
+                    type="number"
+                    min="8"
+                    max="300"
+                    value={ov.fontSize || ''}
+                    placeholder={String(prefill.fontSize)}
+                    onChange={(e) =>
+                      patch({ fontSize: e.target.value ? Number(e.target.value) : '' })
+                    }
+                    className="w-14 bg-transparent py-2 text-sm text-white focus:outline-none"
+                  />
+                  <span className="text-[11px] text-zinc-500">点</span>
+                </div>
+              </div>
+            </Section>
+
+            {/* 粗斜下删 + 颜色 */}
+            <Section label="样式">
+              <div className="grid grid-cols-4 gap-1.5">
+                <ToggleBtn
+                  active={isBold}
+                  title="粗体"
+                  onClick={() => patch({ fontWeight: isBold ? 400 : 700 })}
+                >
+                  <Bold size={15} />
+                </ToggleBtn>
+                <ToggleBtn
+                  active={isItalic}
+                  title="斜体"
+                  onClick={() => patch({ italic: !isItalic })}
+                >
+                  <Italic size={15} />
+                </ToggleBtn>
+                <ToggleBtn
+                  active={isUnderline}
+                  title="下划线"
+                  onClick={() => patch({ underline: !isUnderline })}
+                >
+                  <Underline size={15} />
+                </ToggleBtn>
+                <ToggleBtn
+                  active={isStrike}
+                  title="删除线"
+                  onClick={() => patch({ strikethrough: !isStrike })}
+                >
+                  <Strikethrough size={15} />
+                </ToggleBtn>
+              </div>
+              <div className="flex items-center gap-3 mt-3">
+                <span className="text-[12px] text-zinc-400 flex-shrink-0">文本颜色</span>
+                <input
+                  type="color"
+                  value={ov.color || prefill.color}
+                  onChange={(e) => patch({ color: e.target.value })}
+                  className="w-10 h-8 bg-transparent border border-zinc-800 rounded cursor-pointer"
+                />
+                <input
+                  type="text"
+                  value={ov.color || ''}
+                  placeholder={prefill.color}
+                  onChange={(e) => patch({ color: e.target.value })}
+                  className="flex-1 bg-zinc-900 border border-zinc-800 rounded px-2 py-1 text-sm text-white font-mono"
+                />
+              </div>
+            </Section>
+
+            {/* 对齐 */}
+            <Section label="对齐">
+              <div className="grid grid-cols-4 gap-1.5">
+                {[
+                  ['left', AlignLeft, '左对齐'],
+                  ['center', AlignCenter, '居中'],
+                  ['right', AlignRight, '右对齐'],
+                  ['justify', AlignJustify, '两端对齐'],
+                ].map(([val, Icon, name]) => (
+                  <ToggleBtn
+                    key={val}
+                    active={curAlign === val}
+                    title={name}
+                    onClick={() => patch({ textAlign: val })}
+                  >
+                    <Icon size={15} />
+                  </ToggleBtn>
+                ))}
+              </div>
+            </Section>
+
+            {/* 间距 */}
+            <Section label="间距">
+              <div className="grid grid-cols-2 gap-3">
+                <NumField
+                  label="行距"
+                  value={ov.lineHeight}
+                  step={0.1}
+                  placeholder={String(prefill.lineHeight || '')}
+                  onChange={(v) => patch({ lineHeight: v })}
+                />
+                <NumField
+                  label="字间距 px"
+                  value={ov.letterSpacing}
+                  step={0.5}
+                  onChange={(v) => patch({ letterSpacing: v === '' ? '' : v })}
+                />
+                <NumField
+                  label="段前 px"
+                  value={ov.marginTop}
+                  onChange={(v) => patch({ marginTop: v === '' ? '' : v })}
+                />
+                <NumField
+                  label="段后 px"
+                  value={ov.marginBottom}
+                  onChange={(v) => patch({ marginBottom: v === '' ? '' : v })}
+                />
+              </div>
+            </Section>
 
             {/* 文案内容 */}
             <Section label="文案内容">
@@ -513,6 +953,13 @@ export default function SlideEditor({ enabled, slideId, slideKey, rootRef }) {
                 </p>
               )}
             </Section>
+          </div>
+        ) : (
+          <div className="flex-1 overflow-y-auto custom-scrollbar px-5 py-4 flex flex-col gap-5">
+            {/* 选中信息 */}
+            <div className="text-[12px] text-zinc-400 bg-zinc-900 rounded-lg px-3 py-2 break-all">
+              {describe(selected)}
+            </div>
 
             {/* 位置 */}
             <Section label="位置（偏移量 px）">
@@ -529,60 +976,13 @@ export default function SlideEditor({ enabled, slideId, slideKey, rootRef }) {
                 <NudgeBtn onClick={() => patch({ dx: (Number(ov.dx) || 0) + 1 })}>→</NudgeBtn>
               </div>
               <p className="text-[11px] text-zinc-600 text-center mt-2">
-                也可直接拖拽画面里的蓝框 · 方向键微调
+                也可直接拖拽画面里的蓝框 · 方向键微调（Shift 步长 10）
               </p>
             </Section>
 
-            {/* 字号 */}
-            <Section label="字号 px">
-              <div className="flex items-center gap-3">
-                <input
-                  type="range"
-                  min="8"
-                  max="200"
-                  value={ov.fontSize || prefill.fontSize || 32}
-                  onChange={(e) => patch({ fontSize: Number(e.target.value) })}
-                  className="flex-1 accent-blue-500"
-                />
-                <input
-                  type="number"
-                  value={ov.fontSize || ''}
-                  placeholder={String(prefill.fontSize)}
-                  onChange={(e) => patch({ fontSize: e.target.value ? Number(e.target.value) : '' })}
-                  className="w-16 bg-zinc-900 border border-zinc-800 rounded px-2 py-1 text-sm text-white"
-                />
-              </div>
-            </Section>
-
-            {/* 颜色 */}
-            <Section label="文字颜色">
-              <div className="flex items-center gap-3">
-                <input
-                  type="color"
-                  value={ov.color || prefill.color}
-                  onChange={(e) => patch({ color: e.target.value })}
-                  className="w-10 h-9 bg-transparent border border-zinc-800 rounded cursor-pointer"
-                />
-                <input
-                  type="text"
-                  value={ov.color || ''}
-                  placeholder={prefill.color}
-                  onChange={(e) => patch({ color: e.target.value })}
-                  className="flex-1 bg-zinc-900 border border-zinc-800 rounded px-2 py-1 text-sm text-white font-mono"
-                />
-              </div>
-            </Section>
-
-            {/* 旋转 & 字间距 */}
-            <Section label="旋转 / 字间距">
-              <div className="grid grid-cols-2 gap-3">
-                <NumField label="旋转 °" value={ov.rotate} onChange={(v) => patch({ rotate: v })} />
-                <NumField
-                  label="字间距 px"
-                  value={ov.letterSpacing}
-                  onChange={(v) => patch({ letterSpacing: v === '' ? '' : v })}
-                />
-              </div>
+            {/* 旋转 */}
+            <Section label="旋转">
+              <NumField label="角度 °" value={ov.rotate} onChange={(v) => patch({ rotate: v })} />
             </Section>
 
             {/* 操作 */}
@@ -618,6 +1018,35 @@ export default function SlideEditor({ enabled, slideId, slideKey, rootRef }) {
 }
 
 /* ---------- 小组件 ---------- */
+function TabBtn({ active, onClick, children }) {
+  return (
+    <button
+      onClick={onClick}
+      className={`flex-1 py-1.5 rounded-md text-[13px] font-medium transition-colors ${
+        active ? 'bg-zinc-700 text-white' : 'text-zinc-400 hover:text-zinc-200'
+      }`}
+    >
+      {children}
+    </button>
+  );
+}
+
+function ToggleBtn({ active, title, onClick, children }) {
+  return (
+    <button
+      onClick={onClick}
+      title={title}
+      className={`h-9 rounded-md flex items-center justify-center transition-colors ${
+        active
+          ? 'bg-blue-600 text-white'
+          : 'bg-zinc-900 border border-zinc-800 text-zinc-300 hover:bg-zinc-800'
+      }`}
+    >
+      {children}
+    </button>
+  );
+}
+
 function Section({ label, children }) {
   return (
     <div>
@@ -629,12 +1058,14 @@ function Section({ label, children }) {
   );
 }
 
-function NumField({ label, value, onChange }) {
+function NumField({ label, value, onChange, step = 1, placeholder }) {
   return (
     <div>
       <span className="block text-[11px] text-zinc-500 mb-1">{label}</span>
       <input
         type="number"
+        step={step}
+        placeholder={placeholder}
         value={value === '' || value === undefined ? '' : value}
         onChange={(e) => onChange(e.target.value === '' ? '' : Number(e.target.value))}
         className="w-full bg-zinc-900 border border-zinc-800 rounded px-2 py-1.5 text-sm text-white"

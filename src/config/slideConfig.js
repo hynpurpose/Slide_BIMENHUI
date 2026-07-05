@@ -1,10 +1,5 @@
 import Page_SkyworthConsumerPerspective from '../pages/Page_SkyworthConsumerPerspective';
 import Page_SkyworthIntro from '../pages/Page_SkyworthIntro';
-import {
-  Page_SkyworthMentalInertia_A,
-  Page_SkyworthMentalInertia_B,
-  Page_SkyworthMentalInertia_C,
-} from '../pages/Page_SkyworthMentalInertia';
 import Page_SkyworthDecisionAnalysis from '../pages/Page_SkyworthDecisionAnalysis';
 import Page_SkyworthPositioningShift, {
   Page_SkyworthPositioningShift_A,
@@ -225,7 +220,6 @@ export const slideConfig = [
   { type: 'section', title: '为什么要做' },
   { type: 'page', title: '消费者视角下的AI品牌定位', component: Page_SkyworthConsumerPerspective, hideHeader: true },
   { type: 'page', title: '没做品牌调研的“坑”', component: Page_SkyworthIntro, hideHeader: true },
-  { type: 'page', title: '一个思维惯性的误区', variants: [Page_SkyworthMentalInertia_A, Page_SkyworthMentalInertia_B, Page_SkyworthMentalInertia_C], hideHeader: true },
   { type: 'page', title: '创维壁纸电视用户决策分析', component: Page_SkyworthDecisionAnalysis, hideHeader: true },
   { type: 'page', title: '策略转变', variants: [Page_SkyworthPositioningShift, Page_SkyworthPositioningShift_A, Page_SkyworthPositioningShift_B, Page_SkyworthPositioningShift_C, Page_SkyworthPositioningShift_D], hideHeader: true },
 
