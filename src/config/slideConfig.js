@@ -1,10 +1,5 @@
 import Page_SkyworthConsumerPerspective from '../pages/Page_SkyworthConsumerPerspective';
 import Page_SkyworthIntro from '../pages/Page_SkyworthIntro';
-import {
-  Page_SkyworthMentalInertia_A,
-  Page_SkyworthMentalInertia_B,
-  Page_SkyworthMentalInertia_C,
-} from '../pages/Page_SkyworthMentalInertia';
 import Page_SkyworthDecisionAnalysis from '../pages/Page_SkyworthDecisionAnalysis';
 import Page_SkyworthPositioningShift, {
   Page_SkyworthPositioningShift_A,
@@ -12,7 +7,12 @@ import Page_SkyworthPositioningShift, {
   Page_SkyworthPositioningShift_C,
   Page_SkyworthPositioningShift_D,
 } from '../pages/Page_SkyworthPositioningShift';
-import Page_SkyworthBrandResearch from '../pages/Page_SkyworthBrandResearch';
+import Page_SkyworthBrandResearch, {
+  Page_SkyworthBrandResearch_A,
+  Page_SkyworthBrandResearch_B,
+  Page_SkyworthBrandResearch_C,
+} from '../pages/Page_SkyworthBrandResearch';
+
 import {
   Page_DazhongZhenpingDemo_A,
   Page_DazhongZhenpingDemo_B,
@@ -28,13 +28,16 @@ import Page_WallpaperVsConventional from '../pages/Page_WallpaperVsConventional'
 import Page_SkyworthVsCompetitor from '../pages/Page_SkyworthVsCompetitor';
 import Page_SkyworthFiveModels from '../pages/Page_SkyworthFiveModels';
 import {
-  Page_SkyworthResearchGroup,
-  Page_SkyworthResearchMarket,
-  Page_SkyworthResearchTech,
-  Page_SkyworthResearchIndustry,
-} from '../pages/Page_SkyworthResearchAppendix';
-import Page_SkyworthKeywordWhySplit from '../pages/Page_SkyworthKeywordWhySplit';
-import Page_SkyworthKeywordOptTwoTypes from '../pages/Page_SkyworthKeywordOptTwoTypes';
+  Page_SkyworthKeywordWhySplit_A,
+  Page_SkyworthKeywordWhySplit_B,
+  Page_SkyworthKeywordWhySplit_C,
+} from '../pages/Page_SkyworthKeywordWhySplit';
+import Page_SkyworthKeywordWhySplitSummary from '../pages/Page_SkyworthKeywordWhySplitSummary';
+import {
+  Page_SkyworthKeywordOptTwoTypes_A,
+  Page_SkyworthKeywordOptTwoTypes_B,
+  Page_SkyworthKeywordOptTwoTypes_C,
+} from '../pages/Page_SkyworthKeywordOptTwoTypes';
 import Page_SkyworthKeywordLogic from '../pages/Page_SkyworthKeywordLogic';
 import Page_GEOWordSelectionOther from '../pages/Page_GEOWordSelectionOther';
 import Page_GEOWordSelectionOther2 from '../pages/Page_GEOWordSelectionOther2';
@@ -43,12 +46,40 @@ import Page_SkyworthSearchEngineModel from '../pages/Page_SkyworthSearchEngineMo
 import Page_SkyworthCrossCompare from '../pages/Page_SkyworthCrossCompare';
 import Page_SkyworthShadowAlgorithm from '../pages/Page_SkyworthShadowAlgorithm';
 import Page_SkyworthStrategyFramework from '../pages/Page_SkyworthStrategyFramework';
-import Page_SkyworthBrandWordStrategy from '../pages/Page_SkyworthBrandWordStrategy';
-import Page_SkyworthProductStrategy from '../pages/Page_SkyworthProductStrategy';
-import Page_SkyworthMonitorWordStrategy from '../pages/Page_SkyworthMonitorWordStrategy';
+import {
+  Page_SkyworthBrandWordStrategy_A,
+  Page_SkyworthBrandWordStrategy_B,
+  Page_SkyworthBrandWordStrategy_C,
+  Page_SkyworthBrandWordStrategy_D,
+} from '../pages/Page_SkyworthBrandWordStrategy';
+import {
+  Page_SkyworthProductStrategy_A,
+  Page_SkyworthProductStrategy_B,
+  Page_SkyworthProductStrategy_C,
+} from '../pages/Page_SkyworthProductStrategy';
+import {
+  Page_SkyworthMonitorWordStrategy_A,
+  Page_SkyworthMonitorWordStrategy_B,
+  Page_SkyworthMonitorWordStrategy_C,
+} from '../pages/Page_SkyworthMonitorWordStrategy';
 import Page_CompanyIntro from '../pages/Page_CompanyIntro';
 import Page_ServiceClients from '../pages/Page_ServiceClients';
 import Page_CaseStudy_Double_Combined from '../pages/Page_CaseStudy_Double_Combined';
+import {
+  Page_CaseStudy_Musi_A,
+  Page_CaseStudy_Musi_B,
+  Page_CaseStudy_Musi_C,
+} from '../pages/Page_CaseStudy_Musi';
+import {
+  Page_CaseStudy_Cainiao_A,
+  Page_CaseStudy_Cainiao_B,
+  Page_CaseStudy_Cainiao_C,
+} from '../pages/Page_CaseStudy_Cainiao';
+import {
+  Page_CaseStudy_Gujing_A,
+  Page_CaseStudy_Gujing_B,
+  Page_CaseStudy_Gujing_C,
+} from '../pages/Page_CaseStudy_Gujing';
 import Page_CaseStudy_Double_Combined_2 from '../pages/Page_CaseStudy_Double_Combined_2';
 import Page_CaseStudy_Double_Combined_3 from '../pages/Page_CaseStudy_Double_Combined_3';
 import Page_TeamEndorsement from '../pages/Page_TeamEndorsement';
@@ -62,10 +93,7 @@ import Page_QuantitativeModel from '../pages/Page_QuantitativeModel';
 import Page_ContentAgentIntro from '../pages/Page_ContentAgentIntro';
 import Page_ContentAgent from '../pages/Page_ContentAgent';
 import Page_UserCommentAnalysis from '../pages/Page_UserCommentAnalysis';
-import Page_GeoMonitorArchitecture from '../pages/Page_GeoMonitorArchitecture';
-import Page_QuantitativeModelArchitecture from '../pages/Page_QuantitativeModelArchitecture';
-import Page_UserCommentArchitecture from '../pages/Page_UserCommentArchitecture';
-import Page_OtherContentApproach from '../pages/Page_OtherContentApproach';
+import Page_GeoWritingAgentIntro from '../pages/Page_GeoWritingAgentIntro';
 import Page_SkyworthContentDetailsAI from '../pages/Page_SkyworthContentDetailsAI';
 import Page_HumanAiRatioApproach from '../pages/Page_HumanAiRatioApproach';
 import Page_ContentQualityValue from '../pages/Page_ContentQualityValue';
@@ -76,7 +104,11 @@ import Page_SkyworthTutorialDeconstruct from '../pages/Page_SkyworthTutorialDeco
 import Page_SkyworthTutorialDemo from '../pages/Page_SkyworthTutorialDemo';
 import Page_SkyworthWordOfMouthDeconstruct from '../pages/Page_SkyworthWordOfMouthDeconstruct';
 import Page_SkyworthWordOfMouthDemo from '../pages/Page_SkyworthWordOfMouthDemo';
-import Page_GeoContentPrinciples from '../pages/Page_GeoContentPrinciples';
+import {
+  Page_GeoContentPrinciples_A,
+  Page_GeoContentPrinciples_B,
+  Page_GeoContentPrinciples_C,
+} from '../pages/Page_GeoContentPrinciples';
 import Page_DeliveryShortTerm from '../pages/Page_DeliveryShortTerm';
 import Page_DeliveryLongTerm from '../pages/Page_DeliveryLongTerm';
 import Page_DeliveryHighWeight from '../pages/Page_DeliveryHighWeight';
@@ -85,41 +117,6 @@ import Page_EmergingMediaAttempts from '../pages/Page_EmergingMediaAttempts';
 import Page_SkyworthKpiAcceptance from '../pages/Page_SkyworthKpiAcceptance';
 import Page_SkyworthWorkAcceptance from '../pages/Page_SkyworthWorkAcceptance';
 import Page_SkyworthValueAddedServices from '../pages/Page_SkyworthValueAddedServices';
-import {
-  Page_SkyworthReport_BasicInfo1,
-  Page_SkyworthReport_BasicInfo2,
-} from '../pages/Page_SkyworthReport_BasicInfo';
-import { Page_SkyworthReport_CoreDataSelf } from '../pages/Page_SkyworthReport_CoreDataSelf';
-import { Page_SkyworthReport_CoreDataCompetitor } from '../pages/Page_SkyworthReport_CoreDataCompetitor';
-import { Page_SkyworthReport_MonitorWordOverview } from '../pages/Page_SkyworthReport_MonitorWordOverview';
-import { Page_SkyworthReport_OptDashboard } from '../pages/Page_SkyworthReport_OptDashboard';
-import { Page_SkyworthReport_OptEntries } from '../pages/Page_SkyworthReport_OptEntries';
-import { Page_SkyworthReport_OptCompetitor } from '../pages/Page_SkyworthReport_OptCompetitor';
-import { Page_SkyworthReport_OptSources } from '../pages/Page_SkyworthReport_OptSources';
-import {
-  Page_SkyworthReport_OverviewScreenshot,
-  Page_SkyworthReport_OverviewAnalysis,
-} from '../pages/Page_SkyworthReport_Overview';
-import {
-  Page_SkyworthReport_ProductOverview,
-  Page_SkyworthReport_ProductA7HPro,
-  Page_SkyworthReport_ProductA8H,
-  Page_SkyworthReport_ProductA10H,
-  Page_SkyworthReport_ProductQ7H,
-  Page_SkyworthReport_ProductQ8H,
-} from '../pages/Page_SkyworthReport_ProductDiagnosis';
-import {
-  Page_SkyworthReport_CompetitorsAnalysis,
-  Page_SkyworthReport_CompetitorsDetail,
-} from '../pages/Page_SkyworthReport_Competitors';
-import {
-  Page_SkyworthReport_SourcesScreenshot,
-  Page_SkyworthReport_SourcesAnalysis,
-} from '../pages/Page_SkyworthReport_Sources';
-import {
-  Page_SkyworthReport_SentimentPre,
-  Page_SkyworthReport_SentimentDetail,
-} from '../pages/Page_SkyworthReport_Sentiment';
 
 export const slideConfig = [
   // ——— 封面 & 目录 ———
@@ -149,12 +146,11 @@ export const slideConfig = [
   { type: 'section', title: '为什么要做' },
   { type: 'page', title: '消费者视角下的AI品牌定位', component: Page_SkyworthConsumerPerspective, hideHeader: true },
   { type: 'page', title: '没做品牌调研的“坑”', component: Page_SkyworthIntro, hideHeader: true },
-  { type: 'page', title: '一个思维惯性的误区', variants: [Page_SkyworthMentalInertia_A, Page_SkyworthMentalInertia_B, Page_SkyworthMentalInertia_C], hideHeader: true },
   { type: 'page', title: '创维壁纸电视用户决策分析', component: Page_SkyworthDecisionAnalysis, hideHeader: true },
   { type: 'page', title: '策略转变', variants: [Page_SkyworthPositioningShift, Page_SkyworthPositioningShift_A, Page_SkyworthPositioningShift_B, Page_SkyworthPositioningShift_C, Page_SkyworthPositioningShift_D], hideHeader: true },
 
   { type: 'section', title: '我们怎么做' },
-  { type: 'page', title: '我们怎么调研品牌', component: Page_SkyworthBrandResearch, hideHeader: true },
+  { type: 'page', title: '我们怎么调研品牌', variants: [Page_SkyworthBrandResearch_B, Page_SkyworthBrandResearch_A, Page_SkyworthBrandResearch_C], hideHeader: true },
   { type: 'page', title: '大众真评系统演示', variants: [Page_DazhongZhenpingDemo_A, Page_DazhongZhenpingDemo_B, Page_DazhongZhenpingDemo_C], hideHeader: true },
   { type: 'page', title: '「大众真评」Agent', variants: [Page_SkyworthDazhongZhenping_A, Page_SkyworthDazhongZhenping_B, Page_SkyworthDazhongZhenping_C], hideHeader: true },
 
@@ -164,20 +160,15 @@ export const slideConfig = [
   { type: 'page', title: '创维壁纸电视 VS 竞品壁纸电视', component: Page_SkyworthVsCompetitor, hideHeader: true },
   { type: 'page', title: '创维五款壁纸电视的区别', component: Page_SkyworthFiveModels, hideHeader: true },
 
-  { type: 'section', title: '调研过程速览' },
-  { type: 'page', title: '创维集团概况与品牌资质', component: Page_SkyworthResearchGroup, hideHeader: true },
-  { type: 'page', title: '创维市场战绩与全球化布局', component: Page_SkyworthResearchMarket, hideHeader: true },
-  { type: 'page', title: '创维核心技术优势', component: Page_SkyworthResearchTech, hideHeader: true },
-  { type: 'page', title: '壁纸电视品类的GEO难点解析', component: Page_SkyworthResearchIndustry, hideHeader: true },
-
   // ══════════════════════════════════════════════════════════
   // ——— 二、关键词体系策略 ———
   // ══════════════════════════════════════════════════════════
   { type: 'chapter', title: '关键词体系策略', subtitle: 'KEYWORDS SYSTEM STRATEGY', backgroundImage: '' },
 
   { type: 'section', title: '词条分类逻辑' },
-  { type: 'page', title: '监测词与优化词', component: Page_SkyworthKeywordWhySplit, hideHeader: true },
-  { type: 'page', title: '优化词的两类', component: Page_SkyworthKeywordOptTwoTypes, hideHeader: true },
+  { type: 'page', title: '监测词与优化词', variants: [Page_SkyworthKeywordWhySplit_A, Page_SkyworthKeywordWhySplit_B, Page_SkyworthKeywordWhySplit_C], hideHeader: true },
+  { type: 'page', title: '监测词与优化词（总结）', component: Page_SkyworthKeywordWhySplitSummary, hideHeader: true },
+  { type: 'page', title: '优化词的两类', variants: [Page_SkyworthKeywordOptTwoTypes_C, Page_SkyworthKeywordOptTwoTypes_A, Page_SkyworthKeywordOptTwoTypes_B], hideHeader: true },
   { type: 'page', title: '我们的词条分类逻辑', component: Page_SkyworthKeywordLogic, hideHeader: true },
 
   { type: 'section', title: '如何选词条' },
@@ -193,30 +184,17 @@ export const slideConfig = [
   // ══════════════════════════════════════════════════════════
   { type: 'chapter', title: '现状诊断报告', subtitle: 'DIAGNOSTIC REPORT', backgroundImage: '' },
 
-  { type: 'section', title: '基础信息' },
-  { type: 'page', title: '报告说明', component: Page_SkyworthReport_BasicInfo1, hideHeader: true },
-  { type: 'page', title: '监测范围', component: Page_SkyworthReport_BasicInfo2, hideHeader: true },
-
-  { type: 'section', title: '数据总览' },
-  { type: 'page', title: '核心数据总览', component: Page_SkyworthReport_CoreDataSelf, hideHeader: true },
-  { type: 'page', title: '核心数据竞品对比', component: Page_SkyworthReport_CoreDataCompetitor, hideHeader: true },
-  { type: 'page', title: '监测词总览', component: Page_SkyworthReport_MonitorWordOverview, hideHeader: true },
-  { type: 'page', title: '优化词总览数据', component: Page_SkyworthReport_OptDashboard, hideHeader: true },
-  { type: 'page', title: '优化词词条数据', component: Page_SkyworthReport_OptEntries, hideHeader: true },
-  { type: 'page', title: '优化词竞品数据', component: Page_SkyworthReport_OptCompetitor, hideHeader: true },
-  { type: 'page', title: '优化词引用源数据', component: Page_SkyworthReport_OptSources, hideHeader: true },
-
   // ══════════════════════════════════════════════════════════
   // ——— 四、核心优化策略 ———
   // ══════════════════════════════════════════════════════════
   { type: 'chapter', title: '核心策略\n及KPI设定', subtitle: 'CORE OPTIMIZATION STRATEGY', backgroundImage: '' },
 
   { type: 'section', title: '优化词策略' },
-  { type: 'page', title: '品牌词：一守一攻', component: Page_SkyworthBrandWordStrategy, hideHeader: true },
-  { type: 'page', title: '五款产品的分工', component: Page_SkyworthProductStrategy, hideHeader: true },
+  { type: 'page', title: '品牌词：优势保第一，弱势进 TOP3', variants: [Page_SkyworthBrandWordStrategy_D, Page_SkyworthBrandWordStrategy_C, Page_SkyworthBrandWordStrategy_A, Page_SkyworthBrandWordStrategy_B], hideHeader: true },
+  { type: 'page', title: '5款产品的侧重点和优化方向', variants: [Page_SkyworthProductStrategy_C, Page_SkyworthProductStrategy_A, Page_SkyworthProductStrategy_B], hideHeader: true },
 
   { type: 'section', title: '监测词策略' },
-  { type: 'page', title: '监测词的意义', component: Page_SkyworthMonitorWordStrategy, hideHeader: true },
+  { type: 'page', title: '监测词的意义', variants: [Page_SkyworthMonitorWordStrategy_A, Page_SkyworthMonitorWordStrategy_B, Page_SkyworthMonitorWordStrategy_C], hideHeader: true },
 
   { type: 'section', title: 'KPI及工作安排' },
   { type: 'page', title: 'KPI 及验收标准', component: Page_SkyworthKpiAcceptance, hideHeader: true },
@@ -228,18 +206,18 @@ export const slideConfig = [
   // ══════════════════════════════════════════════════════════
   { type: 'chapter', title: '内容策略', subtitle: 'CONTENT STRATEGY', backgroundImage: '' },
 
-  { type: 'section', title: '怎么做内容' },
-  { type: 'page', title: '市面上其他做法', component: Page_OtherContentApproach, hideHeader: true },
-  { type: 'page', title: '内容投放明细 (案例)', component: Page_SkyworthContentDetailsAI, hideHeader: true },
+  { type: 'section', title: '我们到底用AI还是用人写内容' },
+  { type: 'page', title: '我们的 GEO 内容写作 Agent', component: Page_GeoWritingAgentIntro, hideHeader: true },
   { type: 'page', title: '我们的策略', component: Page_HumanAiRatioApproach, hideHeader: true },
   { type: 'page', title: '优质内容的“保质期”', component: Page_ContentQualityValue, hideHeader: true },
-
-  { type: 'section', title: '创维的内容怎么做' },
-  { type: 'page', title: '创维定制内容方向规划', component: Page_SkyworthContentDirection, hideHeader: true },
-
+  { type: 'page', title: '内容投放明细 (案例)', component: Page_SkyworthContentDetailsAI, hideHeader: true },
 
   { type: 'section', title: '内容标准' },
-  { type: 'page', title: 'GEO内容编写原则', component: Page_GeoContentPrinciples, hideHeader: true },
+  { type: 'page', title: 'GEO内容编写原则', variants: [Page_GeoContentPrinciples_A, Page_GeoContentPrinciples_B, Page_GeoContentPrinciples_C], hideHeader: true },
+
+
+  { type: 'section', title: '创维内容怎么做' },
+  { type: 'page', title: '创维定制内容方向规划', component: Page_SkyworthContentDirection, hideHeader: true },
   { type: 'page', title: '评测类爆款文章逆向拆解', component: Page_SkyworthContentStrategyDeconstruct, hideHeader: true },
   { type: 'page', title: '评测类文章示意', component: Page_SkyworthQAArticleDemo, hideHeader: true },
   { type: 'page', title: '场景教程类文章逆向拆解', component: Page_SkyworthTutorialDeconstruct, hideHeader: true },
@@ -267,6 +245,9 @@ export const slideConfig = [
   { type: 'page', title: '「GEO 索引未来」整体介绍', component: Page_CompanyIntro, hideHeader: true },
   { type: 'page', title: '服务客户', component: Page_ServiceClients, hideHeader: true },
   { type: 'page', title: '服务案例', component: Page_CaseStudy_Double_Combined, hideHeader: true },
+  { type: 'page', title: '服务案例 · 慕思 GEO 阶段性报告', variants: [Page_CaseStudy_Musi_A, Page_CaseStudy_Musi_B, Page_CaseStudy_Musi_C], hideHeader: true },
+  { type: 'page', title: '服务案例 · 菜鸟 GEO 阶段性报告', variants: [Page_CaseStudy_Cainiao_A, Page_CaseStudy_Cainiao_B, Page_CaseStudy_Cainiao_C], hideHeader: true },
+  { type: 'page', title: '服务案例 · 古井贡酒 GEO 阶段性报告', variants: [Page_CaseStudy_Gujing_A, Page_CaseStudy_Gujing_B, Page_CaseStudy_Gujing_C], hideHeader: true },
   { type: 'page', title: '服务案例（二）', component: Page_CaseStudy_Double_Combined_2, hideHeader: true },
   { type: 'page', title: '服务案例（三）', component: Page_CaseStudy_Double_Combined_3, hideHeader: true },
   { type: 'page', title: '团队背书', component: Page_TeamEndorsement, hideHeader: true },
@@ -276,13 +257,10 @@ export const slideConfig = [
   { type: 'section', title: '核心能力' },
   { type: 'page', title: '核心能力', component: Page_CoreCapabilities, hideHeader: true },
   { type: 'page', title: 'GEO ONE 数据监测系统介绍', component: Page_GeoMonitorIntro, hideHeader: true },
-  { type: 'page', title: 'GEO ONE 系统架构', component: Page_GeoMonitorArchitecture, hideHeader: true },
   { type: 'page', title: '数据系统核心模块', component: Page_GeoMonitorModules, hideHeader: true },
   { type: 'page', title: 'GEO ONE 数据监测系统', component: Page_GeoMonitor, hideHeader: true },
   { type: 'page', title: 'GEO量化竞争模型（Alpha模型）', component: Page_QuantitativeModel, hideHeader: true },
-  { type: 'page', title: 'Alpha 模型运作逻辑', component: Page_QuantitativeModelArchitecture, hideHeader: true },
   { type: 'page', title: '内容撰写Agent介绍', component: Page_ContentAgentIntro, hideHeader: true },
   { type: 'page', title: '内容撰写Agent', component: Page_ContentAgent, hideHeader: true },
   { type: 'page', title: '用户评论分析系统', component: Page_UserCommentAnalysis, hideHeader: true },
-  { type: 'page', title: '用户真评引擎架构', component: Page_UserCommentArchitecture, hideHeader: true },
 ];

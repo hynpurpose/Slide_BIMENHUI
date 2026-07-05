@@ -8,7 +8,6 @@ export default {
     extend: {
       fontFamily: {
         sans: ['Inter', 'sans-serif'],
-        montserrat: ['Montserrat', 'sans-serif'],
       },
       boxShadow: {
         'subtle-glow': '0 10px 40px -10px rgba(255,255,255,0.05)',

@@ -41,11 +41,12 @@ function VideoFrame({ radius = 24, showPlayHint = true }) {
  * ============================================================ */
 export function Page_DazhongZhenpingDemo_A() {
   return (
-    <SlideLayout title="大众真评系统 · 实时演示">
+    <SlideLayout fullBleed>
       <div className="absolute w-[820px] h-[820px] rounded-full bg-[#004CE5]/[0.08] blur-[190px] left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 pointer-events-none z-0" />
 
-      <div className="absolute inset-0 flex items-center justify-center z-10 animate-fadeIn">
-        <div className="relative" style={{ width: '1360px', height: '765px' }}>
+      <div className="absolute inset-0 flex flex-col items-center justify-center gap-9 z-10 animate-fadeIn">
+        {/* 放大后的视频框 */}
+        <div className="relative" style={{ width: '1620px', height: '850px' }}>
           <VideoFrame radius={28} />
 
           {/* 左上角：LIVE 角标 */}
@@ -53,16 +54,12 @@ export function Page_DazhongZhenpingDemo_A() {
             <span className="w-2.5 h-2.5 rounded-full bg-red-500 animate-pulse" />
             <span className="text-[18px] font-bold text-white font-['MiSans'] tracking-wider">LIVE DEMO</span>
           </div>
-
-          {/* 底部：渐变字幕条 */}
-          <div className="absolute bottom-0 left-0 w-full z-20 pointer-events-none">
-            <div className="h-[120px] bg-gradient-to-t from-black/80 to-transparent flex items-end px-9 pb-6">
-              <p className="text-[24px] text-white font-['MiSans'] font-medium">
-                <span className="text-[#7FA6FF] font-bold">大众真评系统</span>　实时抓取 · 真伪净化 · 结论输出
-              </p>
-            </div>
-          </div>
         </div>
+
+        {/* 视频框底部：原大标题下沉为一句文字说明 */}
+        <p className="text-[34px] text-white font-['MiSans'] font-medium tracking-wide">
+          <span className="text-[#7FA6FF] font-bold">大众真评系统</span>　·　实时演示
+        </p>
       </div>
     </SlideLayout>
   );

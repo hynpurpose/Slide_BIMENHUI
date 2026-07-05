@@ -58,7 +58,7 @@ export default function Page_SkyworthIntro() {
 
         {/* Right Column: Text block (Wider and larger font sizes) */}
         <div
-          className="absolute flex flex-col justify-center gap-8"
+          className="absolute flex flex-col justify-start gap-8"
           style={{ left: '1270px', width: '570px', top: '160px', bottom: '20px' }}
         >
           <div className="flex items-baseline justify-between border-b border-zinc-800 pb-3">
@@ -76,6 +76,18 @@ export default function Page_SkyworthIntro() {
           >
             提及率做到 <span className="text-white font-bold">60% 左右</span> 之后，就怎么都上不去了。后面继续加内容、加资源，数据不但没有明显提升，甚至一段时间后还下滑了。
           </p>
+
+          {/* 总结句 */}
+          <div
+            className="relative mt-28 border-l-4 border-[#4285F4] pl-5"
+          >
+            <p
+              className="text-white font-bold leading-relaxed font-['MiSans']"
+              style={{ fontSize: '32px', lineHeight: '48px' }}
+            >
+              AI 更看用户的<span className="text-[#4285F4]">买点和吐槽点</span>，而不是品牌自己想讲的卖点。
+            </p>
+          </div>
         </div>
 
         {/* SVG Connector Line from Amber Box to Right H3 */}
@@ -116,8 +128,8 @@ export default function Page_SkyworthIntro() {
             />
             {/* 数值标签 */}
             <div
-              className="absolute -translate-x-1/2 whitespace-nowrap px-2 py-[2px] rounded-md bg-white border border-[#4285F4]/50 shadow-[0_2px_6px_rgba(0,0,0,0.18)]"
-              style={{ top: '-24px' }}
+              className="absolute -translate-x-1/2 whitespace-nowrap"
+              style={{ top: '-36px' }}
             >
               <span className="text-[14px] font-bold text-[#1a73e8] font-['Montserrat']">{p.v}</span>
             </div>

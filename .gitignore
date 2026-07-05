@@ -22,5 +22,8 @@ npm-debug.log*
 .DS_Store
 
 # Presentation files
-*.pptx
+Presentation_2026.pptx
+
+# Temp artifacts (外部生成，勿跟踪 / 勿监听)
+_tmp_*/
 
