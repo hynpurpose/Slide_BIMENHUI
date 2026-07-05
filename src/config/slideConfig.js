@@ -223,14 +223,16 @@ export const slideConfig = [
   // ══════════════════════════════════════════════════════════
   { type: 'chapter', title: '现状诊断报告', subtitle: 'DIAGNOSTIC REPORT', backgroundImage: '' },
 
-  { type: 'section', title: '基础信息' },
-  { type: 'page', title: '报告说明', component: Page_SkyworthReport_BasicInfo1, hideHeader: true },
-  { type: 'page', title: '监测范围', component: Page_SkyworthReport_BasicInfo2, hideHeader: true },
-
   { type: 'section', title: '数据总览' },
   { type: 'page', title: '核心数据总览', component: Page_SkyworthReport_CoreDataSelf, hideHeader: true },
   { type: 'page', title: '核心数据竞品对比', component: Page_SkyworthReport_CoreDataCompetitor, hideHeader: true },
   { type: 'page', title: '监测词总览', component: Page_SkyworthReport_MonitorWordOverview, hideHeader: true },
+
+  { type: 'section', title: '基础信息' },
+  { type: 'page', title: '报告说明', component: Page_SkyworthReport_BasicInfo1, hideHeader: true },
+  { type: 'page', title: '监测范围', component: Page_SkyworthReport_BasicInfo2, hideHeader: true },
+
+  { type: 'section', title: '详细数据' },
   { type: 'page', title: '优化词总览数据', component: Page_SkyworthReport_OptDashboard, hideHeader: true },
   { type: 'page', title: '优化词词条数据', component: Page_SkyworthReport_OptEntries, hideHeader: true },
   { type: 'page', title: '优化词竞品数据', component: Page_SkyworthReport_OptCompetitor, hideHeader: true },
