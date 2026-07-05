@@ -79,9 +79,12 @@ const campaignTypes = [
   }
 ];
 
+const FONT_IMPORT = `@import url('https://fonts.geekzu.org/css2?family=Montserrat:wght@400;500;600;700;800;900&display=swap');`;
+
 export default function Page_SkyworthContentDirection() {
   return (
     <SlideLayout title="创维定制内容方向规划">
+      <style dangerouslySetInnerHTML={{ __html: FONT_IMPORT }} />
       {/* ── 主排版区 ── */}
       <div
         className="absolute w-[1840px] select-none animate-fadeIn flex justify-between items-stretch"
@@ -112,7 +115,7 @@ export default function Page_SkyworthContentDirection() {
                   key={idx} 
                   className="flex items-center h-[24px] text-[13px] border-b border-zinc-900/20 px-1 hover:bg-white/[0.01]"
                 >
-                  <span className="w-8 font-mono text-zinc-600 font-bold">{art.rank}</span>
+                  <span className="w-8 font-['Montserrat'] text-zinc-600 font-bold">{art.rank}</span>
                   <span className="flex-grow truncate text-zinc-400 font-medium pr-3">{art.title}</span>
                   <span className="w-16 text-right text-[11px] text-zinc-500 font-semibold shrink-0">
                     {art.category.replace('类', '')}
@@ -123,7 +126,7 @@ export default function Page_SkyworthContentDirection() {
 
             <div className="pt-2 text-center text-zinc-500 text-[13px] font-bold shrink-0 border-t border-zinc-900 mt-1 flex items-center justify-center gap-1.5">
               <span className="w-1 h-1 rounded-full bg-zinc-600 animate-pulse" />
-              <span>共 200 篇高权威引用数据</span>
+              <span>共 <span className="font-['Montserrat'] text-zinc-400 font-bold">200</span> 篇高权威引用数据</span>
             </div>
           </div>
         </div>
@@ -163,10 +166,10 @@ export default function Page_SkyworthContentDirection() {
                 <div className="flex justify-between items-center">
                   <span className="text-[19px] font-bold text-zinc-200">{type.category}</span>
                   <div className="flex items-baseline gap-0.5">
-                    <span className="text-[26px] font-black font-mono leading-none text-[#004CE5]">
+                    <span className="text-[26px] font-black font-['Montserrat'] leading-none text-[#004CE5]">
                       {type.percentage}
                     </span>
-                    <span className="text-[13px] font-black text-zinc-500 font-mono">%</span>
+                    <span className="text-[13px] font-black text-zinc-500 font-['Montserrat'] ml-0.5">%</span>
                   </div>
                 </div>
 
@@ -240,7 +243,7 @@ export default function Page_SkyworthContentDirection() {
 
                 {/* 中间：配比和映射逻辑 */}
                 <div className="w-[180px] shrink-0 text-center border-l border-r border-zinc-900/60 px-2">
-                  <span className="text-[24px] font-black font-mono text-[#004CE5] block leading-none">
+                  <span className="text-[24px] font-black font-['Montserrat'] text-[#004CE5] block leading-none">
                     {type.ratio}
                   </span>
                   <span className="text-[12px] text-zinc-500 font-semibold block mt-1 truncate">
