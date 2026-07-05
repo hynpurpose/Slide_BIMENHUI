@@ -142,6 +142,7 @@ import Page_HumanAiRatioApproach from '../pages/Page_HumanAiRatioApproach';
 import Page_ContentQualityValue from '../pages/Page_ContentQualityValue';
 import Page_SkyworthContentDirection from '../pages/Page_SkyworthContentDirection';
 import Page_SkyworthQAArticleDemo from '../pages/Page_SkyworthQAArticleDemo';
+import Page_SkyworthQAArticleDemo2 from '../pages/Page_SkyworthQAArticleDemo2';
 import Page_SkyworthContentStrategyDeconstruct from '../pages/Page_SkyworthContentStrategyDeconstruct';
 import Page_SkyworthTutorialDeconstruct from '../pages/Page_SkyworthTutorialDeconstruct';
 import Page_SkyworthTutorialDemo from '../pages/Page_SkyworthTutorialDemo';
@@ -225,9 +226,9 @@ export const slideConfig = [
   { type: 'section', title: '为什么要做' },
   { type: 'page', title: '消费者视角下的AI品牌定位', component: Page_SkyworthConsumerPerspective, hideHeader: true },
   { type: 'page', title: '没做品牌调研的“坑”', component: Page_SkyworthIntro, hideHeader: true },
-  { type: 'page', title: '一个思维惯性的误区', variants: [Page_SkyworthMentalInertia_A, Page_SkyworthMentalInertia_B, Page_SkyworthMentalInertia_C], hideHeader: true },
+  // { type: 'page', title: '一个思维惯性的误区', variants: [Page_SkyworthMentalInertia_A, Page_SkyworthMentalInertia_B, Page_SkyworthMentalInertia_C], hideHeader: true },
   { type: 'page', title: '创维壁纸电视用户决策分析', component: Page_SkyworthDecisionAnalysis, hideHeader: true },
-  { type: 'page', title: '策略转变', variants: [Page_SkyworthPositioningShift, Page_SkyworthPositioningShift_A, Page_SkyworthPositioningShift_B, Page_SkyworthPositioningShift_C, Page_SkyworthPositioningShift_D], hideHeader: true },
+  // { type: 'page', title: '策略转变', variants: [Page_SkyworthPositioningShift, Page_SkyworthPositioningShift_A, Page_SkyworthPositioningShift_B, Page_SkyworthPositioningShift_C, Page_SkyworthPositioningShift_D], hideHeader: true },
 
   { type: 'section', title: '我们怎么做' },
   { type: 'page', title: '我们怎么调研品牌', variants: [Page_SkyworthBrandResearch_B, Page_SkyworthBrandResearch_A, Page_SkyworthBrandResearch_C], hideHeader: true },
@@ -308,11 +309,11 @@ export const slideConfig = [
   { type: 'chapter', title: '内容策略', subtitle: 'CONTENT STRATEGY', backgroundImage: '' },
 
   { type: 'section', title: '我们到底用AI还是用人写内容' },
-  { type: 'page', title: '我们的 GEO 内容写作 Agent', component: Page_GeoWritingAgentIntro, hideHeader: true },
+  { type: 'page', title: '我们到底用AI还是用人工写内容', component: Page_SkyworthContentDetailsAI, hideHeader: true },
+  { type: 'page', title: '我们开发的内容Agent系统', component: Page_GeoWritingAgentIntro, hideHeader: true },
   { type: 'page', title: '市面上其他做法', component: Page_OtherContentApproach, hideHeader: true },
-  { type: 'page', title: '内容投放明细 (案例)', component: Page_SkyworthContentDetailsAI, hideHeader: true },
   { type: 'page', title: '我们的策略', component: Page_HumanAiRatioApproach, hideHeader: true },
-  { type: 'page', title: '优质内容的“保质期”', component: Page_ContentQualityValue, hideHeader: true },
+  { type: 'page', title: '用人写的好处和坏处”', component: Page_ContentQualityValue, hideHeader: true },
 
   { type: 'section', title: '创维的内容怎么做' },
   { type: 'page', title: '创维定制内容方向规划', component: Page_SkyworthContentDirection, hideHeader: true },
@@ -322,6 +323,7 @@ export const slideConfig = [
   { type: 'page', title: 'GEO内容编写原则', variants: [Page_GeoContentPrinciples_A, Page_GeoContentPrinciples_B, Page_GeoContentPrinciples_C], hideHeader: true },
   { type: 'page', title: '评测类爆款文章逆向拆解', component: Page_SkyworthContentStrategyDeconstruct, hideHeader: true },
   { type: 'page', title: '评测类文章示意', component: Page_SkyworthQAArticleDemo, hideHeader: true },
+  { type: 'page', title: '评测类文章示意 (二)', component: Page_SkyworthQAArticleDemo2, hideHeader: true },
   { type: 'page', title: '场景教程类文章逆向拆解', component: Page_SkyworthTutorialDeconstruct, hideHeader: true },
   { type: 'page', title: '场景教程类文章示意', component: Page_SkyworthTutorialDemo, hideHeader: true },
   { type: 'page', title: '用户口碑类文章逆向拆解', component: Page_SkyworthWordOfMouthDeconstruct, hideHeader: true },

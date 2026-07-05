@@ -211,7 +211,7 @@ export function Page_SkyworthBrandResearch_A() {
  * ============================================================ */
 export function Page_SkyworthBrandResearch_B() {
   return (
-    <SlideLayout title="消费者是怎么看待品牌的">
+    <SlideLayout title="我们怎么做品牌定位">
       <FlowKeyframes />
       <Subtitle>
         一个中枢 Agent：把全网多平台数据汇聚进来，在引擎内完成分析与净化，最终稳定输出三类品牌洞察。

@@ -7,7 +7,7 @@ const PptxGenJS = require('pptxgenjs');
 const PORT = 4002;
 const DIST_DIR = path.join(__dirname, '..', 'dist');
 const OUTPUT_FILE = path.join(__dirname, '..', 'Presentation_2026.pptx');
-const ARTIFACT_DIR = 'C:/Users/Administrator/.gemini/antigravity-ide/brain/b43110de-9b96-4d3a-b034-e2b6de1985c1';
+const ARTIFACT_DIR = 'C:/Users/Administrator/.gemini/antigravity-ide/brain/b9b052de-7d8b-4ddf-ba26-ba288e703cf0';
 const ARTIFACT_FILE = path.join(ARTIFACT_DIR, 'Presentation_2026.pptx');
 
 const SLIDE_W = 1920;
@@ -75,15 +75,25 @@ server.listen(PORT, async () => {
     // Inject styles to hide menu elements
     await page.addStyleTag({
       content: `
+        aside {
+          display: none !important;
+        }
+        button[title="打开目录"],
+        button[title="全屏演示"],
+        div.pointer-events-none.opacity-20,
+        .export-hide {
+          display: none !important;
+        }
+        .bg-zinc-600 {
+          padding: 0 !important;
+          background-color: black !important;
+        }
         div[style*="1920"] {
           zoom: 1 !important;
           box-shadow: none !important;
           border-radius: 0 !important;
-        }
-        button[title="打开目录"],
-        button[title="全屏演示"],
-        div.pointer-events-none.opacity-20 {
-          display: none !important;
+          width: 1920px !important;
+          height: 1080px !important;
         }
       `,
     });

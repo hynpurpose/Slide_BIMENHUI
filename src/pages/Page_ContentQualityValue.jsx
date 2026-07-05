@@ -3,213 +3,160 @@ import SlideLayout from '../components/SlideLayout';
 
 export default function Page_ContentQualityValue() {
   const timeTicks = [
-    { label: '发布期', x: 100 },
-    { label: '15天', x: 300 },
-    { label: '1个月', x: 500 },
-    { label: '3个月', x: 800 },
-    { label: '6个月', x: 1200 },
-    { label: '12个月+', x: 1600 }
+    { label: '发布期', x: '5%' },
+    { label: '15天', x: '22%' },
+    { label: '1个月', x: '40%' },
+    { label: '3个月', x: '60%' },
+    { label: '6个月', x: '78%' },
+    { label: '12个月', x: '95%' }
   ];
 
   return (
-    <SlideLayout title="优质内容的“保质期”">
-      {/* ── 主排版区 (高度拉伸至 795px，顶部和底部完全抵齐页边距) ── */}
+    <SlideLayout title="用人写的好处和坏处">
+      {/* ── 主排版区 (高度拉伸至 795px，两栏结构，gap 24px) ── */}
       <div
-        className="absolute w-[1840px] select-none animate-fadeIn flex flex-col justify-between"
+        className="absolute w-[1840px] select-none animate-fadeIn flex gap-6"
         style={{ top: '0px', height: '795px' }}
       >
+        {/* ==================== 左栏：好处 (占 2/3, 统一的大框) ==================== */}
+        <div className="w-[1210px] h-full bg-zinc-955/40 backdrop-blur-md rounded-[32px] p-9 flex flex-col justify-between border border-white/40 shadow-md shrink-0">
 
-        {/* ==================== 上半部分：高保真 Gantt/Timeline 视觉图板 (高度 645px, 纯黑底色，白色框线) ==================== */}
-        <div className="w-full h-[645px] bg-black border border-white/15 rounded-[28px] p-6 relative overflow-hidden shadow-[0_25px_60px_rgba(0,0,0,0.5)]">
-          {/* 背景光斑微弱点缀 */}
-          <div className="absolute w-[300px] h-[300px] rounded-full bg-teal-500/2 blur-[120px] left-[400px] top-[220px] pointer-events-none" />
-
-          {/* 1. 顶部时间刻度 */}
-          <div className="absolute left-0 right-0 top-[25px] h-[30px] px-8 flex pointer-events-none z-10">
-            {timeTicks.map((tick, i) => (
-              <span
-                key={i}
-                className="text-[18px] font-semibold text-zinc-555 font-sans"
-                style={{
-                  position: 'absolute',
-                  left: `${tick.x}px`,
-                  transform: 'translateX(-50%)'
-                }}
-              >
-                {tick.label}
-              </span>
-            ))}
-          </div>
-
-          {/* 2. 纵向“AI文章失效平均时间点”指示线 (白色虚线，字号放大) */}
-          <div
-            className="absolute top-[65px] bottom-[35px] w-[1px] border-l border-dashed border-white/45 z-10"
-            style={{ left: '300px' }}
-          >
-            {/* 顶部指示小三角 */}
-            <div className="absolute -top-1 -left-[4px] w-0 h-0 border-l-[4.5px] border-l-transparent border-r-[4.5px] border-r-transparent border-t-[7px] border-t-white/70" />
-            <span className="absolute top-[8px] left-[8px] text-[18px] font-black text-white bg-zinc-950/90 border border-white/15 px-3 py-1 rounded-lg whitespace-nowrap shadow-lg">
-              AI文章失效平均时间点
+          {/* 顶部好处统一标识 */}
+          <div className="flex items-center gap-4 shrink-0">
+            <span className="px-5 py-1.5 rounded-full text-[24px] font-black text-emerald-400 bg-emerald-500/10 border border-emerald-500/20 font-['MiSans']">
+              好处
             </span>
           </div>
 
-          {/* 2b. 纵向“人工文章失效平均时间点”指示线 (高亮白色虚线，字号放大，用更亮的白色) */}
-          <div
-            className="absolute top-[65px] bottom-[35px] w-[1px] border-l border-dashed border-white z-10 shadow-[0_0_12px_rgba(255,255,255,0.4)]"
-            style={{ left: '1400px' }}
-          >
-            {/* 顶部指示小三角 */}
-            <div className="absolute -top-1 -left-[4px] w-0 h-0 border-l-[5px] border-l-transparent border-r-[5px] border-r-transparent border-t-[8px] border-t-white" />
-            <span className="absolute top-[8px] right-[8px] text-[18px] font-black text-black bg-white px-3 py-1 rounded-lg whitespace-nowrap shadow-lg">
-              人工文章失效平均时间点
-            </span>
+          {/* 1. 文章保质期长 */}
+          <div className="flex flex-col mt-4">
+            <h3 className="text-[42px] font-black text-white font-['MiSans'] mb-3">
+              1. 文章保质期长
+            </h3>
+
+            {/* 简化版时间轴图表 (框高 260px) */}
+            <div className="relative w-full h-[260px] bg-black/60 border border-zinc-800/80 rounded-2xl p-4 overflow-hidden">
+              {/* 刻度背景虚线 */}
+              <div className="absolute inset-0 flex justify-between px-8 pointer-events-none">
+                {timeTicks.map((tick, i) => (
+                  <div key={i} className="h-full border-r border-dashed border-zinc-800/30" style={{ left: tick.x, position: 'absolute' }} />
+                ))}
+              </div>
+
+              {/* 刻度文字 */}
+              <div className="absolute left-0 right-0 top-2.5 px-8 flex justify-between pointer-events-none">
+                {timeTicks.map((tick, i) => (
+                  <span key={i} className="text-[20px] font-black text-zinc-400 font-sans whitespace-nowrap" style={{ left: tick.x, position: 'absolute', transform: 'translateX(-50%)' }}>
+                    {tick.label}
+                  </span>
+                ))}
+              </div>
+
+              {/* Lifespan Bars (在 260px 高度下 top-75 显得极其宽敞美观) */}
+              <div className="absolute left-8 right-8 top-[75px] bottom-3 flex flex-col justify-around">
+                {/* AI创作文章 */}
+                <div className="relative flex items-center">
+                  <div className="w-[22%] h-[42px] bg-zinc-700/80 border border-zinc-650 rounded-full flex items-center justify-between px-5 shadow-sm">
+                    <span className="text-[18px] font-black text-zinc-300">AI 创作文章</span>
+                    <span className="text-[14px] font-black text-zinc-400 bg-zinc-855 px-3 py-0.5 rounded-full shrink-0">15天内</span>
+                  </div>
+                  <span className="text-[20px] text-zinc-500 font-black ml-6">15天后开始失效</span>
+                </div>
+
+                {/* 人工创作文章 */}
+                <div className="relative flex items-center">
+                  <div
+                    className="w-[90%] h-[44px] rounded-full flex items-center justify-between px-7 shadow-lg border border-teal-500/20"
+                    style={{ background: 'linear-gradient(to right, #004CE5 0%, #0D9488 100%)' }}
+                  >
+                    <span className="text-[20px] font-black text-white">人工创作文章</span>
+                    <span className="text-[16px] font-black text-white bg-white/20 px-4 py-1 rounded-full shrink-0">6个月+ 持续被大模型高频引用</span>
+                  </div>
+                </div>
+              </div>
+            </div>
           </div>
 
-          {/* 3. Staggered Gantt Bars (完全错落的瀑布流/蹉跎感排版，AI文章使用接近白色的浅灰色) */}
-          <div className="absolute inset-x-8 top-[80px] bottom-[25px] relative z-20">
+          {/* 居中横向分割线 */}
+          <div className="w-full h-[1px] bg-zinc-800/50 my-4 shrink-0" />
 
-            {/* Row 1: AI 创作文章 (起于 120px, 止于 300px, 极其接近白色的浅灰色) */}
-            <div
-              className="absolute h-[42px] bg-zinc-100 border border-zinc-200 rounded-full flex items-center justify-center px-4 shadow-md"
-              style={{ left: '120px', top: '15px', width: '180px' }}
-            >
-              <span className="text-[16px] font-extrabold text-zinc-950 font-['MiSans'] whitespace-nowrap">
-                AI 创作文章
-              </span>
-            </div>
+          {/* 2. 一文两用 */}
+          <div className="flex flex-col mb-2">
+            <h3 className="text-[42px] font-black text-white font-['MiSans'] mb-3">
+              2. 一文两用
+            </h3>
 
-            {/* Row 2: 人工创作文章 (起于 200px, 止于 1650px, 渐变色) */}
-            <div
-              className="absolute h-[42px] rounded-full flex items-center justify-start px-6 shadow-lg"
-              style={{
-                left: '200px',
-                top: '73px',
-                width: '1450px',
-                background: 'linear-gradient(to right, #004CE5 0%, #0D9488 100%)'
-              }}
-            >
-              <span className="text-[16px] font-bold text-white font-['MiSans'] whitespace-nowrap">
-                人工创作文章
-              </span>
-            </div>
+            {/* 渠道双重效应图解 */}
+            <div className="flex items-stretch justify-between gap-6">
+              {/* GEO 搜索侧 */}
+              <div className="flex-1 bg-blue-500/5 border border-blue-500/20 rounded-2xl p-6 flex flex-col justify-between">
+                <div>
+                  <span className="px-4 py-1 rounded text-[18px] font-black bg-blue-500/20 text-blue-300 border border-blue-500/30 inline-block">
+                    GEO 搜索侧
+                  </span>
+                  <h4 className="text-[28px] font-black text-white font-['MiSans'] mt-3 leading-tight">
+                    面向 AI 引擎：获取高频引用
+                  </h4>
+                </div>
+                <p className="text-[22px] font-black text-white mt-4 font-['MiSans']">
+                  沉淀为长期的搜索引用流量资产
+                </p>
+              </div>
 
-            {/* Row 3: AI 创作文章 (起于 320px, 止于 500px, 极其接近白色的浅灰色) */}
-            <div
-              className="absolute h-[42px] bg-zinc-100 border border-zinc-200 rounded-full flex items-center justify-center px-4 shadow-md"
-              style={{ left: '320px', top: '131px', width: '180px' }}
-            >
-              <span className="text-[16px] font-extrabold text-zinc-950 font-['MiSans'] whitespace-nowrap">
-                AI 创作文章
-              </span>
-            </div>
+              {/* 连接加号 */}
+              <div className="flex flex-col items-center justify-center shrink-0">
+                <span className="text-[32px] text-zinc-600 font-black">+</span>
+              </div>
 
-            {/* Row 4: 人工创作文章 (起于 80px, 止于 1100px, 渐变色) */}
-            <div
-              className="absolute h-[42px] rounded-full flex items-center justify-start px-6 shadow-lg"
-              style={{
-                left: '80px',
-                top: '189px',
-                width: '1020px',
-                background: 'linear-gradient(to right, #004CE5 0%, #0D9488 100%)'
-              }}
-            >
-              <span className="text-[16px] font-bold text-white font-['MiSans'] whitespace-nowrap">
-                人工创作文章
-              </span>
-            </div>
-
-            {/* Row 5: AI 创作文章 (起于 520px, 止于 700px, 极其接近白色的浅灰色) */}
-            <div
-              className="absolute h-[42px] bg-zinc-100 border border-zinc-200 rounded-full flex items-center justify-center px-4 shadow-md"
-              style={{ left: '520px', top: '247px', width: '180px' }}
-            >
-              <span className="text-[16px] font-extrabold text-zinc-950 font-['MiSans'] whitespace-nowrap">
-                AI 创作文章
-              </span>
-            </div>
-
-            {/* Row 6: 人工创作文章 (起于 410px, 止于 1550px, 渐变色) */}
-            <div
-              className="absolute h-[42px] rounded-full flex items-center justify-start px-6 shadow-lg"
-              style={{
-                left: '410px',
-                top: '305px',
-                width: '1140px',
-                background: 'linear-gradient(to right, #004CE5 0%, #0D9488 100%)'
-              }}
-            >
-              <span className="text-[16px] font-bold text-white font-['MiSans'] whitespace-nowrap">
-                人工创作文章
-              </span>
-            </div>
-
-            {/* Row 7: 人工创作文章 (起于 730px, 止于 1380px, 渐变色) */}
-            <div
-              className="absolute h-[42px] rounded-full flex items-center justify-start px-6 shadow-lg"
-              style={{
-                left: '730px',
-                top: '363px',
-                width: '650px',
-                background: 'linear-gradient(to right, #004CE5 0%, #0D9488 100%)'
-              }}
-            >
-              <span className="text-[16px] font-bold text-white font-['MiSans'] whitespace-nowrap">
-                人工创作文章
-              </span>
-            </div>
-
-          </div>
-
-          {/* 4. 颜色图例 (大号胶囊图例，水平居中) */}
-          <div className="absolute left-1/2 transform -translate-x-1/2 bottom-[25px] flex items-center gap-16 z-20">
-            <div className="flex items-center gap-4">
-              <span className="w-12 h-5 rounded-full bg-zinc-100" />
-              <span className="text-[24px] font-black text-zinc-400 font-['MiSans']">AI 创作文章</span>
-            </div>
-            <div className="flex items-center gap-4">
-              <span className="w-12 h-5 rounded-full bg-gradient-to-r from-blue-600 to-teal-500" />
-              <span className="text-[24px] font-black text-white font-['MiSans']">人工创作文章</span>
+              {/* 传统公关侧 */}
+              <div className="flex-1 bg-teal-500/5 border border-teal-500/20 rounded-2xl p-6 flex flex-col justify-between">
+                <div>
+                  <span className="px-4 py-1 rounded text-[18px] font-black bg-teal-500/20 text-teal-300 border border-teal-500/30 inline-block">
+                    传统公关侧
+                  </span>
+                  <h4 className="text-[28px] font-black text-white font-['MiSans'] mt-3 leading-tight">
+                    面向真人阅读：带来社媒种草
+                  </h4>
+                </div>
+                <p className="text-[22px] font-black text-white mt-4 font-['MiSans']">
+                  直接节省并替代独立的传统 PR 预算
+                </p>
+              </div>
             </div>
           </div>
         </div>
 
-        {/* ==================== 下半部分：两大好处 (保质期更长 / 一文两用·替代PR稿件) ==================== */}
-        <div className="w-full h-[130px] bg-zinc-950/40 border border-zinc-900 rounded-[28px] px-8 flex justify-between items-stretch shadow-md">
-          {/* 好处 ①：文章保质期更长 */}
-          <div className="w-[810px] flex items-center gap-5 pl-2">
-            <span className="shrink-0 w-[52px] h-[52px] rounded-2xl bg-white text-black text-[26px] font-black font-['Montserrat'] flex items-center justify-center shadow-md">
-              1
+        {/* ==================== 右栏：成本增加 (坏处 - 占 1/3) ==================== */}
+        <div className="w-[606px] h-full bg-red-955/10 backdrop-blur-md rounded-[32px] p-9 flex flex-col justify-between shadow-[0_25px_60px_rgba(0,0,0,0.5)] border border-white/20 shrink-0">
+          <div className="flex flex-col gap-2">
+            <span className="px-5 py-1.5 rounded-full text-[18px] font-black text-red-400 bg-red-500/10 border border-red-500/20 self-start font-['MiSans']">
+              坏处
             </span>
-            <div className="flex flex-col justify-center">
-              <h4 className="text-[27px] font-black text-white font-['MiSans'] leading-tight">
-                文章保质期更长
-              </h4>
-              <p className="text-[18px] font-medium text-zinc-400 font-['MiSans'] leading-snug mt-1">
-                年初发布的文章，<span className="text-white font-bold">至今仍被 AI 持续引用</span>
-              </p>
+            <h3 className="text-[46px] font-black text-white font-['MiSans'] leading-tight mt-3">
+              单篇内容成本剧增
+            </h3>
+          </div>
+
+          {/* 成本对比 */}
+          <div className="flex flex-col gap-6 my-auto">
+            {/* 1. Agent成本 */}
+            <div className="flex items-center justify-between bg-zinc-900/40 border border-zinc-800 rounded-2xl p-7">
+              <span className="text-[22px] text-zinc-300 font-black font-['MiSans']">Agent 创作成本</span>
+              <span className="text-[32px] font-black text-zinc-400 font-sans">约 ¥ 3 / 篇</span>
+            </div>
+
+            {/* 2. 人工成本 */}
+            <div className="flex items-center justify-between bg-red-500/5 border border-red-500/25 rounded-2xl p-7 shadow-[0_0_15px_rgba(239,68,68,0.05)]">
+              <span className="text-[22px] text-red-300 font-black font-['MiSans']">人工创作成本</span>
+              <span className="text-[32px] font-black text-red-400 font-sans">约 ¥ 300 / 篇</span>
             </div>
           </div>
 
-          {/* 垂直分割线 */}
-          <div className="self-center h-3/5 w-[1px] bg-zinc-800" />
-
-          {/* 好处 ②：一文两用 · 可替代传统 PR 稿件 */}
-          <div className="w-[880px] flex items-center gap-5 pr-2">
-            <span className="shrink-0 w-[52px] h-[52px] rounded-2xl text-white text-[26px] font-black font-['Montserrat'] flex items-center justify-center shadow-md" style={{ background: 'linear-gradient(135deg, #004CE5 0%, #0D9488 100%)' }}>
-              2
-            </span>
-            <div className="flex flex-col justify-center">
-              <div className="flex items-center gap-3">
-                <h4 className="text-[27px] font-black text-white font-['MiSans'] leading-tight">
-                  一文两用
-                </h4>
-                <span className="text-[16px] font-bold text-teal-300 font-['MiSans'] border border-teal-400/40 bg-teal-500/10 rounded-full px-3 py-[2px] whitespace-nowrap">
-                  可替代传统 PR 稿件
-                </span>
-              </div>
-              <p className="text-[18px] font-medium text-zinc-400 font-['MiSans'] leading-snug mt-1">
-                AI 抓取 + 真人阅读双高，<span className="text-white font-bold">品牌把 PR 预算直接拨给我们一起做</span>
-              </p>
+          {/* 成本涨幅痛点提示 */}
+          <div className="w-full rounded-2xl bg-red-500/10 border border-red-500/20 p-9 flex items-center justify-center">
+            <div className="flex items-baseline gap-3">
+              <span className="text-[26px] font-black text-white font-['MiSans']">单篇制作成本相差</span>
+              <span className="text-[66px] font-black text-red-500 font-sans leading-none">100倍</span>
             </div>
           </div>
         </div>

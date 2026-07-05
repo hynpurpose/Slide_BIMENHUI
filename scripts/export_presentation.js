@@ -53,15 +53,25 @@ async function main() {
     // Inject styles to hide control UI and scale slide to 100% size
     await page.addStyleTag({
       content: `
+        aside {
+          display: none !important;
+        }
+        button[title="打开目录"],
+        button[title="全屏演示"],
+        div.pointer-events-none.opacity-20,
+        .export-hide {
+          display: none !important;
+        }
+        .bg-zinc-600 {
+          padding: 0 !important;
+          background-color: black !important;
+        }
         div[style*="1920"] {
           zoom: 1 !important;
           box-shadow: none !important;
           border-radius: 0 !important;
-        }
-        button[title="打开目录"],
-        button[title="全屏演示"],
-        div.pointer-events-none.opacity-20 {
-          display: none !important;
+          width: 1920px !important;
+          height: 1080px !important;
         }
       `,
     });
@@ -78,8 +88,10 @@ async function main() {
     }
     fs.mkdirSync(screenshotsDir, { recursive: true });
 
-    const totalSlides = order.length;
-    console.log(`Starting capture of ${totalSlides} slides...`);
+    const limitArg = process.argv.find(arg => arg.startsWith('--limit='));
+    const limit = limitArg ? parseInt(limitArg.split('=')[1], 10) : null;
+    const totalSlides = limit ? Math.min(limit, order.length) : order.length;
+    console.log(`Starting capture of ${totalSlides} slides (out of ${order.length})...`);
 
     for (let i = 0; i < totalSlides; i++) {
       console.log(`[${i + 1}/${totalSlides}] Capturing slide: ${order[i]}...`);
@@ -104,7 +116,8 @@ async function main() {
       }
     }
 
-    const outputName = path.resolve(__dirname, '../Presentation_2026.pptx');
+    const outputFileName = limit ? `Presentation_2026_limit${limit}.pptx` : 'Presentation_2026.pptx';
+    const outputName = path.resolve(__dirname, `../${outputFileName}`);
     console.log(`Writing PPTX to ${outputName}...`);
     await pptx.writeFile({ fileName: outputName });
     console.log(`\n✅ PPTX successfully generated at: ${outputName}`);

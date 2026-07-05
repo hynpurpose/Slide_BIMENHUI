@@ -580,7 +580,7 @@ export default function App() {
                     currentVariants.length
                 );
               }}
-              className="absolute left-4 sm:left-8 top-1/2 -translate-y-1/2 z-50 p-3 rounded-full bg-zinc-900/60 hover:bg-zinc-800 text-white transition-colors backdrop-blur-md"
+              className="absolute left-4 sm:left-8 top-1/2 -translate-y-1/2 z-50 p-3 rounded-full bg-zinc-900/60 hover:bg-zinc-800 text-white transition-colors backdrop-blur-md export-hide"
               title="上一个版本"
             >
               <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
@@ -595,7 +595,7 @@ export default function App() {
                   (safeVariantIndex + 1) % currentVariants.length
                 );
               }}
-              className="absolute right-4 sm:right-8 top-1/2 -translate-y-1/2 z-50 p-3 rounded-full bg-zinc-900/60 hover:bg-zinc-800 text-white transition-colors backdrop-blur-md"
+              className="absolute right-4 sm:right-8 top-1/2 -translate-y-1/2 z-50 p-3 rounded-full bg-zinc-900/60 hover:bg-zinc-800 text-white transition-colors backdrop-blur-md export-hide"
               title="下一个版本"
             >
               <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
@@ -604,7 +604,7 @@ export default function App() {
             </button>
 
             <div
-              className="absolute top-4 sm:top-8 left-1/2 -translate-x-1/2 z-50 flex items-center gap-3 px-4 py-2 rounded-full bg-zinc-900/70 backdrop-blur-md"
+              className="absolute top-4 sm:top-8 left-1/2 -translate-x-1/2 z-50 flex items-center gap-3 px-4 py-2 rounded-full bg-zinc-900/70 backdrop-blur-md export-hide"
               onClick={(e) => e.stopPropagation()}
             >
               <span className="text-white text-sm font-medium">
@@ -638,7 +638,7 @@ export default function App() {
               e.stopPropagation();
               setIsMenuOpen(true);
             }}
-            className="absolute top-4 left-4 sm:top-8 sm:left-8 z-50 p-3 rounded-full bg-zinc-900/50 hover:bg-zinc-800 text-zinc-400 hover:text-white transition-colors backdrop-blur-md group"
+            className="absolute top-4 left-4 sm:top-8 sm:left-8 z-50 p-3 rounded-full bg-zinc-900/50 hover:bg-zinc-800 text-zinc-400 hover:text-white transition-colors backdrop-blur-md group export-hide"
             title="打开目录"
           >
             <div className="w-5 h-4 flex flex-col justify-between opacity-70 group-hover:opacity-100">
@@ -650,7 +650,7 @@ export default function App() {
         )}
 
         {/* Slide counter */}
-        <div className="absolute bottom-4 left-4 sm:bottom-8 sm:left-8 z-40 px-3 py-1.5 rounded-full bg-zinc-900/50 backdrop-blur-md text-zinc-400 text-xs font-mono pointer-events-none">
+        <div className="absolute bottom-4 left-4 sm:bottom-8 sm:left-8 z-40 px-3 py-1.5 rounded-full bg-zinc-900/50 backdrop-blur-md text-zinc-400 text-xs font-mono pointer-events-none export-hide">
           {currentSlide + 1} / {slideData.length}
         </div>
 
@@ -664,7 +664,7 @@ export default function App() {
               if (document.exitFullscreen) document.exitFullscreen();
             }
           }}
-          className="absolute bottom-4 right-4 sm:bottom-8 sm:right-8 z-50 p-3 rounded-full bg-zinc-900/50 hover:bg-zinc-800 text-zinc-400 hover:text-white transition-colors backdrop-blur-md opacity-20 hover:opacity-100 group pointer-events-auto"
+          className="absolute bottom-4 right-4 sm:bottom-8 sm:right-8 z-50 p-3 rounded-full bg-zinc-900/50 hover:bg-zinc-800 text-zinc-400 hover:text-white transition-colors backdrop-blur-md opacity-20 hover:opacity-100 group pointer-events-auto export-hide"
           title="全屏演示"
         >
           <svg

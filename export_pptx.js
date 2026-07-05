@@ -22,16 +22,29 @@ async function run() {
         return;
     }
 
-    await page.evaluate(() => {
-        const buttons = document.querySelectorAll('button');
-        buttons.forEach(btn => {
-            if (btn.title === '打开目录' || btn.title === '全屏演示' || btn.innerHTML.includes('w-5 h-4 flex')) {
-                btn.style.display = 'none';
-            }
-        });
-
-        const hints = document.querySelectorAll('.pointer-events-none.opacity-20');
-        hints.forEach(hint => hint.style.display = 'none');
+    await page.addStyleTag({
+      content: `
+        aside {
+          display: none !important;
+        }
+        button[title="打开目录"],
+        button[title="全屏演示"],
+        div.pointer-events-none.opacity-20,
+        .export-hide {
+          display: none !important;
+        }
+        .bg-zinc-600 {
+          padding: 0 !important;
+          background-color: black !important;
+        }
+        div[style*="1920"] {
+          zoom: 1 !important;
+          box-shadow: none !important;
+          border-radius: 0 !important;
+          width: 1920px !important;
+          height: 1080px !important;
+        }
+      `,
     });
 
     const pptx = new pptxgen();
