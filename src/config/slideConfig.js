@@ -305,9 +305,9 @@ export const slideConfig = [
   { type: 'section', title: '我们到底用AI还是用人写内容' },
   { type: 'page', title: '我们到底用AI还是用人工写内容', component: Page_SkyworthContentDetailsAI, hideHeader: true },
   { type: 'page', title: '我们开发的内容Agent系统', component: Page_GeoWritingAgentIntro, hideHeader: true },
+  { type: 'page', title: '用人写的好处和坏处”', component: Page_ContentQualityValue, hideHeader: true },
   { type: 'page', title: '市面上其他做法', component: Page_OtherContentApproach, hideHeader: true },
   { type: 'page', title: '我们的策略', component: Page_HumanAiRatioApproach, hideHeader: true },
-  { type: 'page', title: '用人写的好处和坏处”', component: Page_ContentQualityValue, hideHeader: true },
 
   { type: 'section', title: '创维的内容怎么做' },
   { type: 'page', title: '创维定制内容方向规划', component: Page_SkyworthContentDirection, hideHeader: true },
