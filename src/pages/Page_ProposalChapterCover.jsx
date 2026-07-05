@@ -42,7 +42,8 @@ export default function Page_ProposalChapterCover({
                         fontSize: '172px',
                         lineHeight: '1.1',
                         letterSpacing: '0.02em',
-                        bottom: '500px',
+                        // 顶对齐：两行标题时首行位置 = 1080 - 500(原 bottom) - 2×189.2(行高) = 201.6px
+                        top: '201.6px',
                         left: '66px',
                         maxWidth: '1400px',
                         whiteSpace: 'pre-line',
@@ -67,10 +68,13 @@ export default function Page_ProposalChapterCover({
                             style={{ fontSize: '32px', lineHeight: '1.4' }}
                         >
                             <span
+                                className="shrink-0"
                                 style={{
                                     color: isActive ? 'rgb(0, 76, 229)' : 'rgba(255,255,255,0.45)',
                                     fontWeight: isActive ? '500' : '400',
                                     letterSpacing: '0.02em',
+                                    display: 'inline-block',
+                                    width: '60px',
                                 }}
                             >
                                 {num}.
@@ -80,7 +84,6 @@ export default function Page_ProposalChapterCover({
                                     color: isActive ? 'rgb(0, 76, 229)' : 'rgba(255,255,255,0.45)',
                                     fontWeight: isActive ? '500' : '400',
                                     letterSpacing: '0.02em',
-                                    marginLeft: '2px',
                                 }}
                             >
                                 {ch.title.replace(/\n/g, '')}

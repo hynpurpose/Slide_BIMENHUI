@@ -1,6 +1,7 @@
 import React, { useState, useEffect, useRef } from 'react';
 import { DragDropContext, Droppable, Draggable } from '@hello-pangea/dnd';
 import SlideContainer from './components/SlideContainer';
+import SlideEditor from './components/SlideEditor';
 import CoverSlide from './templates/CoverSlide';
 import TOCSlide from './templates/TOCSlide';
 import Page_ProposalChapterCover from './pages/Page_ProposalChapterCover';
@@ -72,11 +73,22 @@ flatSlides.forEach((slide) => {
     ));
   }
 
-  slideDictionary[slide.id] = { name: slide.name, component, variants };
+  slideDictionary[slide.id] = { name: slide.name, type: slide.type, component, variants };
 });
 
 const defaultOrder = flatSlides.map((s) => s.id);
 const SLIDE_POSITION_KEY = 'slide-current-id';
+const COLLAPSED_CHAPTERS_KEY = 'slide-collapsed-chapters';
+
+function getInitialCollapsedChapters() {
+  try {
+    const saved = localStorage.getItem(COLLAPSED_CHAPTERS_KEY);
+    if (saved) return new Set(JSON.parse(saved));
+  } catch {
+    // localStorage unavailable or corrupted data
+  }
+  return new Set();
+}
 
 function getInitialOrder() {
   const validIds = new Set(Object.keys(slideDictionary));
@@ -132,7 +144,12 @@ export default function App() {
   const [tooltip, setTooltip] = useState(null);
   const [isSaving, setIsSaving] = useState(false);
   const [saveStatus, setSaveStatus] = useState(null);
+  const [editMode, setEditMode] = useState(false);
+  const [collapsedChapters, setCollapsedChapters] = useState(
+    getInitialCollapsedChapters
+  );
 
+  const slideRootRef = useRef(null);
   const savedOrderRef = useRef(slideOrder);
   const isOrderDirty =
     JSON.stringify(slideOrder) !== JSON.stringify(savedOrderRef.current);
@@ -140,6 +157,74 @@ export default function App() {
   const slideData = slideOrder
     .map((id) => slideDictionary[id])
     .filter(Boolean);
+
+  // Keynote 式导航分组：章节封面为父级，其后的内容页为子级。
+  // 折叠时整个章节（封面 + 子页）合并成一个可拖拽块，页码编号保持全局不变。
+  const navBlocks = [];
+  {
+    let i = 0;
+    while (i < slideData.length) {
+      const id = slideOrder[i];
+      const slide = slideData[i];
+      if (slide.type === 'chapter-cover') {
+        let end = i + 1;
+        while (end < slideData.length && slideData[end].type === 'content')
+          end++;
+        const collapsed = collapsedChapters.has(id);
+        navBlocks.push({
+          id,
+          index: i,
+          slide,
+          isParent: true,
+          collapsed,
+          level: 0,
+          childCount: end - i - 1,
+          blockIds: collapsed ? slideOrder.slice(i, end) : [id],
+        });
+        if (!collapsed) {
+          for (let j = i + 1; j < end; j++) {
+            navBlocks.push({
+              id: slideOrder[j],
+              index: j,
+              slide: slideData[j],
+              isParent: false,
+              collapsed: false,
+              level: 1,
+              childCount: 0,
+              blockIds: [slideOrder[j]],
+            });
+          }
+        }
+        i = end;
+      } else {
+        navBlocks.push({
+          id,
+          index: i,
+          slide,
+          isParent: false,
+          collapsed: false,
+          level: 0,
+          childCount: 0,
+          blockIds: [id],
+        });
+        i++;
+      }
+    }
+  }
+
+  const toggleChapterCollapse = (id) => {
+    setCollapsedChapters((prev) => {
+      const next = new Set(prev);
+      if (next.has(id)) next.delete(id);
+      else next.add(id);
+      try {
+        localStorage.setItem(COLLAPSED_CHAPTERS_KEY, JSON.stringify([...next]));
+      } catch {
+        // localStorage unavailable
+      }
+      return next;
+    });
+  };
 
   const currentSlideData = slideData[currentSlide];
   const currentVariants = currentSlideData?.variants || null;
@@ -149,16 +234,22 @@ export default function App() {
     : 0;
 
   const handleNextSlide = () => {
+    if (editMode) return;
     setCurrentSlide((prev) => Math.min(prev + 1, slideData.length - 1));
   };
 
   const handlePrevSlide = () => {
+    if (editMode) return;
     setCurrentSlide((prev) => Math.max(prev - 1, 0));
   };
 
   useEffect(() => {
     const handleKeyDown = (e) => {
-      if (e.target.tagName === 'INPUT' || e.target.tagName === 'TEXTAREA')
+      if (
+        e.target.tagName === 'INPUT' ||
+        e.target.tagName === 'TEXTAREA' ||
+        e.target.isContentEditable
+      )
         return;
 
       if (e.key === 'ArrowRight' || e.key === 'ArrowDown') {
@@ -170,7 +261,7 @@ export default function App() {
 
     window.addEventListener('keydown', handleKeyDown);
     return () => window.removeEventListener('keydown', handleKeyDown);
-  }, [slideData.length]);
+  }, [slideData.length, editMode]);
 
   useEffect(() => {
     setVariantIndex(0);
@@ -199,28 +290,21 @@ export default function App() {
     setCurrentSlide(index);
   };
 
+  // 拖拽以“块”为单位：折叠的章节封面会带着其所有子页一起移动
   const onDragEnd = (result) => {
     if (!result.destination) return;
+    if (result.source.index === result.destination.index) return;
 
-    const items = Array.from(slideOrder);
-    const [reorderedItem] = items.splice(result.source.index, 1);
-    items.splice(result.destination.index, 0, reorderedItem);
+    const currentId = slideOrder[currentSlide];
+    const blocks = navBlocks.map((b) => b.blockIds);
+    const [moved] = blocks.splice(result.source.index, 1);
+    blocks.splice(result.destination.index, 0, moved);
+    const newOrder = blocks.flat();
 
-    setSlideOrder(items);
+    setSlideOrder(newOrder);
 
-    if (result.source.index === currentSlide) {
-      setCurrentSlide(result.destination.index);
-    } else if (
-      result.source.index < currentSlide &&
-      result.destination.index >= currentSlide
-    ) {
-      setCurrentSlide(currentSlide - 1);
-    } else if (
-      result.source.index > currentSlide &&
-      result.destination.index <= currentSlide
-    ) {
-      setCurrentSlide(currentSlide + 1);
-    }
+    const newIndex = newOrder.indexOf(currentId);
+    if (newIndex !== -1) setCurrentSlide(newIndex);
   };
 
   const saveOrder = async () => {
@@ -285,70 +369,116 @@ export default function App() {
                   {...provided.droppableProps}
                   ref={provided.innerRef}
                 >
-                  {slideData.map((slide, index) => (
-                    <Draggable
-                      key={`${slideOrder[index]}-${index}`}
-                      draggableId={`${slideOrder[index]}-${index}`}
-                      index={index}
-                    >
-                      {(provided, snapshot) => (
-                        <div
-                          ref={provided.innerRef}
-                          {...provided.draggableProps}
-                          className={`flex items-center rounded-xl transition-all duration-200 ${
-                            snapshot.isDragging
-                              ? 'bg-zinc-800 shadow-xl opacity-90 z-50 scale-[1.02]'
-                              : currentSlide === index
-                                ? 'bg-zinc-800 text-white font-medium'
-                                : 'text-zinc-400 hover:bg-zinc-900/80 hover:text-zinc-200 cursor-pointer'
-                          }`}
-                          onClick={() => jumpToSlide(index)}
-                          onMouseEnter={(e) => {
-                            if (snapshot.isDragging) return;
-                            const rect =
-                              e.currentTarget.getBoundingClientRect();
-                            setTooltip({
-                              text: slide.name,
-                              top: rect.top + rect.height / 2,
-                              left: rect.right + 12,
-                            });
-                          }}
-                          onMouseLeave={() => setTooltip(null)}
-                        >
-                          <div
-                            {...provided.dragHandleProps}
-                            className="p-3 text-zinc-600 hover:text-zinc-300 cursor-grab active:cursor-grabbing flex items-center justify-center"
-                          >
-                            <svg
-                              xmlns="http://www.w3.org/2000/svg"
-                              width="16"
-                              height="16"
-                              viewBox="0 0 24 24"
-                              fill="none"
-                              stroke="currentColor"
-                              strokeWidth="2"
-                              strokeLinecap="round"
-                              strokeLinejoin="round"
-                            >
-                              <line x1="8" y1="6" x2="21" y2="6" />
-                              <line x1="8" y1="12" x2="21" y2="12" />
-                              <line x1="8" y1="18" x2="21" y2="18" />
-                              <line x1="3" y1="6" x2="3.01" y2="6" />
-                              <line x1="3" y1="12" x2="3.01" y2="12" />
-                              <line x1="3" y1="18" x2="3.01" y2="18" />
-                            </svg>
-                          </div>
+                  {navBlocks.map((block, blockIndex) => {
+                    const isActive =
+                      currentSlide === block.index ||
+                      (block.isParent &&
+                        block.collapsed &&
+                        currentSlide > block.index &&
+                        currentSlide <= block.index + block.childCount);
 
-                          <div className="py-3 pr-4 flex-grow truncate flex items-center">
-                            <span className="text-sm text-white opacity-90 mr-3 font-mono bg-zinc-900 px-2 py-0.5 rounded">
-                              {String(index + 1).padStart(2, '0')}
-                            </span>
-                            <span className="truncate">{slide.name}</span>
+                    return (
+                      <Draggable
+                        key={block.id}
+                        draggableId={block.id}
+                        index={blockIndex}
+                      >
+                        {(provided, snapshot) => (
+                          <div
+                            ref={provided.innerRef}
+                            {...provided.draggableProps}
+                            className={`flex items-center rounded-xl transition-all duration-200 ${
+                              block.level > 0 ? 'ml-6' : ''
+                            } ${
+                              snapshot.isDragging
+                                ? 'bg-zinc-800 shadow-xl opacity-90 z-50 scale-[1.02]'
+                                : isActive
+                                  ? 'bg-zinc-800 text-white font-medium'
+                                  : 'text-zinc-400 hover:bg-zinc-900/80 hover:text-zinc-200 cursor-pointer'
+                            }`}
+                            onClick={() => jumpToSlide(block.index)}
+                            onMouseEnter={(e) => {
+                              if (snapshot.isDragging) return;
+                              const rect =
+                                e.currentTarget.getBoundingClientRect();
+                              setTooltip({
+                                text: block.slide.name,
+                                top: rect.top + rect.height / 2,
+                                left: rect.right + 12,
+                              });
+                            }}
+                            onMouseLeave={() => setTooltip(null)}
+                          >
+                            <div
+                              {...provided.dragHandleProps}
+                              className="p-3 text-zinc-600 hover:text-zinc-300 cursor-grab active:cursor-grabbing flex items-center justify-center"
+                            >
+                              <svg
+                                xmlns="http://www.w3.org/2000/svg"
+                                width="16"
+                                height="16"
+                                viewBox="0 0 24 24"
+                                fill="none"
+                                stroke="currentColor"
+                                strokeWidth="2"
+                                strokeLinecap="round"
+                                strokeLinejoin="round"
+                              >
+                                <line x1="8" y1="6" x2="21" y2="6" />
+                                <line x1="8" y1="12" x2="21" y2="12" />
+                                <line x1="8" y1="18" x2="21" y2="18" />
+                                <line x1="3" y1="6" x2="3.01" y2="6" />
+                                <line x1="3" y1="12" x2="3.01" y2="12" />
+                                <line x1="3" y1="18" x2="3.01" y2="18" />
+                              </svg>
+                            </div>
+
+                            {block.isParent && (
+                              <button
+                                onClick={(e) => {
+                                  e.stopPropagation();
+                                  toggleChapterCollapse(block.id);
+                                }}
+                                className="p-1 -ml-1 mr-1 rounded text-zinc-500 hover:text-white hover:bg-zinc-700/60 transition-colors flex items-center justify-center"
+                                title={block.collapsed ? '展开章节' : '折叠章节'}
+                              >
+                                <svg
+                                  xmlns="http://www.w3.org/2000/svg"
+                                  width="14"
+                                  height="14"
+                                  viewBox="0 0 24 24"
+                                  fill="none"
+                                  stroke="currentColor"
+                                  strokeWidth="2.5"
+                                  strokeLinecap="round"
+                                  strokeLinejoin="round"
+                                  className={`transition-transform duration-200 ${
+                                    block.collapsed ? '' : 'rotate-90'
+                                  }`}
+                                >
+                                  <polyline points="9 18 15 12 9 6" />
+                                </svg>
+                              </button>
+                            )}
+
+                            <div className="py-3 pr-4 flex-grow truncate flex items-center">
+                              <span className="text-sm text-white opacity-90 mr-3 font-mono bg-zinc-900 px-2 py-0.5 rounded">
+                                {String(block.index + 1).padStart(2, '0')}
+                              </span>
+                              <span className="truncate">
+                                {block.slide.name}
+                              </span>
+                              {block.isParent && block.collapsed && (
+                                <span className="ml-2 flex-shrink-0 text-[10px] font-mono text-zinc-500 bg-zinc-900 px-1.5 py-0.5 rounded-full">
+                                  +{block.childCount}
+                                </span>
+                              )}
+                            </div>
                           </div>
-                        </div>
-                      )}
-                    </Draggable>
-                  ))}
+                        )}
+                      </Draggable>
+                    );
+                  })}
                   {provided.placeholder}
                 </nav>
               )}
@@ -428,7 +558,11 @@ export default function App() {
         className="flex-1 relative overflow-hidden cursor-pointer"
       >
         <SlideContainer>
-          <div key={`${currentSlide}-${safeVariantIndex}`} className="w-full h-full">
+          <div
+            key={`${currentSlide}-${safeVariantIndex}`}
+            ref={slideRootRef}
+            className="w-full h-full"
+          >
             {hasVariants
               ? currentVariants[safeVariantIndex]
               : currentSlideData?.component}
@@ -547,7 +681,37 @@ export default function App() {
             <path d="M8 3H5a2 2 0 0 0-2 2v3m18 0V5a2 2 0 0 0-2-2h-3m0 18h3a2 2 0 0 0 2-2v-3M3 16v3a2 2 0 0 0 2 2h3" />
           </svg>
         </button>
+
+        {/* 编辑模式开关 */}
+        {!isFullscreen && (
+          <button
+            onClick={(e) => {
+              e.stopPropagation();
+              setEditMode((v) => !v);
+            }}
+            className={`absolute bottom-4 z-50 flex items-center gap-2 px-4 py-2.5 rounded-full transition-colors backdrop-blur-md text-sm font-medium ${
+              editMode
+                ? 'right-[356px] bg-blue-600 hover:bg-blue-500 text-white'
+                : 'right-16 sm:right-20 bg-zinc-900/50 hover:bg-zinc-800 text-zinc-400 hover:text-white'
+            }`}
+            title="双击文字即可编辑位置"
+          >
+            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+              <path d="M12 20h9" />
+              <path d="M16.5 3.5a2.12 2.12 0 0 1 3 3L7 19l-4 1 1-4Z" />
+            </svg>
+            {editMode ? '退出编辑' : '编辑模式'}
+          </button>
+        )}
       </div>
+
+      {/* 可视化编辑器（双击文字 → 右侧面板调位置） */}
+      <SlideEditor
+        enabled={editMode && !isFullscreen}
+        slideId={slideOrder[currentSlide]}
+        slideKey={`${currentSlide}-${safeVariantIndex}`}
+        rootRef={slideRootRef}
+      />
     </div>
   );
 }

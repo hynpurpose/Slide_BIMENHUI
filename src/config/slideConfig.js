@@ -144,7 +144,7 @@ export const slideConfig = [
   // ══════════════════════════════════════════════════════════
   // ——— 一、消费者视角的AI brand定位 ———
   // ══════════════════════════════════════════════════════════
-  { type: 'chapter', title: '消费者视角的\nAI品牌定位', subtitle: 'AI BRAND POSITIONING', backgroundImage: '' },
+  { type: 'chapter', title: '消费者视角的AI品牌定位', subtitle: 'AI BRAND POSITIONING', backgroundImage: '' },
 
   { type: 'section', title: '为什么要做' },
   { type: 'page', title: '消费者视角下的AI品牌定位', component: Page_SkyworthConsumerPerspective, hideHeader: true },
@@ -173,7 +173,7 @@ export const slideConfig = [
   // ══════════════════════════════════════════════════════════
   // ——— 二、关键词体系策略 ———
   // ══════════════════════════════════════════════════════════
-  { type: 'chapter', title: '关键词体系策略', subtitle: 'KEYWORDS SYSTEM STRATEGY', backgroundImage: '' },
+  { type: 'chapter', title: '关键词策略', subtitle: 'KEYWORDS SYSTEM STRATEGY', backgroundImage: '' },
 
   { type: 'section', title: '词条分类逻辑' },
   { type: 'page', title: '监测词与优化词', component: Page_SkyworthKeywordWhySplit, hideHeader: true },
@@ -209,7 +209,7 @@ export const slideConfig = [
   // ══════════════════════════════════════════════════════════
   // ——— 四、核心优化策略 ———
   // ══════════════════════════════════════════════════════════
-  { type: 'chapter', title: '核心策略\n及KPI设定', subtitle: 'CORE OPTIMIZATION STRATEGY', backgroundImage: '' },
+  { type: 'chapter', title: '核心策略及KPI设定', subtitle: 'CORE OPTIMIZATION STRATEGY', backgroundImage: '' },
 
   { type: 'section', title: '优化词策略' },
   { type: 'page', title: '品牌词：一守一攻', component: Page_SkyworthBrandWordStrategy, hideHeader: true },
