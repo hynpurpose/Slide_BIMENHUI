@@ -33,10 +33,13 @@ export default function Page_SkyworthConsumerPerspective() {
             <strong className="text-white font-bold">AI 是中立的，甚至更偏向用户</strong>
             <span className="text-zinc-500">，所以——</span>
           </p>
+          <p className="text-[30px] text-white font-['MiSans'] leading-relaxed mt-8" style={{ maxWidth: '1500px' }}>
+            如果我们反复讲的品牌卖点，和消费者真实感受是冲突的，那内容发得越多，反而越容易加深AI对品牌的误解。
+          </p>
         </div>
 
         {/* 中：公式（水平撑开，居中留白均匀） */}
-        <div className="flex items-center gap-10 pr-[120px]">
+        <div className="flex items-center gap-10 pr-[120px] mt-6">
           <div className="px-14 py-11 rounded-[32px] bg-gradient-to-br from-[#004CE5] to-[#0B2E80] border border-blue-400/40 shadow-[0_24px_60px_-15px_rgba(0,76,229,0.55)]">
             <span className="text-[62px] font-black text-white font-['MiSans'] leading-none">消费者视角</span>
           </div>

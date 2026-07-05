@@ -79,6 +79,13 @@ flatSlides.forEach((slide) => {
 const defaultOrder = flatSlides.map((s) => s.id);
 const SLIDE_POSITION_KEY = 'slide-current-id';
 const COLLAPSED_CHAPTERS_KEY = 'slide-collapsed-chapters';
+const VISUAL_EDITS_KEY = 'slide-visual-edits'; // 与 SlideEditor 保持一致
+const WORKING_ORDER_KEY = 'slide-order-working'; // 未写入 slideOrder.json 前的工作副本
+
+/* 副本页 id：在原 id 后面加 __copyN，渲染时映射回原组件 */
+const COPY_SEP = '__copy';
+const baseIdOf = (id) => id.split(COPY_SEP)[0];
+const isCopyId = (id) => id.includes(COPY_SEP);
 
 function getInitialCollapsedChapters() {
   try {
@@ -90,12 +97,25 @@ function getInitialCollapsedChapters() {
   return new Set();
 }
 
-function getInitialOrder() {
+function getInitialOrder(useWorking = true) {
   const validIds = new Set(Object.keys(slideDictionary));
-  const initialSet = new Set(initialOrder);
 
-  // 过滤掉已从 config 删除的旧页面
-  const filteredInitial = initialOrder.filter((id) => validIds.has(id));
+  // 优先用本地的工作副本（拖拽、复制粘贴后即时保存，刷新不丢失），
+  // 没有工作副本时回退到 slideOrder.json
+  let baseOrder = initialOrder;
+  if (useWorking) {
+    try {
+      const working = JSON.parse(localStorage.getItem(WORKING_ORDER_KEY));
+      if (Array.isArray(working) && working.length > 0) baseOrder = working;
+    } catch {
+      // localStorage unavailable or corrupted data
+    }
+  }
+
+  const initialSet = new Set(baseOrder.map(baseIdOf));
+
+  // 过滤掉已从 config 删除的旧页面（副本页按其原始页判断是否有效）
+  const filteredInitial = baseOrder.filter((id) => validIds.has(baseIdOf(id)));
 
   // 找出 config 中新增但不在已保存顺序里的页面
   const newSlides = defaultOrder.filter((id) => !initialSet.has(id));
@@ -149,13 +169,20 @@ export default function App() {
     getInitialCollapsedChapters
   );
 
+  const [toast, setToast] = useState(null); // 复制/粘贴等操作的轻提示
+  const toastTimerRef = useRef(null);
+  const copiedSlideRef = useRef(null); // ⌘C 复制的页面 id
+
   const slideRootRef = useRef(null);
-  const savedOrderRef = useRef(slideOrder);
+  const editInitialTargetRef = useRef(null); // 双击进入编辑模式时要直接选中的元素
+  // 「已保存」基准取自 slideOrder.json（不含本地工作副本），
+  // 这样刷新后如果本地改动还没写入文件，保存按钮依然会亮
+  const savedOrderRef = useRef(getInitialOrder(false));
   const isOrderDirty =
     JSON.stringify(slideOrder) !== JSON.stringify(savedOrderRef.current);
 
   const slideData = slideOrder
-    .map((id) => slideDictionary[id])
+    .map((id) => slideDictionary[baseIdOf(id)])
     .filter(Boolean);
 
   // Keynote 式导航分组：章节封面为父级，其后的内容页为子级。
@@ -263,6 +290,110 @@ export default function App() {
     return () => window.removeEventListener('keydown', handleKeyDown);
   }, [slideData.length, editMode]);
 
+  const showToast = (text) => {
+    setToast(text);
+    if (toastTimerRef.current) clearTimeout(toastTimerRef.current);
+    toastTimerRef.current = setTimeout(() => setToast(null), 2200);
+  };
+
+  /* 复制当前页：把 id 记到"剪贴板" */
+  const copyCurrentSlide = () => {
+    const id = slideOrder[currentSlide];
+    if (!id) return;
+    copiedSlideRef.current = id;
+    const name = slideDictionary[baseIdOf(id)]?.name || id;
+    showToast(`已复制「${name}」 · 按 ⌘V 在其下方粘贴副本`);
+  };
+
+  /* 粘贴：在被复制页的下方插入一个副本（连同可视化编辑一起拷贝） */
+  const pasteCopiedSlide = () => {
+    const srcId = copiedSlideRef.current;
+    if (!srcId) return;
+    const srcIndex = slideOrder.indexOf(srcId);
+    const insertAfter = srcIndex !== -1 ? srcIndex : currentSlide;
+
+    // 生成不重复的副本 id
+    const baseId = baseIdOf(srcId);
+    let n = 1;
+    let newId = `${baseId}${COPY_SEP}${n}`;
+    while (slideOrder.includes(newId)) newId = `${baseId}${COPY_SEP}${++n}`;
+
+    // 把源页面的可视化编辑（字体、位置、文案改动）一起复制给副本
+    try {
+      const all = JSON.parse(localStorage.getItem(VISUAL_EDITS_KEY)) || {};
+      if (all[srcId]) {
+        all[newId] = JSON.parse(JSON.stringify(all[srcId]));
+        localStorage.setItem(VISUAL_EDITS_KEY, JSON.stringify(all));
+      }
+    } catch {
+      // localStorage unavailable
+    }
+
+    const newOrder = [...slideOrder];
+    newOrder.splice(insertAfter + 1, 0, newId);
+    setSlideOrder(newOrder);
+    setCurrentSlide(insertAfter + 1);
+    const name = slideDictionary[baseId]?.name || baseId;
+    showToast(`已在下方粘贴「${name}」副本`);
+  };
+
+  /* 删除副本页（原始页来自配置，不允许删）*/
+  const deleteSlideAt = (index) => {
+    const id = slideOrder[index];
+    if (!id || !isCopyId(id)) return;
+    const newOrder = slideOrder.filter((_, i) => i !== index);
+    setSlideOrder(newOrder);
+    setCurrentSlide(Math.min(index, newOrder.length - 1));
+    if (copiedSlideRef.current === id) copiedSlideRef.current = null;
+    try {
+      const all = JSON.parse(localStorage.getItem(VISUAL_EDITS_KEY)) || {};
+      delete all[id];
+      localStorage.setItem(VISUAL_EDITS_KEY, JSON.stringify(all));
+    } catch {
+      // localStorage unavailable
+    }
+    showToast('已删除副本页');
+  };
+
+  /* ⌘C 复制当前页 / ⌘V 粘贴副本 / Backspace 删除副本页 */
+  useEffect(() => {
+    const onKey = (e) => {
+      const t = e.target;
+      if (
+        t.tagName === 'INPUT' ||
+        t.tagName === 'TEXTAREA' ||
+        t.isContentEditable
+      )
+        return;
+
+      if (e.metaKey || e.ctrlKey) {
+        const key = e.key.toLowerCase();
+        if (key === 'c') {
+          // 用户正在复制选中的文字时不抢占
+          if (String(window.getSelection?.() || '')) return;
+          e.preventDefault();
+          copyCurrentSlide();
+        } else if (key === 'v') {
+          e.preventDefault();
+          pasteCopiedSlide();
+        }
+        return;
+      }
+
+      // 非编辑模式下按 Backspace/Delete 删除当前副本页
+      if (
+        !editMode &&
+        (e.key === 'Backspace' || e.key === 'Delete') &&
+        isCopyId(slideOrder[currentSlide] || '')
+      ) {
+        e.preventDefault();
+        deleteSlideAt(currentSlide);
+      }
+    };
+    window.addEventListener('keydown', onKey);
+    return () => window.removeEventListener('keydown', onKey);
+  });
+
   useEffect(() => {
     setVariantIndex(0);
   }, [currentSlide]);
@@ -285,6 +416,15 @@ export default function App() {
       // sessionStorage unavailable
     }
   }, [currentSlide, slideOrder]);
+
+  /* 页面顺序（含副本页）随改随存，刷新后不丢失 */
+  useEffect(() => {
+    try {
+      localStorage.setItem(WORKING_ORDER_KEY, JSON.stringify(slideOrder));
+    } catch {
+      // localStorage unavailable
+    }
+  }, [slideOrder]);
 
   const jumpToSlide = (index) => {
     setCurrentSlide(index);
@@ -331,6 +471,13 @@ export default function App() {
 
   return (
     <div className="relative w-screen h-screen overflow-hidden select-none flex bg-zinc-900">
+      {/* 复制/粘贴/删除 轻提示 */}
+      {toast && (
+        <div className="fixed bottom-8 left-1/2 -translate-x-1/2 z-[110] px-5 py-2.5 rounded-full bg-zinc-800/95 backdrop-blur-md text-white text-sm shadow-2xl border border-zinc-700 pointer-events-none">
+          {toast}
+        </div>
+      )}
+
       {/* Instant custom tooltip for full slide titles */}
       {tooltip && (
         <div
@@ -468,6 +615,11 @@ export default function App() {
                               <span className="truncate">
                                 {block.slide.name}
                               </span>
+                              {isCopyId(block.id) && (
+                                <span className="ml-2 flex-shrink-0 text-[10px] text-amber-400/90 bg-amber-500/10 border border-amber-500/30 px-1.5 py-0.5 rounded-full">
+                                  副本
+                                </span>
+                              )}
                               {block.isParent && block.collapsed && (
                                 <span className="ml-2 flex-shrink-0 text-[10px] font-mono text-zinc-500 bg-zinc-900 px-1.5 py-0.5 rounded-full">
                                   +{block.childCount}
@@ -552,10 +704,18 @@ export default function App() {
         </div>
       </aside>
 
-      {/* Main slide area */}
+      {/* Main slide area：双击直接进入编辑模式并选中双击处的文字。
+          编辑模式下右侧留出面板宽度，画布自动缩小不被遮挡 */}
       <div
-        onClick={handleNextSlide}
-        className="flex-1 relative overflow-hidden cursor-pointer"
+        onDoubleClick={(e) => {
+          if (isFullscreen || editMode) return;
+          if (e.target instanceof HTMLElement) {
+            editInitialTargetRef.current = e.target;
+          }
+          setEditMode(true);
+        }}
+        className="flex-1 relative overflow-hidden transition-[margin] duration-300 ease-out"
+        style={{ marginRight: editMode && !isFullscreen ? 340 : 0 }}
       >
         <SlideContainer>
           <div
@@ -689,12 +849,12 @@ export default function App() {
               e.stopPropagation();
               setEditMode((v) => !v);
             }}
-            className={`absolute bottom-4 z-50 flex items-center gap-2 px-4 py-2.5 rounded-full transition-colors backdrop-blur-md text-sm font-medium ${
+            className={`absolute bottom-4 right-16 sm:right-20 z-50 flex items-center gap-2 px-4 py-2.5 rounded-full transition-colors backdrop-blur-md text-sm font-medium ${
               editMode
-                ? 'right-[356px] bg-blue-600 hover:bg-blue-500 text-white'
-                : 'right-16 sm:right-20 bg-zinc-900/50 hover:bg-zinc-800 text-zinc-400 hover:text-white'
+                ? 'bg-blue-600 hover:bg-blue-500 text-white'
+                : 'bg-zinc-900/50 hover:bg-zinc-800 text-zinc-400 hover:text-white'
             }`}
-            title="双击文字即可编辑位置"
+            title="单击选中文字 · 双击画面也可直接进入编辑"
           >
             <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
               <path d="M12 20h9" />
@@ -705,12 +865,13 @@ export default function App() {
         )}
       </div>
 
-      {/* 可视化编辑器（双击文字 → 右侧面板调位置） */}
+      {/* 可视化编辑器（单击选中文字 → 右侧面板改格式） */}
       <SlideEditor
         enabled={editMode && !isFullscreen}
         slideId={slideOrder[currentSlide]}
         slideKey={`${currentSlide}-${safeVariantIndex}`}
         rootRef={slideRootRef}
+        initialTargetRef={editInitialTargetRef}
       />
     </div>
   );
