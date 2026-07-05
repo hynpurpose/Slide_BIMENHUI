@@ -28,57 +28,57 @@ const mockArticles = [
   { rank: '20', title: '从硬件到调音，创维壁纸电视音响系统技术解密', category: '测评类' },
 ];
 
-// 2. 数据分析：AI 引用频率最高的文章类型及占比
+// 2. 数据分析：AI 引用频率最高的文章类型及占比 (颜色使用蓝色饱和度渐变)
 const aiCitedTypes = [
-  { category: '排行榜类', percentage: 42, color: '#D46096' },
-  { category: '单品介绍类', percentage: 28, color: '#DDA343' },
-  { category: '知识科普类', percentage: 18, color: '#3CA0BA' },
-  { category: '测评类', percentage: 12, color: '#4CA389' },
+  { category: '排行榜类', percentage: 42, color: '#0052FF' },
+  { category: '单品介绍类', percentage: 28, color: '#3372CC' },
+  { category: '知识科普类', percentage: 18, color: '#1A62E5' },
+  { category: '测评类', percentage: 12, color: '#4D83B2' },
 ];
 
-// 3. 常见文章类型：投放内容类型与最终配比
+// 3. 常见文章类型：投放内容类型与最终配比 (按配比从高到低排序，使用蓝色饱和度渐变)
 const campaignTypes = [
   {
     num: '1',
     category: '排行榜类',
     ratio: '42%',
     desc: '2026年艺术与壁纸电视推荐榜单，争取首推排位',
-    color: '#D46096'
+    color: '#0052FF' // 高饱和蓝
   },
   {
     num: '2',
     category: '技术科普类',
     ratio: '18%',
     desc: '（新增）剖析无缝贴墙与画质芯片等底层硬核技术原理',
-    color: '#3CA0BA'
+    color: '#1A62E5' // 中高饱和蓝
   },
   {
     num: '3',
-    category: '测评类',
-    ratio: '12%',
-    desc: '多款旗舰壁纸电视对比实测，提供客观事实与测试参数',
-    color: '#4CA389'
-  },
-  {
-    num: '4',
     category: '用户口碑类',
     ratio: '15%',
     desc: '真实业主分享装机体验与使用反馈，建立购买信任感',
-    color: '#DDA343'
+    color: '#3372CC' // 中饱和蓝
+  },
+  {
+    num: '4',
+    category: '测评类',
+    ratio: '12%',
+    desc: '多款旗舰壁纸电视对比实测，提供客观事实与测试参数',
+    color: '#4D83B2' // 中低饱和蓝
   },
   {
     num: '5',
     category: '场景教程类',
     ratio: '8%',
     desc: '结合实际客厅背景墙场景，提供安装布线与搭配指南',
-    color: '#8B7BB8'
+    color: '#668099' // 低饱和灰蓝
   },
   {
     num: '6',
     category: 'FAQ问答类',
     ratio: '5%',
     desc: '针对墙体承重、功耗等高频购买顾虑提供标准答疑',
-    color: '#64748B'
+    color: '#778899' // 极低饱和灰蓝
   }
 ];
 
@@ -139,7 +139,7 @@ export default function Page_SkyworthContentDirection() {
           <span className="text-[13px] font-bold my-4 text-zinc-500 tracking-widest [writing-mode:vertical-lr] select-none">
             数据推出
           </span>
-          <div className="w-7 h-7 rounded-full border border-zinc-800 flex items-center justify-center bg-black text-[#004CE5]">
+          <div className="w-7 h-7 rounded-full border border-zinc-800 flex items-center justify-center bg-black text-[#0052FF]">
             <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="3" strokeLinecap="round" strokeLinejoin="round">
               <polyline points="9 18 15 12 9 6"/>
             </svg>
@@ -193,8 +193,8 @@ export default function Page_SkyworthContentDirection() {
           </div>
 
           {/* 分析总结 */}
-          <div className="shrink-0 bg-[#004CE5]/5 border border-[#004CE5]/15 rounded-xl p-4 mt-4">
-            <p className="text-[16px] leading-relaxed text-zinc-300 font-['MiSans'] text-justify">
+          <div className="shrink-0 bg-blue-950/10 border border-blue-900/20 rounded-xl p-4 mt-4">
+            <p className="text-[16px] leading-relaxed text-zinc-350 font-['MiSans'] text-justify">
               <strong className="text-white">结论：</strong>
               AI对电视行业的抓取高度集中在“排行榜”与“单品介绍”（超70%），因此我们需要以此为重心设计投放策略。
             </p>
@@ -207,7 +207,7 @@ export default function Page_SkyworthContentDirection() {
           <span className="text-[13px] font-bold my-4 text-zinc-500 tracking-widest [writing-mode:vertical-lr] select-none">
             交叉比对
           </span>
-          <div className="w-7 h-7 rounded-full border border-zinc-800 flex items-center justify-center bg-black text-[#004CE5]">
+          <div className="w-7 h-7 rounded-full border border-zinc-800 flex items-center justify-center bg-black text-[#0052FF]">
             <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="3" strokeLinecap="round" strokeLinejoin="round">
               <polyline points="9 18 15 12 9 6"/>
             </svg>
@@ -226,15 +226,15 @@ export default function Page_SkyworthContentDirection() {
             </p>
           </div>
 
-          {/* 6个内容卡片列表，样式匹配图片中栏样式，采用 2 列 x 3 行大卡片布局确保字号清晰 */}
+          {/* 6个内容卡片列表，样式匹配图片中栏样式，采用 2 列 x 3 行大卡片布局确保字号清晰，颜色采用蓝色饱和度渐变 */}
           <div className="flex-grow grid grid-cols-2 gap-4 min-h-0 py-1">
             {campaignTypes.map((type, idx) => (
               <div 
                 key={idx}
                 className="flex items-center gap-4 bg-black/40 border rounded-[20px] p-5 hover:bg-white/[0.01] transition-all duration-300"
                 style={{
-                  borderColor: `${type.color}40`,
-                  boxShadow: `0 4px 20px ${type.color}03`
+                  borderColor: `${type.color}33`,
+                  boxShadow: `0 4px 20px ${type.color}02`
                 }}
               >
                 {/* 左侧圆角序号 */}
@@ -242,7 +242,7 @@ export default function Page_SkyworthContentDirection() {
                   className="shrink-0 w-[54px] h-[54px] rounded-2xl flex items-center justify-center"
                   style={{ 
                     backgroundColor: `${type.color}14`, 
-                    border: `1px solid ${type.color}` 
+                    border: `1px solid ${type.color}80` 
                   }}
                 >
                   <span
@@ -271,7 +271,7 @@ export default function Page_SkyworthContentDirection() {
                       配比 {type.ratio}
                     </span>
                   </div>
-                  <p className="text-[15px] text-zinc-400 font-['MiSans'] leading-relaxed mt-2 text-justify line-clamp-2">
+                  <p className="text-[16px] text-zinc-400 font-['MiSans'] leading-relaxed mt-2 text-justify line-clamp-2">
                     {type.desc}
                   </p>
                 </div>
