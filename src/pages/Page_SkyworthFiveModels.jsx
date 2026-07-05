@@ -47,89 +47,126 @@ export default function Page_SkyworthFiveModels() {
 
   return (
     <SlideLayout title="创维五款壁纸电视的区别">
-      {/* ── 顶部核心结论 ── */}
-      <div className="absolute top-[0px] left-0 w-full select-none">
-        <h2
-          className="text-zinc-300 font-normal font-['MiSans'] leading-tight"
-          style={{ fontSize: '42px', lineHeight: '52px' }}
-        >
-          产品布局：<span className="text-white font-extrabold">A系列</span>偏线上高配置（主打参数），<span className="text-white font-extrabold">Q系列</span>偏线下高体验（主打分体与质感）
-        </h2>
-      </div>
+      <div className="w-full h-full relative select-none animate-fadeIn">
 
-      {/* ── 极简宽屏表格排版区 (全宽 1840px, 高度 705px 抵底) ── */}
-      <div
-        className="absolute w-[1840px] flex flex-col select-none animate-fadeIn"
-        style={{ top: '100px', height: '695px' }}
-      >
-        <div className="border border-white/[0.08] rounded-2xl overflow-hidden bg-black/30 w-full h-full flex flex-col">
-          <table className="w-full h-full text-left border-collapse select-none table-fixed">
-            <thead>
-              <tr className="border-b border-[#004CE5]/30 text-white text-[19px] xl:text-[21px] font-bold font-['MiSans'] bg-[#004CE5]/15">
-                <th className="px-5 py-2.5 w-[220px] border-r border-[#004CE5]/20">型号与定位</th>
-                <th className="px-5 py-2.5 w-[420px] border-r border-[#004CE5]/20">人群定位</th>
-                <th className="px-5 py-2.5 w-[220px] border-r border-[#004CE5]/20">零售价格对照</th>
-                <th className="px-5 py-2.5 w-[360px] border-r border-[#004CE5]/20">核心配置参数</th>
-                <th className="px-5 py-2.5 w-[620px]">竞品对照与竞争格局</th>
-              </tr>
-            </thead>
-            <tbody className="divide-y divide-zinc-900/80 text-[17px] xl:text-[19px] font-sans">
+        {/* ==================== 左栏：人群定位 ( w-[590px] ) ==================== */}
+        <div className="absolute left-0 top-0 w-[590px] bottom-0 flex flex-col justify-start py-2 pr-6 border-r border-white/[0.16]">
+          <h2 className="text-[34px] font-bold text-white font-['MiSans'] border-b border-zinc-900 pb-3 mb-6 select-none shrink-0">
+            人群定位
+          </h2>
+          
+          {/* 梯度人群定位，去除繁杂卡片背景，精简线条 */}
+          <div className="flex-1 flex flex-col justify-around min-h-0 py-2">
+            {/* A系列梯队 */}
+            <div className="flex flex-col gap-4">
+              <div className="text-[28px] xl:text-[30px] font-extrabold text-[#60A5FA] font-['MiSans'] mb-1">
+                A系列 · 线上高配置（参数升级）
+              </div>
+              <div className="flex flex-col gap-4 pl-1">
+                <div className="leading-relaxed">
+                  <span className="text-white font-bold block text-[19px] xl:text-[21px] mb-1">A7H Pro (基础款)</span>
+                  <span className="text-zinc-400 text-[17px] xl:text-[19px]">想买艺术/壁纸电视但预算不想太高的新装家庭</span>
+                </div>
+                <div className="leading-relaxed border-t border-white/[0.06] pt-3.5">
+                  <span className="text-white font-bold block text-[19px] xl:text-[21px] mb-1">A8H (音画升级款)</span>
+                  <span className="text-zinc-400 text-[17px] xl:text-[19px]">预算高一些，希望明显提升画质与高级感的进阶用户</span>
+                </div>
+                <div className="leading-relaxed border-t border-white/[0.06] pt-3.5">
+                  <span className="text-white font-bold block text-[19px] xl:text-[21px] mb-1">A10H (系列旗舰款)</span>
+                  <span className="text-zinc-400 text-[17px] xl:text-[19px]">追求A系列最顶尖配置与最强参数的科技发烧友</span>
+                </div>
+              </div>
+            </div>
+
+            {/* Q系列梯队 */}
+            <div className="flex flex-col gap-4 border-t border-white/[0.08] pt-6">
+              <div className="text-[28px] xl:text-[30px] font-extrabold text-amber-400 font-['MiSans'] mb-1">
+                Q系列 · 线下高体验（分体与质感）
+              </div>
+              <div className="flex flex-col gap-4 pl-1">
+                <div className="leading-relaxed">
+                  <span className="text-white font-bold block text-[19px] xl:text-[21px] mb-1">Q7H (高端均衡款)</span>
+                  <span className="text-zinc-400 text-[17px] xl:text-[19px]">被壁画功能吸引，看重线下真机质感的品质用户</span>
+                </div>
+                <div className="leading-relaxed border-t border-white/[0.06] pt-3.5">
+                  <span className="text-white font-bold block text-[19px] xl:text-[21px] mb-1">Q8H (分体顶配款)</span>
+                  <span className="text-zinc-400 text-[17px] xl:text-[19px]">被壁画功能吸引，同时要求极致画质与分体声学的高端家庭</span>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        {/* ==================== 右栏：具体数据 ( w-[1200px] ) ==================== */}
+        <div className="absolute left-[640px] top-0 w-[1200px] bottom-0 flex flex-col py-2 min-h-0">
+          <h2 className="text-[34px] font-bold text-white font-['MiSans'] border-b border-zinc-900 pb-3 mb-3 select-none shrink-0">
+            具体数据
+          </h2>
+          <div className="border border-white/[0.08] rounded-2xl overflow-hidden bg-[#09090b]/40 w-full flex-1 min-h-0 flex flex-col shadow-inner">
+            {/* 表头 */}
+            <div className="grid grid-cols-[200px_220px_340px_1fr] shrink-0 border-b border-[#004CE5]/30 bg-[#004CE5]/15 text-white text-[16px] font-bold font-['MiSans']">
+              <div className="px-4 py-[21px] border-r border-[#004CE5]/20">型号</div>
+              <div className="px-4 py-[21px] border-r border-[#004CE5]/20">零售价格对照</div>
+              <div className="px-4 py-[21px] border-r border-[#004CE5]/20">核心配置参数</div>
+              <div className="px-4 py-[21px]">竞品对照与竞争格局</div>
+            </div>
+
+            {/* 表体：5 行均分剩余高度 */}
+            <div className="flex-1 min-h-0 grid grid-rows-5">
               {tableData.map((row, idx) => {
                 const isQSeries = row.series.startsWith("Q系列");
                 return (
-                  <tr
+                  <div
                     key={idx}
-                    className="align-top hover:bg-zinc-950/10"
+                    className="grid grid-cols-[200px_220px_340px_1fr] min-h-0 border-b border-zinc-900/80 last:border-b-0 text-[14px] leading-snug font-sans"
                   >
                     {/* Model & Position */}
-                    <td className="px-5 py-3 border-r border-zinc-900/80 font-['MiSans']">
-                      <div className="font-bold text-white text-[20px] xl:text-[22px]">{row.model}</div>
-                      <div className={`inline-block text-[11px] font-extrabold px-2 py-0.5 rounded mt-1.5 ${isQSeries
-                        ? 'bg-amber-950/50 text-amber-400 border border-amber-900/30'
-                        : 'bg-zinc-800 text-zinc-300 border border-zinc-700'
-                        }`}>
+                    <div className="px-4 py-2.5 border-r border-zinc-900/80 font-['MiSans'] flex flex-col justify-center">
+                      <div className="font-bold text-white text-[16px] xl:text-[18px]">
+                        {row.model.replace(/\s*\(.*?\)/, '')}
+                      </div>
+                      <div className={`inline-block self-start text-[10px] font-extrabold px-1.5 py-0.5 rounded mt-1.5 ${
+                        isQSeries
+                          ? 'bg-amber-950/50 text-amber-400 border border-amber-900/30'
+                          : 'bg-zinc-800 text-zinc-300 border border-zinc-700'
+                      }`}>
                         {row.series}
                       </div>
-                    </td>
-
-                    {/* Target & Driver */}
-                    <td className="px-5 py-3 border-r border-zinc-900/80 text-zinc-200 leading-relaxed font-['MiSans']">
-                      {row.target}
-                    </td>
+                    </div>
 
                     {/* Price Data */}
-                    <td className="px-5 py-3 border-r border-zinc-900/80 text-zinc-300 leading-relaxed font-sans whitespace-pre-line font-medium">
+                    <div className="px-4 py-2.5 border-r border-zinc-900/80 text-zinc-300 whitespace-pre-line font-medium flex flex-col justify-center">
                       {row.price}
-                    </td>
+                    </div>
 
                     {/* Specs Data */}
-                    <td className="px-5 py-3 border-r border-zinc-900/80 text-zinc-300 leading-relaxed font-sans whitespace-pre-line">
+                    <div className="px-4 py-2.5 border-r border-zinc-900/80 text-zinc-300 whitespace-pre-line flex flex-col justify-center">
                       {row.specs}
-                    </td>
+                    </div>
 
                     {/* Competitor Comparison */}
-                    <td className="px-5 py-3 text-zinc-300 leading-relaxed font-['MiSans'] whitespace-pre-line">
+                    <div className="px-4 py-2.5 text-zinc-300 whitespace-pre-line min-h-0 overflow-hidden flex flex-col justify-center">
                       {row.compNotes.split('\n').map((line, lIdx) => {
                         const isHeader = lIdx === 0;
                         if (isHeader) {
                           return (
-                            <div key={lIdx} className="font-bold text-zinc-200 mb-1.5">
+                            <div key={lIdx} className="font-bold text-zinc-200 mb-1 text-[13px] xl:text-[14px]">
                               {line}
                             </div>
                           );
                         }
                         return (
-                          <div key={lIdx} className="text-[16px] xl:text-[18px] text-zinc-400 pl-2 leading-relaxed mt-0.5">
+                          <div key={lIdx} className="text-[12px] xl:text-[13px] text-zinc-400 pl-2 leading-relaxed mt-0.5">
                             {line}
                           </div>
                         );
                       })}
-                    </td>
-                  </tr>
+                    </div>
+                  </div>
                 );
               })}
-            </tbody>
-          </table>
+            </div>
+          </div>
         </div>
       </div>
     </SlideLayout>

@@ -170,66 +170,67 @@ export default function Page_SkyworthVsCompetitor() {
           </div>
         </div>
 
-        {/* ==================== 右栏：数据对比表格 ( w-[1200px] ) ==================== */}
-        <div className="absolute left-[640px] top-0 w-[1200px] bottom-0 flex flex-col">
-          <div className="border border-white/[0.08] rounded-2xl overflow-hidden bg-[#09090b]/40 w-full h-full flex flex-col shadow-inner">
-            <table className="w-full h-full text-left border-collapse select-none table-fixed">
-              <thead>
-                <tr className="border-b border-[#004CE5]/30 text-white text-[17px] xl:text-[19px] font-bold font-['MiSans'] bg-[#004CE5]/15">
-                  <th className="px-4 py-2 w-[190px] border-r border-[#004CE5]/20">品牌 / 推荐系列</th>
-                  <th className="px-4 py-2 w-[250px] border-r border-[#004CE5]/20">
-                    出货与销售数据 <span className="text-[11px] font-normal text-zinc-400 block mt-0.5">(2025年电视品类数据)</span>
-                  </th>
-                  <th className="px-4 py-2 w-[320px] border-r border-[#004CE5]/20">目标人群</th>
-                  <th className="px-4 py-2 w-[440px]">产品优劣势对照总结</th>
-                </tr>
-              </thead>
-              <tbody className="divide-y divide-zinc-900/80 text-[15px] xl:text-[16px] font-sans">
-                {tableData.map((row, idx) => (
-                  <tr
-                    key={idx}
-                    className={`align-top transition-colors ${row.isHighlight ? 'bg-zinc-900/50 font-medium' : 'hover:bg-zinc-950/10'
+        {/* ==================== 右栏：具体数据 ( w-[1200px] ) ==================== */}
+        <div className="absolute left-[640px] top-0 w-[1200px] bottom-0 flex flex-col py-2 min-h-0">
+          <h2 className="text-[34px] font-bold text-white font-['MiSans'] border-b border-zinc-900 pb-3 mb-3 select-none shrink-0">
+            具体数据
+          </h2>
+          <div className="border border-white/[0.08] rounded-2xl overflow-hidden bg-[#09090b]/40 w-full flex-1 min-h-0 flex flex-col shadow-inner">
+            {/* 表头 */}
+            <div className="grid grid-cols-[190px_250px_320px_1fr] shrink-0 border-b border-[#004CE5]/30 bg-[#004CE5]/15 text-white text-[16px] font-bold font-['MiSans']">
+              <div className="px-3 py-[21px] border-r border-[#004CE5]/20">品牌 / 推荐系列</div>
+              <div className="px-3 py-[21px] border-r border-[#004CE5]/20">
+                出货与销售数据
+                <span className="text-[11px] font-normal text-zinc-400 ml-1">(2025年电视数据)</span>
+              </div>
+              <div className="px-3 py-[21px] border-r border-[#004CE5]/20">目标人群</div>
+              <div className="px-3 py-[21px]">产品优劣势对照总结</div>
+            </div>
+
+            {/* 表体：6 行均分剩余高度 */}
+            <div className="flex-1 min-h-0 grid grid-rows-6">
+              {tableData.map((row, idx) => (
+                <div
+                  key={idx}
+                  className={`grid grid-cols-[190px_250px_320px_1fr] min-h-0 border-b border-zinc-900/80 last:border-b-0 text-[14px] leading-snug font-sans ${row.isHighlight ? 'bg-zinc-900/50 font-medium' : ''
+                    }`}
+                >
+                  <div
+                    className={`px-3 py-1.5 border-r border-zinc-900/80 font-bold font-['MiSans'] whitespace-pre-line ${row.isHighlight ? 'text-[#60A5FA]' : 'text-zinc-200'
                       }`}
                   >
-                    {/* Brand & Series */}
-                    <td className={`px-4 py-2 border-r border-zinc-900/80 font-bold font-['MiSans'] whitespace-pre-line ${row.isHighlight ? 'text-[#60A5FA]' : 'text-zinc-200'
-                      }`}>
-                      {row.brand}
-                    </td>
+                    {row.brand}
+                  </div>
 
-                    {/* Sales Data */}
-                    <td className="px-4 py-2 border-r border-zinc-900/80 text-zinc-300 leading-relaxed font-sans whitespace-pre-line">
-                      {row.sales}
-                    </td>
+                  <div className="px-3 py-1.5 border-r border-zinc-900/80 text-zinc-300 whitespace-pre-line">
+                    {row.sales}
+                  </div>
 
-                    {/* Target Audience */}
-                    <td className="px-4 py-2 border-r border-zinc-900/80 text-zinc-300 leading-relaxed font-['MiSans']">
-                      {row.target}
-                    </td>
+                  <div className="px-3 py-1.5 border-r border-zinc-900/80 text-zinc-300 font-['MiSans']">
+                    {row.target}
+                  </div>
 
-                    {/* Pros & Cons */}
-                    <td className="px-4 py-2 text-zinc-300 leading-relaxed font-['MiSans'] whitespace-pre-line">
-                      {row.prosCons.split('\n').map((line, lIdx) => {
-                        const isPro = line.startsWith('优势：') || line.startsWith('优势:');
-                        return (
-                          <div key={lIdx} className={lIdx > 0 ? "mt-1 flex items-start" : "flex items-start"}>
-                            <span className={`inline-flex items-center justify-center text-[11px] font-extrabold px-1.5 py-0.5 rounded mr-2 shrink-0 select-none ${isPro
-                              ? 'bg-blue-950/50 text-[#60A5FA] border border-blue-900/50'
-                              : 'bg-zinc-900/60 text-zinc-400 border border-zinc-800'
-                              }`}>
-                              {isPro ? "优势" : "劣势"}
-                            </span>
-                            <span className={isPro ? "text-zinc-200" : "text-zinc-400"}>
-                              {line.substring(3)}
-                            </span>
-                          </div>
-                        );
-                      })}
-                    </td>
-                  </tr>
-                ))}
-              </tbody>
-            </table>
+                  <div className="px-3 py-1.5 text-zinc-300 font-['MiSans'] min-h-0 overflow-hidden">
+                    {row.prosCons.split('\n').map((line, lIdx) => {
+                      const isPro = line.startsWith('优势：') || line.startsWith('优势:');
+                      return (
+                        <div key={lIdx} className={lIdx > 0 ? 'mt-0.5 flex items-start' : 'flex items-start'}>
+                          <span
+                            className={`inline-flex items-center justify-center text-[10px] font-extrabold px-1 py-0.5 rounded mr-1.5 shrink-0 select-none ${isPro
+                                ? 'bg-blue-950/50 text-[#60A5FA] border border-blue-900/50'
+                                : 'bg-zinc-900/60 text-zinc-400 border border-zinc-800'
+                              }`}
+                          >
+                            {isPro ? '优势' : '劣势'}
+                          </span>
+                          <span className={isPro ? 'text-zinc-200' : 'text-zinc-400'}>{line.substring(3)}</span>
+                        </div>
+                      );
+                    })}
+                  </div>
+                </div>
+              ))}
+            </div>
           </div>
         </div>
       </div>

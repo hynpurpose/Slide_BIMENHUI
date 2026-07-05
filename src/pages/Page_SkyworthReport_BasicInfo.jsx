@@ -125,14 +125,6 @@ export function Page_SkyworthReport_BasicInfo1() {
                         </div>
                     </div>
                 </div>
-
-                {/* 监测说明贴齐 content bottom */}
-                <div className="mt-auto shrink-0 border border-[#004CE5]/20 border-l-4 border-l-[#004CE5] bg-white/[0.03] rounded-xl px-5 py-3">
-                    <p className="text-[22px] xl:text-[24px] text-zinc-300 leading-snug text-justify">
-                        <strong className="text-white font-bold">监测说明：</strong>
-                        词条选完之后按优化词（品牌 / 产品）与监测词（品牌 / 产品）四类拆分，分别进入数据系统监测，结合分析产出本次现状诊断报告。
-                    </p>
-                </div>
             </div>
         </SlideLayout>
     );

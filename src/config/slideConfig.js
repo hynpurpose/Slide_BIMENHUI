@@ -81,6 +81,15 @@ import {
   Page_SkyworthReport_BasicInfo2,
 } from '../pages/Page_SkyworthReport_BasicInfo';
 import {
+  Page_SkyworthReport_CoreDataSelf,
+  Page_SkyworthReport_CoreDataCompetitor,
+  Page_SkyworthReport_MonitorWordOverview,
+  Page_SkyworthReport_OptDashboard,
+  Page_SkyworthReport_OptEntries,
+  Page_SkyworthReport_OptCompetitor,
+  Page_SkyworthReport_OptSources,
+} from '../pages/Page_SkyworthReport_CoreData';
+import {
   Page_SkyworthReport_OverviewScreenshot,
   Page_SkyworthReport_OverviewAnalysis,
 } from '../pages/Page_SkyworthReport_Overview';
@@ -171,21 +180,17 @@ export const slideConfig = [
   // ══════════════════════════════════════════════════════════
   { type: 'chapter', title: '现状诊断报告', subtitle: 'DIAGNOSTIC REPORT', backgroundImage: '' },
 
-  { type: 'section', title: '报告总览' },
+  { type: 'section', title: '基础信息' },
   { type: 'page', title: '报告说明', component: Page_SkyworthReport_BasicInfo1, hideHeader: true },
   { type: 'page', title: '监测范围', component: Page_SkyworthReport_BasicInfo2, hideHeader: true },
-  { type: 'page', title: '核心数据总览', components: [Page_SkyworthReport_OverviewScreenshot, Page_SkyworthReport_OverviewAnalysis], hideHeader: true },
 
-  { type: 'section', title: '分产品诊断' },
-  { type: 'page', title: '五款产品表现总览', component: Page_SkyworthReport_ProductOverview, hideHeader: true },
-  { type: 'page', title: '分产品核心诊断', components: [Page_SkyworthReport_ProductA7HPro, Page_SkyworthReport_ProductA8H, Page_SkyworthReport_ProductA10H, Page_SkyworthReport_ProductQ7H, Page_SkyworthReport_ProductQ8H], hideHeader: true },
-
-  { type: 'section', title: '竞品与信源' },
-  { type: 'page', title: '竞品横向对比', components: [Page_SkyworthReport_CompetitorsAnalysis, Page_SkyworthReport_CompetitorsDetail], hideHeader: true },
-  { type: 'page', title: '引用源分析', components: [Page_SkyworthReport_SourcesScreenshot, Page_SkyworthReport_SourcesAnalysis], hideHeader: true },
-
-  { type: 'section', title: '监测词诊断' },
-  { type: 'page', title: '品牌正负面分析', components: [Page_SkyworthReport_SentimentPre, Page_SkyworthReport_SentimentDetail], hideHeader: true },
+  { type: 'section', title: '数据总览' },
+  { type: 'page', title: '核心数据总览', components: [Page_SkyworthReport_CoreDataSelf, Page_SkyworthReport_CoreDataCompetitor], hideHeader: true },
+  { type: 'page', title: '监测词总览', component: Page_SkyworthReport_MonitorWordOverview, hideHeader: true },
+  { type: 'page', title: '优化词总览数据', component: Page_SkyworthReport_OptDashboard, hideHeader: true },
+  { type: 'page', title: '优化词词条数据', component: Page_SkyworthReport_OptEntries, hideHeader: true },
+  { type: 'page', title: '优化词竞品数据', component: Page_SkyworthReport_OptCompetitor, hideHeader: true },
+  { type: 'page', title: '优化词引用源数据', component: Page_SkyworthReport_OptSources, hideHeader: true },
 
   // ══════════════════════════════════════════════════════════
   // ——— 四、核心优化策略 ———
