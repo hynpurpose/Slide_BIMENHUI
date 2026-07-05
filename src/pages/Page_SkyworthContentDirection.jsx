@@ -30,55 +30,55 @@ const mockArticles = [
 
 // 2. 数据分析：AI 引用频率最高的文章类型及占比
 const aiCitedTypes = [
-  { category: '排行榜类', percentage: 42, desc: '提取自 84 篇排行榜及选购推荐列表' },
-  { category: '单品介绍类', percentage: 28, desc: '提取自 56 篇特定产品卖点与定位分析' },
-  { category: '知识科普类', percentage: 18, desc: '提取自 36 篇背光、厚度及散热技术科普' },
-  { category: '测评类', percentage: 12, desc: '提取自 24 篇音画质及贴墙安装对比实测' },
+  { category: '排行榜类', percentage: 42, color: '#D46096' },
+  { category: '单品介绍类', percentage: 28, color: '#DDA343' },
+  { category: '知识科普类', percentage: 18, color: '#3CA0BA' },
+  { category: '测评类', percentage: 12, color: '#4CA389' },
 ];
 
-// 3. 策略输出：常见文章类型与最终配比
+// 3. 常见文章类型：投放内容类型与最终配比
 const campaignTypes = [
   {
     num: '1',
     category: '排行榜类',
     ratio: '42%',
     desc: '2026年艺术与壁纸电视推荐榜单，争取首推排位',
-    isMatched: true
+    color: '#D46096'
   },
   {
     num: '2',
     category: '技术科普类',
     ratio: '18%',
     desc: '（新增）剖析无缝贴墙与画质芯片等底层硬核技术原理',
-    isMatched: true
+    color: '#3CA0BA'
   },
   {
     num: '3',
     category: '测评类',
     ratio: '12%',
     desc: '多款旗舰壁纸电视对比实测，提供客观事实与测试参数',
-    isMatched: true
+    color: '#4CA389'
   },
   {
     num: '4',
     category: '用户口碑类',
     ratio: '15%',
     desc: '真实业主分享装机体验与使用反馈，建立购买信任感',
-    isMatched: false
+    color: '#DDA343'
   },
   {
     num: '5',
     category: '场景教程类',
     ratio: '8%',
     desc: '结合实际客厅背景墙场景，提供安装布线与搭配指南',
-    isMatched: false
+    color: '#8B7BB8'
   },
   {
     num: '6',
     category: 'FAQ问答类',
     ratio: '5%',
     desc: '针对墙体承重、功耗等高频购买顾虑提供标准答疑',
-    isMatched: false
+    color: '#64748B'
   }
 ];
 
@@ -92,8 +92,8 @@ export default function Page_SkyworthContentDirection() {
         className="absolute w-[1840px] select-none animate-fadeIn flex justify-between items-stretch"
         style={{ top: '0px', height: '795px' }}
       >
-        {/* ==================== 1. 数据采集板块 (500px) ==================== */}
-        <div className="w-[500px] h-full bg-zinc-950/20 border border-zinc-900 rounded-[24px] p-6 flex flex-col justify-between shadow-lg">
+        {/* ==================== 1. 数据采集板块 (460px) ==================== */}
+        <div className="w-[460px] h-full bg-zinc-950/20 border border-zinc-900 rounded-[24px] p-6 flex flex-col justify-between shadow-lg">
           <div className="shrink-0 mb-4">
             <h3 className="text-[25px] font-bold text-white font-['MiSans']">
               1. 数据采集：AI 引用电视文章源
@@ -133,8 +133,8 @@ export default function Page_SkyworthContentDirection() {
           </div>
         </div>
 
-        {/* ==================== 连接符 1 (60px) ==================== */}
-        <div className="w-[60px] flex flex-col items-center justify-center text-zinc-500 shrink-0">
+        {/* ==================== 连接符 1 (50px) ==================== */}
+        <div className="w-[50px] flex flex-col items-center justify-center text-zinc-500 shrink-0">
           <div className="h-24 border-l border-dashed border-zinc-900" />
           <span className="text-[13px] font-bold my-4 text-zinc-500 tracking-widest [writing-mode:vertical-lr] select-none">
             数据推出
@@ -147,8 +147,8 @@ export default function Page_SkyworthContentDirection() {
           <div className="h-24 border-l border-dashed border-zinc-900" />
         </div>
 
-        {/* ==================== 2. 数据分析板块 (540px) ==================== */}
-        <div className="w-[540px] h-full bg-zinc-950/20 border border-zinc-900 rounded-[24px] p-6 flex flex-col justify-between shadow-lg">
+        {/* ==================== 2. 数据分析板块 (480px) ==================== */}
+        <div className="w-[480px] h-full bg-zinc-950/20 border border-zinc-900 rounded-[24px] p-6 flex flex-col justify-between shadow-lg">
           <div className="shrink-0 mb-4">
             <h3 className="text-[25px] font-bold text-white font-['MiSans']">
               2. 数据分析：AI 最常引用类型占比
@@ -168,7 +168,10 @@ export default function Page_SkyworthContentDirection() {
                 <div className="flex justify-between items-center">
                   <span className="text-[19px] font-bold text-zinc-200">{type.category}</span>
                   <div className="flex items-baseline gap-0.5">
-                    <span className="text-[26px] font-black font-['Montserrat'] leading-none text-[#004CE5]">
+                    <span 
+                      className="text-[26px] font-black font-['Montserrat'] leading-none"
+                      style={{ color: type.color }}
+                    >
                       {type.percentage}
                     </span>
                     <span className="text-[13px] font-black text-zinc-500 font-['Montserrat'] ml-0.5">%</span>
@@ -178,8 +181,11 @@ export default function Page_SkyworthContentDirection() {
                 {/* 进度条 */}
                 <div className="w-full h-3 bg-zinc-900 rounded-full overflow-hidden border border-zinc-800/40">
                   <div 
-                    className="h-full rounded-full bg-[#004CE5]"
-                    style={{ width: `${type.percentage}%` }}
+                    className="h-full rounded-full"
+                    style={{ 
+                      width: `${type.percentage}%`,
+                      backgroundColor: type.color
+                    }}
                   />
                 </div>
               </div>
@@ -195,8 +201,8 @@ export default function Page_SkyworthContentDirection() {
           </div>
         </div>
 
-        {/* ==================== 连接符 2 (60px) ==================== */}
-        <div className="w-[60px] flex flex-col items-center justify-center text-zinc-500 shrink-0">
+        {/* ==================== 连接符 2 (50px) ==================== */}
+        <div className="w-[50px] flex flex-col items-center justify-center text-zinc-500 shrink-0">
           <div className="h-24 border-l border-dashed border-zinc-900" />
           <span className="text-[13px] font-bold my-4 text-zinc-500 tracking-widest [writing-mode:vertical-lr] select-none">
             交叉比对
@@ -209,8 +215,8 @@ export default function Page_SkyworthContentDirection() {
           <div className="h-24 border-l border-dashed border-zinc-900" />
         </div>
 
-        {/* ==================== 3. 常见文章类型板块 (680px) ==================== */}
-        <div className="w-[680px] h-full bg-zinc-950/20 border border-zinc-900 rounded-[24px] p-6 flex flex-col justify-between shadow-lg">
+        {/* ==================== 3. 常见文章类型板块 (800px) ==================== */}
+        <div className="w-[800px] h-full bg-zinc-950/20 border border-zinc-900 rounded-[24px] p-6 flex flex-col justify-between shadow-lg">
           <div className="shrink-0 mb-4">
             <h3 className="text-[25px] font-bold text-white font-['MiSans']">
               3. 常见文章类型
@@ -220,28 +226,28 @@ export default function Page_SkyworthContentDirection() {
             </p>
           </div>
 
-          {/* 6个内容卡片列表，样式匹配图片中栏样式，但更紧凑 */}
-          <div className="flex-grow flex flex-col justify-between py-1 min-h-0 gap-2">
+          {/* 6个内容卡片列表，样式匹配图片中栏样式，采用 2 列 x 3 行大卡片布局确保字号清晰 */}
+          <div className="flex-grow grid grid-cols-2 gap-4 min-h-0 py-1">
             {campaignTypes.map((type, idx) => (
               <div 
                 key={idx}
-                className="flex items-center gap-4 bg-black/40 border rounded-[16px] px-4 py-3 hover:bg-white/[0.01] transition-all duration-300"
+                className="flex items-center gap-4 bg-black/40 border rounded-[20px] p-5 hover:bg-white/[0.01] transition-all duration-300"
                 style={{
-                  height: '101px',
-                  borderColor: type.isMatched ? '#004CE559' : '#27272a'
+                  borderColor: `${type.color}40`,
+                  boxShadow: `0 4px 20px ${type.color}03`
                 }}
               >
                 {/* 左侧圆角序号 */}
                 <div 
-                  className="shrink-0 w-[42px] h-[42px] rounded-xl flex items-center justify-center"
+                  className="shrink-0 w-[54px] h-[54px] rounded-2xl flex items-center justify-center"
                   style={{ 
-                    backgroundColor: type.isMatched ? '#004CE51A' : '#27272a1A', 
-                    border: `1px solid ${type.isMatched ? '#004CE5' : '#27272a'}` 
+                    backgroundColor: `${type.color}14`, 
+                    border: `1px solid ${type.color}` 
                   }}
                 >
                   <span
-                    className="font-['Montserrat'] text-[22px] font-black leading-none"
-                    style={{ color: type.isMatched ? '#004CE5' : '#71717a' }}
+                    className="font-['Montserrat'] text-[24px] font-black leading-none"
+                    style={{ color: type.color }}
                   >
                     {type.num}
                   </span>
@@ -249,23 +255,23 @@ export default function Page_SkyworthContentDirection() {
 
                 {/* 右侧：标题、配比、描述 */}
                 <div className="flex-grow flex flex-col justify-center min-w-0">
-                  <div className="flex items-center justify-between">
-                    <span className="text-[18px] font-bold text-white font-['MiSans'] leading-tight">
+                  <div className="flex items-center justify-between gap-2">
+                    <span className="text-[20px] font-bold text-white font-['MiSans'] leading-tight">
                       {type.category}
                     </span>
                     <span 
-                      className="text-[13px] font-bold font-['Montserrat'] rounded-full px-2.5 py-[0.5px]"
+                      className="text-[14px] font-bold font-['Montserrat'] rounded-full px-2.5 py-[1px] shrink-0"
                       style={{
-                        color: type.isMatched ? '#004CE5' : '#71717a',
-                        borderColor: type.isMatched ? '#004CE540' : '#27272a',
-                        backgroundColor: type.isMatched ? '#004CE50D' : '#18181b',
+                        color: type.color,
+                        borderColor: `${type.color}45`,
+                        backgroundColor: `${type.color}0D`,
                         border: '1px solid'
                       }}
                     >
                       配比 {type.ratio}
                     </span>
                   </div>
-                  <p className="text-[14px] text-zinc-400 font-['MiSans'] leading-snug mt-1 truncate">
+                  <p className="text-[15px] text-zinc-400 font-['MiSans'] leading-relaxed mt-2 text-justify line-clamp-2">
                     {type.desc}
                   </p>
                 </div>
