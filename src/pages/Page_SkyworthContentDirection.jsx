@@ -1,6 +1,9 @@
 import React from 'react';
 import SlideLayout from '../components/SlideLayout';
 
+// 字体引入声明
+const FONT_IMPORT = `@import url('https://fonts.geekzu.org/css2?family=Montserrat:wght@400;500;600;700;800;900&display=swap');`;
+
 // 1. 数据采集：电视行业 AI 引用高频文章源 (TOP 20 示例)
 const mockArticles = [
   { rank: '01', title: '2026年画质天花板！创维、海信、TCL壁纸电视年度评测', category: '排行榜类' },
@@ -33,58 +36,57 @@ const aiCitedTypes = [
   { category: '测评类', percentage: 12, desc: '提取自 24 篇音画质及贴墙安装对比实测' },
 ];
 
-// 3. 策略输出：对应的 GEO 投放内容类型与最终排兵布阵
+// 3. 策略输出：常见文章类型与最终配比
 const campaignTypes = [
   {
+    num: '1',
     category: '排行榜类',
-    badge: 'AI高频引用',
     ratio: '42%',
-    desc: '直接决定大模型推荐回答时的品牌排序与首推位次。',
-    relation: '对应 AI 引用 42%'
+    desc: '2026年艺术与壁纸电视推荐榜单，争取首推排位',
+    isMatched: true
   },
   {
+    num: '2',
     category: '技术科普类',
-    badge: 'AI高频引用',
     ratio: '18%',
-    desc: '剖析壁纸电视背光散热技术，支撑技术参数抓取。',
-    relation: '对应 AI 引用 18%'
+    desc: '（新增）剖析无缝贴墙与画质芯片等底层硬核技术原理',
+    isMatched: true
   },
   {
+    num: '3',
     category: '测评类',
-    badge: 'AI高频引用',
     ratio: '12%',
-    desc: '提供实机对比数据，为 AI 引用提供客观事实参数。',
-    relation: '对应 AI 引用 12%'
+    desc: '多款旗舰壁纸电视对比实测，提供客观事实与测试参数',
+    isMatched: true
   },
   {
+    num: '4',
     category: '用户口碑类',
-    badge: '决策说服',
     ratio: '15%',
-    desc: '展示真实业主装机与视听体验，建立购买信任感。',
-    relation: '由“单品介绍”转化'
+    desc: '真实业主分享装机体验与使用反馈，建立购买信任感',
+    isMatched: false
   },
   {
+    num: '5',
     category: '场景教程类',
-    badge: '决策说服',
     ratio: '8%',
-    desc: '结合极简客厅家装，提供无缝贴墙美学搭配指南。',
-    relation: '由“单品介绍”转化'
+    desc: '结合实际客厅背景墙场景，提供安装布线与搭配指南',
+    isMatched: false
   },
   {
+    num: '6',
     category: 'FAQ问答类',
-    badge: '决策说服',
     ratio: '5%',
-    desc: '针对墙体承重、功耗等高频购买顾虑进行标准答疑。',
-    relation: '解决长尾决策顾虑'
+    desc: '针对墙体承重、功耗等高频购买顾虑提供标准答疑',
+    isMatched: false
   }
 ];
 
-const FONT_IMPORT = `@import url('https://fonts.geekzu.org/css2?family=Montserrat:wght@400;500;600;700;800;900&display=swap');`;
-
 export default function Page_SkyworthContentDirection() {
   return (
-    <SlideLayout title="创维定制内容方向规划">
+    <SlideLayout title="创维内容方向规划">
       <style dangerouslySetInnerHTML={{ __html: FONT_IMPORT }} />
+
       {/* ── 主排版区 ── */}
       <div
         className="absolute w-[1840px] select-none animate-fadeIn flex justify-between items-stretch"
@@ -135,7 +137,7 @@ export default function Page_SkyworthContentDirection() {
         <div className="w-[60px] flex flex-col items-center justify-center text-zinc-500 shrink-0">
           <div className="h-24 border-l border-dashed border-zinc-900" />
           <span className="text-[13px] font-bold my-4 text-zinc-500 tracking-widest [writing-mode:vertical-lr] select-none">
-            归类统计
+            数据推出
           </span>
           <div className="w-7 h-7 rounded-full border border-zinc-800 flex items-center justify-center bg-black text-[#004CE5]">
             <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="3" strokeLinecap="round" strokeLinejoin="round">
@@ -197,7 +199,7 @@ export default function Page_SkyworthContentDirection() {
         <div className="w-[60px] flex flex-col items-center justify-center text-zinc-500 shrink-0">
           <div className="h-24 border-l border-dashed border-zinc-900" />
           <span className="text-[13px] font-bold my-4 text-zinc-500 tracking-widest [writing-mode:vertical-lr] select-none">
-            指导策划
+            交叉比对
           </span>
           <div className="w-7 h-7 rounded-full border border-zinc-800 flex items-center justify-center bg-black text-[#004CE5]">
             <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="3" strokeLinecap="round" strokeLinejoin="round">
@@ -207,53 +209,63 @@ export default function Page_SkyworthContentDirection() {
           <div className="h-24 border-l border-dashed border-zinc-900" />
         </div>
 
-        {/* ==================== 3. 策略输出板块 (620px) ==================== */}
-        <div className="w-[620px] h-full bg-zinc-950/20 border border-zinc-900 rounded-[24px] p-6 flex flex-col justify-between shadow-lg">
+        {/* ==================== 3. 常见文章类型板块 (680px) ==================== */}
+        <div className="w-[680px] h-full bg-zinc-950/20 border border-zinc-900 rounded-[24px] p-6 flex flex-col justify-between shadow-lg">
           <div className="shrink-0 mb-4">
             <h3 className="text-[25px] font-bold text-white font-['MiSans']">
-              3. 策略输出：内容投放配比
+              3. 常见文章类型
             </h3>
             <p className="text-[15px] text-zinc-500 font-['MiSans'] mt-1 leading-normal">
-              以 AI 引用偏好为核心，结合用户视角完成消费说服
+              通过交叉比对，确立最终投放的内容分类与配比
             </p>
           </div>
 
-          {/* 6个类型作为干净的行排列 */}
+          {/* 6个内容卡片列表，样式匹配图片中栏样式，但更紧凑 */}
           <div className="flex-grow flex flex-col justify-between py-1 min-h-0 gap-2">
             {campaignTypes.map((type, idx) => (
               <div 
                 key={idx}
-                className="bg-black/40 border border-zinc-900 rounded-xl px-4 py-3 flex items-center justify-between hover:bg-white/[0.01]"
+                className="flex items-center gap-4 bg-black/40 border rounded-[16px] px-4 py-3 hover:bg-white/[0.01] transition-all duration-300"
+                style={{
+                  height: '101px',
+                  borderColor: type.isMatched ? '#004CE559' : '#27272a'
+                }}
               >
-                {/* 左边：名称和类型 */}
-                <div className="w-[140px] shrink-0">
-                  <span className="text-[19px] font-bold text-white block">
-                    {type.category}
-                  </span>
-                  <span 
-                    className={`inline-block text-[11px] font-bold px-1.5 py-[0.5px] rounded border mt-1 ${
-                      type.badge === 'AI高频引用' 
-                        ? 'text-[#004CE5] border-[#004CE5]/20 bg-[#004CE5]/5' 
-                        : 'text-zinc-500 border-zinc-800 bg-zinc-950'
-                    }`}
+                {/* 左侧圆角序号 */}
+                <div 
+                  className="shrink-0 w-[42px] h-[42px] rounded-xl flex items-center justify-center"
+                  style={{ 
+                    backgroundColor: type.isMatched ? '#004CE51A' : '#27272a1A', 
+                    border: `1px solid ${type.isMatched ? '#004CE5' : '#27272a'}` 
+                  }}
+                >
+                  <span
+                    className="font-['Montserrat'] text-[22px] font-black leading-none"
+                    style={{ color: type.isMatched ? '#004CE5' : '#71717a' }}
                   >
-                    {type.badge}
+                    {type.num}
                   </span>
                 </div>
 
-                {/* 中间：配比和映射逻辑 */}
-                <div className="w-[180px] shrink-0 text-center border-l border-r border-zinc-900/60 px-2">
-                  <span className="text-[24px] font-black font-['Montserrat'] text-[#004CE5] block leading-none">
-                    {type.ratio}
-                  </span>
-                  <span className="text-[12px] text-zinc-500 font-semibold block mt-1 truncate">
-                    {type.relation}
-                  </span>
-                </div>
-
-                {/* 右边：作用简述 */}
-                <div className="flex-grow pl-4">
-                  <p className="text-zinc-300 text-[15px] leading-snug text-left">
+                {/* 右侧：标题、配比、描述 */}
+                <div className="flex-grow flex flex-col justify-center min-w-0">
+                  <div className="flex items-center justify-between">
+                    <span className="text-[18px] font-bold text-white font-['MiSans'] leading-tight">
+                      {type.category}
+                    </span>
+                    <span 
+                      className="text-[13px] font-bold font-['Montserrat'] rounded-full px-2.5 py-[0.5px]"
+                      style={{
+                        color: type.isMatched ? '#004CE5' : '#71717a',
+                        borderColor: type.isMatched ? '#004CE540' : '#27272a',
+                        backgroundColor: type.isMatched ? '#004CE50D' : '#18181b',
+                        border: '1px solid'
+                      }}
+                    >
+                      配比 {type.ratio}
+                    </span>
+                  </div>
+                  <p className="text-[14px] text-zinc-400 font-['MiSans'] leading-snug mt-1 truncate">
                     {type.desc}
                   </p>
                 </div>
