@@ -28,6 +28,12 @@ import Page_WallpaperVsConventional from '../pages/Page_WallpaperVsConventional'
 import Page_SkyworthVsCompetitor from '../pages/Page_SkyworthVsCompetitor';
 import Page_SkyworthFiveModels from '../pages/Page_SkyworthFiveModels';
 import {
+  Page_SkyworthResearchGroup,
+  Page_SkyworthResearchMarket,
+  Page_SkyworthResearchTech,
+  Page_SkyworthResearchIndustry,
+} from '../pages/Page_SkyworthResearchAppendix';
+import {
   Page_SkyworthKeywordWhySplit_A,
   Page_SkyworthKeywordWhySplit_B,
   Page_SkyworthKeywordWhySplit_C,
@@ -117,6 +123,20 @@ import Page_EmergingMediaAttempts from '../pages/Page_EmergingMediaAttempts';
 import Page_SkyworthKpiAcceptance from '../pages/Page_SkyworthKpiAcceptance';
 import Page_SkyworthWorkAcceptance from '../pages/Page_SkyworthWorkAcceptance';
 import Page_SkyworthValueAddedServices from '../pages/Page_SkyworthValueAddedServices';
+import {
+  Page_SkyworthReport_BasicInfo1,
+  Page_SkyworthReport_BasicInfo2,
+} from '../pages/Page_SkyworthReport_BasicInfo';
+import { Page_SkyworthReport_CoreDataSelf } from '../pages/Page_SkyworthReport_CoreDataSelf';
+import { Page_SkyworthReport_CoreDataCompetitor } from '../pages/Page_SkyworthReport_CoreDataCompetitor';
+import { Page_SkyworthReport_MonitorWordOverview } from '../pages/Page_SkyworthReport_MonitorWordOverview';
+import { Page_SkyworthReport_OptDashboard } from '../pages/Page_SkyworthReport_OptDashboard';
+import { Page_SkyworthReport_OptEntries } from '../pages/Page_SkyworthReport_OptEntries';
+import { Page_SkyworthReport_OptCompetitor } from '../pages/Page_SkyworthReport_OptCompetitor';
+import { Page_SkyworthReport_OptSources } from '../pages/Page_SkyworthReport_OptSources';
+import Page_GeoMonitorArchitecture from '../pages/Page_GeoMonitorArchitecture';
+import Page_QuantitativeModelArchitecture from '../pages/Page_QuantitativeModelArchitecture';
+import Page_UserCommentArchitecture from '../pages/Page_UserCommentArchitecture';
 
 export const slideConfig = [
   // ——— 封面 & 目录 ———
@@ -160,6 +180,12 @@ export const slideConfig = [
   { type: 'page', title: '创维壁纸电视 VS 竞品壁纸电视', component: Page_SkyworthVsCompetitor, hideHeader: true },
   { type: 'page', title: '创维五款壁纸电视的区别', component: Page_SkyworthFiveModels, hideHeader: true },
 
+  { type: 'section', title: '调研过程速览' },
+  { type: 'page', title: '创维集团概况与品牌资质', component: Page_SkyworthResearchGroup, hideHeader: true },
+  { type: 'page', title: '创维市场战绩与全球化布局', component: Page_SkyworthResearchMarket, hideHeader: true },
+  { type: 'page', title: '创维核心技术优势', component: Page_SkyworthResearchTech, hideHeader: true },
+  { type: 'page', title: '壁纸电视品类的GEO难点解析', component: Page_SkyworthResearchIndustry, hideHeader: true },
+
   // ══════════════════════════════════════════════════════════
   // ——— 二、关键词体系策略 ———
   // ══════════════════════════════════════════════════════════
@@ -183,6 +209,19 @@ export const slideConfig = [
   // ——— 三、现状诊断报告 ———
   // ══════════════════════════════════════════════════════════
   { type: 'chapter', title: '现状诊断报告', subtitle: 'DIAGNOSTIC REPORT', backgroundImage: '' },
+
+  { type: 'section', title: '基础信息' },
+  { type: 'page', title: '报告说明', component: Page_SkyworthReport_BasicInfo1, hideHeader: true },
+  { type: 'page', title: '监测范围', component: Page_SkyworthReport_BasicInfo2, hideHeader: true },
+
+  { type: 'section', title: '数据总览' },
+  { type: 'page', title: '核心数据总览', component: Page_SkyworthReport_CoreDataSelf, hideHeader: true },
+  { type: 'page', title: '核心数据竞品对比', component: Page_SkyworthReport_CoreDataCompetitor, hideHeader: true },
+  { type: 'page', title: '监测词总览', component: Page_SkyworthReport_MonitorWordOverview, hideHeader: true },
+  { type: 'page', title: '优化词总览数据', component: Page_SkyworthReport_OptDashboard, hideHeader: true },
+  { type: 'page', title: '优化词词条数据', component: Page_SkyworthReport_OptEntries, hideHeader: true },
+  { type: 'page', title: '优化词竞品数据', component: Page_SkyworthReport_OptCompetitor, hideHeader: true },
+  { type: 'page', title: '优化词引用源数据', component: Page_SkyworthReport_OptSources, hideHeader: true },
 
   // ══════════════════════════════════════════════════════════
   // ——— 四、核心优化策略 ———
@@ -257,10 +296,13 @@ export const slideConfig = [
   { type: 'section', title: '核心能力' },
   { type: 'page', title: '核心能力', component: Page_CoreCapabilities, hideHeader: true },
   { type: 'page', title: 'GEO ONE 数据监测系统介绍', component: Page_GeoMonitorIntro, hideHeader: true },
+  { type: 'page', title: 'GEO ONE 系统架构', component: Page_GeoMonitorArchitecture, hideHeader: true },
   { type: 'page', title: '数据系统核心模块', component: Page_GeoMonitorModules, hideHeader: true },
   { type: 'page', title: 'GEO ONE 数据监测系统', component: Page_GeoMonitor, hideHeader: true },
   { type: 'page', title: 'GEO量化竞争模型（Alpha模型）', component: Page_QuantitativeModel, hideHeader: true },
+  { type: 'page', title: 'Alpha 模型运作逻辑', component: Page_QuantitativeModelArchitecture, hideHeader: true },
   { type: 'page', title: '内容撰写Agent介绍', component: Page_ContentAgentIntro, hideHeader: true },
   { type: 'page', title: '内容撰写Agent', component: Page_ContentAgent, hideHeader: true },
   { type: 'page', title: '用户评论分析系统', component: Page_UserCommentAnalysis, hideHeader: true },
+  { type: 'page', title: '用户真评引擎架构', component: Page_UserCommentArchitecture, hideHeader: true },
 ];
