@@ -57,14 +57,44 @@ import Page_TeamIntro from '../pages/Page_TeamIntro';
 import Page_CoreCapabilities from '../pages/Page_CoreCapabilities';
 import Page_GeoMonitorIntro from '../pages/Page_GeoMonitorIntro';
 import Page_GeoMonitorModules from '../pages/Page_GeoMonitorModules';
-import Page_GeoMonitor from '../pages/Page_GeoMonitor';
 import Page_QuantitativeModel from '../pages/Page_QuantitativeModel';
+import Page_GeoMonitor from '../pages/Page_GeoMonitor';
+import Page_GeoMonitor_Pic1 from '../pages/Page_GeoMonitor_Pic1';
+import Page_GeoMonitor_Pic2 from '../pages/Page_GeoMonitor_Pic2';
+import Page_GeoMonitor_Pic3 from '../pages/Page_GeoMonitor_Pic3';
+import Page_GeoMonitor_Pic4 from '../pages/Page_GeoMonitor_Pic4';
+import Page_GeoMonitor_Pic5 from '../pages/Page_GeoMonitor_Pic5';
+import Page_GeoMonitor_Pic6 from '../pages/Page_GeoMonitor_Pic6';
+import Page_GeoMonitor_Pic7 from '../pages/Page_GeoMonitor_Pic7';
 import Page_ContentAgentIntro from '../pages/Page_ContentAgentIntro';
 import Page_ContentAgent from '../pages/Page_ContentAgent';
+import Page_ContentAgent_Pic1 from '../pages/Page_ContentAgent_Pic1';
+import Page_ContentAgent_Pic2 from '../pages/Page_ContentAgent_Pic2';
+import Page_ContentAgent_Pic3 from '../pages/Page_ContentAgent_Pic3';
+import Page_ContentAgent_Pic4 from '../pages/Page_ContentAgent_Pic4';
+import Page_ContentAgent_Pic5 from '../pages/Page_ContentAgent_Pic5';
+import Page_ContentAgent_Pic6 from '../pages/Page_ContentAgent_Pic6';
 import Page_UserCommentAnalysis from '../pages/Page_UserCommentAnalysis';
 import Page_GeoMonitorArchitecture from '../pages/Page_GeoMonitorArchitecture';
 import Page_QuantitativeModelArchitecture from '../pages/Page_QuantitativeModelArchitecture';
+import Page_QuantitativeModel_Pic1 from '../pages/Page_QuantitativeModel_Pic1';
+import Page_QuantitativeModel_Pic2 from '../pages/Page_QuantitativeModel_Pic2';
+import Page_QuantitativeModel_Pic3 from '../pages/Page_QuantitativeModel_Pic3';
+import Page_QuantitativeModel_Pic4 from '../pages/Page_QuantitativeModel_Pic4';
+import Page_QuantitativeModel_Pic5 from '../pages/Page_QuantitativeModel_Pic5';
+import Page_QuantitativeModel_Pic6 from '../pages/Page_QuantitativeModel_Pic6';
+import Page_QuantitativeModel_Pic7 from '../pages/Page_QuantitativeModel_Pic7';
 import Page_UserCommentArchitecture from '../pages/Page_UserCommentArchitecture';
+import {
+  Page_UserComment_Overview,
+  Page_UserComment_Compare,
+  Page_UserComment_Sentiment,
+  Page_UserComment_Voices,
+  Page_UserComment_Dimensions,
+  Page_UserComment_WordCloud,
+  Page_UserComment_Trend,
+  Page_UserComment_Fake,
+} from '../pages/Page_UserCommentModules';
 import Page_OtherContentApproach from '../pages/Page_OtherContentApproach';
 import Page_SkyworthContentDetailsAI from '../pages/Page_SkyworthContentDetailsAI';
 import Page_HumanAiRatioApproach from '../pages/Page_HumanAiRatioApproach';
@@ -220,8 +250,8 @@ export const slideConfig = [
 
   { type: 'section', title: 'KPI及工作安排' },
   { type: 'page', title: 'KPI 及验收标准', component: Page_SkyworthKpiAcceptance, hideHeader: true },
-  { type: 'page', title: '工作内容与预期效果', component: Page_SkyworthWorkAcceptance, hideHeader: true },
-  { type: 'page', title: '增值服务', component: Page_SkyworthValueAddedServices, hideHeader: true },
+  { type: 'page', title: '时间节点与人员安排', component: Page_SkyworthWorkAcceptance, hideHeader: true },
+  // { type: 'page', title: '增值服务', component: Page_SkyworthValueAddedServices, hideHeader: true },
 
   // ══════════════════════════════════════════════════════════
   // ——— 五、内容策略 ———
@@ -279,10 +309,38 @@ export const slideConfig = [
   { type: 'page', title: 'GEO ONE 系统架构', component: Page_GeoMonitorArchitecture, hideHeader: true },
   { type: 'page', title: '数据系统核心模块', component: Page_GeoMonitorModules, hideHeader: true },
   { type: 'page', title: 'GEO ONE 数据监测系统', component: Page_GeoMonitor, hideHeader: true },
+  { type: 'page', title: 'GEO ONE 数据监测系统 1', component: Page_GeoMonitor_Pic1, hideHeader: true },
+  { type: 'page', title: 'GEO ONE 数据监测系统 2', component: Page_GeoMonitor_Pic2, hideHeader: true },
+  { type: 'page', title: 'GEO ONE 数据监测系统 3', component: Page_GeoMonitor_Pic3, hideHeader: true },
+  { type: 'page', title: 'GEO ONE 数据监测系统 4', component: Page_GeoMonitor_Pic4, hideHeader: true },
+  { type: 'page', title: 'GEO ONE 数据监测系统 5', component: Page_GeoMonitor_Pic5, hideHeader: true },
+  { type: 'page', title: 'GEO ONE 数据监测系统 6', component: Page_GeoMonitor_Pic6, hideHeader: true },
+  { type: 'page', title: 'GEO ONE 数据监测系统 7', component: Page_GeoMonitor_Pic7, hideHeader: true },
   { type: 'page', title: 'GEO量化竞争模型（Alpha模型）', component: Page_QuantitativeModel, hideHeader: true },
   { type: 'page', title: 'Alpha 模型运作逻辑', component: Page_QuantitativeModelArchitecture, hideHeader: true },
+  { type: 'page', title: 'Alpha 模型运作逻辑 1', component: Page_QuantitativeModel_Pic1, hideHeader: true },
+  { type: 'page', title: 'Alpha 模型运作逻辑 2', component: Page_QuantitativeModel_Pic2, hideHeader: true },
+  { type: 'page', title: 'Alpha 模型运作逻辑 3', component: Page_QuantitativeModel_Pic3, hideHeader: true },
+  { type: 'page', title: 'Alpha 模型运作逻辑 4', component: Page_QuantitativeModel_Pic4, hideHeader: true },
+  { type: 'page', title: 'Alpha 模型运作逻辑 5', component: Page_QuantitativeModel_Pic5, hideHeader: true },
+  { type: 'page', title: 'Alpha 模型运作逻辑 6', component: Page_QuantitativeModel_Pic6, hideHeader: true },
+  { type: 'page', title: 'Alpha 模型运作逻辑 7', component: Page_QuantitativeModel_Pic7, hideHeader: true },
   { type: 'page', title: '内容撰写Agent介绍', component: Page_ContentAgentIntro, hideHeader: true },
   { type: 'page', title: '内容撰写Agent', component: Page_ContentAgent, hideHeader: true },
+  { type: 'page', title: '内容撰写Agent 1', component: Page_ContentAgent_Pic1, hideHeader: true },
+  { type: 'page', title: '内容撰写Agent 2', component: Page_ContentAgent_Pic2, hideHeader: true },
+  { type: 'page', title: '内容撰写Agent 3', component: Page_ContentAgent_Pic3, hideHeader: true },
+  { type: 'page', title: '内容撰写Agent 4', component: Page_ContentAgent_Pic4, hideHeader: true },
+  { type: 'page', title: '内容撰写Agent 5', component: Page_ContentAgent_Pic5, hideHeader: true },
+  { type: 'page', title: '内容撰写Agent 6', component: Page_ContentAgent_Pic6, hideHeader: true },
   { type: 'page', title: '用户评论分析系统', component: Page_UserCommentAnalysis, hideHeader: true },
   { type: 'page', title: '用户真评引擎架构', component: Page_UserCommentArchitecture, hideHeader: true },
+  { type: 'page', title: '真评系统 · 数据总览', component: Page_UserComment_Overview, hideHeader: true },
+  { type: 'page', title: '真评系统 · 商品横向对比', component: Page_UserComment_Compare, hideHeader: true },
+  { type: 'page', title: '真评系统 · 好评差评分布', component: Page_UserComment_Sentiment, hideHeader: true },
+  { type: 'page', title: '真评系统 · 用户之声VOC', component: Page_UserComment_Voices, hideHeader: true },
+  { type: 'page', title: '真评系统 · 卖点维度', component: Page_UserComment_Dimensions, hideHeader: true },
+  { type: 'page', title: '真评系统 · 关键词云', component: Page_UserComment_WordCloud, hideHeader: true },
+  { type: 'page', title: '真评系统 · 时间趋势', component: Page_UserComment_Trend, hideHeader: true },
+  { type: 'page', title: '真评系统 · 刷评识别', component: Page_UserComment_Fake, hideHeader: true },
 ];
