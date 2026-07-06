@@ -29,7 +29,7 @@ export default function Page_PotentialVerticalCommunity() {
               <img
                 src="/images/potential_vertical_community.png"
                 alt="有潜力的垂直社区 - 酒排名网"
-                className="max-w-full max-h-full object-contain opacity-95 transition-opacity duration-500 group-hover:opacity-100"
+                className="w-full h-full object-cover opacity-95 transition-opacity duration-500 group-hover:opacity-100"
                 onError={(e) => {
                   e.currentTarget.style.display = 'none';
                   e.currentTarget.nextElementSibling.style.display = 'flex';
