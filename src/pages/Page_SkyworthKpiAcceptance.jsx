@@ -153,16 +153,32 @@ export function Page_SkyworthKpiAcceptance() {
                       <div className="flex flex-col gap-3">
                         <div className="flex items-start gap-2.5 min-h-[100px] xl:min-h-[110px]">
                           <span className="w-[110px] shrink-0 text-[15px] xl:text-[16px] font-black bg-[#004CE5]/20 text-[#8cb1ff] border border-[#004CE5]/40 py-[2px] rounded text-center">阶段一考核</span>
-                          <div className="text-[19px] xl:text-[21px] leading-snug text-zinc-200 flex flex-col gap-2">
-                            <div>
-                              <strong className="text-white font-bold">高相关词</strong>：提及率 <strong className="text-white font-black">≥ 90%</strong>，TOP3 提及率 <strong className="text-white font-black">≥ 85%</strong>
+                          <div className="text-[19px] xl:text-[21px] leading-snug text-zinc-200 flex flex-col gap-3">
+                            <div className="flex flex-col gap-1">
+                              <strong className="text-white font-bold">高相关词</strong>
+                              <div className="flex items-center gap-2">
+                                <span className="w-1 h-1 rounded-full bg-[#8cb1ff] shrink-0" />
+                                提及率 <strong className="text-white font-black">≥ 90%</strong>
+                              </div>
+                              <div className="flex items-center gap-2">
+                                <span className="w-1 h-1 rounded-full bg-[#8cb1ff] shrink-0" />
+                                TOP3 提及率 <strong className="text-white font-black">≥ 85%</strong>
+                              </div>
                             </div>
-                            <div>
-                              <strong className="text-white font-bold">低相关词</strong>：提及率 <strong className="text-white font-black">≥ 80%</strong>，TOP3 提及率 <strong className="text-white font-black">≥ 80%</strong>
+                            <div className="flex flex-col gap-1">
+                              <strong className="text-white font-bold">低相关词</strong>
+                              <div className="flex items-center gap-2">
+                                <span className="w-1 h-1 rounded-full bg-[#8cb1ff] shrink-0" />
+                                提及率 <strong className="text-white font-black">≥ 80%</strong>
+                              </div>
+                              <div className="flex items-center gap-2">
+                                <span className="w-1 h-1 rounded-full bg-[#8cb1ff] shrink-0" />
+                                TOP3 提及率 <strong className="text-white font-black">≥ 80%</strong>
+                              </div>
                             </div>
                           </div>
                         </div>
-                        <div className="flex items-start gap-2.5 min-h-[100px] xl:min-h-[110px]">
+                        <div className="flex items-start gap-2.5">
                           <span className="w-[110px] shrink-0 text-[15px] xl:text-[16px] font-black bg-[#004CE5]/20 text-[#8cb1ff] border border-[#004CE5]/40 py-[2px] rounded text-center">阶段二考核</span>
                           <div className="text-[19px] xl:text-[21px] leading-snug text-zinc-200 flex flex-col gap-2">
                             <div>
@@ -217,9 +233,21 @@ export function Page_SkyworthKpiAcceptance() {
                     {/* Column 3: KPI 考核 */}
                     <td className="py-2.5 xl:py-3 text-zinc-300 align-top pr-4 pl-6">
                       <div className="flex flex-col justify-start h-full bg-[#004CE5]/5 border border-[#004CE5]/15 p-3 xl:p-4 rounded-xl min-h-[160px] xl:min-h-[172px]">
-                        <p className="text-zinc-200 text-[19px] xl:text-[21px] leading-snug text-justify">
-                          针对品牌询问，AI 生成内容的<strong className="text-white font-bold">核心事实准确率</strong>达到约定标准，<strong className="text-white font-bold">负面信息占比守住 10% 红线以内</strong>，正向/中性情绪导向占比稳定在 <strong className="text-white font-bold">90% 以上</strong>。
-                        </p>
+                        <div className="text-[19px] xl:text-[21px] leading-snug text-zinc-200 flex flex-col gap-1.5">
+                          <strong className="text-white font-bold">针对品牌询问的 AI 生成内容</strong>
+                          <div className="flex items-start gap-2">
+                            <span className="w-1 h-1 rounded-full bg-[#8cb1ff] shrink-0 mt-[11px]" />
+                            <span>核心事实准确率达到约定标准</span>
+                          </div>
+                          <div className="flex items-start gap-2">
+                            <span className="w-1 h-1 rounded-full bg-[#8cb1ff] shrink-0 mt-[11px]" />
+                            <span>负面信息占比守住 <strong className="text-white font-black">10%</strong> 红线以内</span>
+                          </div>
+                          <div className="flex items-start gap-2">
+                            <span className="w-1 h-1 rounded-full bg-[#8cb1ff] shrink-0 mt-[11px]" />
+                            <span>正向/中性情绪导向占比稳定在 <strong className="text-white font-black">90%</strong> 以上</span>
+                          </div>
+                        </div>
                       </div>
                     </td>
 
