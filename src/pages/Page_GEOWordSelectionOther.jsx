@@ -166,12 +166,14 @@ export default function Page_GEOWordSelectionOther() {
             </div>
           </div>
 
-          {/* 卡片内结论：与左侧搜索区对齐，避开手机框 */}
+          {/* 卡片内结论：与百度搜索框居中对齐 */}
           <div className="shrink-0 px-6 pb-5 pt-1 border-t border-zinc-900/80 bg-zinc-950 flex items-center gap-10">
-            <div className="flex-1 min-w-0 text-left">
-              <span className="text-white text-[22px] font-sans font-bold font-['MiSans']">
-                搜索逻辑变了，数据也变了
-              </span>
+            <div className="flex-1 min-w-0 pr-2 flex justify-end">
+              <div className="w-[420px] text-center">
+                <span className="text-white text-[22px] font-sans font-bold font-['MiSans']">
+                  搜索逻辑变了，数据也变了
+                </span>
+              </div>
             </div>
             <div className="w-[304px] shrink-0" aria-hidden="true" />
           </div>
