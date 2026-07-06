@@ -34,7 +34,7 @@ function XiaohongshuSearchBox() {
 
 function AiSearchTransitionBadge() {
   return (
-    <div className="shrink-0 flex flex-col items-center justify-center gap-4 z-30 px-1 translate-y-[80px]">
+    <div className="shrink-0 flex flex-col items-center justify-center gap-4 z-30 px-1 translate-y-[56px]">
       <span className="text-[24px] font-black text-white font-['MiSans'] leading-none whitespace-nowrap px-5 py-3 rounded-full bg-[#004CE5] border-2 border-[#2E6BFF] shadow-[0_0_32px_rgba(46,107,255,0.65),0_4px_24px_rgba(0,0,0,0.5)]">
         AI搜索形式变了
       </span>
