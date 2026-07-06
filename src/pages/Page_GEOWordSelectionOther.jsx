@@ -126,7 +126,7 @@ export default function Page_GEOWordSelectionOther() {
           </div>
 
           {/* Card Body */}
-          <div className="flex-grow p-6 bg-zinc-950 flex items-center justify-center gap-10">
+          <div className="flex-grow min-h-0 p-6 pb-4 bg-zinc-950 flex items-center justify-center gap-10">
             {/* 手机左侧：传统搜索框示意 */}
             <div className="flex flex-col items-end justify-center gap-8 flex-1 min-w-0 pr-2">
               <div className="flex flex-col items-end gap-2">
@@ -164,6 +164,13 @@ export default function Page_GEOWordSelectionOther() {
                 )}
               </div>
             </div>
+          </div>
+
+          {/* 卡片内结论 */}
+          <div className="shrink-0 px-6 pb-5 pt-1 text-center border-t border-zinc-900/80 bg-zinc-950">
+            <span className="text-white text-[22px] font-sans font-bold font-['MiSans']">
+              搜索逻辑变了，数据也变了
+            </span>
           </div>
         </div>
 
