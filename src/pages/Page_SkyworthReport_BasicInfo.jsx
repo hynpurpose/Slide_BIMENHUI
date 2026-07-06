@@ -73,7 +73,7 @@ function SectionTitle({ children, size = 'default', className = '' }) {
     );
 }
 
-function ConfigPanel({ compact = false, tight = false, brandEntryRow = false, textUp2 = false }) {
+function ConfigPanel({ compact = false, tight = false, brandEntryRow = false, textUp2 = false, productTagsUp = false }) {
     const labelClass = textUp2 && compact && !tight
         ? 'text-[19px] xl:text-[21px]'
         : tight ? 'text-[14px] xl:text-[15px]' : compact ? 'text-[17px] xl:text-[19px]' : 'text-[20px] xl:text-[22px]';
@@ -88,7 +88,11 @@ function ConfigPanel({ compact = false, tight = false, brandEntryRow = false, te
         : tight ? 'text-[13px] xl:text-[14px]' : compact ? 'text-[16px] xl:text-[18px]' : 'text-[20px] xl:text-[22px]';
     const gapClass = tight ? 'gap-1.5' : compact ? 'gap-2.5' : 'gap-4';
     const itemPy = tight ? 'py-1' : compact ? 'py-1.5' : 'py-2';
-    const panelPad = tight ? 'py-3 px-4 xl:py-3.5 xl:px-5' : 'py-4 px-5 xl:py-5 xl:px-7';
+    const panelPad = tight
+        ? 'py-3 px-4 xl:py-3.5 xl:px-5'
+        : productTagsUp
+            ? 'pt-4 pb-5 px-5 xl:pt-5 xl:pb-6 xl:px-7'
+            : 'py-4 px-5 xl:py-5 xl:px-7';
 
     const brandItem = CONFIG_ITEMS[0];
     const productItem = CONFIG_ITEMS[1];
@@ -124,31 +128,36 @@ function ConfigPanel({ compact = false, tight = false, brandEntryRow = false, te
         </div>
     );
 
-    const renderSplitCell = (item) => (
-        <>
-            <span className={`text-zinc-400 ${labelClass} font-medium`}>{item.label}</span>
-            <div className="flex items-baseline gap-2 flex-wrap mt-1">
-                <span className={`font-extrabold text-white ${item.large ? valueLarge : valueNormal}`}>
-                    {item.value}
-                </span>
-                {item.note && (
-                    <span className={`text-zinc-500 ${noteClass} font-medium`}>{item.note}</span>
-                )}
-            </div>
-            {item.tags && (
-                <div className="flex flex-wrap gap-1.5 mt-1.5">
-                    {item.tags.map((t) => (
-                        <span key={t} className={`px-2 py-0.5 ${tagClass} font-bold text-zinc-300 bg-white/[0.06] border border-white/10 rounded-lg font-montserrat`} style={{ fontFamily: 'Montserrat, sans-serif' }}>
-                            {t}
-                        </span>
-                    ))}
+    const renderSplitCell = (item, options = {}) => {
+        const tagGap = options.tightTags ? 'gap-1' : 'gap-1.5';
+        const tagMt = options.tightTags ? 'mt-1' : 'mt-1.5';
+
+        return (
+            <>
+                <span className={`text-zinc-400 ${labelClass} font-medium`}>{item.label}</span>
+                <div className="flex items-baseline gap-2 flex-wrap mt-1">
+                    <span className={`font-extrabold text-white ${item.large ? valueLarge : valueNormal}`}>
+                        {item.value}
+                    </span>
+                    {item.note && (
+                        <span className={`text-zinc-500 ${noteClass} font-medium`}>{item.note}</span>
+                    )}
                 </div>
-            )}
-            {item.detail && (
-                <div className={`${detailClass} text-zinc-400 leading-snug mt-1.5`}>{item.detail}</div>
-            )}
-        </>
-    );
+                {item.tags && (
+                    <div className={`flex flex-wrap ${tagGap} ${tagMt}`}>
+                        {item.tags.map((t) => (
+                            <span key={t} className={`px-2 py-0.5 ${tagClass} font-bold text-zinc-300 bg-white/[0.06] border border-white/10 rounded-lg font-montserrat`} style={{ fontFamily: 'Montserrat, sans-serif' }}>
+                                {t}
+                            </span>
+                        ))}
+                    </div>
+                )}
+                {item.detail && (
+                    <div className={`${detailClass} text-zinc-400 leading-snug mt-1.5`}>{item.detail}</div>
+                )}
+            </>
+        );
+    };
 
     return (
         <div className={`bg-white/[0.02] backdrop-blur-xl border border-white/[0.06] border-t-2 border-t-[#004CE5] rounded-2xl ${panelPad} flex flex-col shadow-xl h-full min-h-0 overflow-hidden`}>
@@ -156,7 +165,7 @@ function ConfigPanel({ compact = false, tight = false, brandEntryRow = false, te
             <div className={`flex flex-col ${gapClass} flex-1 min-h-0`}>
                 {brandEntryRow ? (
                     <>
-                        <div className={`${itemPy} border-b border-white/[0.06] grid grid-cols-2 gap-5 xl:gap-6 items-start`}>
+                        <div className={`${productTagsUp ? 'py-1' : itemPy} border-b border-white/[0.06] grid grid-cols-2 gap-5 xl:gap-6 items-start`}>
                             <div>
                                 <span className={`text-zinc-400 ${labelClass} font-medium`}>{brandItem.label}</span>
                                 <div className="mt-1">
@@ -174,8 +183,10 @@ function ConfigPanel({ compact = false, tight = false, brandEntryRow = false, te
                                 )}
                             </div>
                         </div>
-                        <div className={`${itemPy} grid grid-cols-2 gap-5 xl:gap-6 items-start`}>
-                            <div>{renderSplitCell(productItem)}</div>
+                        <div className={`${productTagsUp ? 'pt-0.5 pb-1 -mt-1' : itemPy} grid grid-cols-2 gap-5 xl:gap-6 items-start`}>
+                            <div className={productTagsUp ? '-translate-y-1.5 pr-1' : ''}>
+                                {renderSplitCell(productItem, { tightTags: productTagsUp })}
+                            </div>
                             <div>{renderSplitCell(platformItem)}</div>
                         </div>
                     </>
@@ -418,7 +429,7 @@ export function Page_SkyworthReport_BasicInfo_B() {
             <div className="w-full h-full flex animate-fade-in min-h-0 gap-5 xl:gap-6">
                 <FontStyle />
                 <div className="w-[52%] flex flex-col gap-4 min-h-0">
-                    <ConfigPanel compact brandEntryRow textUp2 />
+                    <ConfigPanel compact brandEntryRow textUp2 productTagsUp />
                     <SummaryPanel compact brief textUp2 />
                 </div>
                 <div className="w-[48%] flex flex-col min-h-0">
