@@ -132,7 +132,7 @@ export function Page_GeoContentPrinciples_A() {
               </h3>
               <div className="mt-4">
                 <span className="text-white font-['Montserrat'] font-black text-[38px] xl:text-[42px] tracking-wider leading-none">
-                  E-E-A-T
+                  E-E-A-T 原则
                 </span>
               </div>
             </div>
@@ -142,11 +142,11 @@ export function Page_GeoContentPrinciples_A() {
               {/* 4个EEAT解析 */}
               <div className="grid grid-cols-2 gap-4">
                 {EEAT_ITEMS.map(({ en, zh }) => (
-                  <div key={en} className="rounded-xl border border-zinc-900 bg-black/30 px-5 py-3 flex flex-col justify-center h-[76px]">
-                    <span className="text-[17px] font-['Montserrat'] font-semibold text-zinc-500 leading-none">
+                  <div key={en} className="rounded-2xl border border-zinc-800 bg-black/40 px-6 py-5 flex flex-col justify-center h-[96px] xl:h-[105px]">
+                    <span className="text-[18px] xl:text-[20px] font-['Montserrat'] font-semibold text-zinc-500 leading-none">
                       {en}
                     </span>
-                    <span className="text-[21px] font-black text-zinc-300 font-['MiSans'] mt-2 leading-none">
+                    <span className="text-[24px] xl:text-[27px] font-black text-zinc-200 font-['MiSans'] mt-2.5 leading-none">
                       {zh}
                     </span>
                   </div>
