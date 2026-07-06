@@ -31,9 +31,33 @@ function emit(data) {
   process.stdout.write(JSON.stringify(data) + '\n');
 }
 
+/* PowerPoint「单击视频时播放」的 timing 节点模板（{SPID} 为视频 pic 的形状 id）。
+ * 结构与 PowerPoint 手动插入视频并设为“单击时”生成的 XML 一致：
+ * interactiveSeq 监听对视频形状本身的点击 → togglePause；
+ * cMediaNode 启动条件为 indefinite（不随翻页/单击序列自动开播） */
+const CLICK_TO_PLAY_TIMING_XML =
+  '<p:timing><p:tnLst><p:par><p:cTn id="1" dur="indefinite" restart="never" nodeType="tmRoot"><p:childTnLst>' +
+  '<p:seq concurrent="1" nextAc="seek">' +
+  '<p:cTn id="2" restart="whenNotActive" fill="hold" evtFilter="cancelBubble" nodeType="interactiveSeq">' +
+  '<p:stCondLst><p:cond evt="onClick" delay="0"><p:tgtEl><p:spTgt spid="{SPID}"/></p:tgtEl></p:cond></p:stCondLst>' +
+  '<p:endSync evt="end" delay="0"><p:rtn val="all"/></p:endSync>' +
+  '<p:childTnLst><p:par><p:cTn id="3" fill="hold"><p:stCondLst><p:cond delay="0"/></p:stCondLst><p:childTnLst>' +
+  '<p:par><p:cTn id="4" fill="hold"><p:stCondLst><p:cond delay="0"/></p:stCondLst><p:childTnLst>' +
+  '<p:par><p:cTn id="5" presetID="2" presetClass="mediacall" presetSubtype="0" fill="hold" nodeType="clickEffect">' +
+  '<p:stCondLst><p:cond delay="0"/></p:stCondLst><p:childTnLst>' +
+  '<p:cmd type="call" cmd="togglePause"><p:cBhvr><p:cTn id="6" dur="1" fill="hold"/><p:tgtEl><p:spTgt spid="{SPID}"/></p:tgtEl></p:cBhvr></p:cmd>' +
+  '</p:childTnLst></p:cTn></p:par></p:childTnLst></p:cTn></p:par></p:childTnLst></p:cTn></p:par></p:childTnLst>' +
+  '</p:cTn>' +
+  '<p:nextCondLst><p:cond evt="onClick" delay="0"><p:tgtEl><p:spTgt spid="{SPID}"/></p:tgtEl></p:cond></p:nextCondLst>' +
+  '</p:seq>' +
+  '<p:video><p:cMediaNode vol="80000"><p:cTn id="7" fill="hold" display="0">' +
+  '<p:stCondLst><p:cond delay="indefinite"/></p:stCondLst>' +
+  '</p:cTn><p:tgtEl><p:spTgt spid="{SPID}"/></p:tgtEl></p:cMediaNode></p:video>' +
+  '</p:childTnLst></p:cTn></p:par></p:tnLst></p:timing>';
+
 /* 后处理含视频的幻灯片：
- * 视频 pic 的矩形几何改成圆角矩形（封面图与播放画面共用同一形状）。
- * 不注入自动播放 timing，视频保持默认的「点击播放」 */
+ * 1. 视频 pic 的矩形几何改成圆角矩形（封面图与播放画面共用同一形状）
+ * 2. 注入「单击时播放」timing：只有点视频本身才播放，翻页/普通单击不触发 */
 async function postProcessVideoSlides(pptxPath, adjBySlide) {
   const JSZip = require('jszip');
   const zip = await JSZip.loadAsync(fs.readFileSync(pptxPath));
@@ -42,8 +66,10 @@ async function postProcessVideoSlides(pptxPath, adjBySlide) {
     const file = zip.file(name);
     if (!file) continue;
     let xml = await file.async('string');
+    let spid = null;
     xml = xml.replace(/<p:pic>[\s\S]*?<\/p:pic>/g, (pic) => {
       if (!pic.includes('<a:videoFile')) return pic;
+      spid = pic.match(/<p:cNvPr id="(\d+)"/)?.[1] || null;
       if (adj > 0) {
         pic = pic.replace(
           '<a:prstGeom prst="rect"><a:avLst/></a:prstGeom>',
@@ -52,6 +78,12 @@ async function postProcessVideoSlides(pptxPath, adjBySlide) {
       }
       return pic;
     });
+    if (spid && !xml.includes('<p:timing>')) {
+      xml = xml.replace(
+        '</p:sld>',
+        CLICK_TO_PLAY_TIMING_XML.replace(/\{SPID\}/g, spid) + '</p:sld>'
+      );
+    }
     zip.file(name, xml);
   }
   fs.writeFileSync(
