@@ -49,8 +49,13 @@ const ACCENT = {
   white: { core: 'rgba(255,255,255,0.85)', soft: 'rgba(255,255,255,0.4)', chipBg: 'rgba(255,255,255,0.06)', chipBorder: 'rgba(255,255,255,0.25)' },
 };
 
-const PANEL_X = 1060;
-const PANEL_W = 780;
+/* 横向四列均匀分布：词云 5-375 / 创维词条 560-800 / 优化·监测 990-1170 / 词条列表 1350-1840 */
+const HUB_X = 560;
+const HUB_W = 240;
+const NODE_X = 990;
+const NODE_W = 180;
+const PANEL_X = 1350;
+const PANEL_W = 490;
 
 /* 混沌词云：圆心与半径（相对 1840x795 内容区） */
 const CLOUD_CX = 190;
@@ -278,15 +283,15 @@ export default function Page_SkyworthKeywordLogic() {
 
   const links = [
     // 混沌词云右缘 → 创维词条
-    [CLOUD_CX + CLOUD_R, CLOUD_CY, 450, 397, 'white'],
+    [CLOUD_CX + CLOUD_R, CLOUD_CY, HUB_X, 397, 'white'],
     // 创维词条 → 优化词 / 监测词
-    [690, 397, 790, optY, 'blue'],
-    [690, 397, 790, monY, 'teal'],
+    [HUB_X + HUB_W, 397, NODE_X, optY, 'blue'],
+    [HUB_X + HUB_W, 397, NODE_X, monY, 'teal'],
     // 优化词 / 监测词 → 右侧分组
-    [970, optY, PANEL_X, mid(B1), 'blue'],
-    [970, optY, PANEL_X, mid(B2), 'blue'],
-    [970, monY, PANEL_X, mid(B3), 'teal'],
-    [970, monY, PANEL_X, mid(B4), 'teal'],
+    [NODE_X + NODE_W, optY, PANEL_X, mid(B1), 'blue'],
+    [NODE_X + NODE_W, optY, PANEL_X, mid(B2), 'blue'],
+    [NODE_X + NODE_W, monY, PANEL_X, mid(B3), 'teal'],
+    [NODE_X + NODE_W, monY, PANEL_X, mid(B4), 'teal'],
   ];
 
   return (
@@ -295,9 +300,9 @@ export default function Page_SkyworthKeywordLogic() {
         <Connectors links={links} />
         <ChaosCloud />
 
-        <FlowNode x={450} cy={397} w={240} h={116} label="创维词条" sub="SKYWORTH KEYWORDS" tone="white" big />
-        <FlowNode x={790} cy={optY} w={180} h={96} label="优化词" sub="OPTIMIZE" tone="blue" />
-        <FlowNode x={790} cy={monY} w={180} h={96} label="监测词" sub="MONITOR" tone="teal" />
+        <FlowNode x={HUB_X} cy={397} w={HUB_W} h={116} label="创维词条" sub="SKYWORTH KEYWORDS" tone="white" big />
+        <FlowNode x={NODE_X} cy={optY} w={NODE_W} h={96} label="优化词" sub="OPTIMIZE" tone="blue" />
+        <FlowNode x={NODE_X} cy={monY} w={NODE_W} h={96} label="监测词" sub="MONITOR" tone="teal" />
 
         <TypoGroup top={B1.top} height={B1.h} title="品类词" count={OPT_CATEGORY_WORDS.length} tone="blue">
           <KeywordItems words={OPT_CATEGORY_WORDS} tone="blue" />
