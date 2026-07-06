@@ -253,6 +253,75 @@
         "letterSpacing": "",
         "html": "品牌词、产品词、场景词、竞品词、舆情词\n不同词混一起容易造成数据和优化方向混乱"
       }
+    },
+    "chapter-1-0-1": {
+      "0.1.0.3.0.1.0.0.0.0": {
+        "dx": 0,
+        "dy": 0,
+        "rotate": 0,
+        "fontSize": "",
+        "color": "",
+        "fontFamily": "",
+        "fontWeight": "",
+        "textAlign": "",
+        "lineHeight": "",
+        "letterSpacing": "",
+        "html": "品类词"
+      },
+      "0.1.0.3.0": {
+        "dx": 0,
+        "dy": 0,
+        "rotate": 0,
+        "fontSize": "",
+        "color": "",
+        "fontFamily": "",
+        "fontWeight": "",
+        "textAlign": "",
+        "lineHeight": "",
+        "letterSpacing": "",
+        "html": "<p class=\"text-zinc-300 font-normal font-['MiSans'] shrink-0 mb-6\" style=\"font-size: 38px; line-height: 1.2;\"><strong class=\"text-white font-bold\">品类词看的是：创维有没有被推荐进这个品类   专属词看的是：每一款产品有没有被 AI 正确理解和推荐。</strong></p><div class=\"flex-1 min-h-0 grid grid-cols-2 gap-8\"><div class=\"h-full rounded-[30px] border border-zinc-800 bg-[#0D0D10]/60 overflow-hidden flex flex-col\"><div class=\"shrink-0 px-10 pt-9 pb-6\" style=\"border-top: 6px solid rgb(91, 140, 255);\"><div class=\"flex items-baseline justify-between\"><span class=\"text-[46px] font-black text-white font-['MiSans'] leading-none\">品类词</span><span class=\"text-[23px] text-zinc-500 font-['MiSans']\">品类选择阶段</span></div><div class=\"mt-4 text-[30px] font-['MiSans'] text-zinc-300 leading-none\">看创维<strong class=\"font-black\" style=\"color: rgb(140, 176, 255);\">「有没有被推进来」</strong></div></div><div class=\"flex-1 min-h-0 px-10 pt-14 pb-6 flex flex-col justify-start\"><span class=\"text-[21px] text-zinc-500 font-['MiSans'] mb-4\">用户会这么问</span><div class=\"flex flex-col gap-3.5\"><div class=\"text-[36px] text-white font-black font-['MiSans'] leading-tight\">“画质好的壁纸电视推荐”</div><div class=\"text-[36px] text-white font-black font-['MiSans'] leading-tight\">“壁纸电视怎么选”</div></div><p class=\"text-[22px] text-zinc-400 font-['MiSans'] leading-snug mt-5\">问法只圈定「品类」、没锁型号 —— 只要 AI 端出任意一款创维，这一问就算赢。</p></div><div class=\"shrink-0 px-10 py-7 border-t border-zinc-800\"><div class=\"flex items-center justify-between mb-3.5\"><span class=\"text-[21px] text-zinc-500 font-['MiSans']\">这批 AI 结果里，谁算命中</span><span class=\"px-4 py-1.5 rounded-full text-[21px] font-bold font-['MiSans'] leading-none\" style=\"background: rgba(91, 140, 255, 0.133); color: rgb(140, 176, 255);\">命中任意 1 款 · 都计入</span></div><div class=\"flex flex-wrap gap-2.5\"><span class=\"rounded-xl font-bold font-['MiSans'] leading-none text-center truncate px-3 py-2 text-[20px]\" style=\"background: rgb(91, 140, 255); color: rgb(10, 15, 14); box-shadow: rgba(91, 140, 255, 0.333) 0px 0px 22px;\">创维 A7H Pro</span><span class=\"rounded-xl font-bold font-['MiSans'] leading-none text-center truncate px-3 py-2 text-[20px]\" style=\"background: rgb(91, 140, 255); color: rgb(10, 15, 14); box-shadow: rgba(91, 140, 255, 0.333) 0px 0px 22px;\">创维 A8H</span><span class=\"rounded-xl font-bold font-['MiSans'] leading-none text-center truncate px-3 py-2 text-[20px]\" style=\"background: rgb(91, 140, 255); color: rgb(10, 15, 14); box-shadow: rgba(91, 140, 255, 0.333) 0px 0px 22px;\">创维 A10H</span><span class=\"rounded-xl font-bold font-['MiSans'] leading-none text-center truncate px-3 py-2 text-[20px]\" style=\"background: rgb(91, 140, 255); color: rgb(10, 15, 14); box-shadow: rgba(91, 140, 255, 0.333) 0px 0px 22px;\">创维 Q8H</span><span class=\"rounded-xl font-bold font-['MiSans'] leading-none text-center truncate px-3 py-2 text-[20px]\" style=\"background: rgb(91, 140, 255); color: rgb(10, 15, 14); box-shadow: rgba(91, 140, 255, 0.333) 0px 0px 22px;\">创维 A5D</span></div><p class=\"text-[19px] text-zinc-600 font-['MiSans'] mt-3 min-h-[24px]\">&nbsp;</p></div></div><div class=\"h-full rounded-[30px] border border-zinc-800 bg-[#0D0D10]/60 overflow-hidden flex flex-col\"><div class=\"shrink-0 px-10 pt-9 pb-6\" style=\"border-top: 6px solid rgb(45, 212, 191);\"><div class=\"flex items-baseline justify-between\"><span class=\"text-[46px] font-black text-white font-['MiSans'] leading-none\">产品专属词</span><span class=\"text-[23px] text-zinc-500 font-['MiSans']\">框定具体特征 / 人群</span></div><div class=\"mt-4 text-[30px] font-['MiSans'] text-zinc-300 leading-none\">看创维<strong class=\"font-black\" style=\"color: rgb(94, 234, 212);\">「有没有被推准」</strong></div></div><div class=\"flex-1 min-h-0 px-10 pt-14 pb-6 flex flex-col justify-start\"><span class=\"text-[21px] text-zinc-500 font-['MiSans'] mb-4\">用户会这么问</span><div class=\"flex flex-col gap-3.5\"><div class=\"text-[36px] text-white font-black font-['MiSans'] leading-tight\">“适合小客厅的入门壁纸电视”<span style=\"color: rgb(94, 234, 212);\"> → A8H</span></div><div class=\"text-[36px] text-white font-black font-['MiSans'] leading-tight\">“主打线下的高端壁纸电视”<span style=\"color: rgb(94, 234, 212);\"> → A10H</span></div></div><p class=\"text-[22px] text-zinc-400 font-['MiSans'] leading-snug mt-5\">问法已锁定「场景 / 人群」、指向唯一那款 —— AI 端出别的创维型号，也算没推准。</p></div><div class=\"shrink-0 px-10 py-7 border-t border-zinc-800\"><div class=\"flex items-center justify-between mb-3.5\"><span class=\"text-[21px] text-zinc-500 font-['MiSans']\">这批 AI 结果里，谁算命中</span><span class=\"px-4 py-1.5 rounded-full text-[21px] font-bold font-['MiSans'] leading-none\" style=\"background: rgba(45, 212, 191, 0.133); color: rgb(94, 234, 212);\">命中 1 款 · 另 4 款不算</span></div><div class=\"flex flex-wrap gap-2.5\"><span class=\"rounded-xl font-bold font-['MiSans'] leading-none text-center truncate px-3 py-2 text-[20px]\" style=\"background: transparent; border: 1px dashed rgba(45, 212, 191, 0.6); color: rgb(94, 234, 212);\">创维 A7H Pro</span><span class=\"rounded-xl font-bold font-['MiSans'] leading-none text-center truncate px-3 py-2 text-[20px]\" style=\"background: rgb(45, 212, 191); color: rgb(10, 15, 14); box-shadow: rgba(45, 212, 191, 0.333) 0px 0px 22px;\">创维 A8H</span><span class=\"rounded-xl font-bold font-['MiSans'] leading-none text-center truncate px-3 py-2 text-[20px]\" style=\"background: transparent; border: 1px dashed rgba(45, 212, 191, 0.6); color: rgb(94, 234, 212);\">创维 A10H</span><span class=\"rounded-xl font-bold font-['MiSans'] leading-none text-center truncate px-3 py-2 text-[20px]\" style=\"background: transparent; border: 1px dashed rgba(45, 212, 191, 0.6); color: rgb(94, 234, 212);\">创维 Q8H</span><span class=\"rounded-xl font-bold font-['MiSans'] leading-none text-center truncate px-3 py-2 text-[20px]\" style=\"background: transparent; border: 1px dashed rgba(45, 212, 191, 0.6); color: rgb(94, 234, 212);\">创维 A5D</span></div><p class=\"text-[19px] text-zinc-600 font-['MiSans'] mt-3 min-h-[24px]\">虚线框：是创维、但不是框定的那款，不算推准</p></div></div></div>"
+      },
+      "0.1.0.3.0.0.0": {
+        "dx": 0,
+        "dy": 0,
+        "rotate": 0,
+        "fontSize": "",
+        "color": "",
+        "fontFamily": "",
+        "fontWeight": "",
+        "textAlign": "",
+        "lineHeight": "",
+        "letterSpacing": "",
+        "html": "品类词看的是：创维有没有被推荐进这个品类   产品专属词看的是：每一款产品有没有被 AI 正确理解和推荐"
+      },
+      "0.1.0.2.0": {
+        "dx": 0,
+        "dy": 0,
+        "rotate": 0,
+        "fontSize": "",
+        "color": "",
+        "fontFamily": "",
+        "fontWeight": "",
+        "textAlign": "",
+        "lineHeight": "",
+        "letterSpacing": "",
+        "html": "优化词和监测词下面再分成两类"
+      }
+    },
+    "chapter-1-0-2": {
+      "0.1.0.3.0.0": {
+        "dx": 0,
+        "dy": 0,
+        "rotate": 0,
+        "fontSize": 38,
+        "color": "#ffffff",
+        "fontFamily": "",
+        "fontWeight": 700,
+        "textAlign": "",
+        "lineHeight": "",
+        "letterSpacing": "",
+        "html": "这样先把词分为优化类和监测类，再细分为品类词和产品专专属词，这样分完以后，每类词的统计口径和优化目标就都清楚了。"
+      }
     }
   },
   "titleOverrides": {
@@ -261,6 +330,7 @@
     "chapter-0-0-1": "没重新做AI品牌定位的“坑”",
     "chapter-0-1-0": "如何了解消费者真实感受和AI偏向",
     "chapter-0-2-0": "创维AI品牌定位报告",
-    "chapter-1-0-0": "不同种类的词怎么分类？"
+    "chapter-1-0-0": "不同种类的词怎么分类？",
+    "chapter-1-0-1": "优化词和监测词下面再分成两类"
   }
 }

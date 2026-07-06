@@ -20,12 +20,7 @@ import {
   Page_SkyworthResearchIndustry,
 } from '../pages/Page_SkyworthResearchAppendix';
 import { Page_SkyworthKeywordWhySplit_A } from '../pages/Page_SkyworthKeywordWhySplit';
-import Page_SkyworthKeywordWhySplitSummary from '../pages/Page_SkyworthKeywordWhySplitSummary';
-import {
-  Page_SkyworthKeywordOptTwoTypes_A,
-  Page_SkyworthKeywordOptTwoTypes_B,
-  Page_SkyworthKeywordOptTwoTypes_C,
-} from '../pages/Page_SkyworthKeywordOptTwoTypes';
+import { Page_SkyworthKeywordOptTwoTypes_C } from '../pages/Page_SkyworthKeywordOptTwoTypes';
 import Page_SkyworthKeywordLogic from '../pages/Page_SkyworthKeywordLogic';
 import Page_GEOWordSelectionOther from '../pages/Page_GEOWordSelectionOther';
 import Page_GEOWordSelectionOther2 from '../pages/Page_GEOWordSelectionOther2';
@@ -114,7 +109,6 @@ import {
   Page_UserComment_Trend,
   Page_UserComment_Fake,
 } from '../pages/Page_UserCommentModules';
-import Page_OtherContentApproach from '../pages/Page_OtherContentApproach';
 import Page_SkyworthContentDetailsAI from '../pages/Page_SkyworthContentDetailsAI';
 import Page_HumanAiRatioApproach from '../pages/Page_HumanAiRatioApproach';
 import Page_ContentQualityValue from '../pages/Page_ContentQualityValue';
@@ -230,8 +224,7 @@ export const slideConfig = [
 
   { type: 'section', title: '关键词怎么分类' },
   { type: 'page', title: '监测词与优化词', component: Page_SkyworthKeywordWhySplit_A, hideHeader: true },
-  { type: 'page', title: '监测词与优化词（总结）', component: Page_SkyworthKeywordWhySplitSummary, hideHeader: true },
-  { type: 'page', title: '优化词的两类', variants: [Page_SkyworthKeywordOptTwoTypes_C, Page_SkyworthKeywordOptTwoTypes_A, Page_SkyworthKeywordOptTwoTypes_B], hideHeader: true },
+  { type: 'page', title: '优化词的两类', component: Page_SkyworthKeywordOptTwoTypes_C, hideHeader: true },
   { type: 'page', title: '我们的词条分类逻辑', component: Page_SkyworthKeywordLogic, hideHeader: true },
 
   { type: 'section', title: '这些词是怎么选出来的' },
@@ -285,11 +278,9 @@ export const slideConfig = [
   { type: 'chapter', title: '内容策略', subtitle: 'CONTENT STRATEGY', backgroundImage: '' },
 
   { type: 'section', title: '我们到底用AI还是用人写内容' },
-  { type: 'page', title: '我们到底用AI还是用人工写内容', component: Page_SkyworthContentDetailsAI, hideHeader: true },
-  { type: 'page', title: '我们开发的内容Agent系统', component: Page_GeoWritingAgentIntro, hideHeader: true },
+  { type: 'page', title: '我们到底用AI还是用人工写内容', variants: [Page_SkyworthContentDetailsAI, Page_HumanAiRatioApproach], hideHeader: true },
   { type: 'page', title: '用人写的好处和坏处”', component: Page_ContentQualityValue, hideHeader: true },
-  { type: 'page', title: '市面上其他做法', component: Page_OtherContentApproach, hideHeader: true },
-  { type: 'page', title: '我们的策略', component: Page_HumanAiRatioApproach, hideHeader: true },
+  { type: 'page', title: '我们开发的内容Agent系统', component: Page_GeoWritingAgentIntro, hideHeader: true },
 
   { type: 'section', title: '创维的内容怎么做' },
   { type: 'page', title: '创维定制内容方向规划', component: Page_SkyworthContentDirection, hideHeader: true },
