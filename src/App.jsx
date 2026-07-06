@@ -8,6 +8,7 @@ import Page_ProposalChapterCover from './pages/Page_ProposalChapterCover';
 import ChapterPage from './components/ChapterPage';
 import { flatSlides, parsedConfig } from './config/parseConfig';
 import initialOrder from './slideOrder.json';
+import initialEdits from './slideEdits.json';
 
 const slideDictionary = {};
 flatSlides.forEach((slide) => {
@@ -98,6 +99,47 @@ try {
   localStorage.removeItem(ORDER_BASELINE_KEY);
 } catch {
   // ignore
+}
+
+/* ------------------------------------------------------------------ */
+/* 可视化编辑持久化（方案 1+3）：                                        */
+/*  - 落盘到 src/slideEdits.json（可进 git、团队共享），机制与排序一致    */
+/*  - 启动时以文件为准回填 localStorage；但文件为空绝不覆盖本地，防丢失   */
+/* ------------------------------------------------------------------ */
+(function syncEditsFromFile() {
+  try {
+    const fileVisual = initialEdits?.visualEdits || {};
+    const fileTitles = initialEdits?.titleOverrides || {};
+    const fileHasData =
+      Object.keys(fileVisual).length > 0 || Object.keys(fileTitles).length > 0;
+    // 只有文件里确实有内容时才用文件覆盖本地（文件为源）；
+    // 文件为空时保留本地数据，随后由挂载时的迁移逻辑把本地内容回写文件
+    if (fileHasData) {
+      localStorage.setItem(VISUAL_EDITS_KEY, JSON.stringify(fileVisual));
+      localStorage.setItem(TITLE_OVERRIDES_KEY, JSON.stringify(fileTitles));
+    }
+  } catch {
+    // localStorage / JSON 异常时不动本地数据
+  }
+})();
+
+/* 把当前 localStorage 里的可视化编辑写回服务端文件（防抖调用） */
+async function saveEditsToServer() {
+  try {
+    const visualEdits = JSON.parse(
+      localStorage.getItem(VISUAL_EDITS_KEY) || '{}'
+    );
+    const titleOverrides = JSON.parse(
+      localStorage.getItem(TITLE_OVERRIDES_KEY) || '{}'
+    );
+    await fetch('/api/save-edits', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({ visualEdits, titleOverrides }),
+    });
+  } catch (err) {
+    console.error('保存可视化编辑失败:', err);
+  }
 }
 
 /* 副本页 id：在原 id 后面加 __copyN，渲染时映射回原组件 */
@@ -208,6 +250,47 @@ export default function App() {
     };
     window.addEventListener('slide-title-override', onTitleOverride);
     return () => window.removeEventListener('slide-title-override', onTitleOverride);
+  }, []);
+
+  // 迁移/备份：git 文件还没有可视化编辑，但本地已有 → 立即回写文件（一次性）
+  useEffect(() => {
+    const fileVisual = initialEdits?.visualEdits || {};
+    const fileTitles = initialEdits?.titleOverrides || {};
+    const fileHasData =
+      Object.keys(fileVisual).length > 0 || Object.keys(fileTitles).length > 0;
+    if (fileHasData) return;
+    try {
+      const localVisual = JSON.parse(
+        localStorage.getItem(VISUAL_EDITS_KEY) || '{}'
+      );
+      const localTitles = JSON.parse(
+        localStorage.getItem(TITLE_OVERRIDES_KEY) || '{}'
+      );
+      if (
+        Object.keys(localVisual).length > 0 ||
+        Object.keys(localTitles).length > 0
+      ) {
+        saveEditsToServer();
+      }
+    } catch {
+      // ignore
+    }
+  }, []);
+
+  // 可视化编辑自动保存：改动后 800ms 写回 slideEdits.json（与排序自动保存一致）
+  useEffect(() => {
+    let timer = null;
+    const schedule = () => {
+      clearTimeout(timer);
+      timer = setTimeout(() => saveEditsToServer(), 800);
+    };
+    window.addEventListener('slide-visual-edits-changed', schedule);
+    window.addEventListener('slide-title-override', schedule);
+    return () => {
+      clearTimeout(timer);
+      window.removeEventListener('slide-visual-edits-changed', schedule);
+      window.removeEventListener('slide-title-override', schedule);
+    };
   }, []);
 
   const getSlideName = (id, fallback) => titleOverrides[id] || fallback;
@@ -366,6 +449,7 @@ export default function App() {
       if (all[srcId]) {
         all[newId] = JSON.parse(JSON.stringify(all[srcId]));
         localStorage.setItem(VISUAL_EDITS_KEY, JSON.stringify(all));
+        window.dispatchEvent(new Event('slide-visual-edits-changed'));
       }
     } catch {
       // localStorage unavailable
@@ -391,6 +475,7 @@ export default function App() {
       const all = JSON.parse(localStorage.getItem(VISUAL_EDITS_KEY)) || {};
       delete all[id];
       localStorage.setItem(VISUAL_EDITS_KEY, JSON.stringify(all));
+      window.dispatchEvent(new Event('slide-visual-edits-changed'));
     } catch {
       // localStorage unavailable
     }

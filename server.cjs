@@ -23,6 +23,24 @@ app.post('/api/save-order', (req, res) => {
   }
 });
 
+app.post('/api/save-edits', (req, res) => {
+  const { visualEdits, titleOverrides } = req.body || {};
+  try {
+    const filePath = path.join(__dirname, 'src/slideEdits.json');
+    const payload = {
+      visualEdits:
+        visualEdits && typeof visualEdits === 'object' ? visualEdits : {},
+      titleOverrides:
+        titleOverrides && typeof titleOverrides === 'object' ? titleOverrides : {},
+    };
+    fs.writeFileSync(filePath, JSON.stringify(payload, null, 2), 'utf-8');
+    res.json({ success: true });
+  } catch (err) {
+    console.error('Save edits failed:', err);
+    res.status(500).json({ success: false, error: err.message });
+  }
+});
+
 app.use(express.static(DIST_DIR));
 
 app.get('*', (req, res) => {

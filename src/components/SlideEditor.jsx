@@ -31,6 +31,8 @@ function saveAll(data) {
   } catch {
     /* ignore */
   }
+  // 通知 App 把可视化编辑防抖写回 slideEdits.json（持久化，可进 git）
+  window.dispatchEvent(new Event('slide-visual-edits-changed'));
 }
 
 /* ------------------------------------------------------------------ */
