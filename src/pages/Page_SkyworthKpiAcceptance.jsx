@@ -121,7 +121,7 @@ export function Page_SkyworthKpiAcceptance() {
 
                   {/* ── Row 1: 品牌词（一守一攻） ── */}
                   <tr className="hover:bg-white/[0.01] transition-colors duration-200 border-b border-white/[0.22]">
-                    <td className="py-3 xl:py-4 pl-4 font-semibold text-zinc-100 align-top">
+                    <td className="py-2.5 xl:py-3 pl-4 font-semibold text-zinc-100 align-top">
                       <div className="flex flex-col gap-1">
                         <span className="text-[20px] xl:text-[22px] text-white font-extrabold">优化词</span>
                         <span className="text-[14px] xl:text-[15px] text-zinc-400 font-normal">高相关词 · 低相关词</span>
@@ -129,23 +129,23 @@ export function Page_SkyworthKpiAcceptance() {
                     </td>
 
                     {/* Column 2: 演进策略 */}
-                    <td className="py-3 xl:py-4 text-zinc-300 align-top pr-4 pl-6">
-                      <div className="flex flex-col gap-4">
-                        <div className="flex items-start gap-2.5 min-h-[100px] xl:min-h-[110px]">
+                    <td className="py-2.5 xl:py-3 text-zinc-300 align-top pr-4 pl-6">
+                      <div className="flex flex-col gap-3">
+                        <div className="flex items-start gap-2.5 min-h-[88px] xl:min-h-[92px]">
                           <span className="w-[72px] shrink-0 text-[13.5px] xl:text-[14.5px] font-black bg-white/10 text-zinc-200 py-[1.5px] rounded text-center">阶段一</span>
                           <div className="text-[18px] xl:text-[20px] leading-relaxed text-justify">
                             <span className="text-white font-black">打地基｜3个月</span>
                             <span className="text-zinc-400 ml-2.5">高相关词全面固位，低相关词启动基础曝光</span>
                           </div>
                         </div>
-                        <div className="flex items-start gap-2.5 min-h-[100px] xl:min-h-[110px]">
+                        <div className="flex items-start gap-2.5 min-h-[88px] xl:min-h-[92px]">
                           <span className="w-[72px] shrink-0 text-[13.5px] xl:text-[14.5px] font-black bg-white/10 text-zinc-200 py-[1.5px] rounded text-center">阶段二</span>
                           <div className="text-[18px] xl:text-[20px] leading-relaxed text-justify">
                             <span className="text-white font-black">稳提升｜6个月</span>
                             <span className="text-zinc-400 ml-2.5">高相关词持续拉升，低相关词挤入核心推荐榜</span>
                           </div>
                         </div>
-                        <div className="flex items-start gap-2.5 min-h-[100px] xl:min-h-[110px]">
+                        <div className="flex items-start gap-2.5 min-h-[88px] xl:min-h-[92px]">
                           <span className="w-[72px] shrink-0 text-[13.5px] xl:text-[14.5px] font-black bg-white/10 text-zinc-200 py-[1.5px] rounded text-center">阶段三</span>
                           <div className="text-[18px] xl:text-[20px] leading-relaxed text-justify">
                             <span className="text-white font-black">占高位｜3个月</span>
@@ -156,11 +156,11 @@ export function Page_SkyworthKpiAcceptance() {
                     </td>
 
                     {/* Column 3: KPI 考核 */}
-                    <td className="py-3 xl:py-4 text-zinc-300 align-top pr-4 pl-6">
-                      <div className="flex flex-col gap-4">
-                        <div className="flex items-start gap-2.5 min-h-[100px] xl:min-h-[110px]">
+                    <td className="py-2.5 xl:py-3 text-zinc-300 align-top pr-4 pl-6">
+                      <div className="flex flex-col gap-3">
+                        <div className="flex items-start gap-2.5 min-h-[84px] xl:min-h-[92px]">
                           <span className="w-[100px] shrink-0 text-[13.5px] xl:text-[14.5px] font-black bg-[#004CE5]/20 text-[#8cb1ff] border border-[#004CE5]/40 py-[1.5px] rounded text-center">阶段一考核</span>
-                          <div className="text-[15.5px] xl:text-[17px] leading-relaxed text-zinc-200 flex flex-col gap-2">
+                          <div className="text-[15.5px] xl:text-[17px] leading-snug text-zinc-200 flex flex-col gap-1.5">
                             <div>
                               <strong className="text-white font-bold">高相关词</strong>：TOP1 位次稳定 <strong className="text-white font-black">NO.1</strong>，提及率 <strong className="text-white font-black">≥ 70%</strong>
                             </div>
@@ -169,9 +169,9 @@ export function Page_SkyworthKpiAcceptance() {
                             </div>
                           </div>
                         </div>
-                        <div className="flex items-start gap-2.5 min-h-[100px] xl:min-h-[110px]">
+                        <div className="flex items-start gap-2.5 min-h-[84px] xl:min-h-[92px]">
                           <span className="w-[100px] shrink-0 text-[13.5px] xl:text-[14.5px] font-black bg-[#004CE5]/20 text-[#8cb1ff] border border-[#004CE5]/40 py-[1.5px] rounded text-center">阶段二考核</span>
-                          <div className="text-[15.5px] xl:text-[17px] leading-relaxed text-zinc-200 flex flex-col gap-2">
+                          <div className="text-[15.5px] xl:text-[17px] leading-snug text-zinc-200 flex flex-col gap-1.5">
                             <div>
                               <strong className="text-white font-bold">高相关词</strong>：提及率 <strong className="text-white font-black">≥ 80%</strong>，TOP3 提及率 <strong className="text-white font-black">≥ 70%</strong>
                             </div>
@@ -180,9 +180,9 @@ export function Page_SkyworthKpiAcceptance() {
                             </div>
                           </div>
                         </div>
-                        <div className="flex items-start gap-2.5 min-h-[100px] xl:min-h-[110px]">
+                        <div className="flex items-start gap-2.5 min-h-[84px] xl:min-h-[92px]">
                           <span className="w-[100px] shrink-0 text-[13.5px] xl:text-[14.5px] font-black bg-[#004CE5]/20 text-[#8cb1ff] border border-[#004CE5]/40 py-[1.5px] rounded text-center">阶段三考核</span>
-                          <div className="text-[15.5px] xl:text-[17px] leading-relaxed text-zinc-200 flex flex-col gap-2">
+                          <div className="text-[15.5px] xl:text-[17px] leading-snug text-zinc-200 flex flex-col gap-1.5">
                             <div>
                               <strong className="text-white font-bold">高相关词</strong>：提及率 <strong className="text-white font-black">≥ 90%</strong>，TOP3 提及率 <strong className="text-white font-black">≥ 85%</strong>
                             </div>
@@ -195,7 +195,7 @@ export function Page_SkyworthKpiAcceptance() {
                     </td>
 
                     {/* Column 4: 最终交付标准 */}
-                    <td className="py-3 xl:py-4 text-zinc-300 align-top pr-4 border-l border-white/[0.22] pl-6">
+                    <td className="py-2.5 xl:py-3 text-zinc-300 align-top pr-4 border-l border-white/[0.22] pl-6">
                       <div className="flex flex-col gap-2.5 bg-[#004CE5]/5 border border-[#004CE5]/15 p-3 xl:p-4 rounded-xl h-full justify-center">
                         <p className="text-zinc-150 text-[17px] xl:text-[18.5px] leading-relaxed text-justify">
                           在 <strong className="text-white font-bold">DeepSeek、豆包、元宝、通义千问</strong> 四个 AI 平台搜索约定词条时，AI 回答中应出现创维品牌/产品推荐、推荐理由及基于官方信息的产品表述。
@@ -209,23 +209,23 @@ export function Page_SkyworthKpiAcceptance() {
 
                   {/* ── Row 2: 监测词（负面及错误） ── */}
                   <tr className="hover:bg-white/[0.01] transition-colors duration-200">
-                    <td className="py-3 xl:py-4 pl-4 font-semibold text-zinc-100 align-top">
+                    <td className="py-2.5 xl:py-3 pl-4 font-semibold text-zinc-100 align-top">
                       <div className="flex flex-col gap-1">
                         <span className="text-[20px] xl:text-[22px] text-white font-extrabold">监测词</span>
                       </div>
                     </td>
 
                     {/* Column 2: 演进策略 */}
-                    <td className="py-3 xl:py-4 text-zinc-300 align-top pr-4 pl-6">
+                    <td className="py-2.5 xl:py-3 text-zinc-300 align-top pr-4 pl-6">
                       <div className="flex flex-col gap-4">
-                        <div className="flex items-start gap-2.5 h-[80px] xl:h-[88px]">
+                        <div className="flex items-start gap-2.5 h-[76px] xl:h-[80px]">
                           <span className="w-[72px] shrink-0 text-[13.5px] xl:text-[14.5px] font-black bg-white/10 text-zinc-200 py-[1.5px] rounded text-center">阶段一</span>
                           <div className="text-[18px] xl:text-[20px] leading-relaxed text-justify">
                             <span className="text-white font-black">查问题｜1个月</span>
                             <span className="text-zinc-400 ml-2.5">建立负面 / 错误信息监测，定制针对性策略</span>
                           </div>
                         </div>
-                        <div className="flex items-start gap-2.5 h-[80px] xl:h-[88px]">
+                        <div className="flex items-start gap-2.5 h-[76px] xl:h-[80px]">
                           <span className="w-[72px] shrink-0 text-[13.5px] xl:text-[14.5px] font-black bg-white/10 text-zinc-200 py-[1.5px] rounded text-center">阶段二</span>
                           <div className="text-[18px] xl:text-[20px] leading-relaxed text-justify">
                             <span className="text-white font-black">解问题｜11个月</span>
@@ -236,8 +236,8 @@ export function Page_SkyworthKpiAcceptance() {
                     </td>
 
                     {/* Column 3: KPI 考核 */}
-                    <td className="py-3 xl:py-4 text-zinc-300 align-top pr-4 pl-6">
-                      <div className="flex flex-col justify-center h-full bg-[#004CE5]/5 border border-[#004CE5]/15 p-3 xl:p-4 rounded-xl min-h-[170px] xl:min-h-[188px]">
+                    <td className="py-2.5 xl:py-3 text-zinc-300 align-top pr-4 pl-6">
+                      <div className="flex flex-col justify-center h-full bg-[#004CE5]/5 border border-[#004CE5]/15 p-3 xl:p-4 rounded-xl min-h-[160px] xl:min-h-[172px]">
                         <p className="text-zinc-200 text-[15.5px] xl:text-[17px] leading-relaxed text-justify">
                           针对品牌询问，AI 生成内容的<strong className="text-white font-bold">核心事实准确率</strong>达到约定标准，<strong className="text-white font-bold">负面信息占比守住 10% 红线以内</strong>，正向/中性情绪导向占比稳定在 <strong className="text-white font-bold">90% 以上</strong>。
                         </p>
@@ -245,8 +245,8 @@ export function Page_SkyworthKpiAcceptance() {
                     </td>
 
                     {/* Column 4: 最终交付标准 */}
-                    <td className="py-3 xl:py-4 text-zinc-400 align-top pr-4 leading-relaxed border-l border-white/[0.22] pl-6 text-zinc-200">
-                      <div className="flex flex-col gap-2 bg-white/[0.015] border border-white/[0.04] p-3 xl:p-4 rounded-xl h-full justify-center min-h-[170px] xl:min-h-[188px]">
+                    <td className="py-2.5 xl:py-3 text-zinc-400 align-top pr-4 leading-relaxed border-l border-white/[0.22] pl-6 text-zinc-200">
+                      <div className="flex flex-col gap-2 bg-white/[0.015] border border-white/[0.04] p-3 xl:p-4 rounded-xl h-full justify-center min-h-[160px] xl:min-h-[172px]">
                         <p className="text-zinc-200 text-[17px] xl:text-[18.5px] leading-relaxed text-justify">
                           围绕约定平台、5 款壁纸电视及核心词条，持续监测并纠偏价格错乱、型号混淆、历史价格引用等问题，通过信源定位、官方口径强化和内容覆盖，降低 AI 引用错误信息的概率。
                         </p>
