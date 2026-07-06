@@ -1,5 +1,6 @@
 import React from 'react';
 import SlideLayout from '../components/SlideLayout';
+import overview from '../data/geoOverview.json';
 
 const FONT_IMPORT = `@import url('https://fonts.geekzu.org/css2?family=Montserrat:wght@400;500;600;700;800;900&display=swap');`;
 
@@ -20,17 +21,19 @@ function SectionTitle({ children }) {
   );
 }
 
-const CATEGORY_SENTIMENT = { positive: 88.5, negative: 11.5 };
-
-const PRODUCT_DUELS = [
-  { product: '创维 A10H', self: 66, note: '旗舰口碑领先，音画双优被 AI 采信' },
-  { product: '创维 A8H', self: 61, note: '走量爆款，好评稳居同价位前列' },
-  { product: '创维 A7H Pro', self: 57, note: '与同价竞品咬得较紧' },
-  { product: '创维 Q8H', self: 54, note: '仅小幅领先竞品' },
-  { product: '创维 Q7H', self: 51, note: '与竞品差距最小' },
-];
+// 注意：以下 note 文案基于当前 geoOverview.json 数据撰写，重新采集数据后需人工同步更新
+const PRODUCT_NOTES = {
+  '创维A7H Pro': '负面占比相对最高，需关注具体差评点',
+  '创维A8H': '口碑接近全正面，表现稳定',
+  '创维A10H': '旗舰口碑优异，负面声量极低',
+  '创维Q7H': '整体正面，存在少量负面信息',
+  '创维Q8H': '监测期内零负面，口碑最佳',
+};
 
 export function Page_SkyworthReport_MonitorWordOverview() {
+  const cat = overview.category_monitor;
+  const products = overview.product_monitor;
+
   return (
     <SlideLayout fullBleed>
       <div className="w-full h-full flex flex-col relative text-white font-sans px-12 sm:px-16 pt-6 lg:pt-8 pb-4 overflow-hidden animate-fade-in">
@@ -50,68 +53,70 @@ export function Page_SkyworthReport_MonitorWordOverview() {
               <div className="h-[72px] rounded-xl overflow-hidden flex shadow-inner">
                 <div
                   className="h-full bg-gradient-to-r from-emerald-500/80 to-emerald-400/80 flex items-center px-6"
-                  style={{ width: `${CATEGORY_SENTIMENT.positive}%` }}
+                  style={{ width: `${cat.positive}%` }}
                 >
                   <span className="text-[24px] xl:text-[26px] font-bold text-white whitespace-nowrap">
-                    正面信息 <Num>{CATEGORY_SENTIMENT.positive}%</Num>
+                    正面信息 <Num>{cat.positive}%</Num>
                   </span>
                 </div>
                 <div
                   className="h-full bg-gradient-to-r from-rose-500/70 to-rose-400/70 flex items-center justify-end px-6"
-                  style={{ width: `${CATEGORY_SENTIMENT.negative}%` }}
+                  style={{ width: `${cat.negative}%` }}
                 >
                   <span className="text-[22px] xl:text-[24px] font-bold text-white whitespace-nowrap">
-                    负面 <Num>{CATEGORY_SENTIMENT.negative}%</Num>
+                    负面 <Num>{cat.negative}%</Num>
                   </span>
                 </div>
               </div>
             </div>
           </div>
 
-          {/* 第二部分：产品专属监测词口碑对比 */}
+          {/* 第二部分：产品专属监测词正负面对比 */}
           <div className="flex-1 min-h-0 flex flex-col gap-3">
             <SectionTitle>产品专属监测词</SectionTitle>
             <div className="flex-1 min-h-0 rounded-2xl border border-white/[0.08] bg-white/[0.02] backdrop-blur-xl px-8 py-5 flex flex-col shadow-[0_4px_20px_rgba(0,0,0,0.2)]">
 
               <div className="flex items-center justify-between shrink-0 pb-3 mb-2 border-b border-white/5 text-[18px] xl:text-[20px] font-bold">
-                <span className="flex items-center gap-2.5 text-[#60A5FA]">
-                  <span className="w-4 h-4 rounded-sm bg-[#004CE5]" />
-                  说创维产品好
+                <span className="flex items-center gap-2.5 text-emerald-400">
+                  <span className="w-4 h-4 rounded-sm bg-emerald-500/80" />
+                  正面信息
                 </span>
-                <span className="flex items-center gap-2.5 text-zinc-400">
-                  说竞品产品好
-                  <span className="w-4 h-4 rounded-sm bg-zinc-600" />
+                <span className="flex items-center gap-2.5 text-rose-400">
+                  负面信息
+                  <span className="w-4 h-4 rounded-sm bg-rose-500/70" />
                 </span>
               </div>
 
-              <div className="flex-1 min-h-0 grid" style={{ gridTemplateRows: `repeat(${PRODUCT_DUELS.length}, 1fr)` }}>
-                {PRODUCT_DUELS.map((d) => {
-                  const rivalShare = 100 - d.self;
-                  return (
-                    <div key={d.product} className="flex items-center gap-5 min-h-0 py-2">
-                      <span className="w-[200px] shrink-0 text-[22px] xl:text-[24px] font-bold text-zinc-100">
-                        {d.product}
-                      </span>
-                      <div className="flex-1">
-                        <div className="h-14 rounded-xl overflow-hidden flex shadow-inner border border-white/5">
-                          <div
-                            className="h-full bg-gradient-to-r from-[#004CE5] to-[#3b7bff] flex items-center px-4"
-                            style={{ width: `${d.self}%` }}
-                          >
-                            <Num className="text-[22px] xl:text-[24px] font-black text-white">{d.self}%</Num>
-                          </div>
-                          <div
-                            className="h-full bg-zinc-700/70 flex items-center justify-end px-4"
-                            style={{ width: `${rivalShare}%` }}
-                          >
-                            <Num className="text-[20px] xl:text-[22px] font-bold text-zinc-300">{rivalShare}%</Num>
-                          </div>
+              <div className="flex-1 min-h-0 grid" style={{ gridTemplateRows: `repeat(${products.length}, 1fr)` }}>
+                {products.map((d) => (
+                  <div key={d.project_id} className="flex items-center gap-5 min-h-0 py-2">
+                    <span className="w-[200px] shrink-0 text-[22px] xl:text-[24px] font-bold text-zinc-100">
+                      {d.project_name}
+                    </span>
+                    <div className="flex-1">
+                      <div className="h-14 rounded-xl overflow-hidden flex shadow-inner border border-white/5">
+                        <div
+                          className="h-full bg-gradient-to-r from-emerald-500/80 to-emerald-400/80 flex items-center px-4"
+                          style={{ width: `${d.positive}%` }}
+                        >
+                          <Num className="text-[22px] xl:text-[24px] font-black text-white">{d.positive}%</Num>
                         </div>
+                        {d.negative > 0 && (
+                          <div
+                            className="h-full bg-gradient-to-r from-rose-500/70 to-rose-400/70"
+                            style={{ width: `${d.negative}%` }}
+                          />
+                        )}
                       </div>
-                      <span className="w-[280px] shrink-0 text-[16px] xl:text-[18px] text-zinc-400 leading-snug">{d.note}</span>
                     </div>
-                  );
-                })}
+                    <span className="w-[120px] shrink-0 text-right text-[20px] xl:text-[22px] font-bold text-rose-400">
+                      负面 <Num>{d.negative}%</Num>
+                    </span>
+                    <span className="w-[280px] shrink-0 text-[16px] xl:text-[18px] text-zinc-400 leading-snug">
+                      {PRODUCT_NOTES[d.project_name] || ''}
+                    </span>
+                  </div>
+                ))}
               </div>
             </div>
           </div>
