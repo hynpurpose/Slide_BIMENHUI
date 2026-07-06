@@ -23,6 +23,46 @@ const MON_COLUMNS = [
   { key: '名称解释', label: '名称解释', width: '40%' },
 ];
 
+// 飞书单选标签风格的柔和色板（深色背景适配：低透明度底色 + 亮色文字）
+const TAG_PALETTE = {
+  blue: { bg: 'rgba(59, 130, 246, 0.18)', text: '#8FBFFF' },
+  purple: { bg: 'rgba(139, 92, 246, 0.18)', text: '#C0A8FF' },
+  cyan: { bg: 'rgba(34, 211, 238, 0.15)', text: '#7DE3F4' },
+  teal: { bg: 'rgba(20, 184, 166, 0.16)', text: '#6EDCC8' },
+  green: { bg: 'rgba(34, 197, 94, 0.16)', text: '#7FDCA0' },
+  lime: { bg: 'rgba(163, 230, 53, 0.14)', text: '#C4E87A' },
+  amber: { bg: 'rgba(245, 158, 11, 0.16)', text: '#F5C46B' },
+  orange: { bg: 'rgba(249, 115, 22, 0.16)', text: '#F9A870' },
+  rose: { bg: 'rgba(244, 63, 94, 0.16)', text: '#F79BAB' },
+  pink: { bg: 'rgba(236, 72, 153, 0.16)', text: '#F49BCB' },
+  indigo: { bg: 'rgba(99, 102, 241, 0.18)', text: '#A5A8F8' },
+  gray: { bg: 'rgba(255, 255, 255, 0.06)', text: '#C8C8CE' },
+};
+
+// 每个枚举值固定一个颜色，跨页保持一致
+const TAG_COLOR_MAP = {
+  // 词类
+  品类词: 'blue',
+  产品专属词: 'purple',
+  // 来源
+  产品词: 'teal',
+  补充词: 'amber',
+  AI补词: 'pink',
+  // 标签类（优化词）
+  排名类: 'orange',
+  价格类: 'green',
+  购买渠道: 'cyan',
+  卖点类: 'rose',
+  销量类: 'amber',
+  配置类: 'indigo',
+  // 标签类（监测词）
+  品牌认知类: 'blue',
+  竞品类: 'rose',
+  渠道售后类: 'cyan',
+  体验核对类: 'lime',
+  产品认知类: 'purple',
+};
+
 function chunkArray(arr, size) {
   const chunks = [];
   for (let i = 0; i < arr.length; i += size) {
@@ -46,9 +86,13 @@ function Cell({ colKey, value }) {
       </span>
     );
   }
-  if (colKey === '词类' || colKey === '标签类') {
+  if (colKey === '词类' || colKey === '标签类' || colKey === '原始来源') {
+    const color = TAG_PALETTE[TAG_COLOR_MAP[value]] || TAG_PALETTE.gray;
     return (
-      <span className="inline-flex items-center max-w-full h-[22px] px-2.5 rounded-full border border-white/10 bg-white/[0.05] text-[12px] leading-none text-zinc-300 font-['MiSans'] whitespace-nowrap overflow-hidden">
+      <span
+        className="inline-flex items-center max-w-full h-[22px] px-2.5 rounded-md text-[12px] leading-none font-medium font-['MiSans'] whitespace-nowrap overflow-hidden"
+        style={{ backgroundColor: color.bg, color: color.text }}
+      >
         {value}
       </span>
     );
