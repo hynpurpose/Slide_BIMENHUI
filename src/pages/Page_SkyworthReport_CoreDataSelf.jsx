@@ -27,7 +27,7 @@ export function Page_SkyworthReport_CoreDataSelf() {
     },
     {
       label: '产品专属优化词',
-      sub: '(五款产品平均表现)',
+      sub: '(五款产品汇总)',
       mention: prodAvg.mention_rate,
       top1: prodAvg.top1_rate,
       top3: prodAvg.top3_rate,
@@ -95,7 +95,7 @@ export function Page_SkyworthReport_CoreDataSelf() {
             <div className="flex items-start gap-6">
               <span className="text-[22px] xl:text-[24px] font-bold text-white shrink-0 bg-[#004CE5] px-5 py-2.5 rounded-xl shadow-[0_0_10px_rgba(0,76,229,0.3)]">数据总结</span>
               <p className="text-[22px] xl:text-[24px] text-zinc-200 leading-relaxed text-justify flex-1">
-                品牌层面，创维在品类大词的<strong className="text-white font-bold">提及率为 59.4%</strong>，AI 已具备基础认知，但 <strong className="text-white font-bold">TOP1 仅 24.7%</strong>，超过七成首推位仍被竞品占据，首推转化是当前最大缺口。产品平均层面，五款重点产品平均提及率为 <strong className="text-[#60A5FA] font-bold">31.5%</strong>，平均 TOP1 仅为 <strong className="text-[#60A5FA] font-bold">13.6%</strong>，且各产品差异悬殊（A7H Pro 达 61.7%，Q7H 尚未被 AI 提及），亟需通过专属场景与长尾优化词的语料覆盖，整体拉升产品级的认知度与推荐精度。
+                品牌层面，创维在品类大词的<strong className="text-white font-bold">提及率为 59.4%</strong>，AI 已具备基础认知，但 <strong className="text-white font-bold">TOP1 仅 24.7%</strong>，超过七成首推位仍被竞品占据，首推转化是当前最大缺口。产品汇总层面，五款重点产品整体提及率为 <strong className="text-[#60A5FA] font-bold">35.5%</strong>，TOP1 仅为 <strong className="text-[#60A5FA] font-bold">15.5%</strong>，且各产品差异悬殊（A7H Pro 达 61.7%，Q7H 尚未被 AI 提及），亟需通过专属场景与长尾优化词的语料覆盖，整体拉升产品级的认知度与推荐精度。
               </p>
             </div>
           </div>

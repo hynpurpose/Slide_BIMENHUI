@@ -23,11 +23,11 @@ function SectionTitle({ children }) {
 
 // 注意：以下 note 文案基于当前 geoOverview.json 数据撰写，重新采集数据后需人工同步更新
 const PRODUCT_NOTES = {
-  '创维A7H Pro': '负面占比相对最高，需关注具体差评点',
-  '创维A8H': '口碑接近全正面，表现稳定',
-  '创维A10H': '旗舰口碑优异，负面声量极低',
+  '创维A7H Pro': '负面占比偏高，需关注具体差评点',
+  '创维A8H': '负面声量最低，口碑表现最佳',
+  '创维A10H': '旗舰口碑稳定，负面声量低',
   '创维Q7H': '整体正面，存在少量负面信息',
-  '创维Q8H': '监测期内零负面，口碑最佳',
+  '创维Q8H': '负面占比相对最高，需重点排查',
 };
 
 export function Page_SkyworthReport_MonitorWordOverview() {

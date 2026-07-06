@@ -62,12 +62,15 @@ async function login() {
 const num = (v) => (v === null || v === undefined || v === '' ? null : Number(v));
 const round1 = (v) => (v === null ? null : Math.round(v * 10) / 10);
 
-/** 项目实际有数据的日期区间 */
+/** 项目实际有数据的日期区间。接口返回可能乱序；当天数据可能还在采集中，有其他日期时剔除当天 */
 async function dataRange(projectId) {
   let dates = [];
   try {
     dates = (await api(`/api/projects/${projectId}/data-dates`)).data.dates || [];
   } catch { /* 老版本后端无此接口 */ }
+  dates = [...dates].sort();
+  const today = new Date().toISOString().slice(0, 10);
+  if (dates.length > 1 && dates[dates.length - 1] === today) dates = dates.slice(0, -1);
   return { dates, start: dates[0] || null, end: dates[dates.length - 1] || null };
 }
 
@@ -153,19 +156,24 @@ async function main() {
   const productMonitor = [];
   for (const p of productMonitorProjs) productMonitor.push(await fetchMonitorProject(p));
 
-  const avg = (arr) => {
-    const vals = arr.filter((v) => v !== null);
-    return vals.length ? round1(vals.reduce((s, v) => s + v, 0) / vals.length) : null;
+  // 产品汇总按会话数加权（= 各项目提及会话合并后再算比率），与运营侧报表口径一致
+  const totalConv = productOpt.reduce((s, p) => s + (p.total_conversations || 0), 0);
+  const weighted = (key) => {
+    if (!totalConv) return null;
+    const sum = productOpt.reduce((s, p) => s + (p[key] || 0) * (p.total_conversations || 0), 0);
+    return round1(sum / totalConv);
   };
   const productOptAvg = {
-    mention_rate: avg(productOpt.map((p) => p.mention_rate)),
-    top1_rate: avg(productOpt.map((p) => p.top1_rate)),
-    top3_rate: avg(productOpt.map((p) => p.top3_rate)),
+    mention_rate: weighted('mention_rate'),
+    top1_rate: weighted('top1_rate'),
+    top3_rate: weighted('top3_rate'),
   };
 
   // ===== 监测范围汇总 =====
   const all = [categoryOpt, ...productOpt, categoryMonitor, ...productMonitor];
   const allDates = [...new Set(all.flatMap((p) => p.dates))].sort();
+  // 执行天数按单个项目的监测天数算（各批项目采集日期可能错开，取并集会虚高）
+  const days = Math.max(...all.map((p) => p.dates.length));
   const totalEntries = all.reduce((s, p) => s + (p.entry_count || 0), 0);
   const totalQueries = all.reduce((s, p) => s + (p.total_conversations || 0), 0);
   const totalArticles = all.reduce((s, p) => s + (p.total_articles || 0), 0);
@@ -191,7 +199,7 @@ async function main() {
     scope: {
       start_date: allDates[0] || null,
       end_date: allDates[allDates.length - 1] || null,
-      days: allDates.length,
+      days,
       total_entries: totalEntries,
       entry_breakdown: {
         category_opt: categoryOpt.entry_count,
@@ -212,7 +220,7 @@ async function main() {
   console.log(`品类优化词 提及率 ${categoryOpt.mention_rate}% / TOP1 ${categoryOpt.top1_rate}% / TOP3 ${categoryOpt.top3_rate}%`);
   console.log(`产品优化词均值 提及率 ${productOptAvg.mention_rate}% / TOP1 ${productOptAvg.top1_rate}% / TOP3 ${productOptAvg.top3_rate}%`);
   console.log(`品类监测词 正面 ${categoryMonitor.positive}% / 负面 ${categoryMonitor.negative}%`);
-  console.log(`范围: ${overview.scope.days} 天 / 词条 ${totalEntries} / 查询 ${totalQueries} / 文章 ${totalArticles} / 竞品 ${brandSet.size} 家`);
+  console.log(`范围: ${days} 天 / 词条 ${totalEntries} / 查询 ${totalQueries} / 文章 ${totalArticles} / 竞品 ${brandSet.size} 家`);
 }
 
 main().catch((err) => {

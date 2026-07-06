@@ -1,6 +1,6 @@
 {
   "meta": {
-    "fetched_at": "2026-07-06T09:59:32.648Z",
+    "fetched_at": "2026-07-06T10:39:33.829Z",
     "api_base": "https://api.geotopone.com",
     "account": "chuangweidianshi1"
   },
@@ -639,9 +639,9 @@
     }
   ],
   "product_opt_avg": {
-    "mention_rate": 31.5,
-    "top1_rate": 13.6,
-    "top3_rate": 27.8
+    "mention_rate": 35.5,
+    "top1_rate": 15.5,
+    "top3_rate": 31.5
   },
   "category_monitor": {
     "project_id": 310,
@@ -650,8 +650,8 @@
     "dates": [
       "2026-07-04"
     ],
-    "positive": 82.5,
-    "negative": 17.5,
+    "positive": 81.3,
+    "negative": 18.7,
     "total_conversations": 80,
     "total_articles": 877
   },
@@ -663,8 +663,8 @@
       "dates": [
         "2026-07-05"
       ],
-      "positive": 94,
-      "negative": 6,
+      "positive": 91.7,
+      "negative": 8.3,
       "total_conversations": 84,
       "total_articles": 538
     },
@@ -675,8 +675,8 @@
       "dates": [
         "2026-07-05"
       ],
-      "positive": 98.8,
-      "negative": 1.2,
+      "positive": 96.3,
+      "negative": 3.7,
       "total_conversations": 80,
       "total_articles": 519
     },
@@ -687,8 +687,8 @@
       "dates": [
         "2026-07-05"
       ],
-      "positive": 98.8,
-      "negative": 1.2,
+      "positive": 96.3,
+      "negative": 3.7,
       "total_conversations": 80,
       "total_articles": 585
     },
@@ -699,8 +699,8 @@
       "dates": [
         "2026-07-05"
       ],
-      "positive": 96.3,
-      "negative": 3.7,
+      "positive": 92.5,
+      "negative": 7.5,
       "total_conversations": 80,
       "total_articles": 486
     },
@@ -711,8 +711,8 @@
       "dates": [
         "2026-07-05"
       ],
-      "positive": 100,
-      "negative": 0,
+      "positive": 91.3,
+      "negative": 8.7,
       "total_conversations": 80,
       "total_articles": 357
     }
@@ -720,7 +720,7 @@
   "scope": {
     "start_date": "2026-07-03",
     "end_date": "2026-07-05",
-    "days": 3,
+    "days": 1,
     "total_entries": 338,
     "entry_breakdown": {
       "category_opt": 93,

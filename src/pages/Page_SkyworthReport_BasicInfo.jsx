@@ -109,8 +109,8 @@ export function Page_SkyworthReport_BasicInfo1() {
                                 </span>
                                 <p className="text-[22px] xl:text-[24px] text-zinc-300 leading-relaxed text-justify">
                                     在 <strong className="text-white font-semibold"><MontserratNum>{fmtDate(SCOPE.start_date)} – {fmtDate(SCOPE.end_date)}</MontserratNum></strong>，围绕
-                                    <strong className="text-white font-semibold"> 创维电视-品牌与产品词条</strong> 数据监测工作按计划持续推进。累计执行周期
-                                    <strong className="text-white font-semibold"> <MontserratNum>{SCOPE.days}</MontserratNum> 天</strong>，覆盖 <MontserratNum className="font-semibold text-white">{SCOPE.platforms.length}</MontserratNum> 个主流 AI 平台（{SCOPE.platforms.join('、')}）。
+                                    <strong className="text-white font-semibold"> 创维电视-品牌与产品词条</strong> 数据监测工作按计划持续推进。各批词条已完成
+                                    <strong className="text-white font-semibold"> <MontserratNum>{SCOPE.days}</MontserratNum> 天</strong>全量采集，覆盖 <MontserratNum className="font-semibold text-white">{SCOPE.platforms.length}</MontserratNum> 个主流 AI 平台（{SCOPE.platforms.join('、')}）。
                                 </p>
                             </div>
 
