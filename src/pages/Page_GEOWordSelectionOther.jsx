@@ -72,7 +72,7 @@ export default function Page_GEOWordSelectionOther() {
           </div>
 
           {/* Card Body */}
-          <div className="flex-grow p-6 bg-zinc-950 flex flex-col justify-between">
+          <div className="flex-grow min-h-0 p-6 pb-4 bg-zinc-950 flex flex-col">
             <div className="flex-grow bg-white border border-zinc-200 rounded-xl relative overflow-hidden flex items-center justify-start h-[620px] shadow-inner">
               {!imgFailed ? (
                 <img
@@ -90,6 +90,13 @@ export default function Page_GEOWordSelectionOther() {
                 </div>
               )}
             </div>
+          </div>
+
+          {/* 卡片内数据来源：与右侧结论平齐 */}
+          <div className="shrink-0 px-6 pb-5 pt-1 border-t border-zinc-900/80 bg-zinc-950 text-center">
+            <span className="text-white text-[22px] font-sans font-bold font-['MiSans']">
+              数据来源：百度广告、小红书聚光搜索指数
+            </span>
           </div>
         </div>
 
@@ -177,11 +184,6 @@ export default function Page_GEOWordSelectionOther() {
             </div>
             <div className="w-[304px] shrink-0" aria-hidden="true" />
           </div>
-        </div>
-
-        {/* Footnote */}
-        <div className="absolute bottom-[-48px] left-0 w-[850px] text-center text-white text-[22px] font-sans font-bold z-20">
-          数据来源：百度广告、小红书聚光搜索指数
         </div>
 
       </div>
