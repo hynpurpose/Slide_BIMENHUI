@@ -47,12 +47,14 @@ function SectionTitle({ children }) {
 }
 
 function RankingCard({ title, valueLabel, data, compact = false, leading = false }) {
-  const th = compact
-    ? 'h-8 px-2 text-start align-middle text-xs font-medium whitespace-nowrap'
-    : 'h-9 px-3 text-start align-middle text-sm font-medium whitespace-nowrap';
+  const cellPx = compact ? 'px-2' : 'px-3';
+  const thBase = compact
+    ? 'h-8 text-start align-middle text-xs font-medium whitespace-nowrap'
+    : 'h-9 text-start align-middle text-sm font-medium whitespace-nowrap';
   const rowPy = compact ? 'py-2' : 'py-2.5';
   const nameSize = compact ? 'text-xs' : 'text-sm';
   const valueSize = compact ? 'text-sm' : 'text-base';
+  const valueCol = compact ? 'w-[56px]' : 'w-[96px]';
 
   const titleClass = compact
     ? 'text-[15px] xl:text-[17px] font-bold text-white shrink-0 truncate'
@@ -77,13 +79,18 @@ function RankingCard({ title, valueLabel, data, compact = false, leading = false
         <div className={`flex flex-1 flex-col min-h-0 ${compact ? 'p-3' : 'p-4'}`}>
           <div className="flex-grow min-h-0 overflow-hidden">
             <table className="w-full caption-bottom border-collapse table-fixed">
+              <colgroup>
+                <col className="w-[36px]" />
+                <col />
+                <col className={valueCol} />
+              </colgroup>
               <thead>
                 <tr className="border-b" style={{ borderColor: C.border }}>
-                  <th className={`${th} w-[36px]`} />
-                  <th className={th} style={{ color: C.fg }}>
+                  <th className={`${thBase} ${cellPx}`} />
+                  <th className={`${thBase} ${cellPx}`} style={{ color: C.fg }}>
                     产品名称
                   </th>
-                  <th className={`${th} text-right pr-1`} style={{ color: C.fg }}>
+                  <th className={`${thBase} ${cellPx} text-right tabular-nums`} style={{ color: C.fg }}>
                     {valueLabel}
                   </th>
                 </tr>
@@ -91,10 +98,10 @@ function RankingCard({ title, valueLabel, data, compact = false, leading = false
               <tbody>
                 {data.map((item, idx) => (
                   <tr key={idx} className="border-b last:border-0" style={{ borderColor: C.border }}>
-                    <td className={`px-2 ${rowPy} align-middle`}>
+                    <td className={`${cellPx} ${rowPy} align-middle`}>
                       <RankBadge rank={idx + 1} />
                     </td>
-                    <td className={`px-2 ${rowPy} align-middle`}>
+                    <td className={`${cellPx} ${rowPy} align-middle`}>
                       <div className="flex items-center gap-1.5 min-w-0">
                         <span className={`${nameSize} font-medium truncate`} style={{ color: C.fg }}>
                           {item.name}
@@ -102,7 +109,7 @@ function RankingCard({ title, valueLabel, data, compact = false, leading = false
                         {item.self && <TargetProductTag />}
                       </div>
                     </td>
-                    <td className={`px-2 ${rowPy} text-right align-middle ${valueSize} font-medium`} style={{ color: C.fg }}>
+                    <td className={`${cellPx} ${rowPy} text-right align-middle tabular-nums ${valueSize} font-medium`} style={{ color: C.fg }}>
                       {item.value}
                     </td>
                   </tr>
