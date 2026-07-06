@@ -2,13 +2,16 @@ import React from 'react';
 import { PenTool } from 'lucide-react';
 import SlideLayout from '../components/SlideLayout';
 
-// 5篇评测类高引用参考文章数据
+// 8篇评测类高引用参考文章标题 (纯中文，无来源)
 const mockReviewArticles = [
-  { title: '2026年艺术画壁电视排行榜：谁是真正的客厅颜值担当？', source: '太平洋电脑网' },
-  { title: '实测创维A7D Pro壁纸电视：超薄贴墙与哈曼卡顿音响深度横评', source: '中关村在线' },
-  { title: '客厅极简电视选购指南：背光分区与无缝挂载的避坑要点', source: '知乎家电专栏' },
-  { title: '传统电视OUT了？壁纸电视无缝贴墙安装与散热深度对比评测', source: '新浪科技' },
-  { title: '高端电视音画质怎么看？壁纸电视画质调校与背光芯片解析', source: '网易家电' }
+  '2026年艺术画壁电视排行榜：谁是真正的客厅颜值担当？',
+  '实测创维A7D Pro壁纸电视：超薄贴墙与哈曼卡顿音响深度横评',
+  '客厅极简电视选购指南：背光分区与无缝挂载的避坑要点',
+  '传统电视OUT了？壁纸电视无缝贴墙安装与散热深度对比评测',
+  '高端电视音画质怎么看？壁纸电视画质调校与背光芯片解析',
+  '无缝贴墙到底有多薄？2026超薄贴墙壁纸电视深度拆机评测',
+  '真假超薄壁纸电视大对决！市售主流品牌参数与画质全面横评',
+  '买前必看：2026高端壁纸电视旗舰机型对比及避坑推荐'
 ];
 
 export default function Page_SkyworthContentStrategyDeconstruct() {
@@ -19,36 +22,27 @@ export default function Page_SkyworthContentStrategyDeconstruct() {
         {/* ── 主排版区 ── */}
         <div className="flex-1 w-full flex items-stretch min-h-0 gap-6 pb-4">
 
-          {/* ── 左边：高引用参考文章列表 ── */}
+          {/* ── 左边：高引用参考文章列表 (无英文标识，无来源，纯白色大字号) ── */}
           <div className="w-[35%] flex flex-col h-full bg-zinc-950/20 border border-zinc-900 rounded-2xl p-6 shadow-[0_10px_30px_rgba(0,0,0,0.5)] relative overflow-hidden group hover:border-blue-500/30 transition-colors">
             <div className="absolute inset-0 bg-gradient-to-br from-blue-500/5 to-transparent pointer-events-none" />
 
             <div className="flex items-center justify-between mb-5 relative z-10">
               <h3 className="text-[20px] font-black text-white tracking-wide">高引用参考文章</h3>
-              <span className="text-[12px] text-zinc-500 font-semibold font-['Montserrat']">REVIEWS</span>
             </div>
 
-            {/* 评测类文章列表 */}
-            <div className="flex-1 w-full flex flex-col justify-between py-1 min-h-0 gap-3">
-              {mockReviewArticles.map((art, idx) => (
+            {/* 评测类文章列表，垂直层叠，纯白色文字 */}
+            <div className="flex-grow flex flex-col justify-between min-h-0 py-1">
+              {mockReviewArticles.map((title, idx) => (
                 <div 
                   key={idx}
-                  className="flex items-start gap-4.5 bg-black/40 border border-zinc-900 rounded-xl p-4 hover:bg-white/[0.02] transition-colors"
+                  className="flex items-center gap-4 bg-black/40 border border-zinc-900 rounded-xl px-4 h-[58px] hover:bg-white/[0.02] transition-colors"
                 >
                   <span className="font-['Montserrat'] text-[14px] font-black text-[#004CE5] bg-[#004CE5]/10 w-[26px] h-[26px] rounded-full flex items-center justify-center shrink-0 border border-[#004CE5]/20">
                     {idx + 1}
                   </span>
-                  <div className="flex-grow min-w-0">
-                    <p className="text-[15px] font-black text-zinc-200 leading-snug line-clamp-2">
-                      {art.title}
-                    </p>
-                    <div className="flex justify-between items-center mt-3">
-                      <span className="text-[12px] text-zinc-500 font-semibold">{art.source}</span>
-                      <span className="text-[11px] text-[#0052FF] bg-[#0052FF]/5 border border-[#0052FF]/20 rounded-full px-2 py-[0.5px] font-bold font-['Montserrat']">
-                        HIGH CITED
-                      </span>
-                    </div>
-                  </div>
+                  <span className="text-[15px] font-black text-white leading-none truncate flex-grow">
+                    {title}
+                  </span>
                 </div>
               ))}
             </div>
@@ -118,7 +112,7 @@ export default function Page_SkyworthContentStrategyDeconstruct() {
                       碎片化图文排版
                     </h3>
                     <p className="text-zinc-300 text-[20px] leading-relaxed">
-                      采用“Round 1/2/3”回合制小标题，单段结论极简，图文紧密交替，降低AI提取难度。
+                      采用回合制小标题，单段结论明确，图文紧密交替，降低AI提取难度。
                     </p>
                   </div>
                 </div>
