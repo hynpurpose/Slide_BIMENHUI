@@ -64,9 +64,29 @@ export default function Page_GEOWordSelectionOther() {
         </div>
 
         {/* 右侧：手机端真实搜索截图 */}
-        <div className="w-[880px] h-full relative flex items-center justify-center shrink-0 overflow-visible">
-          <div className="absolute inset-x-0 top-[-120px] bottom-0 z-20 flex items-center justify-center">
-            <div className="relative w-[440px] h-[900px] border-[8px] border-zinc-800 bg-zinc-950 rounded-[56px] shadow-[0_25px_60px_rgba(0,0,0,0.85)] overflow-hidden">
+        <div className="w-[880px] h-full bg-[#09090b]/90 border border-zinc-800 rounded-[28px] overflow-hidden flex flex-col shadow-[0_20px_50px_rgba(0,0,0,0.4)] shrink-0">
+          {/* Card Header */}
+          <div className="flex items-center justify-between p-6 border-b border-zinc-900 bg-zinc-950 shrink-0">
+            <div className="flex items-center gap-4">
+              <div className="w-12 h-12 rounded-full bg-[#004CE5] flex items-center justify-center shadow-lg shadow-[#004CE5]/20">
+                <svg width="24" height="24" viewBox="0 0 100 100" fill="none" className="text-white">
+                  <path d="M22 78L78 22" stroke="currentColor" strokeWidth="10" strokeLinecap="square" />
+                  <path d="M48 22H78V52" stroke="currentColor" strokeWidth="10" strokeLinecap="square" strokeLinejoin="miter" />
+                  <path d="M52 78H22V48" stroke="currentColor" strokeWidth="10" strokeLinecap="square" strokeLinejoin="miter" />
+                </svg>
+              </div>
+              <span className="text-[28px] font-black text-white leading-tight">AI 平台真实用户提问</span>
+            </div>
+            <div className="flex gap-1.5">
+              <span className="w-2 h-2 rounded-full bg-zinc-700"></span>
+              <span className="w-2 h-2 rounded-full bg-zinc-700"></span>
+              <span className="w-2 h-2 rounded-full bg-zinc-700"></span>
+            </div>
+          </div>
+
+          {/* Card Body */}
+          <div className="flex-grow p-6 bg-zinc-950 flex items-center justify-center">
+            <div className="relative w-[304px] h-[620px] border-[8px] border-zinc-800 bg-zinc-950 rounded-[56px] shadow-[0_25px_60px_rgba(0,0,0,0.85)] overflow-hidden shrink-0">
               {/* Notch */}
               <div className="absolute top-4 left-1/2 -translate-x-1/2 w-32 h-6 bg-black rounded-full z-30 flex items-center justify-center">
                 <div className="w-4 h-4 rounded-full bg-zinc-900 border border-zinc-800/80 ml-auto mr-4" />
