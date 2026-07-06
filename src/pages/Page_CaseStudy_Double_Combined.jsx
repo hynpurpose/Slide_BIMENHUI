@@ -24,14 +24,14 @@ const OPPO = {
 
 const FOTILE_OVERVIEW = [
   { label: '提及率', value: '92.6%' },
-  { label: '平均提及位次', value: 'NO. 2.6' },
-  { label: '负面信息率', value: '0.9%' },
+  { label: 'Top 1 提及率', value: '61.8%' },
+  { label: '竞品排名', value: 'NO. 1' },
 ];
 
 const OPPO_OVERVIEW = [
   { label: '提及率', value: '86.4%' },
-  { label: '平均提及位次', value: 'NO. 1.9' },
-  { label: '负面信息率', value: '1.2%' },
+  { label: 'Top 1 提及率', value: '54.2%' },
+  { label: '竞品排名', value: 'NO. 1' },
 ];
 
 function SectionTitle({ children, size = 22 }) {
