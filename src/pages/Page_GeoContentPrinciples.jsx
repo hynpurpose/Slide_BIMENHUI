@@ -127,7 +127,7 @@ export function Page_GeoContentPrinciples_A() {
           <div className="rounded-[30px] border border-zinc-900 bg-zinc-950/20 px-11 py-10 flex flex-col min-h-0 relative">
             <RejectStamp className="absolute right-8 top-8" />
             <div className="shrink-0 mb-6 flex flex-col justify-end" style={{ height: '135px' }}>
-              <h3 className="text-[44px] xl:text-[48px] font-black text-zinc-100 font-['MiSans'] leading-tight">
+              <h3 className="text-[44px] xl:text-[48px] font-black text-white font-['MiSans'] leading-tight">
                 讨论最多的是
               </h3>
               <div className="mt-4">
