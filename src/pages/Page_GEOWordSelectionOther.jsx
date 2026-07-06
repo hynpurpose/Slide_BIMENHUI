@@ -18,7 +18,7 @@ export default function Page_GEOWordSelectionOther() {
       {/* Main Container */}
       <div className="w-full h-full flex items-center justify-start relative z-10 select-none">
 
-        {/* 左侧：百度营销月均搜索量指数 */}
+        {/* 左侧：百度营销/小红书聚光月均搜索指数 */}
         <div className="w-[880px] h-full bg-[#09090b]/90 border border-zinc-800 rounded-[28px] overflow-hidden flex flex-col shadow-[0_20px_50px_rgba(0,0,0,0.4)]">
           {/* Card Header */}
           <div className="flex items-center justify-between p-6 border-b border-zinc-900 bg-zinc-950 shrink-0">
@@ -30,7 +30,7 @@ export default function Page_GEOWordSelectionOther() {
                   <path d="M52 78H22V48" stroke="currentColor" strokeWidth="10" strokeLinecap="square" strokeLinejoin="miter" />
                 </svg>
               </div>
-              <span className="text-[28px] font-black text-white leading-tight">百度营销月均搜索量指数</span>
+              <span className="text-[28px] font-black text-white leading-tight">百度营销/小红书聚光月均搜索指数</span>
             </div>
             <div className="flex gap-1.5">
               <span className="w-2 h-2 rounded-full bg-zinc-700"></span>
@@ -45,7 +45,7 @@ export default function Page_GEOWordSelectionOther() {
               {!imgFailed ? (
                 <img
                   src={middleImagePath}
-                  alt="百度营销月均搜索量指数"
+                  alt="百度营销/小红书聚光月均搜索指数"
                   className="w-full h-full object-contain object-left"
                   onError={() => setImgFailed(true)}
                 />
@@ -53,7 +53,7 @@ export default function Page_GEOWordSelectionOther() {
                 <div className="w-full h-full flex flex-col items-center justify-center gap-4 p-8 bg-zinc-50">
                   <ImageIcon className="w-16 h-16 text-zinc-400 opacity-60" />
                   <span className="text-zinc-500 font-bold text-[22px] font-['MiSans']">
-                    [ 百度营销月均搜索量指数图表 ]
+                    [ 百度营销/小红书聚光月均搜索指数图表 ]
                   </span>
                 </div>
               )}
