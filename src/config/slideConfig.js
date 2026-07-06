@@ -177,6 +177,8 @@ import {
   Page_SkyworthReport_SentimentPre,
   Page_SkyworthReport_SentimentDetail,
 } from '../pages/Page_SkyworthReport_Sentiment';
+import Page_SkyworthThankYou from '../pages/Page_SkyworthThankYou';
+import Page_SkyworthSpeakWithActions from '../pages/Page_SkyworthSpeakWithActions';
 
 export const slideConfig = [
   // ——— 封面 & 目录 ———
@@ -251,7 +253,7 @@ export const slideConfig = [
 
   { type: 'section', title: '这些词是怎么选出来的' },
   { type: 'page', title: '市场上其他做法', component: Page_GEOWordSelectionOther, hideHeader: true },
-  { type: 'page', title: 'AI 提问量数据从哪来', component: Page_GEOWordSelectionDataChain, hideHeader: true },
+  // { type: 'page', title: 'AI 提问量数据从哪来', component: Page_GEOWordSelectionDataChain, hideHeader: true },
   { type: 'page', title: '影子算法', component: Page_SkyworthShadowAlgorithm, hideHeader: true },
   { type: 'page', title: 'AI 如何处理用户问题', component: Page_SkyworthAiProcess, hideHeader: true },
   { type: 'page', title: '模拟搜索引擎', component: Page_SkyworthSearchEngineModel, hideHeader: true },
@@ -296,12 +298,12 @@ export const slideConfig = [
   { type: 'page', title: '用人写的好处和坏处”', component: Page_ContentQualityValue, hideHeader: true },
   { type: 'page', title: '我们开发的内容Agent系统', component: Page_GeoWritingAgentIntro, hideHeader: true },
 
+  { type: 'section', title: '内容标准' },
+  { type: 'page', title: 'GEO内容编写原则', variants: [Page_GeoContentPrinciples_A, Page_GeoContentPrinciples_B, Page_GeoContentPrinciples_C], hideHeader: true },
+
   { type: 'section', title: '创维的内容怎么做' },
   { type: 'page', title: '创维定制内容方向规划', component: Page_SkyworthContentDirection, hideHeader: true },
 
-
-  { type: 'section', title: '内容标准' },
-  { type: 'page', title: 'GEO内容编写原则', variants: [Page_GeoContentPrinciples_A, Page_GeoContentPrinciples_B, Page_GeoContentPrinciples_C], hideHeader: true },
   { type: 'page', title: '评测类爆款文章逆向拆解', component: Page_SkyworthContentStrategyDeconstruct, hideHeader: true },
   { type: 'page', title: '评测类文章示意', component: Page_SkyworthQAArticleDemo, hideHeader: true },
   { type: 'page', title: '评测类文章示意 (二)', component: Page_SkyworthQAArticleDemo2, hideHeader: true },
@@ -391,4 +393,6 @@ export const slideConfig = [
   { type: 'page', title: '真评系统 · 关键词云', component: Page_UserComment_WordCloud, hideHeader: true },
   { type: 'page', title: '真评系统 · 时间趋势', component: Page_UserComment_Trend, hideHeader: true },
   { type: 'page', title: '真评系统 · 刷评识别', component: Page_UserComment_Fake, hideHeader: true },
+  { type: 'page', title: '用行动说话', component: Page_SkyworthSpeakWithActions, hideHeader: true },
+  { type: 'page', title: 'Thank You', component: Page_SkyworthThankYou, hideHeader: true },
 ];

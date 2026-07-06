@@ -1,281 +1,259 @@
 import React from 'react';
 import SlideLayout from '../components/SlideLayout';
 
+/* ── 通用小组件 ── */
+
+function StepBadge({ children }) {
+  return (
+    <span
+      className="self-start text-white font-bold rounded-full"
+      style={{ fontSize: '17px', background: '#004CE5', padding: '4px 16px', letterSpacing: '2px', marginBottom: '14px' }}
+    >
+      {children}
+    </span>
+  );
+}
+
+function Node({ left, focus, step, title, sub, note, children }) {
+  return (
+    <div
+      className="absolute flex flex-col"
+      style={{
+        left, top: 0, width: '340px', height: '560px',
+        background: 'rgba(24, 24, 27, 0.6)',
+        border: `1.5px solid ${focus ? '#2E6BFF' : '#3A3A42'}`,
+        borderRadius: '20px',
+        boxShadow: focus ? '0 0 60px rgba(0, 76, 229, 0.22), inset 0 0 40px rgba(0, 76, 229, 0.05)' : 'none',
+        padding: '28px 26px 24px',
+      }}
+    >
+      <StepBadge>{step}</StepBadge>
+      <h3 className="text-white font-bold" style={{ fontSize: '30px', lineHeight: '38px', marginBottom: '6px' }}>{title}</h3>
+      <div style={{ fontSize: '18px', lineHeight: '26px', color: '#71717A', marginBottom: '18px' }}>{sub}</div>
+      <div className="flex-1 relative">{children}</div>
+      <div style={{ marginTop: '16px', fontSize: '16px', lineHeight: '24px', color: '#A1A1AA' }}>{note}</div>
+    </div>
+  );
+}
+
+function Pipe({ left, label, under }) {
+  return (
+    <div className="absolute" style={{ left, top: '235px', width: '152px', height: '4px', background: '#004CE5', borderRadius: '2px' }}>
+      <div
+        className="absolute"
+        style={{
+          right: '-2px', top: '50%', transform: 'translateY(-50%)',
+          borderLeft: '14px solid #004CE5', borderTop: '9px solid transparent', borderBottom: '9px solid transparent',
+        }}
+      />
+      <div
+        className="absolute text-center font-bold"
+        style={{ bottom: '18px', width: '152px', left: '50%', transform: 'translateX(-50%)', fontSize: '16px', lineHeight: '22px', color: '#6D9BFF' }}
+      >
+        {label}
+      </div>
+      <div
+        className="absolute text-center"
+        style={{ top: '16px', width: '152px', left: '50%', transform: 'translateX(-50%)', fontSize: '14px', lineHeight: '19px', color: '#71717A' }}
+      >
+        {under}
+      </div>
+    </div>
+  );
+}
+
+function MoneyPipe({ left }) {
+  return (
+    <div className="absolute" style={{ left, top: '360px', width: '152px', height: '4px', background: '#1F8A5B', borderRadius: '2px' }}>
+      <div
+        className="absolute"
+        style={{
+          left: '-2px', top: '50%', transform: 'translateY(-50%)',
+          borderRight: '14px solid #1F8A5B', borderTop: '9px solid transparent', borderBottom: '9px solid transparent',
+        }}
+      />
+      <div
+        className="absolute text-center font-bold"
+        style={{ top: '16px', width: '152px', left: '50%', transform: 'translateX(-50%)', fontSize: '15px', color: '#34D399' }}
+      >
+        $ 付费购买
+      </div>
+    </div>
+  );
+}
+
+function Entry({ icon, name, tag }) {
+  return (
+    <div
+      className="flex flex-col items-center"
+      style={{ border: '1.5px solid #2E6BFF', background: 'rgba(0,76,229,0.12)', borderRadius: '10px', padding: '8px 6px', gap: '3px' }}
+    >
+      <span style={{ fontSize: '20px', lineHeight: 1 }}>{icon}</span>
+      <span className="font-bold" style={{ fontSize: '15px', color: '#E3ECFF' }}>{name}</span>
+      <span style={{ fontSize: '12px', color: '#6D9BFF' }}>{tag}</span>
+    </div>
+  );
+}
+
+function VolBar({ label, val, width, dim }) {
+  return (
+    <div className="flex flex-col" style={{ gap: '5px' }}>
+      <div className="flex justify-between items-baseline">
+        <span style={{ fontSize: '15px', color: dim ? '#8E8E99' : '#E4E4E7', fontWeight: dim ? 400 : 500 }}>{label}</span>
+        <span className="font-bold" style={{ fontSize: '14px', color: dim ? '#71717A' : '#6D9BFF', fontWeight: dim ? 400 : 700 }}>{val}</span>
+      </div>
+      <div style={{ height: '18px', background: '#1D1D22', borderRadius: '4px', overflow: 'hidden' }}>
+        <div
+          style={{
+            height: '100%', width, borderRadius: '4px',
+            background: dim ? '#33333B' : 'linear-gradient(to right, #0038AB, #2E6BFF)',
+          }}
+        />
+      </div>
+    </div>
+  );
+}
+
+function PickRow({ win, text, tag }) {
+  return (
+    <div
+      className="flex justify-between items-center"
+      style={{
+        border: `1.5px solid ${win ? '#2E6BFF' : '#27272A'}`,
+        background: win ? 'rgba(0, 76, 229, 0.12)' : 'transparent',
+        borderRadius: '10px', padding: '10px 14px', fontSize: '16px', color: '#C9C9D1', gap: '8px',
+      }}
+    >
+      <span>{text}</span>
+      <span className="shrink-0" style={{ fontSize: '14px', color: win ? '#6D9BFF' : '#71717A', fontWeight: win ? 700 : 400 }}>{tag}</span>
+    </div>
+  );
+}
+
 export default function Page_SkyworthCrossCompare() {
-  // Grid conversion settings (shifted originY up to 125 to move grid upwards)
-  const originX = 530;
-  const originY = 125;
-  const uxX = 80;
-  const uxY = 40;
-  const uyX = -80;
-  const uyY = 40;
-
-  // Grid lines data (7x7 lines forming a 6x6 cell grid)
-  const gridLines = [];
-  for (let i = 0; i <= 6; i++) {
-    // Lines parallel to Y-axis (varying gy from 0 to 6)
-    gridLines.push({
-      x1: originX + i * uxX,
-      y1: originY + i * uxY,
-      x2: originX + i * uxX + 6 * uyX,
-      y2: originY + i * uxY + 6 * uyY
-    });
-    // Lines parallel to X-axis (varying gx from 0 to 6)
-    gridLines.push({
-      x1: originX + i * uyX,
-      y1: originY + i * uyY,
-      x2: originX + i * uyX + 6 * uxX,
-      y2: originY + i * uyY + 6 * uxY
-    });
-  }
-
-  // Cell centers coordinates helper
-  const getCellCenter = (gx, gy) => {
-    return {
-      x: originX + (gx + 0.5) * uxX + (gy + 0.5) * uyX,
-      y: originY + (gx + 0.5) * uxY + (gy + 0.5) * uyY
-    };
-  };
-
-  // 3D Flat colored cells on the grid (ordered by gx + gy ascending for correct SVG drawing order)
-  const data = [
-    {
-      label: "壁纸电视口碑",
-      value: "12.9%",
-      gx: 1,
-      gy: 0,
-      color: "#C27854", // Muted desaturated orange
-      textColor: "text-orange-400",
-      cardYCenter: 313 // Card index 2: top 263px, center is 313px
-    },
-    {
-      label: "电视推荐",
-      value: "81.2%",
-      gx: 0,
-      gy: 3,
-      color: "#FFFFFF", // White highlight
-      textColor: "text-white",
-      cardYCenter: 65, // Card index 0: top 15px, center is 65px
-      isTarget: true
-    },
-    {
-      label: "超薄电视推荐",
-      value: "53.6%",
-      gx: 2,
-      gy: 3,
-      color: "#5E82B8", // Muted desaturated blue
-      textColor: "text-blue-400",
-      cardYCenter: 189 // Card index 1: top 139px, center is 189px
-    },
-    {
-      label: "艺术电视评测",
-      value: "9.7%",
-      gx: 4,
-      gy: 2,
-      color: "#8B7BB8", // Muted desaturated purple
-      textColor: "text-purple-400",
-      cardYCenter: 437 // Card index 3: top 387px, center is 437px
-    },
-    {
-      label: "最好的客厅大屏",
-      value: "4.8%",
-      gx: 5,
-      gy: 5,
-      color: "#B55E5E", // Muted desaturated red
-      textColor: "text-red-400",
-      cardYCenter: 561 // Card index 4: top 511px, center is 561px
-    }
-  ];
-
-  // Grid axis labels positions (placed along the edges of the grid cells)
-  const yAxisLabels = [
-    { text: "口碑", gx: 0, gy: 0 },
-    { text: "选购", gx: 0, gy: 1 },
-    { text: "评测", gx: 0, gy: 2 },
-    { text: "推荐", gx: 0, gy: 3 },
-    { text: "价格", gx: 0, gy: 4 },
-    { text: "最好的", gx: 0, gy: 5 }
-  ];
-
-  const xAxisLabels = [
-    { text: "电视", gx: 0, gy: 6 },
-    { text: "壁纸电视", gx: 1, gy: 6 },
-    { text: "超薄电视", gx: 2, gy: 6 },
-    { text: "贴墙电视", gx: 3, gy: 6 },
-    { text: "艺术电视", gx: 4, gy: 6 },
-    { text: "客厅大屏", gx: 5, gy: 6 }
-  ];
-
-  // Sort data for right hand card rendering order (descending value weight)
-  const sortedCards = [
-    data.find(d => d.value === "81.2%"),
-    data.find(d => d.value === "53.6%"),
-    data.find(d => d.value === "12.9%"),
-    data.find(d => d.value === "9.7%"),
-    data.find(d => d.value === "4.8%")
-  ];
-
   return (
     <SlideLayout
       title={
-        <div className="flex items-center gap-6">
-          <span className="w-[72px] h-[72px] rounded-full bg-teal-900/60 text-teal-300 border border-teal-850 text-[42px] font-bold font-['Montserrat'] flex items-center justify-center shrink-0">
-            3
-          </span>
-          <span>交叉比对锁定高频优化词</span>
+        <div className="flex flex-col gap-2">
+          {/* H1 Main Title: 标准超大字号 86px */}
+          <div className="flex items-center gap-6">
+            <span className="w-[96px] h-[96px] rounded-full bg-teal-900/60 text-teal-300 border border-teal-850 text-[54px] font-bold font-['Montserrat'] flex items-center justify-center shrink-0">
+              3
+            </span>
+            <span className="text-[86px] font-extrabold text-white tracking-wider font-['AlimamaShuHeiTi'] leading-none">
+              清洗词条
+            </span>
+          </div>
+          {/* Subtitle: 调整小标题字号到 48px，并与主标题完美对齐 pl-[120px]，设为白色 */}
+          <div className="text-[48px] text-white font-normal font-['MiSans'] tracking-normal pl-[120px] mt-1 leading-none select-none">
+            AI提问数据从哪来？一条买来的数据链
+          </div>
         </div>
       }
     >
-      {/* ── 顶部说明结论 ── */}
-      <div className="absolute top-[0px] left-0 w-full select-none z-10">
-        <p className="text-zinc-350 font-normal font-['MiSans'] leading-relaxed" style={{ fontSize: '32px', lineHeight: '46px' }}>
-          将纵轴（修饰词/意图）与横轴（产品/品类词）交叉组合，得出高频词条对 AI 推荐决策的权重影响力。
-        </p>
-      </div>
+      {/* 主要排版区向下偏移至 top: 90px，给超大标题留出呼吸空间 */}
+      <div className="absolute select-none" style={{ top: '90px', left: 0, width: '1840px', height: '560px' }}>
 
-      {/* ── 3D 柱状图画布区 (抵到最底部 bottom, 高度 650px) ── */}
-      <div 
-        className="absolute w-full select-none animate-fadeIn"
-        style={{ top: '145px', height: '650px' }}
-      >
-        
-        {/* ==================== SVG 绘制网格、扁平色块、连线 ==================== */}
-        <svg className="absolute inset-0 w-[1300px] h-full pointer-events-none z-10 overflow-visible">
-          {/* 1. 绘制网格背景线 */}
-          <g>
-            {gridLines.map((line, idx) => (
-              <line
-                key={idx}
-                x1={line.x1}
-                y1={line.y1}
-                x2={line.x2}
-                y2={line.y2}
-                stroke="rgba(255,255,255,0.12)"
-                strokeWidth="1.5"
-              />
-            ))}
-          </g>
-
-          {/* 2. 绘制扁平的色块格子 (铺满整个格子: dx=40, dy=20) */}
-          {data.map((col, idx) => {
-            const center = getCellCenter(col.gx, col.gy);
-            const dx = 40; 
-            const dy = 20; 
-
-            const p1 = `${center.x},${center.y - dy}`;
-            const p2 = `${center.x - dx},${center.y}`;
-            const p3 = `${center.x},${center.y + dy}`;
-            const p4 = `${center.x + dx},${center.y}`;
-
-            return (
-              <g key={idx}>
-                {/* 扁平填充色块 (菱形格子填充) */}
-                <polygon
-                  points={`${p1} ${p2} ${p3} ${p4}`}
-                  fill={col.color}
-                  fillOpacity="0.45"
-                  stroke={col.color}
-                  strokeWidth="2.5"
-                />
-                {/* 中心亮点标记 */}
-                <circle
-                  cx={center.x}
-                  cy={center.y}
-                  r="5"
-                  fill="#FFFFFF"
-                  className="shadow-lg"
-                />
-              </g>
-            );
-          })}
-
-          {/* 3. 绘制引出的连线 (从扁平格中心引到右侧卡片边缘 1320px 处) */}
-          {data.map((col, idx) => {
-            const center = getCellCenter(col.gx, col.gy);
-            const cardX = 1320;
-            const cardY = col.cardYCenter;
-
-            // Draw a clean horizontal path: start -> control -> end
-            const pathD = `M ${center.x} ${center.y} L ${center.x + 80} ${center.y} L ${cardX - 100} ${cardY} L ${cardX} ${cardY}`;
-
-            return (
-              <g key={idx}>
-                {/* 阴影/虚线轨道 */}
-                <path
-                  d={pathD}
-                  fill="none"
-                  stroke={col.color}
-                  strokeWidth="2.5"
-                  strokeDasharray="6 4"
-                  className="opacity-80"
-                />
-                {/* 与卡片连接点小圆圈 */}
-                <circle
-                  cx={cardX}
-                  cy={cardY}
-                  r="4.5"
-                  fill={col.color}
-                />
-              </g>
-            );
-          })}
-        </svg>
-
-        {/* ==================== 坐标轴标签 (绝对定位 HTML) ==================== */}
-        {/* 纵轴 (修饰词/意图) - 沿左上斜边缘 */}
-        {yAxisLabels.map((lbl, idx) => {
-          const x = originX + lbl.gx * uxX + (lbl.gy + 0.5) * uyX - 100;
-          const y = originY + lbl.gx * uxY + (lbl.gy + 0.5) * uyY - 14;
-          return (
-            <span
-              key={idx}
-              className="absolute text-zinc-500 font-bold text-[20px] font-['MiSans'] leading-none text-right w-[80px] select-none"
-              style={{ left: `${x}px`, top: `${y}px` }}
-            >
-              {lbl.text}
-            </span>
-          );
-        })}
-
-        {/* 横轴 (产品/品类词) - 沿右下斜边缘 */}
-        {xAxisLabels.map((lbl, idx) => {
-          const x = originX + (lbl.gx + 0.5) * uxX + lbl.gy * uyX - 50;
-          const y = originY + (lbl.gx + 0.5) * uxY + lbl.gy * uyY + 28;
-          return (
-            <span
-              key={idx}
-              className="absolute text-zinc-555 font-bold text-[20px] font-['MiSans'] leading-none text-center w-[120px] select-none"
-              style={{ left: `${x}px`, top: `${y}px` }}
-            >
-              {lbl.text}
-            </span>
-          );
-        })}
-
-        {/* ==================== 右侧：垂直绝对叠放的说明卡片 (left: 1320px) ==================== */}
-        {sortedCards.map((col, idx) => (
-          <div 
-            key={idx}
-            className={`absolute flex items-center gap-5 border ${col.isTarget ? 'border-white bg-zinc-950 shadow-[0_0_20px_rgba(255,255,255,0.18)]' : 'border-zinc-800/85 bg-zinc-950/90'} px-5 py-3 rounded-2xl h-[100px] select-none`}
-            style={{ left: '1320px', top: `${col.cardYCenter - 50}px`, width: '480px' }}
-          >
-            {/* Value Percentage */}
-            <span className={`font-['Montserrat'] font-black tracking-tighter leading-none text-center ${col.textColor} w-[140px] shrink-0 text-[52px]`}>
-              {col.value}
-            </span>
-            
-            {/* Text info - Only show title, no subtitle explanation */}
-            <div className="flex flex-col justify-center">
-              <span className="text-[23px] font-bold text-white leading-none font-['MiSans']">
-                {col.label}
-              </span>
+        {/* ── 节点 1：用户的日常工具 ── */}
+        <Node
+          left="0px"
+          focus
+          step="第 1 环 · 数据入口"
+          title="用户的日常工具"
+          sub="数百万真实用户，边用 AI 边被记录"
+          note={<>安装时点下的「同意」，授权了这些工具<strong className="text-white font-bold">读取网页内容 / 键盘输入</strong>——对话就此被记录</>}
+        >
+          <div className="grid grid-cols-2" style={{ gap: '8px', marginBottom: '14px' }}>
+            <Entry icon="🛡️" name="免费 VPN" tag="浏览器插件" />
+            <Entry icon="⛔" name="广告拦截器" tag="浏览器插件" />
+            <Entry icon="⌨️" name="输入法" tag="键盘应用" />
+            <Entry icon="✨" name="AI 助手侧边栏" tag="浏览器插件" />
+          </div>
+          {/* 浏览器窗口示意 */}
+          <div style={{ background: '#131316', border: '1px solid #303036', borderRadius: '12px', overflow: 'hidden' }}>
+            <div className="flex items-center" style={{ height: '30px', background: '#1C1C21', padding: '0 10px', gap: '6px', borderBottom: '1px solid #2A2A30' }}>
+              <span style={{ width: '9px', height: '9px', borderRadius: '50%', background: '#3F3F46' }} />
+              <span style={{ width: '9px', height: '9px', borderRadius: '50%', background: '#3F3F46' }} />
+              <span style={{ width: '9px', height: '9px', borderRadius: '50%', background: '#3F3F46' }} />
+              <span className="flex-1 flex items-center" style={{ height: '18px', background: '#26262C', borderRadius: '5px', fontSize: '12px', color: '#8E8E99', padding: '0 9px' }}>chatgpt.com</span>
+            </div>
+            <div className="flex flex-col" style={{ padding: '10px 12px', gap: '7px' }}>
+              <span className="self-end" style={{ maxWidth: '90%', fontSize: '14px', lineHeight: '20px', padding: '6px 11px', borderRadius: '9px 9px 3px 9px', background: '#004CE5', color: '#FFF' }}>好看的电视推荐？</span>
+              <span className="self-start" style={{ maxWidth: '90%', fontSize: '14px', lineHeight: '20px', padding: '6px 11px', borderRadius: '9px 9px 9px 3px', background: '#232329', color: '#C9C9D1' }}>推荐这几款壁纸电视：……</span>
             </div>
           </div>
-        ))}
+        </Node>
 
+        <Pipe left="344px" label="抓取对话上传" under={<>提问 + 回答<br />+ 时间戳</>} />
+
+        {/* ── 节点 2：数据商 ── */}
+        <Node
+          left="500px"
+          step="第 2 环 · 收数据的"
+          title="数据商"
+          sub="Datos、BiScience 这类点击流数据公司"
+          note={<>从成百上千个插件回收对话，清洗后<strong className="text-white font-bold">按月出售给任何买家</strong></>}
+        >
+          <div className="h-full flex flex-col items-center justify-center" style={{ gap: '12px' }}>
+            <div className="relative" style={{ width: '210px', height: '96px' }}>
+              <div className="absolute flex items-center justify-center" style={{ top: 0, left: 0, right: 0, height: '30px', background: 'rgba(46,107,255,0.14)', border: '1.5px solid #2E6BFF', borderRadius: '8px 8px 3px 3px', fontSize: '14px', color: '#B9C6EE' }}>汇集海量原始对话</div>
+              <div className="absolute flex items-center justify-center" style={{ top: '34px', left: '36px', right: '36px', height: '26px', background: 'rgba(46,107,255,0.2)', border: '1.5px solid #2E6BFF', borderRadius: '3px', fontSize: '13px', color: '#C3CDEF' }}>去除个人身份信息</div>
+              <div className="absolute flex items-center justify-center" style={{ top: '64px', left: '66px', right: '66px', height: '28px', background: 'rgba(46,107,255,0.3)', border: '1.5px solid #2E6BFF', borderRadius: '3px 3px 8px 8px', fontSize: '13px', color: '#DCE4FA' }}>匿名化</div>
+            </div>
+            <div className="flex items-center" style={{ border: '1.5px dashed #34D399', borderRadius: '10px', padding: '8px 16px', fontSize: '15px', color: '#B9F3D8', gap: '8px' }}>📦 打包成数据商品</div>
+          </div>
+        </Node>
+
+        <Pipe left="844px" label="授权出售" under={<>每月数千万条<br />真实对话</>} />
+        <MoneyPipe left="844px" />
+
+        {/* ── 节点 3：Profound ── */}
+        <Node
+          left="1000px"
+          step="第 3 环 · 买数据的"
+          title="Profound"
+          sub="自己不采集，花钱买数据、建模还原全人群"
+          note={<>统计建模校正人群偏差 → <strong className="text-white font-bold">每类问题被问了多少次</strong>，每周更新</>}
+        >
+          <div className="h-full flex flex-col justify-center" style={{ gap: '18px' }}>
+            <VolBar label="好看的电视" val="8,200 次/月" width="96%" />
+            <VolBar label="画质好的电视" val="5,100 次/月" width="62%" />
+            <VolBar label="设计外观好的电视" val="310 次/月" width="12%" dim />
+            <VolBar label="防蓝光电视" val="190 次/月" width="8%" dim />
+          </div>
+        </Node>
+
+        <Pipe left="1344px" label="购买数据" under={<>真实提问量<br />逐条可查</>} />
+        <MoneyPipe left="1344px" />
+
+        {/* ── 节点 4：我们 ── */}
+        <Node
+          left="1500px"
+          focus
+          step="第 4 环 · 也是买数据的"
+          title="我们的选词"
+          sub="直接购买这份数据——和 Profound 向数据商买数据，是同一条链上的同一种买法"
+          note={<>哪个词用户真的在问、问得多，<strong className="text-white font-bold">数据说了算</strong>，不靠拍脑袋</>}
+        >
+          <div className="h-full flex flex-col justify-center" style={{ gap: '12px' }}>
+            <PickRow win text="✓ 好看的电视推荐" tag="量大 · 优先做" />
+            <PickRow text="设计外观好的电视" tag="被上面覆盖" />
+            <PickRow text="✗ 安装方便的电视" tag="痛点词 · 不做" />
+          </div>
+        </Node>
+      </div>
+
+      {/* ── 底部总结条 ── */}
+      {/* 紧贴 content bottom 底部线排列 (bottom: 0px) */}
+      <div
+        className="absolute select-none"
+        style={{ left: 0, right: 0, bottom: '0px', borderLeft: '6px solid #004CE5', padding: '6px 0 6px 28px', fontSize: '25px', lineHeight: '38px', color: '#D4D4D8' }}
+      >
+        <strong className="text-white font-bold">一句话：</strong>AI 提问量不是猜的——几百万真实用户的 VPN、广告拦截器、输入法把对话记下来，数据商洗干净打包出售，Profound 花钱买回来数一数，<span className="font-bold" style={{ color: '#6D9BFF' }}>我们再把这份数据买过来，替客户挑出真正值得做的词。</span>
       </div>
     </SlideLayout>
   );
 }
 
+// Disable slide header/navigation bar for this presentation page
 Page_SkyworthCrossCompare.hideHeader = true;

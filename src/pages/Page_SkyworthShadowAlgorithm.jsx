@@ -48,12 +48,12 @@ export default function Page_SkyworthShadowAlgorithm() {
             </p>
           </div>
 
-          {/* Step 3: 交叉验证锁定高频优化词 */}
+          {/* Step 3: 清洗词条 */}
           <div className="bg-zinc-950/40 border border-zinc-800 rounded-2xl p-6 flex flex-col gap-3.5 hover:border-zinc-700 transition-colors">
             <div className="flex items-center gap-4">
               <span className="w-12 h-12 rounded-full bg-teal-900/60 text-teal-300 border border-teal-850 font-['Montserrat'] text-[24px] font-bold flex items-center justify-center shrink-0">3</span>
               <h4 className="text-[28px] font-bold text-white leading-tight">
-                交叉比对锁定高频优化词
+                清洗词条
               </h4>
             </div>
             <p className="text-[22px] text-zinc-400 leading-relaxed font-sans pl-16">

@@ -32,6 +32,130 @@ function XiaohongshuSearchBox() {
   );
 }
 
+function SearchIndexDashboard() {
+  const BAIDU_DATA = [
+    { keyword: '电视机哪个品牌好', level: '高', volume: '27.3w' },
+    { keyword: '现在电视机哪个品牌比较好', level: '高', volume: '23.1w' },
+    { keyword: '大屏幕电视机哪个品牌好', level: '高', volume: '20.1w' },
+    { keyword: '电视机品牌质量排行榜前十名', level: '高', volume: '13.1w' },
+    { keyword: '电视机什么牌子的好质量好又好用', level: '中', volume: '4.8w' },
+    { keyword: '电视品牌', level: '高', volume: '2.4w' },
+    { keyword: 'chiq是什么牌子的电视', level: '高', volume: '1.5w' },
+    { keyword: '十大名牌电视质量排名', level: '高', volume: '1.4w' },
+    { keyword: '电视机牌子排名前十名', level: '高', volume: '1.3w' },
+    { keyword: '电视机品牌哪个好', level: '中', volume: '8.2k' },
+  ];
+
+  const XIAOHONGSHU_DATA = [
+    { keyword: '电视机推荐2026', tag: '泛需种草', volume: '18.5w' },
+    { keyword: '电视选购攻略', tag: '购买决策', volume: '14.2w' },
+    { keyword: '家装电视尺寸怎么选', tag: '场景搭配', volume: '11.8w' },
+    { keyword: '壁挂电视隐藏线避坑', tag: '家装指南', volume: '9.6w' },
+    { keyword: '适合打游戏的电视', tag: '人群细分', volume: '8.4w' },
+    { keyword: '创维电视测评', tag: '品牌对比', volume: '7.2w' },
+    { keyword: '客厅背景墙电视搭配', tag: '美观设计', volume: '5.8w' },
+    { keyword: '75寸电视性价比之王', tag: '购买决策', volume: '4.5w' },
+    { keyword: '护眼防蓝光电视推荐', tag: '健康护眼', volume: '3.9w' },
+    { keyword: '电视能当显示器吗', tag: '功能科普', volume: '2.5w' },
+  ];
+
+  const getBaiduBadge = (level) => {
+    if (level === '高') {
+      return (
+        <span className="px-2 py-0.5 rounded text-[11px] xl:text-[12px] font-bold bg-red-500/10 text-red-400 border border-red-500/20">
+          高
+        </span>
+      );
+    }
+    return (
+      <span className="px-2 py-0.5 rounded text-[11px] xl:text-[12px] font-bold bg-amber-500/10 text-amber-400 border border-amber-500/20">
+        中
+      </span>
+    );
+  };
+
+  const getXhsBadge = (tag) => {
+    const colors = {
+      '泛需种草': 'bg-purple-500/10 text-purple-400 border-purple-500/20',
+      '购买决策': 'bg-blue-500/10 text-blue-400 border-blue-500/20',
+      '场景搭配': 'bg-emerald-500/10 text-emerald-400 border-emerald-500/20',
+      '家装指南': 'bg-pink-500/10 text-pink-400 border-pink-500/20',
+      '人群细分': 'bg-indigo-500/10 text-indigo-400 border-indigo-500/20',
+      '品牌对比': 'bg-orange-500/10 text-orange-400 border-orange-500/20',
+      '美观设计': 'bg-rose-500/10 text-rose-400 border-rose-500/20',
+      '健康护眼': 'bg-teal-500/10 text-teal-400 border-teal-500/20',
+      '功能科普': 'bg-cyan-500/10 text-cyan-400 border-cyan-500/20',
+    };
+    return (
+      <span className={`px-2 py-0.5 rounded text-[11px] xl:text-[12px] font-bold border ${colors[tag] || 'bg-zinc-500/10 text-zinc-400 border-zinc-500/20'}`}>
+        {tag}
+      </span>
+    );
+  };
+
+  return (
+    <div className="w-full h-full flex gap-5 p-4 text-white font-sans bg-black/45 rounded-xl border border-zinc-800/80">
+      {/* 百度营销 */}
+      <div className="flex-1 flex flex-col min-w-0">
+        <div className="flex items-center gap-2 mb-2">
+          <div className="w-6 h-6 rounded bg-[#3385FF] flex items-center justify-center text-white font-extrabold text-[12px] shadow-md shadow-blue-500/20">百</div>
+          <span className="text-[17px] xl:text-[18px] font-bold text-white tracking-wide">百度营销数据概览</span>
+        </div>
+        <div className="text-[13px] xl:text-[14px] font-bold text-zinc-500 mb-2 pl-0.5">高频搜索词 (Top 10)</div>
+        
+        <div className="flex-grow min-h-0 flex flex-col justify-between border border-zinc-800/60 bg-zinc-950/50 rounded-xl p-3">
+          <div className="flex text-zinc-500 text-[12px] font-bold border-b border-zinc-800/80 pb-1.5 px-1 mb-1.5 shrink-0">
+            <span className="w-[60%] text-left">搜索词</span>
+            <span className="w-[22%] text-center">竞争度</span>
+            <span className="w-[18%] text-right">月均搜索</span>
+          </div>
+          <div className="flex-1 flex flex-col justify-between text-[13px] xl:text-[14px] min-h-0">
+            {BAIDU_DATA.map((item, idx) => (
+              <div key={idx} className="flex items-center hover:bg-white/[0.03] rounded py-0.5 px-1 transition-all duration-150">
+                <span className="w-[60%] truncate text-zinc-200 pr-2">
+                  <span className="font-mono text-zinc-600 font-semibold mr-1.5" style={{ fontFamily: 'Montserrat, sans-serif' }}>{idx + 1}.</span>
+                  {item.keyword}
+                </span>
+                <span className="w-[22%] text-center flex items-center justify-center">{getBaiduBadge(item.level)}</span>
+                <span className="w-[18%] text-right font-bold text-zinc-300" style={{ fontFamily: 'Montserrat, sans-serif' }}>{item.volume}</span>
+              </div>
+            ))}
+          </div>
+        </div>
+      </div>
+
+      {/* 小红书 */}
+      <div className="flex-1 flex flex-col min-w-0">
+        <div className="flex items-center gap-2 mb-2">
+          <div className="w-6 h-6 rounded bg-[#FE2C55] flex items-center justify-center text-white font-extrabold text-[12px] shadow-md shadow-red-500/20">书</div>
+          <span className="text-[17px] xl:text-[18px] font-bold text-white tracking-wide">小红书数据概览</span>
+        </div>
+        <div className="text-[13px] xl:text-[14px] font-bold text-zinc-500 mb-2 pl-0.5">高频长尾搜索词 (Top 10)</div>
+
+        <div className="flex-grow min-h-0 flex flex-col justify-between border border-zinc-800/60 bg-zinc-950/50 rounded-xl p-3">
+          <div className="flex text-zinc-500 text-[12px] font-bold border-b border-zinc-800/80 pb-1.5 px-1 mb-1.5 shrink-0">
+            <span className="w-[60%] text-left">搜索词</span>
+            <span className="w-[22%] text-center">需求分类</span>
+            <span className="w-[18%] text-right">预估热度</span>
+          </div>
+          <div className="flex-1 flex flex-col justify-between text-[13px] xl:text-[14px] min-h-0">
+            {XIAOHONGSHU_DATA.map((item, idx) => (
+              <div key={idx} className="flex items-center hover:bg-white/[0.03] rounded py-0.5 px-1 transition-all duration-150">
+                <span className="w-[60%] truncate text-zinc-200 pr-2">
+                  <span className="font-mono text-zinc-600 font-semibold mr-1.5" style={{ fontFamily: 'Montserrat, sans-serif' }}>{idx + 1}.</span>
+                  {item.keyword}
+                </span>
+                <span className="w-[22%] text-center flex items-center justify-center">{getXhsBadge(item.tag)}</span>
+                <span className="w-[18%] text-right font-bold text-zinc-300" style={{ fontFamily: 'Montserrat, sans-serif' }}>{item.volume}</span>
+              </div>
+            ))}
+          </div>
+        </div>
+      </div>
+    </div>
+  );
+}
+
 function AiSearchTransitionBadge() {
   return (
     <div className="shrink-0 flex flex-col items-center justify-center gap-4 z-30 px-1 translate-y-[56px]">
@@ -47,9 +171,7 @@ function AiSearchTransitionBadge() {
 }
 
 export default function Page_GEOWordSelectionOther() {
-  const [imgFailed, setImgFailed] = useState(false);
   const [phoneImgFailed, setPhoneImgFailed] = useState(false);
-  const middleImagePath = "/images/trend-consumer-trust.png";
   const phoneImagePath = "/images/geo-word-selection-other-phone.png";
 
   return (
@@ -87,22 +209,8 @@ export default function Page_GEOWordSelectionOther() {
 
           {/* Card Body */}
           <div className="flex-grow min-h-0 p-6 pb-4 bg-zinc-950 flex flex-col">
-            <div className="flex-grow bg-white border border-zinc-200 rounded-xl relative overflow-hidden flex items-center justify-start h-[620px] shadow-inner">
-              {!imgFailed ? (
-                <img
-                  src={middleImagePath}
-                  alt="百度营销/小红书聚光月均搜索指数"
-                  className="w-full h-full object-contain object-left"
-                  onError={() => setImgFailed(true)}
-                />
-              ) : (
-                <div className="w-full h-full flex flex-col items-center justify-center gap-4 p-8 bg-zinc-50">
-                  <ImageIcon className="w-16 h-16 text-zinc-400 opacity-60" />
-                  <span className="text-zinc-500 font-bold text-[22px] font-['MiSans']">
-                    [ 百度营销/小红书聚光月均搜索指数图表 ]
-                  </span>
-                </div>
-              )}
+            <div className="flex-grow bg-transparent rounded-xl relative overflow-hidden flex items-stretch justify-stretch h-[620px]">
+              <SearchIndexDashboard />
             </div>
           </div>
 

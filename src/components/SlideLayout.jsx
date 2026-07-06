@@ -10,7 +10,8 @@ export default function SlideLayout({
   className = "",
   contentClassName = "",
   showGuidesDefault = false,
-  fullBleed = false
+  fullBleed = false,
+  hideHeaderLeft = false
 }) {
   const [showGuides, setShowGuides] = useState(showGuidesDefault);
   const context = useContext(SlideContext);
@@ -35,7 +36,7 @@ export default function SlideLayout({
     <div className={`w-full h-full relative overflow-hidden bg-black text-white font-sans ${className}`}>
 
       {/* ── 顶部导航栏 ── */}
-      {hasNav && chapter && (
+      {hasNav && chapter && !hideHeaderLeft && (
         <div 
           className="absolute z-20 flex items-center gap-[30px] select-none"
           style={{ top: '36px', left: '40px' }}
