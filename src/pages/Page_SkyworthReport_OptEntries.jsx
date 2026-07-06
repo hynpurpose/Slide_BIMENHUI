@@ -1,15 +1,44 @@
-import React from 'react';
+import React, { useState } from 'react';
 import SlideLayout from '../components/SlideLayout';
-import report from '../data/geoReport.json';
-import { WebPanel, WebHeader, fmtPct, fmtDay } from '../components/GeoReportWeb';
 
-const MAX_ROWS = 14;
+function ScreenshotSlot({ src, alt, hint }) {
+  const [imgLoaded, setImgLoaded] = useState(false);
+  const [imgError, setImgError] = useState(false);
+
+  return (
+    <div className="flex-1 flex flex-col justify-center items-center min-h-0 pb-1">
+      {imgLoaded && !imgError ? (
+        <div className="relative max-h-full max-w-full bg-[#0a0a0a] border border-white/10 rounded-2xl p-3 shadow-2xl transition-all duration-300 hover:border-white/20 group flex items-center justify-center">
+          <img
+            src={src}
+            alt={alt}
+            className="max-w-full max-h-full w-auto h-auto rounded-xl object-contain group-hover:scale-[1.002] transition-transform duration-500"
+            onLoad={() => setImgLoaded(true)}
+            onError={() => setImgError(true)}
+          />
+        </div>
+      ) : (
+        <div className="w-full max-w-[1550px] aspect-[2/1] max-h-full bg-[#0a0a0a] border border-white/10 rounded-2xl p-3 flex flex-col justify-center items-center relative overflow-hidden group hover:border-white/20 transition-all duration-300 shadow-2xl">
+          <img src={src} alt={alt} className="hidden" onLoad={() => setImgLoaded(true)} onError={() => setImgError(true)} />
+          <div className="absolute inset-2 flex flex-col items-center justify-center p-4 text-center bg-white/[0.01] rounded-xl border border-dashed border-white/10">
+            <div className="w-12 h-12 rounded-full bg-white/5 border border-white/10 flex items-center justify-center mb-3">
+              <svg className="w-6 h-6 text-zinc-400" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M4 16l4.586-4.586a2 2 0 012.828 0L16 16m-2-2l1.586-1.586a2 2 0 012.828 0L20 14m-6-6h.01M6 20h12a2 2 0 002-2V6a2 2 0 00-2-2H6a2 2 0 00-2 2v12a2 2 0 002 2z" />
+              </svg>
+            </div>
+            <p className="text-zinc-300 font-bold text-base mb-1">{hint}</p>
+            <p className="text-zinc-500 text-xs max-w-sm mb-3">上传任意比例的图片，外边框将自动无缝贴合原图尺寸，同时最大化屏幕显示。</p>
+            <div className="bg-black border border-white/10 px-3 py-1.5 rounded-lg text-[10px] font-mono text-[#004CE5]">
+              存放路径: {src}
+            </div>
+          </div>
+        </div>
+      )}
+    </div>
+  );
+}
 
 export function Page_SkyworthReport_OptEntries() {
-  const { meta, entries, platforms } = report;
-  const platformMap = Object.fromEntries(platforms.map((p) => [p.id, p]));
-  const rows = entries.list.slice(0, MAX_ROWS);
-
   return (
     <SlideLayout fullBleed>
       <div className="w-full h-full flex flex-col relative text-white font-sans px-12 sm:px-16 pt-6 lg:pt-8 pb-4 overflow-hidden animate-fade-in">
@@ -19,56 +48,11 @@ export function Page_SkyworthReport_OptEntries() {
               优化词 · 词条表现分析
             </h1>
           </div>
-
-          <WebPanel>
-            <WebHeader
-              title="词条"
-              meta={meta}
-              right={
-                <span className="text-[13px] text-[#6b7280] shrink-0">
-                  共 {entries.total} 条{entries.total > MAX_ROWS ? `（展示前 ${MAX_ROWS} 条）` : ''}
-                </span>
-              }
-            />
-
-            <div className="flex-1 px-6 pb-4 min-h-0 flex flex-col">
-              <table className="w-full border-collapse table-fixed flex-1">
-                <thead>
-                  <tr className="border-y border-[#f3f4f6] text-[13px] text-[#6b7280]">
-                    <th className="w-[4%] py-2 font-medium text-center">#</th>
-                    <th className="w-[38%] py-2 font-medium text-left pl-2">词条</th>
-                    <th className="w-[12%] py-2 font-medium text-center">提及率</th>
-                    <th className="w-[14%] py-2 font-medium text-center">平均提及位次</th>
-                    <th className="w-[16%] py-2 font-medium text-center">监测平台</th>
-                    <th className="w-[16%] py-2 font-medium text-center">最近更新时间</th>
-                  </tr>
-                </thead>
-                <tbody>
-                  {rows.map((e, idx) => (
-                    <tr key={e.entry_id} className="border-b border-[#f3f4f6] last:border-none text-[14px]">
-                      <td className="text-center text-[#9ca3af]">{idx + 1}</td>
-                      <td className="pl-2 text-[#111827] font-medium truncate">{e.entry_name}</td>
-                      <td className="text-center text-[#374151]">{fmtPct(e.mention_rate)}</td>
-                      <td className="text-center text-[#374151]">
-                        {e.position === null ? '-' : Number(e.position).toFixed(1)}
-                      </td>
-                      <td>
-                        <div className="flex items-center justify-center gap-1">
-                          {e.platform_ids.map((pid) => {
-                            const p = platformMap[pid];
-                            if (!p) return null;
-                            return <img key={pid} src={p.url} alt={p.name} title={p.name} className="w-[18px] h-[18px] rounded" />;
-                          })}
-                          {e.platform_ids.length === 0 && <span className="text-[#d1d5db]">-</span>}
-                        </div>
-                      </td>
-                      <td className="text-center text-[#3b82f6]">{fmtDay(e.last_conversation_time)}</td>
-                    </tr>
-                  ))}
-                </tbody>
-              </table>
-            </div>
-          </WebPanel>
+          <ScreenshotSlot
+            src="/geo-report/page-55-entries.jpg"
+            alt="优化词词条表现大图"
+            hint="此处为优化词词条表现大图"
+          />
         </div>
       </div>
     </SlideLayout>
