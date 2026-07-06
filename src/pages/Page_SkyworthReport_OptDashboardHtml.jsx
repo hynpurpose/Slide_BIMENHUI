@@ -254,6 +254,8 @@ function TrendLineChart({ data }) {
         </text>
       ))}
       <path d={linePath} fill="none" stroke={C.blue} strokeWidth="2" strokeLinejoin="round" strokeLinecap="round" />
+      {/* 只有一个数据点时画不出线，用实心圆点标出该点 */}
+      {n === 1 && <circle cx={pts[0][0]} cy={pts[0][1]} r="4" fill={C.blue} />}
     </svg>
   );
 }
