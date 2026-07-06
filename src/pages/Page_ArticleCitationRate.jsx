@@ -81,10 +81,7 @@ function ProjectRow({ project }) {
     <div className="flex-1 min-h-0 flex items-stretch bg-[#FBFCFE] border border-zinc-200/80 rounded-[1.5rem] px-7 shadow-sm overflow-hidden">
 
       {/* ── 左侧：项目名 ── */}
-      <div className="w-[250px] shrink-0 flex flex-col justify-center gap-2.5 pr-6">
-        <span className="inline-block max-w-fit text-[14px] font-bold tracking-wider text-[#004CE5] bg-[#004CE5]/8 border border-[#004CE5]/20 rounded-full px-3.5 py-1 leading-none">
-          {project.industry}
-        </span>
+      <div className="w-[250px] shrink-0 flex flex-col justify-center pr-6">
         <span className="text-[40px] font-black text-zinc-900 font-['MiSans'] leading-none flex items-center gap-2.5">
           <span className="w-2.5 h-2.5 rounded-full bg-[#004CE5] shadow-[0_0_8px_rgba(0,76,229,0.4)] shrink-0" />
           {project.brand}
