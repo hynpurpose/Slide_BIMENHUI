@@ -89,6 +89,14 @@ async function main() {
     api('/api/citations/articles', { ...range, page: 1, page_size: 10, sort_by: 'total_citations', sort_order: 'desc' }),
   ]);
 
+  // Top1 提及率排名（测试服暂无此接口，失败时置空）
+  let top1 = null;
+  try {
+    top1 = await api('/api/competitors/top-mention-rate', { ...range, top_type: 'top1' });
+  } catch (e) {
+    console.warn(`top-mention-rate 接口不可用（${e.message}），Top1 排名置空`);
+  }
+
   const platformMap = Object.fromEntries(platforms.data.map((p) => [p.id, p]));
 
   const report = {
@@ -151,6 +159,12 @@ async function main() {
       position_ranking: compare.data.position_ranking || [],
       rate_daily: compare.data.rate_daily || compare.data.mention_rate_daily || [],
       position_daily: compare.data.position_daily || [],
+      top1_ranking: (top1?.data?.list || []).map((b) => ({
+        rank: b.rank,
+        brand_name: b.display_name || b.brand_name,
+        top1_mention_rate: num(b.selected_top_mention_rate),
+        is_target: !!(b.is_self ?? b.is_target),
+      })),
     },
     citations: {
       total_conversations: citationStats.data.total_conversations,
