@@ -157,7 +157,7 @@ export default function Page_ArticleCitationRate() {
         <div className="absolute top-[-56px] right-0 z-30 flex items-center gap-2.5 text-white text-[26px] xl:text-[28px] font-medium">
           <div className="w-3 h-3 rounded-full bg-blue-500 animate-pulse shrink-0" />
           <span className="tracking-wide">
-            以过往项目实测数据，验证内容的<span className="text-[32px] xl:text-[34px] font-black text-white">真实 AI 引用效果</span>。
+            客户实测数据，内容的<span className="text-[32px] xl:text-[34px] font-black text-white">真实引用效果</span>。
           </span>
         </div>
 

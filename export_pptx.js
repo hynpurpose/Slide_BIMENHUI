@@ -117,7 +117,17 @@ async function run() {
     const videoAdjBySlide = {};
     let addedSlides = 0;
 
-    const totalSlides = 108;
+    // Dynamically retrieve total slides from the page counter
+    const totalSlides = await page.evaluate(() => {
+        const el = document.querySelector('.export-hide.font-mono');
+        if (el) {
+            const parts = el.textContent.split('/');
+            if (parts.length === 2) {
+                return parseInt(parts[1].trim(), 10);
+            }
+        }
+        return 110; // fallback
+    });
 
     console.log(`Found ${totalSlides} slides. Starting capture...`);
 

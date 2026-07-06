@@ -29,9 +29,9 @@ const FOTILE_OVERVIEW = [
 ];
 
 const OPPO_OVERVIEW = [
-  { label: '提及率', value: '39.7%' },
-  { label: '平均提及位次', value: 'NO. 3.3' },
-  { label: '负面信息率', value: '3.1%' },
+  { label: '提及率', value: '86.4%' },
+  { label: '平均提及位次', value: 'NO. 1.9' },
+  { label: '负面信息率', value: '1.2%' },
 ];
 
 function SectionTitle({ children, size = 22 }) {
@@ -73,17 +73,17 @@ function OverviewPanel({ product, metrics }) {
           <span className="text-[15px] font-bold text-[#1F2329]">{product}</span>
         </div>
       </div>
-      <div className="flex-1 flex gap-5 mt-5 min-h-0">
+      <div className="flex-1 grid grid-cols-3 gap-5 mt-5 min-h-[128px] items-stretch">
         {metrics.map((m) => (
           <div
             key={m.label}
-            className="flex-1 bg-white border border-[#E9EAEE] rounded-[14px] px-6 py-5 flex flex-col justify-center gap-4 min-w-0 shadow-[0_2px_8px_rgba(31,35,41,0.04)]"
+            className="h-full bg-white border border-[#E9EAEE] rounded-[14px] px-6 py-5 flex flex-col justify-between min-h-[128px] min-w-0 shadow-[0_2px_8px_rgba(31,35,41,0.04)]"
           >
-            <span className="text-[18px] font-bold text-[#1F2329] leading-none flex items-center gap-1.5">
+            <span className="text-[18px] font-bold text-[#1F2329] leading-none flex items-center gap-1.5 whitespace-nowrap shrink-0">
               {m.label}
               <span className="w-[16px] h-[16px] rounded-full border-[1.5px] border-[#B4B9C2] text-[#B4B9C2] text-[10px] font-bold flex items-center justify-center leading-none">?</span>
             </span>
-            <span className="text-[46px] font-black text-[#141619] leading-none tracking-tight">{m.value}</span>
+            <span className="text-[46px] font-black text-[#141619] leading-none tracking-tight shrink-0">{m.value}</span>
           </div>
         ))}
       </div>
@@ -101,28 +101,23 @@ function DoubleColumn({ data, overview }) {
           <span className="inline-block text-[20px] font-bold tracking-widest text-[#004CE5] bg-[#004CE5]/10 px-4 py-2 rounded-full border border-[#004CE5]/20 max-w-fit font-sans leading-none -mt-4 mb-4">
             {data.industry}
           </span>
-          <h3 className="text-[46px] font-extrabold text-white tracking-tight flex items-center gap-3 mt-1 leading-none">
-            <span className="w-3 h-3 rounded-full bg-[#004CE5] shadow-[0_0_8px_rgba(0,76,229,0.8)]" />
-            {data.brand}
-          </h3>
-        </div>
-
-        <div className="flex flex-col gap-2 items-start ml-6 mr-auto pl-8 border-l border-white/5">
-          <span className="text-[13px] text-zinc-500 font-semibold tracking-widest uppercase font-sans">优化平台</span>
-          <div className="flex items-center gap-2 mt-1">
-            {data.platforms.map((logo, idx) => (
-              <img key={idx} src={logo} alt="platform" className="w-auto h-7 object-contain brightness-95" />
-            ))}
+          <div className="w-[240px] h-[90px] flex items-center justify-start mt-1">
+            <img
+              src={`/cases/brand-logos/logo-${data.brandId}.png`}
+              alt={`${data.brand} Logo`}
+              className="max-w-full max-h-full object-contain brightness-0 invert opacity-75 group-hover:opacity-100 transition-opacity"
+              onError={(e) => { e.currentTarget.style.display = 'none'; }}
+            />
           </div>
         </div>
 
-        <div className="w-[240px] h-[90px] flex items-center justify-end shrink-0 self-center">
-          <img
-            src={`/cases/brand-logos/logo-${data.brandId}.png`}
-            alt={`${data.brand} Logo`}
-            className="max-w-full max-h-full object-contain brightness-0 invert opacity-75 group-hover:opacity-100 transition-opacity"
-            onError={(e) => { e.currentTarget.style.display = 'none'; }}
-          />
+        <div className="flex flex-col gap-2 items-start ml-6 mr-auto pl-8 border-l border-white/5 pt-6">
+          <span className="text-[15px] text-zinc-500 font-semibold tracking-widest uppercase font-sans">优化平台</span>
+          <div className="flex items-center gap-3 mt-1.5">
+            {data.platforms.map((logo, idx) => (
+              <img key={idx} src={logo} alt="platform" className="w-auto h-11 object-contain brightness-95" />
+            ))}
+          </div>
         </div>
       </div>
 
@@ -131,13 +126,25 @@ function DoubleColumn({ data, overview }) {
         <OverviewPanel product={data.product} metrics={overview} />
       </div>
 
-      <div className="shrink-0 flex flex-col justify-end">
+      <div className="shrink-0 flex flex-col justify-end min-h-[192px]">
         <div className="mb-4">
           <SectionTitle size={24}>项目背景与总结</SectionTitle>
         </div>
-        <p className="text-zinc-300 leading-relaxed text-[22px] font-medium h-auto text-justify">
-          {data.summary}
-        </p>
+        <div className="flex-1 flex flex-col justify-start">
+        {Array.isArray(data.summary) ? (
+          <div className="flex flex-col gap-2">
+            {data.summary.map((line, i) => (
+              <p key={i} className="text-zinc-300 leading-relaxed text-[22px] font-medium text-justify">
+                {line}
+              </p>
+            ))}
+          </div>
+        ) : (
+          <p className="text-zinc-300 leading-relaxed text-[22px] font-medium h-auto text-justify">
+            {data.summary}
+          </p>
+        )}
+        </div>
       </div>
     </div>
   );
