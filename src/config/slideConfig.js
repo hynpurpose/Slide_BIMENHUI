@@ -143,6 +143,7 @@ import {
   Page_SkyworthReport_BasicInfo2,
 } from '../pages/Page_SkyworthReport_BasicInfo';
 import {
+  Page_SkyworthReport_CoreDataSelf,
   Page_SkyworthReport_CoreDataSelf_A,
   Page_SkyworthReport_CoreDataSelf_B,
   Page_SkyworthReport_CoreDataSelf_C,
@@ -249,7 +250,7 @@ export const slideConfig = [
   { type: 'chapter', title: '现状诊断报告', subtitle: 'DIAGNOSTIC REPORT', backgroundImage: '' },
 
   { type: 'section', title: '数据总览' },
-  { type: 'page', title: '核心数据总览', variants: [Page_SkyworthReport_CoreDataSelf_A, Page_SkyworthReport_CoreDataSelf_B, Page_SkyworthReport_CoreDataSelf_C], hideHeader: true },
+  { type: 'page', title: '核心数据总览', component: Page_SkyworthReport_CoreDataSelf, hideHeader: true },
   { type: 'page', title: '核心数据竞品对比', component: Page_SkyworthReport_CoreDataCompetitor, hideHeader: true },
   { type: 'page', title: '监测词总览', component: Page_SkyworthReport_MonitorWordOverview, hideHeader: true },
 
