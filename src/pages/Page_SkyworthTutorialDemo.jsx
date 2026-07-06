@@ -7,10 +7,10 @@ export default function Page_SkyworthTutorialDemo() {
       <div className="w-full h-full flex flex-col gap-6 animate-fadeIn relative z-10">
 
         {/* Callout Text above Content Top Line on the Right */}
-        <div className="absolute top-[-56px] right-0 z-30 flex items-center gap-2.5 text-zinc-400 text-[28px] font-bold">
+        <div className="absolute top-[-56px] right-0 z-30 flex items-center gap-2.5 text-white text-[26px] xl:text-[28px] font-medium">
           <div className="w-3 h-3 rounded-full bg-blue-500 animate-pulse shrink-0" />
           <span className="tracking-wide">
-            站在家居博主的专业视角，输出<span className="text-white font-extrabold">客厅颜值装修的实用干货</span>
+            站在家居博主的专业视角，输出<span className="text-[32px] xl:text-[34px] font-black text-white">客厅颜值装修的实用干货</span>。
           </span>
         </div>
 
