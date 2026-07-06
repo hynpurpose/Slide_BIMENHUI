@@ -2,7 +2,7 @@ import React from 'react';
 import { PenTool } from 'lucide-react';
 import SlideLayout from '../components/SlideLayout';
 
-// 8篇评测类高引用参考文章标题 (纯中文，无来源)
+// 15篇评测类高引用参考文章标题 (用于左侧普通表格展示)
 const mockReviewArticles = [
   '2026年艺术画壁电视排行榜：谁是真正的客厅颜值担当？',
   '实测创维A7D Pro壁纸电视：超薄贴墙与哈曼卡顿音响深度横评',
@@ -11,7 +11,14 @@ const mockReviewArticles = [
   '高端电视音画质怎么看？壁纸电视画质调校与背光芯片解析',
   '无缝贴墙到底有多薄？2026超薄贴墙壁纸电视深度拆机评测',
   '真假超薄壁纸电视大对决！市售主流品牌参数与画质全面横评',
-  '买前必看：2026高端壁纸电视旗舰机型对比及避坑推荐'
+  '买前必看：2026高端壁纸电视旗舰机型对比及避坑推荐',
+  '艺术电视是不是智商税？壁纸电视深度评测与家居美学配搭',
+  '如何打造客厅无缝电视墙？超薄壁纸电视安装排线保姆级教程',
+  'Mini LED画质天花板！年度壁纸电视旗舰参数对比评测',
+  '小户型客厅救星：薄如画框的壁纸电视如何拯救空间拥挤感',
+  '从防眩光到护眼效果：高端贴墙艺术电视屏幕材质深度科普',
+  '客厅软装新美学：壁纸电视壁画模式及能耗测试深度分享',
+  '超薄磁吸挂架稳不稳？壁纸电视承重与日常安全深度测试'
 ];
 
 export default function Page_SkyworthContentStrategyDeconstruct() {
@@ -22,27 +29,39 @@ export default function Page_SkyworthContentStrategyDeconstruct() {
         {/* ── 主排版区 ── */}
         <div className="flex-1 w-full flex items-stretch min-h-0 gap-6 pb-4">
 
-          {/* ── 左边：高引用参考文章列表 (白底黑字) ── */}
+          {/* ── 左边：高引用参考文章列表 (白底黑字，普通表格样式，15篇+省略号) ── */}
           <div className="w-[35%] flex flex-col h-full bg-white border border-zinc-200 rounded-2xl p-6 shadow-[0_10px_30px_rgba(0,0,0,0.15)] relative overflow-hidden group hover:border-blue-500/20 transition-colors">
             <div className="flex items-center justify-between mb-5 relative z-10">
               <h3 className="text-[20px] font-black text-zinc-900 tracking-wide">高引用参考文章</h3>
             </div>
 
-            {/* 评测类文章列表，垂直层叠，白底黑字 */}
-            <div className="flex-grow flex flex-col justify-between min-h-0 py-1">
-              {mockReviewArticles.map((title, idx) => (
-                <div 
-                  key={idx}
-                  className="flex items-center gap-4 bg-zinc-50 border border-zinc-200 rounded-xl px-4 h-[58px] hover:bg-zinc-100/60 transition-colors"
-                >
-                  <span className="font-['Montserrat'] text-[14px] font-black text-[#004CE5] bg-[#004CE5]/10 w-[26px] h-[26px] rounded-full flex items-center justify-center shrink-0 border border-[#004CE5]/20">
-                    {idx + 1}
-                  </span>
-                  <span className="text-[15px] font-black text-zinc-800 leading-none truncate flex-grow">
-                    {title}
-                  </span>
-                </div>
-              ))}
+            {/* 普通表格样式文章列表 */}
+            <div className="flex-grow flex flex-col bg-zinc-50/50 rounded-xl border border-zinc-200/60 p-3 overflow-hidden">
+              <div className="flex items-center text-[12px] font-bold text-zinc-400 border-b border-zinc-200 pb-1.5 px-1 shrink-0">
+                <span className="w-10">序号</span>
+                <span className="flex-grow">评测文章标题</span>
+              </div>
+
+              <div className="flex-1 overflow-hidden flex flex-col justify-between py-1 my-1">
+                {mockReviewArticles.map((title, idx) => (
+                  <div 
+                    key={idx} 
+                    className="flex items-center h-[34px] text-[14px] border-b border-zinc-100/50 px-1 hover:bg-zinc-100/40"
+                  >
+                    <span className="w-10 font-['Montserrat'] text-zinc-400 font-bold">
+                      {(idx + 1).toString().padStart(2, '0')}
+                    </span>
+                    <span className="flex-grow truncate text-zinc-700 font-bold pr-2">
+                      {title}
+                    </span>
+                  </div>
+                ))}
+              </div>
+
+              {/* 省略号代表还有很多 */}
+              <div className="pt-2 text-center text-zinc-400 text-[20px] font-black shrink-0 border-t border-zinc-200 mt-1 tracking-[0.4em] flex items-center justify-center">
+                ...
+              </div>
             </div>
           </div>
 
@@ -135,7 +154,7 @@ export default function Page_SkyworthContentStrategyDeconstruct() {
                   <div className="text-[#004CE5] font-['Montserrat'] text-[32px] font-black pt-0.5 shrink-0 w-10">05</div>
                   <div className="flex-1">
                     <h3 className="text-[28px] font-extrabold text-white mb-1.5 tracking-wide">
-                      选购指南类体裁布局
+                      选购指南类体采布局
                     </h3>
                     <p className="text-zinc-300 text-[20px] leading-relaxed">
                       采用“参数对比+家居实测”的硬核科技评测文风，极易被搜索或AI作为“电视推荐”参考抓取。
