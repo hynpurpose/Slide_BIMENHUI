@@ -157,7 +157,7 @@ const fmtChartDate = (dateStr) => {
 /* ── 两张图共用的几何参数：总高一致，保证 viewBox 缩放后文字大小一致 ── */
 const CHART = {
   width: 620,
-  height: 210,
+  height: 220,
   axisW: 50, // chart-base ChartYAxis width=50
 };
 
