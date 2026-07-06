@@ -109,7 +109,7 @@ export default function Page_SkyworthContentDirection() {
                   className="flex items-center h-[24px] text-[13px] border-b border-zinc-100/50 px-1 hover:bg-zinc-100/40"
                 >
                   <span className="w-8 font-['Montserrat'] text-zinc-400 font-bold">{art.rank}</span>
-                  <span className="flex-grow truncate text-zinc-750 font-bold pr-3">{art.title}</span>
+                  <span className="flex-grow truncate text-zinc-800 font-bold pr-3">{art.title}</span>
                   <span className="w-16 text-right text-[11px] text-zinc-500 font-semibold shrink-0">
                     {art.category.replace('类', '')}
                   </span>
