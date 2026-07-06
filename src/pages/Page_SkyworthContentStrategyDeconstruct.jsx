@@ -22,25 +22,23 @@ export default function Page_SkyworthContentStrategyDeconstruct() {
         {/* ── 主排版区 ── */}
         <div className="flex-1 w-full flex items-stretch min-h-0 gap-6 pb-4">
 
-          {/* ── 左边：高引用参考文章列表 (无英文标识，无来源，纯白色大字号) ── */}
-          <div className="w-[35%] flex flex-col h-full bg-zinc-950/20 border border-zinc-900 rounded-2xl p-6 shadow-[0_10px_30px_rgba(0,0,0,0.5)] relative overflow-hidden group hover:border-blue-500/30 transition-colors">
-            <div className="absolute inset-0 bg-gradient-to-br from-blue-500/5 to-transparent pointer-events-none" />
-
+          {/* ── 左边：高引用参考文章列表 (白底黑字) ── */}
+          <div className="w-[35%] flex flex-col h-full bg-white border border-zinc-200 rounded-2xl p-6 shadow-[0_10px_30px_rgba(0,0,0,0.15)] relative overflow-hidden group hover:border-blue-500/20 transition-colors">
             <div className="flex items-center justify-between mb-5 relative z-10">
-              <h3 className="text-[20px] font-black text-white tracking-wide">高引用参考文章</h3>
+              <h3 className="text-[20px] font-black text-zinc-900 tracking-wide">高引用参考文章</h3>
             </div>
 
-            {/* 评测类文章列表，垂直层叠，纯白色文字 */}
+            {/* 评测类文章列表，垂直层叠，白底黑字 */}
             <div className="flex-grow flex flex-col justify-between min-h-0 py-1">
               {mockReviewArticles.map((title, idx) => (
                 <div 
                   key={idx}
-                  className="flex items-center gap-4 bg-black/40 border border-zinc-900 rounded-xl px-4 h-[58px] hover:bg-white/[0.02] transition-colors"
+                  className="flex items-center gap-4 bg-zinc-50 border border-zinc-200 rounded-xl px-4 h-[58px] hover:bg-zinc-100/60 transition-colors"
                 >
                   <span className="font-['Montserrat'] text-[14px] font-black text-[#004CE5] bg-[#004CE5]/10 w-[26px] h-[26px] rounded-full flex items-center justify-center shrink-0 border border-[#004CE5]/20">
                     {idx + 1}
                   </span>
-                  <span className="text-[15px] font-black text-white leading-none truncate flex-grow">
+                  <span className="text-[15px] font-black text-zinc-800 leading-none truncate flex-grow">
                     {title}
                   </span>
                 </div>
