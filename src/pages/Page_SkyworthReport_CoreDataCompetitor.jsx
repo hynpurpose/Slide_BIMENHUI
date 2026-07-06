@@ -6,11 +6,12 @@ const FONT_IMPORT = `@import url('https://fonts.geekzu.org/css2?family=Montserra
 
 const RANK_COLORS = { 1: '#FFD700', 2: '#E0E0E0', 3: '#F5C28C' };
 
-function RankBadge({ rank }) {
+function RankBadge({ rank, compact = false }) {
+  const size = compact ? 'h-5 w-5 text-[10px]' : 'h-6 w-6 text-xs';
   if (RANK_COLORS[rank]) {
     return (
       <div
-        className="flex h-6 w-6 items-center justify-center rounded-full text-xs font-semibold shrink-0"
+        className={`flex ${size} items-center justify-center rounded-full font-semibold shrink-0`}
         style={{ backgroundColor: RANK_COLORS[rank], color: '#1f2937' }}
       >
         {rank}
@@ -18,7 +19,7 @@ function RankBadge({ rank }) {
     );
   }
   return (
-    <div className="flex h-6 w-6 items-center justify-center text-xs font-medium shrink-0" style={{ color: C.mutedFg }}>
+    <div className={`flex ${size} items-center justify-center font-medium shrink-0`} style={{ color: C.mutedFg }}>
       {rank}
     </div>
   );
@@ -47,14 +48,17 @@ function SectionTitle({ children }) {
 }
 
 function RankingCard({ title, valueLabel, data, compact = false, leading = false }) {
-  const cellPx = compact ? 'px-2' : 'px-3';
+  const cellPx = compact ? 'px-1.5' : 'px-3';
   const thBase = compact
-    ? 'h-8 text-start align-middle text-xs font-medium whitespace-nowrap'
-    : 'h-9 text-start align-middle text-sm font-medium whitespace-nowrap';
-  const rowPy = compact ? 'py-2' : 'py-2.5';
-  const nameSize = compact ? 'text-xs' : 'text-sm';
-  const valueSize = compact ? 'text-sm' : 'text-base';
-  const valueCol = compact ? 'w-[56px]' : 'w-[96px]';
+    ? 'h-7 align-middle text-[11px] font-medium whitespace-nowrap'
+    : 'h-8 align-middle text-sm font-medium whitespace-nowrap';
+  const rowPy = compact ? 'py-1' : 'py-2';
+  const nameSize = compact ? 'text-[11px]' : 'text-sm';
+  const valueSize = compact ? 'text-xs' : 'text-base';
+  const valueCol = compact ? 'w-[52px]' : 'w-[96px]';
+  const cardPad = compact ? 'p-2.5' : 'p-4';
+
+  const valueCell = compact ? 'px-1.5 text-right tabular-nums' : 'px-3 text-right tabular-nums';
 
   const titleClass = compact
     ? 'text-[15px] xl:text-[17px] font-bold text-white shrink-0 truncate'
@@ -76,47 +80,45 @@ function RankingCard({ title, valueLabel, data, compact = false, leading = false
         className="flex-grow flex flex-col rounded-xl border bg-white shadow-sm min-h-0 overflow-hidden"
         style={{ borderColor: C.border, color: C.fg }}
       >
-        <div className={`flex flex-1 flex-col min-h-0 ${compact ? 'p-3' : 'p-4'}`}>
-          <div className="flex-grow min-h-0 overflow-hidden">
-            <table className="w-full caption-bottom border-collapse table-fixed">
-              <colgroup>
-                <col className="w-[36px]" />
-                <col />
-                <col className={valueCol} />
-              </colgroup>
-              <thead>
-                <tr className="border-b" style={{ borderColor: C.border }}>
-                  <th className={`${thBase} ${cellPx}`} />
-                  <th className={`${thBase} ${cellPx}`} style={{ color: C.fg }}>
-                    产品名称
-                  </th>
-                  <th className={`${thBase} ${cellPx} text-right tabular-nums`} style={{ color: C.fg }}>
-                    {valueLabel}
-                  </th>
+        <div className={`flex flex-1 flex-col min-h-0 ${cardPad}`}>
+          <table className="w-full h-full caption-bottom border-collapse table-fixed">
+            <colgroup>
+              <col className={compact ? 'w-[28px]' : 'w-[36px]'} />
+              <col />
+              <col className={valueCol} />
+            </colgroup>
+            <thead>
+              <tr className="border-b" style={{ borderColor: C.border }}>
+                <th className={`${thBase} ${cellPx}`} />
+                <th className={`${thBase} ${cellPx} text-left`} style={{ color: C.fg }}>
+                  {compact ? '产品' : '品牌名称'}
+                </th>
+                <th className={`${thBase} ${valueCell}`} style={{ color: C.fg }}>
+                  {valueLabel}
+                </th>
+              </tr>
+            </thead>
+            <tbody>
+              {data.map((item, idx) => (
+                <tr key={idx} className="border-b last:border-0" style={{ borderColor: C.border }}>
+                  <td className={`${cellPx} ${rowPy} align-middle`}>
+                    <RankBadge rank={idx + 1} compact={compact} />
+                  </td>
+                  <td className={`${cellPx} ${rowPy} align-middle`}>
+                    <div className="flex items-center gap-1 min-w-0">
+                      <span className={`${nameSize} font-medium truncate leading-tight`} style={{ color: C.fg }}>
+                        {item.name}
+                      </span>
+                      {item.self && <TargetProductTag />}
+                    </div>
+                  </td>
+                  <td className={`${valueCell} ${rowPy} align-middle ${valueSize} font-medium whitespace-nowrap`} style={{ color: C.fg }}>
+                    {item.value}
+                  </td>
                 </tr>
-              </thead>
-              <tbody>
-                {data.map((item, idx) => (
-                  <tr key={idx} className="border-b last:border-0" style={{ borderColor: C.border }}>
-                    <td className={`${cellPx} ${rowPy} align-middle`}>
-                      <RankBadge rank={idx + 1} />
-                    </td>
-                    <td className={`${cellPx} ${rowPy} align-middle`}>
-                      <div className="flex items-center gap-1.5 min-w-0">
-                        <span className={`${nameSize} font-medium truncate`} style={{ color: C.fg }}>
-                          {item.name}
-                        </span>
-                        {item.self && <TargetProductTag />}
-                      </div>
-                    </td>
-                    <td className={`${cellPx} ${rowPy} text-right align-middle tabular-nums ${valueSize} font-medium`} style={{ color: C.fg }}>
-                      {item.value}
-                    </td>
-                  </tr>
-                ))}
-              </tbody>
-            </table>
-          </div>
+              ))}
+            </tbody>
+          </table>
         </div>
       </div>
     </div>
@@ -127,10 +129,10 @@ export function Page_SkyworthReport_CoreDataCompetitor() {
   // === 品类层面竞品对比数据 (5行) ===
   const mentionRateData = [
     { name: '创维', value: '73.6%', self: true },
-    { name: 'TCL', value: '61.5%' },
-    { name: '海信', value: '58.2%' },
-    { name: '三星', value: '47.9%' },
-    { name: '小米', value: '44.3%' },
+    { name: '海信', value: '68.2%' },
+    { name: 'TCL', value: '61.4%' },
+    { name: '华为智慧屏', value: '52.7%' },
+    { name: '小米', value: '48.1%' },
   ];
 
   const top1RateData = [
@@ -138,13 +140,14 @@ export function Page_SkyworthReport_CoreDataCompetitor() {
     { name: '海信', value: '38.5%' },
     { name: 'TCL', value: '29.7%' },
     { name: '华为智慧屏', value: '21.3%' },
+    { name: '小米', value: '18.6%' },
   ];
 
   const avgRankData = [
     { name: '海信', value: 'NO. 2.6' },
     { name: '创维', value: 'NO. 2.8', self: true },
     { name: 'TCL', value: 'NO. 3.5' },
-    { name: '三星', value: 'NO. 4.8' },
+    { name: '华为智慧屏', value: 'NO. 4.8' },
     { name: '小米', value: 'NO. 5.2' },
   ];
 
@@ -206,7 +209,7 @@ export function Page_SkyworthReport_CoreDataCompetitor() {
           {/* ===== 品类优化词竞品对比 (并列三个表) ===== */}
           <div className="shrink-0 flex flex-col gap-3 text-left">
             <SectionTitle>品类优化词竞品对比</SectionTitle>
-            <div className="grid grid-cols-3 gap-6 h-[280px]">
+            <div className="grid grid-cols-3 gap-6 h-[292px]">
               <RankingCard leading title="提及率排名" valueLabel="提及率" data={mentionRateData} />
               <RankingCard title="TOP1 提及率排名" valueLabel="Top1提及率" data={top1RateData} />
               <RankingCard title="平均提及位次排名" valueLabel="平均提及位次" data={avgRankData} />
@@ -219,7 +222,7 @@ export function Page_SkyworthReport_CoreDataCompetitor() {
               产品专属优化词竞品对比{' '}
               <span className="text-[16px] xl:text-[18px] text-white font-normal ml-2">（提及率排名对比）</span>
             </SectionTitle>
-            <div className="grid grid-cols-5 gap-4 h-[240px]">
+            <div className="grid grid-cols-5 gap-3 h-[252px]">
               <RankingCard leading title="创维 A7H Pro" valueLabel="提及率" data={productA7H} compact />
               <RankingCard title="创维 A8H" valueLabel="提及率" data={productA8H} compact />
               <RankingCard title="创维 A10H" valueLabel="提及率" data={productA10H} compact />

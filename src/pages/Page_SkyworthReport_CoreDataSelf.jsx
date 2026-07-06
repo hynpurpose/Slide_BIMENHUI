@@ -38,9 +38,9 @@ function ProgressBar({ value, color }) {
   );
 }
 
-function SummaryBlock() {
+function SummaryBlock({ className = '' }) {
   return (
-    <div className="shrink-0 border-t border-white/10 pt-8 mt-6">
+    <div className={`shrink-0 border-t border-white/10 pt-8 mt-6 ${className}`}>
       <div className="flex items-start gap-6">
         <span className="text-[22px] xl:text-[24px] font-bold text-white shrink-0 bg-[#004CE5] px-5 py-2.5 rounded-xl shadow-[0_0_10px_rgba(0,76,229,0.3)]">数据总结</span>
         <p className="text-[22px] xl:text-[24px] text-zinc-200 leading-relaxed text-justify flex-1">
@@ -51,14 +51,14 @@ function SummaryBlock() {
   );
 }
 
-function CoreDataSelfPage({ TableComponent }) {
+function CoreDataSelfPage({ TableComponent, contentClassName = '', summaryClassName = '' }) {
   const rows = getRows();
 
   return (
     <SlideLayout fullBleed>
       <div className="w-full h-full flex flex-col relative text-white font-sans px-20 sm:px-28 py-16 overflow-hidden animate-fade-in bg-black">
         <style dangerouslySetInnerHTML={{ __html: FONT_IMPORT }} />
-        <div className="w-full max-w-[1600px] mx-auto flex flex-col flex-1 min-h-0 relative z-10 gap-10">
+        <div className={`w-full max-w-[1600px] mx-auto flex flex-col flex-1 min-h-0 relative z-10 gap-10 ${contentClassName}`}>
 
           <div className="text-center shrink-0 mb-4">
             <h1 className="text-[36px] xl:text-[40px] font-bold text-white tracking-widest leading-tight">
@@ -70,7 +70,7 @@ function CoreDataSelfPage({ TableComponent }) {
             <TableComponent rows={rows} />
           </div>
 
-          <SummaryBlock />
+          <SummaryBlock className={summaryClassName} />
 
         </div>
       </div>
@@ -80,15 +80,16 @@ function CoreDataSelfPage({ TableComponent }) {
 
 /* ── 方案 A：卡片面板表格 ── */
 function TableVariantA({ rows }) {
+  const cellBorder = 'border-r border-white/20 last:border-r-0';
   return (
-    <div className="bg-white/[0.02] backdrop-blur-xl border border-white/[0.08] border-t-2 border-t-[#004CE5] rounded-2xl overflow-hidden shadow-xl">
+    <div className="bg-white/[0.02] backdrop-blur-xl border border-white/25 border-t-2 border-t-[#004CE5] rounded-2xl overflow-hidden shadow-xl">
       <table className="w-full text-left border-collapse">
         <thead>
-          <tr className="bg-[#004CE5]/15 border-b border-[#004CE5]/30">
+          <tr className="bg-[#004CE5]/15 border-b border-[#004CE5]/60">
             {['优化词分类', '提及率', 'TOP1 提及率', 'TOP3 提及率'].map((h, i) => (
               <th
                 key={h}
-                className={`py-5 text-[20px] xl:text-[22px] font-bold text-zinc-200 ${i === 0 ? 'pl-8 w-[28%]' : 'pl-6 w-[24%]'}`}
+                className={`py-5 text-[20px] xl:text-[22px] font-bold text-zinc-200 ${cellBorder} ${i === 0 ? 'pl-8 w-[28%]' : 'pl-6 w-[24%]'}`}
               >
                 {h}
               </th>
@@ -99,25 +100,22 @@ function TableVariantA({ rows }) {
           {rows.map((row, i) => (
             <tr
               key={row.label}
-              className={`${i < rows.length - 1 ? 'border-b border-white/[0.06]' : ''} hover:bg-white/[0.02] transition-colors`}
+              className={`${i < rows.length - 1 ? 'border-b border-white/20' : ''} hover:bg-white/[0.02] transition-colors`}
             >
-              <td className="py-8 xl:py-10 pl-8 align-middle">
+              <td className={`py-8 xl:py-10 pl-8 align-middle ${cellBorder}`}>
                 <div className="flex items-center gap-3">
                   <span className="w-1 h-10 bg-[#004CE5] rounded-full shrink-0" />
                   <div>
                     <div className="font-bold text-white text-[22px] xl:text-[24px]">{row.label}</div>
-                    {row.sub && <div className="text-[14px] xl:text-[15px] text-zinc-500 mt-1">{row.sub}</div>}
+                    {row.sub && <div className="text-[16px] xl:text-[18px] text-white mt-1">{row.sub}</div>}
                   </div>
                 </div>
               </td>
               {METRIC_COLS.map((col) => (
-                <td key={col.key} className="py-8 xl:py-10 pl-6 align-middle">
-                  <div className="flex flex-col">
-                    <span className="text-[13px] xl:text-[14px] text-zinc-500 font-medium mb-1">{col.label}</span>
-                    <Num className="text-[52px] xl:text-[58px] font-extrabold text-white leading-none tracking-tight">
-                      {pct(row[col.key])}
-                    </Num>
-                  </div>
+                <td key={col.key} className={`py-8 xl:py-10 pl-6 align-middle ${cellBorder}`}>
+                  <Num className="text-[52px] xl:text-[58px] font-extrabold text-white leading-none tracking-tight">
+                    {pct(row[col.key])}
+                  </Num>
                 </td>
               ))}
             </tr>
@@ -210,7 +208,13 @@ function TableVariantC({ rows }) {
 }
 
 export function Page_SkyworthReport_CoreDataSelf_A() {
-  return <CoreDataSelfPage TableComponent={TableVariantA} />;
+  return (
+    <CoreDataSelfPage
+      TableComponent={TableVariantA}
+      contentClassName="pt-4"
+      summaryClassName="mt-14 pt-10"
+    />
+  );
 }
 Page_SkyworthReport_CoreDataSelf_A.hideHeader = true;
 

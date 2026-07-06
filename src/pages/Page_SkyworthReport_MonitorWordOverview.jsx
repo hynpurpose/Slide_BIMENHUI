@@ -33,40 +33,43 @@ const CATEGORY_SENTIMENT = {
 
 function SentimentDistributionCard({ positive, negative, positiveKeywords, negativeKeywords }) {
   return (
-    <div className="bg-white rounded-2xl border border-[#f0f0f0] px-8 py-6 shadow-sm">
-      <div className="pb-5 border-b border-[#f0f0f0]">
-        <p className="text-[20px] xl:text-[22px] font-bold text-[#00a854] mb-2">
-          <Num>{formatPct(positive)}</Num>% 正面
-        </p>
-        <p className="text-[18px] xl:text-[20px] font-bold text-[#1a1a1a] leading-snug">
+    <div className="bg-white rounded-2xl border border-[#f0f0f0] px-6 py-4 shadow-sm">
+      <div className="flex items-center gap-4">
+        <div className="shrink-0 w-[84px] text-right">
+          <p className="text-[18px] xl:text-[20px] font-bold text-[#00a854] leading-tight">
+            <Num>{formatPct(positive)}</Num>%
+          </p>
+          <p className="text-[13px] text-[#00a854]/75 font-medium mt-0.5">正面</p>
+        </div>
+
+        <div className="flex-1 min-w-0">
+          <div className="h-5 flex gap-[2px] rounded-full overflow-hidden">
+            <div
+              className="h-full bg-[#52c41a] rounded-l-full"
+              style={{ width: `${positive}%` }}
+            />
+            <div
+              className="h-full bg-[#ff4d4f] rounded-r-full"
+              style={{ width: `${negative}%` }}
+            />
+          </div>
+        </div>
+
+        <div className="shrink-0 w-[84px] text-left">
+          <p className="text-[18px] xl:text-[20px] font-bold text-[#f5222d] leading-tight">
+            <Num>{formatPct(negative)}</Num>%
+          </p>
+          <p className="text-[13px] text-[#f5222d]/75 font-medium mt-0.5">负面</p>
+        </div>
+      </div>
+
+      <div className="grid grid-cols-2 gap-x-6 mt-3 pt-3 border-t border-[#f0f0f0]">
+        <p className="text-[18px] xl:text-[19px] font-bold text-[#1a1a1a] leading-snug">
           {positiveKeywords}
         </p>
-      </div>
-
-      <div className="py-5 border-b border-[#f0f0f0]">
-        <p className="text-[20px] xl:text-[22px] font-bold text-[#f5222d] mb-2">
-          <Num>{formatPct(negative)}</Num>% 负面
-        </p>
-        <p className="text-[18px] xl:text-[20px] font-bold text-[#1a1a1a] leading-snug">
+        <p className="text-[18px] xl:text-[19px] font-bold text-[#1a1a1a] leading-snug text-right">
           {negativeKeywords}
         </p>
-      </div>
-
-      <div className="pt-5">
-        <div className="h-5 flex gap-[2px]">
-          <div
-            className="h-full bg-[#52c41a] rounded-l-full"
-            style={{ width: `${positive}%` }}
-          />
-          <div
-            className="h-full bg-[#ff4d4f] rounded-r-full"
-            style={{ width: `${negative}%` }}
-          />
-        </div>
-        <div className="flex justify-between mt-2 text-[14px] text-[#999999]">
-          <Num>{formatPct(positive)}</Num>%
-          <Num>{formatPct(negative)}</Num>%
-        </div>
       </div>
     </div>
   );
@@ -92,7 +95,7 @@ export function Page_SkyworthReport_MonitorWordOverview() {
     <SlideLayout fullBleed>
       <div className="w-full h-full flex flex-col relative text-white font-sans px-12 sm:px-16 pt-6 lg:pt-8 pb-4 overflow-hidden animate-fade-in">
         <style dangerouslySetInnerHTML={{ __html: FONT_IMPORT }} />
-        <div className="w-full max-w-[1700px] mx-auto flex flex-col flex-1 min-h-0 relative z-10 gap-6">
+        <div className="w-full max-w-[1700px] mx-auto flex flex-col flex-1 min-h-0 relative z-10 gap-4">
 
           <div className="text-center shrink-0">
             <h1 className="text-[36px] font-bold text-white tracking-widest leading-tight">
@@ -101,11 +104,8 @@ export function Page_SkyworthReport_MonitorWordOverview() {
           </div>
 
           {/* 第一部分：品类监测词正负面信息比例 */}
-          <div className="shrink-0 flex flex-col gap-3">
-            <SectionTitle>品类监测词</SectionTitle>
-            <p className="text-[18px] xl:text-[20px] text-zinc-300 font-medium pl-[18px]">
-              品类监测词正负面回答分布
-            </p>
+          <div className="shrink-0 flex flex-col gap-2">
+            <SectionTitle>正负面回答</SectionTitle>
             <SentimentDistributionCard
               positive={cat.positive}
               negative={cat.negative}
