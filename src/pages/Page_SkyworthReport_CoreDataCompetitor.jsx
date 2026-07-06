@@ -1,6 +1,7 @@
 import React from 'react';
 import SlideLayout from '../components/SlideLayout';
 import { C } from '../components/GeoWebUI';
+import overview from '../data/geoOverview.json';
 
 const FONT_IMPORT = `@import url('https://fonts.geekzu.org/css2?family=Montserrat:wght@400;500;600;700;800;900&display=swap');`;
 
@@ -8,6 +9,16 @@ const RANK_COLORS = { 1: '#FFD700', 2: '#E0E0E0', 3: '#F5C28C' };
 
 function RankBadge({ rank, compact = false }) {
   const size = compact ? 'h-5 w-5 text-[10px]' : 'h-6 w-6 text-xs';
+  if (rank > 9) {
+    return (
+      <div
+        className={`flex items-center justify-center font-medium shrink-0 ${compact ? 'text-[10px] w-[28px]' : 'text-xs w-8'}`}
+        style={{ color: C.mutedFg }}
+      >
+        {rank}
+      </div>
+    );
+  }
   if (RANK_COLORS[rank]) {
     return (
       <div
@@ -102,7 +113,7 @@ function RankingCard({ title, valueLabel, data, compact = false, leading = false
               {data.map((item, idx) => (
                 <tr key={idx} className="border-b last:border-0" style={{ borderColor: C.border }}>
                   <td className={`${cellPx} ${rowPy} align-middle`}>
-                    <RankBadge rank={idx + 1} compact={compact} />
+                    <RankBadge rank={item.rank ?? idx + 1} compact={compact} />
                   </td>
                   <td className={`${cellPx} ${rowPy} align-middle`}>
                     <div className="flex items-center gap-1 min-w-0">
@@ -126,71 +137,34 @@ function RankingCard({ title, valueLabel, data, compact = false, leading = false
 }
 
 export function Page_SkyworthReport_CoreDataCompetitor() {
-  // === 品类层面竞品对比数据 (5行) ===
-  const mentionRateData = [
-    { name: '创维', value: '73.6%', self: true },
-    { name: '海信', value: '68.2%' },
-    { name: 'TCL', value: '61.4%' },
-    { name: '华为智慧屏', value: '52.7%' },
-    { name: '小米', value: '48.1%' },
-  ];
+  const cat = overview.category_opt;
 
-  const top1RateData = [
-    { name: '创维', value: '41.2%', self: true },
-    { name: '海信', value: '38.5%' },
-    { name: 'TCL', value: '29.7%' },
-    { name: '华为智慧屏', value: '21.3%' },
-    { name: '小米', value: '18.6%' },
-  ];
+  // === 品类层面竞品对比数据（来自 geoOverview.json） ===
+  const mentionRateData = cat.mention_ranking.map((b) => ({
+    name: b.name, value: `${b.rate}%`, self: b.is_target,
+  }));
+  const top1RateData = cat.top1_ranking.map((b) => ({
+    name: b.name, value: `${b.rate}%`, self: b.is_target,
+  }));
+  const avgRankData = cat.position_ranking.map((b) => ({
+    name: b.name, value: `NO. ${b.position}`, self: b.is_target,
+  }));
 
-  const avgRankData = [
-    { name: '海信', value: 'NO. 2.6' },
-    { name: '创维', value: 'NO. 2.8', self: true },
-    { name: 'TCL', value: 'NO. 3.5' },
-    { name: '华为智慧屏', value: 'NO. 4.8' },
-    { name: '小米', value: 'NO. 5.2' },
-  ];
-
-  // === 产品层面竞品对比数据 (扩展为5行) ===
-  const productA7H = [
-    { name: '海信 E5N', value: '74.5%' },
-    { name: '创维 A7H Pro', value: '71.0%', self: true },
-    { name: 'TCL T7K', value: '69.8%' },
-    { name: '三星 Q60D', value: '58.2%' },
-    { name: '小米 S Pro', value: '55.4%' },
-  ];
-
-  const productA8H = [
-    { name: 'TCL T7K Pro', value: '72.1%' },
-    { name: '海信 E7N', value: '70.4%' },
-    { name: '创维 A8H', value: '66.3%', self: true },
-    { name: '三星 Q70D', value: '52.6%' },
-    { name: '小米 TV S', value: '49.8%' },
-  ];
-
-  const productA10H = [
-    { name: '创维 A10H', value: '78.4%', self: true },
-    { name: '海信 E8N', value: '75.2%' },
-    { name: '三星 The Frame', value: '61.0%' },
-    { name: 'TCL Q10K Pro', value: '58.5%' },
-    { name: '小米 S Pro 85', value: '51.2%' },
-  ];
-
-  const productQ7H = [
-    { name: '海信 U7N', value: '68.9%' },
-    { name: 'TCL Q10K', value: '64.2%' },
-    { name: '创维 Q7H', value: '52.1%', self: true },
-    { name: '三星 Q80C', value: '48.7%' },
-    { name: '索尼 X90L', value: '45.3%' },
-  ];
-
-  const productQ8H = [
-    { name: '索尼 A95L', value: '66.5%' },
-    { name: '三星 QN900', value: '63.8%' },
-    { name: '创维 Q8H', value: '58.7%', self: true },
-    { name: '海信 U8KL', value: '54.2%' },
-    { name: 'TCL X11H', value: '52.5%' },
-  ];
+  // === 产品层面竞品对比数据（各产品优化词项目的提及率排名前5） ===
+  // 目标产品未进接口返回的前5时，用人工核实的完整榜单排名替换末行，保证本品行始终可见
+  const MANUAL_TARGET_ROWS = {
+    '创维Q7H': { rank: 107, name: '创维 Q7H', value: '0%' },
+  };
+  const productTables = overview.product_opt.map((p) => {
+    const rows = p.mention_ranking.map((b, i) => ({
+      rank: i + 1, name: b.name, value: `${b.rate}%`, self: b.is_target,
+    }));
+    const manual = MANUAL_TARGET_ROWS[p.project_name];
+    if (manual && !rows.some((r) => r.self)) {
+      rows[rows.length - 1] = { ...manual, self: true };
+    }
+    return { title: p.project_name.replace(/^创维/, '创维 '), data: rows };
+  });
 
   return (
     <SlideLayout fullBleed>
@@ -223,26 +197,21 @@ export function Page_SkyworthReport_CoreDataCompetitor() {
               <span className="text-[16px] xl:text-[18px] text-white font-normal ml-2">（提及率排名对比）</span>
             </SectionTitle>
             <div className="grid grid-cols-5 gap-3 h-[252px]">
-              <RankingCard leading title="创维 A7H Pro" valueLabel="提及率" data={productA7H} compact />
-              <RankingCard title="创维 A8H" valueLabel="提及率" data={productA8H} compact />
-              <RankingCard title="创维 A10H" valueLabel="提及率" data={productA10H} compact />
-              <RankingCard title="创维 Q7H" valueLabel="提及率" data={productQ7H} compact />
-              <RankingCard title="创维 Q8H" valueLabel="提及率" data={productQ8H} compact />
+              {productTables.map((t) => (
+                <RankingCard key={t.title} title={t.title} valueLabel="提及率" data={t.data} compact />
+              ))}
             </div>
           </div>
 
           {/* ===== 极简数据总结 ===== */}
-          <div className="shrink-0 border-t border-white/10 pt-6">
+          {/* 注意：以下总结文案基于当前 geoOverview.json 数据撰写，重新采集数据后需人工同步更新 */}
+          <div className="shrink-0 border-t border-white/10 pt-8 mt-2">
             <div className="flex items-start gap-5">
               <span className="text-[20px] xl:text-[22px] font-bold text-white shrink-0 bg-[#004CE5] px-4 py-2 rounded-xl shadow-[0_0_10px_rgba(0,76,229,0.3)]">
                 数据总结
               </span>
               <p className="text-[19px] xl:text-[21px] text-zinc-200 leading-relaxed text-justify flex-1">
-                品类层面，创维在提及率（<strong className="text-white font-bold">73.6%</strong>）与 TOP1 率（
-                <strong className="text-white font-bold">41.2%</strong>）上居行业第一，优势稳固，但平均提及位次微弱落后于海信。产品层面，旗舰{' '}
-                <strong className="text-white font-bold">A10H</strong> 表现抢眼（提及率 78.4% 排名第一）；但走量款与线下款（
-                <strong className="text-white font-bold">A8H / A7H Pro / Q8H / Q7H</strong>
-                ）提及率仍被海信、TCL 或索尼超越，面临明显的局部拦截压力。
+                品类层面，创维 <strong className="text-white font-bold">TOP1 提及率（24.7%）行业第一</strong>，一旦被提及往往被首推；但整体提及率（<strong className="text-white font-bold">59.4%</strong>）与平均位次（NO.4.2）仍落后于海信、TCL，「被想起」的频率是当前短板。产品层面，<strong className="text-white font-bold">A7H Pro（61.7%）与 A10H（51%）</strong>在各自词组中排名第一，且各产品榜单前列多被创维自家产品占据，形成内部矩阵优势；但 <strong className="text-white font-bold">A8H、Q8H 被自家高端款盖过，Q7H 排名第 107、提及率为 0</strong>，产品间的曝光分配仍需针对性调优。
               </p>
             </div>
           </div>

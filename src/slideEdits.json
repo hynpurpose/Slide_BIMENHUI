@@ -252,6 +252,19 @@
         "lineHeight": "",
         "letterSpacing": "",
         "html": "品牌词、产品词、场景词、竞品词、舆情词\n不同词混一起容易造成数据和优化方向混乱"
+      },
+      "0.1.0.3.0.1": {
+        "dx": 0,
+        "dy": 0,
+        "rotate": 0,
+        "fontSize": "",
+        "color": "",
+        "fontFamily": "",
+        "fontWeight": "",
+        "textAlign": "",
+        "lineHeight": "",
+        "letterSpacing": "",
+        "html": "<br>"
       }
     },
     "chapter-1-0-1": {
@@ -306,6 +319,19 @@
         "lineHeight": "",
         "letterSpacing": "",
         "html": "优化词和监测词下面再分成两类"
+      },
+      "0.1.0.3.0.1.1.1.1.0": {
+        "dx": -1,
+        "dy": 1,
+        "rotate": 0,
+        "fontSize": "",
+        "color": "",
+        "fontFamily": "",
+        "fontWeight": "",
+        "textAlign": "",
+        "lineHeight": "",
+        "letterSpacing": "",
+        "html": "“如7000块钱左右的壁纸电视推荐”<span style=\"color: rgb(94, 234, 212);\"> → A7H pro</span>"
       }
     },
     "chapter-1-0-2": {
@@ -336,6 +362,152 @@
         "lineHeight": "",
         "letterSpacing": "",
         "html": "GEO ONE数据系统功能介绍"
+      }
+    },
+    "chapter-2-1-0": {
+      "0.1.0.3.0.1.0.1.2.2.0": {
+        "dx": 0,
+        "dy": 0,
+        "rotate": 0,
+        "fontSize": "",
+        "color": "",
+        "fontFamily": "",
+        "fontWeight": "",
+        "textAlign": "",
+        "lineHeight": "",
+        "letterSpacing": "",
+        "html": "已拆分为四类：品类优化词 93 · 产品专属优化词 124 · 品类监测词 20 · 产品专属监测词 101"
+      },
+      "0.1.0.3.0.1.1.1.0.1.0.0": {
+        "dx": 0,
+        "dy": 0,
+        "rotate": 0,
+        "fontSize": "",
+        "color": "",
+        "fontFamily": "",
+        "fontWeight": "",
+        "textAlign": "",
+        "lineHeight": "",
+        "letterSpacing": "",
+        "html": "2026.07.04"
+      },
+      "0.1.0.3.0.1.1.1.1.1": {
+        "dx": 0,
+        "dy": 0,
+        "rotate": 0,
+        "fontSize": "",
+        "color": "",
+        "fontFamily": "",
+        "fontWeight": "",
+        "textAlign": "",
+        "lineHeight": "",
+        "letterSpacing": "",
+        "html": "本周期共监测 338 个关键词条，在 4 个平台完成 1 天查询，合计执行查询 1,352 次， 抓取并识别引用文章 9,609 篇， 同期识别竞品品牌 43 家， 截图覆盖率达 100%。各项数据指标均在预期执行范围内，整体运行稳定。"
+      }
+    },
+    "chapter-2-0-1": {
+      "0.1.0.2.0.2.0.1.0.1.0.0.0.2": {
+        "dx": 0,
+        "dy": 0,
+        "rotate": 0,
+        "fontSize": "",
+        "color": "",
+        "fontFamily": "",
+        "fontWeight": "",
+        "textAlign": "",
+        "lineHeight": "",
+        "letterSpacing": "",
+        "html": "68.0%"
+      },
+      "0.1.0.2.0.2.0.1.2.1.0.0.1.2": {
+        "dx": 0,
+        "dy": 0,
+        "rotate": 0,
+        "fontSize": "",
+        "color": "",
+        "fontFamily": "",
+        "fontWeight": "",
+        "textAlign": "",
+        "lineHeight": "",
+        "letterSpacing": "",
+        "html": "NO. 4.0"
+      },
+      "0.1.0.2.0.2.1.1.1.1.0.0.3.2": {
+        "dx": 0,
+        "dy": 0,
+        "rotate": 0,
+        "fontSize": "",
+        "color": "",
+        "fontFamily": "",
+        "fontWeight": "",
+        "textAlign": "",
+        "lineHeight": "",
+        "letterSpacing": "",
+        "html": "17.0%"
+      },
+      "0.1.0.2.0.2.1.1.4.1.0.0.0.2": {
+        "dx": 0,
+        "dy": 0,
+        "rotate": 0,
+        "fontSize": "",
+        "color": "",
+        "fontFamily": "",
+        "fontWeight": "",
+        "textAlign": "",
+        "lineHeight": "",
+        "letterSpacing": "",
+        "html": "37.0%"
+      },
+      "0.1.0.2.0.2.1.1.3.1.0.0.4.1.0": {
+        "dx": 0,
+        "dy": 0,
+        "rotate": 0,
+        "fontSize": "",
+        "color": "",
+        "fontFamily": "",
+        "fontWeight": "",
+        "textAlign": "",
+        "lineHeight": "",
+        "letterSpacing": "",
+        "html": "创维 Q7H "
+      },
+      "0.1.0.2.0.2.1.1.3.1.0.0.4.0.0": {
+        "dx": 0,
+        "dy": 0,
+        "rotate": 0,
+        "fontSize": "",
+        "color": "",
+        "fontFamily": "",
+        "fontWeight": "",
+        "textAlign": "",
+        "lineHeight": "",
+        "letterSpacing": "",
+        "html": "107"
+      },
+      "0.1.0.2.0.2.1.1.3.1.0.0.4.2": {
+        "dx": 0,
+        "dy": 0,
+        "rotate": 0,
+        "fontSize": "",
+        "color": "",
+        "fontFamily": "",
+        "fontWeight": "",
+        "textAlign": "",
+        "lineHeight": "",
+        "letterSpacing": "",
+        "html": "0%"
+      },
+      "0.1.0.2.0.2.0.1.1.0": {
+        "dx": 0,
+        "dy": -1,
+        "rotate": 0,
+        "fontSize": "",
+        "color": "",
+        "fontFamily": "",
+        "fontWeight": "",
+        "textAlign": "",
+        "lineHeight": "",
+        "letterSpacing": ""
       }
     }
   },

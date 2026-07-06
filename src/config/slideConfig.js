@@ -22,8 +22,10 @@ import {
 import { Page_SkyworthKeywordWhySplit_A } from '../pages/Page_SkyworthKeywordWhySplit';
 import { Page_SkyworthKeywordOptTwoTypes_C } from '../pages/Page_SkyworthKeywordOptTwoTypes';
 import Page_SkyworthKeywordLogic from '../pages/Page_SkyworthKeywordLogic';
+import { OPT_KEYWORD_PAGES, MON_KEYWORD_PAGES } from '../pages/Page_SkyworthKeywordTables';
 import Page_GEOWordSelectionOther from '../pages/Page_GEOWordSelectionOther';
 import Page_GEOWordSelectionOther2 from '../pages/Page_GEOWordSelectionOther2';
+import Page_GEOWordSelectionDataChain from '../pages/Page_GEOWordSelectionDataChain';
 import Page_SkyworthAiProcess from '../pages/Page_SkyworthAiProcess';
 import Page_SkyworthSearchEngineModel from '../pages/Page_SkyworthSearchEngineModel';
 import Page_SkyworthCrossCompare from '../pages/Page_SkyworthCrossCompare';
@@ -45,6 +47,7 @@ import {
   Page_SkyworthMonitorWordStrategy_B,
   Page_SkyworthMonitorWordStrategy_C,
 } from '../pages/Page_SkyworthMonitorWordStrategy';
+import Page_SkyworthKeywordStrategy from '../pages/Page_SkyworthKeywordStrategy';
 import Page_CompanyIntro from '../pages/Page_CompanyIntro';
 import Page_ServiceClients from '../pages/Page_ServiceClients';
 import Page_CaseStudy_Double_Combined from '../pages/Page_CaseStudy_Double_Combined';
@@ -83,6 +86,7 @@ import Page_GeoMonitor_Pic6 from '../pages/Page_GeoMonitor_Pic6';
 import Page_GeoMonitor_Pic7 from '../pages/Page_GeoMonitor_Pic7';
 import Page_ContentAgentIntro from '../pages/Page_ContentAgentIntro';
 import Page_ContentAgent from '../pages/Page_ContentAgent';
+import Page_ContentAgentModules from '../pages/Page_ContentAgentModules';
 import Page_ContentAgentDemo from '../pages/Page_ContentAgentDemo';
 import Page_ContentAgent_Pic1 from '../pages/Page_ContentAgent_Pic1';
 import Page_ContentAgent_Pic2 from '../pages/Page_ContentAgent_Pic2';
@@ -100,7 +104,7 @@ import Page_QuantitativeModel_Pic4 from '../pages/Page_QuantitativeModel_Pic4';
 import Page_QuantitativeModel_Pic5 from '../pages/Page_QuantitativeModel_Pic5';
 import Page_QuantitativeModel_Pic6 from '../pages/Page_QuantitativeModel_Pic6';
 import Page_QuantitativeModel_Pic7 from '../pages/Page_QuantitativeModel_Pic7';
-import { Page_UserCommentArchitecture_A, Page_UserCommentArchitecture_B } from '../pages/Page_UserCommentArchitecture';
+import Page_UserCommentArchitecture from '../pages/Page_UserCommentArchitecture';
 import Page_UserCommentDemo from '../pages/Page_UserCommentDemo';
 import {
   Page_UserComment_Overview,
@@ -231,9 +235,24 @@ export const slideConfig = [
   { type: 'page', title: '优化词的两类', component: Page_SkyworthKeywordOptTwoTypes_C, hideHeader: true },
   { type: 'page', title: '我们的词条分类逻辑', component: Page_SkyworthKeywordLogic, hideHeader: true },
 
+  { type: 'section', title: '词条清单' },
+  ...OPT_KEYWORD_PAGES.map((comp, i) => ({
+    type: 'page',
+    title: `优化词词条清单 (${i + 1}/${OPT_KEYWORD_PAGES.length})`,
+    component: comp,
+    hideHeader: true,
+  })),
+  ...MON_KEYWORD_PAGES.map((comp, i) => ({
+    type: 'page',
+    title: `监测词词条清单 (${i + 1}/${MON_KEYWORD_PAGES.length})`,
+    component: comp,
+    hideHeader: true,
+  })),
+
   { type: 'section', title: '这些词是怎么选出来的' },
   { type: 'page', title: '市场上其他做法', component: Page_GEOWordSelectionOther, hideHeader: true },
   { type: 'page', title: '传统搜索 VS AI 搜索', component: Page_GEOWordSelectionOther2, hideHeader: true },
+  { type: 'page', title: 'AI 提问量数据从哪来', component: Page_GEOWordSelectionDataChain, hideHeader: true },
   { type: 'page', title: '影子算法', component: Page_SkyworthShadowAlgorithm, hideHeader: true },
   { type: 'page', title: 'AI 如何处理用户问题', component: Page_SkyworthAiProcess, hideHeader: true },
   { type: 'page', title: '模拟搜索引擎', component: Page_SkyworthSearchEngineModel, hideHeader: true },
@@ -260,12 +279,8 @@ export const slideConfig = [
   // ══════════════════════════════════════════════════════════
   { type: 'chapter', title: '核心策略及KPI设定', subtitle: 'CORE OPTIMIZATION STRATEGY', backgroundImage: '' },
 
-  { type: 'section', title: '优化词策略' },
-  { type: 'page', title: '品牌词：优势保第一，弱势进 TOP3', variants: [Page_SkyworthBrandWordStrategy_D, Page_SkyworthBrandWordStrategy_C, Page_SkyworthBrandWordStrategy_A, Page_SkyworthBrandWordStrategy_B], hideHeader: true },
-  { type: 'page', title: '5款产品的侧重点和优化方向', variants: [Page_SkyworthProductStrategy_C, Page_SkyworthProductStrategy_A, Page_SkyworthProductStrategy_B], hideHeader: true },
-
-  { type: 'section', title: '监测词策略' },
-  { type: 'page', title: '监测词的意义', variants: [Page_SkyworthMonitorWordStrategy_A, Page_SkyworthMonitorWordStrategy_B, Page_SkyworthMonitorWordStrategy_C], hideHeader: true },
+  { type: 'section', title: '核心优化策略' },
+  { type: 'page', title: '核心优化策略', component: Page_SkyworthKeywordStrategy, hideHeader: true },
 
   { type: 'section', title: 'KPI及工作安排' },
   { type: 'page', title: 'KPI 及验收标准', component: Page_SkyworthKpiAcceptance, hideHeader: true },
@@ -321,10 +336,10 @@ export const slideConfig = [
   { type: 'section', title: '公司介绍' },
   { type: 'page', title: '「GEO 索引未来」整体介绍', component: Page_CompanyIntro, hideHeader: true },
   { type: 'page', title: '服务客户', component: Page_ServiceClients, hideHeader: true },
-  { type: 'page', title: '服务案例', variants: [Page_CaseStudy_Double_Combined,Page_CaseStudy_Double_Combined_2], hideHeader: true },
-  { type: 'page', title: '服务案例 · 慕思 GEO 阶段性报告', variants: [Page_CaseStudy_Musi_A, Page_CaseStudy_Musi_B, Page_CaseStudy_Musi_C], hideHeader: true },
-  { type: 'page', title: '服务案例 · 菜鸟 GEO 阶段性报告', variants: [Page_CaseStudy_Cainiao_A, Page_CaseStudy_Cainiao_B, Page_CaseStudy_Cainiao_C], hideHeader: true },
-  { type: 'page', title: '服务案例 · 古井贡酒 GEO 阶段性报告', variants: [Page_CaseStudy_Gujing_A, Page_CaseStudy_Gujing_B, Page_CaseStudy_Gujing_C], hideHeader: true },
+  { type: 'page', title: '服务案例', variants: [Page_CaseStudy_Double_Combined, Page_CaseStudy_Double_Combined_2], hideHeader: true },
+  // { type: 'page', title: '服务案例 · 慕思 GEO 阶段性报告', variants: [Page_CaseStudy_Musi_A, Page_CaseStudy_Musi_B, Page_CaseStudy_Musi_C], hideHeader: true },
+  // { type: 'page', title: '服务案例 · 菜鸟 GEO 阶段性报告', variants: [Page_CaseStudy_Cainiao_A, Page_CaseStudy_Cainiao_B, Page_CaseStudy_Cainiao_C], hideHeader: true },
+  // { type: 'page', title: '服务案例 · 古井贡酒 GEO 阶段性报告', variants: [Page_CaseStudy_Gujing_A, Page_CaseStudy_Gujing_B, Page_CaseStudy_Gujing_C], hideHeader: true },
   { type: 'page', title: '团队背书', component: Page_TeamEndorsement, hideHeader: true },
   { type: 'page', title: '团队组织架构', component: Page_CompanyArchitecture, hideHeader: true },
   { type: 'page', title: '核心成员', component: Page_TeamIntro, hideHeader: true },
@@ -356,6 +371,7 @@ export const slideConfig = [
 
   { type: 'page', title: '内容撰写Agent介绍', component: Page_ContentAgentIntro, hideHeader: true },
   { type: 'page', title: '内容撰写Agent', component: Page_ContentAgent, hideHeader: true },
+  { type: 'page', title: '内容撰写Agent功能介绍', component: Page_ContentAgentModules, hideHeader: true },
   { type: 'page', title: '内容撰写Agent演示', component: Page_ContentAgentDemo, hideHeader: true },
   { type: 'page', title: '内容撰写Agent 1', component: Page_ContentAgent_Pic1, hideHeader: true },
   { type: 'page', title: '内容撰写Agent 2', component: Page_ContentAgent_Pic2, hideHeader: true },
@@ -365,7 +381,7 @@ export const slideConfig = [
   { type: 'page', title: '内容撰写Agent 6', component: Page_ContentAgent_Pic6, hideHeader: true },
 
   { type: 'page', title: '用户评论分析系统', component: Page_UserCommentAnalysis, hideHeader: true },
-  { type: 'page', title: '用户评论分析系统架构', variants: [Page_UserCommentArchitecture_A, Page_UserCommentArchitecture_B], hideHeader: true },
+  { type: 'page', title: '用户评论分析系统架构', component: Page_UserCommentArchitecture, hideHeader: true },
   { type: 'page', title: '用户真评系统演示', component: Page_UserCommentDemo, hideHeader: true },
   { type: 'page', title: '真评系统 · 数据总览', component: Page_UserComment_Overview, hideHeader: true },
   { type: 'page', title: '真评系统 · 商品横向对比', component: Page_UserComment_Compare, hideHeader: true },
