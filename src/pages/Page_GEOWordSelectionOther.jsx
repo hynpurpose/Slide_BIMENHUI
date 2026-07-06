@@ -137,13 +137,13 @@ export default function Page_GEOWordSelectionOther() {
 
           {/* Card Body */}
           <div className="flex-grow min-h-0 p-6 pb-4 bg-zinc-950 flex items-center justify-center gap-5 overflow-visible">
-            {/* 传统搜索框示意 */}
-            <div className="flex flex-col items-end justify-center gap-8 shrink-0 w-[420px]">
-              <div className="flex flex-col items-end gap-2">
+            {/* 传统搜索框示意：与手机同高，上下居中 */}
+            <div className="flex flex-col items-center justify-center gap-8 shrink-0 w-[420px] h-[620px]">
+              <div className="flex flex-col items-center gap-2">
                 <span className="text-zinc-500 text-[15px] font-bold font-['MiSans'] tracking-wide">百度搜索</span>
                 <BaiduSearchBox />
               </div>
-              <div className="flex flex-col items-end gap-2">
+              <div className="flex flex-col items-center gap-2">
                 <span className="text-zinc-500 text-[15px] font-bold font-['MiSans'] tracking-wide">小红书搜索</span>
                 <XiaohongshuSearchBox />
               </div>
@@ -181,7 +181,7 @@ export default function Page_GEOWordSelectionOther() {
 
           {/* 卡片内结论：与百度搜索框居中对齐 */}
           <div className="shrink-0 px-6 pb-5 pt-1 border-t border-zinc-900/80 bg-zinc-950 flex items-center gap-5">
-            <div className="flex-1 min-w-0 flex justify-end">
+            <div className="flex-1 min-w-0 flex justify-center">
               <div className="w-[420px] text-center">
                 <span className="text-white text-[22px] font-sans font-bold font-['MiSans']">
                   搜索逻辑变了，数据也变了
