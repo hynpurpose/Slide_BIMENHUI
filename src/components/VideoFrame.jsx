@@ -3,12 +3,14 @@ import React, { useRef, useState } from 'react';
 /* 通用视频框：
  * - 未播放时显示居中玻璃质感播放键，点击开始播放
  * - 播放中显示原生控制条，暂停/结束后播放键重新出现
+ * - liveBadge 为 true 时左上角显示 LIVE DEMO 角标（播放时隐藏）
  * - onPlayingChange 通知父组件播放状态（用于隐藏角标等装饰）
  * - 视频加载失败时回退为播放键占位框 */
 export default function VideoFrame({
   src,
   radius = 24,
   showPlayHint = true,
+  liveBadge = false,
   onPlayingChange,
 }) {
   const videoRef = useRef(null);
@@ -37,6 +39,14 @@ export default function VideoFrame({
           onEnded={() => updatePlaying(false)}
           onError={() => setFailed(true)}
         />
+      )}
+
+      {/* 左上角：LIVE 角标（播放时隐藏） */}
+      {liveBadge && !failed && !playing && (
+        <div className="absolute top-6 left-6 z-20 flex items-center gap-3 px-5 py-2.5 rounded-full bg-black/55 backdrop-blur-md border border-white/15 pointer-events-none">
+          <span className="w-2.5 h-2.5 rounded-full bg-red-500 animate-pulse" />
+          <span className="text-[18px] font-bold text-white font-['MiSans'] tracking-wider">LIVE DEMO</span>
+        </div>
       )}
 
       {/* 未播放时：居中播放键，点击开始播放 */}

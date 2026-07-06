@@ -47,7 +47,7 @@ export default function Page_GeoWritingAgentIntro() {
         {/* 视频实际显示比例 ≈1.722（非方形像素），按满高 795px 配宽 1369px，不裁切画面 */}
         <div className="w-[1413px] h-full shrink-0 flex justify-center">
           <div className="w-[1369px] h-full">
-            <VideoFrame src={VIDEO_SRC} radius={32} />
+            <VideoFrame src={VIDEO_SRC} radius={32} liveBadge />
           </div>
         </div>
       </div>

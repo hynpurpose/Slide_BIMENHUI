@@ -11,8 +11,6 @@ const VIDEO_SRC = '/videos/dazhong-zhenping-demo.mp4';
  * 一块大尺寸 16:9 视频框居中，四周留呼吸感，角标+底部字幕条营造“正在演示”的现场感。
  * ============================================================ */
 export function Page_DazhongZhenpingDemo_A() {
-  const [playing, setPlaying] = useState(false);
-
   return (
     <SlideLayout fullBleed>
       <div className="absolute w-[820px] h-[820px] rounded-full bg-[#004CE5]/[0.08] blur-[190px] left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 pointer-events-none z-0" />
@@ -23,15 +21,7 @@ export function Page_DazhongZhenpingDemo_A() {
       >
         {/* 放大后的视频框（比例 ≈1.983，与视频实际显示比例一致，不裁切画面） */}
         <div className="relative" style={{ width: '1760px', height: '888px' }}>
-          <VideoFrame src={VIDEO_SRC} radius={28} onPlayingChange={setPlaying} />
-
-          {/* 左上角：LIVE 角标（播放时隐藏） */}
-          {!playing && (
-            <div className="absolute top-6 left-6 z-20 flex items-center gap-3 px-5 py-2.5 rounded-full bg-black/55 backdrop-blur-md border border-white/15 pointer-events-none">
-              <span className="w-2.5 h-2.5 rounded-full bg-red-500 animate-pulse" />
-              <span className="text-[18px] font-bold text-white font-['MiSans'] tracking-wider">LIVE DEMO</span>
-            </div>
-          )}
+          <VideoFrame src={VIDEO_SRC} radius={28} liveBadge />
         </div>
 
         {/* 视频框底部：原大标题下沉为一句文字说明 */}
