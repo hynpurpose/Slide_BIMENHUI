@@ -18,9 +18,9 @@ export default function Page_PotentialVerticalCommunity() {
           {/* 左栏：标题 + 图片展示区 (1060px) */}
           <div className="w-[1060px] h-[630px] flex flex-col gap-4 shrink-0">
             {/* 图片上方的 Title */}
-            <div className="shrink-0 pl-2">
+            <div className="shrink-0 text-center">
               <h3 className="text-[26px] font-black text-white font-['MiSans'] tracking-wide">
-                酒排名社区 <span className="text-[20px] font-bold text-zinc-400 ml-2">（由个人运营）</span>
+                酒排名社区（由个人运营）
               </h3>
             </div>
 

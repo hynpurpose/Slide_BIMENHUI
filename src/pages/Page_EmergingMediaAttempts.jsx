@@ -32,7 +32,7 @@ export default function Page_EmergingMediaAttempts() {
   ];
 
   return (
-    <SlideLayout title="新兴媒体尝试">
+    <SlideLayout title="20%尝试一些新媒体">
       {/* ── 背景点状矩阵 ── */}
       <div className="absolute inset-0 z-0">
         <div
