@@ -17,40 +17,69 @@ export default function Page_ServiceClients() {
       logos: [
         { src: '/images/client-fmcg-gujing.png', label: '古井贡酒' },
         { src: '/images/client-fmcg-jingjiu.png', label: '中国劲酒' },
-        { src: '/images/client-fmcg-oppo.png', label: 'OPPO' },
-        { src: '/images/client-fmcg-royalcanin.png', label: '皇家宠物' }
+        { src: '/images/client-fmcg-taoli.png', label: '桃李面包' }
+      ]
+    },
+    {
+      category: '3C数码/AI智能',
+      logos: [
+        { src: '/images/client-3c-oppo.png', label: 'OPPO' },
+        { src: '/images/client-3c-edifier.png', label: '漫步者' },
+        { src: '/images/client-3c-qingxian.png', label: '清闲' },
+        { src: '/images/client-3c-maisi.png', label: '麦思智能' }
       ]
     },
     {
       category: '大健康',
       logos: [
-        { src: '/images/client-health-diqiao.png', label: '迪巧钙' },
+        { src: '/images/client-health-diqiao.png', label: '迪巧' },
+        { src: '/images/client-health-xingqi.png', label: '兴齐眼药' },
         { src: '/images/client-health-ufh.png', label: '和睦家医疗' },
         { src: '/images/client-health-jinxin.png', label: '锦欣国际' },
         { src: '/images/client-health-crystalpharm.png', label: '晶云药物' }
       ]
     },
     {
-      category: '金融行业',
+      category: '宠物',
       logos: [
-        { src: '/images/client-finance-pingan.png', label: '平安保险' },
-        { src: '/images/client-finance-fadada.png', label: '法大大' },
-        { src: '/images/client-finance-kingdee.png', label: '金蝶' }
+        { src: '/images/client-pet-royalcanin.png', label: '皇家宠物' },
+        { src: '/images/client-pet-simu.png', label: '思慕宠物' },
+        { src: '/images/client-pet-beixin.png', label: '贝芯宠' }
       ]
     },
     {
-      category: '互联网',
+      category: '互联网/SAAS',
       logos: [
-        { src: '/images/client-tech-cainiao.png', label: '菜鸟' },
-        { src: '/images/client-tech-yunji.png', label: '云济科技' },
-        { src: '/images/client-tech-meten.png', label: '美联英语' }
+        { src: '/images/client-saas-cainiao.png', label: '菜鸟' },
+        { src: '/images/client-saas-kingdee.png', label: '金蝶' },
+        { src: '/images/client-saas-fadada.png', label: '法大大' },
+        { src: '/images/client-saas-yunji.png', label: '云济科技' }
+      ]
+    },
+    {
+      category: '教育/金融',
+      logos: [
+        { src: '/images/client-edufin-zhibo.png', label: '智博教育' },
+        { src: '/images/client-edufin-meten.png', label: '美联英语' },
+        { src: '/images/client-edufin-immersivetranslate.png', label: '沉浸式翻译' },
+        { src: '/images/client-edufin-pingan.png', label: '平安银行' }
+      ]
+    },
+    {
+      category: '房地产/汽车',
+      logos: [
+        { src: '/images/client-estate-shenye.png', label: '深业集团' },
+        { src: '/images/client-estate-luma.png', label: '鹿马智能' },
+        { src: '/images/client-estate-bmwmini.png', label: '宝马mini' }
       ]
     }
   ];
 
   const partnerLogos = [
-    { src: '/images/partner-logo-1.png', label: '合作方 1' },
-    { src: '/images/partner-logo-2.png', label: '合作方 2' }
+    { src: '/images/partner-baidu.png', label: '百度营销' },
+    { src: '/images/partner-jdmall.png', label: '京东mall' },
+    { src: '/images/partner-simei.png', label: '思美传媒' },
+    { src: '/images/partner-langzhi.png', label: '朗知传媒' }
   ];
 
   // Helper component to render a logo slot with fallback placeholder styling
@@ -85,75 +114,71 @@ export default function Page_ServiceClients() {
     <SlideLayout title="服务客户">
       <div className="w-full h-full flex items-center justify-between animate-fadeIn">
         {/* Left Side: Client and Partner Blocks */}
-        <div className="flex-1 flex flex-col gap-8 pr-12 justify-center h-full">
+        <div className="flex-1 flex flex-col gap-5 pr-8 justify-center h-full">
 
-          {/* Top Block: Head Clients (5 Groups, 4 slots per group, narrower width) */}
+          {/* Top Block: Head Clients (8 industry groups, up to 5 slots per group) */}
           <div className="flex flex-col gap-4">
-            <h3
-              className="text-white font-extrabold tracking-wide font-['AlimamaShuHeiTi'] border-b border-zinc-800/85 pb-2"
-              style={{ fontSize: '36px', lineHeight: '46px' }}
-            >
-              头部客户
-            </h3>
-            <div className="flex items-center gap-6 relative">
-              <div className="flex flex-col gap-3">
-                {clientGroups.map((group, groupIdx) => (
-                  <div key={groupIdx} className="flex items-center gap-6">
-                    {/* Category Label */}
-                    <span
-                      className="text-zinc-400 font-medium font-['MiSans']"
-                      style={{ fontSize: '24px', width: '120px' }}
+
+            {/* Prominent Highlight Banner (sole heading, above logos) */}
+            <div className="self-start flex items-baseline gap-3">
+              <span
+                className="text-blue-300 font-extrabold tracking-wide font-['AlimamaShuHeiTi']"
+                style={{ fontSize: '38px', lineHeight: '44px' }}
+              >
+                直接做过GEO的头部品牌
+              </span>
+              <span
+                className="text-white font-extrabold font-['AlimamaShuHeiTi']"
+                style={{ fontSize: '30px', lineHeight: '38px' }}
+              >
+                （不拿其他logo充数）
+              </span>
+            </div>
+
+            <div className="flex flex-col gap-2.5">
+              {clientGroups.map((group, groupIdx) => (
+                <div key={groupIdx} className="flex items-center gap-6">
+                  {/* Category Label */}
+                  <span
+                    className="text-zinc-400 font-medium font-['MiSans'] leading-tight shrink-0"
+                    style={{ fontSize: '22px', width: '150px' }}
+                  >
+                    {group.category}
+                  </span>
+                  {/* Logos + trailing ellipsis (more than shown) */}
+                  <div className="flex items-center gap-3">
+                    {group.logos.map((logo, logoIdx) => (
+                      <LogoSlot
+                        key={logoIdx}
+                        src={logo.src}
+                        label={logo.label}
+                        width="152px"
+                        height="62px"
+                        unifyColor={false}
+                      />
+                    ))}
+                    <div
+                      className="bg-zinc-100 border border-zinc-200/80 rounded-xl flex items-center justify-center"
+                      style={{ width: '152px', height: '62px' }}
                     >
-                      {group.category}
-                    </span>
-                    {/* Four Logos (each scaled down to 140px width, 70px height to fit row nicely) */}
-                    <div className="flex items-center gap-3">
-                      {group.logos.map((logo, logoIdx) => (
-                        <LogoSlot
-                          key={logoIdx}
-                          src={logo.src}
-                          label={logo.label}
-                          width="140px"
-                          height="70px"
-                          unifyColor={false}
-                        />
-                      ))}
+                      <span
+                        className="text-zinc-500 font-extrabold leading-none tracking-[0.15em]"
+                        style={{ fontSize: '30px' }}
+                      >
+                        ···
+                      </span>
                     </div>
                   </div>
-                ))}
-              </div>
-
-              {/* Large Sharp Folded Brace (SVG) and Label */}
-              <div className="flex items-center gap-4 shrink-0 self-stretch py-1">
-                {/* SVG Right Sharp Folded Bracket */}
-                <svg width="24" height="450" viewBox="0 0 24 450" fill="none" className="text-blue-500/60 h-full">
-                  <path
-                    d="M 2 2 L 12 2 L 12 215 L 22 225 L 12 235 L 12 448 L 2 448"
-                    stroke="currentColor"
-                    strokeWidth="1.5"
-                    strokeLinecap="square"
-                    strokeLinejoin="miter"
-                    fill="none"
-                  />
-                </svg>
-                  {/* Vertical Label */}
-                  <div
-                    className="text-white font-extrabold font-['MiSans'] tracking-wide flex flex-col items-center justify-center gap-1.5"
-                    style={{ fontSize: '26px', width: '40px' }}
-                  >
-                    {"仅做过GEO项目的业务".split("").map((char, index) => (
-                      <span key={index} className="leading-none">{char}</span>
-                    ))}
-                  </div>
-              </div>
+                </div>
+              ))}
             </div>
           </div>
 
           {/* Bottom Block: Partners */}
-          <div className="flex flex-col gap-4">
+          <div className="flex flex-col gap-3">
             <h3
-              className="text-white font-extrabold tracking-wide font-['AlimamaShuHeiTi'] border-b border-zinc-800/85 pb-2"
-              style={{ fontSize: '36px', lineHeight: '46px' }}
+              className="text-white font-extrabold tracking-wide font-['AlimamaShuHeiTi'] border-b border-zinc-800/85 pb-1.5"
+              style={{ fontSize: '30px', lineHeight: '38px' }}
             >
               合作方
             </h3>
@@ -164,17 +189,18 @@ export default function Page_ServiceClients() {
                   src={logo.src}
                   label={logo.label}
                   width="180px"
-                  height="76px"
+                  height="66px"
                   unifyColor={false}
                 />
               ))}
               {/* Text Card */}
               <div
-                className="border border-dashed border-zinc-300 rounded-xl flex items-center justify-center bg-zinc-100 px-6"
-                style={{ width: '320px', height: '76px' }}
+                className="rounded-xl flex items-center justify-center bg-zinc-800/60 ring-1 ring-white/10 px-6"
+                style={{ height: '66px' }}
               >
-                <span className="text-[20px] text-black font-bold font-['MiSans'] whitespace-nowrap">
-                  广告公司、咨询公司等......
+                <span className="text-[20px] text-zinc-200 font-semibold font-['MiSans'] whitespace-nowrap">
+                  广告公司、咨询公司
+                  <span className="text-zinc-500 tracking-[0.15em] pl-1.5">···</span>
                 </span>
               </div>
             </div>
@@ -182,18 +208,21 @@ export default function Page_ServiceClients() {
 
         </div>
 
-        {/* Right Side: Framed Title & Image Container with Blue Border */}
+        {/* Right Side: Framed Title & Image Container */}
         <div
-          className="absolute flex flex-col border border-blue-500/80 rounded-2xl overflow-hidden bg-zinc-950"
-          style={{ top: '-80px', right: '0', width: '795px', height: '875px' }}
+          className="absolute flex flex-col rounded-3xl overflow-hidden bg-zinc-900 ring-1 ring-white/10 shadow-2xl shadow-black/60"
+          style={{ top: '-80px', right: '0', width: '600px', height: '875px' }}
         >
-          {/* Header with Title (Centered) */}
-          <div className="h-[80px] flex items-center justify-center border-b border-blue-500/80 bg-blue-950/30">
+          {/* Header with Title + Note */}
+          <div className="flex flex-col gap-3 px-8 py-6 bg-gradient-to-b from-blue-950/70 to-zinc-900 border-b border-white/5">
             <span
-              className="text-white font-bold tracking-wide font-['AlimamaShuHeiTi']"
-              style={{ fontSize: '40px' }}
+              className="text-white font-bold tracking-wide font-['AlimamaShuHeiTi'] text-center"
+              style={{ fontSize: '42px' }}
             >
               两个百万客户
+            </span>
+            <span className="text-blue-200 font-bold font-['MiSans'] text-[24px] leading-snug text-center">
+              据不完全统计，近半年来预算到百万的真实GEO项目不超过5个，<span className="text-white underline decoration-blue-400 decoration-2 underline-offset-4">我们拿到两个</span>。
             </span>
           </div>
 
@@ -207,13 +236,6 @@ export default function Page_ServiceClients() {
                 e.target.style.display = 'none';
               }}
             />
-          </div>
-
-          {/* Footer with Note */}
-          <div className="h-[50px] flex items-center px-6 border-t border-blue-500/80 bg-blue-950/20">
-            <span className="text-blue-400 font-bold font-['MiSans'] text-[18px] leading-snug">
-              据不完全统计，近半年来预算到百万的真实GEO项目，不超过5个。
-            </span>
           </div>
         </div>
       </div>

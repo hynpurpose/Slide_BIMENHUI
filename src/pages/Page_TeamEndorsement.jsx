@@ -2,16 +2,13 @@ import React from 'react';
 import SlideLayout from '../components/SlideLayout';
 
 export default function Page_TeamEndorsement() {
-  const thirdPartyLogos = [
+  const orgLogos = [
     { src: '/Back/endorsement-tp-1.png', label: '艾瑞咨询' },
     { src: '/Back/endorsement-tp-2.png', label: '尼尔森' },
     { src: '/Back/endorsement-tp-3.png', label: '易观分析' },
     { src: '/Back/endorsement-tp-4.png', label: '数说故事' },
     { src: '/Back/endorsement-tp-5.png', label: 'QuestMobile' },
     { src: '/Back/endorsement-tp-6.png', label: 'Kantar 凯度' },
-  ];
-
-  const institutionLogos = [
     { src: '/Back/endorsement-inst-1.png', label: '中国广告协会' },
     { src: '/Back/endorsement-inst-2.png', label: '中国信通院' },
     { src: '/Back/endorsement-inst-3.png', label: 'CAA 中国高校联合' },
@@ -49,14 +46,14 @@ export default function Page_TeamEndorsement() {
     <SlideLayout title="团队背书">
       {/* ── 标题下方的说明性文字 ── */}
       <div className="absolute top-[5px] left-0 w-full text-[36px] text-zinc-400 font-medium font-['MiSans'] leading-relaxed">
-        给钱就能曝光的合作，<span className="text-white font-bold">我们不做</span>。我们只跟<span className="text-white font-bold">真正独立、专业</span>的第三方和专业机构合作。
+        给钱就能曝光的合作，<span className="text-white font-bold">我们不合作</span>。我们只跟<span className="text-white font-bold">真正独立、专业</span>的第三方专业机构合作。
       </div>
 
       <div
         className="absolute left-0 w-full flex items-center justify-between gap-8 animate-fadeIn"
         style={{ top: '80px', height: '620px' }}
       >
-        {/* Left Column: 专业第三方 */}
+        {/* Left Column: 第三方专业机构 */}
         <div
           className="flex-1 flex flex-col border border-blue-500/80 rounded-2xl overflow-hidden bg-zinc-950/40 backdrop-blur-md"
           style={{ height: '620px' }}
@@ -67,38 +64,14 @@ export default function Page_TeamEndorsement() {
               className="text-white font-bold tracking-wide font-['AlimamaShuHeiTi']"
               style={{ fontSize: '36px' }}
             >
-              专业第三方
+              第三方专业机构
             </span>
           </div>
           {/* Grid of Logos */}
-          <div className="flex-1 flex items-center justify-center px-6 py-8">
-            <div className="grid grid-cols-2 gap-6">
-              {thirdPartyLogos.map((logo, idx) => (
-                <LogoSlot key={idx} src={logo.src} label={logo.label} width="300px" height="110px" />
-              ))}
-            </div>
-          </div>
-        </div>
-
-        {/* Middle Column: 专业机构 */}
-        <div
-          className="flex-1 flex flex-col border border-blue-500/80 rounded-2xl overflow-hidden bg-zinc-950/40 backdrop-blur-md"
-          style={{ height: '620px' }}
-        >
-          {/* Header */}
-          <div className="h-[80px] flex items-center px-8 border-b border-blue-500/80 bg-blue-950/30">
-            <span
-              className="text-white font-bold tracking-wide font-['AlimamaShuHeiTi']"
-              style={{ fontSize: '36px' }}
-            >
-              专业机构
-            </span>
-          </div>
-          {/* Grid of Logos */}
-          <div className="flex-1 flex items-center justify-center px-6 py-8">
-            <div className="grid grid-cols-2 gap-6">
-              {institutionLogos.map((logo, idx) => (
-                <LogoSlot key={idx} src={logo.src} label={logo.label} width="300px" height="110px" />
+          <div className="flex-1 flex items-center justify-center px-8 py-8">
+            <div className="grid grid-cols-3 gap-6">
+              {orgLogos.map((logo, idx) => (
+                <LogoSlot key={idx} src={logo.src} label={logo.label} width="100%" height="110px" />
               ))}
             </div>
           </div>
@@ -135,7 +108,7 @@ export default function Page_TeamEndorsement() {
 
               {/* Stamp of rejection */}
               <div className="border-2 border-red-500 text-red-500 font-bold font-['AlimamaShuHeiTi'] text-[32px] px-6 py-2 rounded-lg rotate-[-8deg] uppercase tracking-widest shadow-[0_0_15px_rgba(239,68,68,0.2)]">
-                我们不做
+                我们不合作
               </div>
             </div>
           </div>

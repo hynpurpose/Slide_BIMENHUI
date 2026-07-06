@@ -212,6 +212,19 @@
       }
     },
     "chapter-5-1-0": {
+      "0.1.0.3.1.1.0.1": {
+        "dx": 0,
+        "dy": 0,
+        "rotate": 0,
+        "fontSize": 26,
+        "color": "",
+        "fontFamily": "",
+        "fontWeight": "",
+        "textAlign": "",
+        "lineHeight": "",
+        "letterSpacing": "",
+        "html": "可能原因：AI不会消耗大量token去读取视频，更像是字节内部的政治任务（倾斜自家抖音链接）"
+      },
       "0.1.0.3.1.1.1": {
         "dx": 0,
         "dy": 0,
