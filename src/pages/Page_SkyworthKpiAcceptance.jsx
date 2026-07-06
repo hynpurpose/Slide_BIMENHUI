@@ -1,9 +1,15 @@
 import React from 'react';
 import SlideLayout from '../components/SlideLayout';
+import overview from '../data/geoOverview.json';
 
 const FONT_IMPORT = `@import url('https://fonts.geekzu.org/css2?family=Montserrat:wght@400;500;600;700;800;900&display=swap');`;
 
+const pct = (v) => (v === null || v === undefined ? '—' : `${v}%`);
+
 export function Page_SkyworthKpiAcceptance() {
+  const cat = overview.category_opt;
+  const prodAvg = overview.product_opt_avg;
+  const catMonitor = overview.category_monitor;
   return (
     <SlideLayout fullBleed>
       <div className="w-full h-full flex flex-col relative text-white font-sans overflow-hidden bg-black animate-fade-in">
@@ -39,17 +45,17 @@ export function Page_SkyworthKpiAcceptance() {
                 <div className="flex items-center gap-6 my-1">
                   <div className="flex flex-col">
                     <span className="text-zinc-500 text-[13px] xl:text-[14px] font-medium">提及率</span>
-                    <span className="text-[26px] xl:text-[30px] font-black text-white font-['Montserrat'] mt-0.5">73.6%</span>
+                    <span className="text-[26px] xl:text-[30px] font-black text-white font-['Montserrat'] mt-0.5">{pct(cat.mention_rate)}</span>
                   </div>
                   <div className="w-px h-8 bg-white/10" />
                   <div className="flex flex-col">
                     <span className="text-zinc-500 text-[13px] xl:text-[14px] font-medium">TOP1提及率</span>
-                    <span className="text-[26px] xl:text-[30px] font-black text-white font-['Montserrat'] mt-0.5">41.2%</span>
+                    <span className="text-[26px] xl:text-[30px] font-black text-white font-['Montserrat'] mt-0.5">{pct(cat.top1_rate)}</span>
                   </div>
                   <div className="w-px h-8 bg-white/10" />
                   <div className="flex flex-col">
                     <span className="text-zinc-500 text-[13px] xl:text-[14px] font-medium">TOP3提及率</span>
-                    <span className="text-[26px] xl:text-[30px] font-black text-white font-['Montserrat'] mt-0.5">63.5%</span>
+                    <span className="text-[26px] xl:text-[30px] font-black text-white font-['Montserrat'] mt-0.5">{pct(cat.top3_rate)}</span>
                   </div>
                 </div>
               </div>
@@ -63,17 +69,17 @@ export function Page_SkyworthKpiAcceptance() {
                 <div className="flex items-center gap-6 my-1">
                   <div className="flex flex-col">
                     <span className="text-zinc-500 text-[13px] xl:text-[14px] font-medium">提及率</span>
-                    <span className="text-[26px] xl:text-[30px] font-black text-white font-['Montserrat'] mt-0.5">53.3%</span>
+                    <span className="text-[26px] xl:text-[30px] font-black text-white font-['Montserrat'] mt-0.5">{pct(prodAvg.mention_rate)}</span>
                   </div>
                   <div className="w-px h-8 bg-white/10" />
                   <div className="flex flex-col">
                     <span className="text-zinc-500 text-[13px] xl:text-[14px] font-medium">TOP1提及率</span>
-                    <span className="text-[26px] xl:text-[30px] font-black text-white font-['Montserrat'] mt-0.5">19.5%</span>
+                    <span className="text-[26px] xl:text-[30px] font-black text-white font-['Montserrat'] mt-0.5">{pct(prodAvg.top1_rate)}</span>
                   </div>
                   <div className="w-px h-8 bg-white/10" />
                   <div className="flex flex-col">
                     <span className="text-zinc-500 text-[13px] xl:text-[14px] font-medium">TOP3提及率</span>
-                    <span className="text-[26px] xl:text-[30px] font-black text-white font-['Montserrat'] mt-0.5">40.0%</span>
+                    <span className="text-[26px] xl:text-[30px] font-black text-white font-['Montserrat'] mt-0.5">{pct(prodAvg.top3_rate)}</span>
                   </div>
                 </div>
               </div>
@@ -87,7 +93,7 @@ export function Page_SkyworthKpiAcceptance() {
                 <div className="flex items-center gap-4 my-1">
                   <div className="flex flex-col">
                     <span className="text-zinc-500 text-[13px] xl:text-[14px] font-medium">负面信息率</span>
-                    <span className="text-[26px] xl:text-[30px] font-black text-white font-['Montserrat'] mt-0.5">3.2%</span>
+                    <span className="text-[26px] xl:text-[30px] font-black text-white font-['Montserrat'] mt-0.5">{pct(catMonitor.negative)}</span>
                   </div>
                 </div>
               </div>
