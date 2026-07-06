@@ -65,7 +65,7 @@ export default function Page_GEOWordSelectionOther() {
       <div className="w-full h-full flex items-stretch justify-between relative z-10 select-none">
 
         {/* 左侧：百度营销/小红书聚光月均搜索指数 */}
-        <div className="w-[850px] h-full bg-[#09090b]/90 border border-zinc-800 rounded-[28px] overflow-hidden flex flex-col shadow-[0_20px_50px_rgba(0,0,0,0.4)] shrink-0">
+        <div className="w-[780px] h-full bg-[#09090b]/90 border border-zinc-800 rounded-[28px] overflow-hidden flex flex-col shadow-[0_20px_50px_rgba(0,0,0,0.4)] shrink-0">
           {/* Card Header */}
           <div className="flex items-center justify-between p-6 border-b border-zinc-900 bg-zinc-950 shrink-0">
             <div className="flex items-center gap-4">
@@ -115,7 +115,7 @@ export default function Page_GEOWordSelectionOther() {
         </div>
 
         {/* 右侧：手机端真实搜索截图 */}
-        <div className="w-[850px] h-full bg-[#09090b]/90 border border-zinc-800 rounded-[28px] overflow-hidden flex flex-col shadow-[0_20px_50px_rgba(0,0,0,0.4)] shrink-0">
+        <div className="w-[1020px] h-full bg-[#09090b]/90 border border-zinc-800 rounded-[28px] overflow-hidden flex flex-col shadow-[0_20px_50px_rgba(0,0,0,0.4)] shrink-0">
           {/* Card Header */}
           <div className="flex items-center justify-between p-6 border-b border-zinc-900 bg-zinc-950 shrink-0">
             <div className="flex items-center gap-4">
@@ -136,9 +136,9 @@ export default function Page_GEOWordSelectionOther() {
           </div>
 
           {/* Card Body */}
-          <div className="flex-grow min-h-0 p-6 pb-4 bg-zinc-950 flex items-center justify-center gap-5">
+          <div className="flex-grow min-h-0 p-6 pb-4 bg-zinc-950 flex items-center justify-center gap-5 overflow-visible">
             {/* 传统搜索框示意 */}
-            <div className="flex flex-col items-end justify-center gap-8 flex-1 min-w-0">
+            <div className="flex flex-col items-end justify-center gap-8 shrink-0 w-[420px]">
               <div className="flex flex-col items-end gap-2">
                 <span className="text-zinc-500 text-[15px] font-bold font-['MiSans'] tracking-wide">百度搜索</span>
                 <BaiduSearchBox />
@@ -188,7 +188,7 @@ export default function Page_GEOWordSelectionOther() {
                 </span>
               </div>
             </div>
-            <div className="shrink-0 w-[100px]" aria-hidden="true" />
+            <div className="shrink-0 w-[200px]" aria-hidden="true" />
             <div className="w-[304px] shrink-0" aria-hidden="true" />
           </div>
         </div>
