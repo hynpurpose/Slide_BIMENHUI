@@ -2,7 +2,7 @@ import React from 'react';
 import SlideLayout from '../components/SlideLayout';
 import keywordData from '../data/skyworthKeywords.json';
 
-const ROWS_PER_PAGE = 10;
+const ROWS_PER_PAGE = 22;
 
 const OPT_COLUMNS = [
   { key: 'index', label: '序号', width: '4%' },
@@ -47,14 +47,14 @@ function KeywordTablePage({ title, rows, columns, pageNum, totalPages, startInde
           </span>
         </div>
 
-        <div className="flex-1 min-h-0 mt-[56px] rounded-2xl border border-white/[0.08] bg-white/[0.02] overflow-hidden">
+        <div className="flex-1 min-h-0 mt-[48px] rounded-2xl border border-white/[0.08] bg-white/[0.02] overflow-hidden">
           <table className="w-full h-full text-left border-collapse table-fixed">
             <thead>
               <tr className="border-b border-white/15 bg-white/[0.03]">
                 {columns.map((col) => (
                   <th
                     key={col.key}
-                    className="py-3 px-3 text-[16px] font-bold text-zinc-400 font-['MiSans'] align-middle"
+                    className="py-1.5 px-2 text-[14px] font-bold text-zinc-400 font-['MiSans'] align-middle"
                     style={{ width: col.width }}
                   >
                     {col.label}
@@ -75,15 +75,15 @@ function KeywordTablePage({ title, rows, columns, pageNum, totalPages, startInde
                     return (
                       <td
                         key={col.key}
-                        className={`py-2.5 px-3 align-top font-['MiSans'] leading-snug ${
+                        className={`py-1 px-2 align-top font-['MiSans'] leading-tight ${
                           isKeyword
-                            ? 'text-[17px] text-white font-semibold'
+                            ? 'text-[14px] text-white font-semibold'
                             : isExplain
-                              ? 'text-[15px] text-zinc-400'
-                              : 'text-[15px] text-zinc-300'
+                              ? 'text-[13px] text-zinc-400'
+                              : 'text-[13px] text-zinc-300'
                         }`}
                       >
-                        <span className={isExplain || isKeyword ? 'line-clamp-2' : ''}>{value}</span>
+                        <span className={isExplain || isKeyword ? 'line-clamp-1' : ''}>{value}</span>
                       </td>
                     );
                   })}
