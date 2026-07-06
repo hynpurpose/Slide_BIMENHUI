@@ -365,7 +365,7 @@ function MetricsGrid({ size = 'compact', cols = 3, decor = false, className = ''
     );
 }
 
-/* ── 方案 A：上下分层（版本 1）── */
+/* ── 方案 A：上下分层 ── */
 export function Page_SkyworthReport_BasicInfo_A() {
     return (
         <SlideLayout fullBleed>
@@ -399,7 +399,7 @@ export function Page_SkyworthReport_BasicInfo_A() {
 }
 Page_SkyworthReport_BasicInfo_A.hideHeader = true;
 
-/* ── 方案 B：左右分栏 ── */
+/* ── 方案 B：左右分栏（版本 1）── */
 export function Page_SkyworthReport_BasicInfo_B() {
     return (
         <SlideLayout title="报告说明">
