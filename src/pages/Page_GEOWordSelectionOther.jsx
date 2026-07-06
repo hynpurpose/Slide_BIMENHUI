@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { Image as ImageIcon, ArrowRight } from 'lucide-react';
+import { Image as ImageIcon } from 'lucide-react';
 import SlideLayout from '../components/SlideLayout';
 
 export default function Page_GEOWordSelectionOther() {
@@ -114,17 +114,15 @@ export default function Page_GEOWordSelectionOther() {
           </div>
         </div>
 
-        {/* 中间过渡标识 */}
-        <div className="absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 z-30 flex flex-col items-center justify-center gap-4 pointer-events-none">
-          <div className="relative">
-            <div className="absolute inset-0 rounded-full bg-[#004CE5]/35 blur-[28px]" />
-            <div className="relative w-[80px] h-[80px] rounded-full bg-gradient-to-br from-[#2E6BFF] to-[#0B2E80] border border-blue-300/40 shadow-[0_0_36px_rgba(0,76,229,0.55)] flex items-center justify-center">
-              <ArrowRight className="w-10 h-10 text-white drop-shadow-[0_0_12px_rgba(255,255,255,0.8)]" strokeWidth={2.5} />
-            </div>
-          </div>
-          <span className="text-[22px] font-black text-white font-['MiSans'] text-center leading-snug whitespace-nowrap drop-shadow-[0_0_20px_rgba(255,255,255,0.75)]">
+        {/* 中间过渡标识：文字在上、箭头在下，对齐卡片标题行 */}
+        <div className="absolute left-1/2 top-[52px] -translate-x-1/2 z-30 flex flex-col items-center gap-2 pointer-events-none">
+          <span className="text-[20px] font-black text-white font-['MiSans'] text-center leading-tight whitespace-nowrap px-4 py-1.5 rounded-full bg-black/85 border border-zinc-700/80 shadow-[0_4px_20px_rgba(0,0,0,0.6)]">
             AI搜索形式变了
           </span>
+          <svg width="56" height="20" viewBox="0 0 56 20" fill="none" aria-hidden="true">
+            <path d="M0 10H44" stroke="#2E6BFF" strokeWidth="3" strokeLinecap="round" />
+            <path d="M36 4L48 10L36 16" stroke="#2E6BFF" strokeWidth="3" strokeLinecap="round" strokeLinejoin="round" />
+          </svg>
         </div>
 
         {/* Footnote */}
