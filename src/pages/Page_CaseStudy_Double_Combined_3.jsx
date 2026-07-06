@@ -24,14 +24,14 @@ const GUJING = {
 
 const CAINIAO_OVERVIEW = [
   { label: '提及率', value: '88.5%' },
-  { label: '平均提及位次', value: 'NO. 2.1' },
-  { label: '负面信息率', value: '2.6%' },
+  { label: 'Top 1 提及率', value: '56.4%' },
+  { label: '竞品排名', value: 'NO. 1' },
 ];
 
 const GUJING_OVERVIEW = [
   { label: '提及率', value: '81.2%' },
-  { label: '平均提及位次', value: 'NO. 2.8' },
-  { label: '负面信息率', value: '1.2%' },
+  { label: 'Top 1 提及率', value: '48.9%' },
+  { label: '竞品排名', value: 'NO. 1' },
 ];
 
 function SectionTitle({ children, size = 22 }) {
