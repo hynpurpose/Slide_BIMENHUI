@@ -1,0 +1,182 @@
+[
+  {
+    "id": "01",
+    "type": "品类词",
+    "entry": "挂墙上好看的电视推荐",
+    "platform": "通义千问",
+    "before": "未提及",
+    "change": "新增提及",
+    "after": "第 1 名"
+  },
+  {
+    "id": "02",
+    "type": "品类词",
+    "entry": "画质细节好的艺术电视推荐",
+    "platform": "通义千问",
+    "before": "未提及",
+    "change": "新增提及",
+    "after": "第 1 名"
+  },
+  {
+    "id": "03",
+    "type": "品类词",
+    "entry": "可以当装饰画的电视推荐",
+    "platform": "通义千问",
+    "before": "未提及",
+    "change": "新增提及",
+    "after": "第 1 名"
+  },
+  {
+    "id": "04",
+    "type": "品类词",
+    "entry": "适合奶油风客厅的电视推荐",
+    "platform": "DeepSeek",
+    "before": "未提及",
+    "change": "新增提及",
+    "after": "第 1 名"
+  },
+  {
+    "id": "05",
+    "type": "品类词",
+    "entry": "适合奶油风客厅的电视推荐",
+    "platform": "通义千问",
+    "before": "未提及",
+    "change": "新增提及",
+    "after": "第 1 名"
+  },
+  {
+    "id": "06",
+    "type": "品类词",
+    "entry": "新房电视推荐",
+    "platform": "DeepSeek",
+    "before": "第 9 名",
+    "change": "上升 8 名",
+    "after": "第 1 名"
+  },
+  {
+    "id": "07",
+    "type": "品类词",
+    "entry": "口碑好的电视推荐",
+    "platform": "DeepSeek",
+    "before": "未提及",
+    "change": "新增提及",
+    "after": "第 3 名"
+  },
+  {
+    "id": "08",
+    "type": "品类词",
+    "entry": "客厅电视推荐",
+    "platform": "元宝",
+    "before": "未提及",
+    "change": "新增提及",
+    "after": "第 4 名"
+  },
+  {
+    "id": "09",
+    "type": "品类词",
+    "entry": "新房电视推荐",
+    "platform": "通义千问",
+    "before": "第 7 名",
+    "change": "上升 6 名",
+    "after": "第 1 名"
+  },
+  {
+    "id": "10",
+    "type": "品类词",
+    "entry": "客厅电视推荐",
+    "platform": "通义千问",
+    "before": "未提及",
+    "change": "新增提及",
+    "after": "第 5 名"
+  },
+  {
+    "id": "11",
+    "type": "品类词",
+    "entry": "新房电视推荐",
+    "platform": "元宝",
+    "before": "未提及",
+    "change": "新增提及",
+    "after": "第 5 名"
+  },
+  {
+    "id": "12",
+    "type": "品类词",
+    "entry": "适合极简风客厅的电视推荐",
+    "platform": "通义千问",
+    "before": "第 6 名",
+    "change": "上升 5 名",
+    "after": "第 1 名"
+  },
+  {
+    "id": "13",
+    "type": "品类词",
+    "entry": "颜值高的超薄电视推荐",
+    "platform": "通义千问",
+    "before": "第 6 名",
+    "change": "上升 5 名",
+    "after": "第 1 名"
+  },
+  {
+    "id": "14",
+    "type": "品类词",
+    "entry": "超薄电视品牌排行榜",
+    "platform": "通义千问",
+    "before": "第 5 名",
+    "change": "上升 4 名",
+    "after": "第 1 名"
+  },
+  {
+    "id": "15",
+    "type": "品类词",
+    "entry": "可以当装饰画的壁纸电视推荐",
+    "platform": "通义千问",
+    "before": "第 4 名",
+    "change": "上升 3 名",
+    "after": "第 1 名"
+  },
+  {
+    "id": "16",
+    "type": "品类词",
+    "entry": "客厅电视推荐",
+    "platform": "DeepSeek",
+    "before": "第 6 名",
+    "change": "上升 3 名",
+    "after": "第 3 名"
+  },
+  {
+    "id": "17",
+    "type": "品类词",
+    "entry": "艺术电视品牌推荐",
+    "platform": "元宝",
+    "before": "第 6 名",
+    "change": "上升 3 名",
+    "after": "第 3 名"
+  },
+  {
+    "id": "18",
+    "type": "品类词",
+    "entry": "艺术电视品牌排行榜",
+    "platform": "DeepSeek",
+    "before": "第 3 名",
+    "change": "上升 2 名",
+    "after": "第 1 名"
+  },
+  {
+    "id": "19",
+    "type": "品类词",
+    "entry": "艺术电视品牌推荐",
+    "platform": "DeepSeek",
+    "before": "第 3 名",
+    "change": "上升 2 名",
+    "after": "第 1 名"
+  },
+  {
+    "id": "20",
+    "type": "品类词",
+    "entry": "质量好的艺术电视推荐",
+    "platform": "豆包",
+    "before": "第 3 名",
+    "change": "上升 2 名",
+    "after": "第 1 名"
+  }
+]
