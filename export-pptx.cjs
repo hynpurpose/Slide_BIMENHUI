@@ -20,6 +20,30 @@ function emit(data) {
   process.stdout.write(JSON.stringify(data) + '\n');
 }
 
+/* 把指定幻灯片里视频 pic 的矩形几何改成圆角矩形（封面图与播放画面共用同一形状） */
+async function roundVideoCorners(pptxPath, adjBySlide) {
+  const JSZip = require('jszip');
+  const zip = await JSZip.loadAsync(fs.readFileSync(pptxPath));
+  for (const [slideNum, adj] of Object.entries(adjBySlide)) {
+    const name = `ppt/slides/slide${slideNum}.xml`;
+    const file = zip.file(name);
+    if (!file) continue;
+    let xml = await file.async('string');
+    xml = xml.replace(/<p:pic>[\s\S]*?<\/p:pic>/g, (pic) => {
+      if (!pic.includes('<a:videoFile')) return pic;
+      return pic.replace(
+        '<a:prstGeom prst="rect"><a:avLst/></a:prstGeom>',
+        `<a:prstGeom prst="roundRect"><a:avLst><a:gd name="adj" fmla="val ${adj}"/></a:avLst></a:prstGeom>`
+      );
+    });
+    zip.file(name, xml);
+  }
+  fs.writeFileSync(
+    pptxPath,
+    await zip.generateAsync({ type: 'nodebuffer', compression: 'DEFLATE' })
+  );
+}
+
 function findChrome() {
   const candidates = [
     process.env.PUPPETEER_EXECUTABLE_PATH,
@@ -110,6 +134,8 @@ function findChrome() {
     const pptx = new PptxGenJS();
     pptx.layout = 'LAYOUT_16x9';
 
+    const videoAdjBySlide = {};
+
     for (let i = 0; i < totalSlides; i++) {
       const label = slideOrder[i];
       emit({ type: 'progress', current: i + 1, total: totalSlides, slide: label });
@@ -135,12 +161,16 @@ function findChrome() {
           if (!video || video.style.display === 'none') return null;
           const rootRect = root.getBoundingClientRect();
           const rect = video.getBoundingClientRect();
+          const radius =
+            parseFloat(getComputedStyle(video.parentElement).borderRadius) || 0;
           return {
             src: video.getAttribute('src') || '',
             x: (rect.left - rootRect.left) / rootRect.width,
             y: (rect.top - rootRect.top) / rootRect.height,
             w: rect.width / rootRect.width,
             h: rect.height / rootRect.height,
+            // roundRect 的 adj：圆角半径占短边的比例 × 100000
+            adj: Math.round((radius / Math.min(rect.width, rect.height)) * 100000),
           };
         });
 
@@ -165,6 +195,7 @@ function findChrome() {
               w: videoInfo.w * 10,
               h: videoInfo.h * 5.625,
             });
+            if (videoInfo.adj > 0) videoAdjBySlide[i + 1] = videoInfo.adj;
           }
         }
       }
@@ -175,6 +206,9 @@ function findChrome() {
     }
 
     await pptx.writeFile({ fileName: OUTPUT });
+    if (Object.keys(videoAdjBySlide).length > 0) {
+      await roundVideoCorners(OUTPUT, videoAdjBySlide);
+    }
     emit({ type: 'done', output: OUTPUT });
 
     await browser.close();

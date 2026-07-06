@@ -6,6 +6,30 @@ import { fileURLToPath } from 'url';
 
 const __dirname = path.dirname(fileURLToPath(import.meta.url));
 
+/* 把指定幻灯片里视频 pic 的矩形几何改成圆角矩形（封面图与播放画面共用同一形状） */
+async function roundVideoCorners(pptxPath, adjBySlide) {
+    const { default: JSZip } = await import('jszip');
+    const zip = await JSZip.loadAsync(fs.readFileSync(pptxPath));
+    for (const [slideNum, adj] of Object.entries(adjBySlide)) {
+        const name = `ppt/slides/slide${slideNum}.xml`;
+        const file = zip.file(name);
+        if (!file) continue;
+        let xml = await file.async('string');
+        xml = xml.replace(/<p:pic>[\s\S]*?<\/p:pic>/g, (pic) => {
+            if (!pic.includes('<a:videoFile')) return pic;
+            return pic.replace(
+                '<a:prstGeom prst="rect"><a:avLst/></a:prstGeom>',
+                `<a:prstGeom prst="roundRect"><a:avLst><a:gd name="adj" fmla="val ${adj}"/></a:avLst></a:prstGeom>`
+            );
+        });
+        zip.file(name, xml);
+    }
+    fs.writeFileSync(
+        pptxPath,
+        await zip.generateAsync({ type: 'nodebuffer', compression: 'DEFLATE' })
+    );
+}
+
 // dynamically fetch totalSlides later
 
 async function run() {
@@ -57,6 +81,9 @@ async function run() {
     const pptx = new pptxgen();
     pptx.layout = 'LAYOUT_16x9';
 
+    const videoAdjBySlide = {};
+    let addedSlides = 0;
+
     const totalSlides = 108;
 
     console.log(`Found ${totalSlides} slides. Starting capture...`);
@@ -100,6 +127,7 @@ async function run() {
             }).then(handle => handle.screenshot({ type: 'png' }));
 
             const slide = pptx.addSlide();
+            addedSlides += 1;
             slide.background = { fill: '000000' };
             slide.addImage({
                 data: `image/png;base64,${screenshotBuffer.toString('base64')}`,
@@ -116,12 +144,16 @@ async function run() {
                 if (!video || video.style.display === 'none') return null;
                 const rootRect = root.getBoundingClientRect();
                 const rect = video.getBoundingClientRect();
+                const radius =
+                    parseFloat(getComputedStyle(video.parentElement).borderRadius) || 0;
                 return {
                     src: video.getAttribute('src') || '',
                     x: (rect.left - rootRect.left) / rootRect.width,
                     y: (rect.top - rootRect.top) / rootRect.height,
                     w: rect.width / rootRect.width,
                     h: rect.height / rootRect.height,
+                    // roundRect 的 adj：圆角半径占短边的比例 × 100000
+                    adj: Math.round((radius / Math.min(rect.width, rect.height)) * 100000),
                 };
             });
 
@@ -146,6 +178,7 @@ async function run() {
                         w: videoInfo.w * 10,
                         h: videoInfo.h * 5.625,
                     });
+                    if (videoInfo.adj > 0) videoAdjBySlide[addedSlides] = videoInfo.adj;
                 }
             }
         }
@@ -163,6 +196,9 @@ async function run() {
         : `Presentation.pptx`;
     console.log('Generating PPTX file...');
     await pptx.writeFile({ fileName: outputName });
+    if (Object.keys(videoAdjBySlide).length > 0) {
+        await roundVideoCorners(outputName, videoAdjBySlide);
+    }
     console.log(`Export complete: ${outputName}`);
     await browser.close();
 }
