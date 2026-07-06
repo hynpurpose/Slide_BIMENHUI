@@ -28,12 +28,20 @@ export function Page_SkyworthReport_CoreDataCompetitor() {
   }));
 
   // === 产品层面竞品对比数据（各产品优化词项目的提及率排名前5） ===
-  const productTables = overview.product_opt.map((p) => ({
-    title: p.project_name.replace(/^创维/, '创维 '),
-    data: p.mention_ranking.map((b) => ({
-      name: b.name, value: `${b.rate}%`, self: b.is_target,
-    })),
-  }));
+  // 目标产品未进接口返回的前5时，用人工核实的完整榜单排名替换末行，保证本品行始终可见
+  const MANUAL_TARGET_ROWS = {
+    '创维Q7H': { rank: 107, name: '创维 Q7H', value: '0%' },
+  };
+  const productTables = overview.product_opt.map((p) => {
+    const rows = p.mention_ranking.map((b, i) => ({
+      rank: i + 1, name: b.name, value: `${b.rate}%`, self: b.is_target,
+    }));
+    const manual = MANUAL_TARGET_ROWS[p.project_name];
+    if (manual && !rows.some((r) => r.self)) {
+      rows[rows.length - 1] = { ...manual, self: true };
+    }
+    return { title: p.project_name.replace(/^创维/, '创维 '), data: rows };
+  });
 
   const renderCompetitorTable = (title, headers, data) => {
     return (
@@ -135,7 +143,7 @@ export function Page_SkyworthReport_CoreDataCompetitor() {
             <tbody>
               {data.map((item, idx) => {
                 const isSelf = item.self;
-                const rank = idx + 1;
+                const rank = item.rank ?? idx + 1;
 
                 let rankElement;
                 if (rank === 1) {
@@ -145,7 +153,7 @@ export function Page_SkyworthReport_CoreDataCompetitor() {
                 } else if (rank === 3) {
                   rankElement = <span className="text-orange-400 font-bold text-[15px] xl:text-[17px]">3</span>;
                 } else {
-                  rankElement = <span className="text-zinc-500 text-[15px] xl:text-[17px]">{rank}</span>;
+                  rankElement = <span className={`text-[15px] xl:text-[17px] ${isSelf ? 'font-bold text-[#60A5FA]' : 'text-zinc-500'}`}>{rank}</span>;
                 }
 
                 return (
@@ -214,7 +222,7 @@ export function Page_SkyworthReport_CoreDataCompetitor() {
             <div className="flex items-start gap-5">
               <span className="text-[20px] xl:text-[22px] font-bold text-white shrink-0 bg-[#004CE5] px-4 py-2 rounded-xl shadow-[0_0_10px_rgba(0,76,229,0.3)]">数据总结</span>
               <p className="text-[19px] xl:text-[21px] text-zinc-200 leading-relaxed text-justify flex-1">
-                品类层面，创维 <strong className="text-white font-bold">TOP1 提及率（24.7%）行业第一</strong>，一旦被提及往往被首推；但整体提及率（<strong className="text-white font-bold">59.4%</strong>）与平均位次（NO.4.2）仍落后于海信、TCL，「被想起」的频率是当前短板。产品层面，<strong className="text-white font-bold">A7H Pro（61.7%）与 A10H（51%）</strong>在各自词组中排名第一，且各产品榜单前列多被创维自家产品占据，形成内部矩阵优势；但 <strong className="text-white font-bold">A8H、Q8H 被自家高端款盖过，Q7H 未进入榜单前五</strong>，产品间的曝光分配仍需针对性调优。
+                品类层面，创维 <strong className="text-white font-bold">TOP1 提及率（24.7%）行业第一</strong>，一旦被提及往往被首推；但整体提及率（<strong className="text-white font-bold">59.4%</strong>）与平均位次（NO.4.2）仍落后于海信、TCL，「被想起」的频率是当前短板。产品层面，<strong className="text-white font-bold">A7H Pro（61.7%）与 A10H（51%）</strong>在各自词组中排名第一，且各产品榜单前列多被创维自家产品占据，形成内部矩阵优势；但 <strong className="text-white font-bold">A8H、Q8H 被自家高端款盖过，Q7H 排名第 107、提及率为 0</strong>，产品间的曝光分配仍需针对性调优。
               </p>
             </div>
           </div>
