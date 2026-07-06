@@ -150,11 +150,7 @@ import {
 } from '../pages/Page_GeoContentPrinciples';
 import Page_GeoWritingAgentIntro from '../pages/Page_GeoWritingAgentIntro';
 import Page_DeliveryShortTerm from '../pages/Page_DeliveryShortTerm';
-import Page_DeliveryLongTerm, {
-  Page_DeliveryLongTerm_A,
-  Page_DeliveryLongTerm_B,
-  Page_DeliveryLongTerm_C,
-} from '../pages/Page_DeliveryLongTerm';
+import Page_DeliveryLongTerm from '../pages/Page_DeliveryLongTerm';
 import Page_DeliveryHighWeight from '../pages/Page_DeliveryHighWeight';
 import Page_PotentialVerticalCommunity from '../pages/Page_PotentialVerticalCommunity';
 import Page_EmergingMediaAttempts from '../pages/Page_EmergingMediaAttempts';
@@ -333,7 +329,7 @@ export const slideConfig = [
   { type: 'chapter', title: '投放策略', subtitle: 'DELIVERY STRATEGY', backgroundImage: '' },
 
   { type: 'section', title: '投放原则' },
-  { type: 'page', title: '长期投放', variants: [Page_DeliveryLongTerm_B, Page_DeliveryLongTerm_A, Page_DeliveryLongTerm_C], hideHeader: true },
+  { type: 'page', title: '长期投放', component: Page_DeliveryLongTerm, hideHeader: true },
 
   { type: 'section', title: '精准高权重账号' },
   { type: 'page', title: '精准高权重账号', component: Page_DeliveryHighWeight, hideHeader: true },
