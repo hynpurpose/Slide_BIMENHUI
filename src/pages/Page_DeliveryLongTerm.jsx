@@ -2,48 +2,46 @@ import React from 'react';
 import SlideLayout from '../components/SlideLayout';
 
 export default function Page_DeliveryLongTerm() {
+  const commonPractices = [
+    {
+      num: '01',
+      title: '自建或免费账号',
+      tag: '不花钱'
+    },
+    {
+      num: '02',
+      title: '有名气高权重信源',
+      tag: '价格高，但不准确'
+    }
+  ];
+
   const allocations = [
     {
       num: '50',
       percentage: '50%',
-      gradient: 'from-[#004CE5] to-[#1E50DE]', // High Saturation Brand Blue
-      shadow: '0 0 15px rgba(0, 76, 229, 0.8)',
-      title: '投放高权重网站',
-      subtag: '锁定主流抓取平台，拦截权重流量',
-      textColor: 'text-[#004CE5]',
-      borderHover: 'border-[#004CE5]/30',
-      leadIn: '确立基本盘。',
-      body: '重点投放至网易、今日头条等 AI 高频引用采信的主流官方网站。'
+      gradient: 'from-[#0052FF] to-[#1E50DE]',
+      shadow: '0 0 15px rgba(0, 82, 255, 0.8)',
+      title: '投在精准的而非有名气的高价值信源'
     },
     {
       num: '30',
       percentage: '30%',
-      gradient: 'from-[#2A6FF7] to-[#3B82F6]', // Medium Saturation Bright Blue
+      gradient: 'from-[#2A6FF7] to-[#3B82F6]',
       shadow: '0 0 15px rgba(42, 111, 247, 0.7)',
-      title: '投放高权重垂直媒体',
-      subtag: '深耕行业垂类阵地，融入自然语境',
-      textColor: 'text-[#2A6FF7]',
-      borderHover: 'border-[#2A6FF7]/30',
-      leadIn: '渗透精准受众。',
-      body: '投向小众但酒类/科技等专注度极高的垂直媒体。流量虽小但行业信任度高，极易通过 AI 事实核验。'
+      title: '投在有潜力的垂直社区'
     },
     {
       num: '20',
       percentage: '20%',
-      gradient: 'from-[#60A5FA] to-[#93C5FD]', // Low Saturation (Vibrant Sky Blue)
+      gradient: 'from-[#60A5FA] to-[#93C5FD]',
       shadow: '0 0 12px rgba(96, 165, 250, 0.5)',
-      title: '新的媒体尝试',
-      subtag: '探索新媒体渠道，自建独家信源',
-      textColor: 'text-[#60A5FA]',
-      borderHover: 'border-[#60A5FA]/30',
-      leadIn: '探索未来增量。',
-      body: '布局新涌现的采信载体、小众独立网站或自建独家内容阵地。'
+      title: '投在尝试性的新媒体上'
     }
   ];
 
   return (
-    <SlideLayout title="532原则">
-      {/* ── 背景点状矩阵 (致敬 Page_DeliveryStrategy_Combo) ── */}
+    <SlideLayout title="初阶做法 VS 我们5-3-2原则">
+      {/* ── 背景点状矩阵 ── */}
       <div className="absolute inset-0 z-0">
         <div
           className="absolute inset-0 opacity-[0.04]"
@@ -54,28 +52,65 @@ export default function Page_DeliveryLongTerm() {
         />
       </div>
 
-      {/* ── 主排版区 (高度拉伸至 750px，顶端起于 content top 下方 40px) ── */}
+      {/* ── 主排版区 ── */}
       <div
-        className="absolute w-[1840px] select-none animate-fadeIn flex flex-col justify-start z-10 pl-0"
-        style={{ top: '40px', height: '750px' }}
+        className="absolute w-[1840px] select-none animate-fadeIn flex justify-between items-stretch z-10 pl-0"
+        style={{ top: '30px', height: '740px' }}
       >
+        {/* ==================== 左边：市场常见做法 (700px) ==================== */}
+        <div className="w-[700px] flex flex-col justify-center h-full">
+          <div className="mb-8">
+            <span className="text-[20px] font-bold tracking-[0.06em] text-zinc-500 font-['MiSans'] mb-3 block">
+              TRADITIONAL APPROACH
+            </span>
+            <h2 className="text-[40px] font-black text-white font-['MiSans'] leading-none">
+              市场常见做法
+            </h2>
+          </div>
 
-        {/* ==================== 上半部分：金句大总结 (文字更改为白色，字号大) ==================== */}
-        <div className="w-full flex flex-col items-start mb-10 shrink-0">
-          <p className="text-[30px] text-white font-extrabold tracking-wide max-w-[1700px] leading-relaxed">
-            长期来看，除了投主流高权重媒体，还要找一些垂直、小众、但内容真实、行业相关性强的媒体，甚至自建这类内容阵地。
-          </p>
+          <div className="flex flex-col gap-6">
+            {commonPractices.map((practice, idx) => (
+              <div 
+                key={idx} 
+                className="bg-red-950/10 border border-red-900/20 rounded-[24px] p-8 flex flex-col justify-center min-h-[190px] relative overflow-hidden hover:border-red-500/20 transition-all duration-300"
+              >
+                <div className="flex items-center gap-6 mb-4">
+                  <span className="font-['Montserrat'] text-[32px] font-black text-red-500/90 leading-none">
+                    {practice.num}
+                  </span>
+                  <h3 className="text-[28px] font-black text-white font-['MiSans'] leading-none">
+                    {practice.title}
+                  </h3>
+                </div>
+                <div className="text-[22px] font-bold text-red-400 font-['MiSans'] pl-[58px]">
+                  {practice.tag}
+                </div>
+              </div>
+            ))}
+          </div>
         </div>
 
-        {/* ==================== 下半部分：百分比分配矩阵 (数字提升至 156px，内容字号提升至 28px) ==================== */}
-        <div className="flex-1 w-full flex items-start pt-6">
-          <div className="grid grid-cols-3 gap-16 w-full">
+        {/* ==================== 中间分割线 ==================== */}
+        <div className="w-[80px] flex items-center justify-center shrink-0">
+          <div className="h-4/5 border-r border-dashed border-zinc-800" />
+        </div>
 
+        {/* ==================== 右边：我们的5-3-2原则 (1060px) ==================== */}
+        <div className="w-[1060px] flex flex-col justify-center h-full">
+          <div className="mb-8">
+            <span className="text-[20px] font-bold tracking-[0.06em] text-[#0052FF] font-['MiSans'] mb-3 block">
+              OUR STRATEGY
+            </span>
+            <h2 className="text-[40px] font-black text-white font-['MiSans'] leading-none">
+              我们的 5-3-2 原则
+            </h2>
+          </div>
+
+          <div className="grid grid-cols-3 gap-8 w-full mt-2">
             {allocations.map((item, idx) => (
-              <div key={idx} className="flex flex-col group relative">
-
-                {/* 顶部发光进度条 (长度精确匹配 50%、30%、20% 比例，使用饱和度递减的蓝色渐变) */}
-                <div className="w-full h-[8px] bg-zinc-800 rounded-full mb-8 relative overflow-hidden">
+              <div key={idx} className="flex flex-col group relative bg-black/20 border border-zinc-900 rounded-[24px] p-6 hover:border-[#0052FF]/30 transition-all duration-300">
+                {/* 顶部发光进度条 */}
+                <div className="w-full h-[6px] bg-zinc-800 rounded-full mb-6 relative overflow-hidden">
                   <div
                     className={`absolute left-0 top-0 h-full rounded-full bg-gradient-to-r ${item.gradient}`}
                     style={{
@@ -85,36 +120,22 @@ export default function Page_DeliveryLongTerm() {
                   />
                 </div>
 
-                {/* 数字标识与百分比符号 (Montserrat 字体，提升至 156px) */}
-                <div className="flex items-baseline mb-6">
-                  <span className="text-[156px] leading-none font-black tracking-tighter text-white font-['Montserrat'] opacity-95">
+                {/* 数字标识与百分比 */}
+                <div className="flex items-baseline mb-4">
+                  <span className="text-[96px] leading-none font-black tracking-tighter text-white font-['Montserrat'] opacity-95">
                     {item.num}
                   </span>
-                  <span className="text-[48px] font-black text-zinc-500 ml-3 mb-6 font-['Montserrat']">%</span>
+                  <span className="text-[32px] font-black text-zinc-500 ml-2 font-['Montserrat']">%</span>
                 </div>
 
-                {/* 标题 & 分割线 */}
-                <h3 className={`text-[32px] font-black text-white mb-4 pt-6 border-t border-white/10 ${item.borderHover} transition-colors leading-snug font-['MiSans']`}>
+                {/* 标题 - 严格只包含法则本身，无多余文字 */}
+                <h3 className="text-[22px] font-extrabold text-white leading-relaxed pt-5 border-t border-white/10 font-['MiSans'] min-h-[120px]">
                   {item.title}
                 </h3>
-
-                {/* 副说明 */}
-                <p className={`text-[24px] font-bold mb-6 tracking-wide ${item.textColor} font-sans`}>
-                  {item.subtag}
-                </p>
-
-                {/* 正文说明 (字号增大至 28px，精简正文) */}
-                <p className="text-[28px] text-zinc-400 leading-relaxed font-normal text-justify">
-                  <strong className="text-zinc-200 font-bold tracking-wide">{item.leadIn}</strong>
-                  {item.body}
-                </p>
-
               </div>
             ))}
-
           </div>
         </div>
-
       </div>
     </SlideLayout>
   );
