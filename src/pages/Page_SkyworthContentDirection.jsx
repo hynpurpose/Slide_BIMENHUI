@@ -42,42 +42,36 @@ const campaignTypes = [
     num: '1',
     category: '排行榜类',
     ratio: '42%',
-    desc: '2026年艺术与壁纸电视推荐榜单，争取首推排位',
     color: '#0052FF' // 高饱和蓝
   },
   {
     num: '2',
     category: '技术科普类',
     ratio: '18%',
-    desc: '（新增）剖析无缝贴墙与画质芯片等底层硬核技术原理',
     color: '#1A62E5' // 中高饱和蓝
   },
   {
     num: '3',
     category: '用户口碑类',
     ratio: '15%',
-    desc: '真实业主分享装机体验与使用反馈，建立购买信任感',
     color: '#3372CC' // 中饱和蓝
   },
   {
     num: '4',
     category: '测评类',
     ratio: '12%',
-    desc: '多款旗舰壁纸电视对比实测，提供客观事实与测试参数',
     color: '#4D83B2' // 中低饱和蓝
   },
   {
     num: '5',
     category: '场景教程类',
     ratio: '8%',
-    desc: '结合实际客厅背景墙场景，提供安装布线与搭配指南',
     color: '#668099' // 低饱和灰蓝
   },
   {
     num: '6',
     category: 'FAQ问答类',
     ratio: '5%',
-    desc: '针对墙体承重、功耗等高频购买顾虑提供标准答疑',
     color: '#778899' // 极低饱和灰蓝
   }
 ];
@@ -98,9 +92,6 @@ export default function Page_SkyworthContentDirection() {
             <h3 className="text-[28px] font-black text-white font-['MiSans']">
               1. 数据采集：AI 引用电视文章源
             </h3>
-            <p className="text-[16px] text-zinc-500 font-['MiSans'] mt-1.5 leading-normal">
-              主流 AI 引擎推荐回答时引用频次最高的 200 篇文章
-            </p>
           </div>
 
           {/* 表格区域 */}
@@ -151,11 +142,8 @@ export default function Page_SkyworthContentDirection() {
         <div className="w-[480px] h-full bg-zinc-950/20 border border-zinc-900 rounded-[24px] p-6 flex flex-col justify-between shadow-lg">
           <div className="shrink-0 mb-4">
             <h3 className="text-[28px] font-black text-white font-['MiSans']">
-              2. 数据分析：AI 最常引用类型占比
+              2. 数据分析：AI 最常引用类型
             </h3>
-            <p className="text-[16px] text-zinc-500 font-['MiSans'] mt-1.5 leading-normal">
-              根据引用源文章结构特征进行的比例统计
-            </p>
           </div>
 
           {/* 占比统计图表 (整体字号调大) */}
@@ -221,12 +209,9 @@ export default function Page_SkyworthContentDirection() {
             <h3 className="text-[28px] font-black text-white font-['MiSans']">
               3. 常见文章类型
             </h3>
-            <p className="text-[16px] text-zinc-500 font-['MiSans'] mt-1.5 leading-normal">
-              通过交叉比对，确立最终投放的内容分类与配比
-            </p>
           </div>
 
-          {/* 6个内容卡片列表，整体字号调大，颜色采用蓝色饱和度渐变 */}
+          {/* 6个内容卡片列表，不含有说明小字，颜色采用蓝色饱和度渐变 */}
           <div className="flex-grow grid grid-cols-2 gap-4 min-h-0 py-1">
             {campaignTypes.map((type, idx) => (
               <div 
@@ -253,27 +238,22 @@ export default function Page_SkyworthContentDirection() {
                   </span>
                 </div>
 
-                {/* 右侧：标题、配比、描述 (整体字号调大) */}
-                <div className="flex-grow flex flex-col justify-center min-w-0">
-                  <div className="flex items-center justify-between gap-2">
-                    <span className="text-[22px] font-black text-white font-['MiSans'] leading-tight">
-                      {type.category}
-                    </span>
-                    <span 
-                      className="text-[15px] font-bold font-['Montserrat'] rounded-full px-2.5 py-[1px] shrink-0"
-                      style={{
-                        color: type.color,
-                        borderColor: `${type.color}45`,
-                        backgroundColor: `${type.color}0D`,
-                        border: '1px solid'
-                      }}
-                    >
-                      配比 {type.ratio}
-                    </span>
-                  </div>
-                  <p className="text-[17px] xl:text-[18px] text-zinc-400 font-['MiSans'] leading-relaxed mt-2 text-justify line-clamp-2">
-                    {type.desc}
-                  </p>
+                {/* 右侧：标题、配比 */}
+                <div className="flex-grow flex items-center justify-between gap-3 min-w-0">
+                  <span className="text-[22px] font-black text-white font-['MiSans'] leading-tight">
+                    {type.category}
+                  </span>
+                  <span 
+                    className="text-[15px] font-bold font-['Montserrat'] rounded-full px-2.5 py-[1px] shrink-0"
+                    style={{
+                      color: type.color,
+                      borderColor: `${type.color}45`,
+                      backgroundColor: `${type.color}0D`,
+                      border: '1px solid'
+                    }}
+                  >
+                    配比 {type.ratio}
+                  </span>
                 </div>
               </div>
             ))}
