@@ -20,8 +20,8 @@ const PROJECTS = [
     ],
   },
   {
-    brand: 'OPPO手机',
-    industry: '3C数码',
+    brand: '慕思床垫',
+    industry: '睡眠科技行业',
     total: 140,
     cited: 90,
     citations: 2125,
@@ -35,8 +35,8 @@ const PROJECTS = [
     ],
   },
   {
-    brand: '慕思',
-    industry: '睡眠科技行业',
+    brand: '古井贡酒',
+    industry: '快消品行业',
     total: 140,
     cited: 46,
     citations: 1498,
@@ -47,8 +47,8 @@ const PROJECTS = [
     ],
   },
   {
-    brand: '古井贡酒',
-    industry: '快消品行业',
+    brand: '菜鸟快递',
+    industry: '物流行业',
     total: 152,
     cited: 71,
     citations: 1836,
