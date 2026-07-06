@@ -27,14 +27,14 @@ const MUSI = {
 
 const BMW_MINI_OVERVIEW = [
   { label: '提及率', value: '79.5%' },
-  { label: '平均提及位次', value: 'NO. 2.4' },
-  { label: '负面信息率', value: '1.8%' },
+  { label: 'Top 1 提及率', value: '46.3%' },
+  { label: '竞品排名', value: 'NO. 1' },
 ];
 
 const MUSI_OVERVIEW = [
   { label: '提及率', value: '86.2%' },
-  { label: '平均提及位次', value: 'NO. 2.3' },
-  { label: '负面信息率', value: '4.0%' },
+  { label: 'Top 1 提及率', value: '52.7%' },
+  { label: '竞品排名', value: 'NO. 1' },
 ];
 
 function SectionTitle({ children, size = 22 }) {
