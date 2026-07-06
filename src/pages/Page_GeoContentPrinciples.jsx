@@ -125,7 +125,6 @@ export function Page_GeoContentPrinciples_A() {
         <div className="flex-1 min-h-0 grid grid-cols-2 gap-10 items-stretch">
           {/* 左：EEAT */}
           <div className="rounded-[30px] border border-zinc-900 bg-zinc-950/20 px-11 py-10 flex flex-col min-h-0 relative">
-            <RejectStamp className="absolute right-8 top-8" />
             <div className="shrink-0 mb-6 flex flex-col justify-end" style={{ height: '135px' }}>
               <h3 className="text-[44px] xl:text-[48px] font-black text-white font-['MiSans'] leading-tight">
                 讨论最多的是
@@ -154,7 +153,7 @@ export function Page_GeoContentPrinciples_A() {
               </div>
 
               {/* 底部的3行解释文字，全部用白色，重点加大 */}
-              <div className="border-t border-zinc-900 pt-5 mt-4 space-y-3.5 text-white">
+              <div className="border-t border-zinc-900 pt-5 mt-4 space-y-3.5 text-white pr-[140px] relative">
                 <p className="text-[22px] xl:text-[24px] leading-relaxed font-['MiSans']">
                   最早来自 <strong className="text-[26px] xl:text-[28px] font-black text-white">谷歌《搜索质量评估指南》</strong>
                 </p>
@@ -164,6 +163,7 @@ export function Page_GeoContentPrinciples_A() {
                 <p className="text-[22px] xl:text-[24px] leading-relaxed font-['MiSans']">
                   但和中国模型实际情况 <strong className="text-[28px] xl:text-[30px] font-black text-white">并不适配</strong>。
                 </p>
+                <RejectStamp className="absolute right-0 bottom-[-10px]" />
               </div>
             </div>
           </div>
