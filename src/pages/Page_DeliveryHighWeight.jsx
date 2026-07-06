@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import SlideLayout from '../components/SlideLayout';
-import { Globe, MessageSquare, AlertTriangle, Users, FileText, CheckCircle2, XCircle } from 'lucide-react';
+import { Globe, MessageSquare, AlertTriangle, Users, FileText, CheckCircle2 } from 'lucide-react';
 
 export default function Page_DeliveryHighWeight() {
   const leftTable = [
@@ -35,41 +35,34 @@ export default function Page_DeliveryHighWeight() {
         {/* ==================== 三栏主体布局 (高度 580px) ==================== */}
         <div className="w-full flex gap-6 items-stretch h-[580px] relative">
 
-          {/* ── SVG 渐变引导虚线：从抖音链接指向右侧高粉丝账号 (颜色从蓝色渐变到红色，极具科技感与警示意味) ── */}
+          {/* ── SVG 引导虚线：从抖音链接指向右侧高粉丝账号 ── */}
           <svg className="absolute inset-0 pointer-events-none z-30" style={{ width: '1840px', height: '580px' }}>
             <defs>
-              <linearGradient id="arrow-gradient" x1="0%" y1="0%" x2="100%" y2="0%">
-                <stop offset="0%" stopColor="#0052FF" stopOpacity="0.9" />
-                <stop offset="100%" stopColor="#EF4444" stopOpacity="0.9" />
-              </linearGradient>
               <marker id="arrow-head" viewBox="0 0 10 10" refX="6" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse">
-                <path d="M 0 0 L 10 5 L 0 10 z" fill="#EF4444" />
+                <path d="M 0 0 L 10 5 L 0 10 z" fill="#0052FF" />
               </marker>
             </defs>
             <path 
-              d="M 1120 220 C 1170 200, 1210 180, 1260 178" 
+              d="M 1120 220 C 1160 205, 1200 190, 1240 185" 
               fill="none" 
-              stroke="url(#arrow-gradient)" 
-              strokeWidth="3" 
-              strokeDasharray="8 5" 
+              stroke="#0052FF" 
+              strokeWidth="2.5" 
+              strokeDasharray="6 4" 
               markerEnd="url(#arrow-head)"
             />
           </svg>
 
-          {/* ==================== 1. 左栏：豆包引用来源 (440px) ==================== */}
-          <div className="w-[440px] h-full bg-[#0B0D19]/45 border border-white/[0.06] backdrop-blur-md rounded-[24px] p-6 flex flex-col shadow-[0_15px_35px_rgba(0,0,0,0.3)]">
+          {/* ==================== 1. 左栏：豆包引用来源 (440px，白底黑字) ==================== */}
+          <div className="w-[440px] h-full bg-white border border-zinc-200 rounded-[24px] p-6 flex flex-col shadow-[0_10px_30px_rgba(0,0,0,0.15)] relative overflow-hidden group hover:border-blue-500/20 transition-colors">
             <div className="mb-6 shrink-0">
-              <h3 className="text-[24px] font-black text-white font-['MiSans'] tracking-wide">
+              <h3 className="text-[24px] font-black text-zinc-900 font-['MiSans'] tracking-wide">
                 豆包引用来源
               </h3>
-              <p className="text-[14px] text-zinc-500 font-bold mt-1 font-['MiSans']">
-                数据表明抖音引用频次位列第一
-              </p>
             </div>
 
             {/* 表格容器 */}
-            <div className="flex-grow flex flex-col bg-black/40 rounded-2xl border border-white/[0.04] p-4">
-              <div className="flex justify-between items-center text-[13px] text-zinc-500 font-bold pb-2.5 border-b border-white/[0.05] mb-3 px-2">
+            <div className="flex-grow flex flex-col bg-zinc-50/50 rounded-2xl border border-zinc-200/60 p-4">
+              <div className="flex justify-between items-center text-[13px] text-zinc-400 font-bold pb-2.5 border-b border-zinc-200 mb-3 px-2">
                 <span>平台名称</span>
                 <span className="pr-2">引用率</span>
               </div>
@@ -83,12 +76,12 @@ export default function Page_DeliveryHighWeight() {
                       className={`flex justify-between items-center h-[60px] px-4 rounded-xl border transition-all duration-300 ${
                         isDouyin
                           ? "border-[#FF0050]/40 bg-[#FF0050]/5 shadow-[0_0_20px_rgba(255,0,80,0.06)]"
-                          : "border-transparent hover:bg-white/[0.02]"
+                          : "border-transparent hover:bg-zinc-100/60"
                       }`}
                     >
                       <div className="flex items-center gap-3.5 min-w-0">
                         {/* 排名 */}
-                        <span className="font-['Montserrat'] text-[15px] font-black text-zinc-600 w-5">
+                        <span className="font-['Montserrat'] text-[15px] font-black text-zinc-400 w-5">
                           {row.rank}
                         </span>
                         {/* 图标 */}
@@ -97,15 +90,15 @@ export default function Page_DeliveryHighWeight() {
                             IT
                           </span>
                         ) : (
-                          <Globe className={`w-[22px] h-[22px] shrink-0 ${isDouyin ? 'text-[#FF0050]' : 'text-zinc-500'}`} />
+                          <Globe className={`w-[22px] h-[22px] shrink-0 ${isDouyin ? 'text-[#FF0050]' : 'text-zinc-400'}`} />
                         )}
                         {/* 名字 */}
-                        <span className={`text-[17px] font-bold font-['MiSans'] truncate ${isDouyin ? "text-white" : "text-zinc-400"}`}>
+                        <span className={`text-[17px] font-bold font-['MiSans'] truncate ${isDouyin ? "text-zinc-900" : "text-zinc-700"}`}>
                           {row.name}
                         </span>
                       </div>
                       {/* 百分比 */}
-                      <span className={`text-[17px] font-black font-['Montserrat'] ${isDouyin ? "text-[#FF0050] font-black" : "text-zinc-500"}`}>
+                      <span className={`text-[17px] font-black font-['Montserrat'] ${isDouyin ? "text-[#FF0050] font-black" : "text-zinc-500 font-bold"}`}>
                         {row.rate}
                       </span>
                     </div>
@@ -270,8 +263,7 @@ export default function Page_DeliveryHighWeight() {
 
               {/* 核心结论 */}
               <div className="mt-4 bg-[#0052FF]/10 border border-[#0052FF]/20 rounded-xl py-3 px-4 flex items-center justify-center gap-2 shrink-0">
-                <span className="text-[16px] font-black text-white font-['MiSans'] flex items-center gap-1.5">
-                  <CheckCircle2 size={16} className="text-[#0052FF]" />
+                <span className="text-[16px] font-black text-white font-['MiSans']">
                   结论：视频画面及深层内容对回答结果无影响
                 </span>
               </div>
@@ -281,18 +273,16 @@ export default function Page_DeliveryHighWeight() {
 
         </div>
 
-        {/* ==================== 原因总结横向 Banner (高度 88px) ==================== */}
-        <div className="w-full h-[88px] bg-gradient-to-r from-red-950/15 via-black/40 to-red-950/15 border border-red-500/20 rounded-[24px] px-8 flex items-center justify-between shrink-0 hover:border-red-500/40 transition-all duration-300 shadow-[0_10px_30px_rgba(239,68,68,0.05)]">
-          <div className="flex items-center gap-4">
-            <div className="w-8 h-8 rounded-full bg-red-500/10 border border-red-500/30 flex items-center justify-center shrink-0">
-              <AlertTriangle size={18} className="text-red-500" />
-            </div>
-            <span className="text-[23px] font-black text-red-500 font-['MiSans'] leading-none tracking-wide">
+        {/* ==================== 原因总结横向 Banner (优化为轻量化、中性深色背景) ==================== */}
+        <div className="w-full h-[58px] bg-white/5 border border-white/[0.06] rounded-[16px] px-6 flex items-center justify-between shrink-0 hover:border-white/[0.12] transition-all duration-300">
+          <div className="flex items-center gap-3">
+            <AlertTriangle size={16} className="text-zinc-400" />
+            <span className="text-[18px] xl:text-[20px] font-bold text-zinc-300 font-['MiSans'] leading-none">
               原因：AI 不读取视频，只是字节内部的政治任务（倾斜自家抖音链接）
             </span>
           </div>
-          <span className="text-[13px] text-red-500/50 font-bold font-['Montserrat'] tracking-widest leading-none">
-            GEO DELIVERY INSIGHTS
+          <span className="text-[11px] text-zinc-600 font-bold font-['Montserrat'] tracking-widest leading-none">
+            GEO INSIGHTS
           </span>
         </div>
 
