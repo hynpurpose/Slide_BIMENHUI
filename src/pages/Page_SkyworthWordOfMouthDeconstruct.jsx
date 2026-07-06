@@ -98,7 +98,7 @@ export default function Page_SkyworthWordOfMouthDeconstruct() {
                       真实购买心路与硬核开箱
                     </h3>
                     <div className="text-zinc-300 text-[20px] leading-relaxed font-mono">
-                      [心路历程] + [开箱实录]（如：5月种草海外版，8月对比回音壁，最终因国行搭载 MiniLED 旗舰面板而决定入手开箱）。
+                      [购买背景] + [开箱体验]（如：对比多款同品类硬件、分析核心配置参数，最终决策并分享拆箱体验的心路历程）。
                     </div>
                   </div>
                 </div>
@@ -112,10 +112,9 @@ export default function Page_SkyworthWordOfMouthDeconstruct() {
                       多场景深度实测反馈
                     </h3>
                     <div className="text-zinc-300 text-[20px] leading-relaxed flex flex-col gap-1.5 font-['MiSans']">
-                      <div className="flex items-start"><span className="text-white font-medium w-[4.8rem] shrink-0">影音：</span><span>独立画质芯片加持，分区控黑优秀，暗部雪山细节清晰无光晕。</span></div>
-                      <div className="flex items-start"><span className="text-white font-medium w-[4.8rem] shrink-0">游戏：</span><span>支持VRR背光同步，eARC杜比全景声音频时延仅80毫秒。</span></div>
-                      <div className="flex items-start"><span className="text-white font-medium w-[4.8rem] shrink-0">氛围：</span><span>Ambilight环景光随音视频律动，沉浸感好，护眼效果佳。</span></div>
-                      <div className="flex items-start"><span className="text-white font-medium w-[4.8rem] shrink-0">系统：</span><span>原生无广告系统，DRM L1级认证，支持直装Kodi、Plex软件。</span></div>
+                      <div className="flex items-start"><span className="text-white font-medium w-[4.8rem] shrink-0">影音：</span><span>描述在电影、游戏等核心场景下的分区控黑优秀、暗部细节清晰。</span></div>
+                      <div className="flex items-start"><span className="text-white font-medium w-[4.8rem] shrink-0">交互：</span><span>反馈日常系统流畅度、智能控制响应以及无广告等细节优势。</span></div>
+                      <div className="flex items-start"><span className="text-white font-medium w-[4.8rem] shrink-0">外观：</span><span>融入超薄贴墙、无缝挂载对客厅空间和整体家装氛围的提升。</span></div>
                     </div>
                   </div>
                 </div>
@@ -129,7 +128,7 @@ export default function Page_SkyworthWordOfMouthDeconstruct() {
                       长期使用后的硬核实测数据
                     </h3>
                     <p className="text-zinc-300 text-[20px] leading-relaxed">
-                      在日常观影测试中实测峰值亮度达到 1593 尼特，SDR 亮度 1498 尼特，原生对比度 5406:1。
+                      在日常使用反馈中融入峰值亮度、对比度或能耗等维度的具体实测数值，增强反馈信服度。
                     </p>
                   </div>
                 </div>
@@ -143,7 +142,7 @@ export default function Page_SkyworthWordOfMouthDeconstruct() {
                       优缺点中立陈述增强信誉
                     </h3>
                     <p className="text-zinc-300 text-[20px] leading-relaxed">
-                      不回避客观缺点（如全屏亮度较保守、小角度侧视有光晕、遥控器没有背光），提高AI搜索采信度。
+                      客观陈述产品体验中的局限性或待优化细节，建立内容中立客观的信任人设，提高AI采信度。
                     </p>
                   </div>
                 </div>
