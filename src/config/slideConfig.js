@@ -255,7 +255,7 @@ export const slideConfig = [
   { type: 'page', title: '监测词总览', component: Page_SkyworthReport_MonitorWordOverview, hideHeader: true },
 
   { type: 'section', title: '基础信息' },
-  { type: 'page', title: '报告说明', variants: [Page_SkyworthReport_BasicInfo_C, Page_SkyworthReport_BasicInfo_A, Page_SkyworthReport_BasicInfo_B], hideHeader: true },
+  { type: 'page', title: '报告说明', variants: [Page_SkyworthReport_BasicInfo_A, Page_SkyworthReport_BasicInfo_C, Page_SkyworthReport_BasicInfo_B], hideHeader: true },
   { type: 'page', title: '监测范围', component: Page_SkyworthReport_BasicInfo2, hideHeader: true },
 
   { type: 'section', title: '详细数据' },
