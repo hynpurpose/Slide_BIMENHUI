@@ -31,27 +31,9 @@ function emit(data) {
   process.stdout.write(JSON.stringify(data) + '\n');
 }
 
-/* PowerPoint「自动播放」的 timing 节点模板（{SPID} 为视频 pic 的形状 id） */
-const AUTOPLAY_TIMING_XML =
-  '<p:timing><p:tnLst><p:par><p:cTn id="1" dur="indefinite" restart="never" nodeType="tmRoot"><p:childTnLst>' +
-  '<p:seq concurrent="1" nextAc="seek"><p:cTn id="2" dur="indefinite" nodeType="mainSeq"><p:childTnLst>' +
-  '<p:par><p:cTn id="3" fill="hold"><p:stCondLst><p:cond delay="indefinite"/><p:cond evt="onBegin" delay="0"><p:tn val="2"/></p:cond></p:stCondLst><p:childTnLst>' +
-  '<p:par><p:cTn id="4" fill="hold"><p:stCondLst><p:cond delay="0"/></p:stCondLst><p:childTnLst>' +
-  '<p:par><p:cTn id="5" presetID="1" presetClass="mediacall" presetSubtype="0" fill="hold" nodeType="afterEffect"><p:stCondLst><p:cond delay="0"/></p:stCondLst><p:childTnLst>' +
-  '<p:cmd type="call" cmd="playFrom(0.0)"><p:cBhvr><p:cTn id="6" dur="1" fill="hold"/><p:tgtEl><p:spTgt spid="{SPID}"/></p:tgtEl></p:cBhvr></p:cmd>' +
-  '</p:childTnLst></p:cTn></p:par></p:childTnLst></p:cTn></p:par></p:childTnLst></p:cTn></p:par>' +
-  '</p:childTnLst></p:cTn>' +
-  '<p:prevCondLst><p:cond evt="onPrev" delay="0"><p:tgtEl><p:sldTgt/></p:tgtEl></p:cond></p:prevCondLst>' +
-  '<p:nextCondLst><p:cond evt="onNext" delay="0"><p:tgtEl><p:sldTgt/></p:tgtEl></p:cond></p:nextCondLst></p:seq>' +
-  '<p:video><p:cMediaNode vol="80000"><p:cTn id="7" fill="hold" display="0" masterRel="sameClick">' +
-  '<p:stCondLst><p:cond evt="onBegin" delay="0"><p:tn val="5"/></p:cond></p:stCondLst>' +
-  '<p:endCondLst><p:cond evt="onStopAudio" delay="0"><p:tgtEl><p:sldTgt/></p:tgtEl></p:cond></p:endCondLst>' +
-  '</p:cTn><p:tgtEl><p:spTgt spid="{SPID}"/></p:tgtEl></p:cMediaNode></p:video>' +
-  '</p:childTnLst></p:cTn></p:par></p:tnLst></p:timing>';
-
 /* 后处理含视频的幻灯片：
- * 1. 视频 pic 的矩形几何改成圆角矩形（封面图与播放画面共用同一形状）
- * 2. 注入 timing 节点，放映到该页时视频自动播放 */
+ * 视频 pic 的矩形几何改成圆角矩形（封面图与播放画面共用同一形状）。
+ * 不注入自动播放 timing，视频保持默认的「点击播放」 */
 async function postProcessVideoSlides(pptxPath, adjBySlide) {
   const JSZip = require('jszip');
   const zip = await JSZip.loadAsync(fs.readFileSync(pptxPath));
@@ -60,10 +42,8 @@ async function postProcessVideoSlides(pptxPath, adjBySlide) {
     const file = zip.file(name);
     if (!file) continue;
     let xml = await file.async('string');
-    let spid = null;
     xml = xml.replace(/<p:pic>[\s\S]*?<\/p:pic>/g, (pic) => {
       if (!pic.includes('<a:videoFile')) return pic;
-      spid = pic.match(/<p:cNvPr id="(\d+)"/)?.[1] || null;
       if (adj > 0) {
         pic = pic.replace(
           '<a:prstGeom prst="rect"><a:avLst/></a:prstGeom>',
@@ -72,12 +52,6 @@ async function postProcessVideoSlides(pptxPath, adjBySlide) {
       }
       return pic;
     });
-    if (spid && !xml.includes('<p:timing>')) {
-      xml = xml.replace(
-        '</p:sld>',
-        AUTOPLAY_TIMING_XML.replace(/\{SPID\}/g, spid) + '</p:sld>'
-      );
-    }
     zip.file(name, xml);
   }
   fs.writeFileSync(
