@@ -2,171 +2,158 @@ import React from 'react';
 import SlideLayout from '../components/SlideLayout';
 
 /* ============================================================
- * 沿用 J:\GEO\Fake_App 的视觉语言（纯黑底 / 发丝边框 / 靛蓝 accent /
- * 情感四色 / 极简 Linear 风 / Montserrat 数字）重新设计架构呈现。
- * 版本 A：架构图；版本 B：真实界面截图。
+ * 版本 A：中枢式架构图（对齐 GEO ONE 架构页结构 + Fake_App 靛蓝 accent）
+ * 版本 B：真实界面截图（不改动）
  * ============================================================ */
 
 const C = {
-  bg: '#000000',
   elevated: '#09090b',
   inset: '#18181b',
   line: 'rgba(255,255,255,0.06)',
   lineStrong: 'rgba(255,255,255,0.1)',
-  text: '#f8fafc',
   sub: '#a1a1aa',
   tertiary: '#71717a',
   accent: '#6366f1',
-  accentSoft: 'rgba(99,102,241,0.08)',
   accentLine: 'rgba(99,102,241,0.3)',
 };
 
 const SENT = {
-  positive: { c: '#10b981', soft: 'rgba(16,185,129,0.1)', label: '好评' },
-  negative: { c: '#ef4444', soft: 'rgba(239,68,68,0.1)', label: '差评' },
-  fake: { c: '#f59e0b', soft: 'rgba(245,158,11,0.12)', label: '疑似刷评' },
-  invalid: { c: '#71717a', soft: 'rgba(113,113,122,0.1)', label: '无效' },
-};
-const SENT_ORDER = ['positive', 'negative', 'fake', 'invalid'];
-
-// 真实导航图标（src/components/Icon.tsx）
-const ICON_PATHS = {
-  grid: (<><rect x="3" y="3" width="7" height="7" rx="1.5" /><rect x="14" y="3" width="7" height="7" rx="1.5" /><rect x="3" y="14" width="7" height="7" rx="1.5" /><rect x="14" y="14" width="7" height="7" rx="1.5" /></>),
-  layers: (<><path d="M12 3l9 5-9 5-9-5 9-5z" /><path d="M3 13l9 5 9-5" /></>),
-  shield: (<><path d="M12 3l7 3v5c0 4.5-3 8-7 10-4-2-7-5.5-7-10V6l7-3z" /><path d="M9 12l2 2 4-4" /></>),
-  quote: (<><path d="M7 7H5a2 2 0 0 0-2 2v3a2 2 0 0 0 2 2h2V7zm0 0c0 4-1 5-3 6" /><path d="M17 7h-2a2 2 0 0 0-2 2v3a2 2 0 0 0 2 2h2V7zm0 0c0 4-1 5-3 6" /></>),
-  split: (<><path d="M12 4v16" /><path d="M7 9l-2 3 2 3" /><path d="M17 9l2 3-2 3" /></>),
-  spark: (<><path d="M12 3v4M12 17v4M3 12h4M17 12h4" /><path d="M5.6 5.6l2.8 2.8M15.6 15.6l2.8 2.8M18.4 5.6l-2.8 2.8M8.4 15.6l-2.8 2.8" /></>),
+  fake: { c: '#f59e0b', soft: 'rgba(245,158,11,0.12)' },
 };
 
-function NavIcon({ name, size = 20, color = 'currentColor', sw = 1.6 }) {
-  return (
-    <svg width={size} height={size} viewBox="0 0 24 24" fill="none" stroke={color} strokeWidth={sw} strokeLinecap="round" strokeLinejoin="round">
-      {ICON_PATHS[name] ?? ICON_PATHS.grid}
-    </svg>
-  );
-}
-
-const Eyebrow = ({ children }) => (
-  <div style={{ fontSize: 14, fontWeight: 600, letterSpacing: '0.12em', color: C.tertiary, textTransform: 'uppercase' }}>{children}</div>
-);
-
-const Arrow = () => (
-  <div className="shrink-0 flex items-center justify-center" style={{ width: 44 }}>
-    <svg width={38} height={38} viewBox="0 0 24 24" fill="none" stroke={C.accent} strokeWidth={1.5} strokeLinecap="round" strokeLinejoin="round">
-      <path d="M9 5l7 7-7 7" />
+const Chevron = () => (
+  <div className="flex items-center shrink-0">
+    <svg className="w-8 h-8" style={{ color: C.accent }} fill="none" viewBox="0 0 24 24" stroke="currentColor">
+      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2.5} d="M9 5l7 7-7 7" />
     </svg>
   </div>
 );
 
+const engineSteps = [
+  { t: '评论采集入库', d: '跨平台原始评论统一接入' },
+  { t: '情感四分类', d: '好评 · 差评 · 疑似刷评 · 无效' },
+  { t: '刷评识别净化', d: 'AI 判定依据与原文同框，剔除水军噪声', highlight: true },
+  { t: '卖点维度拆解', d: '功能 · 质量 · 颜值 · 服务 四维归类' },
+];
+
+const views = [
+  { group: '宏观大盘', items: ['数据总览', '商品横向对比'] },
+  { group: '深度口碑', items: ['情感分布', '用户之声 VOC', '卖点维度', '关键词云', '时间趋势'] },
+  { group: '真实性甄别', items: ['刷评识别', '全量评论墙', '单商品下钻'] },
+];
+
 /* ============================================================
- * 版本 A — 架构图：输入 → AI 分析引擎 → 洞察输出
+ * 版本 A — 中枢式架构图
  * ============================================================ */
 export function Page_UserCommentArchitecture_A() {
   return (
     <SlideLayout title="用户真评引擎架构">
       <div className="absolute top-[5px] left-0 w-full text-[22px] text-zinc-400 font-medium font-['MiSans'] leading-relaxed">
-        从一条条真实评论，到一屏可决策的口碑洞察 —— <span className="text-white font-bold">AI 分析引擎</span>居中驱动。
+        原始评论汇入 <span className="text-white font-bold">真评分析引擎</span>，经分类、去伪、拆解后，输出 <span className="text-white font-bold">10 屏可下钻看板</span>。
       </div>
 
-      <div className="absolute left-0 top-[60px] w-full h-[720px] flex items-stretch font-['MiSans'] select-none">
-        {/* 输入 */}
-        <div className="shrink-0 flex flex-col justify-center items-center text-center px-8" style={{ width: 360, background: C.elevated, border: `1px solid ${C.line}`, borderRadius: 20 }}>
-          <Eyebrow>INPUT · 数据输入</Eyebrow>
-          <div className="mt-8 flex items-center justify-center rounded-full" style={{ width: 96, height: 96, background: C.inset, border: `1px solid ${C.line}` }}>
-            <NavIcon name="quote" size={44} color={C.accent} sw={1.4} />
-          </div>
-          <div className="mt-7" style={{ fontSize: 26, fontWeight: 700, color: C.text }}>电商真实评论</div>
-          <div className="mt-2.5" style={{ fontSize: 17, color: C.sub, lineHeight: 1.5 }}>淘宝 / 京东 商品页<br />未经筛选的原始用户声音</div>
+      <div
+        className="absolute left-0 top-[50px] w-full h-[740px] rounded-3xl p-8 select-none font-['MiSans'] flex items-stretch gap-6"
+        style={{ background: 'rgba(8,8,11,0.5)', border: `1px solid ${C.accentLine}`, boxShadow: '0 0 30px rgba(99,102,241,0.12)' }}
+      >
+        <div className="absolute -top-4 right-8 bg-black px-4 py-1 flex items-center gap-2.5">
+          <div className="w-3 h-3 rounded-full shadow-[0_0_10px_#6366f1]" style={{ background: C.accent }} />
+          <span className="text-[24px] font-bold text-white tracking-wider">中枢式架构</span>
         </div>
 
-        <Arrow />
-
-        {/* AI 分析引擎（核心） */}
-        <div className="flex-1 rounded-[20px] flex flex-col px-8 py-7" style={{ background: C.accentSoft, border: `1px solid ${C.accentLine}`, boxShadow: '0 0 60px rgba(99,102,241,0.08) inset' }}>
-          <div className="flex items-center justify-between shrink-0">
-            <Eyebrow>CORE · AI 分析引擎</Eyebrow>
-            <div className="flex items-center gap-2" style={{ color: C.accent }}>
-              <NavIcon name="spark" size={18} color={C.accent} />
-              <span style={{ fontSize: 14, fontWeight: 600 }}>逐条读懂 · 去伪 · 拆解</span>
+        {/* 左：数据入口 */}
+        <div className="w-[340px] shrink-0 flex flex-col">
+          <div className="text-[20px] font-bold text-zinc-400 mb-4 flex items-center gap-2.5">
+            <span className="w-1.5 h-5 rounded-full bg-zinc-500" />
+            数据入口
+          </div>
+          <div className="flex-1 flex flex-col justify-center gap-4">
+            <div className="rounded-2xl px-6 py-8 text-center" style={{ background: C.elevated, border: `1px solid ${C.lineStrong}` }}>
+              <div className="text-[28px] font-bold text-white leading-tight">电商用户评论</div>
+              <div className="text-[17px] mt-3" style={{ color: C.sub }}>淘宝 / 京东 · 原始未清洗</div>
+            </div>
+            <div className="flex justify-center">
+              <svg className="w-7 h-7" style={{ color: C.accent }} fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2.5} d="M19 9l-7 7-7-7" />
+              </svg>
+            </div>
+            <div className="rounded-xl px-5 py-4 text-center" style={{ background: C.inset, border: `1px solid ${C.line}` }}>
+              <div className="text-[18px] font-bold text-zinc-300">静态数据集</div>
+              <div className="text-[15px] mt-1.5" style={{ color: C.tertiary }}>离线清洗 · 情感映射 · 聚合</div>
             </div>
           </div>
+        </div>
 
-          <div className="flex-1 flex flex-col justify-center gap-4 mt-5">
-            {/* 情感四分类 */}
-            <div className="rounded-2xl px-6 py-5" style={{ background: 'rgba(0,0,0,0.28)', border: `1px solid ${C.line}` }}>
-              <div className="flex items-center gap-3">
-                <span className="flex items-center justify-center rounded-xl shrink-0" style={{ width: 44, height: 44, background: C.inset, border: `1px solid ${C.line}` }}>
-                  <NavIcon name="split" size={22} color={C.accent} />
-                </span>
-                <div style={{ fontSize: 22, fontWeight: 700, color: C.text }}>情感四分类</div>
-                <div className="ml-auto flex gap-2">
-                  {SENT_ORDER.map((k) => (
-                    <span key={k} style={{ display: 'inline-flex', alignItems: 'center', gap: 6, padding: '5px 12px', borderRadius: 999, fontSize: 15, fontWeight: 600, color: SENT[k].c, background: SENT[k].soft }}>
-                      <span style={{ width: 7, height: 7, borderRadius: 999, background: SENT[k].c }} />{SENT[k].label}
+        <Chevron />
+
+        {/* 中：分析引擎（纵向流水线） */}
+        <div className="flex-1 flex flex-col min-w-0">
+          <div className="text-[20px] font-bold mb-4 flex items-center gap-2.5" style={{ color: C.accent }}>
+            <span className="w-1.5 h-5 rounded-full" style={{ background: C.accent }} />
+            真评分析引擎
+          </div>
+          <div
+            className="flex-1 rounded-2xl p-7 flex flex-col justify-between"
+            style={{
+              background: 'linear-gradient(180deg, rgba(99,102,241,0.18) 0%, rgba(9,9,11,0.95) 100%)',
+              border: `1px solid ${C.accentLine}`,
+              boxShadow: 'inset 0 0 40px rgba(99,102,241,0.08)',
+            }}
+          >
+            <div className="text-center shrink-0">
+              <div className="text-[28px] font-black text-white">四层分析流水线</div>
+            </div>
+
+            <div className="flex flex-col gap-3 flex-1 justify-center my-4">
+              {engineSteps.map((step, i) => (
+                <React.Fragment key={step.t}>
+                  <div
+                    className="rounded-xl px-5 py-4 backdrop-blur"
+                    style={{
+                      background: step.highlight ? SENT.fake.soft : 'rgba(255,255,255,0.06)',
+                      border: `1px solid ${step.highlight ? 'rgba(245,158,11,0.35)' : 'rgba(255,255,255,0.12)'}`,
+                    }}
+                  >
+                    <div className="text-[22px] font-bold text-white leading-tight">{step.t}</div>
+                    <div className="text-[15px] mt-1" style={{ color: step.highlight ? C.sub : 'rgba(199,210,254,0.65)' }}>{step.d}</div>
+                  </div>
+                  {i < engineSteps.length - 1 && (
+                    <div className="flex justify-center">
+                      <svg className="w-6 h-6" style={{ color: 'rgba(165,180,252,0.55)' }} fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2.5} d="M19 9l-7 7-7-7" />
+                      </svg>
+                    </div>
+                  )}
+                </React.Fragment>
+              ))}
+            </div>
+          </div>
+        </div>
+
+        <Chevron />
+
+        {/* 右：10 屏分析看板 */}
+        <div className="w-[420px] shrink-0 flex flex-col">
+          <div className="text-[20px] font-bold text-zinc-300 mb-4 flex items-center gap-2.5">
+            <span className="w-1.5 h-5 rounded-full" style={{ background: C.accent }} />
+            10 屏分析看板
+          </div>
+          <div className="flex-1 flex flex-col justify-between gap-3">
+            {views.map((v) => (
+              <div key={v.group} className="flex-1 rounded-xl px-5 py-4 flex flex-col justify-center" style={{ background: 'rgba(255,255,255,0.03)', border: `1px solid ${C.lineStrong}` }}>
+                <div className="text-[20px] font-bold text-white leading-tight">{v.group}</div>
+                <div className="flex flex-wrap gap-2 mt-2.5">
+                  {v.items.map((item) => (
+                    <span key={item} className="text-[14px] font-medium px-2.5 py-1 rounded-md" style={{ color: C.sub, background: C.inset, border: `1px solid ${C.line}` }}>
+                      {item}
                     </span>
                   ))}
                 </div>
               </div>
-            </div>
-
-            {/* 刷评识别 */}
-            <div className="rounded-2xl px-6 py-5" style={{ background: SENT.fake.soft, border: `1px solid rgba(245,158,11,0.28)` }}>
-              <div className="flex items-center gap-3">
-                <span className="flex items-center justify-center rounded-xl shrink-0" style={{ width: 44, height: 44, background: 'rgba(245,158,11,0.12)', border: `1px solid rgba(245,158,11,0.3)` }}>
-                  <NavIcon name="shield" size={22} color={SENT.fake.c} />
-                </span>
-                <div>
-                  <div style={{ fontSize: 22, fontWeight: 700, color: C.text }}>刷评识别</div>
-                  <div style={{ fontSize: 16, color: C.sub, marginTop: 2 }}>可疑评论标注 AI 判定依据，与原文同框，剔除水军噪声</div>
-                </div>
-              </div>
-            </div>
-
-            {/* 多维拆解 */}
-            <div className="rounded-2xl px-6 py-5" style={{ background: 'rgba(0,0,0,0.28)', border: `1px solid ${C.line}` }}>
-              <div className="flex items-center gap-3">
-                <span className="flex items-center justify-center rounded-xl shrink-0" style={{ width: 44, height: 44, background: C.inset, border: `1px solid ${C.line}` }}>
-                  <NavIcon name="layers" size={22} color={C.accent} />
-                </span>
-                <div style={{ fontSize: 22, fontWeight: 700, color: C.text }}>多维口碑拆解</div>
-                <div className="ml-auto flex gap-2">
-                  {['功能', '质量', '颜值', '服务'].map((t) => (
-                    <span key={t} style={{ padding: '5px 14px', borderRadius: 8, fontSize: 15, fontWeight: 500, color: C.sub, background: C.inset }}>{t}</span>
-                  ))}
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-
-        <Arrow />
-
-        {/* 洞察输出 */}
-        <div style={{ width: 400, background: C.elevated, border: `1px solid ${C.line}`, borderRadius: 20 }} className="shrink-0 flex flex-col justify-center px-8">
-          <Eyebrow>OUTPUT · 洞察输出</Eyebrow>
-          <div className="flex items-baseline gap-2.5 mt-5">
-            <span style={{ fontSize: 60, fontWeight: 800, color: C.text, fontFamily: 'Montserrat', letterSpacing: '-0.03em', lineHeight: 1 }}>10</span>
-            <span style={{ fontSize: 22, fontWeight: 600, color: C.sub }}>个分析视图</span>
-          </div>
-          <div style={{ fontSize: 16, color: C.tertiary, marginTop: 8 }}>共享同一数据 · 可按商品筛选下钻</div>
-
-          <div className="flex flex-col gap-5 mt-9">
-            {[
-              { icon: 'grid', t: '宏观大盘', d: '总览 · 横向对比' },
-              { icon: 'layers', t: '深度口碑', d: '情感 · VOC · 维度 · 词云 · 趋势' },
-              { icon: 'shield', t: '真实性甄别', d: '刷评识别 · 评论墙 · 下钻' },
-            ].map((g) => (
-              <div key={g.t} className="flex items-center gap-4">
-                <span className="flex items-center justify-center rounded-xl shrink-0" style={{ width: 46, height: 46, background: C.inset, border: `1px solid ${C.line}` }}>
-                  <NavIcon name={g.icon} size={22} color={C.accent} />
-                </span>
-                <div>
-                  <div style={{ fontSize: 20, fontWeight: 700, color: C.text }}>{g.t}</div>
-                  <div style={{ fontSize: 15.5, color: C.tertiary, marginTop: 2 }}>{g.d}</div>
-                </div>
-              </div>
             ))}
+          </div>
+          <div className="shrink-0 mt-3 text-center text-[15px]" style={{ color: C.tertiary }}>
+            全局商品筛选 · 10 路由共享同一数据
           </div>
         </div>
       </div>
