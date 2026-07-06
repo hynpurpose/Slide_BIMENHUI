@@ -1,6 +1,36 @@
 import React, { useState } from 'react';
-import { Image as ImageIcon } from 'lucide-react';
+import { Image as ImageIcon, Search } from 'lucide-react';
 import SlideLayout from '../components/SlideLayout';
+
+const SEARCH_QUERY = '推荐几款好看的电视';
+
+function BaiduSearchBox() {
+  return (
+    <div className="w-[420px] bg-white rounded-full shadow-[0_8px_32px_rgba(0,0,0,0.35)] border border-zinc-200/80 flex items-center overflow-hidden shrink-0">
+      <div className="flex items-center gap-2 pl-5 pr-3 py-3 flex-1 min-w-0">
+        <span className="text-[#2932E1] font-black text-[18px] font-['MiSans'] shrink-0">百度</span>
+        <span className="text-zinc-800 text-[20px] font-medium font-['MiSans'] truncate">{SEARCH_QUERY}</span>
+      </div>
+      <div className="h-full px-6 py-3.5 bg-[#3385FF] text-white text-[18px] font-bold font-['MiSans'] shrink-0 flex items-center">
+        百度一下
+      </div>
+    </div>
+  );
+}
+
+function XiaohongshuSearchBox() {
+  return (
+    <div className="w-[340px] bg-white rounded-full shadow-[0_8px_28px_rgba(0,0,0,0.3)] border border-[#FE2C55]/25 flex items-center overflow-hidden shrink-0">
+      <div className="flex items-center gap-2 pl-4 pr-2 py-2.5 flex-1 min-w-0">
+        <Search className="w-[18px] h-[18px] text-[#FE2C55] shrink-0" strokeWidth={2.5} />
+        <span className="text-zinc-700 text-[17px] font-medium font-['MiSans'] truncate">{SEARCH_QUERY}</span>
+      </div>
+      <div className="w-9 h-9 mr-1.5 rounded-full bg-[#FE2C55] flex items-center justify-center shrink-0">
+        <Search className="w-4 h-4 text-white" strokeWidth={2.5} />
+      </div>
+    </div>
+  );
+}
 
 export default function Page_GEOWordSelectionOther() {
   const [imgFailed, setImgFailed] = useState(false);
@@ -96,7 +126,19 @@ export default function Page_GEOWordSelectionOther() {
           </div>
 
           {/* Card Body */}
-          <div className="flex-grow p-6 bg-zinc-950 flex items-center justify-center">
+          <div className="flex-grow p-6 bg-zinc-950 flex items-center justify-center gap-10">
+            {/* 手机左侧：传统搜索框示意 */}
+            <div className="flex flex-col items-end justify-center gap-8 flex-1 min-w-0 pr-2">
+              <div className="flex flex-col items-end gap-2">
+                <span className="text-zinc-500 text-[15px] font-bold font-['MiSans'] tracking-wide">百度搜索</span>
+                <BaiduSearchBox />
+              </div>
+              <div className="flex flex-col items-end gap-2">
+                <span className="text-zinc-500 text-[15px] font-bold font-['MiSans'] tracking-wide">小红书搜索</span>
+                <XiaohongshuSearchBox />
+              </div>
+            </div>
+
             <div className="relative w-[304px] h-[620px] border-[8px] border-zinc-800 bg-zinc-950 rounded-[56px] shadow-[0_25px_60px_rgba(0,0,0,0.85)] overflow-hidden shrink-0">
               {/* Notch */}
               <div className="absolute top-4 left-1/2 -translate-x-1/2 w-32 h-6 bg-black rounded-full z-30 flex items-center justify-center">
