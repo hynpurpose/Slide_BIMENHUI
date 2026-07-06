@@ -20,6 +20,34 @@ const CHAOTIC_WORDS = [
   { type: '舆情词', text: '创维安装服务', x: 248, y: 608, rot: -4 },
 ];
 
+const OPT_CATEGORY_WORDS = ['壁纸电视品牌排行榜', '电视排行榜前十名'];
+
+const OPT_PRODUCT_WORDS = [
+  '销量最好的壁纸电视推荐',
+  '入门级高品质壁纸电视推荐',
+  '7000块钱左右的壁纸电视推荐',
+  '音画升级款壁纸电视推荐',
+  '一万块钱左右的壁纸电视推荐',
+  '有没有适合线上直接买的高性价比壁纸电视？',
+  '顶配旗舰款壁纸电视推荐',
+  '1.5万块钱左右的壁纸电视推荐',
+  '高端体验款壁纸电视推荐？',
+  '一万左右在线下能体验的壁纸电视推荐',
+  '有没有适合到店体验的高端壁纸电视？',
+  '分体影院壁纸电视推荐',
+  '2万左右在线下能体验的壁纸电视推荐',
+];
+
+const RIBBONS = [
+  { d: 'M 400 398 C 440 398, 460 398, 500 398', tone: 'white' },
+  { d: 'M 740 398 C 800 398, 820 148, 870 148', tone: 'blue' },
+  { d: 'M 740 398 C 800 398, 820 648, 870 648', tone: 'blue' },
+  { d: 'M 1110 148 C 1160 148, 1180 54, 1240 54', tone: 'blue' },
+  { d: 'M 1110 148 C 1160 148, 1180 299, 1240 299', tone: 'blue' },
+  { d: 'M 1110 648 C 1160 648, 1180 557, 1240 557', tone: 'blue' },
+  { d: 'M 1110 648 C 1160 648, 1180 712, 1240 712', tone: 'blue' },
+];
+
 function ChaoticWordChip({ type, text, x, y, rot }) {
   return (
     <div
@@ -32,32 +60,30 @@ function ChaoticWordChip({ type, text, x, y, rot }) {
   );
 }
 
-function TerminalCard({ title, example, sub, style }) {
+function KeywordTerminalCard({ title, sub, keywords, style, columns = 1 }) {
   return (
     <div
-      className="absolute bg-[#0D0D10]/80 border border-zinc-800 rounded-2xl px-6 py-4 flex flex-col justify-center shadow-lg z-10 hover:border-zinc-700 transition-colors"
+      className="absolute bg-[#0D0D10]/80 border border-zinc-800 rounded-2xl px-6 py-4 flex flex-col shadow-lg z-10 hover:border-zinc-700 transition-colors overflow-hidden"
       style={style}
     >
-      <div className="flex items-center gap-3">
+      <div className="flex items-center gap-3 shrink-0 mb-2">
         <span className="text-[30px] font-bold text-white font-['MiSans'] leading-none">{title}</span>
         {sub && (
           <span className="text-[16px] font-semibold text-blue-400/80 font-['MiSans'] leading-none">{sub}</span>
         )}
       </div>
-      <span className="text-[22px] text-zinc-400 font-sans mt-1.5 leading-normal">{example}</span>
+      <div
+        className={`flex-1 min-h-0 ${columns === 2 ? 'grid grid-cols-2 gap-x-5 gap-y-1.5 content-start' : 'flex flex-col gap-1.5'}`}
+      >
+        {keywords.map((word) => (
+          <span key={word} className="text-[20px] text-zinc-300 font-['MiSans'] leading-snug">
+            {word}
+          </span>
+        ))}
+      </div>
     </div>
   );
 }
-
-const RIBBONS = [
-  { d: 'M 400 398 C 440 398, 460 398, 500 398', tone: 'white' },
-  { d: 'M 740 398 C 800 398, 820 148, 870 148', tone: 'blue' },
-  { d: 'M 740 398 C 800 398, 820 648, 870 648', tone: 'blue' },
-  { d: 'M 1110 148 C 1160 148, 1180 58, 1240 58', tone: 'blue' },
-  { d: 'M 1110 148 C 1160 148, 1180 238, 1240 238', tone: 'blue' },
-  { d: 'M 1110 648 C 1160 648, 1180 558, 1240 558', tone: 'blue' },
-  { d: 'M 1110 648 C 1160 648, 1180 738, 1240 738', tone: 'blue' },
-];
 
 function FlowRibbons() {
   return (
@@ -126,29 +152,30 @@ export default function Page_SkyworthKeywordLogic() {
           <h4 className="text-[36px] font-extrabold text-white font-['MiSans'] text-center leading-none">监测词</h4>
         </div>
 
-        <TerminalCard
+        <KeywordTerminalCard
           title="品类词"
           sub="优化词"
-          example="壁纸电视哪个牌子好？"
-          style={{ left: '1240px', top: '0px', width: '550px', height: '115px' }}
+          keywords={OPT_CATEGORY_WORDS}
+          style={{ left: '1240px', top: '0px', width: '550px', height: '108px' }}
         />
-        <TerminalCard
+        <KeywordTerminalCard
           title="产品专属词"
           sub="优化词"
-          example="超薄无缝贴墙电视"
-          style={{ left: '1240px', top: '180px', width: '550px', height: '115px' }}
+          keywords={OPT_PRODUCT_WORDS}
+          columns={2}
+          style={{ left: '1240px', top: '118px', width: '550px', height: '362px' }}
         />
-        <TerminalCard
+        <KeywordTerminalCard
           title="品类词"
           sub="监测词"
-          example="壁纸电视推荐"
-          style={{ left: '1240px', top: '500px', width: '550px', height: '115px' }}
+          keywords={['壁纸电视推荐']}
+          style={{ left: '1240px', top: '500px', width: '550px', height: '108px' }}
         />
-        <TerminalCard
+        <KeywordTerminalCard
           title="产品专属词"
           sub="监测词"
-          example="创维A10H壁纸电视价格？"
-          style={{ left: '1240px', top: '680px', width: '550px', height: '115px' }}
+          keywords={['创维A10H壁纸电视价格？']}
+          style={{ left: '1240px', top: '618px', width: '550px', height: '108px' }}
         />
 
         <FlowRibbons />
