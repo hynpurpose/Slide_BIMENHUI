@@ -24,13 +24,14 @@ const OPT_CATEGORY_WORDS = [
   { t: '电视排行榜前十名', p: '全系列' },
 ];
 
+/* 按产品分组排序：A7H PRO → A8H → A10H → Q7H → Q8H */
 const OPT_PRODUCT_WORDS = [
   { t: '销量最好的壁纸电视推荐', p: 'A7H PRO' },
   { t: '入门级高品质壁纸电视推荐', p: 'A7H PRO' },
   { t: '7000块钱左右的壁纸电视推荐', p: 'A7H PRO' },
+  { t: '有没有适合线上直接买的高性价比壁纸电视？', p: 'A7H PRO' },
   { t: '音画升级款壁纸电视推荐', p: 'A8H' },
   { t: '一万块钱左右的壁纸电视推荐', p: 'A8H' },
-  { t: '有没有适合线上直接买的高性价比壁纸电视？', p: 'A7H PRO' },
   { t: '顶配旗舰款壁纸电视推荐', p: 'A10H' },
   { t: '1.5万块钱左右的壁纸电视推荐', p: 'A10H' },
   { t: '高端体验款壁纸电视推荐？', p: 'Q7H' },
@@ -49,13 +50,13 @@ const ACCENT = {
   white: { core: 'rgba(255,255,255,0.85)', soft: 'rgba(255,255,255,0.4)', chipBg: 'rgba(255,255,255,0.06)', chipBorder: 'rgba(255,255,255,0.25)' },
 };
 
-/* 横向四列均匀分布：词云 5-375 / 创维词条 560-800 / 优化·监测 990-1170 / 词条列表 1350-1840 */
-const HUB_X = 560;
+/* 横向四列均匀分布：词云 5-375 / 创维词条 545-785 / 优化·监测 965-1145 / 词条列表 1300-1840 */
+const HUB_X = 545;
 const HUB_W = 240;
-const NODE_X = 990;
+const NODE_X = 965;
 const NODE_W = 180;
-const PANEL_X = 1350;
-const PANEL_W = 490;
+const PANEL_X = 1300;
+const PANEL_W = 540;
 
 /* 混沌词云：圆心与半径（相对 1840x795 内容区） */
 const CLOUD_CX = 190;
@@ -214,24 +215,24 @@ function FlowNode({ x, cy, w, h, label, sub, tone = 'blue', big = false }) {
 }
 
 /* 词条条目：小色点 + 文本 + 对应产品标签（数据来自创维词条分类表） */
-function KeywordItems({ words, tone = 'blue', size = 17 }) {
+function KeywordItems({ words, tone = 'blue', size = 19 }) {
   const a = ACCENT[tone];
   return (
-    <ul className="list-none m-0 p-0 flex flex-col" style={{ rowGap: `${29 - size - 5}px` }}>
+    <ul className="list-none m-0 p-0 flex flex-col" style={{ rowGap: '8px' }}>
       {words.map(({ t, p }) => {
         const ps = PRODUCT_STYLE[p] || PRODUCT_STYLE['全系列'];
         return (
           <li
             key={t}
             className="flex items-center gap-2.5 text-zinc-300 font-['MiSans'] min-w-0"
-            style={{ fontSize: `${size}px`, lineHeight: `${size + 12}px` }}
+            style={{ fontSize: `${size}px`, lineHeight: `${size + 7}px` }}
           >
             <span className="w-[5px] h-[5px] rounded-full shrink-0" style={{ background: a.core }} />
             <span className="truncate">{t}</span>
             <span
               className="shrink-0 font-semibold rounded-md px-1.5 py-[1px] leading-none"
               style={{
-                fontSize: `${size - 4}px`,
+                fontSize: `${size - 5}px`,
                 color: ps.color,
                 background: ps.bg,
                 border: `1px solid ${ps.border}`,
@@ -273,10 +274,11 @@ function TypoGroup({ top, height, title, count, tone = 'blue', children }) {
 }
 
 export default function Page_SkyworthKeywordLogic() {
-  const B1 = { top: 16, h: 104 };
-  const B2 = { top: 160, h: 420 };
-  const B3 = { top: 620, h: 74 };
-  const B4 = { top: 714, h: 74 };
+  /* 组间距：品类词/产品专属词之间留 40px 空隙，优化↔监测两个分支之间 36px */
+  const B1 = { top: 4, h: 92 };
+  const B2 = { top: 136, h: 470 };
+  const B3 = { top: 642, h: 60 };
+  const B4 = { top: 731, h: 60 };
   const mid = (p) => p.top + p.h / 2;
   const optY = Math.round((mid(B1) + mid(B2)) / 2);
   const monY = Math.round((mid(B3) + mid(B4)) / 2);
