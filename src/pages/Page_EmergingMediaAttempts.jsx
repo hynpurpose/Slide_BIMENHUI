@@ -20,61 +20,61 @@ const AFTER = [
 
 function RankPanel({ title, subtitle, rows, showTrend = false }) {
   return (
-    <div className="flex-1 min-w-0 h-full bg-white border border-zinc-200 rounded-[24px] p-7 flex flex-col shadow-[0_10px_30px_rgba(0,0,0,0.15)]">
-      <div className="mb-5 shrink-0">
-        <h3 className="text-[26px] font-black text-zinc-900 font-['MiSans'] leading-tight">
+    <div className="flex-1 min-w-0 h-full bg-white border border-zinc-200 rounded-[28px] p-8 flex flex-col shadow-[0_12px_36px_rgba(0,0,0,0.15)]">
+      <div className="mb-6 shrink-0">
+        <h3 className="text-[32px] font-black text-zinc-900 font-['MiSans'] leading-tight">
           {title}
         </h3>
-        <p className="text-[18px] text-zinc-500 font-bold font-['MiSans'] mt-1.5">
+        <p className="text-[22px] text-zinc-500 font-bold font-['MiSans'] mt-2">
           {subtitle}
         </p>
       </div>
 
-      <div className="flex-grow flex flex-col bg-zinc-50/50 rounded-2xl border border-zinc-200/60 p-4 min-h-0">
-        <div className="flex justify-between items-center text-[16px] text-zinc-400 font-bold pb-2.5 border-b border-zinc-200 mb-2 px-2 font-['MiSans']">
+      <div className="flex-grow flex flex-col bg-zinc-50/50 rounded-2xl border border-zinc-200/60 p-5 min-h-0">
+        <div className="flex justify-between items-center text-[18px] xl:text-[20px] text-zinc-400 font-bold pb-2.5 border-b border-zinc-200 mb-3 px-2 font-['MiSans']">
           <span>平台名称</span>
           <span className="pr-2">引用率</span>
         </div>
 
-        <div className="flex-grow flex flex-col justify-between py-1 gap-2">
+        <div className="flex-grow flex flex-col justify-between py-1 gap-3">
           {rows.map((row) => {
             const highlighted = showTrend && row.rising;
             return (
               <div
                 key={`${row.name}-${row.rank}`}
-                className={`flex justify-between items-center h-[72px] px-4 rounded-xl border transition-colors duration-300 ${
+                className={`flex justify-between items-center h-[82px] px-5 rounded-xl border transition-colors duration-300 ${
                   highlighted
-                    ? 'border-[#004CE5]/50 bg-[#004CE5]/8 shadow-[0_0_16px_rgba(0,76,229,0.12)]'
+                    ? 'border-[#004CE5]/50 bg-[#004CE5]/8 shadow-[0_0_18px_rgba(0,76,229,0.12)]'
                     : 'border-transparent hover:bg-zinc-100/60'
                 }`}
               >
-                <div className="flex items-center gap-3.5 min-w-0">
-                  <span className="font-['Montserrat'] text-[18px] font-black text-zinc-400 w-5 shrink-0">
+                <div className="flex items-center gap-4 min-w-0">
+                  <span className="font-['Montserrat'] text-[20px] xl:text-[22px] font-black text-zinc-400 w-6 shrink-0">
                     {row.rank}
                   </span>
                   <Globe
-                    className={`w-[22px] h-[22px] shrink-0 ${
+                    className={`w-[26px] h-[26px] shrink-0 ${
                       highlighted ? 'text-[#004CE5]' : 'text-zinc-400'
                     }`}
                   />
                   <div className="flex flex-col min-w-0">
                     <span
-                      className={`text-[20px] font-bold font-['MiSans'] truncate ${
+                      className={`text-[23px] xl:text-[25px] font-bold font-['MiSans'] truncate ${
                         highlighted ? 'text-zinc-900 font-black' : 'text-zinc-700'
                       }`}
                     >
                       {row.name}
                     </span>
                     {showTrend && row.rising && (
-                      <span className="text-[14px] font-bold text-[#004CE5] font-['MiSans'] flex items-center gap-1 mt-0.5">
-                        <TrendingUp size={13} strokeWidth={3} />
+                      <span className="text-[16px] font-bold text-[#004CE5] font-['MiSans'] flex items-center gap-1.5 mt-0.5">
+                        <TrendingUp size={15} strokeWidth={3} />
                         {row.isNew ? '新进入 TOP5' : `#${row.prevRank} → #${row.rank}`}
                       </span>
                     )}
                   </div>
                 </div>
                 <span
-                  className={`text-[20px] font-black font-['Montserrat'] shrink-0 ${
+                  className={`text-[23px] xl:text-[25px] font-black font-['Montserrat'] shrink-0 ${
                     highlighted ? 'text-[#004CE5]' : 'text-zinc-500'
                   }`}
                 >
