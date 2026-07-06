@@ -175,7 +175,7 @@ export function Page_SkyworthKpiAcceptance() {
 
                     {/* Column 4: 最终交付标准 */}
                     <td className="py-2.5 xl:py-3 text-zinc-300 align-top pr-4 border-l border-white/[0.22] pl-6">
-                      <div className="flex flex-col gap-2.5 bg-[#004CE5]/5 border border-[#004CE5]/15 p-3 xl:p-4 rounded-xl h-full justify-center">
+                      <div className="flex flex-col gap-2.5 bg-[#004CE5]/5 border border-[#004CE5]/15 p-3 xl:p-4 rounded-xl h-full justify-start">
                         <p className="text-zinc-150 text-[15.5px] xl:text-[17px] leading-relaxed text-justify">
                           在 <strong className="text-white font-bold">DeepSeek、豆包、元宝、通义千问</strong> 四个 AI 平台搜索约定词条时，AI 回答中应出现创维品牌/产品推荐、推荐理由及基于官方信息的产品表述。
                         </p>
@@ -216,7 +216,7 @@ export function Page_SkyworthKpiAcceptance() {
 
                     {/* Column 3: KPI 考核 */}
                     <td className="py-2.5 xl:py-3 text-zinc-300 align-top pr-4 pl-6">
-                      <div className="flex flex-col justify-center h-full bg-[#004CE5]/5 border border-[#004CE5]/15 p-3 xl:p-4 rounded-xl min-h-[160px] xl:min-h-[172px]">
+                      <div className="flex flex-col justify-start h-full bg-[#004CE5]/5 border border-[#004CE5]/15 p-3 xl:p-4 rounded-xl min-h-[160px] xl:min-h-[172px]">
                         <p className="text-zinc-200 text-[19px] xl:text-[21px] leading-snug text-justify">
                           针对品牌询问，AI 生成内容的<strong className="text-white font-bold">核心事实准确率</strong>达到约定标准，<strong className="text-white font-bold">负面信息占比守住 10% 红线以内</strong>，正向/中性情绪导向占比稳定在 <strong className="text-white font-bold">90% 以上</strong>。
                         </p>
@@ -225,7 +225,7 @@ export function Page_SkyworthKpiAcceptance() {
 
                     {/* Column 4: 最终交付标准 */}
                     <td className="py-2.5 xl:py-3 text-zinc-400 align-top pr-4 leading-relaxed border-l border-white/[0.22] pl-6 text-zinc-200">
-                      <div className="flex flex-col gap-2 bg-white/[0.015] border border-white/[0.04] p-3 xl:p-4 rounded-xl h-full justify-center min-h-[160px] xl:min-h-[172px]">
+                      <div className="flex flex-col gap-2 bg-white/[0.015] border border-white/[0.04] p-3 xl:p-4 rounded-xl h-full justify-start min-h-[160px] xl:min-h-[172px]">
                         <p className="text-zinc-200 text-[15.5px] xl:text-[17px] leading-relaxed text-justify">
                           围绕约定平台、5 款壁纸电视及核心词条，持续监测并纠偏价格错乱、型号混淆、历史价格引用等问题，通过信源定位、官方口径强化和内容覆盖，降低 AI 引用错误信息的概率。
                         </p>
