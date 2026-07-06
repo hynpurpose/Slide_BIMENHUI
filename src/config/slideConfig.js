@@ -7,21 +7,8 @@ import Page_SkyworthPositioningShift, {
   Page_SkyworthPositioningShift_C,
   Page_SkyworthPositioningShift_D,
 } from '../pages/Page_SkyworthPositioningShift';
-import Page_SkyworthBrandResearch, {
-  Page_SkyworthBrandResearch_A,
-  Page_SkyworthBrandResearch_B,
-  Page_SkyworthBrandResearch_C,
-} from '../pages/Page_SkyworthBrandResearch';
-import {
-  Page_DazhongZhenpingDemo_A,
-  Page_DazhongZhenpingDemo_B,
-  Page_DazhongZhenpingDemo_C,
-} from '../pages/Page_DazhongZhenpingDemo';
-import {
-  Page_SkyworthDazhongZhenping_A,
-  Page_SkyworthDazhongZhenping_B,
-  Page_SkyworthDazhongZhenping_C,
-} from '../pages/Page_SkyworthDazhongZhenping';
+import { Page_SkyworthBrandResearch_B } from '../pages/Page_SkyworthBrandResearch';
+import { Page_DazhongZhenpingDemo_A } from '../pages/Page_DazhongZhenpingDemo';
 import Page_SkyworthResearchConclusions from '../pages/Page_SkyworthResearchConclusions';
 import Page_WallpaperVsConventional from '../pages/Page_WallpaperVsConventional';
 import Page_SkyworthVsCompetitor from '../pages/Page_SkyworthVsCompetitor';
@@ -32,11 +19,7 @@ import {
   Page_SkyworthResearchTech,
   Page_SkyworthResearchIndustry,
 } from '../pages/Page_SkyworthResearchAppendix';
-import {
-  Page_SkyworthKeywordWhySplit_A,
-  Page_SkyworthKeywordWhySplit_B,
-  Page_SkyworthKeywordWhySplit_C,
-} from '../pages/Page_SkyworthKeywordWhySplit';
+import { Page_SkyworthKeywordWhySplit_A } from '../pages/Page_SkyworthKeywordWhySplit';
 import Page_SkyworthKeywordWhySplitSummary from '../pages/Page_SkyworthKeywordWhySplitSummary';
 import {
   Page_SkyworthKeywordOptTwoTypes_A,
@@ -225,9 +208,8 @@ export const slideConfig = [
   // { type: 'page', title: '策略转变', variants: [Page_SkyworthPositioningShift, Page_SkyworthPositioningShift_A, Page_SkyworthPositioningShift_B, Page_SkyworthPositioningShift_C, Page_SkyworthPositioningShift_D], hideHeader: true },
 
   { type: 'section', title: '我们怎么做' },
-  { type: 'page', title: '我们怎么调研品牌', variants: [Page_SkyworthBrandResearch_B, Page_SkyworthBrandResearch_A, Page_SkyworthBrandResearch_C], hideHeader: true },
-  { type: 'page', title: '大众真评系统演示', variants: [Page_DazhongZhenpingDemo_A, Page_DazhongZhenpingDemo_B, Page_DazhongZhenpingDemo_C], hideHeader: true },
-  { type: 'page', title: '「大众真评」Agent', variants: [Page_SkyworthDazhongZhenping_A, Page_SkyworthDazhongZhenping_B, Page_SkyworthDazhongZhenping_C], hideHeader: true },
+  { type: 'page', title: '我们怎么调研品牌', component: Page_SkyworthBrandResearch_B, hideHeader: true },
+  { type: 'page', title: '大众真评系统演示', component: Page_DazhongZhenpingDemo_A, hideHeader: true },
 
   { type: 'section', title: '定位结论' },
   { type: 'page', title: '品牌调研报告核心结论', component: Page_SkyworthResearchConclusions, hideHeader: true },
@@ -246,13 +228,13 @@ export const slideConfig = [
   // ══════════════════════════════════════════════════════════
   { type: 'chapter', title: '关键词策略', subtitle: 'KEYWORDS SYSTEM STRATEGY', backgroundImage: '' },
 
-  { type: 'section', title: '词条分类逻辑' },
-  { type: 'page', title: '监测词与优化词', variants: [Page_SkyworthKeywordWhySplit_A, Page_SkyworthKeywordWhySplit_B, Page_SkyworthKeywordWhySplit_C], hideHeader: true },
+  { type: 'section', title: '关键词怎么分类' },
+  { type: 'page', title: '监测词与优化词', component: Page_SkyworthKeywordWhySplit_A, hideHeader: true },
   { type: 'page', title: '监测词与优化词（总结）', component: Page_SkyworthKeywordWhySplitSummary, hideHeader: true },
   { type: 'page', title: '优化词的两类', variants: [Page_SkyworthKeywordOptTwoTypes_C, Page_SkyworthKeywordOptTwoTypes_A, Page_SkyworthKeywordOptTwoTypes_B], hideHeader: true },
   { type: 'page', title: '我们的词条分类逻辑', component: Page_SkyworthKeywordLogic, hideHeader: true },
 
-  { type: 'section', title: '如何选词条' },
+  { type: 'section', title: '这些词是怎么选出来的' },
   { type: 'page', title: '市场上其他做法', component: Page_GEOWordSelectionOther, hideHeader: true },
   { type: 'page', title: '传统搜索 VS AI 搜索', component: Page_GEOWordSelectionOther2, hideHeader: true },
   { type: 'page', title: '影子算法', component: Page_SkyworthShadowAlgorithm, hideHeader: true },
@@ -318,10 +300,10 @@ export const slideConfig = [
   { type: 'page', title: '评测类爆款文章逆向拆解', component: Page_SkyworthContentStrategyDeconstruct, hideHeader: true },
   { type: 'page', title: '评测类文章示意', component: Page_SkyworthQAArticleDemo, hideHeader: true },
   { type: 'page', title: '评测类文章示意 (二)', component: Page_SkyworthQAArticleDemo2, hideHeader: true },
-  { type: 'page', title: '场景教程类文章逆向拆解', component: Page_SkyworthTutorialDeconstruct, hideHeader: true },
-  { type: 'page', title: '场景教程类文章示意', component: Page_SkyworthTutorialDemo, hideHeader: true },
   { type: 'page', title: '用户口碑类文章逆向拆解', component: Page_SkyworthWordOfMouthDeconstruct, hideHeader: true },
   { type: 'page', title: '用户口碑类文章示意', component: Page_SkyworthWordOfMouthDemo, hideHeader: true },
+  { type: 'page', title: '场景教程类文章逆向拆解', component: Page_SkyworthTutorialDeconstruct, hideHeader: true },
+  { type: 'page', title: '场景教程类文章示意', component: Page_SkyworthTutorialDemo, hideHeader: true },
 
   // ══════════════════════════════════════════════════════════
   // ——— 六、投放策略 ———
@@ -330,8 +312,14 @@ export const slideConfig = [
 
   { type: 'section', title: '投放原则' },
   { type: 'page', title: '长期投放', component: Page_DeliveryLongTerm, hideHeader: true },
+
+  { type: 'section', title: '精准高权重账号' },
   { type: 'page', title: '精准高权重账号', component: Page_DeliveryHighWeight, hideHeader: true },
+
+  { type: 'section', title: '有潜力的垂直社区' },
   { type: 'page', title: '有潜力的垂直社区', component: Page_PotentialVerticalCommunity, hideHeader: true },
+
+  { type: 'section', title: '新兴媒体尝试' },
   { type: 'page', title: '新兴媒体尝试', component: Page_EmergingMediaAttempts, hideHeader: true },
 
   // ══════════════════════════════════════════════════════════

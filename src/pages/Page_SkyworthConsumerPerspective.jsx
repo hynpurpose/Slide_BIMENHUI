@@ -34,7 +34,7 @@ export default function Page_SkyworthConsumerPerspective() {
             <span className="text-zinc-500">，所以——</span>
           </p>
           <p className="text-[30px] text-white font-['MiSans'] leading-relaxed mt-8" style={{ maxWidth: '1500px' }}>
-            如果我们反复讲的品牌卖点，和消费者真实感受是冲突的，那内容发得越多，反而越容易加深AI对品牌的误解。
+            如果我们反复讲的品牌卖点，和消费者真实感受是冲突的<br />那内容发得越多，反而越容易加深AI对品牌的误解
           </p>
         </div>
 

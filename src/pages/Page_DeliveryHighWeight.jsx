@@ -1,22 +1,22 @@
 import React from 'react';
 import SlideLayout from '../components/SlideLayout';
-import { Globe } from 'lucide-react';
+import { Globe, AlertTriangle } from 'lucide-react';
 
 export default function Page_DeliveryHighWeight() {
   const leftTable = [
-    { rank: 1, name: "抖音", rate: "23.1%", badgeBg: "bg-[#FFC502]", icon: Globe, iconColor: "text-[#5C7C99]" },
-    { rank: 2, name: "什么值得买社区频道", rate: "20.0%", badgeBg: "bg-[#D8DCE3]", icon: Globe, iconColor: "text-[#5C7C99]" },
-    { rank: 3, name: "今日头条", rate: "14.5%", badgeBg: "bg-[#F1B584]", icon: Globe, iconColor: "text-[#5C7C99]" },
-    { rank: 4, name: "IT之家", rate: "5.4%", isCustomIcon: true },
-    { rank: 5, name: "搜狐网", rate: "4.7%", icon: Globe, iconColor: "text-[#5C7C99]" }
+    { rank: 1, name: "抖音", rate: "23.1%", color: "#FF0050", badgeBg: "bg-[#FFC502]" },
+    { rank: 2, name: "什么值得买社区", rate: "20.0%", color: "#E02424", badgeBg: "bg-[#D8DCE3]" },
+    { rank: 3, name: "今日头条", rate: "14.5%", color: "#F04141", badgeBg: "bg-[#F1B584]" },
+    { rank: 4, name: "IT之家", rate: "5.4%", color: "#3B82F6", isCustomIcon: true },
+    { rank: 5, name: "搜狐网", rate: "4.7%", color: "#FF9900" }
   ];
 
   return (
-    <SlideLayout title="精准高权重账号">
-      {/* ── 背景点状矩阵 ── */}
+    <SlideLayout title="50%投在精准高权重信源——什么是不准的？">
+      {/* ── 背景设计 ── */}
       <div className="absolute inset-0 z-0">
         <div
-          className="absolute inset-0 opacity-[0.04]"
+          className="absolute inset-0 opacity-[0.03]"
           style={{
             backgroundImage: 'radial-gradient(circle at 2px 2px, #ffffff 1px, transparent 0)',
             backgroundSize: '40px 40px'
@@ -24,127 +24,112 @@ export default function Page_DeliveryHighWeight() {
         />
       </div>
 
-      {/* ── 主排版区 ── */}
+      {/* ── 主排版区 (高度 795px) ── */}
       <div
-        className="absolute w-[1840px] select-none animate-fadeIn flex flex-col justify-start z-10 pl-0"
-        style={{ top: '40px', height: '750px' }}
+        className="absolute w-[1840px] select-none animate-fadeIn flex flex-col justify-between z-10 pl-0"
+        style={{ top: '0px', height: '795px' }}
       >
-        {/* ==================== 上半部分：强调句金句 ==================== */}
-        <div className="w-full flex flex-col items-start mb-10 shrink-0">
-          <p className="text-[30px] text-white font-extrabold tracking-wide max-w-[1700px] leading-relaxed">
-            不是看数据系统里哪个平台引用率高，而是看哪类平台真正影响了 AI 的答案
-          </p>
-        </div>
+        {/* ==================== 三栏主体布局 (高度为 690px) ==================== */}
+        <div className="w-full flex gap-6 items-stretch h-[690px] relative">
 
-        {/* ==================== 下半部分：两个大区块 (左右对照 + 虚线指向) ==================== */}
-        <div className="flex-grow w-full flex gap-[80px] relative">
-
-          {/* ── 虚线引导连接线 (自左侧抖音行至右侧真相卡片) ── */}
-          <svg className="absolute inset-0 pointer-events-none z-20" style={{ width: '1840px', height: '625px' }}>
-            <path
-              d="M 808 198 L 920 198"
-              stroke="#3B82F6"
-              strokeWidth="3"
-              strokeDasharray="8 5"
-              fill="none"
-              className="opacity-90"
-            />
-          </svg>
-
-          {/* 左侧：显示引用 (深色卡片，删去展开按钮) */}
-          <div className="w-[840px] h-[625px] bg-zinc-950/40 backdrop-blur-md rounded-[32px] p-8 flex flex-col justify-start border border-zinc-800/80 shadow-[0_25px_60px_rgba(0,0,0,0.5)]">
-            {/* 标题 */}
-            <div className="flex items-center pb-4 border-b border-zinc-900/60 shrink-0 mb-6">
-              <span className="text-[28px] font-black text-white font-['MiSans'] border-l-4 border-blue-500 pl-3 leading-none">
-                显示引用
-              </span>
+          {/* ==================== 1. 左栏：豆包引用来源 (440px，白底黑字，高内聚排版) ==================== */}
+          <div className="w-[440px] h-full bg-white border border-zinc-200 rounded-[24px] p-6 flex flex-col shadow-[0_10px_30px_rgba(0,0,0,0.15)] relative overflow-hidden group hover:border-blue-500/20 transition-colors">
+            <div className="mb-5 shrink-0">
+              <h3 className="text-[24px] font-black text-zinc-900 font-['MiSans'] tracking-wide">
+                豆包引用来源
+              </h3>
             </div>
 
-            {/* 表头 */}
-            <div className="flex justify-between items-center text-[20px] text-zinc-400 font-extrabold pb-3 border-b border-white/10 mb-4 px-4">
-              <span>平台名称</span>
-              <span className="mr-8">引用率</span>
-            </div>
+            {/* 表格容器 */}
+            <div className="flex-grow flex flex-col bg-zinc-50/50 rounded-2xl border border-zinc-200/60 p-4">
+              <div className="flex justify-between items-center text-[16px] xl:text-[18px] text-zinc-400 font-bold pb-2.5 border-b border-zinc-200 mb-3 px-2">
+                <span>平台名称</span>
+                <span className="pr-2">引用率</span>
+              </div>
 
-            {/* 列表行 */}
-            <div className="flex flex-col gap-2">
-              {leftTable.map((row, idx) => {
-                const isDouyin = row.name === "抖音";
-                return (
-                  <div
-                    key={idx}
-                    className={`flex justify-between items-center py-3.5 px-4 rounded-xl transition-all duration-150 ${isDouyin
-                        ? "border-2 border-blue-500 bg-blue-500/10 shadow-[0_0_20px_rgba(59,130,246,0.25)]"
-                        : "border-2 border-transparent hover:bg-white/5"
+              <div className="flex-grow flex flex-col justify-start gap-3 py-1.5">
+                {leftTable.map((row, idx) => {
+                  const isDouyin = row.name === "抖音";
+                  return (
+                    <div
+                      key={idx}
+                      className={`flex justify-between items-center h-[80px] px-4 rounded-xl border transition-all duration-300 ${
+                        isDouyin
+                          ? "border-[#FF0050]/40 bg-[#FF0050]/5 shadow-[0_0_20px_rgba(255,0,80,0.06)]"
+                          : "border-transparent hover:bg-zinc-100/60"
                       }`}
-                  >
-                    <div className="flex items-center">
-                      {/* 排行序号 */}
-                      {row.rank <= 3 ? (
-                        <div className={`w-[40px] h-[40px] rounded-full flex items-center justify-center font-bold text-[20px] font-mono ${row.badgeBg} text-black mr-5`}>
+                    >
+                      <div className="flex items-center gap-4 min-w-0">
+                        {/* 排名 */}
+                        <span className="font-['Montserrat'] text-[18px] xl:text-[20px] font-black text-zinc-400 w-5">
                           {row.rank}
-                        </div>
-                      ) : (
-                        <div className="w-[40px] h-[40px] flex items-center justify-center font-bold text-[20px] font-mono text-zinc-500 mr-5">
-                          {row.rank}
-                        </div>
-                      )}
-
-                      {/* 平台图标 */}
-                      {row.isCustomIcon ? (
-                        <div className="w-8 h-8 bg-[#E02424] rounded-lg flex items-center justify-center text-[12px] font-black text-white font-mono mr-4 shrink-0">
-                          IT
-                        </div>
-                      ) : (
-                        row.icon && <row.icon className={`w-8 h-8 ${row.iconColor} mr-4 shrink-0`} />
-                      )}
-
-                      {/* 平台名字 */}
-                      <span className="text-[24px] font-bold text-white font-['MiSans']">
-                        {row.name}
+                        </span>
+                        {/* 图标 */}
+                        {row.isCustomIcon ? (
+                          <span className="w-[32px] h-[32px] bg-[#E02424] rounded-md flex items-center justify-center text-[12px] font-black text-white shrink-0 font-mono">
+                            IT
+                          </span>
+                        ) : (
+                          <Globe className={`w-[28px] h-[28px] shrink-0 ${isDouyin ? 'text-[#FF0050]' : 'text-zinc-400'}`} />
+                        )}
+                        {/* 名字 */}
+                        <span className={`text-[20px] xl:text-[22px] font-bold font-['MiSans'] truncate ${isDouyin ? "text-zinc-900 font-black" : "text-zinc-700"}`}>
+                          {row.name}
+                        </span>
+                      </div>
+                      {/* 百分比 */}
+                      <span className={`text-[20px] xl:text-[22px] font-black font-['Montserrat'] ${isDouyin ? "text-[#FF0050]" : "text-zinc-500 font-semibold"}`}>
+                        {row.rate}
                       </span>
                     </div>
-
-                    {/* 引用率 */}
-                    <span className="text-[24px] font-extrabold font-['Montserrat'] text-zinc-300 mr-8">
-                      {row.rate}
-                    </span>
-                  </div>
-                );
-              })}
+                  );
+                })}
+              </div>
             </div>
           </div>
 
-          {/* 右侧：抖音真相 (蓝色/深色微光卡片，去除了丑icon、竖条以及前缀真相标签) */}
-          <div className="w-[920px] h-[625px] bg-zinc-950/40 backdrop-blur-md rounded-[32px] p-8 flex flex-col justify-start border border-blue-500/20 shadow-[0_25px_60px_rgba(59,130,246,0.1)]">
-            {/* 标题 */}
-            <div className="flex items-center pb-4 border-b border-zinc-900/60 shrink-0 mb-8">
-              <span className="text-[28px] font-black text-white font-['MiSans'] border-l-4 border-blue-500 pl-3 leading-none">
-                抖音高引用率真实原因
+          {/* ==================== 2. 右侧：图片展示区 (1376px) ==================== */}
+          <div className="w-[1376px] h-full rounded-[24px] overflow-hidden relative group">
+            <img
+              src="/charts/doubao_high_weight_analysis.png"
+              alt="豆包引用与内容拆解"
+              className="w-full h-full object-contain opacity-95 transition-opacity duration-500 group-hover:opacity-100"
+              onError={(e) => {
+                e.currentTarget.style.display = 'none';
+                e.currentTarget.nextElementSibling.style.display = 'flex';
+              }}
+            />
+            {/* 当图片加载失败时的占位 UI */}
+            <div className="hidden flex-col items-center justify-center w-full h-full text-zinc-400 p-8 text-center animate-fadeIn bg-[#0B0D19]/45 border border-white/[0.06] rounded-[24px]">
+              <div className="w-20 h-20 mb-6 rounded-2xl bg-white/[0.03] border border-white/10 flex items-center justify-center text-[#0052FF]">
+                <AlertTriangle size={40} />
+              </div>
+              <span className="text-[24px] font-black text-white tracking-widest uppercase">机制验证与拆解图表</span>
+              <span className="text-[18px] mt-3 text-zinc-500 font-semibold max-w-[600px] leading-relaxed">
+                请在 <code className="text-zinc-300 font-mono">public/charts/</code> 目录中放入图片 <code className="text-blue-400 font-mono">doubao_high_weight_analysis.png</code>。
+                <br />
+                该图应整合：1. 豆包对话模拟与真假信源列表验证；2. 引用的高粉丝账号拆解；3. 视频只解析字幕结论。
               </span>
-            </div>
-
-            {/* 核心要点 */}
-            <div className="flex flex-col gap-10">
-              {/* 要点一 */}
-              <div className="flex flex-col pl-2">
-                <span className="text-[48px] font-bold text-white font-['MiSans'] mb-3">仅抓取标题/字幕，不会解析全视频</span>
-                <span className="text-[28px] text-zinc-400 leading-relaxed font-normal">
-                  不耗费大量 Token 解析完整视频正文。AI 引擎提取效率优先，导致引用的内容深度极浅。
-                </span>
-              </div>
-
-              {/* 要点二 */}
-              <div className="flex flex-col pl-2">
-                <span className="text-[48px] font-bold text-white font-['MiSans'] mb-3">字节内部的政治任务</span>
-                <span className="text-[28px] text-zinc-400 leading-relaxed font-normal">
-                  字节给豆包团队下的政治任务，需要在数据展现上偏向自家平台抖音，非真实权重。
-                </span>
-              </div>
             </div>
           </div>
 
         </div>
+
+        {/* ==================== 原因总结横向 Banner (放置在主体卡片正下方，高度 76px) ==================== */}
+        <div className="w-full h-[76px] bg-[#0052FF]/5 border border-[#0052FF]/20 rounded-[20px] px-8 flex items-center justify-between shrink-0 hover:border-[#0052FF]/40 transition-all duration-300 shadow-[0_0_25px_rgba(0,82,255,0.05)] mt-4">
+          <div className="flex items-center gap-4">
+            <div className="w-7 h-7 rounded-full bg-[#0052FF]/10 border border-[#0052FF]/30 flex items-center justify-center shrink-0">
+              <AlertTriangle size={15} className="text-[#0052FF]" />
+            </div>
+            <span className="text-[20px] xl:text-[22px] font-black text-white font-['MiSans'] leading-none">
+              原因：AI 不读取视频，只是字节内部的政治任务（倾斜自家抖音链接）
+            </span>
+          </div>
+          <span className="text-[12px] text-zinc-500 font-bold font-['Montserrat'] tracking-widest leading-none">
+            GEO INSIGHTS
+          </span>
+        </div>
+
       </div>
     </SlideLayout>
   );

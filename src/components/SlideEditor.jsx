@@ -12,6 +12,7 @@ import {
 } from 'lucide-react';
 
 const STORAGE_KEY = 'slide-visual-edits';
+const TITLE_OVERRIDES_KEY = 'slide-title-overrides';
 const SLIDE_WIDTH = 1920;
 
 /* ------------------------------------------------------------------ */
@@ -30,6 +31,34 @@ function saveAll(data) {
   } catch {
     /* ignore */
   }
+  // 通知 App 把可视化编辑防抖写回 slideEdits.json（持久化，可进 git）
+  window.dispatchEvent(new Event('slide-visual-edits-changed'));
+}
+
+/* ------------------------------------------------------------------ */
+/* 大标题覆盖：编辑器里改了页面大标题后，目录面板要同步显示新标题。       */
+/* 存 slideId -> 标题文本，并广播事件通知 App 更新目录面板。             */
+/* ------------------------------------------------------------------ */
+function saveTitleOverride(slideId, title) {
+  try {
+    const all = JSON.parse(localStorage.getItem(TITLE_OVERRIDES_KEY)) || {};
+    if (title === null) delete all[slideId];
+    else all[slideId] = title;
+    localStorage.setItem(TITLE_OVERRIDES_KEY, JSON.stringify(all));
+  } catch {
+    /* ignore */
+  }
+  window.dispatchEvent(
+    new CustomEvent('slide-title-override', { detail: { slideId, title } })
+  );
+}
+
+/* el 是否就是大标题本身，或在大标题内部 / 包含大标题 */
+function findRelatedTitleEl(root, el) {
+  const titleEl = root?.querySelector('[data-slide-title]');
+  if (!titleEl || !el) return null;
+  if (titleEl === el || titleEl.contains(el) || el.contains(titleEl)) return titleEl;
+  return null;
 }
 
 /* ------------------------------------------------------------------ */
@@ -111,8 +140,11 @@ function applyOverride(el, o) {
     el.style.marginTop = `${o.marginTop}px`;
   if (o.marginBottom !== undefined && o.marginBottom !== '')
     el.style.marginBottom = `${o.marginBottom}px`;
-  // 只有文案真的被改过才写入（避免把嵌套的 span 格式意外压平）
-  if (typeof o.text === 'string' && el.textContent !== o.text) {
+  // 文案：优先按 innerHTML 还原（保留内部 span 的字号/颜色等局部格式）；
+  // 旧版数据只存了纯文本时才退回 textContent
+  if (typeof o.html === 'string') {
+    if (el.innerHTML !== o.html) el.innerHTML = o.html;
+  } else if (typeof o.text === 'string' && el.textContent !== o.text) {
     el.textContent = o.text;
   }
 }
@@ -169,7 +201,7 @@ function normalizeAlign(v) {
   return v;
 }
 
-export default function SlideEditor({ enabled, slideId, slideKey, rootRef, initialTargetRef }) {
+export default function SlideEditor({ enabled, slideId, slideKey, rootRef, initialTargetRef, editsReady = true }) {
   const [selected, setSelected] = useState(null); // DOM 元素
   const [ov, setOv] = useState(null); // 当前选中元素的 override 数据
   const [box, setBox] = useState(null); // 高亮框在屏幕上的位置
@@ -187,9 +219,13 @@ export default function SlideEditor({ enabled, slideId, slideKey, rootRef, initi
   const [inlineEditing, setInlineEditing] = useState(false); // 直接在画面中改字
   const [tab, setTab] = useState('text'); // 'text' | 'arrange'
   const [, setHistVer] = useState(0); // 撤销栈变化时触发重渲染
+  const [hasSelRange, setHasSelRange] = useState(false); // 改字时拖选了部分文字
+  const [fragVal, setFragVal] = useState({ fontSize: '', color: '#ffffff' }); // 选中片段的当前字号/颜色
   const dragRef = useRef(null);
   const patchRef = useRef(null);
   const historyRef = useRef([]); // 撤销栈：{ slideId, path, prev, time }
+  const savedRangeRef = useRef(null); // 改字时保存的文字选区（焦点移到面板后仍可用）
+  const activeSpanRef = useRef(null); // 已为当前选区创建的样式 span，可复用
 
   /* 读取 / 写入当前 slide 的全部 override */
   const getSlideEdits = useCallback(() => loadAll()[slideId] || {}, [slideId]);
@@ -235,17 +271,31 @@ export default function SlideEditor({ enabled, slideId, slideKey, rootRef, initi
     setSelected(null);
     setOv(null);
     setBox(null);
+    // 等 App 从服务端拿到最新编辑（editsReady）再应用，避免用旧的 localStorage 覆盖，
+    // 同时保证 DOM 是刚渲染的源内容，被删除的编辑能正确还原
+    if (!editsReady) return;
     const raf = requestAnimationFrame(() => {
       const root = rootRef.current;
       if (!root) return;
       const edits = getSlideEdits();
+      let titleTouched = false;
       Object.entries(edits).forEach(([path, override]) => {
         const el = resolvePath(root, path);
-        if (el) applyOverride(el, override);
+        if (el) {
+          applyOverride(el, override);
+          // 历史改动里有大标题的文案修改：加载时也同步到目录面板
+          if (typeof override.html === 'string' && findRelatedTitleEl(root, el)) {
+            titleTouched = true;
+          }
+        }
       });
+      if (titleTouched) {
+        const titleEl = root.querySelector('[data-slide-title]');
+        if (titleEl) saveTitleOverride(slideId, titleEl.textContent.trim());
+      }
     });
     return () => cancelAnimationFrame(raf);
-  }, [slideKey, slideId, rootRef, getSlideEdits]);
+  }, [slideKey, slideId, rootRef, getSlideEdits, editsReady]);
 
   /* 计算当前缩放比例（slide 用 zoom 缩放） */
   const getScale = useCallback(() => {
@@ -304,9 +354,14 @@ export default function SlideEditor({ enabled, slideId, slideKey, rootRef, initi
         letterSpacing: existing.letterSpacing ?? '',
         marginTop: existing.marginTop ?? '',
         marginBottom: existing.marginBottom ?? '',
-        // 文案：已有改动就用改过的；否则取当前文字。_baseText 用来判断是否真的改过
+        // 文案：text 供面板文本框显示；html 是真正持久化的内容（保留局部格式）。
+        // _baseHtml 用来判断内容是否真的被改过（null 表示已有历史改动）
         text: existing.text !== undefined ? existing.text : el.textContent,
-        _baseText: existing.text !== undefined ? null : el.textContent,
+        html: existing.html,
+        _baseHtml:
+          existing.html !== undefined || existing.text !== undefined
+            ? null
+            : el.innerHTML,
       });
       updateBox(el);
     },
@@ -395,15 +450,26 @@ export default function SlideEditor({ enabled, slideId, slideKey, rootRef, initi
   const patch = useCallback(
     (changes) => {
       if (!selected || !ov) return;
+
+      // 面板文本框改纯文本：直接写 textContent（会合并内部格式，有提示），
+      // 然后以改动后的 innerHTML 作为持久化内容
+      if ('text' in changes && !('html' in changes)) {
+        if (selected.textContent !== changes.text) {
+          ensureOriginal(selected);
+          selected.textContent = changes.text;
+        }
+        changes = { ...changes, html: selected.innerHTML };
+      }
+
       const next = { ...ov, ...changes };
       setOv(next);
 
       pushHistory(ov.path, getSlideEdits()[ov.path] || null);
 
-      // 文案是否真的被改过（没改过就不写 textContent，避免压平内部格式）
-      const textActive =
-        next._baseText === null ||
-        (typeof next.text === 'string' && next.text !== next._baseText);
+      // 内容是否真的被改过（没改过就不动 innerHTML）
+      const htmlActive =
+        next._baseHtml === null ||
+        (typeof next.html === 'string' && next.html !== next._baseHtml);
 
       // 被清空的字段，把内联样式一并清掉（回退到源码样式）
       const clearable = {
@@ -424,7 +490,8 @@ export default function SlideEditor({ enabled, slideId, slideKey, rootRef, initi
 
       applyOverride(selected, {
         ...next,
-        text: textActive ? next.text : undefined,
+        html: htmlActive ? next.html : undefined,
+        text: undefined,
       });
       updateBox(selected);
 
@@ -445,7 +512,7 @@ export default function SlideEditor({ enabled, slideId, slideKey, rootRef, initi
         (next.letterSpacing !== '' && next.letterSpacing !== undefined) ||
         (next.marginTop !== '' && next.marginTop !== undefined) ||
         (next.marginBottom !== '' && next.marginBottom !== undefined) ||
-        textActive;
+        htmlActive;
       setElementEdit(
         ov.path,
         meaningful
@@ -471,12 +538,18 @@ export default function SlideEditor({ enabled, slideId, slideKey, rootRef, initi
               ...(next.marginBottom !== '' && next.marginBottom !== undefined
                 ? { marginBottom: next.marginBottom }
                 : {}),
-              ...(textActive ? { text: next.text } : {}),
+              ...(htmlActive ? { html: next.html ?? selected.innerHTML } : {}),
             }
           : null
       );
+
+      // 改的是页面大标题：同步到目录面板
+      if (htmlActive) {
+        const titleEl = findRelatedTitleEl(rootRef.current, selected);
+        if (titleEl) saveTitleOverride(slideId, titleEl.textContent.trim());
+      }
     },
-    [selected, ov, setElementEdit, updateBox, pushHistory, getSlideEdits]
+    [selected, ov, setElementEdit, updateBox, pushHistory, getSlideEdits, rootRef, slideId]
   );
   patchRef.current = patch;
 
@@ -494,6 +567,16 @@ export default function SlideEditor({ enabled, slideId, slideKey, rootRef, initi
     if (el) {
       restoreOriginal(el);
       if (last.prev) applyOverride(el, last.prev);
+      // 撤销涉及大标题时，同步目录面板（完全还原则清掉覆盖）
+      const titleEl = findRelatedTitleEl(root, el);
+      if (titleEl) {
+        saveTitleOverride(
+          slideId,
+          last.prev && typeof last.prev.html === 'string'
+            ? titleEl.textContent.trim()
+            : null
+        );
+      }
     }
     setInlineEditing(false);
     if (el && ov && ov.path === last.path) {
@@ -613,7 +696,8 @@ export default function SlideEditor({ enabled, slideId, slideKey, rootRef, initi
     sel.removeAllRanges();
     sel.addRange(range);
 
-    const onInput = () => patchRef.current({ text: selected.textContent });
+    const onInput = () =>
+      patchRef.current({ html: selected.innerHTML, text: selected.textContent });
     selected.addEventListener('input', onInput);
     return () => {
       selected.removeEventListener('input', onInput);
@@ -623,12 +707,111 @@ export default function SlideEditor({ enabled, slideId, slideKey, rootRef, initi
     };
   }, [inlineEditing, selected]);
 
+  /* 改字时跟踪文字选区：拖选一段文字后，面板的字体/字号/颜色只作用于该片段。
+     焦点移到面板输入框时选区会失效，所以随时把有效选区备份到 ref 里 */
+  useEffect(() => {
+    if (!inlineEditing || !selected) {
+      savedRangeRef.current = null;
+      activeSpanRef.current = null;
+      setHasSelRange(false);
+      return;
+    }
+    const onSel = () => {
+      const sel = window.getSelection();
+      if (!sel || sel.rangeCount === 0) return;
+      const r = sel.getRangeAt(0);
+      if (!selected.contains(r.commonAncestorContainer)) return; // 选区在面板等处，保留备份
+      if (r.collapsed) {
+        // 在元素内点击（光标塌缩）：视为取消片段选择
+        savedRangeRef.current = null;
+        activeSpanRef.current = null;
+        setHasSelRange(false);
+        return;
+      }
+      savedRangeRef.current = r.cloneRange();
+      // 选区变了就不再复用旧 span
+      const span = activeSpanRef.current;
+      if (span && !(span.contains(r.startContainer) && span.contains(r.endContainer))) {
+        activeSpanRef.current = null;
+      }
+      // 读取选区起点处的字号/颜色，作为面板显示值
+      const sn = r.startContainer;
+      const se = sn.nodeType === 1 ? sn : sn.parentElement;
+      if (se) {
+        const cs = getComputedStyle(se);
+        setFragVal({
+          fontSize: Math.round(parseFloat(cs.fontSize)) || '',
+          color: rgbToHex(cs.color),
+        });
+      }
+      setHasSelRange(true);
+    };
+    document.addEventListener('selectionchange', onSel);
+    return () => document.removeEventListener('selectionchange', onSel);
+  }, [inlineEditing, selected]);
+
+  /* 把样式只应用到选中的文字片段：用 span 包住选区 */
+  const styleSelection = useCallback(
+    (styles) => {
+      const el = selected;
+      const range = savedRangeRef.current;
+      if (!el || !range) return false;
+      ensureOriginal(el);
+
+      let span = activeSpanRef.current;
+      if (!span || !el.contains(span)) {
+        span = document.createElement('span');
+        try {
+          span.appendChild(range.extractContents());
+          range.insertNode(span);
+        } catch {
+          return false; // 选区跨越了无法拆分的结构，退回整个元素调整
+        }
+        activeSpanRef.current = span;
+      }
+      Object.assign(span.style, styles);
+
+      // 更新备份选区指向该 span 的内容（不去动浏览器选区，
+      // 否则会把焦点/输入抢回画布，打断面板里的连续输入）
+      try {
+        const r = document.createRange();
+        r.selectNodeContents(span);
+        savedRangeRef.current = r;
+      } catch {
+        /* ignore */
+      }
+
+      patchRef.current({ html: el.innerHTML, text: el.textContent });
+      return true;
+    },
+    [selected]
+  );
+
+  /* 选区起点处的计算样式（用于判断粗体/斜体等当前状态） */
+  const getSelStyle = () => {
+    const r = savedRangeRef.current;
+    if (!r) return null;
+    const n = r.startContainer;
+    const e = n.nodeType === 1 ? n : n.parentElement;
+    return e ? getComputedStyle(e) : null;
+  };
+
+  /* 有文字片段选区时作用于片段，否则作用于整个元素 */
+  const applyStyleOr = (styles, fallbackChanges) => {
+    if (inlineEditing && savedRangeRef.current && styleSelection(styles)) return;
+    patch(fallbackChanges);
+  };
+
   const resetElement = () => {
     if (!selected || !ov) return;
     pushHistory(ov.path, getSlideEdits()[ov.path] || null);
     setInlineEditing(false);
     restoreOriginal(selected);
     setElementEdit(ov.path, null);
+    // 重置的是大标题：目录面板恢复原标题
+    if (findRelatedTitleEl(rootRef.current, selected)) {
+      saveTitleOverride(slideId, null);
+    }
     setSelected(null);
     setOv(null);
     setBox(null);
@@ -647,6 +830,7 @@ export default function SlideEditor({ enabled, slideId, slideKey, rootRef, initi
     const all = loadAll();
     delete all[slideId];
     saveAll(all);
+    saveTitleOverride(slideId, null);
     setInlineEditing(false);
     setSelected(null);
     setOv(null);
@@ -722,7 +906,9 @@ export default function SlideEditor({ enabled, slideId, slideKey, rootRef, initi
               inlineEditing ? 'bg-green-600' : 'bg-blue-600'
             }`}
           >
-            {inlineEditing ? '正在改文字 · Esc 或点空白处结束' : '拖拽移动 · 双击改文字'}
+            {inlineEditing
+              ? '正在改文字 · 拖选文字可单独调整片段样式 · Esc 结束'
+              : '拖拽移动 · 双击改文字'}
           </span>
         </div>
       )}
@@ -779,11 +965,24 @@ export default function SlideEditor({ enabled, slideId, slideKey, rootRef, initi
               {describe(selected)}
             </div>
 
+            {/* 片段选择提示 */}
+            {inlineEditing && hasSelRange && (
+              <div className="text-[11px] text-green-400 bg-green-500/10 border border-green-500/30 rounded-lg px-3 py-2 leading-relaxed">
+                已拖选一段文字：下面的字体、字号、颜色、粗斜体只作用于
+                <span className="font-semibold">选中的片段</span>
+              </div>
+            )}
+
             {/* 字体 */}
             <Section label="字体">
               <select
                 value={ov.fontFamily || ''}
-                onChange={(e) => patch({ fontFamily: e.target.value })}
+                onChange={(e) =>
+                  applyStyleOr(
+                    { fontFamily: e.target.value },
+                    { fontFamily: e.target.value }
+                  )
+                }
                 className="w-full bg-zinc-900 border border-zinc-800 rounded-lg px-2 py-2 text-sm text-white focus:border-blue-500 focus:outline-none"
               >
                 {FONT_FAMILIES.map((f) => (
@@ -795,7 +994,12 @@ export default function SlideEditor({ enabled, slideId, slideKey, rootRef, initi
               <div className="flex gap-2 mt-2">
                 <select
                   value={String(ov.fontWeight || prefill.fontWeight || 400)}
-                  onChange={(e) => patch({ fontWeight: Number(e.target.value) })}
+                  onChange={(e) =>
+                    applyStyleOr(
+                      { fontWeight: e.target.value },
+                      { fontWeight: Number(e.target.value) }
+                    )
+                  }
                   className="flex-1 bg-zinc-900 border border-zinc-800 rounded-lg px-2 py-2 text-sm text-white focus:border-blue-500 focus:outline-none"
                 >
                   {FONT_WEIGHTS.map((w) => (
@@ -816,11 +1020,22 @@ export default function SlideEditor({ enabled, slideId, slideKey, rootRef, initi
                     type="number"
                     min="8"
                     max="300"
-                    value={ov.fontSize || ''}
-                    placeholder={String(prefill.fontSize)}
-                    onChange={(e) =>
-                      patch({ fontSize: e.target.value ? Number(e.target.value) : '' })
+                    value={
+                      inlineEditing && hasSelRange
+                        ? fragVal.fontSize || ''
+                        : ov.fontSize || ''
                     }
+                    placeholder={String(prefill.fontSize)}
+                    onChange={(e) => {
+                      const v = e.target.value ? Number(e.target.value) : '';
+                      if (inlineEditing && hasSelRange) {
+                        setFragVal((f) => ({ ...f, fontSize: v }));
+                      }
+                      applyStyleOr(
+                        { fontSize: v ? `${v}px` : '' },
+                        { fontSize: v }
+                      );
+                    }}
                     className="w-14 bg-transparent py-2 text-sm text-white focus:outline-none"
                   />
                   <span className="text-[11px] text-zinc-500">点</span>
@@ -834,28 +1049,62 @@ export default function SlideEditor({ enabled, slideId, slideKey, rootRef, initi
                 <ToggleBtn
                   active={isBold}
                   title="粗体"
-                  onClick={() => patch({ fontWeight: isBold ? 400 : 700 })}
+                  onClick={() => {
+                    if (inlineEditing && savedRangeRef.current) {
+                      const cs = getSelStyle();
+                      const b = cs && Number(cs.fontWeight) >= 600;
+                      styleSelection({ fontWeight: b ? '400' : '700' });
+                    } else patch({ fontWeight: isBold ? 400 : 700 });
+                  }}
                 >
                   <Bold size={15} />
                 </ToggleBtn>
                 <ToggleBtn
                   active={isItalic}
                   title="斜体"
-                  onClick={() => patch({ italic: !isItalic })}
+                  onClick={() => {
+                    if (inlineEditing && savedRangeRef.current) {
+                      const cs = getSelStyle();
+                      const it = cs && cs.fontStyle === 'italic';
+                      styleSelection({ fontStyle: it ? 'normal' : 'italic' });
+                    } else patch({ italic: !isItalic });
+                  }}
                 >
                   <Italic size={15} />
                 </ToggleBtn>
                 <ToggleBtn
                   active={isUnderline}
                   title="下划线"
-                  onClick={() => patch({ underline: !isUnderline })}
+                  onClick={() => {
+                    if (inlineEditing && savedRangeRef.current) {
+                      const cs = getSelStyle();
+                      const cur = (cs && cs.textDecorationLine) || '';
+                      const u = !cur.includes('underline');
+                      const s = cur.includes('line-through');
+                      const dec = [u ? 'underline' : '', s ? 'line-through' : '']
+                        .filter(Boolean)
+                        .join(' ');
+                      styleSelection({ textDecorationLine: dec || 'none' });
+                    } else patch({ underline: !isUnderline });
+                  }}
                 >
                   <Underline size={15} />
                 </ToggleBtn>
                 <ToggleBtn
                   active={isStrike}
                   title="删除线"
-                  onClick={() => patch({ strikethrough: !isStrike })}
+                  onClick={() => {
+                    if (inlineEditing && savedRangeRef.current) {
+                      const cs = getSelStyle();
+                      const cur = (cs && cs.textDecorationLine) || '';
+                      const u = cur.includes('underline');
+                      const s = !cur.includes('line-through');
+                      const dec = [u ? 'underline' : '', s ? 'line-through' : '']
+                        .filter(Boolean)
+                        .join(' ');
+                      styleSelection({ textDecorationLine: dec || 'none' });
+                    } else patch({ strikethrough: !isStrike });
+                  }}
                 >
                   <Strikethrough size={15} />
                 </ToggleBtn>
@@ -864,15 +1113,29 @@ export default function SlideEditor({ enabled, slideId, slideKey, rootRef, initi
                 <span className="text-[12px] text-zinc-400 flex-shrink-0">文本颜色</span>
                 <input
                   type="color"
-                  value={ov.color || prefill.color}
-                  onChange={(e) => patch({ color: e.target.value })}
+                  value={
+                    inlineEditing && hasSelRange
+                      ? fragVal.color
+                      : ov.color || prefill.color
+                  }
+                  onChange={(e) => {
+                    if (inlineEditing && hasSelRange) {
+                      setFragVal((f) => ({ ...f, color: e.target.value }));
+                    }
+                    applyStyleOr({ color: e.target.value }, { color: e.target.value });
+                  }}
                   className="w-10 h-8 bg-transparent border border-zinc-800 rounded cursor-pointer"
                 />
                 <input
                   type="text"
-                  value={ov.color || ''}
+                  value={inlineEditing && hasSelRange ? fragVal.color : ov.color || ''}
                   placeholder={prefill.color}
-                  onChange={(e) => patch({ color: e.target.value })}
+                  onChange={(e) => {
+                    if (inlineEditing && hasSelRange) {
+                      setFragVal((f) => ({ ...f, color: e.target.value }));
+                    }
+                    applyStyleOr({ color: e.target.value }, { color: e.target.value });
+                  }}
                   className="flex-1 bg-zinc-900 border border-zinc-800 rounded px-2 py-1 text-sm text-white font-mono"
                 />
               </div>
@@ -949,7 +1212,7 @@ export default function SlideEditor({ enabled, slideId, slideKey, rootRef, initi
               </button>
               {selected && selected.children.length > 0 && (
                 <p className="text-[11px] text-amber-500/80 leading-relaxed mt-2">
-                  注意：这段文字内部有特殊格式（如加粗、变色的片段），改动文案后这些格式会被合并成统一样式。
+                  注意：这段文字内部有局部格式（加粗、变色、不同字号的片段）。在上面的文本框改文案会把格式合并成统一样式；想保留局部格式，请用「直接在画面里改字」。
                 </p>
               )}
             </Section>

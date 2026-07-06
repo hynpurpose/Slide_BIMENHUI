@@ -7,10 +7,10 @@ export default function Page_SkyworthWordOfMouthDemo() {
       <div className="w-full h-full flex flex-col gap-6 animate-fadeIn relative z-10">
 
         {/* Callout Text above Content Top Line on the Right */}
-        <div className="absolute top-[-56px] right-0 z-30 flex items-center gap-2.5 text-zinc-400 text-[28px] font-bold">
+        <div className="absolute top-[-56px] right-0 z-30 flex items-center gap-2.5 text-white text-[26px] xl:text-[28px] font-medium">
           <div className="w-3 h-3 rounded-full bg-blue-500 animate-pulse shrink-0" />
           <span className="tracking-wide">
-            结合单品，模拟<span className="text-white font-extrabold">真实屋主入住3个月后的惊艳现场</span>
+            结合单品，模拟<span className="text-[32px] xl:text-[34px] font-black text-white">真实屋主入住3个月后的惊艳现场</span>。
           </span>
         </div>
 

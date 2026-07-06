@@ -42,42 +42,36 @@ const campaignTypes = [
     num: '1',
     category: '排行榜类',
     ratio: '42%',
-    desc: '2026年艺术与壁纸电视推荐榜单，争取首推排位',
     color: '#0052FF' // 高饱和蓝
   },
   {
     num: '2',
     category: '技术科普类',
     ratio: '18%',
-    desc: '（新增）剖析无缝贴墙与画质芯片等底层硬核技术原理',
     color: '#1A62E5' // 中高饱和蓝
   },
   {
     num: '3',
     category: '用户口碑类',
     ratio: '15%',
-    desc: '真实业主分享装机体验与使用反馈，建立购买信任感',
     color: '#3372CC' // 中饱和蓝
   },
   {
     num: '4',
     category: '测评类',
     ratio: '12%',
-    desc: '多款旗舰壁纸电视对比实测，提供客观事实与测试参数',
     color: '#4D83B2' // 中低饱和蓝
   },
   {
     num: '5',
     category: '场景教程类',
     ratio: '8%',
-    desc: '结合实际客厅背景墙场景，提供安装布线与搭配指南',
     color: '#668099' // 低饱和灰蓝
   },
   {
     num: '6',
     category: 'FAQ问答类',
     ratio: '5%',
-    desc: '针对墙体承重、功耗等高频购买顾虑提供标准答疑',
     color: '#778899' // 极低饱和灰蓝
   }
 ];
@@ -92,20 +86,17 @@ export default function Page_SkyworthContentDirection() {
         className="absolute w-[1840px] select-none animate-fadeIn flex justify-between items-stretch"
         style={{ top: '0px', height: '795px' }}
       >
-        {/* ==================== 1. 数据采集板块 (460px) ==================== */}
-        <div className="w-[460px] h-full bg-zinc-950/20 border border-zinc-900 rounded-[24px] p-6 flex flex-col justify-between shadow-lg">
+        {/* ==================== 1. 数据采集板块 (460px，白底黑字) ==================== */}
+        <div className="w-[460px] h-full bg-white border border-zinc-200 rounded-[24px] p-6 flex flex-col justify-between shadow-[0_10px_30px_rgba(0,0,0,0.15)] relative overflow-hidden group hover:border-blue-500/20 transition-colors">
           <div className="shrink-0 mb-4">
-            <h3 className="text-[25px] font-bold text-white font-['MiSans']">
+            <h3 className="text-[28px] font-black text-zinc-900 font-['MiSans']">
               1. 数据采集：AI 引用电视文章源
             </h3>
-            <p className="text-[15px] text-zinc-500 font-['MiSans'] mt-1 leading-normal">
-              主流 AI 引擎推荐回答时引用频次最高的 200 篇文章
-            </p>
           </div>
 
           {/* 表格区域 */}
-          <div className="flex-grow overflow-hidden flex flex-col bg-black/40 rounded-xl border border-zinc-900 p-3">
-            <div className="flex items-center text-[12px] font-bold text-zinc-500 border-b border-zinc-900 pb-1.5 px-1 shrink-0">
+          <div className="flex-grow overflow-hidden flex flex-col bg-zinc-50/50 rounded-xl border border-zinc-200/60 p-3">
+            <div className="flex items-center text-[12px] font-bold text-zinc-400 border-b border-zinc-200 pb-1.5 px-1 shrink-0">
               <span className="w-8">排名</span>
               <span className="flex-grow">引用文章标题</span>
               <span className="w-16 text-right">文章分类</span>
@@ -115,10 +106,10 @@ export default function Page_SkyworthContentDirection() {
               {mockArticles.map((art, idx) => (
                 <div 
                   key={idx} 
-                  className="flex items-center h-[24px] text-[13px] border-b border-zinc-900/20 px-1 hover:bg-white/[0.01]"
+                  className="flex items-center h-[24px] text-[13px] border-b border-zinc-100/50 px-1 hover:bg-zinc-100/40"
                 >
-                  <span className="w-8 font-['Montserrat'] text-zinc-600 font-bold">{art.rank}</span>
-                  <span className="flex-grow truncate text-zinc-400 font-medium pr-3">{art.title}</span>
+                  <span className="w-8 font-['Montserrat'] text-zinc-400 font-bold">{art.rank}</span>
+                  <span className="flex-grow truncate text-zinc-800 font-bold pr-3">{art.title}</span>
                   <span className="w-16 text-right text-[11px] text-zinc-500 font-semibold shrink-0">
                     {art.category.replace('类', '')}
                   </span>
@@ -126,8 +117,8 @@ export default function Page_SkyworthContentDirection() {
               ))}
             </div>
 
-            <div className="pt-2 text-center text-zinc-500 text-[13px] font-bold shrink-0 border-t border-zinc-900 mt-1 flex items-center justify-center gap-1.5">
-              <span className="w-1 h-1 rounded-full bg-zinc-600 animate-pulse" />
+            <div className="pt-2 text-center text-zinc-400 text-[14px] font-bold shrink-0 border-t border-zinc-200 mt-1 flex items-center justify-center gap-1.5">
+              <span className="w-1 h-1 rounded-full bg-zinc-400 animate-pulse" />
               <span>共 <span className="font-['Montserrat'] text-zinc-400 font-bold">200</span> 篇高权威引用数据</span>
             </div>
           </div>
@@ -136,7 +127,7 @@ export default function Page_SkyworthContentDirection() {
         {/* ==================== 连接符 1 (50px) ==================== */}
         <div className="w-[50px] flex flex-col items-center justify-center text-zinc-500 shrink-0">
           <div className="h-24 border-l border-dashed border-zinc-900" />
-          <span className="text-[13px] font-bold my-4 text-zinc-500 tracking-widest [writing-mode:vertical-lr] select-none">
+          <span className="text-[17px] font-black my-4 text-zinc-400 tracking-[0.2em] [writing-mode:vertical-lr] select-none">
             数据推出
           </span>
           <div className="w-7 h-7 rounded-full border border-zinc-800 flex items-center justify-center bg-black text-[#0052FF]">
@@ -147,34 +138,31 @@ export default function Page_SkyworthContentDirection() {
           <div className="h-24 border-l border-dashed border-zinc-900" />
         </div>
 
-        {/* ==================== 2. 数据分析板块 (480px) ==================== */}
-        <div className="w-[480px] h-full bg-zinc-950/20 border border-zinc-900 rounded-[24px] p-6 flex flex-col justify-between shadow-lg">
+        {/* ==================== 2. 数据分析板块 (530px) ==================== */}
+        <div className="w-[530px] h-full bg-zinc-950/20 border border-zinc-900 rounded-[24px] p-6 flex flex-col justify-between shadow-lg">
           <div className="shrink-0 mb-4">
-            <h3 className="text-[25px] font-bold text-white font-['MiSans']">
-              2. 数据分析：AI 最常引用类型占比
+            <h3 className="text-[28px] font-black text-white font-['MiSans']">
+              2. 数据分析：AI 最常引用类型
             </h3>
-            <p className="text-[15px] text-zinc-500 font-['MiSans'] mt-1 leading-normal">
-              根据引用源文章结构特征进行的比例统计
-            </p>
           </div>
 
-          {/* 占比统计图表 */}
+          {/* 占比统计图表 (整体字号调大) */}
           <div className="flex-grow flex flex-col justify-between py-2 min-h-0">
             {aiCitedTypes.map((type, idx) => (
               <div 
                 key={idx} 
-                className="bg-black/30 border border-zinc-900 rounded-xl p-4 flex flex-col gap-2"
+                className="bg-black/30 border border-zinc-900 rounded-xl p-4 flex flex-col gap-3"
               >
                 <div className="flex justify-between items-center">
-                  <span className="text-[19px] font-bold text-zinc-200">{type.category}</span>
+                  <span className="text-[21px] font-black text-zinc-200">{type.category}</span>
                   <div className="flex items-baseline gap-0.5">
                     <span 
-                      className="text-[26px] font-black font-['Montserrat'] leading-none"
+                      className="text-[30px] font-black font-['Montserrat'] leading-none"
                       style={{ color: type.color }}
                     >
                       {type.percentage}
                     </span>
-                    <span className="text-[13px] font-black text-zinc-500 font-['Montserrat'] ml-0.5">%</span>
+                    <span className="text-[15px] font-black text-zinc-500 font-['Montserrat'] ml-0.5">%</span>
                   </div>
                 </div>
 
@@ -192,9 +180,9 @@ export default function Page_SkyworthContentDirection() {
             ))}
           </div>
 
-          {/* 分析总结 */}
-          <div className="shrink-0 bg-blue-950/10 border border-blue-900/20 rounded-xl p-4 mt-4">
-            <p className="text-[16px] leading-relaxed text-zinc-350 font-['MiSans'] text-justify">
+          {/* 分析总结 (整体字号调大) */}
+          <div className="shrink-0 bg-blue-950/10 border border-blue-900/20 rounded-xl p-4.5 mt-4">
+            <p className="text-[17px] xl:text-[18px] leading-relaxed text-zinc-300 font-['MiSans'] text-justify">
               <strong className="text-white">结论：</strong>
               AI对电视行业的抓取高度集中在“排行榜”与“单品介绍”（超70%），因此我们需要以此为重心设计投放策略。
             </p>
@@ -204,7 +192,7 @@ export default function Page_SkyworthContentDirection() {
         {/* ==================== 连接符 2 (50px) ==================== */}
         <div className="w-[50px] flex flex-col items-center justify-center text-zinc-500 shrink-0">
           <div className="h-24 border-l border-dashed border-zinc-900" />
-          <span className="text-[13px] font-bold my-4 text-zinc-500 tracking-widest [writing-mode:vertical-lr] select-none">
+          <span className="text-[17px] font-black my-4 text-zinc-400 tracking-[0.2em] [writing-mode:vertical-lr] select-none">
             交叉比对
           </span>
           <div className="w-7 h-7 rounded-full border border-zinc-800 flex items-center justify-center bg-black text-[#0052FF]">
@@ -215,66 +203,60 @@ export default function Page_SkyworthContentDirection() {
           <div className="h-24 border-l border-dashed border-zinc-900" />
         </div>
 
-        {/* ==================== 3. 常见文章类型板块 (800px) ==================== */}
-        <div className="w-[800px] h-full bg-zinc-950/20 border border-zinc-900 rounded-[24px] p-6 flex flex-col justify-between shadow-lg">
+        {/* ==================== 3. 常见文章类型板块 (750px) ==================== */}
+        <div className="w-[750px] h-full bg-zinc-950/20 border border-zinc-900 rounded-[24px] p-6 flex flex-col justify-between shadow-lg">
           <div className="shrink-0 mb-4">
-            <h3 className="text-[25px] font-bold text-white font-['MiSans']">
+            <h3 className="text-[28px] font-black text-white font-['MiSans']">
               3. 常见文章类型
             </h3>
-            <p className="text-[15px] text-zinc-500 font-['MiSans'] mt-1 leading-normal">
-              通过交叉比对，确立最终投放的内容分类与配比
-            </p>
           </div>
 
-          {/* 6个内容卡片列表，样式匹配图片中栏样式，采用 2 列 x 3 行大卡片布局确保字号清晰，颜色采用蓝色饱和度渐变 */}
-          <div className="flex-grow grid grid-cols-2 gap-4 min-h-0 py-1">
+          {/* 6个内容卡片列表，改为单列垂直排列，极简横向结构，彻底解决双列分行奇怪的问题 */}
+          <div className="flex-grow flex flex-col justify-between py-1 min-h-0 gap-3">
             {campaignTypes.map((type, idx) => (
               <div 
                 key={idx}
-                className="flex items-center gap-4 bg-black/40 border rounded-[20px] p-5 hover:bg-white/[0.01] transition-all duration-300"
+                className="flex items-center justify-between bg-black/40 border rounded-[20px] px-8 py-4 hover:bg-white/[0.01] transition-all duration-300 h-[92px]"
                 style={{
                   borderColor: `${type.color}33`,
                   boxShadow: `0 4px 20px ${type.color}02`
                 }}
               >
-                {/* 左侧圆角序号 */}
-                <div 
-                  className="shrink-0 w-[54px] h-[54px] rounded-2xl flex items-center justify-center"
-                  style={{ 
-                    backgroundColor: `${type.color}14`, 
-                    border: `1px solid ${type.color}80` 
-                  }}
-                >
-                  <span
-                    className="font-['Montserrat'] text-[24px] font-black leading-none"
-                    style={{ color: type.color }}
+                {/* 左边：序号与类别名称 (拉开大间距) */}
+                <div className="flex items-center gap-10">
+                  {/* 圆角序号 */}
+                  <div 
+                    className="shrink-0 w-[54px] h-[54px] rounded-2xl flex items-center justify-center"
+                    style={{ 
+                      backgroundColor: `${type.color}14`, 
+                      border: `1px solid ${type.color}80` 
+                    }}
                   >
-                    {type.num}
+                    <span
+                      className="font-['Montserrat'] text-[26px] font-black leading-none"
+                      style={{ color: type.color }}
+                    >
+                      {type.num}
+                    </span>
+                  </div>
+                  {/* 类别名称 */}
+                  <span className="text-[26px] font-black text-white font-['MiSans'] leading-none">
+                    {type.category}
                   </span>
                 </div>
 
-                {/* 右侧：标题、配比、描述 */}
-                <div className="flex-grow flex flex-col justify-center min-w-0">
-                  <div className="flex items-center justify-between gap-2">
-                    <span className="text-[20px] font-bold text-white font-['MiSans'] leading-tight">
-                      {type.category}
-                    </span>
-                    <span 
-                      className="text-[14px] font-bold font-['Montserrat'] rounded-full px-2.5 py-[1px] shrink-0"
-                      style={{
-                        color: type.color,
-                        borderColor: `${type.color}45`,
-                        backgroundColor: `${type.color}0D`,
-                        border: '1px solid'
-                      }}
-                    >
-                      配比 {type.ratio}
-                    </span>
-                  </div>
-                  <p className="text-[16px] text-zinc-400 font-['MiSans'] leading-relaxed mt-2 text-justify line-clamp-2">
-                    {type.desc}
-                  </p>
-                </div>
+                {/* 右边：建议配比 */}
+                <span 
+                  className="text-[17px] font-bold font-['Montserrat'] rounded-full px-4 py-1.5 shrink-0"
+                  style={{
+                    color: type.color,
+                    borderColor: `${type.color}45`,
+                    backgroundColor: `${type.color}0D`,
+                    border: '1px solid'
+                  }}
+                >
+                  配比 {type.ratio}
+                </span>
               </div>
             ))}
           </div>

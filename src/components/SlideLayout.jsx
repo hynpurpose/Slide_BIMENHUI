@@ -103,6 +103,7 @@ export default function SlideLayout({
         >
           {title && (
             <h1 
+              data-slide-title
               style={{
                 fontFamily: "'AlimamaShuHeiTi', sans-serif",
                 fontWeight: '700',

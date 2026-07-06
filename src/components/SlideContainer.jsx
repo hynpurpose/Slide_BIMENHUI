@@ -48,7 +48,7 @@ export default function SlideContainer({ children }) {
     }, [isFullscreen]);
 
     return (
-        <div className={`w-full h-full bg-zinc-600 flex items-center justify-center overflow-hidden antialiased selection:bg-zinc-100 ${isFullscreen ? 'p-0' : 'p-4 sm:p-8'}`}>
+        <div className={`w-full h-full bg-zinc-600 flex items-center justify-center overflow-hidden antialiased selection:bg-blue-600 selection:text-white ${isFullscreen ? 'p-0' : 'p-4 sm:p-8'}`}>
             <div ref={containerRef} className="w-full h-full flex items-center justify-center relative">
                 <div
                     className={`relative bg-white overflow-hidden origin-center transition-shadow duration-500 ${isFullscreen ? '' : 'shadow-[0_20px_50px_rgba(0,0,0,0.5)] rounded-xl'}`}
