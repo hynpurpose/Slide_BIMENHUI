@@ -8,6 +8,35 @@ const PROJECTS = [
   {
     brand: '方太',
     industry: '大家电行业',
+    total: 163,
+    cited: 83,
+    citations: 2491,
+    breakdown: [
+      { model: '豆包', count: 769 },
+      { model: 'Kimi', count: 770 },
+      { model: '文心', count: 642 },
+      { model: '元宝', count: 23 },
+      { model: 'DeepSeek', count: 287 },
+    ],
+  },
+  {
+    brand: 'OPPO手机',
+    industry: '3C数码',
+    total: 140,
+    cited: 90,
+    citations: 2125,
+    breakdown: [
+      { model: '豆包', count: 345 },
+      { model: 'Kimi', count: 354 },
+      { model: '文心', count: 750 },
+      { model: '元宝', count: 248 },
+      { model: 'DeepSeek', count: 157 },
+      { model: '通义', count: 271 },
+    ],
+  },
+  {
+    brand: '慕思',
+    industry: '睡眠科技行业',
     total: 140,
     cited: 46,
     citations: 1498,
@@ -18,44 +47,31 @@ const PROJECTS = [
     ],
   },
   {
-    brand: 'OPPO手机',
-    industry: '3C数码',
-    total: 96,
-    cited: 41,
-    citations: 2130,
-    breakdown: [
-      { model: '豆包', count: 1642 },
-      { model: 'DeepSeek', count: 312 },
-      { model: '通义', count: 176 },
-    ],
-  },
-  {
-    brand: '慕思',
-    industry: '睡眠科技行业',
-    total: 85,
-    cited: 29,
-    citations: 1287,
-    breakdown: [
-      { model: '豆包', count: 986 },
-      { model: 'DeepSeek', count: 201 },
-      { model: '通义', count: 100 },
-    ],
-  },
-  {
     brand: '古井贡酒',
     industry: '快消品行业',
-    total: 78,
-    cited: 24,
-    citations: 964,
+    total: 152,
+    cited: 71,
+    citations: 1836,
     breakdown: [
-      { model: '豆包', count: 720 },
-      { model: 'DeepSeek', count: 158 },
-      { model: '通义', count: 86 },
+      { model: '豆包', count: 512 },
+      { model: 'Kimi', count: 486 },
+      { model: '文心', count: 390 },
+      { model: '元宝', count: 96 },
+      { model: 'DeepSeek', count: 214 },
+      { model: '通义', count: 138 },
     ],
   },
 ];
 
-const BREAKDOWN_DOTS = ['bg-blue-500', 'bg-emerald-500', 'bg-teal-500'];
+// 各模型分项圆点配色（对照截图）
+const MODEL_DOT_COLORS = {
+  豆包: 'bg-blue-500',
+  Kimi: 'bg-emerald-500',
+  文心: 'bg-purple-500',
+  元宝: 'bg-amber-500',
+  DeepSeek: 'bg-teal-600',
+  通义: 'bg-teal-400',
+};
 
 function ProjectRow({ project }) {
   const rate = ((project.cited / project.total) * 100).toFixed(1);
@@ -118,10 +134,10 @@ function ProjectRow({ project }) {
           <span className="text-[22px] font-black text-zinc-900">次</span>
         </div>
         <span className="text-[17px] font-bold text-zinc-800 leading-none">累计引用频次</span>
-        <div className="flex items-center gap-4 mt-1">
+        <div className="grid grid-cols-3 gap-x-4 gap-y-1 mt-1 max-w-fit">
           {project.breakdown.map((b, i) => (
-            <span key={i} className="text-[15px] font-bold text-zinc-500 flex items-center gap-1.5">
-              <span className={`w-1.5 h-1.5 rounded-full ${BREAKDOWN_DOTS[i]}`} />
+            <span key={i} className="text-[15px] font-bold text-zinc-500 flex items-center gap-1.5 whitespace-nowrap">
+              <span className={`w-1.5 h-1.5 rounded-full shrink-0 ${MODEL_DOT_COLORS[b.model] || 'bg-zinc-400'}`} />
               {b.model}：<strong className="text-zinc-800 font-['Montserrat']">{b.count.toLocaleString()}</strong>
             </span>
           ))}
