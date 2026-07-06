@@ -138,8 +138,8 @@ export default function Page_SkyworthContentDirection() {
           <div className="h-24 border-l border-dashed border-zinc-900" />
         </div>
 
-        {/* ==================== 2. 数据分析板块 (480px) ==================== */}
-        <div className="w-[480px] h-full bg-zinc-950/20 border border-zinc-900 rounded-[24px] p-6 flex flex-col justify-between shadow-lg">
+        {/* ==================== 2. 数据分析板块 (530px) ==================== */}
+        <div className="w-[530px] h-full bg-zinc-950/20 border border-zinc-900 rounded-[24px] p-6 flex flex-col justify-between shadow-lg">
           <div className="shrink-0 mb-4">
             <h3 className="text-[28px] font-black text-white font-['MiSans']">
               2. 数据分析：AI 最常引用类型
@@ -203,58 +203,60 @@ export default function Page_SkyworthContentDirection() {
           <div className="h-24 border-l border-dashed border-zinc-900" />
         </div>
 
-        {/* ==================== 3. 常见文章类型板块 (800px) ==================== */}
-        <div className="w-[800px] h-full bg-zinc-950/20 border border-zinc-900 rounded-[24px] p-6 flex flex-col justify-between shadow-lg">
+        {/* ==================== 3. 常见文章类型板块 (750px) ==================== */}
+        <div className="w-[750px] h-full bg-zinc-950/20 border border-zinc-900 rounded-[24px] p-6 flex flex-col justify-between shadow-lg">
           <div className="shrink-0 mb-4">
             <h3 className="text-[28px] font-black text-white font-['MiSans']">
               3. 常见文章类型
             </h3>
           </div>
 
-          {/* 6个内容卡片列表，不含有说明小字，加大字号并拉宽序号与文字间距 */}
-          <div className="flex-grow grid grid-cols-2 gap-4 min-h-0 py-1">
+          {/* 6个内容卡片列表，改为单列垂直排列，极简横向结构，彻底解决双列分行奇怪的问题 */}
+          <div className="flex-grow flex flex-col justify-between py-1 min-h-0 gap-3">
             {campaignTypes.map((type, idx) => (
               <div 
                 key={idx}
-                className="flex items-center gap-8 bg-black/40 border rounded-[20px] px-7 py-5 hover:bg-white/[0.01] transition-all duration-300"
+                className="flex items-center justify-between bg-black/40 border rounded-[20px] px-8 py-4 hover:bg-white/[0.01] transition-all duration-300 h-[92px]"
                 style={{
                   borderColor: `${type.color}33`,
                   boxShadow: `0 4px 20px ${type.color}02`
                 }}
               >
-                {/* 左侧圆角序号 */}
-                <div 
-                  className="shrink-0 w-[68px] h-[68px] rounded-2xl flex items-center justify-center"
-                  style={{ 
-                    backgroundColor: `${type.color}14`, 
-                    border: `1px solid ${type.color}80` 
-                  }}
-                >
-                  <span
-                    className="font-['Montserrat'] text-[32px] font-black leading-none"
-                    style={{ color: type.color }}
+                {/* 左边：序号与类别名称 (拉开大间距) */}
+                <div className="flex items-center gap-10">
+                  {/* 圆角序号 */}
+                  <div 
+                    className="shrink-0 w-[54px] h-[54px] rounded-2xl flex items-center justify-center"
+                    style={{ 
+                      backgroundColor: `${type.color}14`, 
+                      border: `1px solid ${type.color}80` 
+                    }}
                   >
-                    {type.num}
-                  </span>
-                </div>
-
-                {/* 右侧：标题、配比 */}
-                <div className="flex-grow flex items-center justify-between gap-4 min-w-0">
+                    <span
+                      className="font-['Montserrat'] text-[26px] font-black leading-none"
+                      style={{ color: type.color }}
+                    >
+                      {type.num}
+                    </span>
+                  </div>
+                  {/* 类别名称 */}
                   <span className="text-[26px] font-black text-white font-['MiSans'] leading-none">
                     {type.category}
                   </span>
-                  <span 
-                    className="text-[17px] font-bold font-['Montserrat'] rounded-full px-3 py-[2px] shrink-0"
-                    style={{
-                      color: type.color,
-                      borderColor: `${type.color}45`,
-                      backgroundColor: `${type.color}0D`,
-                      border: '1px solid'
-                    }}
-                  >
-                    配比 {type.ratio}
-                  </span>
                 </div>
+
+                {/* 右边：建议配比 */}
+                <span 
+                  className="text-[17px] font-bold font-['Montserrat'] rounded-full px-4 py-1.5 shrink-0"
+                  style={{
+                    color: type.color,
+                    borderColor: `${type.color}45`,
+                    backgroundColor: `${type.color}0D`,
+                    border: '1px solid'
+                  }}
+                >
+                  配比 {type.ratio}
+                </span>
               </div>
             ))}
           </div>
