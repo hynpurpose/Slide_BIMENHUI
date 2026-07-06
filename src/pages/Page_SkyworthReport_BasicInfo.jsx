@@ -73,13 +73,19 @@ function SectionTitle({ children, size = 'default', className = '' }) {
     );
 }
 
-function ConfigPanel({ compact = false, tight = false, brandEntryRow = false }) {
-    const labelClass = tight ? 'text-[14px] xl:text-[15px]' : compact ? 'text-[17px] xl:text-[19px]' : 'text-[20px] xl:text-[22px]';
+function ConfigPanel({ compact = false, tight = false, brandEntryRow = false, textUp2 = false }) {
+    const labelClass = textUp2 && compact && !tight
+        ? 'text-[19px] xl:text-[21px]'
+        : tight ? 'text-[14px] xl:text-[15px]' : compact ? 'text-[17px] xl:text-[19px]' : 'text-[20px] xl:text-[22px]';
     const valueLarge = tight ? 'text-[24px] xl:text-[26px]' : compact ? 'text-[32px] xl:text-[36px]' : 'text-[38px] xl:text-[42px]';
     const valueNormal = tight ? 'text-[18px] xl:text-[20px]' : compact ? 'text-[24px] xl:text-[26px]' : 'text-[28px] xl:text-[32px]';
     const tagClass = tight ? 'text-[12px] xl:text-[13px]' : compact ? 'text-[15px] xl:text-[17px]' : 'text-[18px] xl:text-[20px]';
-    const detailClass = tight ? 'text-[13px] xl:text-[14px]' : compact ? 'text-[15px] xl:text-[17px]' : 'text-[18px] xl:text-[20px]';
-    const noteClass = tight ? 'text-[13px] xl:text-[14px]' : compact ? 'text-[16px] xl:text-[18px]' : 'text-[20px] xl:text-[22px]';
+    const detailClass = textUp2 && compact && !tight
+        ? 'text-[17px] xl:text-[19px]'
+        : tight ? 'text-[13px] xl:text-[14px]' : compact ? 'text-[15px] xl:text-[17px]' : 'text-[18px] xl:text-[20px]';
+    const noteClass = textUp2 && compact && !tight
+        ? 'text-[18px] xl:text-[20px]'
+        : tight ? 'text-[13px] xl:text-[14px]' : compact ? 'text-[16px] xl:text-[18px]' : 'text-[20px] xl:text-[22px]';
     const gapClass = tight ? 'gap-1.5' : compact ? 'gap-2.5' : 'gap-4';
     const itemPy = tight ? 'py-1' : compact ? 'py-1.5' : 'py-2';
     const panelPad = tight ? 'py-3 px-4 xl:py-3.5 xl:px-5' : 'py-4 px-5 xl:py-5 xl:px-7';
@@ -181,9 +187,13 @@ function ConfigPanel({ compact = false, tight = false, brandEntryRow = false }) 
     );
 }
 
-function SummaryPanel({ compact = false, brief = false, tight = false }) {
-    const subLabelClass = tight ? 'text-[14px] xl:text-[15px]' : compact ? 'text-[17px] xl:text-[19px]' : 'text-[20px] xl:text-[22px]';
-    const bodyClass = tight ? 'text-[14px] xl:text-[15px]' : compact ? 'text-[18px] xl:text-[20px]' : 'text-[22px] xl:text-[24px]';
+function SummaryPanel({ compact = false, brief = false, tight = false, textUp2 = false }) {
+    const subLabelClass = textUp2 && compact && !tight
+        ? 'text-[19px] xl:text-[21px]'
+        : tight ? 'text-[14px] xl:text-[15px]' : compact ? 'text-[17px] xl:text-[19px]' : 'text-[20px] xl:text-[22px]';
+    const bodyClass = textUp2 && compact && !tight
+        ? 'text-[20px] xl:text-[22px]'
+        : tight ? 'text-[14px] xl:text-[15px]' : compact ? 'text-[18px] xl:text-[20px]' : 'text-[22px] xl:text-[24px]';
     const highlightClass = compact ? 'text-[22px] xl:text-[24px]' : 'text-[26px] xl:text-[30px]';
     const pctClass = compact ? 'text-[24px] xl:text-[28px]' : 'text-[30px] xl:text-[34px]';
     const gapClass = tight ? 'gap-2.5' : compact ? 'gap-4' : 'gap-6';
@@ -308,10 +318,12 @@ function InfoStrip() {
     );
 }
 
-function MetricCard({ title, value, unit, note, size = 'large', decor = true }) {
+function MetricCard({ title, value, unit, note, size = 'large', decor = true, textUp2 = false }) {
     const sizeMap = {
         large: { title: 'text-[26px] xl:text-[28px]', value: 'text-[84px] xl:text-[96px]', unit: 'text-[30px] xl:text-[34px]', note: 'text-[22px] xl:text-[24px]', pad: 'px-6 py-6 xl:px-8 xl:py-8' },
-        medium: { title: 'text-[20px] xl:text-[22px]', value: 'text-[56px] xl:text-[64px]', unit: 'text-[22px] xl:text-[26px]', note: 'text-[16px] xl:text-[18px]', pad: 'px-4 py-4 xl:px-5 xl:py-5' },
+        medium: textUp2
+            ? { title: 'text-[22px] xl:text-[24px]', value: 'text-[56px] xl:text-[64px]', unit: 'text-[22px] xl:text-[26px]', note: 'text-[18px] xl:text-[20px]', pad: 'px-4 py-4 xl:px-5 xl:py-5' }
+            : { title: 'text-[20px] xl:text-[22px]', value: 'text-[56px] xl:text-[64px]', unit: 'text-[22px] xl:text-[26px]', note: 'text-[16px] xl:text-[18px]', pad: 'px-4 py-4 xl:px-5 xl:py-5' },
         compact: { title: 'text-[18px] xl:text-[20px]', value: 'text-[48px] xl:text-[52px]', unit: 'text-[18px] xl:text-[20px]', note: 'text-[14px] xl:text-[16px]', pad: 'px-4 py-3 xl:px-5 xl:py-4' },
         grid: { title: 'text-[14px] xl:text-[15px]', value: 'text-[30px] xl:text-[34px]', unit: 'text-[13px] xl:text-[14px]', note: 'text-[11px] xl:text-[12px]', pad: 'px-3 py-2.5 xl:px-3.5 xl:py-3' },
         inline: { title: 'text-[15px] xl:text-[17px]', value: 'text-[40px] xl:text-[44px]', unit: 'text-[16px] xl:text-[18px]', note: 'text-[12px] xl:text-[14px]', pad: 'px-3 py-3 xl:px-4 xl:py-4' },
@@ -352,14 +364,14 @@ function MetricCard({ title, value, unit, note, size = 'large', decor = true }) 
     );
 }
 
-function MetricsGrid({ size = 'compact', cols = 3, decor = false, className = '' }) {
+function MetricsGrid({ size = 'compact', cols = 3, decor = false, className = '', textUp2 = false }) {
     return (
         <div
             className={`grid gap-4 xl:gap-5 ${className}`}
             style={{ gridTemplateColumns: `repeat(${cols}, minmax(0, 1fr))` }}
         >
             {METRICS.map((m) => (
-                <MetricCard key={m.title} size={size} decor={decor} {...m} />
+                <MetricCard key={m.title} size={size} decor={decor} textUp2={textUp2} {...m} />
             ))}
         </div>
     );
@@ -406,15 +418,15 @@ export function Page_SkyworthReport_BasicInfo_B() {
             <div className="w-full h-full flex animate-fade-in min-h-0 gap-5 xl:gap-6">
                 <FontStyle />
                 <div className="w-[52%] flex flex-col gap-4 min-h-0">
-                    <ConfigPanel compact brandEntryRow />
-                    <SummaryPanel compact brief />
+                    <ConfigPanel compact brandEntryRow textUp2 />
+                    <SummaryPanel compact brief textUp2 />
                 </div>
                 <div className="w-[48%] flex flex-col min-h-0">
                     <div className="flex items-center gap-2.5 shrink-0 mb-3">
                         <span className="w-2 h-5 bg-[#004CE5] rounded-full shadow-[0_0_8px_rgba(0,76,229,0.8)]" />
                         <h3 className="text-[22px] xl:text-[24px] font-bold text-white">六项核心指标</h3>
                     </div>
-                    <MetricsGrid size="medium" cols={2} decor className="flex-1 min-h-0" />
+                    <MetricsGrid size="medium" cols={2} decor textUp2 className="flex-1 min-h-0" />
                 </div>
             </div>
         </SlideLayout>
