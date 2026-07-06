@@ -80,15 +80,15 @@ function EeatExpansions({ className = '', cols = 2, variant = 'compact' }) {
 }
 
 /* 共用：盖章打叉标识 */
-function RejectStamp() {
+function RejectStamp({ className = 'absolute -right-2 top-1/2 -translate-y-1/2' }) {
   return (
     <div
-      className="absolute -right-2 top-1/2 -translate-y-1/2 rotate-[-14deg] pointer-events-none select-none"
+      className={`${className} rotate-[-14deg] pointer-events-none select-none z-30`}
       aria-hidden
     >
-      <div className="relative flex items-center justify-center w-[148px] h-[148px] rounded-full border-[4px] border-red-500/85 text-red-500 shadow-[0_0_28px_rgba(239,68,68,0.22)]">
-        <span className="absolute inset-0 flex items-center justify-center text-[92px] font-black leading-none opacity-90">✕</span>
-        <span className="relative z-10 mt-14 text-[22px] font-black font-['MiSans'] tracking-[0.35em] text-red-400/95">
+      <div className="relative flex items-center justify-center w-[128px] h-[128px] rounded-full border-[3px] border-red-500/85 text-red-500 shadow-[0_0_24px_rgba(239,68,68,0.18)] bg-black/40">
+        <span className="absolute inset-0 flex items-center justify-center text-[84px] font-black leading-none opacity-90">✕</span>
+        <span className="relative z-10 mt-12 text-[19px] font-black font-['MiSans'] tracking-[0.35em] text-red-400/95">
           不适配
         </span>
       </div>
@@ -105,14 +105,13 @@ export function Page_GeoContentPrinciples_A() {
 
   const RightCard = ({ index, title, children }) => (
     <div
-      className="flex-1 min-h-0 rounded-[22px] px-8 py-6 flex flex-col"
-      style={{ background: 'rgba(255,255,255,0.06)', border: '1px solid rgba(255,255,255,0.12)' }}
+      className="flex-1 min-h-0 rounded-[22px] px-8 py-6 flex flex-col justify-center bg-white/[0.02] border border-white/[0.08]"
     >
-      <div className="flex items-baseline gap-3 mb-3 shrink-0">
-        <span className="font-['Montserrat'] text-[32px] font-black leading-none text-blue-200/80">{index}</span>
-        <span className="text-[32px] font-black text-white font-['MiSans']">{title}</span>
+      <div className="flex items-baseline gap-3 mb-2.5 shrink-0">
+        <span className="font-['Montserrat'] text-[28px] xl:text-[32px] font-black leading-none text-[#004CE5]">{index}</span>
+        <span className="text-[28px] xl:text-[32px] font-black text-white font-['MiSans']">{title}</span>
       </div>
-      <p className="text-[24px] text-blue-100/85 leading-[40px] font-['MiSans']">{children}</p>
+      <p className="text-[20px] xl:text-[22px] text-zinc-300 leading-relaxed font-['MiSans']">{children}</p>
     </div>
   );
 
@@ -125,13 +124,14 @@ export function Page_GeoContentPrinciples_A() {
       >
         <div className="flex-1 min-h-0 grid grid-cols-2 gap-10 items-stretch">
           {/* 左：EEAT */}
-          <div className="rounded-[30px] border border-zinc-800 bg-[#0D0D10]/60 px-11 py-10 flex flex-col min-h-0">
+          <div className="rounded-[30px] border border-zinc-900 bg-zinc-950/20 px-11 py-10 flex flex-col min-h-0 relative">
+            <RejectStamp className="absolute right-8 top-8" />
             <div className="shrink-0 mb-8 flex flex-col justify-end" style={{ height: headerH }}>
-              <span className="text-[24px] font-bold tracking-[0.06em] text-zinc-500 font-['MiSans']">
+              <h3 className="text-[44px] xl:text-[48px] font-black text-zinc-100 font-['MiSans'] leading-tight">
                 讨论最多的是
-              </span>
-              <div className="mt-5">
-                <span className="text-zinc-300 font-['Montserrat'] font-black text-[64px] leading-none">
+              </h3>
+              <div className="mt-2.5">
+                <span className="text-zinc-500 font-['Montserrat'] font-black text-[28px] tracking-wider leading-none">
                   E-E-A-T
                 </span>
               </div>
@@ -146,32 +146,25 @@ export function Page_GeoContentPrinciples_A() {
               <p className="text-[26px] text-zinc-400 leading-[40px] font-['MiSans']">
                 常用于国外模型优化
               </p>
-              <div className="relative pr-[160px] pt-1">
-                <p className="text-[26px] text-zinc-300 leading-[40px] font-['MiSans']">
-                  但和中国模型实际情况
-                  <strong className="text-zinc-100 font-bold">并不适配</strong>。
-                </p>
-                <RejectStamp />
-              </div>
+              <p className="text-[26px] text-zinc-300 leading-[40px] font-['MiSans']">
+                但和中国模型实际情况 <strong className="text-white font-bold">并不适配</strong>。
+              </p>
             </div>
           </div>
 
           {/* 右：用户视角议论文 */}
           <div
-            className="rounded-[30px] px-11 py-10 flex flex-col min-h-0"
-            style={{
-              background: `linear-gradient(135deg, ${BLUE} 0%, #0B2E80 100%)`,
-              boxShadow: '0 20px 50px -15px rgba(0,76,229,0.5)',
-              border: '1px solid rgba(96,143,255,0.4)',
-            }}
+            className="rounded-[30px] px-11 py-10 flex flex-col min-h-0 relative bg-gradient-to-br from-[#004CE5]/5 to-zinc-950/20 border border-[#004CE5]/30 shadow-[0_12px_40px_rgba(0,76,229,0.05)]"
           >
             <div className="shrink-0 mb-8 flex flex-col justify-end" style={{ height: headerH }}>
-              <span className="text-[24px] font-bold tracking-[0.06em] text-blue-100/80 font-['MiSans']">
-                我们实践有效的是
-              </span>
-              <p className="text-[44px] font-black text-white font-['MiSans'] leading-[1.2] mt-5">
-                写用户视角的议论文
-              </p>
+              <h3 className="text-[44px] xl:text-[48px] font-black text-white font-['MiSans'] leading-tight">
+                我们实践最有效的是
+              </h3>
+              <div className="mt-2.5">
+                <span className="text-[#004CE5] font-['MiSans'] font-extrabold text-[28px] leading-none">
+                  写用户视角的议论文
+                </span>
+              </div>
             </div>
 
             <div className="flex-1 min-h-0 flex flex-col gap-5">
@@ -185,7 +178,7 @@ export function Page_GeoContentPrinciples_A() {
               </RightCard>
             </div>
 
-            <p className="text-[26px] text-blue-100/80 font-['MiSans'] mt-6 shrink-0">
+            <p className="text-[26px] text-zinc-400 font-['MiSans'] mt-6 shrink-0">
               这样的内容，AI 更容易<strong className="text-white font-bold">抓取和理解</strong>。
             </p>
           </div>
