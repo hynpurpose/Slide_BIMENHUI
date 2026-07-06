@@ -6,8 +6,28 @@ import { fileURLToPath } from 'url';
 
 const __dirname = path.dirname(fileURLToPath(import.meta.url));
 
-/* 把指定幻灯片里视频 pic 的矩形几何改成圆角矩形（封面图与播放画面共用同一形状） */
-async function roundVideoCorners(pptxPath, adjBySlide) {
+/* PowerPoint「自动播放」的 timing 节点模板（{SPID} 为视频 pic 的形状 id） */
+const AUTOPLAY_TIMING_XML =
+    '<p:timing><p:tnLst><p:par><p:cTn id="1" dur="indefinite" restart="never" nodeType="tmRoot"><p:childTnLst>' +
+    '<p:seq concurrent="1" nextAc="seek"><p:cTn id="2" dur="indefinite" nodeType="mainSeq"><p:childTnLst>' +
+    '<p:par><p:cTn id="3" fill="hold"><p:stCondLst><p:cond delay="indefinite"/><p:cond evt="onBegin" delay="0"><p:tn val="2"/></p:cond></p:stCondLst><p:childTnLst>' +
+    '<p:par><p:cTn id="4" fill="hold"><p:stCondLst><p:cond delay="0"/></p:stCondLst><p:childTnLst>' +
+    '<p:par><p:cTn id="5" presetID="1" presetClass="mediacall" presetSubtype="0" fill="hold" nodeType="afterEffect"><p:stCondLst><p:cond delay="0"/></p:stCondLst><p:childTnLst>' +
+    '<p:cmd type="call" cmd="playFrom(0.0)"><p:cBhvr><p:cTn id="6" dur="1" fill="hold"/><p:tgtEl><p:spTgt spid="{SPID}"/></p:tgtEl></p:cBhvr></p:cmd>' +
+    '</p:childTnLst></p:cTn></p:par></p:childTnLst></p:cTn></p:par></p:childTnLst></p:cTn></p:par>' +
+    '</p:childTnLst></p:cTn>' +
+    '<p:prevCondLst><p:cond evt="onPrev" delay="0"><p:tgtEl><p:sldTgt/></p:tgtEl></p:cond></p:prevCondLst>' +
+    '<p:nextCondLst><p:cond evt="onNext" delay="0"><p:tgtEl><p:sldTgt/></p:tgtEl></p:cond></p:nextCondLst></p:seq>' +
+    '<p:video><p:cMediaNode vol="80000"><p:cTn id="7" fill="hold" display="0" masterRel="sameClick">' +
+    '<p:stCondLst><p:cond evt="onBegin" delay="0"><p:tn val="5"/></p:cond></p:stCondLst>' +
+    '<p:endCondLst><p:cond evt="onStopAudio" delay="0"><p:tgtEl><p:sldTgt/></p:tgtEl></p:cond></p:endCondLst>' +
+    '</p:cTn><p:tgtEl><p:spTgt spid="{SPID}"/></p:tgtEl></p:cMediaNode></p:video>' +
+    '</p:childTnLst></p:cTn></p:par></p:tnLst></p:timing>';
+
+/* 后处理含视频的幻灯片：
+ * 1. 视频 pic 的矩形几何改成圆角矩形（封面图与播放画面共用同一形状）
+ * 2. 注入 timing 节点，放映到该页时视频自动播放 */
+async function postProcessVideoSlides(pptxPath, adjBySlide) {
     const { default: JSZip } = await import('jszip');
     const zip = await JSZip.loadAsync(fs.readFileSync(pptxPath));
     for (const [slideNum, adj] of Object.entries(adjBySlide)) {
@@ -15,13 +35,24 @@ async function roundVideoCorners(pptxPath, adjBySlide) {
         const file = zip.file(name);
         if (!file) continue;
         let xml = await file.async('string');
+        let spid = null;
         xml = xml.replace(/<p:pic>[\s\S]*?<\/p:pic>/g, (pic) => {
             if (!pic.includes('<a:videoFile')) return pic;
-            return pic.replace(
-                '<a:prstGeom prst="rect"><a:avLst/></a:prstGeom>',
-                `<a:prstGeom prst="roundRect"><a:avLst><a:gd name="adj" fmla="val ${adj}"/></a:avLst></a:prstGeom>`
-            );
+            spid = pic.match(/<p:cNvPr id="(\d+)"/)?.[1] || null;
+            if (adj > 0) {
+                pic = pic.replace(
+                    '<a:prstGeom prst="rect"><a:avLst/></a:prstGeom>',
+                    `<a:prstGeom prst="roundRect"><a:avLst><a:gd name="adj" fmla="val ${adj}"/></a:avLst></a:prstGeom>`
+                );
+            }
+            return pic;
         });
+        if (spid && !xml.includes('<p:timing>')) {
+            xml = xml.replace(
+                '</p:sld>',
+                AUTOPLAY_TIMING_XML.replace(/\{SPID\}/g, spid) + '</p:sld>'
+            );
+        }
         zip.file(name, xml);
     }
     fs.writeFileSync(
@@ -152,6 +183,8 @@ async function run() {
                     y: (rect.top - rootRect.top) / rootRect.height,
                     w: rect.width / rootRect.width,
                     h: rect.height / rootRect.height,
+                    radiusPx: radius,
+                    cssW: rect.width,
                     // roundRect 的 adj：圆角半径占短边的比例 × 100000
                     adj: Math.round((radius / Math.min(rect.width, rect.height)) * 100000),
                 };
@@ -165,7 +198,32 @@ async function run() {
                         const videoEl = await page.$('video');
                         if (videoEl) {
                             const buf = await videoEl.screenshot({ type: 'png' });
-                            cover = `data:image/png;base64,${buf.toString('base64')}`;
+                            const rawCover = `data:image/png;base64,${buf.toString('base64')}`;
+                            // 给封面图烘焙圆角透明度：即使播放器不认 roundRect 几何，
+                            // 静态封面四角也不会盖住底图的圆角边框
+                            cover = await page.evaluate(
+                                async (dataUrl, radiusPx, cssW) => {
+                                    const img = new Image();
+                                    await new Promise((res, rej) => {
+                                        img.onload = res;
+                                        img.onerror = rej;
+                                        img.src = dataUrl;
+                                    });
+                                    const scale = img.width / cssW;
+                                    const c = document.createElement('canvas');
+                                    c.width = img.width;
+                                    c.height = img.height;
+                                    const ctx = c.getContext('2d');
+                                    ctx.beginPath();
+                                    ctx.roundRect(0, 0, c.width, c.height, radiusPx * scale);
+                                    ctx.clip();
+                                    ctx.drawImage(img, 0, 0);
+                                    return c.toDataURL('image/png');
+                                },
+                                rawCover,
+                                videoInfo.radiusPx,
+                                videoInfo.cssW
+                            );
                         }
                     } catch (_) { /* 封面截图失败时用默认播放键封面 */ }
 
@@ -178,7 +236,7 @@ async function run() {
                         w: videoInfo.w * 10,
                         h: videoInfo.h * 5.625,
                     });
-                    if (videoInfo.adj > 0) videoAdjBySlide[addedSlides] = videoInfo.adj;
+                    videoAdjBySlide[addedSlides] = videoInfo.adj;
                 }
             }
         }
@@ -197,7 +255,7 @@ async function run() {
     console.log('Generating PPTX file...');
     await pptx.writeFile({ fileName: outputName });
     if (Object.keys(videoAdjBySlide).length > 0) {
-        await roundVideoCorners(outputName, videoAdjBySlide);
+        await postProcessVideoSlides(outputName, videoAdjBySlide);
     }
     console.log(`Export complete: ${outputName}`);
     await browser.close();
