@@ -1,8 +1,10 @@
 import puppeteer from 'puppeteer';
 import pptxgen from 'pptxgenjs';
 import fs from 'fs';
+import os from 'os';
 import path from 'path';
 import { fileURLToPath } from 'url';
+import { execFileSync } from 'child_process';
 
 const __dirname = path.dirname(fileURLToPath(import.meta.url));
 
@@ -160,9 +162,16 @@ async function run() {
             const slide = pptx.addSlide();
             addedSlides += 1;
             slide.background = { fill: '000000' };
+            slide.addImage({
+                data: `image/png;base64,${screenshotBuffer.toString('base64')}`,
+                x: 0,
+                y: 0,
+                w: 10,
+                h: 5.625
+            });
 
-            // 页面里若有 <video>，采用「视频在底层 + 挖圆角洞的整页截图在顶层」的叠层结构：
-            // 圆角由顶层截图的透明像素决定，不依赖播放器对形状几何的支持（Keynote 兼容）
+            // 页面里若有 <video>：视频叠在整页截图上方（保证放映时可点击播放），
+            // 四角用「角贴片」小图盖住，圆角效果不依赖播放器对形状几何的支持（Keynote 兼容）
             const videoInfo = await page.evaluate(() => {
                 const root = document.querySelector('.origin-center') || document.body;
                 const video = root.querySelector('video');
@@ -188,10 +197,9 @@ async function run() {
                 videoInfo && videoInfo.src.startsWith('/')
                     ? path.join(__dirname, 'public', videoInfo.src)
                     : null;
-            let slideImgData = `image/png;base64,${screenshotBuffer.toString('base64')}`;
 
             if (videoPath && fs.existsSync(videoPath)) {
-                // 1. 底层：视频（封面用视频元素截图，含播放键/角标，烘焙圆角透明度）
+                // 封面：视频元素截图（含播放键/LIVE 角标），烘焙圆角透明度
                 let cover;
                 try {
                     const videoEl = await page.$('video');
@@ -224,9 +232,31 @@ async function run() {
                     }
                 } catch (_) { /* 封面截图失败时用默认播放键封面 */ }
 
+                // Keynote 不认自带封面、直接拿视频第一帧当封面，
+                // 所以把封面画面烧进视频开头 0.2 秒：静态显示播放键/角标，开播即消失
+                let mediaPath = videoPath;
+                if (cover) {
+                    try {
+                        const tmpDir = fs.mkdtempSync(path.join(os.tmpdir(), 'pptx-video-'));
+                        const coverPng = path.join(tmpDir, 'cover.png');
+                        fs.writeFileSync(coverPng, Buffer.from(cover.split(',')[1], 'base64'));
+                        const bakedMp4 = path.join(tmpDir, 'baked.mp4');
+                        execFileSync('ffmpeg', [
+                            '-y', '-i', videoPath, '-i', coverPng,
+                            '-filter_complex',
+                            "[1:v][0:v]scale2ref[ov][base];[base][ov]overlay=0:0:enable='lte(t,0.2)'",
+                            '-c:a', 'copy', '-pix_fmt', 'yuv420p', '-movflags', '+faststart',
+                            bakedMp4,
+                        ], { stdio: 'ignore' });
+                        mediaPath = bakedMp4;
+                    } catch (_) {
+                        // ffmpeg 不可用时退回原视频（仅影响 Keynote 的静态封面样式）
+                    }
+                }
+
                 slide.addMedia({
                     type: 'video',
-                    path: videoPath,
+                    path: mediaPath,
                     cover,
                     x: videoInfo.x * 10,
                     y: videoInfo.y * 5.625,
@@ -235,9 +265,9 @@ async function run() {
                 });
                 videoAdjBySlide[addedSlides] = videoInfo.adj;
 
-                // 2. 顶层：整页截图，在视频位置挖一个圆角透明窗口
-                //    （窗口向内收缩 1px，保证截图里的圆角边框像素保留在顶层）
-                const holedDataUrl = await page.evaluate(
+                // 四角贴片：从整页截图上裁下视频四个角、抠掉圆角内区域，
+                // 盖在视频上方还原圆角边框，同时不遮挡视频主体的点击
+                const patches = await page.evaluate(
                     async (dataUrl, info) => {
                         const img = new Image();
                         await new Promise((res, rej) => {
@@ -245,39 +275,51 @@ async function run() {
                             img.onerror = rej;
                             img.src = dataUrl;
                         });
-                        const c = document.createElement('canvas');
-                        c.width = img.width;
-                        c.height = img.height;
-                        const ctx = c.getContext('2d');
-                        ctx.drawImage(img, 0, 0);
-                        const holeW = info.w * img.width;
-                        const scale = holeW / info.cssW;
-                        const inset = 1 * scale;
-                        ctx.globalCompositeOperation = 'destination-out';
-                        ctx.beginPath();
-                        ctx.roundRect(
-                            info.x * img.width + inset,
-                            info.y * img.height + inset,
-                            holeW - inset * 2,
-                            info.h * img.height - inset * 2,
-                            Math.max(0, info.radiusPx * scale - inset)
-                        );
-                        ctx.fill();
-                        return c.toDataURL('image/png');
+                        const scale = (info.w * img.width) / info.cssW;
+                        const sCss = info.radiusPx + 3;
+                        const s = sCss * scale;
+                        const vx = info.x * img.width;
+                        const vy = info.y * img.height;
+                        const vw = info.w * img.width;
+                        const vh = info.h * img.height;
+                        const corners = [
+                            { px: vx, py: vy },
+                            { px: vx + vw - s, py: vy },
+                            { px: vx, py: vy + vh - s },
+                            { px: vx + vw - s, py: vy + vh - s },
+                        ];
+                        return corners.map(({ px, py }) => {
+                            const c = document.createElement('canvas');
+                            c.width = Math.round(s);
+                            c.height = Math.round(s);
+                            const ctx = c.getContext('2d');
+                            ctx.drawImage(img, -px, -py);
+                            ctx.globalCompositeOperation = 'destination-out';
+                            ctx.beginPath();
+                            ctx.roundRect(vx - px, vy - py, vw, vh, info.radiusPx * scale);
+                            ctx.fill();
+                            return {
+                                data: c.toDataURL('image/png'),
+                                fx: px / img.width,
+                                fy: py / img.height,
+                                fw: s / img.width,
+                                fh: s / img.height,
+                            };
+                        });
                     },
-                    `data:${slideImgData}`,
+                    `data:image/png;base64,${screenshotBuffer.toString('base64')}`,
                     videoInfo
                 );
-                slideImgData = holedDataUrl.replace('data:', '');
+                for (const p of patches) {
+                    slide.addImage({
+                        data: p.data.replace('data:', ''),
+                        x: p.fx * 10,
+                        y: p.fy * 5.625,
+                        w: p.fw * 10,
+                        h: p.fh * 5.625,
+                    });
+                }
             }
-
-            slide.addImage({
-                data: slideImgData,
-                x: 0,
-                y: 0,
-                w: 10,
-                h: 5.625
-            });
         }
 
         if (i < totalSlides - 1) {
