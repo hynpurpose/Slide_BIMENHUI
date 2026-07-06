@@ -154,75 +154,124 @@ const fmtChartDate = (dateStr) => {
   return `${Number(m)}月${Number(d)}日`;
 };
 
-/* ── 两张图共用同一套几何参数，保证观感一致 ── */
+/* ── 两张图共用的几何参数：总高一致，保证 viewBox 缩放后文字大小一致 ── */
 const CHART = {
   width: 620,
-  axisW: 50, // Y 轴文字区宽度（chart-base ChartYAxis width=50）
-  topPad: 20, // 绘图区上留白
-  plotH: 160, // 绘图区高度（两图一致）
-  tickCount: 5,
+  height: 232,
+  axisW: 50, // chart-base ChartYAxis width=50
 };
-
-/* Y 轴刻度 + 横向虚线网格 + 底部轴线（chart-base ChartGrid/ChartYAxis 样式） */
-function ChartAxes({ ticks, y, axisY, width, fmt }) {
-  return (
-    <>
-      {ticks.map((t, i) => (
-        <g key={i}>
-          <line x1={CHART.axisW} x2={width} y1={y(t)} y2={y(t)} stroke={C.grid} strokeWidth="1" strokeDasharray="3 3" />
-          <text x={CHART.axisW - 8} y={y(t) + 4} textAnchor="end" fontSize="12" fill={C.axis}>
-            {fmt(t)}
-          </text>
-        </g>
-      ))}
-      <line x1={CHART.axisW} x2={width} y1={axisY} y2={axisY} stroke={C.grid} strokeWidth="1" />
-    </>
-  );
-}
 
 const fmtTick = (t) => `${Number(t.toFixed(1))}%`;
 
-/* 折线趋势图：横向虚线网格、#888 轴文字、蓝线宽2无数据点、X轴左右 padding 26 */
-function TrendLineChart({ data }) {
-  const { width, axisW, topPad, plotH } = CHART;
-  const bottomH = 30;
-  const height = topPad + plotH + bottomH;
+/* Y 轴刻度文字 + 对应虚线网格（ChartGrid horizontalCoordinatesGenerator 只在刻度处画线） */
+function ChartTicks({ ticks, y, width }) {
+  return ticks.map((t, i) => (
+    <g key={i}>
+      <line x1={CHART.axisW} x2={width} y1={y(t)} y2={y(t)} stroke={C.grid} strokeWidth="1" strokeDasharray="3 3" />
+      <text x={CHART.axisW - 8} y={y(t) + 4} textAnchor="end" fontSize="12" fill={C.axis}>
+        {fmtTick(t)}
+      </text>
+    </g>
+  ));
+}
 
-  const values = data.map((d) => d.value);
+/* 移植 chart-y-axis.ts computeAdaptiveYAxis（autoOccupancyFromSpan 默认参数）：
+   轴范围以数据中点对称展开，5 个刻度取轴范围的 1/6~5/6 内部等分点 */
+function adaptiveYAxis(values) {
   const dataMin = Math.min(...values);
   const dataMax = Math.max(...values);
-  const range = dataMax - dataMin;
-  const pad = Math.max(range * 0.3, 2);
-  const yMin = Math.max(0, Math.floor((dataMin - pad) * 10) / 10);
-  const yMax = Math.min(100, Math.ceil((dataMax + pad) * 10) / 10);
-  const ticks = Array.from({ length: CHART.tickCount }, (_, i) => yMin + ((yMax - yMin) / (CHART.tickCount - 1)) * i);
+  const span = dataMax - dataMin;
+  const mid = (dataMin + dataMax) / 2;
+  // 放大倍数：span=0 → ×2，span≥30 → ×1，线性过渡
+  const mag = Math.max(1, 2 - Math.min(1, Math.max(0, span) / 30));
+  const occupancy = span === 0 ? 1 : Math.min(99, Math.max(1, span * mag));
+  const axisSpan = span > 0 ? span / (occupancy / 100) : 10;
+  let min = mid - axisSpan / 2;
+  let max = mid + axisSpan / 2;
+  if (min < 0) { max -= min; min = 0; }
+  if (max > 100) { min -= max - 100; max = 100; }
+  min = Math.max(0, min);
+  max = Math.min(100, max);
+  const ticks = Array.from({ length: 5 }, (_, i) => Math.round((min + ((max - min) / 6) * (i + 1)) * 10) / 10);
+  return { min, max, ticks };
+}
 
-  const xPad = 26;
+/* 单调三次插值（Fritsch–Carlson），等价 recharts type='monotone' 的平滑曲线 */
+function monotonePath(pts) {
+  const n = pts.length;
+  if (n < 3) return pts.map((p, i) => `${i ? 'L' : 'M'}${p[0]},${p[1]}`).join(' ');
+  const dx = [], m = [];
+  for (let i = 0; i < n - 1; i++) {
+    dx.push(pts[i + 1][0] - pts[i][0]);
+    m.push((pts[i + 1][1] - pts[i][1]) / dx[i]);
+  }
+  const t = [m[0]];
+  for (let i = 1; i < n - 1; i++) t.push(m[i - 1] * m[i] <= 0 ? 0 : (m[i - 1] + m[i]) / 2);
+  t.push(m[n - 2]);
+  for (let i = 0; i < n - 1; i++) {
+    if (m[i] === 0) { t[i] = 0; t[i + 1] = 0; continue; }
+    const a = t[i] / m[i];
+    const b = t[i + 1] / m[i];
+    const s = a * a + b * b;
+    if (s > 9) {
+      const f = 3 / Math.sqrt(s);
+      t[i] = f * a * m[i];
+      t[i + 1] = f * b * m[i];
+    }
+  }
+  let d = `M${pts[0][0]},${pts[0][1]}`;
+  for (let i = 0; i < n - 1; i++) {
+    d += `C${pts[i][0] + dx[i] / 3},${pts[i][1] + (t[i] * dx[i]) / 3},${pts[i + 1][0] - dx[i] / 3},${pts[i + 1][1] - (t[i + 1] * dx[i]) / 3},${pts[i + 1][0]},${pts[i + 1][1]}`;
+  }
+  return d;
+}
+
+/* 折线趋势图：monotone 平滑蓝线 + 线下点阵 Area + 自适应 Y 轴（内部刻度） */
+function TrendLineChart({ data }) {
+  const { width, height, axisW } = CHART;
+  const topPad = 10;
+  const bottomH = 30;
+  const plotH = height - topPad - bottomH;
+
+  const { min: yMin, max: yMax, ticks } = adaptiveYAxis(data.map((d) => d.value));
+
+  const xPad = 26; // ChartXAxis padding left/right 26
   const plotW = width - axisW - xPad * 2;
   const n = data.length;
   const axisY = topPad + plotH;
   const x = (i) => axisW + xPad + (n <= 1 ? plotW / 2 : (i / (n - 1)) * plotW);
   const y = (v) => topPad + plotH - ((v - yMin) / (yMax - yMin || 1)) * plotH;
-  const path = data.map((d, i) => `${i === 0 ? 'M' : 'L'}${x(i)},${y(d.value)}`).join(' ');
+  const pts = data.map((d, i) => [x(i), y(d.value)]);
+  const linePath = monotonePath(pts);
+  const areaPath = `${linePath} L${pts[n - 1][0]},${axisY} L${pts[0][0]},${axisY} Z`;
 
   return (
     <svg viewBox={`0 0 ${width} ${height}`} className="h-full w-full">
-      <ChartAxes ticks={ticks} y={y} axisY={axisY} width={width} fmt={fmtTick} />
+      <defs>
+        <pattern id="dotPattern-mention" patternUnits="userSpaceOnUse" width="6" height="6">
+          <circle cx="1.5" cy="1.5" r="1" fill="#d1d5db" />
+        </pattern>
+      </defs>
+      <ChartTicks ticks={ticks} y={y} width={width} />
+      <line x1={axisW} x2={width} y1={axisY} y2={axisY} stroke={C.grid} strokeWidth="1" />
       {data.map((d, i) => (
         <text key={i} x={x(i)} y={axisY + 20} textAnchor="middle" fontSize="12" fill={C.axis}>
           {d.label}
         </text>
       ))}
-      <path d={path} fill="none" stroke={C.blue} strokeWidth="2" strokeLinejoin="round" strokeLinecap="round" />
+      <path d={areaPath} fill="url(#dotPattern-mention)" stroke="none" />
+      <path d={linePath} fill="none" stroke={C.blue} strokeWidth="2" strokeLinejoin="round" strokeLinecap="round" />
     </svg>
   );
 }
 
-/* 平台对比柱状图：barSize 30、顶部圆角2、X轴 24px 平台logo 在上名字在下 */
+/* 平台对比柱状图：#252525 深色柱、barSize 30、顶部圆角2、
+   Y轴 padding bottom 15（柱底停在最低刻度线上）、margin top 50 */
 function PlatformBarChart({ data }) {
-  const { width, axisW, topPad, plotH } = CHART;
-  const bottomH = 60;
-  const height = topPad + plotH + bottomH;
+  const { width, height, axisW } = CHART;
+  const topPad = 50; // BarChart margin={{ top: 50 }}
+  const bottomH = 60; // XAxis height=60（logo+名字）
+  const plotH = height - topPad - bottomH;
 
   const values = data.map((d) => d.value);
   const dataMin = Math.min(...values);
@@ -235,26 +284,29 @@ function PlatformBarChart({ data }) {
     yMin = 0;
     yMax = Math.min(100, Math.max(10, dataMax + 5));
   }
-  const ticks = Array.from({ length: CHART.tickCount }, (_, i) => yMin + ((yMax - yMin) / (CHART.tickCount - 1)) * i);
+  const ticks = Array.from({ length: 5 }, (_, i) => Math.round((yMin + ((yMax - yMin) / 4) * i) * 10) / 10);
 
   const plotW = width - axisW;
   const axisY = topPad + plotH;
+  const padBottom = 15; // ChartYAxis padding={{ bottom: 15 }}
+  const baseY = axisY - padBottom;
   const slot = plotW / data.length;
   const barW = 30;
-  const y = (v) => topPad + plotH - ((v - yMin) / (yMax - yMin || 1)) * plotH;
+  const y = (v) => topPad + (plotH - padBottom) * (1 - (v - yMin) / (yMax - yMin || 1));
 
   return (
     <svg viewBox={`0 0 ${width} ${height}`} className="h-full w-full">
-      <ChartAxes ticks={ticks} y={y} axisY={axisY} width={width} fmt={fmtTick} />
+      <ChartTicks ticks={ticks} y={y} width={width} />
+      <line x1={axisW} x2={width} y1={axisY} y2={axisY} stroke={C.grid} strokeWidth="1" />
       {data.map((d, i) => {
         const cx = axisW + slot * i + slot / 2;
         const barTop = y(d.value);
-        const barH = Math.max(axisY - barTop, 0);
+        const barH = Math.max(baseY - barTop, 0);
         return (
           <g key={d.platform}>
             <path
               d={`M${cx - barW / 2},${barTop + 2} a2,2 0 0 1 2,-2 h${barW - 4} a2,2 0 0 1 2,2 v${Math.max(barH - 2, 0)} h${-barW} Z`}
-              fill={C.blue}
+              fill="#252525"
             />
             {d.iconUrl && <image href={d.iconUrl} x={cx - 12} y={axisY + 6} width="24" height="24" />}
             <text x={cx} y={axisY + 46} textAnchor="middle" fontSize="12" fill={C.axis}>
@@ -437,7 +489,7 @@ export function Page_SkyworthReport_OptDashboardHtml() {
                           metricLabel: '目标产品提及率',
                           metric: `${mentionRate}%`,
                           chart: (
-                            <div className="flex-1 pt-2">
+                            <div className="flex-1">
                               <PlatformBarChart data={barData} />
                             </div>
                           ),
