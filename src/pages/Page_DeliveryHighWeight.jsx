@@ -53,11 +53,10 @@ export default function Page_DeliveryHighWeight() {
                   return (
                     <div
                       key={idx}
-                      className={`flex justify-between items-center h-[80px] px-4 rounded-xl border transition-all duration-300 ${
-                        isDouyin
+                      className={`flex justify-between items-center h-[80px] px-4 rounded-xl border transition-all duration-300 ${isDouyin
                           ? "border-[#FF0050]/40 bg-[#FF0050]/5 shadow-[0_0_20px_rgba(255,0,80,0.06)]"
                           : "border-transparent hover:bg-zinc-100/60"
-                      }`}
+                        }`}
                     >
                       <div className="flex items-center gap-4 min-w-0">
                         {/* 排名 */}
@@ -122,7 +121,7 @@ export default function Page_DeliveryHighWeight() {
               <AlertTriangle size={15} className="text-[#0052FF]" />
             </div>
             <span className="text-[20px] xl:text-[22px] font-black text-white font-['MiSans'] leading-none">
-              原因：AI 不读取视频，只是字节内部的政治任务（倾斜自家抖音链接）
+              可能原因：AI不会耗费大量Token去读取视频，更像是字节内部的政治任务（倾斜自家抖音链接）
             </span>
           </div>
           <span className="text-[12px] text-zinc-500 font-bold font-['Montserrat'] tracking-widest leading-none">
