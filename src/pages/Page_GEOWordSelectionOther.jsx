@@ -100,8 +100,14 @@ export default function Page_GEOWordSelectionOther() {
           </div>
         </div>
 
-        {/* 中间过渡：横平居中于两框缝隙 */}
-        <div className="w-[140px] shrink-0 flex flex-col items-center justify-center gap-4 self-center z-30 overflow-visible">
+        {/* 中间缝隙占位 */}
+        <div className="w-[140px] shrink-0" aria-hidden="true" />
+
+        {/* 中间过渡：水平居中，位于页面 3/4 高度（1080×75% − 内容区 top 280 = 530px） */}
+        <div
+          className="absolute left-1/2 -translate-x-1/2 -translate-y-1/2 z-30 flex flex-col items-center gap-4 pointer-events-none overflow-visible"
+          style={{ top: '530px' }}
+        >
           <span className="text-[24px] font-black text-white font-['MiSans'] leading-none whitespace-nowrap px-5 py-3 rounded-full bg-[#004CE5]/30 border-2 border-[#2E6BFF] shadow-[0_0_32px_rgba(46,107,255,0.65),0_4px_24px_rgba(0,0,0,0.5)] backdrop-blur-sm">
             AI搜索形式变了
           </span>
