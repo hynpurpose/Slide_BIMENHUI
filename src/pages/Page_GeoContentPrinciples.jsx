@@ -126,12 +126,12 @@ export function Page_GeoContentPrinciples_A() {
           {/* 左：EEAT */}
           <div className="rounded-[30px] border border-zinc-900 bg-zinc-950/20 px-11 py-10 flex flex-col min-h-0 relative">
             <RejectStamp className="absolute right-8 top-8" />
-            <div className="shrink-0 mb-6 flex flex-col justify-end" style={{ height: '110px' }}>
+            <div className="shrink-0 mb-6 flex flex-col justify-end" style={{ height: '135px' }}>
               <h3 className="text-[44px] xl:text-[48px] font-black text-zinc-100 font-['MiSans'] leading-tight">
                 讨论最多的是
               </h3>
-              <div className="mt-1">
-                <span className="text-zinc-500 font-['Montserrat'] font-black text-[26px] tracking-wider leading-none">
+              <div className="mt-4">
+                <span className="text-white font-['Montserrat'] font-black text-[38px] xl:text-[42px] tracking-wider leading-none">
                   E-E-A-T
                 </span>
               </div>
@@ -172,12 +172,12 @@ export function Page_GeoContentPrinciples_A() {
           <div
             className="rounded-[30px] px-11 py-10 flex flex-col min-h-0 relative bg-gradient-to-br from-[#004CE5]/5 to-zinc-950/20 border border-[#004CE5]/30 shadow-[0_12px_40px_rgba(0,76,229,0.05)]"
           >
-            <div className="shrink-0 mb-6 flex flex-col justify-end" style={{ height: '110px' }}>
+            <div className="shrink-0 mb-6 flex flex-col justify-end" style={{ height: '135px' }}>
               <h3 className="text-[44px] xl:text-[48px] font-black text-white font-['MiSans'] leading-tight">
                 我们实践最有效的是
               </h3>
-              <div className="mt-1">
-                <span className="text-[#004CE5] font-['MiSans'] font-extrabold text-[26px] leading-none">
+              <div className="mt-4">
+                <span className="text-[#004CE5] font-['MiSans'] font-extrabold text-[28px] leading-none">
                   写用户视角的议论文
                 </span>
               </div>
