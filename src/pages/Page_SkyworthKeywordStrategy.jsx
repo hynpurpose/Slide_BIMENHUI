@@ -118,9 +118,9 @@ export default function Page_SkyworthKeywordStrategy() {
           className="absolute select-text font-['MiSans']" 
           style={{ 
             left: '730px', 
-            top: '20px', 
+            top: '0px', 
             width: '1110px', 
-            height: '600px'
+            height: '700px'
           }}
         >
           <table
@@ -128,11 +128,11 @@ export default function Page_SkyworthKeywordStrategy() {
             style={{ borderCollapse: 'separate', borderSpacing: 0, tableLayout: 'fixed' }}
           >
             <colgroup>
-              <col style={{ width: '118px' }} />
-              <col style={{ width: '132px' }} />
-              <col style={{ width: '118px' }} />
+              <col style={{ width: '96px' }} />
+              <col style={{ width: '120px' }} />
+              <col style={{ width: '112px' }} />
               <col />
-              <col style={{ width: '168px' }} />
+              <col style={{ width: '262px' }} />
             </colgroup>
 
             <thead>
@@ -177,26 +177,28 @@ export default function Page_SkyworthKeywordStrategy() {
                 >
                   品类词
                 </td>
-                <td className="text-[23px] font-bold text-center align-middle" style={{ color: '#FBBF24', borderBottom: '1px solid rgba(255,255,255,0.06)', padding: '10px 4px' }}>
+                <td className="text-[23px] font-bold text-center align-middle" style={{ color: '#FBBF24', borderBottom: '1px solid rgba(255,255,255,0.06)', padding: '14px 4px' }}>
                   优势词
                 </td>
-                <td className="text-[22px] text-zinc-100 leading-snug align-middle" style={{ borderBottom: '1px solid rgba(255,255,255,0.06)', padding: '10px 20px' }}>
-                  壁纸电视品牌排行榜 · 艺术电视品牌推荐 · 超薄电视品牌推荐
+                <td className="align-middle" style={{ borderBottom: '1px solid rgba(255,255,255,0.06)', padding: '14px 20px' }}>
+                  <Chips items={['壁纸电视品牌排行榜', '艺术电视品牌推荐', '超薄电视品牌推荐']} />
                 </td>
-                <td className="text-center align-middle" style={{ borderBottom: '1px solid rgba(255,255,255,0.06)', padding: '10px 12px' }}>
-                  <span className="inline-block text-[20px] font-bold" style={{ color: '#FBBF24', border: '1.5px solid rgba(251,191,36,0.55)', background: 'rgba(251,191,36,0.10)', borderRadius: '999px', padding: '4px 14px' }}>拿到第一</span>
+                <td className="align-middle" style={{ borderBottom: '1px solid rgba(255,255,255,0.06)', padding: '14px 16px', background: 'rgba(251,191,36,0.06)' }}>
+                  <div className="text-[22px] font-black leading-tight" style={{ color: '#FBBF24' }}>拿到第一</div>
+                  <div className="text-[18px] text-zinc-300 leading-snug mt-1">不给海信、TCL 等后来者机会</div>
                 </td>
               </tr>
               {/* 品类词 · 常规词 */}
               <tr>
-                <td className="text-[23px] font-bold text-center align-middle text-zinc-200" style={{ borderBottom: '1px solid rgba(255,255,255,0.10)', padding: '10px 4px' }}>
+                <td className="text-[23px] font-bold text-center align-middle text-zinc-200" style={{ borderBottom: '1px solid rgba(255,255,255,0.10)', padding: '14px 4px' }}>
                   常规词
                 </td>
-                <td className="text-[22px] text-zinc-100 leading-snug align-middle" style={{ borderBottom: '1px solid rgba(255,255,255,0.10)', padding: '10px 20px' }}>
-                  客厅电视推荐 · 4K高清电视推荐 · 高清画质色彩好的电视推荐
+                <td className="align-middle" style={{ borderBottom: '1px solid rgba(255,255,255,0.10)', padding: '14px 20px' }}>
+                  <Chips items={['客厅电视推荐', '4K高清电视推荐', '高清画质色彩好的电视推荐']} />
                 </td>
-                <td className="text-center align-middle" style={{ borderBottom: '1px solid rgba(255,255,255,0.10)', padding: '10px 12px' }}>
-                  <span className="inline-block text-[20px] font-semibold text-zinc-200" style={{ border: '1.5px solid rgba(255,255,255,0.28)', borderRadius: '999px', padding: '4px 14px' }}>进入 Top3</span>
+                <td className="align-middle" style={{ borderBottom: '1px solid rgba(255,255,255,0.10)', padding: '14px 16px' }}>
+                  <div className="text-[22px] font-bold leading-tight text-zinc-100">进入 Top3</div>
+                  <div className="text-[18px] text-zinc-400 leading-snug mt-1">画质、音响持续加强，不掉队</div>
                 </td>
               </tr>
               {/* 产品专属词 · A系列 */}
@@ -208,26 +210,28 @@ export default function Page_SkyworthKeywordStrategy() {
                 >
                   产品<br/>专属词
                 </td>
-                <td className="text-[23px] font-bold text-center align-middle" style={{ color: C.colorTeal, borderBottom: '1px solid rgba(255,255,255,0.06)', padding: '10px 4px' }}>
+                <td className="text-[23px] font-bold text-center align-middle" style={{ color: C.colorTeal, borderBottom: '1px solid rgba(255,255,255,0.06)', padding: '14px 4px' }}>
                   A系列
                 </td>
-                <td className="text-[22px] text-zinc-100 leading-snug align-middle" style={{ borderBottom: '1px solid rgba(255,255,255,0.06)', padding: '10px 20px' }}>
-                  7000元左右的壁纸电视推荐 · A系列壁纸电视值得买吗
+                <td className="align-middle" style={{ borderBottom: '1px solid rgba(255,255,255,0.06)', padding: '14px 20px' }}>
+                  <Chips items={['7000元左右的壁纸电视推荐', 'A系列壁纸电视值得买吗']} />
                 </td>
-                <td className="text-center align-middle text-[20px] font-semibold text-zinc-200" style={{ borderBottom: '1px solid rgba(255,255,255,0.06)', padding: '10px 12px' }}>
-                  守住线上优势
+                <td className="align-middle" style={{ borderBottom: '1px solid rgba(255,255,255,0.06)', padding: '14px 16px' }}>
+                  <div className="text-[22px] font-bold leading-tight text-zinc-100">守住线上优势</div>
+                  <div className="text-[18px] text-zinc-400 leading-snug mt-1">线上专属词打透打满</div>
                 </td>
               </tr>
               {/* 产品专属词 · Q系列 */}
               <tr>
-                <td className="text-[23px] font-bold text-center align-middle" style={{ color: C.colorTeal, borderBottom: '1px solid rgba(255,255,255,0.10)', padding: '10px 4px' }}>
+                <td className="text-[23px] font-bold text-center align-middle" style={{ color: C.colorTeal, borderBottom: '1px solid rgba(255,255,255,0.10)', padding: '14px 4px' }}>
                   Q系列
                 </td>
-                <td className="text-[22px] text-zinc-100 leading-snug align-middle" style={{ borderBottom: '1px solid rgba(255,255,255,0.10)', padding: '10px 20px' }}>
-                  附近哪里能看创维Q系列电视 · 高端画框电视去哪体验
+                <td className="align-middle" style={{ borderBottom: '1px solid rgba(255,255,255,0.10)', padding: '14px 20px' }}>
+                  <Chips items={['附近哪里能看创维Q系列电视', '高端画框电视去哪体验']} />
                 </td>
-                <td className="text-center align-middle text-[20px] font-semibold text-zinc-200" style={{ borderBottom: '1px solid rgba(255,255,255,0.10)', padding: '10px 12px' }}>
-                  突出线下属性
+                <td className="align-middle" style={{ borderBottom: '1px solid rgba(255,255,255,0.10)', padding: '14px 16px' }}>
+                  <div className="text-[22px] font-bold leading-tight text-zinc-100">突出线下属性</div>
+                  <div className="text-[18px] text-zinc-400 leading-snug mt-1">引导用户到店看实物</div>
                 </td>
               </tr>
 
@@ -240,25 +244,27 @@ export default function Page_SkyworthKeywordStrategy() {
                 >
                   <span style={{ writingMode: 'vertical-rl', letterSpacing: '0.15em' }}>监测词</span>
                 </td>
-                <td colSpan={2} className="text-[23px] font-bold text-center align-middle" style={{ color: C.colorSky, borderBottom: '1px solid rgba(255,255,255,0.06)', padding: '10px 4px' }}>
+                <td colSpan={2} className="text-[23px] font-bold text-center align-middle" style={{ color: C.colorSky, borderBottom: '1px solid rgba(255,255,255,0.06)', padding: '14px 4px' }}>
                   品类词
                 </td>
-                <td className="text-[22px] text-zinc-100 leading-snug align-middle" style={{ borderBottom: '1px solid rgba(255,255,255,0.06)', padding: '10px 20px' }}>
-                  创维电视算一线品牌吗 · 创维电视质量怎么样
+                <td className="align-middle" style={{ borderBottom: '1px solid rgba(255,255,255,0.06)', padding: '14px 20px' }}>
+                  <Chips items={['创维电视算一线品牌吗', '创维电视质量怎么样']} />
                 </td>
-                <td className="text-center align-middle text-[20px] font-semibold text-zinc-300" style={{ borderBottom: '1px solid rgba(255,255,255,0.06)', padding: '10px 12px' }}>
-                  持续监测
+                <td
+                  rowSpan={2}
+                  className="align-middle"
+                  style={{ borderBottom: '1px solid rgba(255,255,255,0.10)', padding: '14px 16px' }}
+                >
+                  <div className="text-[22px] font-bold leading-tight text-zinc-100">持续监测</div>
+                  <div className="text-[18px] text-zinc-400 leading-snug mt-1">负面率控制在 10% 以下</div>
                 </td>
               </tr>
               <tr>
-                <td colSpan={2} className="text-[23px] font-bold text-center align-middle" style={{ color: C.colorSky, padding: '10px 4px' }}>
+                <td colSpan={2} className="text-[23px] font-bold text-center align-middle" style={{ color: C.colorSky, borderBottom: '1px solid rgba(255,255,255,0.10)', padding: '14px 4px' }}>
                   产品专属词
                 </td>
-                <td className="text-[22px] text-zinc-100 leading-snug align-middle" style={{ padding: '10px 20px' }}>
-                  创维壁纸电视A7H Pro怎么样 · 创维Q7E口碑评价
-                </td>
-                <td className="text-center align-middle text-[20px] font-semibold text-zinc-300" style={{ padding: '10px 12px' }}>
-                  持续监测
+                <td className="align-middle" style={{ borderBottom: '1px solid rgba(255,255,255,0.10)', padding: '14px 20px' }}>
+                  <Chips items={['创维壁纸电视A7H Pro怎么样', '创维A8H口碑评价']} />
                 </td>
               </tr>
             </tbody>
