@@ -158,7 +158,7 @@ export default function Page_TeamIntro() {
             {aiAgents.map((agent, idx) => (
               <div
                 key={idx}
-                className={`flex-1 flex items-center gap-5 px-6 py-4 group ${idx !== aiAgents.length - 1 ? 'border-b border-white/12' : ''}`}
+                className={`flex-1 flex items-center gap-5 px-6 py-4 group ${idx !== aiAgents.length - 1 ? 'border-b border-white/5' : ''}`}
               >
                 <Portrait
                   src={`/team/agent-${agent.id}.jpg`}
