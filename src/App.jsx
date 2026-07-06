@@ -79,8 +79,26 @@ flatSlides.forEach((slide) => {
 const defaultOrder = flatSlides.map((s) => s.id);
 const SLIDE_POSITION_KEY = 'slide-current-id';
 const COLLAPSED_CHAPTERS_KEY = 'slide-collapsed-chapters';
+const TITLE_OVERRIDES_KEY = 'slide-title-overrides';
+
+function getInitialTitleOverrides() {
+  try {
+    return JSON.parse(localStorage.getItem(TITLE_OVERRIDES_KEY)) || {};
+  } catch {
+    return {};
+  }
+}
 const VISUAL_EDITS_KEY = 'slide-visual-edits'; // 与 SlideEditor 保持一致
-const WORKING_ORDER_KEY = 'slide-order-working'; // 未写入 slideOrder.json 前的工作副本
+const WORKING_ORDER_KEY = 'slide-order-working'; // 当前会话内未写入 slideOrder.json 前的临时副本
+const ORDER_BASELINE_KEY = 'slide-order-baseline'; // 临时副本对应的 slideOrder.json 快照
+
+// 清理旧版 localStorage 缓存（曾持久化到浏览器，导致各端顺序不一致）
+try {
+  localStorage.removeItem(WORKING_ORDER_KEY);
+  localStorage.removeItem(ORDER_BASELINE_KEY);
+} catch {
+  // ignore
+}
 
 /* 副本页 id：在原 id 后面加 __copyN，渲染时映射回原组件 */
 const COPY_SEP = '__copy';
@@ -100,15 +118,22 @@ function getInitialCollapsedChapters() {
 function getInitialOrder(useWorking = true) {
   const validIds = new Set(Object.keys(slideDictionary));
 
-  // 优先用本地的工作副本（拖拽、复制粘贴后即时保存，刷新不丢失），
-  // 没有工作副本时回退到 slideOrder.json
+  // 仅当前浏览器会话内保留临时顺序（防误刷新丢失拖拽进度）；
+  // 新开浏览器 / git pull 后始终以 slideOrder.json 为准，保证团队一致
   let baseOrder = initialOrder;
+  const orderBaseline = JSON.stringify(initialOrder);
   if (useWorking) {
     try {
-      const working = JSON.parse(localStorage.getItem(WORKING_ORDER_KEY));
-      if (Array.isArray(working) && working.length > 0) baseOrder = working;
+      const savedBaseline = sessionStorage.getItem(ORDER_BASELINE_KEY);
+      if (savedBaseline === orderBaseline) {
+        const working = JSON.parse(sessionStorage.getItem(WORKING_ORDER_KEY));
+        if (Array.isArray(working) && working.length > 0) baseOrder = working;
+      } else {
+        sessionStorage.removeItem(WORKING_ORDER_KEY);
+        sessionStorage.setItem(ORDER_BASELINE_KEY, orderBaseline);
+      }
     } catch {
-      // localStorage unavailable or corrupted data
+      // sessionStorage unavailable or corrupted data
     }
   }
 
@@ -168,6 +193,24 @@ export default function App() {
   const [collapsedChapters, setCollapsedChapters] = useState(
     getInitialCollapsedChapters
   );
+  const [titleOverrides, setTitleOverrides] = useState(getInitialTitleOverrides);
+
+  // 编辑器里改了页面大标题 → 目录面板同步显示新标题
+  useEffect(() => {
+    const onTitleOverride = (e) => {
+      const { slideId: id, title } = e.detail;
+      setTitleOverrides((prev) => {
+        const next = { ...prev };
+        if (title === null || title === undefined || title === '') delete next[id];
+        else next[id] = title;
+        return next;
+      });
+    };
+    window.addEventListener('slide-title-override', onTitleOverride);
+    return () => window.removeEventListener('slide-title-override', onTitleOverride);
+  }, []);
+
+  const getSlideName = (id, fallback) => titleOverrides[id] || fallback;
 
   const [toast, setToast] = useState(null); // 复制/粘贴等操作的轻提示
   const toastTimerRef = useRef(null);
@@ -175,11 +218,10 @@ export default function App() {
 
   const slideRootRef = useRef(null);
   const editInitialTargetRef = useRef(null); // 双击进入编辑模式时要直接选中的元素
-  // 「已保存」基准取自 slideOrder.json（不含本地工作副本），
-  // 这样刷新后如果本地改动还没写入文件，保存按钮依然会亮
-  const savedOrderRef = useRef(getInitialOrder(false));
+  // 「已保存」基准 = slideOrder.json 的内容；顺序变化后自动写回文件
+  const [savedOrder, setSavedOrder] = useState(() => getInitialOrder(false));
   const isOrderDirty =
-    JSON.stringify(slideOrder) !== JSON.stringify(savedOrderRef.current);
+    JSON.stringify(slideOrder) !== JSON.stringify(savedOrder);
 
   const slideData = slideOrder
     .map((id) => slideDictionary[baseIdOf(id)])
@@ -417,12 +459,12 @@ export default function App() {
     }
   }, [currentSlide, slideOrder]);
 
-  /* 页面顺序（含副本页）随改随存，刷新后不丢失 */
+  /* 当前会话内的临时顺序（关浏览器即失效，不影响团队同步） */
   useEffect(() => {
     try {
-      localStorage.setItem(WORKING_ORDER_KEY, JSON.stringify(slideOrder));
+      sessionStorage.setItem(WORKING_ORDER_KEY, JSON.stringify(slideOrder));
     } catch {
-      // localStorage unavailable
+      // sessionStorage unavailable
     }
   }, [slideOrder]);
 
@@ -436,6 +478,7 @@ export default function App() {
     if (result.source.index === result.destination.index) return;
 
     const currentId = slideOrder[currentSlide];
+    const movedBlock = navBlocks[result.source.index];
     const blocks = navBlocks.map((b) => b.blockIds);
     const [moved] = blocks.splice(result.source.index, 1);
     blocks.splice(result.destination.index, 0, moved);
@@ -443,23 +486,55 @@ export default function App() {
 
     setSlideOrder(newOrder);
 
+    // 如果拖动的是单个内容页，检查它落进了哪个章节；
+    // 落进折叠章节会被“吸进去”看不见，这时自动展开该章节
+    if (
+      movedBlock &&
+      !movedBlock.isParent &&
+      movedBlock.blockIds.length === 1 &&
+      movedBlock.slide.type === 'content'
+    ) {
+      const movedId = movedBlock.id;
+      const pos = newOrder.indexOf(movedId);
+      let ownerCoverId = null;
+      for (let i = pos - 1; i >= 0; i--) {
+        const s = slideDictionary[baseIdOf(newOrder[i])];
+        if (!s) continue;
+        if (s.type === 'chapter-cover') {
+          ownerCoverId = newOrder[i];
+          break;
+        }
+        if (s.type !== 'content') break; // 越过封面/目录等非章节区域
+      }
+      if (ownerCoverId && collapsedChapters.has(ownerCoverId)) {
+        toggleChapterCollapse(ownerCoverId);
+        const name = slideDictionary[baseIdOf(ownerCoverId)]?.name || '';
+        showToast(`该页已移入「${name}」章节，已自动展开`);
+      }
+    }
+
     const newIndex = newOrder.indexOf(currentId);
     if (newIndex !== -1) setCurrentSlide(newIndex);
   };
 
-  const saveOrder = async () => {
+  const saveOrder = async (order = slideOrder) => {
     setIsSaving(true);
     setSaveStatus(null);
     try {
       const response = await fetch('/api/save-order', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ order: slideOrder }),
+        body: JSON.stringify({ order }),
       });
       if (!response.ok) throw new Error('Save failed');
 
       setSaveStatus('success');
-      savedOrderRef.current = [...slideOrder];
+      setSavedOrder([...order]);
+      try {
+        sessionStorage.setItem(ORDER_BASELINE_KEY, JSON.stringify(order));
+      } catch {
+        // sessionStorage unavailable
+      }
       setTimeout(() => setSaveStatus(null), 2000);
     } catch (err) {
       console.error(err);
@@ -468,6 +543,14 @@ export default function App() {
       setIsSaving(false);
     }
   };
+
+  /* 目录顺序自动保存：变化 800ms 后写入 slideOrder.json，无需手动点保存 */
+  useEffect(() => {
+    if (!isOrderDirty) return;
+    const t = setTimeout(() => saveOrder(slideOrder), 800);
+    return () => clearTimeout(t);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [slideOrder, isOrderDirty]);
 
   return (
     <div className="relative w-screen h-screen overflow-hidden select-none flex bg-zinc-900">
@@ -549,7 +632,7 @@ export default function App() {
                               const rect =
                                 e.currentTarget.getBoundingClientRect();
                               setTooltip({
-                                text: block.slide.name,
+                                text: getSlideName(block.id, block.slide.name),
                                 top: rect.top + rect.height / 2,
                                 left: rect.right + 12,
                               });
@@ -613,7 +696,7 @@ export default function App() {
                                 {String(block.index + 1).padStart(2, '0')}
                               </span>
                               <span className="truncate">
-                                {block.slide.name}
+                                {getSlideName(block.id, block.slide.name)}
                               </span>
                               {isCopyId(block.id) && (
                                 <span className="ml-2 flex-shrink-0 text-[10px] text-amber-400/90 bg-amber-500/10 border border-amber-500/30 px-1.5 py-0.5 rounded-full">

@@ -184,11 +184,11 @@ export default function Page_SkyworthDecisionAnalysis() {
 
   const maxValue = Math.max(...chartData.map((d) => d.value), 1);
   const svgWidth = 920;
-  const svgHeight = 300;
+  const svgHeight = 440;
   const xMarginLeft = 72;
   const plotWidth = 820;
   const yMarginTop = 16;
-  const plotHeight = 220;
+  const plotHeight = 360;
   const yMax = Math.ceil(maxValue / 10) * 10 + 10;
   const scale = plotHeight / yMax;
   const yTicks = Array.from({ length: 5 }, (_, i) => Math.round((yMax / 4) * i));

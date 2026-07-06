@@ -44,9 +44,12 @@ export function Page_DazhongZhenpingDemo_A() {
     <SlideLayout fullBleed>
       <div className="absolute w-[820px] h-[820px] rounded-full bg-[#004CE5]/[0.08] blur-[190px] left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 pointer-events-none z-0" />
 
-      <div className="absolute inset-0 flex flex-col items-center justify-center gap-9 z-10 animate-fadeIn">
+      <div
+        className="absolute inset-0 flex flex-col items-center justify-between z-10 animate-fadeIn"
+        style={{ paddingTop: '48px', paddingBottom: '28px' }}
+      >
         {/* 放大后的视频框 */}
-        <div className="relative" style={{ width: '1620px', height: '850px' }}>
+        <div className="relative" style={{ width: '1760px', height: '820px' }}>
           <VideoFrame radius={28} />
 
           {/* 左上角：LIVE 角标 */}
@@ -57,7 +60,7 @@ export function Page_DazhongZhenpingDemo_A() {
         </div>
 
         {/* 视频框底部：原大标题下沉为一句文字说明 */}
-        <p className="text-[34px] text-white font-['MiSans'] font-medium tracking-wide">
+        <p className="text-[28px] text-white font-['MiSans'] font-medium tracking-wide">
           <span className="text-[#7FA6FF] font-bold">大众真评系统</span>　·　实时演示
         </p>
       </div>

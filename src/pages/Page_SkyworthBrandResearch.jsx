@@ -10,12 +10,12 @@ import SlideLayout from '../components/SlideLayout';
 
 // —— 共用数据 ——
 const SOURCES = [
-  { name: '京东', tag: '电商评价' },
-  { name: '天猫', tag: '电商评价' },
-  { name: '小红书', tag: '种草笔记' },
-  { name: 'B 站', tag: '测评视频' },
-  { name: '抖音', tag: '短视频口碑' },
-  { name: '知乎', tag: '深度讨论' },
+  { name: '京东', tag: '电商评价', glyph: '京', color: '#E1251B' },
+  { name: '天猫', tag: '电商评价', glyph: '猫', color: '#FF0F23' },
+  { name: '小红书', tag: '种草笔记', glyph: '书', color: '#FE2C55' },
+  { name: 'B 站', tag: '测评视频', glyph: 'B', color: '#00AEEC' },
+  { name: '抖音', tag: '短视频口碑', glyph: '抖', color: '#25F4EE', gradient: 'linear-gradient(135deg,#25F4EE,#FE2C55)' },
+  { name: '知乎', tag: '深度讨论', glyph: '知', color: '#0084FF' },
 ];
 
 // 分析动作
@@ -49,6 +49,24 @@ const Subtitle = ({ children }) => (
     {children}
   </div>
 );
+
+/* 平台品牌徽标：品牌色圆角块 + 标识字 */
+function BrandBadge({ source, size = 38 }) {
+  return (
+    <span
+      className="flex items-center justify-center rounded-[11px] shrink-0 font-black font-['MiSans'] text-white leading-none"
+      style={{
+        width: size,
+        height: size,
+        fontSize: size * 0.5,
+        background: source.gradient || source.color,
+        boxShadow: `0 0 16px ${source.color}55`,
+      }}
+    >
+      {source.glyph}
+    </span>
+  );
+}
 
 function LiveDot({ color = '#34D399', size = 10 }) {
   return (
@@ -224,13 +242,15 @@ export function Page_SkyworthBrandResearch_B() {
         {/* 左：数据源 */}
         <div className="w-[440px] shrink-0 h-full flex flex-col justify-center gap-3">
           <span className="text-[#8DB0FF] font-['MiSans'] font-bold text-[20px] tracking-wide mb-1">数据来源 · 从哪里抓</span>
-          {SOURCES.map((s, i) => (
+          {SOURCES.map((s) => (
             <div
               key={s.name}
               className="flex items-center justify-between rounded-xl border border-[#5B8CFF]/30 bg-[#5B8CFF]/[0.08] px-5 py-3"
-              style={{ animation: `brPulse 3s ${i * 0.25}s ease-in-out infinite` }}
             >
-              <span className="text-white font-bold font-['MiSans'] text-[22px]">{s.name}</span>
+              <div className="flex items-center gap-4 min-w-0">
+                <BrandBadge source={s} />
+                <span className="text-white font-bold font-['MiSans'] text-[22px]">{s.name}</span>
+              </div>
               <span className="text-[#8DB0FF] font-['MiSans'] text-[16px]">{s.tag}</span>
             </div>
           ))}
@@ -247,7 +267,6 @@ export function Page_SkyworthBrandResearch_B() {
                 strokeWidth="2.5"
                 strokeOpacity="0.5"
                 strokeDasharray="8 8"
-                style={{ animation: `brDash 1.4s linear infinite` }}
               />
             ))}
           </svg>
@@ -302,7 +321,6 @@ export function Page_SkyworthBrandResearch_B() {
                 strokeWidth="2.5"
                 strokeOpacity="0.6"
                 strokeDasharray="8 8"
-                style={{ animation: `brDash 1.4s linear infinite` }}
               />
             ))}
           </svg>
@@ -311,11 +329,11 @@ export function Page_SkyworthBrandResearch_B() {
         {/* 右：三类结论 */}
         <div className="w-[360px] shrink-0 h-full flex flex-col justify-center gap-4">
           <span className="text-emerald-300 font-['MiSans'] font-bold text-[20px] tracking-wide mb-1">输出结论 · 怎么呈现</span>
-          {OUTPUTS.map((o, i) => (
+          {OUTPUTS.map((o) => (
             <div
               key={o.label}
               className="rounded-2xl border px-6 py-5"
-              style={{ borderColor: o.ring, background: o.bg, animation: `brPulse 3s ${i * 0.3}s ease-in-out infinite` }}
+              style={{ borderColor: o.ring, background: o.bg }}
             >
               <div className="flex items-center gap-3">
                 <span className="inline-block rounded-full" style={{ width: 14, height: 14, background: o.color }} />
