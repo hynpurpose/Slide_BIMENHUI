@@ -149,7 +149,7 @@ function ProjectRow({ project }) {
 
 export default function Page_ArticleCitationRate() {
   return (
-    <SlideLayout title="文章引用率">
+    <SlideLayout title="高质量文章引用率展示">
       <style dangerouslySetInnerHTML={{ __html: FONT_IMPORT }} />
       <div className="w-full h-full flex flex-col gap-5 animate-fadeIn relative z-10 select-none">
 

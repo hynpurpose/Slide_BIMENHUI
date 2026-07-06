@@ -309,7 +309,7 @@ export const slideConfig = [
   { type: 'page', title: '用户口碑类文章示意', component: Page_SkyworthWordOfMouthDemo, hideHeader: true },
   { type: 'page', title: '场景教程类文章逆向拆解', component: Page_SkyworthTutorialDeconstruct, hideHeader: true },
   { type: 'page', title: '场景教程类文章示意', component: Page_SkyworthTutorialDemo, hideHeader: true },
-  { type: 'page', title: '文章引用率', component: Page_ArticleCitationRate, hideHeader: true },
+  { type: 'page', title: '高质量文章引用率展示', component: Page_ArticleCitationRate, hideHeader: true },
 
   // ══════════════════════════════════════════════════════════
   // ——— 六、投放策略 ———
