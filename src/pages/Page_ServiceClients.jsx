@@ -88,7 +88,7 @@ export default function Page_ServiceClients() {
 
     return (
       <div
-        className="bg-zinc-100 border border-zinc-200/80 rounded-xl flex items-center justify-center relative overflow-hidden group hover:border-zinc-300 transition-colors"
+        className="bg-white border border-zinc-200/80 rounded-xl flex items-center justify-center relative overflow-hidden group hover:border-zinc-300 transition-colors"
         style={{ width, height }}
       >
         {!hasError ? (
@@ -145,7 +145,7 @@ export default function Page_ServiceClients() {
                   >
                     {group.category}
                   </span>
-                  {/* Logos + trailing ellipsis (more than shown) */}
+                  {/* Logos (trailing ellipsis only on the last group) */}
                   <div className="flex items-center gap-3">
                     {group.logos.map((logo, logoIdx) => (
                       <LogoSlot
@@ -157,17 +157,19 @@ export default function Page_ServiceClients() {
                         unifyColor={false}
                       />
                     ))}
-                    <div
-                      className="bg-zinc-100 border border-zinc-200/80 rounded-xl flex items-center justify-center"
-                      style={{ width: '152px', height: '62px' }}
-                    >
-                      <span
-                        className="text-zinc-500 font-extrabold leading-none tracking-[0.15em]"
-                        style={{ fontSize: '30px' }}
+                    {groupIdx === clientGroups.length - 1 && (
+                      <div
+                        className="bg-white border border-zinc-200/80 rounded-xl flex items-center justify-center"
+                        style={{ width: '152px', height: '62px' }}
                       >
-                        ···
-                      </span>
-                    </div>
+                        <span
+                          className="text-zinc-500 font-extrabold leading-none tracking-[0.15em]"
+                          style={{ fontSize: '30px' }}
+                        >
+                          ···
+                        </span>
+                      </div>
+                    )}
                   </div>
                 </div>
               ))}
@@ -214,15 +216,15 @@ export default function Page_ServiceClients() {
           style={{ top: '-80px', right: '0', width: '600px', height: '875px' }}
         >
           {/* Header with Title + Note */}
-          <div className="flex flex-col gap-3 px-8 py-6 bg-gradient-to-b from-blue-950/70 to-zinc-900 border-b border-white/5">
+          <div className="flex flex-col gap-3 px-8 py-6 border-b border-white/10">
             <span
               className="text-white font-bold tracking-wide font-['AlimamaShuHeiTi'] text-center"
               style={{ fontSize: '42px' }}
             >
               两个百万客户
             </span>
-            <span className="text-blue-200 font-bold font-['MiSans'] text-[24px] leading-snug text-center">
-              据不完全统计，近半年来预算到百万的真实GEO项目不超过5个，<span className="text-white underline decoration-blue-400 decoration-2 underline-offset-4">我们拿到两个</span>。
+            <span className="text-white font-bold font-['MiSans'] text-[24px] leading-snug text-center">
+              据不完全统计，近半年来预算到百万的真实GEO项目不超过5个，<span className="underline decoration-white/70 decoration-2 underline-offset-4">我们拿到两个</span>。
             </span>
           </div>
 

@@ -63,19 +63,27 @@ const aiAgents = [
   }
 ];
 
-function Portrait({ src, alt, className = "" }) {
+function Portrait({ src, alt, className = "", contain = false }) {
+  const wrapperClass = contain
+    ? "shrink-0 bg-black overflow-hidden relative flex items-center justify-center"
+    : "shrink-0 bg-zinc-900 overflow-hidden relative shadow-md flex items-center justify-center";
+
   return (
-    <div className={`shrink-0 bg-zinc-900 overflow-hidden relative shadow-md ${className}`}>
+    <div className={`${wrapperClass} ${className}`}>
       <img
         src={src}
         alt={alt}
-        className="w-full h-full object-cover object-top transition-transform duration-500 group-hover:scale-105 rounded-none"
+        className={
+          contain
+            ? "w-full h-full object-contain"
+            : "w-full h-full object-cover object-top transition-transform duration-500 group-hover:scale-105 rounded-none"
+        }
         onError={(e) => {
           e.currentTarget.style.display = 'none';
           e.currentTarget.nextElementSibling.style.display = 'flex';
         }}
       />
-      <div className="absolute inset-0 flex items-center justify-center hidden bg-zinc-900">
+      <div className="absolute inset-0 flex items-center justify-center hidden bg-black">
         <svg className="w-10 h-10 text-zinc-700" fill="none" viewBox="0 0 24 24" stroke="currentColor">
           <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M16 7a4 4 0 11-8 0 4 4 0 018 0zM12 14a7 7 0 00-7 7h14a7 7 0 00-7-7z" />
         </svg>
@@ -158,7 +166,7 @@ export default function Page_TeamIntro() {
             <span className="text-[24px] font-black text-white font-['MiSans'] tracking-wide">AI 数字员工</span>
             <span className="text-[18px] font-bold text-[#004CE5] font-['MiSans']">20+ 名</span>
           </div>
-          <div className="flex-1 flex flex-col border border-[#004CE5]/50 rounded-none overflow-hidden bg-[#004CE5]/[0.04]">
+          <div className="flex-1 flex flex-col border border-white/15 rounded-none overflow-hidden bg-black">
             {aiAgents.map((agent, idx) => (
               <div
                 key={idx}
@@ -167,7 +175,8 @@ export default function Page_TeamIntro() {
                 <Portrait
                   src={`/team/agent-${agent.id}.jpg`}
                   alt={agent.title}
-                  className="w-[100px] h-[130px]"
+                  contain
+                  className="w-[110px] h-[110px]"
                 />
                 <div className="flex-1 flex flex-col justify-center min-w-0">
                   <span className="text-[26px] font-black text-white font-['MiSans'] mb-2">{agent.title}</span>

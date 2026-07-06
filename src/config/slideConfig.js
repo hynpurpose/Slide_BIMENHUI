@@ -76,6 +76,7 @@ import Page_TeamIntro from '../pages/Page_TeamIntro';
 import Page_CoreCapabilities from '../pages/Page_CoreCapabilities';
 import Page_GeoMonitorIntro from '../pages/Page_GeoMonitorIntro';
 import Page_GeoMonitorModules from '../pages/Page_GeoMonitorModules';
+import Page_GeoOneDemo from '../pages/Page_GeoOneDemo';
 import Page_QuantitativeModel from '../pages/Page_QuantitativeModel';
 import Page_GeoMonitor from '../pages/Page_GeoMonitor';
 import Page_GeoMonitor_Pic1 from '../pages/Page_GeoMonitor_Pic1';
@@ -341,8 +342,9 @@ export const slideConfig = [
   { type: 'section', title: '核心能力' },
   { type: 'page', title: '核心能力', component: Page_CoreCapabilities, hideHeader: true },
   { type: 'page', title: 'GEO ONE 数据监测系统介绍', component: Page_GeoMonitorIntro, hideHeader: true },
-  { type: 'page', title: 'GEO ONE 系统架构', component: Page_GeoMonitorArchitecture, hideHeader: true },
+  // { type: 'page', title: 'GEO ONE 系统架构', component: Page_GeoMonitorArchitecture, hideHeader: true },
   { type: 'page', title: '数据系统核心模块', component: Page_GeoMonitorModules, hideHeader: true },
+  { type: 'page', title: 'Geo One数据系统演示', component: Page_GeoOneDemo, hideHeader: true },
   { type: 'page', title: 'GEO ONE 数据监测系统', component: Page_GeoMonitor, hideHeader: true },
   { type: 'page', title: 'GEO ONE 数据监测系统 1', component: Page_GeoMonitor_Pic1, hideHeader: true },
   { type: 'page', title: 'GEO ONE 数据监测系统 2', component: Page_GeoMonitor_Pic2, hideHeader: true },
