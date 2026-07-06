@@ -124,6 +124,7 @@ export function Page_SkyworthKpiAcceptance() {
                     <td className="py-3 xl:py-4 pl-4 font-semibold text-zinc-100 align-top">
                       <div className="flex flex-col gap-1">
                         <span className="text-[20px] xl:text-[22px] text-white font-extrabold">优化词</span>
+                        <span className="text-[14px] xl:text-[15px] text-zinc-400 font-normal">高相关词 · 低相关词</span>
                       </div>
                     </td>
 
@@ -134,21 +135,21 @@ export function Page_SkyworthKpiAcceptance() {
                           <span className="w-[72px] shrink-0 text-[13.5px] xl:text-[14.5px] font-black bg-white/10 text-zinc-200 py-[1.5px] rounded text-center">阶段一</span>
                           <div className="text-[18px] xl:text-[20px] leading-relaxed text-justify">
                             <span className="text-white font-black">打地基｜3个月</span>
-                            <span className="text-zinc-400 ml-2.5">好看的电视全面固位，常规电视基础曝光</span>
+                            <span className="text-zinc-400 ml-2.5">高相关词全面固位，低相关词基础曝光</span>
                           </div>
                         </div>
                         <div className="flex items-start gap-2.5 h-[80px] xl:h-[88px]">
                           <span className="w-[72px] shrink-0 text-[13.5px] xl:text-[14.5px] font-black bg-white/10 text-zinc-200 py-[1.5px] rounded text-center">阶段二</span>
                           <div className="text-[18px] xl:text-[20px] leading-relaxed text-justify">
                             <span className="text-white font-black">稳提升｜6个月</span>
-                            <span className="text-zinc-400 ml-2.5">压制跟风者，常规电视挤入核心推荐榜</span>
+                            <span className="text-zinc-400 ml-2.5">压制竞品，低相关词挤入核心推荐榜</span>
                           </div>
                         </div>
-                        <div className="flex items-start gap-2.5 h-[80px] xl:h-[88px]">
+                        <div className="flex items-start gap-2.5 min-h-[100px] xl:min-h-[110px]">
                           <span className="w-[72px] shrink-0 text-[13.5px] xl:text-[14.5px] font-black bg-white/10 text-zinc-200 py-[1.5px] rounded text-center">阶段三</span>
                           <div className="text-[18px] xl:text-[20px] leading-relaxed text-justify">
                             <span className="text-white font-black">占高位｜3个月</span>
-                            <span className="text-zinc-400 ml-2.5">好看的电视稳居第一，常规电视冲进 TOP3</span>
+                            <span className="text-zinc-400 ml-2.5">高相关词双指标达标，低相关词全面拉升至目标线</span>
                           </div>
                         </div>
                       </div>
@@ -160,19 +161,24 @@ export function Page_SkyworthKpiAcceptance() {
                         <div className="flex items-start gap-2.5 h-[80px] xl:h-[88px]">
                           <span className="w-[100px] shrink-0 text-[13.5px] xl:text-[14.5px] font-black bg-[#004CE5]/20 text-[#8cb1ff] border border-[#004CE5]/40 py-[1.5px] rounded text-center">阶段一考核</span>
                           <div className="text-[15.5px] xl:text-[17px] leading-relaxed text-zinc-200">
-                            好看的电视位次稳定 <strong className="text-white font-black">NO.1</strong>，<br />常规电视提及率提升至 <strong className="text-white font-bold">40%</strong>
+                            高相关词位次稳定 <strong className="text-white font-black">NO.1</strong>，<br />低相关词提及率提升至 <strong className="text-white font-bold">40%</strong>
                           </div>
                         </div>
                         <div className="flex items-start gap-2.5 h-[80px] xl:h-[88px]">
                           <span className="w-[100px] shrink-0 text-[13.5px] xl:text-[14.5px] font-black bg-[#004CE5]/20 text-[#8cb1ff] border border-[#004CE5]/40 py-[1.5px] rounded text-center">阶段二考核</span>
                           <div className="text-[15.5px] xl:text-[17px] leading-relaxed text-zinc-200">
-                            常规电视提及率提升至 <strong className="text-white font-black">60%</strong>，<br />平均位次进入前 <strong className="text-white font-bold">5</strong>
+                            低相关词提及率提升至 <strong className="text-white font-black">60%</strong>，<br />平均位次进入前 <strong className="text-white font-bold">5</strong>
                           </div>
                         </div>
-                        <div className="flex items-start gap-2.5 h-[80px] xl:h-[88px]">
+                        <div className="flex items-start gap-2.5 min-h-[100px] xl:min-h-[110px]">
                           <span className="w-[100px] shrink-0 text-[13.5px] xl:text-[14.5px] font-black bg-[#004CE5]/20 text-[#8cb1ff] border border-[#004CE5]/40 py-[1.5px] rounded text-center">阶段三考核</span>
-                          <div className="text-[15.5px] xl:text-[17px] leading-relaxed text-zinc-200">
-                            常规电视进入 <strong className="text-white font-black">TOP3</strong>，<br />好看的电视提及率 <strong className="text-white font-bold">≥ 90%</strong>
+                          <div className="text-[15.5px] xl:text-[17px] leading-relaxed text-zinc-200 flex flex-col gap-2">
+                            <div>
+                              <strong className="text-white font-bold">高相关词</strong>：提及率 <strong className="text-white font-black">≥ 90%</strong>，TOP3 提及率 <strong className="text-white font-black">≥ 85%</strong>
+                            </div>
+                            <div>
+                              <strong className="text-white font-bold">低相关词</strong>：提及率 <strong className="text-white font-black">≥ 80%</strong>，TOP3 提及率 <strong className="text-white font-black">≥ 80%</strong>
+                            </div>
                           </div>
                         </div>
                       </div>
