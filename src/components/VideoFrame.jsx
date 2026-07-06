@@ -29,7 +29,7 @@ export default function VideoFrame({
         <video
           ref={videoRef}
           src={src}
-          className="w-full h-full object-cover"
+          className="w-full h-full object-contain"
           controls={playing}
           playsInline
           onPlay={() => updatePlaying(true)}

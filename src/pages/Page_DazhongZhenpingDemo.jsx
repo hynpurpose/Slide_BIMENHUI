@@ -21,8 +21,8 @@ export function Page_DazhongZhenpingDemo_A() {
         className="absolute inset-0 flex flex-col items-center justify-between z-10 animate-fadeIn"
         style={{ paddingTop: '48px', paddingBottom: '28px' }}
       >
-        {/* 放大后的视频框 */}
-        <div className="relative" style={{ width: '1760px', height: '820px' }}>
+        {/* 放大后的视频框（比例 ≈1.983，与视频实际显示比例一致，不裁切画面） */}
+        <div className="relative" style={{ width: '1760px', height: '888px' }}>
           <VideoFrame src={VIDEO_SRC} radius={28} onPlayingChange={setPlaying} />
 
           {/* 左上角：LIVE 角标（播放时隐藏） */}
