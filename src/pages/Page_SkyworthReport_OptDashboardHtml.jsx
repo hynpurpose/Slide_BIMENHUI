@@ -226,7 +226,7 @@ function monotonePath(pts) {
   return d;
 }
 
-/* 折线趋势图：monotone 平滑蓝线 + 线下点阵 Area + 自适应 Y 轴（内部刻度） */
+/* 折线趋势图：monotone 平滑蓝线 + 自适应 Y 轴（内部刻度） */
 function TrendLineChart({ data }) {
   const { width, height, axisW } = CHART;
   const topPad = 10;
@@ -243,15 +243,9 @@ function TrendLineChart({ data }) {
   const y = (v) => topPad + plotH - ((v - yMin) / (yMax - yMin || 1)) * plotH;
   const pts = data.map((d, i) => [x(i), y(d.value)]);
   const linePath = monotonePath(pts);
-  const areaPath = `${linePath} L${pts[n - 1][0]},${axisY} L${pts[0][0]},${axisY} Z`;
 
   return (
     <svg viewBox={`0 0 ${width} ${height}`} className="h-full w-full">
-      <defs>
-        <pattern id="dotPattern-mention" patternUnits="userSpaceOnUse" width="6" height="6">
-          <circle cx="1.5" cy="1.5" r="1" fill="#d1d5db" />
-        </pattern>
-      </defs>
       <ChartTicks ticks={ticks} y={y} width={width} />
       <line x1={axisW} x2={width} y1={axisY} y2={axisY} stroke={C.grid} strokeWidth="1" />
       {data.map((d, i) => (
@@ -259,7 +253,6 @@ function TrendLineChart({ data }) {
           {d.label}
         </text>
       ))}
-      <path d={areaPath} fill="url(#dotPattern-mention)" stroke="none" />
       <path d={linePath} fill="none" stroke={C.blue} strokeWidth="2" strokeLinejoin="round" strokeLinecap="round" />
     </svg>
   );
