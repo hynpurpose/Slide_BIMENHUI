@@ -29,9 +29,9 @@ const FOTILE_OVERVIEW = [
 ];
 
 const OPPO_OVERVIEW = [
-  { label: '提及率', value: '39.7%' },
-  { label: '平均提及位次', value: 'NO. 3.3' },
-  { label: '负面信息率', value: '3.1%' },
+  { label: '提及率', value: '86.4%' },
+  { label: '平均提及位次', value: 'NO. 1.9' },
+  { label: '负面信息率', value: '1.2%' },
 ];
 
 function SectionTitle({ children, size = 22 }) {
