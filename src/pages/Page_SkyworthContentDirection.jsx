@@ -211,12 +211,12 @@ export default function Page_SkyworthContentDirection() {
             </h3>
           </div>
 
-          {/* 6个内容卡片列表，不含有说明小字，颜色采用蓝色饱和度渐变 */}
+          {/* 6个内容卡片列表，不含有说明小字，加大字号并拉宽序号与文字间距 */}
           <div className="flex-grow grid grid-cols-2 gap-4 min-h-0 py-1">
             {campaignTypes.map((type, idx) => (
               <div 
                 key={idx}
-                className="flex items-center gap-4.5 bg-black/40 border rounded-[20px] p-5 hover:bg-white/[0.01] transition-all duration-300"
+                className="flex items-center gap-8 bg-black/40 border rounded-[20px] px-7 py-5 hover:bg-white/[0.01] transition-all duration-300"
                 style={{
                   borderColor: `${type.color}33`,
                   boxShadow: `0 4px 20px ${type.color}02`
@@ -224,14 +224,14 @@ export default function Page_SkyworthContentDirection() {
               >
                 {/* 左侧圆角序号 */}
                 <div 
-                  className="shrink-0 w-[60px] h-[60px] rounded-2xl flex items-center justify-center"
+                  className="shrink-0 w-[68px] h-[68px] rounded-2xl flex items-center justify-center"
                   style={{ 
                     backgroundColor: `${type.color}14`, 
                     border: `1px solid ${type.color}80` 
                   }}
                 >
                   <span
-                    className="font-['Montserrat'] text-[28px] font-black leading-none"
+                    className="font-['Montserrat'] text-[32px] font-black leading-none"
                     style={{ color: type.color }}
                   >
                     {type.num}
@@ -239,12 +239,12 @@ export default function Page_SkyworthContentDirection() {
                 </div>
 
                 {/* 右侧：标题、配比 */}
-                <div className="flex-grow flex items-center justify-between gap-3 min-w-0">
-                  <span className="text-[22px] font-black text-white font-['MiSans'] leading-tight">
+                <div className="flex-grow flex items-center justify-between gap-4 min-w-0">
+                  <span className="text-[26px] font-black text-white font-['MiSans'] leading-none">
                     {type.category}
                   </span>
                   <span 
-                    className="text-[15px] font-bold font-['Montserrat'] rounded-full px-2.5 py-[1px] shrink-0"
+                    className="text-[17px] font-bold font-['Montserrat'] rounded-full px-3 py-[2px] shrink-0"
                     style={{
                       color: type.color,
                       borderColor: `${type.color}45`,
