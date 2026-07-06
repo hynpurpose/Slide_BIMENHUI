@@ -113,302 +113,123 @@ export default function Page_SkyworthKeywordStrategy() {
           }}
         />
 
-        {/* ==================== 右侧：词条细分思维导图 (Mindmap Tree) ==================== */}
-        <div 
-          className="absolute rounded-3xl p-6 select-text" 
-          style={{ 
-            left: '730px', 
-            top: '20px', 
-            width: '1110px', 
-            height: '600px'
-          }}
-        >
-          {/* SVG 连线画布 (使用系统统一的高级渐变连线) */}
-          <svg className="absolute inset-0 w-full h-full pointer-events-none z-0 overflow-visible">
-            <defs>
-              <linearGradient id="optGrad" x1="150" y1="270" x2="200" y2="165" gradientUnits="userSpaceOnUse">
-                <stop offset="0%" stopColor="#FFFFFF" stopOpacity="0.4" />
-                <stop offset="100%" stopColor="#2DD4BF" stopOpacity="0.8" />
-              </linearGradient>
-              <linearGradient id="monGrad" x1="150" y1="270" x2="200" y2="405" gradientUnits="userSpaceOnUse">
-                <stop offset="0%" stopColor="#FFFFFF" stopOpacity="0.4" />
-                <stop offset="100%" stopColor="#38BDF8" stopOpacity="0.8" />
-              </linearGradient>
-            </defs>
+        {/* ==================== 右侧：核心优化策略表格 (Strategy Table) ==================== */}
+        {(() => {
+          const rows = [
+            {
+              group: '品类词',
+              accent: C.colorBlue,
+              focus: '好看的电视',
+              priority: true,
+              keywords: ['艺术电视', '壁纸电视', '超薄电视', '画框电视'],
+              goal: '守住绝对优势，稳拿第一',
+              note: '防海信 / TCL / 华为跟进',
+            },
+            {
+              group: '品类词',
+              accent: C.colorBlue,
+              focus: '常规电视',
+              keywords: ['画质好', '音响好'],
+              goal: '持续加强，力争 Top3',
+            },
+            {
+              group: '产品专属词',
+              accent: C.colorTeal,
+              focus: 'A 系列 · 线上 3 款',
+              keywords: ['线上核心搜索词'],
+              goal: '打透线上，守住线上优势',
+            },
+            {
+              group: '产品专属词',
+              accent: C.colorTeal,
+              focus: 'Q 系列 · 线下 2 款',
+              keywords: ['线下体验', '看实物', '到店路径'],
+              goal: '突出线下属性，引导到店',
+            },
+          ];
 
-            {/* Root (创维词条) -> Level 1 (优化词/监测词) */}
-            <path d="M 150 270 C 175 270, 175 165, 200 165" fill="none" stroke="url(#optGrad)" strokeWidth="2.5" strokeLinecap="round" />
-            <path d="M 150 270 C 175 270, 175 405, 200 405" fill="none" stroke="url(#monGrad)" strokeWidth="2.5" strokeLinecap="round" />
+          const COL = { cat: 330, key: 470, goal: 310 };
 
-            {/* Level 1 -> Level 2 (优化词分支) */}
-            <path d="M 310 165 C 335 165, 335 92, 360 92" fill="none" stroke={C.colorTeal} strokeWidth="2" strokeLinecap="round" />
-            <path d="M 310 165 C 335 165, 335 242, 360 242" fill="none" stroke={C.colorTeal} strokeWidth="2" strokeLinecap="round" />
+          return (
+            <div
+              className="absolute select-text font-['MiSans']"
+              style={{ left: '748px', top: '30px', width: '1076px', height: '580px' }}
+            >
+              {/* ── 表头 ── */}
+              <div
+                className="flex items-center rounded-t-2xl"
+                style={{
+                  height: '58px',
+                  background: 'rgba(255,255,255,0.05)',
+                  borderBottom: '2px solid rgba(255,255,255,0.14)',
+                }}
+              >
+                <div style={{ width: COL.cat, paddingLeft: '28px' }} className="text-[22px] font-bold text-zinc-400 tracking-widest">词类 / 方向</div>
+                <div style={{ width: COL.key, paddingLeft: '20px' }} className="text-[22px] font-bold text-zinc-400 tracking-widest">重点关键词</div>
+                <div style={{ width: COL.goal, paddingLeft: '20px' }} className="text-[22px] font-bold text-zinc-400 tracking-widest">优化目标</div>
+              </div>
 
-            {/* Level 1 -> Level 2 (监测词分支) */}
-            <path d="M 310 405 C 335 405, 335 372, 360 372" fill="none" stroke={C.colorSky} strokeWidth="2" strokeLinecap="round" />
-            <path d="M 310 405 C 335 405, 335 462, 360 462" fill="none" stroke={C.colorSky} strokeWidth="2" strokeLinecap="round" />
+              {/* ── 数据行 ── */}
+              {rows.map((r, i) => (
+                <div
+                  key={i}
+                  className="flex items-center relative"
+                  style={{
+                    height: '124px',
+                    background: r.priority ? `${r.accent}12` : 'transparent',
+                    borderBottom: i === rows.length - 1 ? 'none' : '1px solid rgba(255,255,255,0.08)',
+                  }}
+                >
+                  {/* 左侧色条 */}
+                  <div
+                    className="absolute left-0 top-0 h-full"
+                    style={{ width: r.priority ? '5px' : '3px', background: r.accent, borderRadius: '3px' }}
+                  />
 
-            {/* Level 2 -> Level 3 (品类词-优化分支) */}
-            <path d="M 480 92 C 525 92, 525 60, 570 60" fill="none" stroke={C.colorBlue} strokeWidth="2" strokeLinecap="round" />
-            <path d="M 480 92 C 525 92, 525 120, 570 120" fill="none" stroke={C.colorBlue} strokeWidth="2" strokeLinecap="round" />
+                  {/* 词类 / 方向 */}
+                  <div style={{ width: COL.cat, paddingLeft: '28px', paddingRight: '16px' }}>
+                    <div className="flex items-center gap-[10px]">
+                      <span className="text-[24px] font-bold" style={{ color: r.accent }}>{r.group}</span>
+                      {r.priority && (
+                        <span
+                          className="text-[16px] font-bold px-[10px] py-[2px] rounded-full leading-none"
+                          style={{ background: r.accent, color: '#0A0A0A' }}
+                        >
+                          重中之重
+                        </span>
+                      )}
+                    </div>
+                    <div className="text-[28px] font-bold text-white leading-tight mt-[6px]">{r.focus}</div>
+                    {r.note && <div className="text-[16px] text-zinc-500 mt-[4px]">{r.note}</div>}
+                  </div>
 
-            {/* Level 2 -> Level 3 (产品专属词-优化分支) */}
-            <path d="M 520 242 C 545 242, 545 210, 570 210" fill="none" stroke={C.colorTeal} strokeWidth="2" strokeLinecap="round" />
-            <path d="M 520 242 C 545 242, 545 270, 570 270" fill="none" stroke={C.colorTeal} strokeWidth="2" strokeLinecap="round" />
+                  {/* 重点关键词 */}
+                  <div style={{ width: COL.key, paddingLeft: '20px', paddingRight: '16px' }} className="flex flex-wrap gap-[10px]">
+                    {r.keywords.map((k, ki) => (
+                      <span
+                        key={ki}
+                        className="text-[22px] leading-none rounded-lg"
+                        style={{
+                          padding: '9px 14px',
+                          color: '#E4E4E7',
+                          background: `${r.accent}1A`,
+                          border: `1px solid ${r.accent}55`,
+                        }}
+                      >
+                        {k}
+                      </span>
+                    ))}
+                  </div>
 
-            {/* Level 3 -> Level 4 Examples (高相关/低相关/A系列/Q系列) */}
-            <path d="M 690 60 L 740 60" fill="none" stroke={C.colorBlue} strokeWidth="1.5" strokeLinecap="round" />
-            <path d="M 690 120 L 740 120" fill="none" stroke={C.colorBlue} strokeWidth="1.5" strokeLinecap="round" />
-            <path d="M 690 210 L 740 210" fill="none" stroke={C.colorTeal} strokeWidth="1.5" strokeLinecap="round" />
-            <path d="M 690 270 L 740 270" fill="none" stroke={C.colorTeal} strokeWidth="1.5" strokeLinecap="round" />
-
-            {/* Level 2 -> Level 3 Examples (监测词分支) */}
-            <path d="M 480 372 L 530 372" fill="none" stroke={C.colorSky} strokeWidth="1.5" strokeLinecap="round" />
-            <path d="M 520 462 L 570 462" fill="none" stroke={C.colorSky} strokeWidth="1.5" strokeLinecap="round" />
-          </svg>
-
-          {/* Root Card: 创维词条 (纯白色边框与文字，增大字号) */}
-          <div
-            className="absolute flex items-center justify-center rounded-xl z-10 shadow-lg text-center font-bold"
-            style={{ 
-              left: '10px', 
-              top: '235px', 
-              width: '140px', 
-              height: '70px',
-              border: '2.5px solid #FFFFFF',
-              background: 'transparent'
-            }}
-          >
-            <span className="text-[30px] text-white">创维词条</span>
-          </div>
-
-          {/* ── Level 1: 优化词 / 监测词 ── */}
-          <div
-            className="absolute flex items-center justify-center rounded-xl z-10 shadow-md text-white font-bold border"
-            style={{ 
-              left: '200px', 
-              top: '137px', 
-              width: '110px', 
-              height: '56px',
-              borderColor: 'rgba(255,255,255,0.45)',
-              background: 'transparent'
-            }}
-          >
-            <span className="text-[26px]">优化词</span>
-          </div>
-
-          <div
-            className="absolute flex items-center justify-center rounded-xl z-10 shadow-md text-white font-bold border"
-            style={{ 
-              left: '200px', 
-              top: '377px', 
-              width: '110px', 
-              height: '56px',
-              borderColor: C.colorSky,
-              background: 'transparent'
-            }}
-          >
-            <span className="text-[26px]">监测词</span>
-          </div>
-
-          {/* ── Level 2: 中层分类 (加宽产品专属词卡片，防止“词”字单列一行) ── */}
-          {/* 优化词 -> 品类词 */}
-          <div
-            className="absolute flex items-center justify-center rounded-lg z-10 border text-white shadow-md"
-            style={{ 
-              left: '360px', 
-              top: '68px', 
-              width: '120px', 
-              height: '48px',
-              borderColor: C.colorBlue,
-              background: 'transparent'
-            }}
-          >
-            <span className="text-[24px] font-bold">品类词</span>
-          </div>
-
-          {/* 优化词 -> 产品专属词 (加宽为160px，解决分行截断) */}
-          <div
-            className="absolute flex items-center justify-center rounded-lg z-10 border text-white shadow-md"
-            style={{ 
-              left: '360px', 
-              top: '218px', 
-              width: '160px', 
-              height: '48px',
-              borderColor: C.colorTeal,
-              background: 'transparent'
-            }}
-          >
-            <span className="text-[24px] font-bold">产品专属词</span>
-          </div>
-
-          {/* 监测词 -> 品类词 */}
-          <div
-            className="absolute flex items-center justify-center rounded-lg z-10 border text-zinc-200 shadow-md"
-            style={{ 
-              left: '360px', 
-              top: '348px', 
-              width: '120px', 
-              height: '48px',
-              borderColor: C.colorSky,
-              background: 'transparent'
-            }}
-          >
-            <span className="text-[24px] font-bold">品类词</span>
-          </div>
-
-          {/* 监测词 -> 产品专属词 (加宽为160px，解决分行截断) */}
-          <div
-            className="absolute flex items-center justify-center rounded-lg z-10 border text-zinc-200 shadow-md"
-            style={{ 
-              left: '360px', 
-              top: '438px', 
-              width: '160px', 
-              height: '48px',
-              borderColor: C.colorSky,
-              background: 'transparent'
-            }}
-          >
-            <span className="text-[24px] font-bold">产品专属词</span>
-          </div>
-
-          {/* ── Level 3: 优化词下的精细分类 ── */}
-          <div
-            className="absolute flex items-center justify-center rounded-lg z-10 border text-zinc-300"
-            style={{ 
-              left: '570px', 
-              top: '38px', 
-              width: '120px', 
-              height: '44px',
-              borderColor: C.colorBlue,
-              background: 'transparent'
-            }}
-          >
-            <span className="text-[22px] font-semibold">高相关词</span>
-          </div>
-
-          <div
-            className="absolute flex items-center justify-center rounded-lg z-10 border text-zinc-300"
-            style={{ 
-              left: '570px', 
-              top: '98px', 
-              width: '120px', 
-              height: '44px',
-              borderColor: C.colorBlue,
-              background: 'transparent'
-            }}
-          >
-            <span className="text-[22px] font-semibold">低相关词</span>
-          </div>
-
-          <div
-            className="absolute flex items-center justify-center rounded-lg z-10 border text-zinc-300"
-            style={{ 
-              left: '570px', 
-              top: '188px', 
-              width: '120px', 
-              height: '44px',
-              borderColor: C.colorTeal,
-              background: 'transparent'
-            }}
-          >
-            <span className="text-[22px] font-semibold">A系列</span>
-          </div>
-
-          <div
-            className="absolute flex items-center justify-center rounded-lg z-10 border text-zinc-300"
-            style={{ 
-              left: '570px', 
-              top: '248px', 
-              width: '120px', 
-              height: '44px',
-              borderColor: C.colorTeal,
-              background: 'transparent'
-            }}
-          >
-            <span className="text-[22px] font-semibold">Q系列</span>
-          </div>
-
-          {/* ── Level 4 / Final: 示例词条 (移除框框，字号再次放大) ── */}
-          {/* 优化词 -> 品类词 -> 高相关词 示例 */}
-          <div
-            className="absolute flex items-center px-2 z-10 text-zinc-200 font-medium"
-            style={{ 
-              left: '740px', 
-              top: '38px', 
-              width: '350px', 
-              height: '44px'
-            }}
-          >
-            <span className="text-[24px] truncate">壁纸电视品牌推荐</span>
-          </div>
-
-          {/* 优化词 -> 品类词 -> 低相关词 示例 */}
-          <div
-            className="absolute flex items-center px-2 z-10 text-zinc-200 font-medium"
-            style={{ 
-              left: '740px', 
-              top: '98px', 
-              width: '350px', 
-              height: '44px'
-            }}
-          >
-            <span className="text-[24px] truncate">电视排行榜前十名</span>
-          </div>
-
-          {/* 优化词 -> 产品专属词 -> A系列 示例 */}
-          <div
-            className="absolute flex items-center px-2 z-10 text-zinc-200 font-medium"
-            style={{ 
-              left: '740px', 
-              top: '188px', 
-              width: '350px', 
-              height: '44px'
-            }}
-          >
-            <span className="text-[24px] truncate">7000块钱左右的壁纸电视推荐</span>
-          </div>
-
-          {/* 优化词 -> 产品专属词 -> Q系列 示例 */}
-          <div
-            className="absolute flex items-center px-2 z-10 text-zinc-200 font-medium"
-            style={{ 
-              left: '740px', 
-              top: '248px', 
-              width: '350px', 
-              height: '44px'
-            }}
-          >
-            <span className="text-[24px] truncate">有没有适合到店体验的高端壁纸电视？</span>
-          </div>
-
-          {/* 监测词 -> 品类词 示例 */}
-          <div
-            className="absolute flex items-center px-2 z-10 text-zinc-200 font-medium"
-            style={{ 
-              left: '530px', 
-              top: '348px', 
-              width: '560px', 
-              height: '48px'
-            }}
-          >
-            <span className="text-[24px] truncate">创维电视算一线品牌吗</span>
-          </div>
-
-          {/* 监测词 -> 产品专属词 示例 */}
-          <div
-            className="absolute flex items-center px-2 z-10 text-zinc-200 font-medium"
-            style={{ 
-              left: '570px', 
-              top: '438px', 
-              width: '520px', 
-              height: '48px'
-            }}
-          >
-            <span className="text-[24px] truncate">创维壁纸电视A7H Pro怎么样</span>
-          </div>
-
-        </div>
+                  {/* 优化目标 */}
+                  <div style={{ width: COL.goal, paddingLeft: '20px', paddingRight: '20px' }} className="text-[23px] font-semibold text-white leading-snug">
+                    {r.goal}
+                  </div>
+                </div>
+              ))}
+            </div>
+          );
+        })()}
 
       </div>
     </SlideLayout>
