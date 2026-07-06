@@ -15,14 +15,16 @@ export default function Page_GeoMonitorIntro() {
 
           {/* Large Title */}
           <h2 className="text-[80px] font-black text-white font-['MiSans'] tracking-wide leading-[95px] -mt-3">
-            独立第三方<br />数据监测
+            <span className="block whitespace-nowrap">GEO ONE</span>
+            <span className="block">数据监测系统</span>
           </h2>
 
           {/* Narration text */}
           <p className="text-white text-[28px] font-normal leading-[48px] font-['MiSans'] text-justify mt-4 pr-20">
-            独立研发国内首个第三方 GEO 数据监测机构「
-            <span className="font-bold underline decoration-[#004CE5] decoration-2 underline-offset-8">GEO ONE 数据监测</span>
-            」，提供真实、准确、可验证的 AI 数据监测结果。
+            耗时一年研发，它就是我们开展 GEO 业务的眼睛，
+            <span className="font-bold underline decoration-[#004CE5] decoration-2 underline-offset-8">提及率</span>、
+            <span className="font-bold underline decoration-[#004CE5] decoration-2 underline-offset-8">竞品情况</span>、
+            <span className="font-bold underline decoration-[#004CE5] decoration-2 underline-offset-8">引用来源</span>，品牌正负面查询都得靠它。
           </p>
 
           {/* Decorative accent icon slot — place asset at public/icons/geo-monitor-intro-accent.png */}
