@@ -109,19 +109,11 @@ function BackgroundDots() {
 export default function Page_TeamIntro() {
   return (
     <SlideLayout title="核心成员">
-      <div className="absolute top-[-56px] right-0 text-[30px] text-zinc-400 font-medium font-['MiSans'] select-none">
-        6 位核心成员 + <span className="text-white font-bold">20+ 名 AI 数字员工</span>，人机协同完成全流程的内容生产与数据监测。
-      </div>
-
       <BackgroundDots />
 
       <div className="absolute left-0 w-full flex gap-8 z-10 select-none" style={{ top: '0px', height: '795px' }}>
         {/* 左侧：真人核心团队 */}
         <div className="w-[1160px] shrink-0 flex flex-col">
-          <div className="flex items-center gap-3 mb-3">
-            <span className="text-[24px] font-black text-white font-['MiSans'] tracking-wide">真人核心团队</span>
-            <span className="text-[18px] font-bold text-zinc-400 font-['MiSans']">6 人</span>
-          </div>
           <div className="flex-1 grid grid-cols-2 grid-rows-3 border border-white/15 rounded-none overflow-hidden bg-zinc-950/10">
             {members.map((member, idx) => {
               const col = idx % 2;
@@ -162,10 +154,6 @@ export default function Page_TeamIntro() {
 
         {/* 右侧：AI 数字员工 */}
         <div className="flex-1 flex flex-col">
-          <div className="flex items-center gap-3 mb-3">
-            <span className="text-[24px] font-black text-white font-['MiSans'] tracking-wide">AI 数字员工</span>
-            <span className="text-[18px] font-bold text-[#004CE5] font-['MiSans']">20+ 名</span>
-          </div>
           <div className="flex-1 flex flex-col border border-white/15 rounded-none overflow-hidden bg-black">
             {aiAgents.map((agent, idx) => (
               <div
