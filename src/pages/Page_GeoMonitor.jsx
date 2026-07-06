@@ -6,13 +6,28 @@ export default function Page_GeoMonitor() {
     <SlideLayout title="GEO ONE 数据监测系统">
       <div className="w-full h-full flex items-center justify-between px-12 select-none relative z-10">
 
-        {/* Left Column: Description */}
-        <div className="w-[550px] flex flex-col justify-center pr-4 gap-4 animate-fadeIn">
-          <p className="text-zinc-300 text-[36px] font-normal font-['MiSans'] leading-[54px] tracking-wide text-justify">
-            我们今年才把 <span className="text-white font-bold">GEO ONE</span> 作为独立产品正式发布出来。
-            现在不管是品牌方，还是其他 GEO 服务商，都在<span className="text-white font-bold underline decoration-[#004CE5] decoration-2 underline-offset-8">付费使用</span>我们的产品。
-            同时我们也会收到很多服务商的想换皮肤、换 logo 的需求。
-          </p>
+        {/* Left Column: Highlight NO.1 */}
+        <div className="w-[600px] flex items-center justify-end gap-8 pr-4 animate-fadeIn">
+          <div className="flex flex-col justify-center items-end text-right">
+            {/* Giant highlighted NO.1 (White) */}
+            <span
+              className="text-[240px] font-black text-white tracking-tighter leading-none"
+              style={{ fontFamily: 'Montserrat, sans-serif' }}
+            >
+              NO.1
+            </span>
+
+            {/* Text description */}
+            <h2 className="text-[54px] font-bold text-white font-['MiSans'] mt-2 tracking-wide">
+              GEO ONE
+            </h2>
+            <p className="text-white text-[36px] font-normal font-['MiSans'] leading-normal mt-2">
+              在百度自然排名持续第一
+            </p>
+          </div>
+
+          {/* Vertical Divider Line (Solid Blue) */}
+          <div className="w-[1.5px] self-stretch bg-[#004CE5] rounded-full shadow-[0_0_8px_rgba(0,76,229,0.3)]" />
         </div>
 
         {/* Center: Smartphone Mockup */}
@@ -36,28 +51,16 @@ export default function Page_GeoMonitor() {
           </div>
         </div>
 
-        {/* Right Column: Highlight NO.1 */}
-        <div className="w-[600px] flex items-center justify-start gap-8 pl-8 animate-fadeIn">
+        {/* Right Column: Description */}
+        <div className="w-[550px] flex items-center justify-start gap-8 pl-8 animate-fadeIn">
           {/* Vertical Divider Line (Solid Blue) */}
           <div className="w-[1.5px] self-stretch bg-[#004CE5] rounded-full shadow-[0_0_8px_rgba(0,76,229,0.3)]" />
 
-          <div className="flex flex-col justify-center">
-            {/* Giant highlighted NO.1 (White) */}
-            <span
-              className="text-[240px] font-black text-white tracking-tighter leading-none"
-              style={{ fontFamily: 'Montserrat, sans-serif' }}
-            >
-              NO.1
-            </span>
-
-            {/* Text description */}
-            <h2 className="text-[54px] font-bold text-white font-['MiSans'] mt-2 tracking-wide">
-              GEO ONE
-            </h2>
-            <p className="text-zinc-400 text-[36px] font-normal font-['MiSans'] leading-normal mt-2">
-              在百度自然排名持续第一
-            </p>
-          </div>
+          <p className="text-white text-[36px] font-normal font-['MiSans'] leading-[54px] tracking-wide text-justify">
+            我们今年才把 <span className="font-bold underline decoration-[#004CE5] decoration-2 underline-offset-8">GEO ONE</span> 作为独立产品正式发布出来。
+            现在不管是品牌方，还是其他 GEO 服务商，都在<span className="font-bold underline decoration-[#004CE5] decoration-2 underline-offset-8">付费使用</span>我们的产品。
+            同时我们也会收到很多服务商的想换皮肤、换 logo 的需求。
+          </p>
         </div>
 
       </div>
