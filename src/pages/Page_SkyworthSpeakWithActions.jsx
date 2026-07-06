@@ -6,15 +6,15 @@ const CASES = [
   {
     id: '01',
     keyword: '词条一',
-    before: '待补充优化前提及情况',
-    after: '待补充优化后提及情况',
+    before: '未提及',
+    after: '第一名',
     image: '',
   },
   {
     id: '02',
     keyword: '词条二',
-    before: '待补充优化前提及情况',
-    after: '待补充优化后提及情况',
+    before: '未提及',
+    after: '第一名',
     image: '',
   },
 ];
@@ -27,7 +27,7 @@ function ImageSlot({ src, alt }) {
     return (
       <div className="w-full h-full flex flex-col items-center justify-center bg-zinc-950/30 border border-dashed border-zinc-800/80 rounded-2xl gap-3 select-none">
         <ImageIcon className="w-10 h-10 text-zinc-600 opacity-50" strokeWidth={1.5} />
-        <span className="text-zinc-600 text-[15px] font-medium font-['MiSans']">案例截图</span>
+        <span className="text-zinc-600 text-[18px] font-medium font-['MiSans']">案例截图</span>
       </div>
     );
   }
@@ -47,22 +47,22 @@ function MentionBlock({ phase, text }) {
 
   return (
     <div
-      className={`flex-1 min-w-0 rounded-xl px-5 py-4 flex flex-col gap-2.5 ${
+      className={`flex-1 min-w-0 rounded-xl px-6 py-5 flex flex-col gap-3 ${
         isBefore
           ? 'bg-zinc-900/40 border border-zinc-800/70'
           : 'bg-[#004CE5]/8 border border-[#004CE5]/25'
       }`}
     >
       <span
-        className={`text-[13px] font-bold tracking-widest uppercase font-['MiSans'] ${
+        className={`text-[18px] font-bold tracking-widest font-['MiSans'] ${
           isBefore ? 'text-zinc-500' : 'text-[#60A5FA]'
         }`}
       >
         {isBefore ? '优化前' : '优化后'}
       </span>
       <p
-        className={`text-[18px] leading-[1.55] font-medium font-['MiSans'] ${
-          isBefore ? 'text-zinc-400' : 'text-zinc-100'
+        className={`text-[32px] leading-[1.4] font-bold font-['MiSans'] ${
+          isBefore ? 'text-zinc-400' : 'text-white'
         }`}
       >
         {text}
@@ -75,18 +75,18 @@ function CaseCard({ data }) {
   return (
     <div className="flex-1 min-w-0 h-full flex flex-col bg-zinc-950/35 border border-zinc-800/70 rounded-[1.25rem] overflow-hidden">
       <div className="shrink-0 px-7 pt-6 pb-5 border-b border-zinc-800/50 flex items-center gap-4">
-        <span className="text-[13px] font-black tracking-[0.2em] text-[#004CE5] bg-[#004CE5]/10 border border-[#004CE5]/20 rounded-md px-2.5 py-1 font-['Montserrat']">
+        <span className="text-[16px] font-black tracking-[0.2em] text-[#004CE5] bg-[#004CE5]/10 border border-[#004CE5]/20 rounded-md px-3 py-1.5 font-['Montserrat']">
           {data.id}
         </span>
-        <h3 className="text-[26px] font-bold text-white tracking-tight font-['MiSans'] truncate">
+        <h3 className="text-[34px] font-bold text-white tracking-tight font-['MiSans'] truncate">
           {data.keyword}
         </h3>
       </div>
 
-      <div className="shrink-0 px-7 py-5 flex items-stretch gap-3">
+      <div className="shrink-0 px-7 py-6 flex items-stretch gap-4">
         <MentionBlock phase="before" text={data.before} />
-        <div className="shrink-0 flex items-center justify-center w-8">
-          <ArrowRight className="w-5 h-5 text-zinc-600" strokeWidth={2} />
+        <div className="shrink-0 flex items-center justify-center w-10">
+          <ArrowRight className="w-7 h-7 text-zinc-600" strokeWidth={2.5} />
         </div>
         <MentionBlock phase="after" text={data.after} />
       </div>
