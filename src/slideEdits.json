@@ -348,6 +348,167 @@
         "letterSpacing": "",
         "html": "这样先把词分为优化类和监测类，再细分为品类词和产品专专属词，这样分完以后，每类词的统计口径和优化目标就都清楚了。"
       }
+    },
+    "chapter-6-1-2": {
+      "0.1.0.2.0": {
+        "dx": 0,
+        "dy": 0,
+        "rotate": 0,
+        "fontSize": "",
+        "color": "",
+        "fontFamily": "",
+        "fontWeight": "",
+        "textAlign": "",
+        "lineHeight": "",
+        "letterSpacing": "",
+        "html": "GEO ONE数据系统功能介绍"
+      }
+    },
+    "chapter-2-1-0": {
+      "0.1.0.3.0.1.0.1.2.2.0": {
+        "dx": 0,
+        "dy": 0,
+        "rotate": 0,
+        "fontSize": "",
+        "color": "",
+        "fontFamily": "",
+        "fontWeight": "",
+        "textAlign": "",
+        "lineHeight": "",
+        "letterSpacing": "",
+        "html": "已拆分为四类：品类优化词 93 · 产品专属优化词 124 · 品类监测词 20 · 产品专属监测词 101"
+      },
+      "0.1.0.3.0.1.1.1.0.1.0.0": {
+        "dx": 0,
+        "dy": 0,
+        "rotate": 0,
+        "fontSize": "",
+        "color": "",
+        "fontFamily": "",
+        "fontWeight": "",
+        "textAlign": "",
+        "lineHeight": "",
+        "letterSpacing": "",
+        "html": "2026.07.04"
+      },
+      "0.1.0.3.0.1.1.1.1.1": {
+        "dx": 0,
+        "dy": 0,
+        "rotate": 0,
+        "fontSize": "",
+        "color": "",
+        "fontFamily": "",
+        "fontWeight": "",
+        "textAlign": "",
+        "lineHeight": "",
+        "letterSpacing": "",
+        "html": "本周期共监测 338 个关键词条，在 4 个平台完成 1 天查询，合计执行查询 1,352 次， 抓取并识别引用文章 9,609 篇， 同期识别竞品品牌 43 家， 截图覆盖率达 100%。各项数据指标均在预期执行范围内，整体运行稳定。"
+      }
+    },
+    "chapter-2-0-1": {
+      "0.1.0.2.0.2.0.1.0.1.0.0.0.2": {
+        "dx": 0,
+        "dy": 0,
+        "rotate": 0,
+        "fontSize": "",
+        "color": "",
+        "fontFamily": "",
+        "fontWeight": "",
+        "textAlign": "",
+        "lineHeight": "",
+        "letterSpacing": "",
+        "html": "68.0%"
+      },
+      "0.1.0.2.0.2.0.1.2.1.0.0.1.2": {
+        "dx": 0,
+        "dy": 0,
+        "rotate": 0,
+        "fontSize": "",
+        "color": "",
+        "fontFamily": "",
+        "fontWeight": "",
+        "textAlign": "",
+        "lineHeight": "",
+        "letterSpacing": "",
+        "html": "NO. 4.0"
+      },
+      "0.1.0.2.0.2.1.1.1.1.0.0.3.2": {
+        "dx": 0,
+        "dy": 0,
+        "rotate": 0,
+        "fontSize": "",
+        "color": "",
+        "fontFamily": "",
+        "fontWeight": "",
+        "textAlign": "",
+        "lineHeight": "",
+        "letterSpacing": "",
+        "html": "17.0%"
+      },
+      "0.1.0.2.0.2.1.1.4.1.0.0.0.2": {
+        "dx": 0,
+        "dy": 0,
+        "rotate": 0,
+        "fontSize": "",
+        "color": "",
+        "fontFamily": "",
+        "fontWeight": "",
+        "textAlign": "",
+        "lineHeight": "",
+        "letterSpacing": "",
+        "html": "37.0%"
+      },
+      "0.1.0.2.0.2.1.1.3.1.0.0.4.1.0": {
+        "dx": 0,
+        "dy": 0,
+        "rotate": 0,
+        "fontSize": "",
+        "color": "",
+        "fontFamily": "",
+        "fontWeight": "",
+        "textAlign": "",
+        "lineHeight": "",
+        "letterSpacing": "",
+        "html": "创维 Q7H "
+      },
+      "0.1.0.2.0.2.1.1.3.1.0.0.4.0.0": {
+        "dx": 0,
+        "dy": 0,
+        "rotate": 0,
+        "fontSize": "",
+        "color": "",
+        "fontFamily": "",
+        "fontWeight": "",
+        "textAlign": "",
+        "lineHeight": "",
+        "letterSpacing": "",
+        "html": "107"
+      },
+      "0.1.0.2.0.2.1.1.3.1.0.0.4.2": {
+        "dx": 0,
+        "dy": 0,
+        "rotate": 0,
+        "fontSize": "",
+        "color": "",
+        "fontFamily": "",
+        "fontWeight": "",
+        "textAlign": "",
+        "lineHeight": "",
+        "letterSpacing": "",
+        "html": "0%"
+      },
+      "0.1.0.2.0.2.0.1.1.0": {
+        "dx": 0,
+        "dy": -1,
+        "rotate": 0,
+        "fontSize": "",
+        "color": "",
+        "fontFamily": "",
+        "fontWeight": "",
+        "textAlign": "",
+        "lineHeight": "",
+        "letterSpacing": ""
+      }
     }
   },
   "titleOverrides": {
@@ -357,6 +518,7 @@
     "chapter-0-1-0": "如何了解消费者真实感受和AI偏向",
     "chapter-0-2-0": "创维AI品牌定位报告",
     "chapter-1-0-0": "不同种类的词怎么分类？",
-    "chapter-1-0-1": "优化词和监测词下面再分成两类"
+    "chapter-1-0-1": "优化词和监测词下面再分成两类",
+    "chapter-6-1-2": "GEO ONE数据系统功能介绍"
   }
 }
