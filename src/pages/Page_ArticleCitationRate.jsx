@@ -8,15 +8,13 @@ const PROJECTS = [
   {
     brand: '方太',
     industry: '大家电行业',
-    total: 163,
-    cited: 83,
-    citations: 2491,
+    total: 140,
+    cited: 46,
+    citations: 1498,
     breakdown: [
-      { model: '豆包', count: 769 },
-      { model: 'Kimi', count: 770 },
-      { model: '文心', count: 642 },
-      { model: '元宝', count: 23 },
-      { model: 'DeepSeek', count: 287 },
+      { model: '豆包', count: 1265 },
+      { model: 'DeepSeek', count: 101 },
+      { model: '通义', count: 132 },
     ],
   },
   {
@@ -37,13 +35,15 @@ const PROJECTS = [
   {
     brand: '古井贡酒',
     industry: '快消品行业',
-    total: 140,
-    cited: 46,
-    citations: 1498,
+    total: 163,
+    cited: 83,
+    citations: 2491,
     breakdown: [
-      { model: '豆包', count: 1265 },
-      { model: 'DeepSeek', count: 101 },
-      { model: '通义', count: 132 },
+      { model: '豆包', count: 769 },
+      { model: 'Kimi', count: 770 },
+      { model: '文心', count: 642 },
+      { model: '元宝', count: 23 },
+      { model: 'DeepSeek', count: 287 },
     ],
   },
   {
