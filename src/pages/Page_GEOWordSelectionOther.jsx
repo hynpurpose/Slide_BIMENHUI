@@ -32,6 +32,20 @@ function XiaohongshuSearchBox() {
   );
 }
 
+function AiSearchTransitionBadge() {
+  return (
+    <div className="shrink-0 flex flex-col items-center justify-center gap-4 z-30 px-1">
+      <span className="text-[24px] font-black text-white font-['MiSans'] leading-none whitespace-nowrap px-5 py-3 rounded-full bg-[#004CE5] border-2 border-[#2E6BFF] shadow-[0_0_32px_rgba(46,107,255,0.65),0_4px_24px_rgba(0,0,0,0.5)]">
+        AI搜索形式变了
+      </span>
+      <svg width="100" height="28" viewBox="0 0 100 28" fill="none" aria-hidden="true" className="drop-shadow-[0_0_12px_rgba(46,107,255,0.8)]">
+        <path d="M0 14H76" stroke="#2E6BFF" strokeWidth="5" strokeLinecap="round" />
+        <path d="M66 5L88 14L66 23" stroke="#2E6BFF" strokeWidth="5" strokeLinecap="round" strokeLinejoin="round" />
+      </svg>
+    </div>
+  );
+}
+
 export default function Page_GEOWordSelectionOther() {
   const [imgFailed, setImgFailed] = useState(false);
   const [phoneImgFailed, setPhoneImgFailed] = useState(false);
@@ -47,8 +61,8 @@ export default function Page_GEOWordSelectionOther() {
       <div className="absolute w-[600px] h-[600px] rounded-full bg-blue-600/5 blur-[160px] -right-48 -top-48 pointer-events-none" />
       <div className="absolute w-[500px] h-[500px] rounded-full bg-blue-900/5 blur-[140px] left-24 bottom-24 pointer-events-none" />
 
-      {/* Main Container：三栏布局，过渡区独占中间缝隙 */}
-      <div className="w-full h-full flex items-stretch relative z-10 select-none">
+      {/* Main Container：左右双栏 */}
+      <div className="w-full h-full flex items-stretch justify-between relative z-10 select-none">
 
         {/* 左侧：百度营销/小红书聚光月均搜索指数 */}
         <div className="w-[850px] h-full bg-[#09090b]/90 border border-zinc-800 rounded-[28px] overflow-hidden flex flex-col shadow-[0_20px_50px_rgba(0,0,0,0.4)] shrink-0">
@@ -100,23 +114,6 @@ export default function Page_GEOWordSelectionOther() {
           </div>
         </div>
 
-        {/* 中间缝隙占位 */}
-        <div className="w-[140px] shrink-0" aria-hidden="true" />
-
-        {/* 中间过渡：水平居中，位于页面 3/4 高度（1080×75% − 内容区 top 280 = 530px） */}
-        <div
-          className="absolute left-1/2 -translate-x-1/2 -translate-y-1/2 z-30 flex flex-col items-center gap-4 pointer-events-none overflow-visible"
-          style={{ top: '530px' }}
-        >
-          <span className="text-[24px] font-black text-white font-['MiSans'] leading-none whitespace-nowrap px-5 py-3 rounded-full bg-[#004CE5] border-2 border-[#2E6BFF] shadow-[0_0_32px_rgba(46,107,255,0.65),0_4px_24px_rgba(0,0,0,0.5)]">
-            AI搜索形式变了
-          </span>
-          <svg width="100" height="28" viewBox="0 0 100 28" fill="none" aria-hidden="true" className="drop-shadow-[0_0_12px_rgba(46,107,255,0.8)]">
-            <path d="M0 14H76" stroke="#2E6BFF" strokeWidth="5" strokeLinecap="round" />
-            <path d="M66 5L88 14L66 23" stroke="#2E6BFF" strokeWidth="5" strokeLinecap="round" strokeLinejoin="round" />
-          </svg>
-        </div>
-
         {/* 右侧：手机端真实搜索截图 */}
         <div className="w-[850px] h-full bg-[#09090b]/90 border border-zinc-800 rounded-[28px] overflow-hidden flex flex-col shadow-[0_20px_50px_rgba(0,0,0,0.4)] shrink-0">
           {/* Card Header */}
@@ -139,9 +136,9 @@ export default function Page_GEOWordSelectionOther() {
           </div>
 
           {/* Card Body */}
-          <div className="flex-grow min-h-0 p-6 pb-4 bg-zinc-950 flex items-center justify-center gap-10">
-            {/* 手机左侧：传统搜索框示意 */}
-            <div className="flex flex-col items-end justify-center gap-8 flex-1 min-w-0 pr-2">
+          <div className="flex-grow min-h-0 p-6 pb-4 bg-zinc-950 flex items-center justify-center gap-5">
+            {/* 传统搜索框示意 */}
+            <div className="flex flex-col items-end justify-center gap-8 flex-1 min-w-0">
               <div className="flex flex-col items-end gap-2">
                 <span className="text-zinc-500 text-[15px] font-bold font-['MiSans'] tracking-wide">百度搜索</span>
                 <BaiduSearchBox />
@@ -151,6 +148,9 @@ export default function Page_GEOWordSelectionOther() {
                 <XiaohongshuSearchBox />
               </div>
             </div>
+
+            {/* 搜索框 → 手机：过渡标识 */}
+            <AiSearchTransitionBadge />
 
             <div className="relative w-[304px] h-[620px] border-[8px] border-zinc-800 bg-zinc-950 rounded-[56px] shadow-[0_25px_60px_rgba(0,0,0,0.85)] overflow-hidden shrink-0">
               {/* Notch */}
@@ -180,14 +180,15 @@ export default function Page_GEOWordSelectionOther() {
           </div>
 
           {/* 卡片内结论：与百度搜索框居中对齐 */}
-          <div className="shrink-0 px-6 pb-5 pt-1 border-t border-zinc-900/80 bg-zinc-950 flex items-center gap-10">
-            <div className="flex-1 min-w-0 pr-2 flex justify-end">
+          <div className="shrink-0 px-6 pb-5 pt-1 border-t border-zinc-900/80 bg-zinc-950 flex items-center gap-5">
+            <div className="flex-1 min-w-0 flex justify-end">
               <div className="w-[420px] text-center">
                 <span className="text-white text-[22px] font-sans font-bold font-['MiSans']">
                   搜索逻辑变了，数据也变了
                 </span>
               </div>
             </div>
+            <div className="shrink-0 w-[100px]" aria-hidden="true" />
             <div className="w-[304px] shrink-0" aria-hidden="true" />
           </div>
         </div>
