@@ -169,7 +169,7 @@ export default function Page_GEOWordSelectionOther() {
 
         {/* Footnote */}
         <div className="absolute bottom-[-48px] left-0 w-[850px] text-center text-white text-[22px] font-sans font-bold z-20">
-          数据来源：百度广告搜索指数
+          数据来源：百度广告、小红书聚光搜索指数
         </div>
 
       </div>
