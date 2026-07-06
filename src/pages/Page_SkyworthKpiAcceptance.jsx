@@ -112,7 +112,7 @@ export function Page_SkyworthKpiAcceptance() {
                 <thead>
                   <tr className="border-b-2 border-white/[0.22] text-zinc-300 text-[19px] xl:text-[21px] font-black">
                     <th className="pb-2.5 pl-4 w-[11.5%]">词组分类</th>
-                    <th className="pb-2.5 w-[28.5%] pl-6">运营目标与三阶段演进策略</th>
+                    <th className="pb-2.5 w-[28.5%] pl-6">运营目标与两阶段演进策略</th>
                     <th className="pb-2.5 w-[22%] pl-6">阶段性交付标准与 KPI 考核</th>
                     <th className="pb-2.5 pr-4 w-[38%] pl-6">最终展现权益及交付标准</th>
                   </tr>
@@ -155,10 +155,10 @@ export function Page_SkyworthKpiAcceptance() {
                           <span className="w-[100px] shrink-0 text-[13.5px] xl:text-[14.5px] font-black bg-[#004CE5]/20 text-[#8cb1ff] border border-[#004CE5]/40 py-[1.5px] rounded text-center">阶段一考核</span>
                           <div className="text-[15.5px] xl:text-[17px] leading-snug text-zinc-200 flex flex-col gap-1.5">
                             <div>
-                              <strong className="text-white font-bold">高相关词</strong>：提及率 <strong className="text-white font-black">≥ 80%</strong>，TOP3 提及率 <strong className="text-white font-black">≥ 70%</strong>
+                              <strong className="text-white font-bold">高相关词</strong>：提及率 <strong className="text-white font-black">≥ 90%</strong>，TOP3 提及率 <strong className="text-white font-black">≥ 85%</strong>
                             </div>
                             <div>
-                              <strong className="text-white font-bold">低相关词</strong>：提及率 <strong className="text-white font-black">≥ 60%</strong>，平均位次进入前 <strong className="text-white font-black">5</strong>
+                              <strong className="text-white font-bold">低相关词</strong>：提及率 <strong className="text-white font-black">≥ 80%</strong>，TOP3 提及率 <strong className="text-white font-black">≥ 80%</strong>
                             </div>
                           </div>
                         </div>
@@ -166,10 +166,7 @@ export function Page_SkyworthKpiAcceptance() {
                           <span className="w-[100px] shrink-0 text-[13.5px] xl:text-[14.5px] font-black bg-[#004CE5]/20 text-[#8cb1ff] border border-[#004CE5]/40 py-[1.5px] rounded text-center">阶段二考核</span>
                           <div className="text-[15.5px] xl:text-[17px] leading-snug text-zinc-200 flex flex-col gap-1.5">
                             <div>
-                              <strong className="text-white font-bold">高相关词</strong>：提及率 <strong className="text-white font-black">≥ 90%</strong>，TOP3 提及率 <strong className="text-white font-black">≥ 85%</strong>
-                            </div>
-                            <div>
-                              <strong className="text-white font-bold">低相关词</strong>：提及率 <strong className="text-white font-black">≥ 80%</strong>，TOP3 提及率 <strong className="text-white font-black">≥ 80%</strong>
+                              在<strong className="text-white font-bold">稳定第一阶段效果</strong>的基础上，尽量往上提。
                             </div>
                           </div>
                         </div>
