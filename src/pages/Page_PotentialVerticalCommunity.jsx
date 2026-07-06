@@ -15,24 +15,34 @@ export default function Page_PotentialVerticalCommunity() {
 
         {/* ── 左右分栏区 ── */}
         <div className="flex-grow flex items-stretch min-h-0 gap-10 mt-2">
-          {/* 左栏：图片展示区 (1060px) */}
-          <div className="w-[1060px] h-[630px] rounded-[32px] overflow-hidden relative group shrink-0 bg-zinc-950/20 border border-dashed border-zinc-800/80 flex items-center justify-center">
-            <img
-              src="/images/potential_vertical_community.png"
-              alt="有潜力的垂直社区 - 酒排名网"
-              className="max-w-full max-h-full object-contain opacity-95 transition-opacity duration-500 group-hover:opacity-100"
-              onError={(e) => {
-                e.currentTarget.style.display = 'none';
-                e.currentTarget.nextElementSibling.style.display = 'flex';
-              }}
-            />
-            {/* 当图片未找到时显示友好占位 */}
-            <div className="hidden flex-col items-center justify-center w-full h-full text-zinc-400 p-8 text-center animate-fadeIn">
-              <div className="w-16 h-16 rounded-full bg-zinc-900 border border-zinc-800 flex items-center justify-center text-zinc-500 mb-4">
-                📷
+          {/* 左栏：标题 + 图片展示区 (1060px) */}
+          <div className="w-[1060px] h-[630px] flex flex-col gap-4 shrink-0">
+            {/* 图片上方的 Title */}
+            <div className="shrink-0 pl-2">
+              <h3 className="text-[26px] font-black text-white font-['MiSans'] tracking-wide">
+                酒排名社区 <span className="text-[20px] font-bold text-zinc-400 ml-2">（由个人运营）</span>
+              </h3>
+            </div>
+
+            {/* 图片本身 */}
+            <div className="flex-1 rounded-[32px] overflow-hidden relative group bg-zinc-950/20 border border-dashed border-zinc-800/80 flex items-center justify-center">
+              <img
+                src="/images/potential_vertical_community.png"
+                alt="有潜力的垂直社区 - 酒排名网"
+                className="max-w-full max-h-full object-contain opacity-95 transition-opacity duration-500 group-hover:opacity-100"
+                onError={(e) => {
+                  e.currentTarget.style.display = 'none';
+                  e.currentTarget.nextElementSibling.style.display = 'flex';
+                }}
+              />
+              {/* 当图片未找到时显示友好占位 */}
+              <div className="hidden flex-col items-center justify-center w-full h-full text-zinc-400 p-8 text-center animate-fadeIn">
+                <div className="w-16 h-16 rounded-full bg-zinc-900 border border-zinc-800 flex items-center justify-center text-zinc-500 mb-4">
+                  📷
+                </div>
+                <span className="text-[20px] font-bold text-zinc-400 font-sans">图片占位符</span>
+                <span className="text-[15px] text-zinc-600 font-mono mt-1">请将图片放置在: /public/images/potential_vertical_community.png</span>
               </div>
-              <span className="text-[20px] font-bold text-zinc-400 font-sans">图片占位符</span>
-              <span className="text-[15px] text-zinc-600 font-mono mt-1">请将图片放置在: /public/images/potential_vertical_community.png</span>
             </div>
           </div>
 
