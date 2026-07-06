@@ -73,17 +73,17 @@ function OverviewPanel({ product, metrics }) {
           <span className="text-[15px] font-bold text-[#1F2329]">{product}</span>
         </div>
       </div>
-      <div className="flex-1 flex gap-5 mt-5 min-h-0">
+      <div className="flex-1 grid grid-cols-3 gap-5 mt-5 min-h-[128px] items-stretch">
         {metrics.map((m) => (
           <div
             key={m.label}
-            className="flex-1 bg-white border border-[#E9EAEE] rounded-[14px] px-6 py-5 flex flex-col justify-center gap-4 min-w-0 shadow-[0_2px_8px_rgba(31,35,41,0.04)]"
+            className="h-full bg-white border border-[#E9EAEE] rounded-[14px] px-6 py-5 flex flex-col justify-between min-h-[128px] min-w-0 shadow-[0_2px_8px_rgba(31,35,41,0.04)]"
           >
-            <span className="text-[18px] font-bold text-[#1F2329] leading-none flex items-center gap-1.5">
+            <span className="text-[18px] font-bold text-[#1F2329] leading-none flex items-center gap-1.5 whitespace-nowrap shrink-0">
               {m.label}
               <span className="w-[16px] h-[16px] rounded-full border-[1.5px] border-[#B4B9C2] text-[#B4B9C2] text-[10px] font-bold flex items-center justify-center leading-none">?</span>
             </span>
-            <span className="text-[46px] font-black text-[#141619] leading-none tracking-tight">{m.value}</span>
+            <span className="text-[46px] font-black text-[#141619] leading-none tracking-tight shrink-0">{m.value}</span>
           </div>
         ))}
       </div>
@@ -131,13 +131,25 @@ function DoubleColumn({ data, overview }) {
         <OverviewPanel product={data.product} metrics={overview} />
       </div>
 
-      <div className="shrink-0 flex flex-col justify-end">
+      <div className="shrink-0 flex flex-col justify-end min-h-[192px]">
         <div className="mb-4">
           <SectionTitle size={24}>项目背景与总结</SectionTitle>
         </div>
-        <p className="text-zinc-300 leading-relaxed text-[22px] font-medium h-auto text-justify">
-          {data.summary}
-        </p>
+        <div className="flex-1 flex flex-col justify-start">
+        {Array.isArray(data.summary) ? (
+          <div className="flex flex-col gap-2">
+            {data.summary.map((line, i) => (
+              <p key={i} className="text-zinc-300 leading-relaxed text-[22px] font-medium text-justify">
+                {line}
+              </p>
+            ))}
+          </div>
+        ) : (
+          <p className="text-zinc-300 leading-relaxed text-[22px] font-medium h-auto text-justify">
+            {data.summary}
+          </p>
+        )}
+        </div>
       </div>
     </div>
   );

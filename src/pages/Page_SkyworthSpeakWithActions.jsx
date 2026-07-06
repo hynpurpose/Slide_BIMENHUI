@@ -47,11 +47,10 @@ function MentionBlock({ phase, text }) {
 
   return (
     <div
-      className={`flex-1 min-w-0 rounded-xl px-4 py-3 flex items-center gap-4 ${
-        isBefore
+      className={`flex-1 min-w-0 rounded-xl px-4 py-3 flex items-center gap-4 ${isBefore
           ? 'bg-zinc-900/40 border border-zinc-800/70'
           : 'bg-[#004CE5]/8 border border-[#004CE5]/25'
-      }`}
+        }`}
     >
       <span className="text-[36px] leading-none font-bold shrink-0 font-['MiSans'] text-white">
         {isBefore ? '优化前：' : '优化后：'}
@@ -95,7 +94,7 @@ function CaseCard({ data }) {
 
 export default function Page_SkyworthSpeakWithActions() {
   return (
-    <SlideLayout title="用行动说话" subtitle="投放文章影响的两个案例" hideHeaderLeft={true}>
+    <SlideLayout title="用行动说话" subtitle="投放文章影响的两个词条" hideHeaderLeft={true}>
       <div className="absolute w-[480px] h-[480px] rounded-full bg-[#004CE5]/5 blur-[140px] -right-40 -bottom-40 pointer-events-none" />
 
       <div className="w-full h-full relative z-10 select-none animate-fadeIn flex gap-6">

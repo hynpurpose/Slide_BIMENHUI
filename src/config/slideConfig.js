@@ -47,6 +47,7 @@ import {
   Page_SkyworthMonitorWordStrategy_C,
 } from '../pages/Page_SkyworthMonitorWordStrategy';
 import Page_SkyworthKeywordStrategy from '../pages/Page_SkyworthKeywordStrategy';
+import Page_GEOSalesFeedbackCase from '../pages/Page_GEOSalesFeedbackCase';
 import Page_CompanyIntro from '../pages/Page_CompanyIntro';
 import Page_ServiceClients from '../pages/Page_ServiceClients';
 import Page_CaseStudy_Double_Combined from '../pages/Page_CaseStudy_Double_Combined';
@@ -281,6 +282,7 @@ export const slideConfig = [
 
   { type: 'section', title: '核心优化策略' },
   { type: 'page', title: '核心优化策略', component: Page_SkyworthKeywordStrategy, hideHeader: true },
+  { type: 'page', title: 'AI的错误回答会对线下门店成交有破坏性影响', component: Page_GEOSalesFeedbackCase, hideHeader: true },
 
   { type: 'section', title: 'KPI及工作安排' },
   { type: 'page', title: 'KPI 及验收标准', component: Page_SkyworthKpiAcceptance, hideHeader: true },
@@ -336,7 +338,9 @@ export const slideConfig = [
   { type: 'section', title: '公司介绍' },
   { type: 'page', title: '「GEO 索引未来」整体介绍', component: Page_CompanyIntro, hideHeader: true },
   { type: 'page', title: '服务客户', component: Page_ServiceClients, hideHeader: true },
-  { type: 'page', title: '服务案例', variants: [Page_CaseStudy_Double_Combined, Page_CaseStudy_Double_Combined_2], hideHeader: true },
+  { type: 'page', title: '服务案例', component: Page_CaseStudy_Double_Combined, hideHeader: true },
+  { type: 'page', title: '服务案例', component: Page_CaseStudy_Double_Combined_2, hideHeader: true },
+  { type: 'page', title: '服务案例', component: Page_CaseStudy_Double_Combined_3, hideHeader: true },
   // { type: 'page', title: '服务案例 · 慕思 GEO 阶段性报告', variants: [Page_CaseStudy_Musi_A, Page_CaseStudy_Musi_B, Page_CaseStudy_Musi_C], hideHeader: true },
   // { type: 'page', title: '服务案例 · 菜鸟 GEO 阶段性报告', variants: [Page_CaseStudy_Cainiao_A, Page_CaseStudy_Cainiao_B, Page_CaseStudy_Cainiao_C], hideHeader: true },
   // { type: 'page', title: '服务案例 · 古井贡酒 GEO 阶段性报告', variants: [Page_CaseStudy_Gujing_A, Page_CaseStudy_Gujing_B, Page_CaseStudy_Gujing_C], hideHeader: true },
