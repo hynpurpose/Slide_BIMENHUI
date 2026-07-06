@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import SlideLayout from '../components/SlideLayout';
-import { Globe, MessageSquare, AlertTriangle, Users, FileText, CheckCircle2 } from 'lucide-react';
+import { Globe, MessageSquare, AlertTriangle, Users, FileText } from 'lucide-react';
 
 export default function Page_DeliveryHighWeight() {
   const leftTable = [
@@ -9,6 +9,14 @@ export default function Page_DeliveryHighWeight() {
     { rank: 3, name: "今日头条", rate: "14.5%", color: "#F04141", badgeBg: "bg-[#F1B584]" },
     { rank: 4, name: "IT之家", rate: "5.4%", color: "#3B82F6", isCustomIcon: true },
     { rank: 5, name: "搜狐网", rate: "4.7%", color: "#FF9900" }
+  ];
+
+  const sources = [
+    { title: "1. 抖音视频链接", url: "v.douyin.com/ZGdEs3s/...", isFake: true },
+    { title: "2. 什么值得买评测", url: "smzdm.com/post/892718...", isFake: false },
+    { title: "3. 今日头条评测", url: "toutiao.com/article/7321...", isFake: false },
+    { title: "4. IT之家横评文章", url: "ithome.com/html/721884...", isFake: false },
+    { title: "5. 搜狐科技评测", url: "sohu.com/a/90217438...", isFake: false }
   ];
 
   // 支持可选真实截图，若加载失败自动回退到模拟 UI
@@ -32,10 +40,10 @@ export default function Page_DeliveryHighWeight() {
         className="absolute w-[1840px] select-none animate-fadeIn flex flex-col justify-between z-10 pl-0"
         style={{ top: '0px', height: '795px' }}
       >
-        {/* ==================== 三栏主体布局 (高度为 690px，避免内容无谓拉伸) ==================== */}
+        {/* ==================== 三栏主体布局 (高度为 690px) ==================== */}
         <div className="w-full flex gap-6 items-stretch h-[690px] relative">
 
-          {/* ── SVG 引导虚线：从抖音链接指向右侧高粉丝账号 ── */}
+          {/* ── SVG 引导虚线：从第一个信源链接(抖音)指向右侧高粉丝账号 ── */}
           <svg className="absolute inset-0 pointer-events-none z-30" style={{ width: '1840px', height: '690px' }}>
             <defs>
               <marker id="arrow-head" viewBox="0 0 10 10" refX="6" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse">
@@ -43,7 +51,7 @@ export default function Page_DeliveryHighWeight() {
               </marker>
             </defs>
             <path 
-              d="M 1120 230 C 1160 205, 1200 185, 1240 180" 
+              d="M 1120 220 C 1160 200, 1200 185, 1240 180" 
               fill="none" 
               stroke="#0052FF" 
               strokeWidth="2.5" 
@@ -60,7 +68,7 @@ export default function Page_DeliveryHighWeight() {
               </h3>
             </div>
 
-            {/* 表格容器 (使用 justify-start 紧凑排版，防止拉伸过大) */}
+            {/* 表格容器 */}
             <div className="flex-grow flex flex-col bg-zinc-50/50 rounded-2xl border border-zinc-200/60 p-4">
               <div className="flex justify-between items-center text-[13px] text-zinc-400 font-bold pb-2.5 border-b border-zinc-200 mb-3 px-2">
                 <span>平台名称</span>
@@ -90,7 +98,7 @@ export default function Page_DeliveryHighWeight() {
                             IT
                           </span>
                         ) : (
-                          <Globe className={`w-[22px] h-[22px] shrink-0 ${isDouyin ? 'text-[#FF0050]' : 'text-zinc-455'}`} />
+                          <Globe className={`w-[22px] h-[22px] shrink-0 ${isDouyin ? 'text-[#FF0050]' : 'text-zinc-400'}`} />
                         )}
                         {/* 名字 */}
                         <span className={`text-[17px] font-bold font-['MiSans'] truncate ${isDouyin ? "text-zinc-900 font-black" : "text-zinc-700"}`}>
@@ -157,46 +165,38 @@ export default function Page_DeliveryHighWeight() {
                     </div>
                   </div>
 
-                  {/* 右侧：信源列表 (350px) */}
+                  {/* 右侧：信源列表 (350px，高内聚大字号5条链接布局) */}
                   <div className="w-[350px] h-full rounded-2xl border border-white/[0.04] bg-black/30 p-5 flex flex-col">
-                    <div className="flex items-center justify-between pb-3 border-b border-white/[0.05] mb-4 shrink-0">
+                    <div className="flex items-center justify-between pb-3 border-b border-white/[0.05] mb-3 shrink-0">
                       <span className="text-[13px] font-bold text-zinc-500 font-['MiSans']">信源列表</span>
                       <span className="text-[11px] text-zinc-600 font-bold font-['Montserrat']">SOURCES</span>
                     </div>
 
-                    <div className="flex-grow flex flex-col justify-start gap-3.5 py-1 min-h-0">
-                      {/* 抖音链接 (假引用) */}
-                      <div className="bg-black/40 border border-[#0052FF]/30 rounded-xl p-4 flex flex-col justify-between h-[105px] relative overflow-hidden group hover:border-[#0052FF]/50 transition-colors duration-300">
-                        <span className="text-[12px] text-zinc-500 font-bold font-['Montserrat']">1. 抖音视频链接</span>
-                        <p className="text-[14px] font-black text-white truncate mt-1">v.douyin.com/ZGdEs3s/...</p>
-                        
-                        {/* 红色发光戳章：假引用 */}
-                        <div className="absolute right-3 top-2.5 rotate-[-12deg] border border-red-500 bg-red-500/10 text-red-400 text-[11px] font-black px-2 py-0.5 rounded shadow-[0_0_10px_rgba(239,68,68,0.2)] pointer-events-none">
-                          假引用
+                    <div className="flex-grow flex flex-col justify-start gap-2 py-1 min-h-0">
+                      {sources.map((item, idx) => (
+                        <div 
+                          key={idx} 
+                          className="flex items-center justify-between h-[75px] border-b border-white/[0.04] last:border-0 hover:bg-white/[0.02] px-2.5 rounded-xl transition-all duration-200"
+                        >
+                          <div className="flex flex-col justify-center min-w-0 pr-2">
+                            <span className="text-[16px] xl:text-[18px] font-black text-white truncate leading-snug font-['MiSans']">
+                              {item.title}
+                            </span>
+                            <span className="text-[13px] xl:text-[14px] font-bold text-zinc-500 truncate mt-0.5 font-mono">
+                              {item.url}
+                            </span>
+                          </div>
+                          
+                          {/* Stamp badge */}
+                          <span className={`shrink-0 text-[11px] font-black px-2 py-0.5 rounded rotate-[-4deg] border ${
+                            item.isFake 
+                              ? "border-red-500 bg-red-500/10 text-red-400 shadow-[0_0_10px_rgba(239,68,68,0.15)]"
+                              : "border-emerald-500 bg-emerald-500/10 text-emerald-400 shadow-[0_0_10px_rgba(16,185,129,0.15)]"
+                          }`}>
+                            {item.isFake ? "假引用" : "真引用"}
+                          </span>
                         </div>
-                      </div>
-
-                      {/* 其他链接 2 (真引用) */}
-                      <div className="bg-black/10 border border-white/[0.05] rounded-xl p-4 flex flex-col justify-between h-[105px] relative overflow-hidden group hover:border-white/[0.12] transition-colors duration-300">
-                        <span className="text-[12px] text-zinc-600 font-bold font-['Montserrat']">2. 其他文章链接</span>
-                        <p className="text-[14px] font-bold text-zinc-400 truncate mt-1">smzdm.com/post/892718...</p>
-                        
-                        {/* 绿色发光戳章：真引用 */}
-                        <div className="absolute right-3 top-2.5 rotate-[8deg] border border-emerald-500 bg-emerald-500/10 text-emerald-400 text-[11px] font-black px-2 py-0.5 rounded shadow-[0_0_10px_rgba(16,185,129,0.2)] pointer-events-none">
-                          真引用
-                        </div>
-                      </div>
-
-                      {/* 其他链接 3 (真引用) */}
-                      <div className="bg-black/10 border border-white/[0.05] rounded-xl p-4 flex flex-col justify-between h-[105px] relative overflow-hidden group hover:border-white/[0.12] transition-colors duration-300">
-                        <span className="text-[12px] text-zinc-600 font-bold font-['Montserrat']">3. 其他文章链接</span>
-                        <p className="text-[14px] font-bold text-zinc-400 truncate mt-1">toutiao.com/article/7321...</p>
-                        
-                        {/* 绿色发光戳章：真引用 */}
-                        <div className="absolute right-3 top-2.5 rotate-[8deg] border border-emerald-500 bg-emerald-500/10 text-emerald-400 text-[11px] font-black px-2 py-0.5 rounded shadow-[0_0_10px_rgba(16,185,129,0.2)] pointer-events-none">
-                          真引用
-                        </div>
-                      </div>
+                      ))}
                     </div>
                   </div>
                 </>
@@ -244,7 +244,7 @@ export default function Page_DeliveryHighWeight() {
                     <div>
                       <span className="text-[13px] font-bold text-zinc-500 block mb-1">AI 实际抓取的字段</span>
                       <p className="text-[15px] font-bold text-zinc-200 leading-relaxed font-['MiSans']">
-                        仅读取了视频的标题、描述文本和机器生成的自动字幕文件。
+                        仅读取了视频的标题、描述文本 and 机器生成的自动字幕文件。
                       </p>
                     </div>
                   </div>
