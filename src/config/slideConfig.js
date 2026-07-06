@@ -24,7 +24,6 @@ import { Page_SkyworthKeywordOptTwoTypes_C } from '../pages/Page_SkyworthKeyword
 import Page_SkyworthKeywordLogic from '../pages/Page_SkyworthKeywordLogic';
 import { OPT_KEYWORD_PAGES, MON_KEYWORD_PAGES } from '../pages/Page_SkyworthKeywordTables';
 import Page_GEOWordSelectionOther from '../pages/Page_GEOWordSelectionOther';
-import Page_GEOWordSelectionOther2 from '../pages/Page_GEOWordSelectionOther2';
 import Page_GEOWordSelectionDataChain from '../pages/Page_GEOWordSelectionDataChain';
 import Page_SkyworthAiProcess from '../pages/Page_SkyworthAiProcess';
 import Page_SkyworthSearchEngineModel from '../pages/Page_SkyworthSearchEngineModel';
@@ -142,10 +141,11 @@ import Page_SkyworthKpiAcceptance from '../pages/Page_SkyworthKpiAcceptance';
 import Page_SkyworthWorkAcceptance from '../pages/Page_SkyworthWorkAcceptance';
 import Page_SkyworthValueAddedServices from '../pages/Page_SkyworthValueAddedServices';
 import {
-  Page_SkyworthReport_BasicInfo1,
-  Page_SkyworthReport_BasicInfo2,
-} from '../pages/Page_SkyworthReport_BasicInfo';
-import { Page_SkyworthReport_CoreDataSelf } from '../pages/Page_SkyworthReport_CoreDataSelf';
+  Page_SkyworthReport_CoreDataSelf,
+  Page_SkyworthReport_CoreDataSelf_A,
+  Page_SkyworthReport_CoreDataSelf_B,
+  Page_SkyworthReport_CoreDataSelf_C,
+} from '../pages/Page_SkyworthReport_CoreDataSelf';
 import { Page_SkyworthReport_CoreDataCompetitor } from '../pages/Page_SkyworthReport_CoreDataCompetitor';
 import { Page_SkyworthReport_MonitorWordOverview } from '../pages/Page_SkyworthReport_MonitorWordOverview';
 import { Page_SkyworthReport_OptDashboardHtml } from '../pages/Page_SkyworthReport_OptDashboardHtml';
@@ -250,7 +250,6 @@ export const slideConfig = [
 
   { type: 'section', title: '这些词是怎么选出来的' },
   { type: 'page', title: '市场上其他做法', component: Page_GEOWordSelectionOther, hideHeader: true },
-  { type: 'page', title: '传统搜索 VS AI 搜索', component: Page_GEOWordSelectionOther2, hideHeader: true },
   { type: 'page', title: 'AI 提问量数据从哪来', component: Page_GEOWordSelectionDataChain, hideHeader: true },
   { type: 'page', title: '影子算法', component: Page_SkyworthShadowAlgorithm, hideHeader: true },
   { type: 'page', title: 'AI 如何处理用户问题', component: Page_SkyworthAiProcess, hideHeader: true },
@@ -266,10 +265,6 @@ export const slideConfig = [
   { type: 'page', title: '核心数据总览', component: Page_SkyworthReport_CoreDataSelf, hideHeader: true },
   { type: 'page', title: '核心数据竞品对比', component: Page_SkyworthReport_CoreDataCompetitor, hideHeader: true },
   { type: 'page', title: '监测词总览', component: Page_SkyworthReport_MonitorWordOverview, hideHeader: true },
-
-  { type: 'section', title: '基础信息' },
-  { type: 'page', title: '报告说明', component: Page_SkyworthReport_BasicInfo1, hideHeader: true },
-  { type: 'page', title: '监测范围', component: Page_SkyworthReport_BasicInfo2, hideHeader: true },
 
   { type: 'section', title: '详细数据' },
   { type: 'page', title: '优化词总览数据', component: Page_SkyworthReport_OptDashboardHtml, hideHeader: true },

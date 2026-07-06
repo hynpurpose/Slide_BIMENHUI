@@ -1,15 +1,138 @@
 import React from 'react';
 import SlideLayout from '../components/SlideLayout';
+import { C } from '../components/GeoWebUI';
 import overview from '../data/geoOverview.json';
 
 const FONT_IMPORT = `@import url('https://fonts.geekzu.org/css2?family=Montserrat:wght@400;500;600;700;800;900&display=swap');`;
 
+const RANK_COLORS = { 1: '#FFD700', 2: '#E0E0E0', 3: '#F5C28C' };
+
+function RankBadge({ rank, compact = false }) {
+  const size = compact ? 'h-5 w-5 text-[10px]' : 'h-6 w-6 text-xs';
+  if (rank > 9) {
+    return (
+      <div
+        className={`flex items-center justify-center font-medium shrink-0 ${compact ? 'text-[10px] w-[28px]' : 'text-xs w-8'}`}
+        style={{ color: C.mutedFg }}
+      >
+        {rank}
+      </div>
+    );
+  }
+  if (RANK_COLORS[rank]) {
+    return (
+      <div
+        className={`flex ${size} items-center justify-center rounded-full font-semibold shrink-0`}
+        style={{ backgroundColor: RANK_COLORS[rank], color: '#1f2937' }}
+      >
+        {rank}
+      </div>
+    );
+  }
+  return (
+    <div className={`flex ${size} items-center justify-center font-medium shrink-0`} style={{ color: C.mutedFg }}>
+      {rank}
+    </div>
+  );
+}
+
+function TargetProductTag() {
+  return (
+    <span
+      className="shrink-0 rounded px-1.5 py-0.5 text-[10px] font-medium leading-none"
+      style={{ backgroundColor: '#EBF2FF', color: '#64748b' }}
+    >
+      目标产品
+    </span>
+  );
+}
+
+const TITLE_LEADING = 'flex items-center gap-3 text-left';
+
 function SectionTitle({ children }) {
   return (
-    <h3 className="text-[24px] xl:text-[26px] font-bold text-zinc-300 tracking-wider flex items-center gap-3">
-      <span className="w-1.5 h-5.5 bg-[#004CE5] rounded-full shadow-[0_0_8px_rgba(0,76,229,0.8)]" />
+    <h3 className={`text-[24px] xl:text-[26px] font-bold text-white tracking-wider ${TITLE_LEADING}`}>
+      <span className="w-1.5 h-5.5 bg-[#004CE5] rounded-full shadow-[0_0_8px_rgba(0,76,229,0.8)] shrink-0" />
       {children}
     </h3>
+  );
+}
+
+function RankingCard({ title, valueLabel, data, compact = false, leading = false }) {
+  const cellPx = compact ? 'px-1.5' : 'px-3';
+  const thBase = compact
+    ? 'h-7 align-middle text-[11px] font-medium whitespace-nowrap'
+    : 'h-8 align-middle text-sm font-medium whitespace-nowrap';
+  const rowPy = compact ? 'py-1' : 'py-2';
+  const nameSize = compact ? 'text-[11px]' : 'text-sm';
+  const valueSize = compact ? 'text-xs' : 'text-base';
+  const valueCol = compact ? 'w-[52px]' : 'w-[96px]';
+  const cardPad = compact ? 'p-2.5' : 'p-4';
+
+  const valueCell = compact ? 'px-1.5 text-right tabular-nums' : 'px-3 text-right tabular-nums';
+
+  const titleClass = compact
+    ? 'text-[15px] xl:text-[17px] font-bold text-white shrink-0 truncate'
+    : 'text-[20px] xl:text-[22px] font-bold text-white shrink-0 truncate';
+
+  const titleEl = <span className={titleClass}>{title}</span>;
+
+  return (
+    <div className="flex flex-col gap-2 h-full min-h-0 text-left">
+      {leading ? (
+        <div className={TITLE_LEADING}>
+          <span className="w-1.5 shrink-0" aria-hidden="true" />
+          {titleEl}
+        </div>
+      ) : (
+        titleEl
+      )}
+      <div
+        className="flex-grow flex flex-col rounded-xl border bg-white shadow-sm min-h-0 overflow-hidden"
+        style={{ borderColor: C.border, color: C.fg }}
+      >
+        <div className={`flex flex-1 flex-col min-h-0 ${cardPad}`}>
+          <table className="w-full h-full caption-bottom border-collapse table-fixed">
+            <colgroup>
+              <col className={compact ? 'w-[28px]' : 'w-[36px]'} />
+              <col />
+              <col className={valueCol} />
+            </colgroup>
+            <thead>
+              <tr className="border-b" style={{ borderColor: C.border }}>
+                <th className={`${thBase} ${cellPx}`} />
+                <th className={`${thBase} ${cellPx} text-left`} style={{ color: C.fg }}>
+                  {compact ? '产品' : '品牌名称'}
+                </th>
+                <th className={`${thBase} ${valueCell}`} style={{ color: C.fg }}>
+                  {valueLabel}
+                </th>
+              </tr>
+            </thead>
+            <tbody>
+              {data.map((item, idx) => (
+                <tr key={idx} className="border-b last:border-0" style={{ borderColor: C.border }}>
+                  <td className={`${cellPx} ${rowPy} align-middle`}>
+                    <RankBadge rank={item.rank ?? idx + 1} compact={compact} />
+                  </td>
+                  <td className={`${cellPx} ${rowPy} align-middle`}>
+                    <div className="flex items-center gap-1 min-w-0">
+                      <span className={`${nameSize} font-medium truncate leading-tight`} style={{ color: C.fg }}>
+                        {item.name}
+                      </span>
+                      {item.self && <TargetProductTag />}
+                    </div>
+                  </td>
+                  <td className={`${valueCell} ${rowPy} align-middle ${valueSize} font-medium whitespace-nowrap`} style={{ color: C.fg }}>
+                    {item.value}
+                  </td>
+                </tr>
+              ))}
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </div>
   );
 }
 
@@ -43,175 +166,39 @@ export function Page_SkyworthReport_CoreDataCompetitor() {
     return { title: p.project_name.replace(/^创维/, '创维 '), data: rows };
   });
 
-  const renderCompetitorTable = (title, headers, data) => {
-    return (
-      <div className="flex flex-col gap-2 h-full min-h-0">
-        <h4 className="text-[20px] xl:text-[22px] font-bold text-white shrink-0 pb-2 border-b border-white/10">
-          {title}
-        </h4>
-        <div className="flex-grow flex flex-col min-h-0">
-          <table className="w-full text-left border-collapse table-fixed flex-grow">
-            <tbody>
-              {data.map((item, idx) => {
-                const isSelf = item.self;
-                const rank = idx + 1;
-
-                let rankElement;
-                if (rank === 1) {
-                  rankElement = (
-                    <div
-                      className="rounded-full bg-gradient-to-br from-amber-300 to-amber-500 text-black flex items-center justify-center font-extrabold text-[12px] shadow-[0_0_5px_rgba(245,158,11,0.3)] shrink-0"
-                      style={{ width: '26px', height: '26px', minWidth: '26px', minHeight: '26px' }}
-                    >
-                      1
-                    </div>
-                  );
-                } else if (rank === 2) {
-                  rankElement = (
-                    <div
-                      className="rounded-full bg-gradient-to-br from-zinc-300 to-zinc-500 text-black flex items-center justify-center font-extrabold text-[12px] shadow-[0_0_5px_rgba(156,163,175,0.2)] shrink-0"
-                      style={{ width: '26px', height: '26px', minWidth: '26px', minHeight: '26px' }}
-                    >
-                      2
-                    </div>
-                  );
-                } else if (rank === 3) {
-                  rankElement = (
-                    <div
-                      className="rounded-full bg-gradient-to-br from-orange-300 to-orange-500 text-black flex items-center justify-center font-extrabold text-[12px] shadow-[0_0_5px_rgba(249,115,22,0.2)] shrink-0"
-                      style={{ width: '26px', height: '26px', minWidth: '26px', minHeight: '26px' }}
-                    >
-                      3
-                    </div>
-                  );
-                } else {
-                  rankElement = (
-                    <div
-                      className="text-zinc-500 font-bold text-[14px] text-center shrink-0 flex items-center justify-center"
-                      style={{ width: '26px', height: '26px', minWidth: '26px', minHeight: '26px' }}
-                    >
-                      {rank}
-                    </div>
-                  );
-                }
-
-                return (
-                  <tr
-                    key={idx}
-                    className={`border-b border-white/[0.04] last:border-none hover:bg-white/[0.02] transition-colors ${
-                      isSelf ? 'bg-[#004CE5]/15 font-bold' : ''
-                    }`}
-                  >
-                    <td className="py-1 px-1 w-[40px] align-middle">
-                      <div className="flex justify-center">{rankElement}</div>
-                    </td>
-                    <td className="py-1 px-2 align-middle">
-                      <div className="flex items-center gap-2">
-                        <span className={`text-[19px] xl:text-[21px] ${isSelf ? 'font-bold text-[#60A5FA]' : 'font-medium text-zinc-300'}`}>
-                          {item.name}
-                        </span>
-                        {isSelf && (
-                          <span className="px-1.5 py-0.2 text-[9px] font-bold rounded bg-[#004CE5]/30 text-[#60A5FA] border border-[#004CE5]/40 shrink-0">
-                            本品
-                          </span>
-                        )}
-                      </div>
-                    </td>
-                    <td className={`py-1 px-2 text-right pr-2 align-middle text-[20px] xl:text-[22px] font-bold font-mono ${
-                      isSelf ? 'text-white' : 'text-zinc-400'
-                    }`}>
-                      {item.value}
-                    </td>
-                  </tr>
-                );
-              })}
-            </tbody>
-          </table>
-        </div>
-      </div>
-    );
-  };
-
-  const renderProductTable = (title, data) => {
-    return (
-      <div className="flex flex-col gap-2 h-full min-h-0">
-        <div className="text-[17px] xl:text-[19px] font-bold text-center border-b border-white/10 pb-2 text-zinc-200 shrink-0">
-          {title}
-        </div>
-        <div className="flex-grow flex flex-col min-h-0">
-          <table className="w-full text-left border-collapse table-fixed flex-grow">
-            <tbody>
-              {data.map((item, idx) => {
-                const isSelf = item.self;
-                const rank = item.rank ?? idx + 1;
-
-                let rankElement;
-                if (rank === 1) {
-                  rankElement = <span className="text-amber-400 font-extrabold text-[15px] xl:text-[17px]">1</span>;
-                } else if (rank === 2) {
-                  rankElement = <span className="text-zinc-300 font-bold text-[15px] xl:text-[17px]">2</span>;
-                } else if (rank === 3) {
-                  rankElement = <span className="text-orange-400 font-bold text-[15px] xl:text-[17px]">3</span>;
-                } else {
-                  rankElement = <span className={`text-[15px] xl:text-[17px] ${isSelf ? 'font-bold text-[#60A5FA]' : 'text-zinc-500'}`}>{rank}</span>;
-                }
-
-                return (
-                  <tr
-                    key={idx}
-                    className={`border-b border-white/[0.04] last:border-none hover:bg-white/[0.01] transition-colors ${
-                      isSelf ? 'bg-[#004CE5]/15 font-bold' : ''
-                    }`}
-                  >
-                    <td className="py-1 px-1 text-center w-[15%] align-middle">{rankElement}</td>
-                    <td className="py-1 px-0.5 w-[55%] text-[16px] xl:text-[18px] align-middle truncate">
-                      <span className={isSelf ? 'font-bold text-[#60A5FA]' : 'text-zinc-300'}>{item.name}</span>
-                    </td>
-                    <td className={`py-1 px-1 text-right pr-1 w-[30%] text-[17px] xl:text-[19px] font-bold font-mono align-middle ${
-                      isSelf ? 'text-white' : 'text-zinc-400'
-                    }`}>
-                      {item.value}
-                    </td>
-                  </tr>
-                );
-              })}
-            </tbody>
-          </table>
-        </div>
-      </div>
-    );
-  };
-
   return (
     <SlideLayout fullBleed>
       <div className="w-full h-full flex flex-col relative text-white font-sans px-8 sm:px-10 py-12 overflow-hidden animate-fade-in">
         <style dangerouslySetInnerHTML={{ __html: FONT_IMPORT }} />
-        
+
         {/* 页面标题 */}
-        <div className="text-center shrink-0 mb-2">
+        <div className="text-center shrink-0 mb-4">
           <h1 className="text-[36px] xl:text-[40px] font-bold text-white tracking-widest leading-tight">
             竞品对比
           </h1>
         </div>
 
-        <div className="w-full max-w-[1840px] mx-auto flex flex-col flex-1 min-h-0 relative z-10 justify-center gap-10">
+        <div className="w-full max-w-[1840px] mx-auto flex flex-col flex-1 min-h-0 relative z-10 justify-between py-4">
 
           {/* ===== 品类优化词竞品对比 (并列三个表) ===== */}
-          <div className="shrink-0 flex flex-col gap-3">
+          <div className="shrink-0 flex flex-col gap-3 text-left">
             <SectionTitle>品类优化词竞品对比</SectionTitle>
-            <div className="grid grid-cols-3 gap-16 h-[260px]">
-              {renderCompetitorTable('提及率排名', ['品牌', '提及率'], mentionRateData)}
-              {renderCompetitorTable('TOP1 提及率排名', ['品牌', 'TOP1 提及率'], top1RateData)}
-              {renderCompetitorTable('平均提及位次排名', ['品牌', '平均位次'], avgRankData)}
+            <div className="grid grid-cols-3 gap-6 h-[292px]">
+              <RankingCard leading title="提及率排名" valueLabel="提及率" data={mentionRateData} />
+              <RankingCard title="TOP1 提及率排名" valueLabel="Top1提及率" data={top1RateData} />
+              <RankingCard title="平均提及位次排名" valueLabel="平均提及位次" data={avgRankData} />
             </div>
           </div>
 
           {/* ===== 产品专属优化词竞品对比 (并列五个表) ===== */}
-          <div className="shrink-0 flex flex-col gap-3">
-            <SectionTitle>产品专属优化词竞品对比 <span className="text-[16px] xl:text-[18px] text-zinc-500 font-normal ml-2">（提及率排名对比）</span></SectionTitle>
-            <div className="grid grid-cols-5 gap-12 h-[220px]">
+          <div className="shrink-0 flex flex-col gap-3 text-left">
+            <SectionTitle>
+              产品专属优化词竞品对比{' '}
+              <span className="text-[16px] xl:text-[18px] text-white font-normal ml-2">（提及率排名对比）</span>
+            </SectionTitle>
+            <div className="grid grid-cols-5 gap-3 h-[252px]">
               {productTables.map((t) => (
-                <React.Fragment key={t.title}>{renderProductTable(t.title, t.data)}</React.Fragment>
+                <RankingCard key={t.title} title={t.title} valueLabel="提及率" data={t.data} compact />
               ))}
             </div>
           </div>
@@ -220,7 +207,9 @@ export function Page_SkyworthReport_CoreDataCompetitor() {
           {/* 注意：以下总结文案基于当前 geoOverview.json 数据撰写，重新采集数据后需人工同步更新 */}
           <div className="shrink-0 border-t border-white/10 pt-8 mt-2">
             <div className="flex items-start gap-5">
-              <span className="text-[20px] xl:text-[22px] font-bold text-white shrink-0 bg-[#004CE5] px-4 py-2 rounded-xl shadow-[0_0_10px_rgba(0,76,229,0.3)]">数据总结</span>
+              <span className="text-[20px] xl:text-[22px] font-bold text-white shrink-0 bg-[#004CE5] px-4 py-2 rounded-xl shadow-[0_0_10px_rgba(0,76,229,0.3)]">
+                数据总结
+              </span>
               <p className="text-[19px] xl:text-[21px] text-zinc-200 leading-relaxed text-justify flex-1">
                 品类层面，创维 <strong className="text-white font-bold">TOP1 提及率（24.7%）行业第一</strong>，一旦被提及往往被首推；但整体提及率（<strong className="text-white font-bold">59.4%</strong>）与平均位次（NO.4.2）仍落后于海信、TCL，「被想起」的频率是当前短板。产品层面，<strong className="text-white font-bold">A7H Pro（61.7%）与 A10H（51%）</strong>在各自词组中排名第一，且各产品榜单前列多被创维自家产品占据，形成内部矩阵优势；但 <strong className="text-white font-bold">A8H、Q8H 被自家高端款盖过，Q7H 排名第 107、提及率为 0</strong>，产品间的曝光分配仍需针对性调优。
               </p>
