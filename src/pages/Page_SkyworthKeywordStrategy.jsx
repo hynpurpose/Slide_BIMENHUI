@@ -113,123 +113,157 @@ export default function Page_SkyworthKeywordStrategy() {
           }}
         />
 
-        {/* ==================== 右侧：核心优化策略表格 (Strategy Table) ==================== */}
-        {(() => {
-          const rows = [
-            {
-              group: '品类词',
-              accent: C.colorBlue,
-              focus: '好看的电视',
-              priority: true,
-              keywords: ['艺术电视', '壁纸电视', '超薄电视', '画框电视'],
-              goal: '守住绝对优势，稳拿第一',
-              note: '防海信 / TCL / 华为跟进',
-            },
-            {
-              group: '品类词',
-              accent: C.colorBlue,
-              focus: '常规电视',
-              keywords: ['画质好', '音响好'],
-              goal: '持续加强，力争 Top3',
-            },
-            {
-              group: '产品专属词',
-              accent: C.colorTeal,
-              focus: 'A 系列 · 线上 3 款',
-              keywords: ['线上核心搜索词'],
-              goal: '打透线上，守住线上优势',
-            },
-            {
-              group: '产品专属词',
-              accent: C.colorTeal,
-              focus: 'Q 系列 · 线下 2 款',
-              keywords: ['线下体验', '看实物', '到店路径'],
-              goal: '突出线下属性，引导到店',
-            },
-          ];
+        {/* ==================== 右侧：词条分级表格 ==================== */}
+        <div 
+          className="absolute select-text font-['MiSans']" 
+          style={{ 
+            left: '730px', 
+            top: '20px', 
+            width: '1110px', 
+            height: '600px'
+          }}
+        >
+          <table
+            className="w-full h-full"
+            style={{ borderCollapse: 'separate', borderSpacing: 0, tableLayout: 'fixed' }}
+          >
+            <colgroup>
+              <col style={{ width: '118px' }} />
+              <col style={{ width: '132px' }} />
+              <col style={{ width: '118px' }} />
+              <col />
+              <col style={{ width: '168px' }} />
+            </colgroup>
 
-          const COL = { cat: 330, key: 470, goal: 310 };
-
-          return (
-            <div
-              className="absolute select-text font-['MiSans']"
-              style={{ left: '748px', top: '30px', width: '1076px', height: '580px' }}
-            >
-              {/* ── 表头 ── */}
-              <div
-                className="flex items-center rounded-t-2xl"
-                style={{
-                  height: '58px',
-                  background: 'rgba(255,255,255,0.05)',
-                  borderBottom: '2px solid rgba(255,255,255,0.14)',
-                }}
-              >
-                <div style={{ width: COL.cat, paddingLeft: '28px' }} className="text-[22px] font-bold text-zinc-400 tracking-widest">词类 / 方向</div>
-                <div style={{ width: COL.key, paddingLeft: '20px' }} className="text-[22px] font-bold text-zinc-400 tracking-widest">重点关键词</div>
-                <div style={{ width: COL.goal, paddingLeft: '20px' }} className="text-[22px] font-bold text-zinc-400 tracking-widest">优化目标</div>
-              </div>
-
-              {/* ── 数据行 ── */}
-              {rows.map((r, i) => (
-                <div
-                  key={i}
-                  className="flex items-center relative"
-                  style={{
-                    height: '124px',
-                    background: r.priority ? `${r.accent}12` : 'transparent',
-                    borderBottom: i === rows.length - 1 ? 'none' : '1px solid rgba(255,255,255,0.08)',
-                  }}
+            <thead>
+              <tr>
+                <th
+                  colSpan={3}
+                  className="text-left text-[22px] font-bold text-zinc-300 tracking-wide"
+                  style={{ padding: '0 20px 14px', borderBottom: '2px solid rgba(255,255,255,0.22)' }}
                 >
-                  {/* 左侧色条 */}
-                  <div
-                    className="absolute left-0 top-0 h-full"
-                    style={{ width: r.priority ? '5px' : '3px', background: r.accent, borderRadius: '3px' }}
-                  />
+                  词条分级
+                </th>
+                <th
+                  className="text-left text-[22px] font-bold text-zinc-300 tracking-wide"
+                  style={{ padding: '0 20px 14px', borderBottom: '2px solid rgba(255,255,255,0.22)' }}
+                >
+                  示例词条
+                </th>
+                <th
+                  className="text-center text-[22px] font-bold text-zinc-300 tracking-wide"
+                  style={{ padding: '0 12px 14px', borderBottom: '2px solid rgba(255,255,255,0.22)' }}
+                >
+                  优化目标
+                </th>
+              </tr>
+            </thead>
 
-                  {/* 词类 / 方向 */}
-                  <div style={{ width: COL.cat, paddingLeft: '28px', paddingRight: '16px' }}>
-                    <div className="flex items-center gap-[10px]">
-                      <span className="text-[24px] font-bold" style={{ color: r.accent }}>{r.group}</span>
-                      {r.priority && (
-                        <span
-                          className="text-[16px] font-bold px-[10px] py-[2px] rounded-full leading-none"
-                          style={{ background: r.accent, color: '#0A0A0A' }}
-                        >
-                          重中之重
-                        </span>
-                      )}
-                    </div>
-                    <div className="text-[28px] font-bold text-white leading-tight mt-[6px]">{r.focus}</div>
-                    {r.note && <div className="text-[16px] text-zinc-500 mt-[4px]">{r.note}</div>}
-                  </div>
+            <tbody>
+              {/* ───── 优化词 ───── */}
+              {/* 品类词 · 优势词 */}
+              <tr>
+                <td
+                  rowSpan={4}
+                  className="text-[28px] font-black text-center align-middle"
+                  style={{ color: C.colorTeal, borderBottom: '1px solid rgba(255,255,255,0.10)', borderLeft: `4px solid ${C.colorTeal}`, background: 'rgba(45,212,191,0.05)' }}
+                >
+                  <span style={{ writingMode: 'vertical-rl', letterSpacing: '0.15em' }}>优化词</span>
+                </td>
+                <td
+                  rowSpan={2}
+                  className="text-[23px] font-bold text-center align-middle"
+                  style={{ color: C.colorBlue, borderBottom: '1px solid rgba(255,255,255,0.10)' }}
+                >
+                  品类词
+                </td>
+                <td className="text-[23px] font-bold text-center align-middle" style={{ color: '#FBBF24', borderBottom: '1px solid rgba(255,255,255,0.06)', padding: '10px 4px' }}>
+                  优势词
+                </td>
+                <td className="text-[22px] text-zinc-100 leading-snug align-middle" style={{ borderBottom: '1px solid rgba(255,255,255,0.06)', padding: '10px 20px' }}>
+                  壁纸电视品牌排行榜 · 艺术电视品牌推荐 · 超薄电视品牌推荐
+                </td>
+                <td className="text-center align-middle" style={{ borderBottom: '1px solid rgba(255,255,255,0.06)', padding: '10px 12px' }}>
+                  <span className="inline-block text-[20px] font-bold" style={{ color: '#FBBF24', border: '1.5px solid rgba(251,191,36,0.55)', background: 'rgba(251,191,36,0.10)', borderRadius: '999px', padding: '4px 14px' }}>拿到第一</span>
+                </td>
+              </tr>
+              {/* 品类词 · 常规词 */}
+              <tr>
+                <td className="text-[23px] font-bold text-center align-middle text-zinc-200" style={{ borderBottom: '1px solid rgba(255,255,255,0.10)', padding: '10px 4px' }}>
+                  常规词
+                </td>
+                <td className="text-[22px] text-zinc-100 leading-snug align-middle" style={{ borderBottom: '1px solid rgba(255,255,255,0.10)', padding: '10px 20px' }}>
+                  客厅电视推荐 · 4K高清电视推荐 · 高清画质色彩好的电视推荐
+                </td>
+                <td className="text-center align-middle" style={{ borderBottom: '1px solid rgba(255,255,255,0.10)', padding: '10px 12px' }}>
+                  <span className="inline-block text-[20px] font-semibold text-zinc-200" style={{ border: '1.5px solid rgba(255,255,255,0.28)', borderRadius: '999px', padding: '4px 14px' }}>进入 Top3</span>
+                </td>
+              </tr>
+              {/* 产品专属词 · A系列 */}
+              <tr>
+                <td
+                  rowSpan={2}
+                  className="text-[23px] font-bold text-center align-middle"
+                  style={{ color: C.colorTeal, borderBottom: '1px solid rgba(255,255,255,0.10)' }}
+                >
+                  产品<br/>专属词
+                </td>
+                <td className="text-[23px] font-bold text-center align-middle" style={{ color: C.colorTeal, borderBottom: '1px solid rgba(255,255,255,0.06)', padding: '10px 4px' }}>
+                  A系列
+                </td>
+                <td className="text-[22px] text-zinc-100 leading-snug align-middle" style={{ borderBottom: '1px solid rgba(255,255,255,0.06)', padding: '10px 20px' }}>
+                  7000元左右的壁纸电视推荐 · A系列壁纸电视值得买吗
+                </td>
+                <td className="text-center align-middle text-[20px] font-semibold text-zinc-200" style={{ borderBottom: '1px solid rgba(255,255,255,0.06)', padding: '10px 12px' }}>
+                  守住线上优势
+                </td>
+              </tr>
+              {/* 产品专属词 · Q系列 */}
+              <tr>
+                <td className="text-[23px] font-bold text-center align-middle" style={{ color: C.colorTeal, borderBottom: '1px solid rgba(255,255,255,0.10)', padding: '10px 4px' }}>
+                  Q系列
+                </td>
+                <td className="text-[22px] text-zinc-100 leading-snug align-middle" style={{ borderBottom: '1px solid rgba(255,255,255,0.10)', padding: '10px 20px' }}>
+                  附近哪里能看创维Q系列电视 · 高端画框电视去哪体验
+                </td>
+                <td className="text-center align-middle text-[20px] font-semibold text-zinc-200" style={{ borderBottom: '1px solid rgba(255,255,255,0.10)', padding: '10px 12px' }}>
+                  突出线下属性
+                </td>
+              </tr>
 
-                  {/* 重点关键词 */}
-                  <div style={{ width: COL.key, paddingLeft: '20px', paddingRight: '16px' }} className="flex flex-wrap gap-[10px]">
-                    {r.keywords.map((k, ki) => (
-                      <span
-                        key={ki}
-                        className="text-[22px] leading-none rounded-lg"
-                        style={{
-                          padding: '9px 14px',
-                          color: '#E4E4E7',
-                          background: `${r.accent}1A`,
-                          border: `1px solid ${r.accent}55`,
-                        }}
-                      >
-                        {k}
-                      </span>
-                    ))}
-                  </div>
-
-                  {/* 优化目标 */}
-                  <div style={{ width: COL.goal, paddingLeft: '20px', paddingRight: '20px' }} className="text-[23px] font-semibold text-white leading-snug">
-                    {r.goal}
-                  </div>
-                </div>
-              ))}
-            </div>
-          );
-        })()}
+              {/* ───── 监测词 ───── */}
+              <tr>
+                <td
+                  rowSpan={2}
+                  className="text-[28px] font-black text-center align-middle"
+                  style={{ color: C.colorSky, borderLeft: `4px solid ${C.colorSky}`, background: 'rgba(56,189,248,0.05)', borderBottom: '1px solid rgba(255,255,255,0.10)' }}
+                >
+                  <span style={{ writingMode: 'vertical-rl', letterSpacing: '0.15em' }}>监测词</span>
+                </td>
+                <td colSpan={2} className="text-[23px] font-bold text-center align-middle" style={{ color: C.colorSky, borderBottom: '1px solid rgba(255,255,255,0.06)', padding: '10px 4px' }}>
+                  品类词
+                </td>
+                <td className="text-[22px] text-zinc-100 leading-snug align-middle" style={{ borderBottom: '1px solid rgba(255,255,255,0.06)', padding: '10px 20px' }}>
+                  创维电视算一线品牌吗 · 创维电视质量怎么样
+                </td>
+                <td className="text-center align-middle text-[20px] font-semibold text-zinc-300" style={{ borderBottom: '1px solid rgba(255,255,255,0.06)', padding: '10px 12px' }}>
+                  持续监测
+                </td>
+              </tr>
+              <tr>
+                <td colSpan={2} className="text-[23px] font-bold text-center align-middle" style={{ color: C.colorSky, padding: '10px 4px' }}>
+                  产品专属词
+                </td>
+                <td className="text-[22px] text-zinc-100 leading-snug align-middle" style={{ padding: '10px 20px' }}>
+                  创维壁纸电视A7H Pro怎么样 · 创维Q7E口碑评价
+                </td>
+                <td className="text-center align-middle text-[20px] font-semibold text-zinc-300" style={{ padding: '10px 12px' }}>
+                  持续监测
+                </td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
 
       </div>
     </SlideLayout>
