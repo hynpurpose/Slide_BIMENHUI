@@ -43,22 +43,22 @@ const members = [
 const aiAgents = [
   {
     id: "content",
-    title: "内容创作",
+    title: "内容创作Agent",
     desc: "基于谷歌 NotebookLM 研发，批量产出 GEO 内容初稿、整理产品参数与基础语料，判断与打磨仍由人工把关。"
   },
   {
     id: "monitor",
-    title: "数据监测",
+    title: "数据监测Agent",
     desc: "依托 GEO ONE 系统，7×24 小时监测各大模型对创维及竞品的引用、排名与情绪变化。"
   },
   {
     id: "review",
-    title: "评论分析",
+    title: "评论分析Agent",
     desc: "抓取并分析电商与社媒的真实用户评论，提炼卖点、口碑与用户之声。"
   },
   {
     id: "quant",
-    title: "量化分析",
+    title: "量化分析Agent",
     desc: "运行 Alpha 量化竞争模型，完成竞品对比、权重计算与优化效果归因。"
   }
 ];
