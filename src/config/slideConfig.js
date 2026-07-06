@@ -101,6 +101,7 @@ import Page_QuantitativeModel_Pic5 from '../pages/Page_QuantitativeModel_Pic5';
 import Page_QuantitativeModel_Pic6 from '../pages/Page_QuantitativeModel_Pic6';
 import Page_QuantitativeModel_Pic7 from '../pages/Page_QuantitativeModel_Pic7';
 import Page_UserCommentArchitecture from '../pages/Page_UserCommentArchitecture';
+import Page_UserCommentDemo from '../pages/Page_UserCommentDemo';
 import {
   Page_UserComment_Overview,
   Page_UserComment_Compare,
@@ -368,6 +369,7 @@ export const slideConfig = [
 
   { type: 'page', title: '用户评论分析系统', component: Page_UserCommentAnalysis, hideHeader: true },
   { type: 'page', title: '用户真评引擎架构', component: Page_UserCommentArchitecture, hideHeader: true },
+  { type: 'page', title: '用户真评系统演示', component: Page_UserCommentDemo, hideHeader: true },
   { type: 'page', title: '真评系统 · 数据总览', component: Page_UserComment_Overview, hideHeader: true },
   { type: 'page', title: '真评系统 · 商品横向对比', component: Page_UserComment_Compare, hideHeader: true },
   { type: 'page', title: '真评系统 · 好评差评分布', component: Page_UserComment_Sentiment, hideHeader: true },
