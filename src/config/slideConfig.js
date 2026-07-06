@@ -266,7 +266,7 @@ export const slideConfig = [
   { type: 'chapter', title: '核心策略及KPI设定', subtitle: 'CORE OPTIMIZATION STRATEGY', backgroundImage: '' },
 
   { type: 'section', title: '核心优化策略' },
-  { type: 'page', title: '核心词条分类与策略体系', component: Page_SkyworthKeywordStrategy, hideHeader: true },
+  { type: 'page', title: '核心优化策略', component: Page_SkyworthKeywordStrategy, hideHeader: true },
 
   { type: 'section', title: 'KPI及工作安排' },
   { type: 'page', title: 'KPI 及验收标准', component: Page_SkyworthKpiAcceptance, hideHeader: true },

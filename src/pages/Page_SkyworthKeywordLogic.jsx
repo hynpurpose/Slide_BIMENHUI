@@ -49,42 +49,49 @@ function TerminalCard({ title, example, sub, style }) {
   );
 }
 
+const RIBBONS = [
+  { d: 'M 400 398 C 440 398, 460 398, 500 398', tone: 'white' },
+  { d: 'M 740 398 C 800 398, 820 148, 870 148', tone: 'blue' },
+  { d: 'M 740 398 C 800 398, 820 648, 870 648', tone: 'blue' },
+  { d: 'M 1110 148 C 1160 148, 1180 58, 1240 58', tone: 'blue' },
+  { d: 'M 1110 148 C 1160 148, 1180 238, 1240 238', tone: 'blue' },
+  { d: 'M 1110 648 C 1160 648, 1180 558, 1240 558', tone: 'blue' },
+  { d: 'M 1110 648 C 1160 648, 1180 738, 1240 738', tone: 'blue' },
+];
+
+function FlowRibbons() {
+  return (
+    <svg
+      className="absolute inset-0 pointer-events-none z-20 overflow-visible"
+      width="1840"
+      height="795"
+      viewBox="0 0 1840 795"
+      aria-hidden
+    >
+      {RIBBONS.map(({ d, tone }) => {
+        const glow = tone === 'white' ? 'rgba(255,255,255,0.22)' : 'rgba(59,130,246,0.38)';
+        const core = tone === 'white' ? 'rgba(255,255,255,0.92)' : '#60A5FA';
+        return (
+          <g key={d}>
+            <path d={d} fill="none" stroke={glow} strokeWidth="22" strokeLinecap="round" />
+            <path d={d} fill="none" stroke={core} strokeWidth="12" strokeLinecap="round" />
+          </g>
+        );
+      })}
+    </svg>
+  );
+}
+
 export default function Page_SkyworthKeywordLogic() {
   return (
     <SlideLayout title="词条分类逻辑">
       <div
-        className="absolute left-0 top-0 w-[1840px] h-full select-none animate-fadeIn"
+        className="absolute left-0 top-0 w-[1840px] select-none animate-fadeIn"
+        style={{ height: '795px' }}
       >
-        <svg className="absolute inset-0 w-full h-full pointer-events-none z-0 overflow-visible">
-          <defs>
-            <linearGradient id="blueRibbon" x1="500" y1="397" x2="1790" y2="397" gradientUnits="userSpaceOnUse">
-              <stop offset="0%" stopColor="#2563EB" stopOpacity="0.5" />
-              <stop offset="50%" stopColor="#3B82F6" stopOpacity="0.9" />
-              <stop offset="100%" stopColor="#60A5FA" stopOpacity="0.6" />
-            </linearGradient>
-            <linearGradient id="whiteRibbon" x1="0" y1="397" x2="500" y2="397" gradientUnits="userSpaceOnUse">
-              <stop offset="0%" stopColor="#FFFFFF" stopOpacity="0.3" />
-              <stop offset="50%" stopColor="#FFFFFF" stopOpacity="0.75" />
-              <stop offset="100%" stopColor="#FFFFFF" stopOpacity="0.3" />
-            </linearGradient>
-            <filter id="glow" filterUnits="userSpaceOnUse" x="-10%" y="-10%" width="120%" height="120%">
-              <feGaussianBlur stdDeviation="8" result="blur" />
-              <feComposite in="SourceGraphic" in2="blur" operator="over" />
-            </filter>
-          </defs>
-
-          <path d="M 400 397 C 450 397, 450 397, 500 397" fill="none" stroke="url(#whiteRibbon)" strokeWidth="12" strokeLinecap="round" filter="url(#glow)" className="opacity-70" />
-          <path d="M 740 397 C 810 397, 810 147, 870 147" fill="none" stroke="url(#blueRibbon)" strokeWidth="12" strokeLinecap="round" filter="url(#glow)" className="opacity-80" />
-          <path d="M 740 397 C 810 397, 810 647, 870 647" fill="none" stroke="url(#blueRibbon)" strokeWidth="12" strokeLinecap="round" filter="url(#glow)" className="opacity-80" />
-          <path d="M 1110 147 C 1180 147, 1180 57, 1240 57" fill="none" stroke="url(#blueRibbon)" strokeWidth="12" strokeLinecap="round" filter="url(#glow)" className="opacity-85" />
-          <path d="M 1110 147 C 1180 147, 1180 237, 1240 237" fill="none" stroke="url(#blueRibbon)" strokeWidth="12" strokeLinecap="round" filter="url(#glow)" className="opacity-85" />
-          <path d="M 1110 647 C 1180 647, 1180 557, 1240 557" fill="none" stroke="url(#blueRibbon)" strokeWidth="12" strokeLinecap="round" filter="url(#glow)" className="opacity-85" />
-          <path d="M 1110 647 C 1180 647, 1180 737, 1240 737" fill="none" stroke="url(#blueRibbon)" strokeWidth="12" strokeLinecap="round" filter="url(#glow)" className="opacity-85" />
-        </svg>
-
         <div
           className="absolute bg-[#0D0D10]/80 border border-zinc-800 rounded-2xl shadow-lg z-10 overflow-hidden"
-          style={{ left: '0px', top: '0px', width: '400px', height: '100%' }}
+          style={{ left: '0px', top: '0px', width: '400px', height: '795px' }}
         >
           <div className="px-6 py-4 border-b border-zinc-800/80">
             <span className="text-[30px] font-bold text-zinc-500 font-['MiSans']">无体系词条</span>
@@ -143,6 +150,8 @@ export default function Page_SkyworthKeywordLogic() {
           example="创维A10H壁纸电视价格？"
           style={{ left: '1240px', top: '680px', width: '550px', height: '115px' }}
         />
+
+        <FlowRibbons />
       </div>
     </SlideLayout>
   );
