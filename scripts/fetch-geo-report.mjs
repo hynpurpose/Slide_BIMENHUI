@@ -6,19 +6,24 @@
  * 用法:
  *   node scripts/fetch-geo-report.mjs <project_id> [--start YYYY-MM-DD] [--end YYYY-MM-DD]
  *
- * 可用环境变量覆盖默认配置:
- *   GEO_API_BASE (默认 http://121.43.57.5:3000)
- *   GEO_USER     (默认 hannah)
- *   GEO_PASS     (默认 123456)
+ * 必需环境变量（不提供默认值，避免凭据写死在代码里）:
+ *   GEO_API_BASE  API 地址，如 https://api.geotopone.com
+ *   GEO_USER      账号
+ *   GEO_PASS      密码
  */
 
 import { writeFileSync } from 'node:fs';
 import { fileURLToPath } from 'node:url';
 import path from 'node:path';
 
-const API_BASE = process.env.GEO_API_BASE || 'http://121.43.57.5:3000';
-const USERNAME = process.env.GEO_USER || 'hannah';
-const PASSWORD = process.env.GEO_PASS || '123456';
+const API_BASE = process.env.GEO_API_BASE;
+const USERNAME = process.env.GEO_USER;
+const PASSWORD = process.env.GEO_PASS;
+if (!API_BASE || !USERNAME || !PASSWORD) {
+  console.error('缺少环境变量：GEO_API_BASE / GEO_USER / GEO_PASS 都必须提供。');
+  console.error('示例: GEO_API_BASE=https://api.geotopone.com GEO_USER=xxx GEO_PASS=xxx node scripts/fetch-geo-report.mjs <project_id>');
+  process.exit(1);
+}
 
 const args = process.argv.slice(2);
 const projectId = Number(args.find((a) => !a.startsWith('--')));
