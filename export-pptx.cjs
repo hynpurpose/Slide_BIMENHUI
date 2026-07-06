@@ -85,6 +85,9 @@ function findChrome() {
         .export-hide {
           display: none !important;
         }
+        video::-webkit-media-controls {
+          display: none !important;
+        }
         .bg-zinc-600 {
           padding: 0 !important;
           background-color: black !important;
@@ -124,6 +127,46 @@ function findChrome() {
 
         const slide = pptx.addSlide();
         slide.addImage({ path: imgPath, x: 0, y: 0, w: '100%', h: '100%' });
+
+        // 页面里若有 <video>，在截图上叠加可播放的视频（位置按元素实际区域换算）
+        const videoInfo = await page.evaluate(() => {
+          const root = document.querySelector('div[style*="width: 1920px"]');
+          const video = root && root.querySelector('video');
+          if (!video || video.style.display === 'none') return null;
+          const rootRect = root.getBoundingClientRect();
+          const rect = video.getBoundingClientRect();
+          return {
+            src: video.getAttribute('src') || '',
+            x: (rect.left - rootRect.left) / rootRect.width,
+            y: (rect.top - rootRect.top) / rootRect.height,
+            w: rect.width / rootRect.width,
+            h: rect.height / rootRect.height,
+          };
+        });
+
+        if (videoInfo && videoInfo.src.startsWith('/')) {
+          const videoPath = path.join(__dirname, 'public', videoInfo.src);
+          if (fs.existsSync(videoPath)) {
+            let cover;
+            try {
+              const videoEl = await slideEl.$('video');
+              if (videoEl) {
+                const buf = await videoEl.screenshot({ type: 'png' });
+                cover = `data:image/png;base64,${buf.toString('base64')}`;
+              }
+            } catch (_) {}
+
+            slide.addMedia({
+              type: 'video',
+              path: videoPath,
+              cover,
+              x: videoInfo.x * 10,
+              y: videoInfo.y * 5.625,
+              w: videoInfo.w * 10,
+              h: videoInfo.h * 5.625,
+            });
+          }
+        }
       }
 
       if (i < totalSlides - 1) {

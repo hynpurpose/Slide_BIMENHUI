@@ -1,6 +1,10 @@
 import puppeteer from 'puppeteer';
 import pptxgen from 'pptxgenjs';
 import fs from 'fs';
+import path from 'path';
+import { fileURLToPath } from 'url';
+
+const __dirname = path.dirname(fileURLToPath(import.meta.url));
 
 // dynamically fetch totalSlides later
 
@@ -31,6 +35,9 @@ async function run() {
         button[title="全屏演示"],
         div.pointer-events-none.opacity-20,
         .export-hide {
+          display: none !important;
+        }
+        video::-webkit-media-controls {
           display: none !important;
         }
         .bg-zinc-600 {
@@ -101,6 +108,46 @@ async function run() {
                 w: 10,
                 h: 5.625
             });
+
+            // 页面里若有 <video>，在截图上叠加可播放的视频（位置按元素实际区域换算）
+            const videoInfo = await page.evaluate(() => {
+                const root = document.querySelector('.origin-center') || document.body;
+                const video = root.querySelector('video');
+                if (!video || video.style.display === 'none') return null;
+                const rootRect = root.getBoundingClientRect();
+                const rect = video.getBoundingClientRect();
+                return {
+                    src: video.getAttribute('src') || '',
+                    x: (rect.left - rootRect.left) / rootRect.width,
+                    y: (rect.top - rootRect.top) / rootRect.height,
+                    w: rect.width / rootRect.width,
+                    h: rect.height / rootRect.height,
+                };
+            });
+
+            if (videoInfo && videoInfo.src.startsWith('/')) {
+                const videoPath = path.join(__dirname, 'public', videoInfo.src);
+                if (fs.existsSync(videoPath)) {
+                    let cover;
+                    try {
+                        const videoEl = await page.$('video');
+                        if (videoEl) {
+                            const buf = await videoEl.screenshot({ type: 'png' });
+                            cover = `data:image/png;base64,${buf.toString('base64')}`;
+                        }
+                    } catch (_) { /* 封面截图失败时用默认播放键封面 */ }
+
+                    slide.addMedia({
+                        type: 'video',
+                        path: videoPath,
+                        cover,
+                        x: videoInfo.x * 10,
+                        y: videoInfo.y * 5.625,
+                        w: videoInfo.w * 10,
+                        h: videoInfo.h * 5.625,
+                    });
+                }
+            }
         }
 
         if (i < totalSlides - 1) {
