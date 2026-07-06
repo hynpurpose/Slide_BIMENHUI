@@ -94,13 +94,13 @@ export default function Page_GEOWordSelectionOther() {
         </div>
 
         {/* 中间过渡：横平居中于两框缝隙 */}
-        <div className="w-[140px] shrink-0 flex flex-col items-center justify-center gap-3 self-center">
-          <span className="text-[20px] font-black text-white font-['MiSans'] text-center leading-tight px-3 py-1.5 rounded-full bg-black/85 border border-zinc-700/80 shadow-[0_4px_20px_rgba(0,0,0,0.6)]">
+        <div className="w-[140px] shrink-0 flex flex-col items-center justify-center gap-4 self-center z-30 overflow-visible">
+          <span className="text-[24px] font-black text-white font-['MiSans'] leading-none whitespace-nowrap px-5 py-3 rounded-full bg-[#004CE5]/30 border-2 border-[#2E6BFF] shadow-[0_0_32px_rgba(46,107,255,0.65),0_4px_24px_rgba(0,0,0,0.5)] backdrop-blur-sm">
             AI搜索形式变了
           </span>
-          <svg width="72" height="20" viewBox="0 0 72 20" fill="none" aria-hidden="true">
-            <path d="M0 10H56" stroke="#2E6BFF" strokeWidth="3" strokeLinecap="round" />
-            <path d="M48 4L64 10L48 16" stroke="#2E6BFF" strokeWidth="3" strokeLinecap="round" strokeLinejoin="round" />
+          <svg width="100" height="28" viewBox="0 0 100 28" fill="none" aria-hidden="true" className="drop-shadow-[0_0_12px_rgba(46,107,255,0.8)]">
+            <path d="M0 14H76" stroke="#2E6BFF" strokeWidth="5" strokeLinecap="round" />
+            <path d="M66 5L88 14L66 23" stroke="#2E6BFF" strokeWidth="5" strokeLinecap="round" strokeLinejoin="round" />
           </svg>
         </div>
 
