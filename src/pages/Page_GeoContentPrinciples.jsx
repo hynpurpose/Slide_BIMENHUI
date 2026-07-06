@@ -80,15 +80,30 @@ function EeatExpansions({ className = '', cols = 2, variant = 'compact' }) {
 }
 
 /* 共用：盖章打叉标识 */
-function RejectStamp({ className = 'absolute -right-2 top-1/2 -translate-y-1/2' }) {
+function RejectStamp({ 
+  className = 'absolute -right-2 top-1/2 -translate-y-1/2',
+  size = 'medium'
+}) {
+  const sizeClasses = size === 'large' 
+    ? {
+        box: 'w-[156px] h-[156px] border-[3.5px]',
+        cross: 'text-[56px]',
+        text: 'text-[21px] mt-2'
+      }
+    : {
+        box: 'w-[128px] h-[128px] border-[3px]',
+        cross: 'text-[46px]',
+        text: 'text-[17px] mt-1.5'
+      };
+
   return (
     <div
       className={`${className} rotate-[-14deg] pointer-events-none select-none z-30`}
       aria-hidden
     >
-      <div className="flex flex-col items-center justify-center w-[128px] h-[128px] rounded-full border-[3px] border-red-500/85 text-red-500 shadow-[0_0_24px_rgba(239,68,68,0.18)] bg-black/45">
-        <span className="text-[46px] font-black leading-none opacity-95">✕</span>
-        <span className="text-[17px] font-black font-['MiSans'] tracking-[0.25em] text-red-400/95 mt-1.5 pl-[3px]">
+      <div className={`flex flex-col items-center justify-center rounded-full border-red-500/85 text-red-500 shadow-[0_0_24px_rgba(239,68,68,0.18)] bg-black/45 ${sizeClasses.box}`}>
+        <span className={`font-black leading-none opacity-95 ${sizeClasses.cross}`}>✕</span>
+        <span className={`font-black font-['MiSans'] tracking-[0.25em] text-red-400/95 pl-[3px] ${sizeClasses.text}`}>
           不适配
         </span>
       </div>
@@ -153,7 +168,7 @@ export function Page_GeoContentPrinciples_A() {
               </div>
 
               {/* 底部的3行解释文字，全部用白色，重点加大 */}
-              <div className="border-t border-zinc-900 pt-5 mt-4 space-y-3.5 text-white pr-[140px] relative">
+              <div className="border-t border-zinc-900 pt-5 mt-4 space-y-3.5 text-white pr-[190px] relative">
                 <p className="text-[22px] xl:text-[24px] leading-relaxed font-['MiSans']">
                   最早来自 <strong className="text-[26px] xl:text-[28px] font-black text-white">谷歌《搜索质量评估指南》</strong>
                 </p>
@@ -163,7 +178,7 @@ export function Page_GeoContentPrinciples_A() {
                 <p className="text-[22px] xl:text-[24px] leading-relaxed font-['MiSans']">
                   但和中国模型实际情况 <strong className="text-[28px] xl:text-[30px] font-black text-white">并不适配</strong>。
                 </p>
-                <RejectStamp className="absolute right-0 bottom-[-10px]" />
+                <RejectStamp size="large" className="absolute right-6 bottom-[-24px]" />
               </div>
             </div>
           </div>
