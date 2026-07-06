@@ -39,6 +39,20 @@ const ChevronDown = () => (
   </svg>
 );
 
+/* lucide Globe：logo 加载失败时的默认图标（对应 GEO Web CachedImage 的 fallback） */
+const GlobeIcon = () => (
+  <svg className="size-5" style={{ color: C.mutedFg }} viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+    <circle cx="12" cy="12" r="10" /><path d="M12 2a14.5 14.5 0 0 0 0 20 14.5 14.5 0 0 0 0-20" /><path d="M2 12h20" />
+  </svg>
+);
+
+/* 带兜底的 logo 图片：加载失败或无 URL 时显示地球图标 */
+function LogoWithFallback({ src, alt, title, className }) {
+  const [failed, setFailed] = React.useState(false);
+  if (!src || failed) return <GlobeIcon />;
+  return <img src={src} alt={alt} title={title} className={className} onError={() => setFailed(true)} />;
+}
+
 /* shadcn Button variant=outline size=sm + border-dashed（筛选条按钮） */
 function FilterPill({ icon, title, value }) {
   return (
@@ -140,8 +154,40 @@ const fmtChartDate = (dateStr) => {
   return `${Number(m)}月${Number(d)}日`;
 };
 
+/* ── 两张图共用同一套几何参数，保证观感一致 ── */
+const CHART = {
+  width: 620,
+  axisW: 50, // Y 轴文字区宽度（chart-base ChartYAxis width=50）
+  topPad: 20, // 绘图区上留白
+  plotH: 160, // 绘图区高度（两图一致）
+  tickCount: 5,
+};
+
+/* Y 轴刻度 + 横向虚线网格 + 底部轴线（chart-base ChartGrid/ChartYAxis 样式） */
+function ChartAxes({ ticks, y, axisY, width, fmt }) {
+  return (
+    <>
+      {ticks.map((t, i) => (
+        <g key={i}>
+          <line x1={CHART.axisW} x2={width} y1={y(t)} y2={y(t)} stroke={C.grid} strokeWidth="1" strokeDasharray="3 3" />
+          <text x={CHART.axisW - 8} y={y(t) + 4} textAnchor="end" fontSize="12" fill={C.axis}>
+            {fmt(t)}
+          </text>
+        </g>
+      ))}
+      <line x1={CHART.axisW} x2={width} y1={axisY} y2={axisY} stroke={C.grid} strokeWidth="1" />
+    </>
+  );
+}
+
+const fmtTick = (t) => `${Number(t.toFixed(1))}%`;
+
 /* 折线趋势图：横向虚线网格、#888 轴文字、蓝线宽2无数据点、X轴左右 padding 26 */
-function TrendLineChart({ data, width = 620, height = 196 }) {
+function TrendLineChart({ data }) {
+  const { width, axisW, topPad, plotH } = CHART;
+  const bottomH = 30;
+  const height = topPad + plotH + bottomH;
+
   const values = data.map((d) => d.value);
   const dataMin = Math.min(...values);
   const dataMax = Math.max(...values);
@@ -149,30 +195,21 @@ function TrendLineChart({ data, width = 620, height = 196 }) {
   const pad = Math.max(range * 0.3, 2);
   const yMin = Math.max(0, Math.floor((dataMin - pad) * 10) / 10);
   const yMax = Math.min(100, Math.ceil((dataMax + pad) * 10) / 10);
-  const ticks = Array.from({ length: 5 }, (_, i) => yMin + ((yMax - yMin) / 4) * i);
+  const ticks = Array.from({ length: CHART.tickCount }, (_, i) => yMin + ((yMax - yMin) / (CHART.tickCount - 1)) * i);
 
-  const axisW = 50;
   const xPad = 26;
-  const bottomH = 30;
-  const plotW = width - axisW - xPad;
-  const plotH = height - bottomH - 6;
+  const plotW = width - axisW - xPad * 2;
   const n = data.length;
-  const x = (i) => axisW + xPad + (n <= 1 ? plotW / 2 : (i / (n - 1)) * (plotW - xPad));
-  const y = (v) => 6 + plotH - ((v - yMin) / (yMax - yMin || 1)) * plotH;
+  const axisY = topPad + plotH;
+  const x = (i) => axisW + xPad + (n <= 1 ? plotW / 2 : (i / (n - 1)) * plotW);
+  const y = (v) => topPad + plotH - ((v - yMin) / (yMax - yMin || 1)) * plotH;
   const path = data.map((d, i) => `${i === 0 ? 'M' : 'L'}${x(i)},${y(d.value)}`).join(' ');
 
   return (
     <svg viewBox={`0 0 ${width} ${height}`} className="h-full w-full">
-      {ticks.map((t, i) => (
-        <g key={i}>
-          <line x1={axisW} x2={width} y1={y(t)} y2={y(t)} stroke={C.grid} strokeWidth="1" strokeDasharray="3 3" />
-          <text x={axisW - 8} y={y(t) + 4} textAnchor="end" fontSize="12" fill={C.axis}>
-            {Number(t.toFixed(1))}%
-          </text>
-        </g>
-      ))}
+      <ChartAxes ticks={ticks} y={y} axisY={axisY} width={width} fmt={fmtTick} />
       {data.map((d, i) => (
-        <text key={i} x={x(i)} y={height - 6} textAnchor="middle" fontSize="12" fill={C.axis}>
+        <text key={i} x={x(i)} y={axisY + 20} textAnchor="middle" fontSize="12" fill={C.axis}>
           {d.label}
         </text>
       ))}
@@ -182,7 +219,11 @@ function TrendLineChart({ data, width = 620, height = 196 }) {
 }
 
 /* 平台对比柱状图：barSize 30、顶部圆角2、X轴 24px 平台logo 在上名字在下 */
-function PlatformBarChart({ data, width = 620, height = 244 }) {
+function PlatformBarChart({ data }) {
+  const { width, axisW, topPad, plotH } = CHART;
+  const bottomH = 60;
+  const height = topPad + plotH + bottomH;
+
   const values = data.map((d) => d.value);
   const dataMin = Math.min(...values);
   const dataMax = Math.max(...values);
@@ -194,13 +235,9 @@ function PlatformBarChart({ data, width = 620, height = 244 }) {
     yMin = 0;
     yMax = Math.min(100, Math.max(10, dataMax + 5));
   }
-  const ticks = Array.from({ length: 5 }, (_, i) => Math.round((yMin + ((yMax - yMin) / 4) * i) * 10) / 10);
+  const ticks = Array.from({ length: CHART.tickCount }, (_, i) => yMin + ((yMax - yMin) / (CHART.tickCount - 1)) * i);
 
-  const axisW = 50;
-  const bottomH = 60;
-  const topPad = 20;
   const plotW = width - axisW;
-  const plotH = height - bottomH - topPad;
   const axisY = topPad + plotH;
   const slot = plotW / data.length;
   const barW = 30;
@@ -208,15 +245,7 @@ function PlatformBarChart({ data, width = 620, height = 244 }) {
 
   return (
     <svg viewBox={`0 0 ${width} ${height}`} className="h-full w-full">
-      {ticks.map((t, i) => (
-        <g key={i}>
-          <line x1={axisW} x2={width} y1={y(t)} y2={y(t)} stroke={C.grid} strokeWidth="1" strokeDasharray="3 3" />
-          <text x={axisW - 8} y={y(t) + 4} textAnchor="end" fontSize="12" fill={C.axis}>
-            {t}%
-          </text>
-        </g>
-      ))}
-      <line x1={axisW} x2={width} y1={axisY} y2={axisY} stroke={C.grid} strokeWidth="1" />
+      <ChartAxes ticks={ticks} y={y} axisY={axisY} width={width} fmt={fmtTick} />
       {data.map((d, i) => {
         const cx = axisW + slot * i + slot / 2;
         const barTop = y(d.value);
@@ -373,13 +402,12 @@ export function Page_SkyworthReport_OptDashboardHtml() {
                         <div className="flex items-center gap-3">
                           {topPlatforms.map((p, i) => (
                             <span key={i} className="flex size-[34px] items-center justify-center overflow-hidden rounded-full" style={{ backgroundColor: C.muted }}>
-                              {p.logo_url ? (
-                                <img src={p.logo_url} alt={p.platform_name} title={p.platform_name} className="size-[34px] rounded-full object-contain" />
-                              ) : (
-                                <svg className="size-5" style={{ color: C.mutedFg }} viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
-                                  <circle cx="12" cy="12" r="10" /><path d="M12 2a14.5 14.5 0 0 0 0 20 14.5 14.5 0 0 0 0-20" /><path d="M2 12h20" />
-                                </svg>
-                              )}
+                              <LogoWithFallback
+                                src={p.logo_url}
+                                alt={p.platform_name}
+                                title={p.platform_name}
+                                className="size-[34px] rounded-full object-contain"
+                              />
                             </span>
                           ))}
                         </div>
