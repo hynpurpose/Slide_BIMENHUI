@@ -105,7 +105,7 @@ export default function Page_DeliveryLongTerm() {
           {/* ── 右：5-3-2 原则 ── */}
           <div className="flex-1 flex flex-col min-w-0">
             <h2 className="text-[60px] font-black text-white font-['MiSans'] mb-6 shrink-0 leading-none mt-6">
-              我们的 <span className="text-[#004CE5]">5 · 3 · 2</span> 原则
+              我们的 <span className="text-[#004CE5] font-['Montserrat']">5 · 3 · 2</span> 原则
             </h2>
             <div className="flex-1 min-h-0 bg-[#0B0D19]/45 border border-[#004CE5]/20 rounded-[24px] flex flex-col overflow-hidden shadow-[0_15px_35px_rgba(0,76,229,0.06)]">
               {ALLOCATION.map((item, idx) => (

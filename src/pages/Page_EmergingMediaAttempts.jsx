@@ -1,123 +1,137 @@
 import React from 'react';
 import SlideLayout from '../components/SlideLayout';
-import { Radar, TrendingUp, Rocket, ShieldCheck, ChevronRight } from 'lucide-react';
+import { Globe, TrendingUp, ArrowRight } from 'lucide-react';
 
-export default function Page_EmergingMediaAttempts() {
-  const steps = [
-    {
-      no: '01',
-      icon: Radar,
-      title: '监控模型动向',
-      desc: '持续追踪各 AI 模型的更新公告与引用偏好变化，第一时间捕捉规则调整的早期信号。'
-    },
-    {
-      no: '02',
-      icon: TrendingUp,
-      title: '预判权重迁移',
-      desc: '根据模型的更新方向，预测下一阶段哪些新兴媒体、内容形态会被优先采信。'
-    },
-    {
-      no: '03',
-      icon: Rocket,
-      title: '数据出来前抢先占位',
-      desc: '趁红利尚未真正体现、竞品还没察觉时，提前在这些新媒体上布局内容。'
-    },
-    {
-      no: '04',
-      icon: ShieldCheck,
-      title: '形成先发独家壁垒',
-      desc: '率先占住新的权重媒体，等竞对反应过来，早已慢了一步，我们已是难以撼动的先发方。',
-      highlight: true
-    }
-  ];
+const BEFORE = [
+  { rank: 1, name: '汽车之家', rate: '26.8%' },
+  { rank: 2, name: '懂车帝', rate: '21.4%' },
+  { rank: 3, name: '太平洋汽车', rate: '14.2%' },
+  { rank: 4, name: '易车', rate: '10.5%' },
+  { rank: 5, name: '百家号', rate: '5.8%' },
+];
 
+const AFTER = [
+  { rank: 1, name: '汽车之家', rate: '22.1%', prevRank: 1 },
+  { rank: 2, name: '百家号', rate: '18.6%', prevRank: 5, rising: true },
+  { rank: 3, name: '懂车帝', rate: '17.9%', prevRank: 2 },
+  { rank: 4, name: '搜狐汽车', rate: '12.3%', prevRank: null, rising: true, isNew: true },
+  { rank: 5, name: '易车', rate: '8.4%', prevRank: 4 },
+];
+
+function RankPanel({ title, subtitle, rows, showTrend = false }) {
   return (
-    <SlideLayout title="20%尝试一些新媒体">
-      {/* ── 背景点状矩阵 ── */}
-      <div className="absolute inset-0 z-0">
-        <div
-          className="absolute inset-0 opacity-[0.04]"
-          style={{
-            backgroundImage: 'radial-gradient(circle at 2px 2px, #ffffff 1px, transparent 0)',
-            backgroundSize: '40px 40px'
-          }}
-        />
+    <div className="flex-1 min-w-0 h-full bg-white border border-zinc-200 rounded-[24px] p-7 flex flex-col shadow-[0_10px_30px_rgba(0,0,0,0.15)]">
+      <div className="mb-5 shrink-0">
+        <h3 className="text-[26px] font-black text-zinc-900 font-['MiSans'] leading-tight">
+          {title}
+        </h3>
+        <p className="text-[18px] text-zinc-500 font-bold font-['MiSans'] mt-1.5">
+          {subtitle}
+        </p>
       </div>
 
-      {/* ── 主排版区 ── */}
-      <div
-        className="absolute w-[1840px] select-none animate-fadeIn flex flex-col justify-start z-10 pl-0"
-        style={{ top: '40px', height: '750px' }}
-      >
-        {/* ==================== 上半部分：金句大总结 ==================== */}
-        <div className="w-full flex flex-col items-start mb-6 shrink-0">
-          <p className="text-[30px] text-white font-extrabold tracking-wide max-w-[1760px] leading-relaxed">
-            最后 20% 预算用来押注新媒体：紧盯 AI 模型的更新方向，在红利真正兑现之前，比竞争对手更早占住新的权重媒体。
-          </p>
+      <div className="flex-grow flex flex-col bg-zinc-50/50 rounded-2xl border border-zinc-200/60 p-4 min-h-0">
+        <div className="flex justify-between items-center text-[16px] text-zinc-400 font-bold pb-2.5 border-b border-zinc-200 mb-2 px-2 font-['MiSans']">
+          <span>平台名称</span>
+          <span className="pr-2">引用率</span>
         </div>
 
-        {/* ==================== 下半部分：方法论四步流程 ==================== */}
-        <div className="flex-grow w-full flex items-center min-h-0">
-          <div className="w-full flex items-stretch gap-3">
-
-            {steps.map((step, idx) => {
-              const Icon = step.icon;
-              const isLast = step.highlight;
-              return (
-                <React.Fragment key={idx}>
-
-                  {/* 单步卡片 */}
-                  <div
-                    className={`flex-1 h-[560px] rounded-[32px] p-9 flex flex-col backdrop-blur-md transition-all duration-200 ${isLast
-                        ? 'bg-blue-500/10 border-2 border-blue-500 shadow-[0_0_40px_rgba(59,130,246,0.25)]'
-                        : 'bg-zinc-950/40 border border-zinc-800/80 shadow-[0_25px_60px_rgba(0,0,0,0.5)]'
+        <div className="flex-grow flex flex-col justify-between py-1 gap-2">
+          {rows.map((row) => {
+            const highlighted = showTrend && row.rising;
+            return (
+              <div
+                key={`${row.name}-${row.rank}`}
+                className={`flex justify-between items-center h-[72px] px-4 rounded-xl border transition-colors duration-300 ${
+                  highlighted
+                    ? 'border-[#004CE5]/50 bg-[#004CE5]/8 shadow-[0_0_16px_rgba(0,76,229,0.12)]'
+                    : 'border-transparent hover:bg-zinc-100/60'
+                }`}
+              >
+                <div className="flex items-center gap-3.5 min-w-0">
+                  <span className="font-['Montserrat'] text-[18px] font-black text-zinc-400 w-5 shrink-0">
+                    {row.rank}
+                  </span>
+                  <Globe
+                    className={`w-[22px] h-[22px] shrink-0 ${
+                      highlighted ? 'text-[#004CE5]' : 'text-zinc-400'
+                    }`}
+                  />
+                  <div className="flex flex-col min-w-0">
+                    <span
+                      className={`text-[20px] font-bold font-['MiSans'] truncate ${
+                        highlighted ? 'text-zinc-900 font-black' : 'text-zinc-700'
                       }`}
-                  >
-                    {/* 顶部：图标 + 步骤水印数字 */}
-                    <div className="flex items-start justify-between shrink-0">
-                      <div
-                        className={`w-[76px] h-[76px] rounded-2xl flex items-center justify-center ${isLast ? 'bg-blue-500/20' : 'bg-blue-500/10'
-                          }`}
-                      >
-                        <Icon className={`w-10 h-10 ${isLast ? 'text-blue-300' : 'text-blue-400'}`} strokeWidth={2} />
-                      </div>
-                      <span
-                        className={`text-[80px] leading-none font-black font-['Montserrat'] tracking-tighter ${isLast ? 'text-blue-500/40' : 'text-white/10'
-                          }`}
-                      >
-                        {step.no}
+                    >
+                      {row.name}
+                    </span>
+                    {showTrend && row.rising && (
+                      <span className="text-[14px] font-bold text-[#004CE5] font-['MiSans'] flex items-center gap-1 mt-0.5">
+                        <TrendingUp size={13} strokeWidth={3} />
+                        {row.isNew ? '新进入 TOP5' : `#${row.prevRank} → #${row.rank}`}
                       </span>
-                    </div>
-
-                    {/* 底部：标题 + 说明 */}
-                    <div className="mt-auto flex flex-col">
-                      <h3 className="text-[36px] font-black text-white font-['MiSans'] leading-tight mb-5">
-                        {step.title}
-                      </h3>
-                      <div className={`w-14 h-[4px] rounded-full mb-6 ${isLast ? 'bg-blue-400' : 'bg-blue-500/60'}`} />
-                      <p className="text-[24px] text-zinc-400 leading-relaxed font-normal">
-                        {step.desc}
-                      </p>
-                    </div>
+                    )}
                   </div>
-
-                  {/* 步骤间箭头 (最后一张卡片后不显示) */}
-                  {idx < steps.length - 1 && (
-                    <div className="flex items-center justify-center shrink-0 self-center">
-                      <ChevronRight className="w-9 h-9 text-blue-500/70" strokeWidth={3} />
-                    </div>
-                  )}
-
-                </React.Fragment>
-              );
-            })}
-
-          </div>
+                </div>
+                <span
+                  className={`text-[20px] font-black font-['Montserrat'] shrink-0 ${
+                    highlighted ? 'text-[#004CE5]' : 'text-zinc-500'
+                  }`}
+                >
+                  {row.rate}
+                </span>
+              </div>
+            );
+          })}
         </div>
+      </div>
+    </div>
+  );
+}
+
+export default function Page_EmergingMediaAttempts() {
+  return (
+    <SlideLayout title="20%尝试一些新媒体">
+      <div className="w-full h-full flex flex-col select-none animate-fadeIn">
+
+        {/* H1 下方副标题 */}
+        <h2
+          className="text-white font-normal font-['MiSans'] shrink-0"
+          style={{ fontSize: '48px', lineHeight: '58px' }}
+        >
+          预测排名变化，早日占领。
+        </h2>
+
+        {/* 双栏排名对比 */}
+        <div className="flex-grow flex items-stretch min-h-0 gap-6 mt-6">
+
+          <RankPanel
+            title="DeepSeek · 汽车行业"
+            subtitle="3.15 前引用率 TOP5"
+            rows={BEFORE}
+          />
+
+          <div className="w-[88px] shrink-0 flex flex-col items-center justify-center gap-4 self-center">
+            <ArrowRight
+              className="w-14 h-14 text-white drop-shadow-[0_0_24px_rgba(255,255,255,0.9)]"
+              strokeWidth={2.5}
+            />
+            <span className="text-[22px] font-black text-white font-['MiSans'] tracking-[0.2em] [writing-mode:vertical-rl] drop-shadow-[0_0_20px_rgba(255,255,255,0.75)]">
+              模型更新
+            </span>
+          </div>
+
+          <RankPanel
+            title="DeepSeek · 汽车行业"
+            subtitle="3.15 后引用率 TOP5"
+            rows={AFTER}
+            showTrend
+          />
+        </div>
+
       </div>
     </SlideLayout>
   );
 }
 
-// Disable slide header/navigation bar for this presentation page
 Page_EmergingMediaAttempts.hideHeader = true;
