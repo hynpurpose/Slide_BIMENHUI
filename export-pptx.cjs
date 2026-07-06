@@ -16,6 +16,16 @@ const OUTPUT = getArg('output') || path.join(__dirname, 'Presentation_2026.pptx'
 const SLIDE_W = 1920;
 const SLIDE_H = 1080;
 
+// --pages=8 或 --pages=8-10：只导出指定页码范围（1 起始）
+const PAGES = getArg('pages');
+let startIdx = 0;
+let endIdx = slideOrder.length - 1;
+if (PAGES) {
+  const [s, e] = PAGES.split('-').map(Number);
+  startIdx = Math.max(0, (s || 1) - 1);
+  endIdx = Math.min(slideOrder.length - 1, (e || s || slideOrder.length) - 1);
+}
+
 function emit(data) {
   process.stdout.write(JSON.stringify(data) + '\n');
 }
@@ -67,7 +77,7 @@ function findChrome() {
 }
 
 (async () => {
-  const totalSlides = slideOrder.length;
+  const totalSlides = endIdx - startIdx + 1;
   emit({ type: 'start', total: totalSlides });
 
   const executablePath = findChrome();
@@ -93,9 +103,10 @@ function findChrome() {
       deviceScaleFactor: 2,
     });
 
-    await page.evaluateOnNewDocument(() => {
-      localStorage.setItem('currentSlide', '0');
-    });
+    const startSlideId = slideOrder[startIdx];
+    await page.evaluateOnNewDocument((slideId) => {
+      sessionStorage.setItem('slide-current-id', slideId);
+    }, startSlideId);
     await page.goto(APP_URL, { waitUntil: 'networkidle0', timeout: 30000 });
 
     await page.addStyleTag({
@@ -136,9 +147,9 @@ function findChrome() {
 
     const videoAdjBySlide = {};
 
-    for (let i = 0; i < totalSlides; i++) {
+    for (let i = startIdx; i <= endIdx; i++) {
       const label = slideOrder[i];
-      emit({ type: 'progress', current: i + 1, total: totalSlides, slide: label });
+      emit({ type: 'progress', current: i - startIdx + 1, total: totalSlides, slide: label });
 
       await new Promise((r) => setTimeout(r, 1000));
 
@@ -195,12 +206,12 @@ function findChrome() {
               w: videoInfo.w * 10,
               h: videoInfo.h * 5.625,
             });
-            if (videoInfo.adj > 0) videoAdjBySlide[i + 1] = videoInfo.adj;
+            if (videoInfo.adj > 0) videoAdjBySlide[i - startIdx + 1] = videoInfo.adj;
           }
         }
       }
 
-      if (i < totalSlides - 1) {
+      if (i < endIdx) {
         await page.keyboard.press('ArrowRight');
       }
     }
