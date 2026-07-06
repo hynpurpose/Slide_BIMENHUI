@@ -368,7 +368,7 @@ export const slideConfig = [
   { type: 'page', title: '内容撰写Agent 6', component: Page_ContentAgent_Pic6, hideHeader: true },
 
   { type: 'page', title: '用户评论分析系统', component: Page_UserCommentAnalysis, hideHeader: true },
-  { type: 'page', title: '用户真评引擎架构', variants: [Page_UserCommentArchitecture_A, Page_UserCommentArchitecture_B], hideHeader: true },
+  { type: 'page', title: '用户评论分析系统架构', variants: [Page_UserCommentArchitecture_A, Page_UserCommentArchitecture_B], hideHeader: true },
   { type: 'page', title: '用户真评系统演示', component: Page_UserCommentDemo, hideHeader: true },
   { type: 'page', title: '真评系统 · 数据总览', component: Page_UserComment_Overview, hideHeader: true },
   { type: 'page', title: '真评系统 · 商品横向对比', component: Page_UserComment_Compare, hideHeader: true },
