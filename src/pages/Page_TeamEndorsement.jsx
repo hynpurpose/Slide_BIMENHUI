@@ -13,6 +13,8 @@ export default function Page_TeamEndorsement() {
     { src: '/Back/endorsement-inst-2.png', label: '中国信通院' },
     { src: '/Back/endorsement-inst-3.png', label: 'CAA 中国高校联合' },
     { src: '/Back/endorsement-inst-4.png', label: '人工智能产业联盟' },
+    { src: '/Back/endorsement-inst-5.png', label: '北京智源 BAAI' },
+    { src: '/Back/endorsement-inst-6.png', label: '甲子光年' },
   ];
 
   // Helper component to render a logo slot with fallback placeholder styling
