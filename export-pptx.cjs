@@ -194,9 +194,9 @@ function findChrome() {
         await slideEl.screenshot({ path: imgPath, type: 'png' });
 
         const slide = pptx.addSlide();
-        slide.addImage({ path: imgPath, x: 0, y: 0, w: '100%', h: '100%' });
 
-        // 页面里若有 <video>，在截图上叠加可播放的视频（位置按元素实际区域换算）
+        // 页面里若有 <video>，采用「视频在底层 + 挖圆角洞的整页截图在顶层」的叠层结构：
+        // 圆角由顶层截图的透明像素决定，不依赖播放器对形状几何的支持（Keynote 兼容）
         const videoInfo = await page.evaluate(() => {
           const root = document.querySelector('div[style*="width: 1920px"]');
           const video = root && root.querySelector('video');
@@ -218,56 +218,96 @@ function findChrome() {
           };
         });
 
-        if (videoInfo && videoInfo.src.startsWith('/')) {
-          const videoPath = path.join(__dirname, 'public', videoInfo.src);
-          if (fs.existsSync(videoPath)) {
-            let cover;
-            try {
-              const videoEl = await slideEl.$('video');
-              if (videoEl) {
-                const buf = await videoEl.screenshot({ type: 'png' });
-                const rawCover = `data:image/png;base64,${buf.toString('base64')}`;
-                // 给封面图烘焙圆角透明度：即使播放器不认 roundRect 几何，
-                // 静态封面四角也不会盖住底图的圆角边框
-                cover = await page.evaluate(
-                  async (dataUrl, radiusPx, cssW) => {
-                    const img = new Image();
-                    await new Promise((res, rej) => {
-                      img.onload = res;
-                      img.onerror = rej;
-                      img.src = dataUrl;
-                    });
-                    const scale = img.width / cssW;
-                    const r = radiusPx * scale;
-                    const c = document.createElement('canvas');
-                    c.width = img.width;
-                    c.height = img.height;
-                    const ctx = c.getContext('2d');
-                    ctx.beginPath();
-                    ctx.roundRect(0, 0, c.width, c.height, r);
-                    ctx.clip();
-                    ctx.drawImage(img, 0, 0);
-                    return c.toDataURL('image/png');
-                  },
-                  rawCover,
-                  videoInfo.radiusPx,
-                  videoInfo.cssW
-                );
-              }
-            } catch (_) {}
+        const videoPath =
+          videoInfo && videoInfo.src.startsWith('/')
+            ? path.join(__dirname, 'public', videoInfo.src)
+            : null;
 
-            slide.addMedia({
-              type: 'video',
-              path: videoPath,
-              cover,
-              x: videoInfo.x * 10,
-              y: videoInfo.y * 5.625,
-              w: videoInfo.w * 10,
-              h: videoInfo.h * 5.625,
-            });
-            videoAdjBySlide[i - startIdx + 1] = videoInfo.adj;
-          }
+        if (videoPath && fs.existsSync(videoPath)) {
+          // 1. 底层：视频（封面用视频元素截图，含播放键/角标，烘焙圆角透明度）
+          let cover;
+          try {
+            const videoEl = await slideEl.$('video');
+            if (videoEl) {
+              const buf = await videoEl.screenshot({ type: 'png' });
+              const rawCover = `data:image/png;base64,${buf.toString('base64')}`;
+              cover = await page.evaluate(
+                async (dataUrl, radiusPx, cssW) => {
+                  const img = new Image();
+                  await new Promise((res, rej) => {
+                    img.onload = res;
+                    img.onerror = rej;
+                    img.src = dataUrl;
+                  });
+                  const scale = img.width / cssW;
+                  const c = document.createElement('canvas');
+                  c.width = img.width;
+                  c.height = img.height;
+                  const ctx = c.getContext('2d');
+                  ctx.beginPath();
+                  ctx.roundRect(0, 0, c.width, c.height, radiusPx * scale);
+                  ctx.clip();
+                  ctx.drawImage(img, 0, 0);
+                  return c.toDataURL('image/png');
+                },
+                rawCover,
+                videoInfo.radiusPx,
+                videoInfo.cssW
+              );
+            }
+          } catch (_) {}
+
+          slide.addMedia({
+            type: 'video',
+            path: videoPath,
+            cover,
+            x: videoInfo.x * 10,
+            y: videoInfo.y * 5.625,
+            w: videoInfo.w * 10,
+            h: videoInfo.h * 5.625,
+          });
+          videoAdjBySlide[i - startIdx + 1] = videoInfo.adj;
+
+          // 2. 顶层：整页截图，在视频位置挖一个圆角透明窗口
+          //    （窗口向内收缩 1px，保证截图里的圆角边框像素保留在顶层）
+          const holedDataUrl = await page.evaluate(
+            async (dataUrl, info) => {
+              const img = new Image();
+              await new Promise((res, rej) => {
+                img.onload = res;
+                img.onerror = rej;
+                img.src = dataUrl;
+              });
+              const c = document.createElement('canvas');
+              c.width = img.width;
+              c.height = img.height;
+              const ctx = c.getContext('2d');
+              ctx.drawImage(img, 0, 0);
+              const holeW = info.w * img.width;
+              const scale = holeW / info.cssW;
+              const inset = 1 * scale;
+              ctx.globalCompositeOperation = 'destination-out';
+              ctx.beginPath();
+              ctx.roundRect(
+                info.x * img.width + inset,
+                info.y * img.height + inset,
+                holeW - inset * 2,
+                info.h * img.height - inset * 2,
+                Math.max(0, info.radiusPx * scale - inset)
+              );
+              ctx.fill();
+              return c.toDataURL('image/png');
+            },
+            `data:image/png;base64,${fs.readFileSync(imgPath).toString('base64')}`,
+            videoInfo
+          );
+          fs.writeFileSync(
+            imgPath,
+            Buffer.from(holedDataUrl.split(',')[1], 'base64')
+          );
         }
+
+        slide.addImage({ path: imgPath, x: 0, y: 0, w: '100%', h: '100%' });
       }
 
       if (i < endIdx) {
