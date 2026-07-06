@@ -67,7 +67,7 @@ function ProjectRow({ project }) {
         <span className="inline-block max-w-fit text-[14px] font-bold tracking-wider text-[#004CE5] bg-[#004CE5]/8 border border-[#004CE5]/20 rounded-full px-3.5 py-1 leading-none">
           {project.industry}
         </span>
-        <span className="text-[32px] font-black text-zinc-900 font-['MiSans'] leading-none flex items-center gap-2.5">
+        <span className="text-[40px] font-black text-zinc-900 font-['MiSans'] leading-none flex items-center gap-2.5">
           <span className="w-2.5 h-2.5 rounded-full bg-[#004CE5] shadow-[0_0_8px_rgba(0,76,229,0.4)] shrink-0" />
           {project.brand}
         </span>
@@ -97,7 +97,7 @@ function ProjectRow({ project }) {
         </div>
         <div className="flex items-baseline gap-2 mt-0.5">
           <span className="text-5xl font-black text-emerald-600 font-['Montserrat',sans-serif] tracking-tight">{rate}%</span>
-          <span className="text-[24px] font-black text-zinc-900">被引率</span>
+          <span className="text-[24px] font-black text-emerald-600">被引率</span>
         </div>
         <span className="text-[16px] font-bold text-emerald-600 leading-none font-['Montserrat']">
           （ {project.cited} / {project.total} 篇投放已被引用 ）
