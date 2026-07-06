@@ -55,12 +55,12 @@ function Connectors({ links }) {
         const d = `M ${x0} ${y0} C ${x0 + bend} ${y0}, ${x1 - bend} ${y1}, ${x1} ${y1}`;
         return (
           <g key={i}>
-            <path d={d} fill="none" stroke={a.soft} strokeWidth="8" opacity="0.18" />
-            <path d={d} fill="none" stroke={a.core} strokeWidth="2" opacity="0.9" />
-            <circle cx={x0} cy={y0} r="7" fill={a.core} opacity="0.18" />
-            <circle cx={x0} cy={y0} r="3" fill={a.core} />
-            <circle cx={x1} cy={y1} r="7" fill={a.core} opacity="0.18" />
-            <circle cx={x1} cy={y1} r="3" fill={a.core} />
+            <path d={d} fill="none" stroke={a.soft} strokeWidth="14" opacity="0.2" />
+            <path d={d} fill="none" stroke={a.core} strokeWidth="3.5" opacity="0.92" />
+            <circle cx={x0} cy={y0} r="9" fill={a.core} opacity="0.2" />
+            <circle cx={x0} cy={y0} r="4" fill={a.core} />
+            <circle cx={x1} cy={y1} r="9" fill={a.core} opacity="0.2" />
+            <circle cx={x1} cy={y1} r="4" fill={a.core} />
           </g>
         );
       })}
