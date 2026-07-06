@@ -4,6 +4,97 @@ import SlideLayout from '../components/SlideLayout';
 
 const SEARCH_QUERY = '推荐几款好看的电视';
 
+const BAIDU_KEYWORD_ROWS = [
+  { keyword: '电视机哪个品牌好', volume: 273245, competition: '高' },
+  { keyword: '现在电视机哪个品牌比较好', volume: 231505, competition: '高' },
+  { keyword: '电视机哪个品牌最好', volume: 193584, competition: '高' },
+  { keyword: '电视机什么牌子的好', volume: 147174, competition: '高' },
+  { keyword: '100寸电视机哪个品牌好', volume: 138719, competition: '高' },
+  { keyword: '电视机品牌排行榜', volume: 133664, competition: '高' },
+  { keyword: '电视机品牌质量排行榜前十名', volume: 131433, competition: '高' },
+  { keyword: '电视机什么牌子的好性价比高', volume: 103145, competition: '高' },
+  { keyword: '电视机什么牌子质量第一最好的', volume: 86037, competition: '高' },
+  { keyword: '85寸电视机哪个品牌好', volume: 79047, competition: '高' },
+  { keyword: '75寸电视机哪个品牌好', volume: 74976, competition: '高' },
+  { keyword: '电视机什么牌子的好', volume: 48573, competition: '中' },
+  { keyword: '电视机推荐', volume: 44763, competition: '高' },
+  { keyword: '电视机哪个牌子质量好', volume: 43159, competition: '高' },
+];
+
+function CompetitionBadge({ level }) {
+  const isHigh = level === '高';
+  return (
+    <span
+      className={`inline-block px-2.5 py-0.5 rounded text-[13px] font-medium leading-none ${
+        isHigh ? 'text-[#E64545] bg-[#FFF1F0]' : 'text-[#FA8C16] bg-[#FFF7E6]'
+      }`}
+    >
+      {level}
+    </span>
+  );
+}
+
+function BaiduMarketingKeywordTable() {
+  return (
+    <div className="w-full h-full flex flex-col bg-[#f5f6f8] text-[#333] overflow-hidden select-none">
+      {/* 顶部导航 */}
+      <div className="shrink-0 h-[52px] bg-white border-b border-[#e8e8e8] flex items-center px-5 gap-6">
+        <div className="flex items-center gap-2 shrink-0">
+          <span className="text-[#2932E1] font-black text-[18px]">百度</span>
+          <span className="text-[#333] font-bold text-[16px]">营销</span>
+        </div>
+        <div className="flex items-center gap-5 text-[14px] text-[#666]">
+          {['概览', '管理', '数据', '诊断', '资产', '工具'].map((tab, i) => (
+            <span key={tab} className={i === 2 ? 'text-[#3385FF] font-medium' : ''}>{tab}</span>
+          ))}
+        </div>
+      </div>
+
+      {/* 关键词表格：仅三列 */}
+      <div className="flex-1 min-h-0 bg-white overflow-hidden flex flex-col">
+        <div className="flex-1 min-h-0 overflow-auto">
+          <table className="w-full text-[14px] border-collapse">
+            <thead className="sticky top-0 z-10">
+              <tr className="bg-[#fafafa] border-b border-[#e8e8e8] text-[#666]">
+                <th className="text-left font-medium px-5 py-3.5 w-[46%]">关键词</th>
+                <th className="text-right font-medium px-4 py-3.5 w-[27%]">
+                  <span className="inline-flex items-center gap-1 justify-end">
+                    月均搜索量
+                    <span className="text-[#999] text-[12px]">↕</span>
+                  </span>
+                </th>
+                <th className="text-left font-medium px-5 py-3.5 w-[27%]">竞争激烈程度</th>
+              </tr>
+            </thead>
+            <tbody>
+              {BAIDU_KEYWORD_ROWS.map((row) => (
+                <tr key={`${row.keyword}-${row.volume}`} className="border-b border-[#f0f0f0] hover:bg-[#fafafa]">
+                  <td className="px-5 py-3 text-[#333] font-['MiSans']">{row.keyword}</td>
+                  <td className="px-4 py-3 text-right text-[#333] tabular-nums">{row.volume.toLocaleString()}</td>
+                  <td className="px-5 py-3">
+                    <CompetitionBadge level={row.competition} />
+                  </td>
+                </tr>
+              ))}
+            </tbody>
+          </table>
+        </div>
+
+        {/* 分页 */}
+        <div className="shrink-0 h-[44px] border-t border-[#e8e8e8] bg-white flex items-center justify-end px-5 gap-3 text-[13px] text-[#666]">
+          <span>100 条/页</span>
+          <span className="text-[#ccc]">|</span>
+          <span>31</span>
+          <span className="text-[#3385FF] font-medium">32</span>
+          <span>33</span>
+          <span className="text-[#ccc]">…</span>
+          <span>41</span>
+        </div>
+      </div>
+    </div>
+  );
+}
+
 function BaiduSearchBox() {
   return (
     <div className="w-[420px] bg-white rounded-full shadow-[0_8px_32px_rgba(0,0,0,0.35)] border border-zinc-200/80 flex items-center overflow-hidden shrink-0">
@@ -33,9 +124,7 @@ function XiaohongshuSearchBox() {
 }
 
 export default function Page_GEOWordSelectionOther() {
-  const [imgFailed, setImgFailed] = useState(false);
   const [phoneImgFailed, setPhoneImgFailed] = useState(false);
-  const middleImagePath = "/images/trend-consumer-trust.png";
   const phoneImagePath = "/images/geo-word-selection-other-phone.png";
 
   return (
@@ -73,22 +162,8 @@ export default function Page_GEOWordSelectionOther() {
 
           {/* Card Body */}
           <div className="flex-grow p-6 bg-zinc-950 flex flex-col justify-between">
-            <div className="flex-grow bg-white border border-zinc-200 rounded-xl relative overflow-hidden flex items-center justify-start h-[620px] shadow-inner">
-              {!imgFailed ? (
-                <img
-                  src={middleImagePath}
-                  alt="百度营销/小红书聚光月均搜索指数"
-                  className="w-full h-full object-contain object-left"
-                  onError={() => setImgFailed(true)}
-                />
-              ) : (
-                <div className="w-full h-full flex flex-col items-center justify-center gap-4 p-8 bg-zinc-50">
-                  <ImageIcon className="w-16 h-16 text-zinc-400 opacity-60" />
-                  <span className="text-zinc-500 font-bold text-[22px] font-['MiSans']">
-                    [ 百度营销/小红书聚光月均搜索指数图表 ]
-                  </span>
-                </div>
-              )}
+            <div className="flex-grow bg-white border border-zinc-200 rounded-xl relative overflow-hidden h-[620px] shadow-inner">
+              <BaiduMarketingKeywordTable />
             </div>
           </div>
         </div>
