@@ -8,7 +8,6 @@ import Page_ProposalChapterCover from './pages/Page_ProposalChapterCover';
 import ChapterPage from './components/ChapterPage';
 import { flatSlides, parsedConfig } from './config/parseConfig';
 import initialOrder from './slideOrder.json';
-import initialEdits from './slideEdits.json';
 
 const slideDictionary = {};
 flatSlides.forEach((slide) => {
@@ -104,24 +103,27 @@ try {
 /* ------------------------------------------------------------------ */
 /* 可视化编辑持久化（方案 1+3）：                                        */
 /*  - 落盘到 src/slideEdits.json（可进 git、团队共享），机制与排序一致    */
-/*  - 启动时以文件为准回填 localStorage；但文件为空绝不覆盖本地，防丢失   */
+/*  - 启动时通过 /api/load-edits “实时”从磁盘读取，而不是静态 import。    */
+/*    静态 import 会被 dev 服务器缓存：git pull 后普通刷新读不到新内容，  */
+/*    必须重启 dev 才生效。实时读取则每次刷新都能拿到最新文件内容。       */
 /* ------------------------------------------------------------------ */
-(function syncEditsFromFile() {
-  try {
-    const fileVisual = initialEdits?.visualEdits || {};
-    const fileTitles = initialEdits?.titleOverrides || {};
-    const fileHasData =
-      Object.keys(fileVisual).length > 0 || Object.keys(fileTitles).length > 0;
-    // 只有文件里确实有内容时才用文件覆盖本地（文件为源）；
-    // 文件为空时保留本地数据，随后由挂载时的迁移逻辑把本地内容回写文件
-    if (fileHasData) {
-      localStorage.setItem(VISUAL_EDITS_KEY, JSON.stringify(fileVisual));
-      localStorage.setItem(TITLE_OVERRIDES_KEY, JSON.stringify(fileTitles));
-    }
-  } catch {
-    // localStorage / JSON 异常时不动本地数据
-  }
-})();
+
+/* 每次调用都让服务端实时读盘，返回最新的 slideEdits.json 内容 */
+async function loadEditsFromServer() {
+  const res = await fetch('/api/load-edits', { cache: 'no-store' });
+  if (!res.ok) throw new Error('load-edits failed');
+  const data = await res.json();
+  return {
+    visualEdits:
+      data.visualEdits && typeof data.visualEdits === 'object'
+        ? data.visualEdits
+        : {},
+    titleOverrides:
+      data.titleOverrides && typeof data.titleOverrides === 'object'
+        ? data.titleOverrides
+        : {},
+  };
+}
 
 /* 把当前 localStorage 里的可视化编辑写回服务端文件（防抖调用） */
 async function saveEditsToServer() {
@@ -236,6 +238,9 @@ export default function App() {
     getInitialCollapsedChapters
   );
   const [titleOverrides, setTitleOverrides] = useState(getInitialTitleOverrides);
+  // 是否已从服务端拿到最新的可视化编辑；应用到画面要等它为 true，
+  // 保证同事 git pull 后一刷新就用最新文件、且“删除的编辑”也能正确还原
+  const [editsReady, setEditsReady] = useState(false);
 
   // 编辑器里改了页面大标题 → 目录面板同步显示新标题
   useEffect(() => {
@@ -252,29 +257,48 @@ export default function App() {
     return () => window.removeEventListener('slide-title-override', onTitleOverride);
   }, []);
 
-  // 迁移/备份：git 文件还没有可视化编辑，但本地已有 → 立即回写文件（一次性）
+  // 启动时从服务端实时加载可视化编辑（每次刷新 / 同事 git pull 后都拿到最新内容）：
+  //  - 文件有内容 → 以文件为准回填 localStorage，并刷新目录标题；
+  //  - 文件为空但本地有内容 → 把本地内容回写文件（首次迁移/备份），不覆盖本地；
+  //  - 服务端不可用 → 保留本地 localStorage，不影响使用。
+  // 最后统一置 editsReady=true，SlideEditor 再把编辑应用到画面。
   useEffect(() => {
-    const fileVisual = initialEdits?.visualEdits || {};
-    const fileTitles = initialEdits?.titleOverrides || {};
-    const fileHasData =
-      Object.keys(fileVisual).length > 0 || Object.keys(fileTitles).length > 0;
-    if (fileHasData) return;
-    try {
-      const localVisual = JSON.parse(
-        localStorage.getItem(VISUAL_EDITS_KEY) || '{}'
-      );
-      const localTitles = JSON.parse(
-        localStorage.getItem(TITLE_OVERRIDES_KEY) || '{}'
-      );
-      if (
-        Object.keys(localVisual).length > 0 ||
-        Object.keys(localTitles).length > 0
-      ) {
-        saveEditsToServer();
+    let cancelled = false;
+    (async () => {
+      try {
+        const { visualEdits, titleOverrides: fileTitles } =
+          await loadEditsFromServer();
+        if (cancelled) return;
+        const fileHasData =
+          Object.keys(visualEdits).length > 0 ||
+          Object.keys(fileTitles).length > 0;
+        if (fileHasData) {
+          localStorage.setItem(VISUAL_EDITS_KEY, JSON.stringify(visualEdits));
+          localStorage.setItem(TITLE_OVERRIDES_KEY, JSON.stringify(fileTitles));
+          setTitleOverrides(fileTitles);
+        } else {
+          const localVisual = JSON.parse(
+            localStorage.getItem(VISUAL_EDITS_KEY) || '{}'
+          );
+          const localTitles = JSON.parse(
+            localStorage.getItem(TITLE_OVERRIDES_KEY) || '{}'
+          );
+          if (
+            Object.keys(localVisual).length > 0 ||
+            Object.keys(localTitles).length > 0
+          ) {
+            saveEditsToServer();
+          }
+        }
+      } catch (err) {
+        console.error('加载可视化编辑失败:', err);
+      } finally {
+        if (!cancelled) setEditsReady(true);
       }
-    } catch {
-      // ignore
-    }
+    })();
+    return () => {
+      cancelled = true;
+    };
   }, []);
 
   // 可视化编辑自动保存：改动后 800ms 写回 slideEdits.json（与排序自动保存一致）
@@ -1040,6 +1064,7 @@ export default function App() {
         slideKey={`${currentSlide}-${safeVariantIndex}`}
         rootRef={slideRootRef}
         initialTargetRef={editInitialTargetRef}
+        editsReady={editsReady}
       />
     </div>
   );

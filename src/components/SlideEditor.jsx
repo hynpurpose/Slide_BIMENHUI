@@ -201,7 +201,7 @@ function normalizeAlign(v) {
   return v;
 }
 
-export default function SlideEditor({ enabled, slideId, slideKey, rootRef, initialTargetRef }) {
+export default function SlideEditor({ enabled, slideId, slideKey, rootRef, initialTargetRef, editsReady = true }) {
   const [selected, setSelected] = useState(null); // DOM 元素
   const [ov, setOv] = useState(null); // 当前选中元素的 override 数据
   const [box, setBox] = useState(null); // 高亮框在屏幕上的位置
@@ -271,6 +271,9 @@ export default function SlideEditor({ enabled, slideId, slideKey, rootRef, initi
     setSelected(null);
     setOv(null);
     setBox(null);
+    // 等 App 从服务端拿到最新编辑（editsReady）再应用，避免用旧的 localStorage 覆盖，
+    // 同时保证 DOM 是刚渲染的源内容，被删除的编辑能正确还原
+    if (!editsReady) return;
     const raf = requestAnimationFrame(() => {
       const root = rootRef.current;
       if (!root) return;
@@ -292,7 +295,7 @@ export default function SlideEditor({ enabled, slideId, slideKey, rootRef, initi
       }
     });
     return () => cancelAnimationFrame(raf);
-  }, [slideKey, slideId, rootRef, getSlideEdits]);
+  }, [slideKey, slideId, rootRef, getSlideEdits, editsReady]);
 
   /* 计算当前缩放比例（slide 用 zoom 缩放） */
   const getScale = useCallback(() => {

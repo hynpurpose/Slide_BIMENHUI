@@ -42,6 +42,35 @@ function slideEditsSavePlugin() {
   return {
     name: 'slide-edits-save',
     configureServer(server) {
+      // 实时读取磁盘上的 slideEdits.json（每次刷新都拿最新内容，git pull 后无需重启）
+      server.middlewares.use('/api/load-edits', (req, res, next) => {
+        if (req.method !== 'GET') return next();
+        try {
+          const filePath = path.resolve(__dirname, 'src/slideEdits.json');
+          let payload = { visualEdits: {}, titleOverrides: {} };
+          if (fs.existsSync(filePath)) {
+            const data = JSON.parse(fs.readFileSync(filePath, 'utf-8') || '{}');
+            payload = {
+              visualEdits:
+                data.visualEdits && typeof data.visualEdits === 'object'
+                  ? data.visualEdits
+                  : {},
+              titleOverrides:
+                data.titleOverrides && typeof data.titleOverrides === 'object'
+                  ? data.titleOverrides
+                  : {},
+            };
+          }
+          res.setHeader('Content-Type', 'application/json');
+          res.setHeader('Cache-Control', 'no-store');
+          res.end(JSON.stringify(payload));
+        } catch (err) {
+          console.error('Load edits failed:', err);
+          res.statusCode = 500;
+          res.end(JSON.stringify({ error: err.message }));
+        }
+      });
+
       server.middlewares.use('/api/save-edits', (req, res, next) => {
         if (req.method !== 'POST') return next();
 
