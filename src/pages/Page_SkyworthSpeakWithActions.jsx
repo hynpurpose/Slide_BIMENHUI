@@ -47,13 +47,13 @@ function MentionBlock({ phase, text }) {
 
   return (
     <div
-      className={`flex-1 min-w-0 rounded-xl px-4 py-2.5 flex items-center gap-3 ${
+      className={`flex-1 min-w-0 rounded-xl px-4 py-3 flex items-center gap-4 ${
         isBefore
           ? 'bg-zinc-900/40 border border-zinc-800/70'
           : 'bg-[#004CE5]/8 border border-[#004CE5]/25'
       }`}
     >
-      <span className="text-[18px] font-bold tracking-wide shrink-0 font-['MiSans'] text-white/70">
+      <span className="text-[36px] leading-none font-bold shrink-0 font-['MiSans'] text-white">
         {isBefore ? '优化前' : '优化后'}
       </span>
       <p className="text-[36px] leading-none font-bold font-['MiSans'] text-white">
@@ -77,8 +77,11 @@ function CaseCard({ data }) {
 
       <div className="shrink-0 px-5 pb-3 flex items-stretch gap-3">
         <MentionBlock phase="before" text={data.before} />
-        <div className="shrink-0 flex items-center justify-center w-6">
-          <ArrowRight className="w-6 h-6 text-zinc-600" strokeWidth={2.5} />
+        <div className="shrink-0 flex items-center justify-center w-12">
+          <ArrowRight
+            className="w-10 h-10 text-white drop-shadow-[0_0_10px_rgba(255,255,255,0.35)]"
+            strokeWidth={3}
+          />
         </div>
         <MentionBlock phase="after" text={data.after} />
       </div>
