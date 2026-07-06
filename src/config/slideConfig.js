@@ -77,6 +77,7 @@ import Page_GeoMonitorModules from '../pages/Page_GeoMonitorModules';
 import Page_GeoOneDemo from '../pages/Page_GeoOneDemo';
 import Page_QuantitativeModel from '../pages/Page_QuantitativeModel';
 import Page_GeoMonitor from '../pages/Page_GeoMonitor';
+import Page_GeoMonitorDemo from '../pages/Page_GeoMonitorDemo';
 import Page_GeoMonitor_Pic1 from '../pages/Page_GeoMonitor_Pic1';
 import Page_GeoMonitor_Pic2 from '../pages/Page_GeoMonitor_Pic2';
 import Page_GeoMonitor_Pic3 from '../pages/Page_GeoMonitor_Pic3';
@@ -180,6 +181,7 @@ import {
 } from '../pages/Page_SkyworthReport_Sentiment';
 import Page_SkyworthThankYou from '../pages/Page_SkyworthThankYou';
 import Page_SkyworthSpeakWithActions from '../pages/Page_SkyworthSpeakWithActions';
+import Page_SkyworthSpeakWithActions_2 from '../pages/Page_SkyworthSpeakWithActions_2';
 
 export const slideConfig = [
   // ——— 封面 & 目录 ———
@@ -357,6 +359,7 @@ export const slideConfig = [
   { type: 'page', title: 'GEO ONE数据系统功能介绍', component: Page_GeoMonitorModules, hideHeader: true },
   { type: 'page', title: 'Geo One数据系统演示', component: Page_GeoOneDemo, hideHeader: true },
   { type: 'page', title: 'GEO ONE 数据监测系统', component: Page_GeoMonitor, hideHeader: true },
+  { type: 'page', title: 'GEO ONE数据系统后台运行录屏演示', component: Page_GeoMonitorDemo, hideHeader: true },
   { type: 'page', title: 'GEO ONE 数据监测系统 1', component: Page_GeoMonitor_Pic1, hideHeader: true },
   { type: 'page', title: 'GEO ONE 数据监测系统 2', component: Page_GeoMonitor_Pic2, hideHeader: true },
   { type: 'page', title: 'GEO ONE 数据监测系统 3', component: Page_GeoMonitor_Pic3, hideHeader: true },
@@ -398,5 +401,6 @@ export const slideConfig = [
   { type: 'page', title: '真评系统 · 时间趋势', component: Page_UserComment_Trend, hideHeader: true },
   { type: 'page', title: '真评系统 · 刷评识别', component: Page_UserComment_Fake, hideHeader: true },
   { type: 'page', title: '用行动说话', component: Page_SkyworthSpeakWithActions, hideHeader: true },
+  { type: 'page', title: '用行动说话 2', component: Page_SkyworthSpeakWithActions_2, hideHeader: true },
   { type: 'page', title: 'Thank You', component: Page_SkyworthThankYou, hideHeader: true },
 ];

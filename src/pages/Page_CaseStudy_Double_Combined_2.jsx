@@ -104,28 +104,23 @@ function DoubleColumn({ data, overview }) {
           <span className="inline-block text-[20px] font-bold tracking-widest text-[#004CE5] bg-[#004CE5]/10 px-4 py-2 rounded-full border border-[#004CE5]/20 max-w-fit font-sans leading-none -mt-4 mb-4">
             {data.industry}
           </span>
-          <h3 className="text-[46px] font-extrabold text-white tracking-tight flex items-center gap-3 mt-1 leading-none">
-            <span className="w-3 h-3 rounded-full bg-[#004CE5] shadow-[0_0_8px_rgba(0,76,229,0.8)]" />
-            {data.brand}
-          </h3>
-        </div>
-
-        <div className="flex flex-col gap-2 items-start ml-6 mr-auto pl-8 border-l border-white/5">
-          <span className="text-[13px] text-zinc-500 font-semibold tracking-widest uppercase font-sans">优化平台</span>
-          <div className="flex items-center gap-2 mt-1">
-            {data.platforms.map((logo, idx) => (
-              <img key={idx} src={logo} alt="platform" className="w-auto h-7 object-contain brightness-95" />
-            ))}
+          <div className="w-[240px] h-[90px] flex items-center justify-start mt-1">
+            <img
+              src={`/cases/brand-logos/logo-${data.brandId}.png`}
+              alt={`${data.brand} Logo`}
+              className="max-w-full max-h-full object-contain brightness-0 invert opacity-75 group-hover:opacity-100 transition-opacity"
+              onError={(e) => { e.currentTarget.style.display = 'none'; }}
+            />
           </div>
         </div>
 
-        <div className="w-[240px] h-[90px] flex items-center justify-end shrink-0 self-center">
-          <img
-            src={`/cases/brand-logos/logo-${data.brandId}.png`}
-            alt={`${data.brand} Logo`}
-            className="max-w-full max-h-full object-contain brightness-0 invert opacity-75 group-hover:opacity-100 transition-opacity"
-            onError={(e) => { e.currentTarget.style.display = 'none'; }}
-          />
+        <div className="flex flex-col gap-2 items-start ml-6 mr-auto pl-8 border-l border-white/5 pt-6">
+          <span className="text-[15px] text-zinc-500 font-semibold tracking-widest uppercase font-sans">优化平台</span>
+          <div className="flex items-center gap-3 mt-1.5">
+            {data.platforms.map((logo, idx) => (
+              <img key={idx} src={logo} alt="platform" className="w-auto h-11 object-contain brightness-95" />
+            ))}
+          </div>
         </div>
       </div>
 

@@ -1,21 +1,21 @@
 import React, { useState } from 'react';
-import { ArrowRight, Image as ImageIcon } from 'lucide-react';
+import { ArrowDown, Image as ImageIcon } from 'lucide-react';
 import SlideLayout from '../components/SlideLayout';
 
 const CASES = [
   {
     id: '01',
-    keyword: '词条一',
+    keyword: '超薄电视品牌排行榜',
     before: '未提及',
     after: '第一名',
-    image: '',
+    image: '/images/speak_with_actions_case1.png',
   },
   {
     id: '02',
-    keyword: '词条二',
+    keyword: '口碑好的电视推荐',
     before: '未提及',
     after: '第一名',
-    image: '',
+    image: '/images/speak_with_actions_case2.png',
   },
 ];
 
@@ -24,10 +24,12 @@ function ImageSlot({ src, alt }) {
   const showPlaceholder = !src || failed;
 
   if (showPlaceholder) {
+    const filename = src ? src.split('/').pop() : 'speak_with_actions_case1.png';
     return (
-      <div className="w-full h-full flex flex-col items-center justify-center bg-zinc-950/30 border border-dashed border-zinc-800/80 rounded-2xl gap-3 select-none">
-        <ImageIcon className="w-10 h-10 text-zinc-600 opacity-50" strokeWidth={1.5} />
-        <span className="text-zinc-600 text-[18px] font-medium font-['MiSans']">案例截图</span>
+      <div className="w-full h-full flex flex-col items-center justify-center bg-white border border-dashed border-zinc-300 rounded-2xl gap-2 p-4 select-none text-center">
+        <ImageIcon className="w-10 h-10 text-zinc-400 opacity-60" strokeWidth={1.5} />
+        <span className="text-zinc-500 text-[18px] font-medium font-['MiSans']">案例截图</span>
+        <span className="text-zinc-400 text-[12px] font-sans">请放入图片：public/images/{filename}</span>
       </div>
     );
   }
@@ -36,7 +38,7 @@ function ImageSlot({ src, alt }) {
     <img
       src={src}
       alt={alt}
-      className="w-full h-full object-contain rounded-2xl border border-zinc-800/60 bg-zinc-950/40 p-1.5"
+      className="max-w-full max-h-full object-contain rounded-xl"
       onError={() => setFailed(true)}
     />
   );
@@ -47,45 +49,54 @@ function MentionBlock({ phase, text }) {
 
   return (
     <div
-      className={`flex-1 min-w-0 rounded-xl px-4 py-3 flex items-center gap-4 ${isBefore
-          ? 'bg-zinc-900/40 border border-zinc-800/70'
-          : 'bg-[#004CE5]/8 border border-[#004CE5]/25'
-        }`}
+      className={`w-full rounded-xl px-4 py-4 flex flex-row justify-center items-center gap-1.5 ${isBefore
+        ? 'bg-zinc-900/40 border border-zinc-800/70'
+        : 'bg-[#004CE5]/8 border border-[#004CE5]/25'
+      }`}
     >
-      <span className="text-[36px] leading-none font-bold shrink-0 font-['MiSans'] text-white">
+      <span className="text-[28px] leading-none font-bold font-['MiSans'] text-white shrink-0">
         {isBefore ? '优化前：' : '优化后：'}
       </span>
-      <p className="text-[36px] leading-none font-bold font-['MiSans'] text-white">
+      <span
+        className={`text-[28px] leading-none font-black font-['MiSans'] ${isBefore ? 'text-white/90' : 'text-white drop-shadow-[0_0_8px_rgba(255,255,255,0.2)]'
+        }`}
+      >
         {text}
-      </p>
+      </span>
     </div>
   );
 }
 
 function CaseCard({ data }) {
   return (
-    <div className="flex-1 min-w-0 h-full flex flex-col bg-zinc-950/35 border border-zinc-800/70 rounded-[1.25rem] overflow-hidden">
-      <div className="shrink-0 px-5 pt-4 pb-3 flex items-center gap-3">
-        <span className="text-[14px] font-black tracking-[0.15em] text-[#004CE5] bg-[#004CE5]/10 border border-[#004CE5]/20 rounded-md px-2.5 py-1 font-['Montserrat']">
-          {data.id}
-        </span>
-        <h3 className="text-[30px] font-bold text-white tracking-tight font-['MiSans'] truncate">
-          {data.keyword}
-        </h3>
-      </div>
-
-      <div className="shrink-0 px-5 pb-3 flex items-stretch gap-3">
-        <MentionBlock phase="before" text={data.before} />
-        <div className="shrink-0 flex items-center justify-center w-12">
-          <ArrowRight
-            className="w-10 h-10 text-white drop-shadow-[0_0_10px_rgba(255,255,255,0.35)]"
-            strokeWidth={3}
-          />
+    <div className="flex-1 min-w-0 h-full flex flex-row bg-zinc-950/35 border border-zinc-800/70 rounded-[1.25rem] overflow-hidden">
+      {/* Left Column: Content (Fixed Narrow Width) */}
+      <div className="w-[300px] shrink-0 flex flex-col justify-between p-6 pr-4">
+        {/* Title */}
+        <div className="shrink-0 flex flex-col gap-2 mb-4">
+          <span className="text-[12px] font-black tracking-[0.15em] text-[#004CE5] bg-[#004CE5]/10 border border-[#004CE5]/20 rounded-md px-2.5 py-1 font-['Montserrat'] max-w-fit">
+            {data.id}
+          </span>
+          <h3 className="text-[26px] font-bold text-white tracking-tight font-['MiSans'] leading-snug">
+            {data.keyword}
+          </h3>
         </div>
-        <MentionBlock phase="after" text={data.after} />
+
+        {/* Before / After Stack */}
+        <div className="flex-grow flex flex-col justify-center gap-3">
+          <MentionBlock phase="before" text={data.before} />
+          <div className="shrink-0 flex items-center justify-center h-8">
+            <ArrowDown
+              className="w-7 h-7 text-white/60 drop-shadow-[0_0_8px_rgba(255,255,255,0.2)]"
+              strokeWidth={3}
+            />
+          </div>
+          <MentionBlock phase="after" text={data.after} />
+        </div>
       </div>
 
-      <div className="flex-1 min-h-0 px-5 pb-5">
+      {/* Right Column: Tall Image Slot (Flex-Grow, White Background) */}
+      <div className="flex-grow flex-1 h-full bg-white p-4 flex items-center justify-center overflow-hidden">
         <ImageSlot src={data.image} alt={`${data.keyword}案例截图`} />
       </div>
     </div>
@@ -94,7 +105,7 @@ function CaseCard({ data }) {
 
 export default function Page_SkyworthSpeakWithActions() {
   return (
-    <SlideLayout title="用行动说话" subtitle="投放文章影响的两个词条" hideHeaderLeft={true}>
+    <SlideLayout title="用行动说话" subtitle="优化成功的两个词条" hideHeaderLeft={true}>
       <div className="absolute w-[480px] h-[480px] rounded-full bg-[#004CE5]/5 blur-[140px] -right-40 -bottom-40 pointer-events-none" />
 
       <div className="w-full h-full relative z-10 select-none animate-fadeIn flex gap-6">
