@@ -71,25 +71,15 @@ export default function Page_DeliveryLongTerm() {
   return (
     <SlideLayout title="初阶做法 VS 我们5-3-2原则">
       <div
-        className="absolute w-[1840px] flex flex-col select-none animate-fadeIn"
-        style={{ top: 0, height: '795px', paddingTop: '20px' }}
+        className="absolute w-[1840px] h-full flex flex-col select-none animate-fadeIn"
+        style={{ top: 0 }}
       >
-        {/* 导语 */}
-        <p
-          className="text-zinc-400 font-['MiSans'] shrink-0 mb-10"
-          style={{ fontSize: '32px', lineHeight: '1.4' }}
-        >
-          长期预算分配：
-          <strong className="text-white font-bold">不跟引用率排名走</strong>
-          ，锁定真正左右 AI 答案的信源
-        </p>
-
         {/* 双栏 */}
         <div className="flex-1 min-h-0 flex gap-8">
 
           {/* ── 左：市场常见做法 ── */}
           <div className="flex-1 flex flex-col min-w-0">
-            <h2 className="text-[28px] font-bold text-zinc-500 font-['MiSans'] mb-5 shrink-0 tracking-wide">
+            <h2 className="text-[42px] font-black text-zinc-400 font-['MiSans'] mb-6 shrink-0 leading-none">
               市场常见做法
             </h2>
             <div className="flex-1 min-h-0 bg-[#0B0D19]/45 border border-white/[0.06] rounded-[24px] flex flex-col overflow-hidden shadow-[0_15px_35px_rgba(0,0,0,0.3)]">
@@ -114,7 +104,7 @@ export default function Page_DeliveryLongTerm() {
 
           {/* ── 右：5-3-2 原则 ── */}
           <div className="flex-1 flex flex-col min-w-0">
-            <h2 className="text-[28px] font-bold text-white font-['MiSans'] mb-5 shrink-0 tracking-wide">
+            <h2 className="text-[42px] font-black text-white font-['MiSans'] mb-6 shrink-0 leading-none">
               我们的 <span className="text-[#004CE5]">5 · 3 · 2</span> 原则
             </h2>
             <div className="flex-1 min-h-0 bg-[#0B0D19]/45 border border-[#004CE5]/20 rounded-[24px] flex flex-col overflow-hidden shadow-[0_15px_35px_rgba(0,76,229,0.06)]">

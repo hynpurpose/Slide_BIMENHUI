@@ -27,23 +27,23 @@ export default function Page_DeliveryHighWeight() {
         />
       </div>
 
-      {/* ── 主排版区 ── */}
+      {/* ── 主排版区 (高度 795px，上面抵到 content top，下面抵到 content bottom) ── */}
       <div
         className="absolute w-[1840px] select-none animate-fadeIn flex flex-col justify-between z-10 pl-0"
-        style={{ top: '25px', height: '750px' }}
+        style={{ top: '0px', height: '795px' }}
       >
-        {/* ==================== 三栏主体布局 (高度 580px) ==================== */}
-        <div className="w-full flex gap-6 items-stretch h-[580px] relative">
+        {/* ==================== 三栏主体布局 (撑满 795px 高度) ==================== */}
+        <div className="w-full flex gap-6 items-stretch h-full relative">
 
           {/* ── SVG 引导虚线：从抖音链接指向右侧高粉丝账号 ── */}
-          <svg className="absolute inset-0 pointer-events-none z-30" style={{ width: '1840px', height: '580px' }}>
+          <svg className="absolute inset-0 pointer-events-none z-30" style={{ width: '1840px', height: '795px' }}>
             <defs>
               <marker id="arrow-head" viewBox="0 0 10 10" refX="6" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse">
                 <path d="M 0 0 L 10 5 L 0 10 z" fill="#0052FF" />
               </marker>
             </defs>
             <path 
-              d="M 1120 220 C 1160 205, 1200 190, 1240 185" 
+              d="M 1120 310 C 1170 270, 1210 200, 1240 195" 
               fill="none" 
               stroke="#0052FF" 
               strokeWidth="2.5" 
@@ -73,7 +73,7 @@ export default function Page_DeliveryHighWeight() {
                   return (
                     <div
                       key={idx}
-                      className={`flex justify-between items-center h-[60px] px-4 rounded-xl border transition-all duration-300 ${
+                      className={`flex justify-between items-center h-[90px] px-4 rounded-xl border transition-all duration-300 ${
                         isDouyin
                           ? "border-[#FF0050]/40 bg-[#FF0050]/5 shadow-[0_0_20px_rgba(255,0,80,0.06)]"
                           : "border-transparent hover:bg-zinc-100/60"
@@ -166,7 +166,7 @@ export default function Page_DeliveryHighWeight() {
 
                     <div className="flex-grow flex flex-col justify-between py-1 min-h-0 gap-3">
                       {/* 抖音链接 (假引用) */}
-                      <div className="bg-black/40 border border-[#0052FF]/30 rounded-xl p-4 flex flex-col justify-between h-[85px] relative overflow-hidden group hover:border-[#0052FF]/50 transition-colors duration-300">
+                      <div className="bg-black/40 border border-[#0052FF]/30 rounded-xl p-4 flex flex-col justify-between h-[120px] relative overflow-hidden group hover:border-[#0052FF]/50 transition-colors duration-300">
                         <span className="text-[12px] text-zinc-500 font-bold font-['Montserrat']">1. 抖音视频链接</span>
                         <p className="text-[14px] font-black text-white truncate mt-1">v.douyin.com/ZGdEs3s/...</p>
                         
@@ -177,7 +177,7 @@ export default function Page_DeliveryHighWeight() {
                       </div>
 
                       {/* 其他链接 2 (真引用) */}
-                      <div className="bg-black/10 border border-white/[0.05] rounded-xl p-4 flex flex-col justify-between h-[85px] relative overflow-hidden group hover:border-white/[0.12] transition-colors duration-300">
+                      <div className="bg-black/10 border border-white/[0.05] rounded-xl p-4 flex flex-col justify-between h-[120px] relative overflow-hidden group hover:border-white/[0.12] transition-colors duration-300">
                         <span className="text-[12px] text-zinc-600 font-bold font-['Montserrat']">2. 其他文章链接</span>
                         <p className="text-[14px] font-bold text-zinc-400 truncate mt-1">smzdm.com/post/892718...</p>
                         
@@ -188,7 +188,7 @@ export default function Page_DeliveryHighWeight() {
                       </div>
 
                       {/* 其他链接 3 (真引用) */}
-                      <div className="bg-black/10 border border-white/[0.05] rounded-xl p-4 flex flex-col justify-between h-[85px] relative overflow-hidden group hover:border-white/[0.12] transition-colors duration-300">
+                      <div className="bg-black/10 border border-white/[0.05] rounded-xl p-4 flex flex-col justify-between h-[120px] relative overflow-hidden group hover:border-white/[0.12] transition-colors duration-300">
                         <span className="text-[12px] text-zinc-600 font-bold font-['Montserrat']">3. 其他文章链接</span>
                         <p className="text-[14px] font-bold text-zinc-400 truncate mt-1">toutiao.com/article/7321...</p>
                         
@@ -208,7 +208,7 @@ export default function Page_DeliveryHighWeight() {
           <div className="w-[568px] h-full flex flex-col gap-6 justify-between">
             
             {/* 右上：高粉丝账号 (不投放) */}
-            <div className="h-[205px] bg-[#0B0D19]/45 border border-white/[0.06] rounded-[24px] p-6 flex flex-col justify-between hover:border-red-500/20 transition-all duration-300 relative group shadow-[0_15px_35px_rgba(0,0,0,0.3)]">
+            <div className="h-[250px] bg-[#0B0D19]/45 border border-white/[0.06] rounded-[24px] p-6 flex flex-col justify-between hover:border-red-500/20 transition-all duration-300 relative group shadow-[0_15px_35px_rgba(0,0,0,0.3)]">
               {/* 不投放标志 */}
               <div className="absolute top-5 right-5 border border-red-500 bg-red-500/10 rounded-full px-3 py-0.5 flex items-center gap-1.5 shrink-0">
                 <span className="w-1.5 h-1.5 rounded-full bg-red-500 animate-pulse" />
@@ -216,7 +216,7 @@ export default function Page_DeliveryHighWeight() {
               </div>
 
               <div>
-                <h3 className="text-[20px] font-black text-white font-['MiSans'] flex items-center gap-2 mb-2 tracking-wide">
+                <h3 className="text-[20px] font-black text-white font-['MiSans'] flex items-center gap-2 mb-2.5 tracking-wide">
                   <Users size={18} className="text-red-500" />
                   引用的高粉丝账号
                 </h3>
@@ -231,14 +231,14 @@ export default function Page_DeliveryHighWeight() {
             </div>
 
             {/* 右下：引用抖音内容拆解 */}
-            <div className="flex-1 bg-[#0B0D19]/45 border border-[#0052FF]/30 rounded-[24px] p-6 flex flex-col justify-between hover:border-[#0052FF]/50 transition-all duration-300 shadow-[0_15px_35px_rgba(0,82,255,0.04)]">
+            <div className="flex-grow bg-[#0B0D19]/45 border border-[#0052FF]/30 rounded-[24px] p-6 flex flex-col justify-between hover:border-[#0052FF]/50 transition-all duration-300 shadow-[0_15px_35px_rgba(0,82,255,0.04)]">
               <div>
                 <h3 className="text-[20px] font-black text-white font-['MiSans'] flex items-center gap-2 mb-4 tracking-wide">
                   <FileText size={18} className="text-[#0052FF]" />
                   引用的抖音内容拆解
                 </h3>
                 
-                <div className="space-y-3.5 mt-2">
+                <div className="space-y-4 mt-2">
                   <div className="bg-black/30 border border-white/[0.04] rounded-2xl p-4 flex items-stretch gap-3">
                     <div className="w-1 rounded-full bg-[#0052FF] shrink-0" />
                     <div>
@@ -262,7 +262,7 @@ export default function Page_DeliveryHighWeight() {
               </div>
 
               {/* 核心结论 */}
-              <div className="mt-4 bg-[#0052FF]/10 border border-[#0052FF]/20 rounded-xl py-3 px-4 flex items-center justify-center gap-2 shrink-0">
+              <div className="mt-4 bg-[#0052FF]/10 border border-[#0052FF]/20 rounded-xl py-3.5 px-4 flex items-center justify-center gap-2 shrink-0">
                 <span className="text-[16px] font-black text-white font-['MiSans']">
                   结论：视频画面及深层内容对回答结果无影响
                 </span>
@@ -273,15 +273,15 @@ export default function Page_DeliveryHighWeight() {
 
         </div>
 
-        {/* ==================== 原因总结横向 Banner (优化为轻量化、中性深色背景) ==================== */}
-        <div className="w-full h-[58px] bg-white/5 border border-white/[0.06] rounded-[16px] px-6 flex items-center justify-between shrink-0 hover:border-white/[0.12] transition-all duration-300">
+        {/* ==================== 原因总结横向 Banner (放置在 Content Bottom 下方，高度 46px) ==================== */}
+        <div className="absolute left-0 bottom-[-54px] w-full h-[46px] bg-white/5 border border-white/[0.06] rounded-xl px-6 flex items-center justify-between pointer-events-auto transition-all duration-300 hover:border-white/[0.12]">
           <div className="flex items-center gap-3">
-            <AlertTriangle size={16} className="text-zinc-400" />
-            <span className="text-[18px] xl:text-[20px] font-bold text-zinc-300 font-['MiSans'] leading-none">
+            <AlertTriangle size={15} className="text-zinc-400" />
+            <span className="text-[16px] xl:text-[18px] font-bold text-zinc-350 font-['MiSans'] leading-none">
               原因：AI 不读取视频，只是字节内部的政治任务（倾斜自家抖音链接）
             </span>
           </div>
-          <span className="text-[11px] text-zinc-600 font-bold font-['Montserrat'] tracking-widest leading-none">
+          <span className="text-[11px] text-zinc-650 font-bold font-['Montserrat'] tracking-widest leading-none">
             GEO INSIGHTS
           </span>
         </div>
