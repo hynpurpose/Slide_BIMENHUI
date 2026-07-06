@@ -262,7 +262,7 @@ function TrendLineChart({ data }) {
    Y轴 padding bottom 15（柱底停在最低刻度线上）、margin top 50 */
 function PlatformBarChart({ data }) {
   const { width, height, axisW } = CHART;
-  const topPad = 50; // BarChart margin={{ top: 50 }}
+  const topPad = 20;
   const bottomH = 60; // XAxis height=60（logo+名字）
   const plotH = height - topPad - bottomH;
 
