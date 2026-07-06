@@ -108,7 +108,7 @@ export default function Page_GEOWordSelectionOther() {
           className="absolute left-1/2 -translate-x-1/2 -translate-y-1/2 z-30 flex flex-col items-center gap-4 pointer-events-none overflow-visible"
           style={{ top: '530px' }}
         >
-          <span className="text-[24px] font-black text-white font-['MiSans'] leading-none whitespace-nowrap px-5 py-3 rounded-full bg-[#004CE5]/30 border-2 border-[#2E6BFF] shadow-[0_0_32px_rgba(46,107,255,0.65),0_4px_24px_rgba(0,0,0,0.5)] backdrop-blur-sm">
+          <span className="text-[24px] font-black text-white font-['MiSans'] leading-none whitespace-nowrap px-5 py-3 rounded-full bg-[#004CE5] border-2 border-[#2E6BFF] shadow-[0_0_32px_rgba(46,107,255,0.65),0_4px_24px_rgba(0,0,0,0.5)]">
             AI搜索形式变了
           </span>
           <svg width="100" height="28" viewBox="0 0 100 28" fill="none" aria-hidden="true" className="drop-shadow-[0_0_12px_rgba(46,107,255,0.8)]">
