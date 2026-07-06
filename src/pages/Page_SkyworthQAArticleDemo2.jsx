@@ -7,10 +7,10 @@ export default function Page_SkyworthQAArticleDemo2() {
       <div className="w-full h-full flex flex-col gap-6 animate-fadeIn relative z-10">
 
         {/* Callout Text */}
-        <div className="absolute top-[-56px] right-0 z-30 flex items-center gap-2.5 text-zinc-400 text-[28px] font-bold">
+        <div className="absolute top-[-56px] right-0 z-30 flex items-center gap-2.5 text-white text-[26px] xl:text-[28px] font-medium">
           <div className="w-3 h-3 rounded-full bg-blue-500 animate-pulse shrink-0" />
           <span className="tracking-wide">
-            对比<span className="text-white font-extrabold">本品和竞品的真实优劣势</span>，避免AI感特别重的“一边倒”式吹捧。
+            对比<span className="text-[32px] xl:text-[34px] font-black text-white">本品和竞品的真实优劣势</span>，避免AI感特别重的“一边倒”式吹捧。
           </span>
         </div>
 
