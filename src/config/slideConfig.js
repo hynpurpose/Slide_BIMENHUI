@@ -176,7 +176,8 @@ import {
   Page_SkyworthReport_SentimentPre,
   Page_SkyworthReport_SentimentDetail,
 } from '../pages/Page_SkyworthReport_Sentiment';
-import Page_ThankYou from '../pages/Page_ThankYou';
+import Page_SkyworthThankYou from '../pages/Page_SkyworthThankYou';
+import Page_SkyworthSpeakWithActions from '../pages/Page_SkyworthSpeakWithActions';
 
 export const slideConfig = [
   // ——— 封面 & 目录 ———
@@ -390,5 +391,6 @@ export const slideConfig = [
   { type: 'page', title: '真评系统 · 关键词云', component: Page_UserComment_WordCloud, hideHeader: true },
   { type: 'page', title: '真评系统 · 时间趋势', component: Page_UserComment_Trend, hideHeader: true },
   { type: 'page', title: '真评系统 · 刷评识别', component: Page_UserComment_Fake, hideHeader: true },
-  { type: 'page', title: 'Thank You', component: Page_ThankYou, hideHeader: true },
+  { type: 'page', title: '用行动说话', component: Page_SkyworthSpeakWithActions, hideHeader: true },
+  { type: 'page', title: 'Thank You', component: Page_SkyworthThankYou, hideHeader: true },
 ];

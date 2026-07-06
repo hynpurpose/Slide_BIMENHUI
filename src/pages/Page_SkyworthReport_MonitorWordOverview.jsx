@@ -33,17 +33,17 @@ const CATEGORY_SENTIMENT = {
 
 function SentimentDistributionCard({ positive, negative, positiveKeywords, negativeKeywords }) {
   return (
-    <div className="bg-white rounded-2xl border border-[#f0f0f0] px-6 py-4 shadow-sm">
-      <div className="flex items-center gap-4">
-        <div className="shrink-0 w-[84px] text-right">
-          <p className="text-[18px] xl:text-[20px] font-bold text-[#00a854] leading-tight">
-            <Num>{formatPct(positive)}</Num>%
-          </p>
-          <p className="text-[13px] text-[#00a854]/75 font-medium mt-0.5">正面</p>
+    <div className="bg-white rounded-2xl border border-[#f0f0f0] px-8 py-5 shadow-sm">
+      <div className="flex items-center gap-6">
+        <div className="shrink-0 w-[140px] text-right flex flex-col justify-center">
+          <Num className="text-[44px] xl:text-[50px] font-extrabold text-[#00a854] leading-none tracking-tight">
+            {formatPct(positive)}%
+          </Num>
+          <p className="text-[15px] xl:text-[16px] text-[#00a854]/75 font-semibold mt-1">正面</p>
         </div>
 
         <div className="flex-1 min-w-0">
-          <div className="h-5 flex gap-[2px] rounded-full overflow-hidden">
+          <div className="h-6 flex gap-[2px] rounded-full overflow-hidden bg-[#f5f5f5]">
             <div
               className="h-full bg-[#52c41a] rounded-l-full"
               style={{ width: `${positive}%` }}
@@ -55,19 +55,19 @@ function SentimentDistributionCard({ positive, negative, positiveKeywords, negat
           </div>
         </div>
 
-        <div className="shrink-0 w-[84px] text-left">
-          <p className="text-[18px] xl:text-[20px] font-bold text-[#f5222d] leading-tight">
-            <Num>{formatPct(negative)}</Num>%
-          </p>
-          <p className="text-[13px] text-[#f5222d]/75 font-medium mt-0.5">负面</p>
+        <div className="shrink-0 w-[140px] text-left flex flex-col justify-center">
+          <Num className="text-[44px] xl:text-[50px] font-extrabold text-[#f5222d] leading-none tracking-tight">
+            {formatPct(negative)}%
+          </Num>
+          <p className="text-[15px] xl:text-[16px] text-[#f5222d]/75 font-semibold mt-1">负面</p>
         </div>
       </div>
 
-      <div className="grid grid-cols-2 gap-x-6 mt-3 pt-3 border-t border-[#f0f0f0]">
-        <p className="text-[18px] xl:text-[19px] font-bold text-[#1a1a1a] leading-snug">
+      <div className="grid grid-cols-2 gap-x-6 mt-4 pt-4 border-t border-[#f0f0f0]">
+        <p className="text-[18px] xl:text-[20px] font-bold text-[#1a1a1a] leading-snug">
           {positiveKeywords}
         </p>
-        <p className="text-[18px] xl:text-[19px] font-bold text-[#1a1a1a] leading-snug text-right">
+        <p className="text-[18px] xl:text-[20px] font-bold text-[#1a1a1a] leading-snug text-right">
           {negativeKeywords}
         </p>
       </div>
@@ -75,21 +75,27 @@ function SentimentDistributionCard({ positive, negative, positiveKeywords, negat
   );
 }
 
-function ProductPlaceholder() {
+function ProductPlaceholder({ src }) {
   return (
-    <div className="flex-1 min-h-0 rounded-xl border border-dashed border-white/15 bg-white/[0.02] flex flex-col items-center justify-center gap-3">
+    <div className="flex-1 min-h-0 rounded-xl border border-dashed border-white/15 bg-white/[0.02] flex flex-col items-center justify-center gap-3 relative overflow-hidden">
       <div className="w-12 h-12 rounded-full bg-white/5 border border-white/10 flex items-center justify-center">
         <svg className="w-7 h-7 text-zinc-500" fill="none" viewBox="0 0 24 24" stroke="currentColor">
           <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M4 16l4.586-4.586a2 2 0 012.828 0L16 16m-2-2l1.586-1.586a2 2 0 012.828 0L20 14m-6-6h.01M6 20h12a2 2 0 002-2V6a2 2 0 00-2-2H6a2 2 0 00-2 2v12a2 2 0 002 2z" />
         </svg>
       </div>
       <p className="text-zinc-400 text-[18px] xl:text-[20px] font-medium">产品正负面分布展示位</p>
+      <div className="bg-black/40 border border-white/10 px-3 py-1 rounded text-xs font-mono text-[#004CE5]">
+        存放路径: {src}
+      </div>
     </div>
   );
 }
 
 export function Page_SkyworthReport_MonitorWordOverview() {
   const cat = overview.category_monitor;
+  const [imgLoaded, setImgLoaded] = React.useState(false);
+  const [imgError, setImgError] = React.useState(false);
+  const src = '/geo-report/skyworth-monitor-product.jpg';
 
   return (
     <SlideLayout fullBleed>
@@ -114,11 +120,32 @@ export function Page_SkyworthReport_MonitorWordOverview() {
             />
           </div>
 
-          {/* 第二部分：产品专属监测词（占位） */}
+          {/* 第二部分：产品专属监测词（占位或图片） */}
           <div className="flex-1 min-h-0 flex flex-col gap-3">
             <SectionTitle>产品专属监测词</SectionTitle>
-            <div className="flex-1 min-h-0 rounded-2xl border border-white/[0.08] bg-white/[0.02] backdrop-blur-xl px-8 py-5 flex flex-col shadow-[0_4px_20px_rgba(0,0,0,0.2)]">
-              <ProductPlaceholder />
+            <div 
+              className={`flex-1 min-h-0 rounded-2xl border border-white/[0.08] bg-[#0a0a0a]/80 backdrop-blur-xl flex flex-col shadow-[0_4px_20px_rgba(0,0,0,0.2)] overflow-hidden ${
+                imgLoaded && !imgError ? 'p-0' : 'px-8 py-5'
+              }`}
+            >
+              {imgLoaded && !imgError ? (
+                <img 
+                  src={src} 
+                  alt="产品正负面分布" 
+                  className="w-full h-full object-contain" 
+                />
+              ) : (
+                <>
+                  <img 
+                    src={src} 
+                    alt="产品正负面分布" 
+                    className="hidden" 
+                    onLoad={() => setImgLoaded(true)} 
+                    onError={() => setImgError(true)} 
+                  />
+                  <ProductPlaceholder src={src} />
+                </>
+              )}
             </div>
           </div>
         </div>
