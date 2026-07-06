@@ -83,6 +83,7 @@ import Page_GeoMonitor_Pic6 from '../pages/Page_GeoMonitor_Pic6';
 import Page_GeoMonitor_Pic7 from '../pages/Page_GeoMonitor_Pic7';
 import Page_ContentAgentIntro from '../pages/Page_ContentAgentIntro';
 import Page_ContentAgent from '../pages/Page_ContentAgent';
+import Page_ContentAgentDemo from '../pages/Page_ContentAgentDemo';
 import Page_ContentAgent_Pic1 from '../pages/Page_ContentAgent_Pic1';
 import Page_ContentAgent_Pic2 from '../pages/Page_ContentAgent_Pic2';
 import Page_ContentAgent_Pic3 from '../pages/Page_ContentAgent_Pic3';
@@ -334,7 +335,7 @@ export const slideConfig = [
   { type: 'page', title: '核心能力', component: Page_CoreCapabilities, hideHeader: true },
   { type: 'page', title: 'GEO ONE 数据监测系统介绍', component: Page_GeoMonitorIntro, hideHeader: true },
   // { type: 'page', title: 'GEO ONE 系统架构', component: Page_GeoMonitorArchitecture, hideHeader: true },
-  { type: 'page', title: '数据系统核心模块', component: Page_GeoMonitorModules, hideHeader: true },
+  { type: 'page', title: 'GEO ONE数据系统功能介绍', component: Page_GeoMonitorModules, hideHeader: true },
   { type: 'page', title: 'Geo One数据系统演示', component: Page_GeoOneDemo, hideHeader: true },
   { type: 'page', title: 'GEO ONE 数据监测系统', component: Page_GeoMonitor, hideHeader: true },
   { type: 'page', title: 'GEO ONE 数据监测系统 1', component: Page_GeoMonitor_Pic1, hideHeader: true },
@@ -344,6 +345,7 @@ export const slideConfig = [
   { type: 'page', title: 'GEO ONE 数据监测系统 5', component: Page_GeoMonitor_Pic5, hideHeader: true },
   { type: 'page', title: 'GEO ONE 数据监测系统 6', component: Page_GeoMonitor_Pic6, hideHeader: true },
   { type: 'page', title: 'GEO ONE 数据监测系统 7', component: Page_GeoMonitor_Pic7, hideHeader: true },
+
   { type: 'page', title: 'GEO量化竞争模型（Alpha模型）', component: Page_QuantitativeModel, hideHeader: true },
   { type: 'page', title: 'Alpha 模型运作逻辑', component: Page_QuantitativeModelArchitecture, hideHeader: true },
   { type: 'page', title: 'Alpha 模型运作逻辑 1', component: Page_QuantitativeModel_Pic1, hideHeader: true },
@@ -353,14 +355,17 @@ export const slideConfig = [
   { type: 'page', title: 'Alpha 模型运作逻辑 5', component: Page_QuantitativeModel_Pic5, hideHeader: true },
   { type: 'page', title: 'Alpha 模型运作逻辑 6', component: Page_QuantitativeModel_Pic6, hideHeader: true },
   { type: 'page', title: 'Alpha 模型运作逻辑 7', component: Page_QuantitativeModel_Pic7, hideHeader: true },
+
   { type: 'page', title: '内容撰写Agent介绍', component: Page_ContentAgentIntro, hideHeader: true },
   { type: 'page', title: '内容撰写Agent', component: Page_ContentAgent, hideHeader: true },
+  { type: 'page', title: '内容撰写Agent演示', component: Page_ContentAgentDemo, hideHeader: true },
   { type: 'page', title: '内容撰写Agent 1', component: Page_ContentAgent_Pic1, hideHeader: true },
   { type: 'page', title: '内容撰写Agent 2', component: Page_ContentAgent_Pic2, hideHeader: true },
   { type: 'page', title: '内容撰写Agent 3', component: Page_ContentAgent_Pic3, hideHeader: true },
   { type: 'page', title: '内容撰写Agent 4', component: Page_ContentAgent_Pic4, hideHeader: true },
   { type: 'page', title: '内容撰写Agent 5', component: Page_ContentAgent_Pic5, hideHeader: true },
   { type: 'page', title: '内容撰写Agent 6', component: Page_ContentAgent_Pic6, hideHeader: true },
+
   { type: 'page', title: '用户评论分析系统', component: Page_UserCommentAnalysis, hideHeader: true },
   { type: 'page', title: '用户真评引擎架构', component: Page_UserCommentArchitecture, hideHeader: true },
   { type: 'page', title: '真评系统 · 数据总览', component: Page_UserComment_Overview, hideHeader: true },
