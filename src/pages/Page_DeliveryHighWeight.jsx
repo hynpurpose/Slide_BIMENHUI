@@ -1,6 +1,6 @@
-import React, { useState } from 'react';
+import React from 'react';
 import SlideLayout from '../components/SlideLayout';
-import { Globe, MessageSquare, AlertTriangle, Users, FileText } from 'lucide-react';
+import { Globe, AlertTriangle } from 'lucide-react';
 
 export default function Page_DeliveryHighWeight() {
   const leftTable = [
@@ -10,17 +10,6 @@ export default function Page_DeliveryHighWeight() {
     { rank: 4, name: "IT之家", rate: "5.4%", color: "#3B82F6", isCustomIcon: true },
     { rank: 5, name: "搜狐网", rate: "4.7%", color: "#FF9900" }
   ];
-
-  const sources = [
-    { title: "1. 抖音视频链接", url: "v.douyin.com/ZGdEs3s/...", isFake: true },
-    { title: "2. 什么值得买评测", url: "smzdm.com/post/892718...", isFake: false },
-    { title: "3. 今日头条评测", url: "toutiao.com/article/7321...", isFake: false },
-    { title: "4. IT之家横评文章", url: "ithome.com/html/721884...", isFake: false },
-    { title: "5. 搜狐科技评测", url: "sohu.com/a/90217438...", isFake: false }
-  ];
-
-  // 支持可选真实截图，若加载失败自动回退到模拟 UI
-  const [imageError, setImageError] = useState(false);
 
   return (
     <SlideLayout title="50%投在精准高权重信源——什么是不准的？">
@@ -42,23 +31,6 @@ export default function Page_DeliveryHighWeight() {
       >
         {/* ==================== 三栏主体布局 (高度为 690px) ==================== */}
         <div className="w-full flex gap-6 items-stretch h-[690px] relative">
-
-          {/* ── SVG 引导虚线：从第一个信源链接(抖音)指向右侧高粉丝账号 ── */}
-          <svg className="absolute inset-0 pointer-events-none z-30" style={{ width: '1840px', height: '690px' }}>
-            <defs>
-              <marker id="arrow-head" viewBox="0 0 10 10" refX="6" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse">
-                <path d="M 0 0 L 10 5 L 0 10 z" fill="#0052FF" />
-              </marker>
-            </defs>
-            <path 
-              d="M 1120 220 C 1160 200, 1200 185, 1240 180" 
-              fill="none" 
-              stroke="#0052FF" 
-              strokeWidth="2.5" 
-              strokeDasharray="6 4" 
-              markerEnd="url(#arrow-head)"
-            />
-          </svg>
 
           {/* ==================== 1. 左栏：豆包引用来源 (440px，白底黑字，高内聚排版) ==================== */}
           <div className="w-[440px] h-full bg-white border border-zinc-200 rounded-[24px] p-6 flex flex-col shadow-[0_10px_30px_rgba(0,0,0,0.15)] relative overflow-hidden group hover:border-blue-500/20 transition-colors">
@@ -116,159 +88,37 @@ export default function Page_DeliveryHighWeight() {
             </div>
           </div>
 
-          {/* ==================== 2. 中栏：对话与信源列表验证 (760px) ==================== */}
-          <div className="w-[760px] h-full bg-[#0B0D19]/45 border border-white/[0.06] backdrop-blur-md rounded-[24px] p-6 flex flex-col shadow-[0_15px_35px_rgba(0,0,0,0.3)]">
-            <div className="mb-5 shrink-0">
-              <h3 className="text-[24px] font-black text-white font-['MiSans'] tracking-wide">
-                引用机制验证
-              </h3>
-            </div>
-
-            {/* 对话与信源面板 */}
-            <div className="flex-1 flex gap-6 min-h-0">
-              {!imageError && false ? (
-                <div className="flex-1 rounded-xl overflow-hidden border border-white/[0.06] bg-black relative">
-                  <img
-                    src="/charts/doubao_chat_screenshot.png"
-                    alt="豆包对话截图"
-                    className="w-full h-full object-cover"
-                    onError={() => setImageError(true)}
-                  />
-                </div>
-              ) : (
-                <>
-                  {/* 对话截图模拟 (左侧 350px) */}
-                  <div className="w-[350px] h-full rounded-2xl border border-white/[0.04] bg-black/30 p-5 flex flex-col justify-between overflow-hidden">
-                    <div className="flex items-center gap-2 pb-3 border-b border-white/[0.05] mb-4 shrink-0">
-                      <MessageSquare size={16} className="text-[#0052FF]" />
-                      <span className="text-[13px] font-bold text-zinc-500 font-['MiSans']">豆包 AI 对话模拟</span>
-                    </div>
-
-                    <div className="flex-grow overflow-hidden flex flex-col gap-4 justify-start text-[14px]">
-                      {/* 用户提问 */}
-                      <div className="flex flex-col items-end">
-                        <div className="bg-[#0052FF] text-white rounded-2xl rounded-tr-none px-4 py-3 max-w-[90%] leading-relaxed font-semibold shadow-md">
-                          创维壁纸电视和海信哪些贴墙电视值得选？
-                        </div>
-                      </div>
-
-                      {/* AI 回答 */}
-                      <div className="flex flex-col items-start">
-                        <div className="bg-white/[0.04] border border-white/[0.06] text-zinc-200 rounded-2xl rounded-tl-none px-4 py-3 max-w-[90%] leading-relaxed font-medium">
-                          推荐关注创维壁纸电视系列，根据真实用户反馈<sup>[1]</sup>，其无缝吸附贴墙画框效果与画质技术...
-                        </div>
-                      </div>
-                    </div>
-
-                    <div className="pt-2.5 text-center text-[12px] text-zinc-600 font-black shrink-0 border-t border-white/[0.05] mt-2">
-                      HIGH FIDELITY DIALOGUE
-                    </div>
-                  </div>
-
-                  {/* 右侧：信源列表 (350px，高内聚大字号5条链接布局) */}
-                  <div className="w-[350px] h-full rounded-2xl border border-white/[0.04] bg-black/30 p-5 flex flex-col">
-                    <div className="flex items-center justify-between pb-3 border-b border-white/[0.05] mb-3 shrink-0">
-                      <span className="text-[13px] font-bold text-zinc-500 font-['MiSans']">信源列表</span>
-                      <span className="text-[11px] text-zinc-600 font-bold font-['Montserrat']">SOURCES</span>
-                    </div>
-
-                    <div className="flex-grow flex flex-col justify-start gap-2 py-1 min-h-0">
-                      {sources.map((item, idx) => (
-                        <div 
-                          key={idx} 
-                          className="flex items-center justify-between h-[75px] border-b border-white/[0.04] last:border-0 hover:bg-white/[0.02] px-2.5 rounded-xl transition-all duration-200"
-                        >
-                          <div className="flex flex-col justify-center min-w-0 pr-2">
-                            <span className="text-[16px] xl:text-[18px] font-black text-white truncate leading-snug font-['MiSans']">
-                              {item.title}
-                            </span>
-                            <span className="text-[13px] xl:text-[14px] font-bold text-zinc-500 truncate mt-0.5 font-mono">
-                              {item.url}
-                            </span>
-                          </div>
-                          
-                          {/* Stamp badge */}
-                          <span className={`shrink-0 text-[11px] font-black px-2 py-0.5 rounded rotate-[-4deg] border ${
-                            item.isFake 
-                              ? "border-red-500 bg-red-500/10 text-red-400 shadow-[0_0_10px_rgba(239,68,68,0.15)]"
-                              : "border-emerald-500 bg-emerald-500/10 text-emerald-400 shadow-[0_0_10px_rgba(16,185,129,0.15)]"
-                          }`}>
-                            {item.isFake ? "假引用" : "真引用"}
-                          </span>
-                        </div>
-                      ))}
-                    </div>
-                  </div>
-                </>
-              )}
-            </div>
-          </div>
-
-          {/* ==================== 3. 右栏：详情拆解 (568px) ==================== */}
-          <div className="w-[568px] h-full flex flex-col gap-6 justify-between">
+          {/* ==================== 2. 右侧：图片展示区 (1376px) ==================== */}
+          <div className="w-[1376px] h-full bg-[#0B0D19]/45 border border-white/[0.06] backdrop-blur-md rounded-[24px] p-6 flex flex-col shadow-[0_15px_35px_rgba(0,0,0,0.3)] relative overflow-hidden group hover:border-blue-500/20 transition-all duration-300">
+            <div className="absolute inset-0 bg-gradient-to-br from-blue-500/5 to-transparent pointer-events-none" />
             
-            {/* 右上：高粉丝账号 (不投放) */}
-            <div className="h-[210px] bg-[#0B0D19]/45 border border-white/[0.06] rounded-[24px] p-6 flex flex-col justify-between hover:border-red-500/20 transition-all duration-300 relative group shadow-[0_15px_35px_rgba(0,0,0,0.3)]">
-              {/* 不投放标志 */}
-              <div className="absolute top-5 right-5 border border-red-500 bg-red-500/10 rounded-full px-3 py-0.5 flex items-center gap-1.5 shrink-0">
-                <span className="w-1.5 h-1.5 rounded-full bg-red-500 animate-pulse" />
-                <span className="text-[12px] text-red-400 font-black">不投放</span>
-              </div>
-
-              <div>
-                <h3 className="text-[20px] font-black text-white font-['MiSans'] flex items-center gap-2 mb-2.5 tracking-wide">
-                  <Users size={18} className="text-red-500" />
-                  引用的高粉丝账号
-                </h3>
-                <p className="text-[16px] font-black text-zinc-300 leading-relaxed pr-[90px] font-['MiSans']">
-                  引用的抖音链接指向了外部数码头部大V，由于此类账号实际上并未产出深度评测，我们坚决不对其进行投放。
-                </p>
-              </div>
-
-              <div className="text-[12px] font-mono text-zinc-500 font-bold pt-2.5 border-t border-white/[0.05]">
-                粉丝量级：100万+ 行业头部账号
-              </div>
+            <div className="flex items-center justify-between mb-4 relative z-10">
+              <h3 className="text-[24px] font-black text-white font-['MiSans'] tracking-wide">引用机制与抖音内容拆解</h3>
             </div>
 
-            {/* 右下：引用抖音内容拆解 */}
-            <div className="flex-grow bg-[#0B0D19]/45 border border-[#0052FF]/30 rounded-[24px] p-6 flex flex-col justify-between hover:border-[#0052FF]/50 transition-all duration-300 shadow-[0_15px_35px_rgba(0,82,255,0.04)]">
-              <div>
-                <h3 className="text-[20px] font-black text-white font-['MiSans'] flex items-center gap-2 mb-4 tracking-wide">
-                  <FileText size={18} className="text-[#0052FF]" />
-                  引用的抖音内容拆解
-                </h3>
-                
-                <div className="space-y-4 mt-2">
-                  <div className="bg-black/30 border border-white/[0.04] rounded-2xl p-4 flex items-stretch gap-3">
-                    <div className="w-1 rounded-full bg-[#0052FF] shrink-0" />
-                    <div>
-                      <span className="text-[13px] font-bold text-zinc-500 block mb-1">AI 实际抓取的字段</span>
-                      <p className="text-[15px] font-bold text-zinc-200 leading-relaxed font-['MiSans']">
-                        仅读取了视频的标题、描述文本 and 机器生成的自动字幕文件。
-                      </p>
-                    </div>
-                  </div>
-                  
-                  <div className="bg-black/30 border border-white/[0.04] rounded-2xl p-4 flex items-stretch gap-3">
-                    <div className="w-1 rounded-full bg-red-500 shrink-0" />
-                    <div>
-                      <span className="text-[13px] font-bold text-zinc-500 block mb-1">未解析的字段</span>
-                      <p className="text-[15px] font-bold text-zinc-200 leading-relaxed font-['MiSans']">
-                        AI 并没有读取和深度解析任何视频画面，视频本身并无影响。
-                      </p>
-                    </div>
-                  </div>
+            <div className="flex-1 w-full rounded-2xl overflow-hidden relative border border-white/10 bg-black/40 flex items-center justify-center">
+              <img
+                src="/charts/doubao_high_weight_analysis.png"
+                alt="豆包引用与内容拆解"
+                className="w-full h-full object-contain opacity-95 transition-opacity duration-500 group-hover:opacity-100"
+                onError={(e) => {
+                  e.currentTarget.style.display = 'none';
+                  e.currentTarget.nextElementSibling.style.display = 'flex';
+                }}
+              />
+              {/* 当图片加载失败时的占位 UI */}
+              <div className="hidden flex-col items-center justify-center w-full h-full text-zinc-400 p-8 text-center animate-fadeIn">
+                <div className="w-20 h-20 mb-6 rounded-2xl bg-white/[0.03] border border-white/10 flex items-center justify-center text-[#0052FF]">
+                  <AlertTriangle size={40} />
                 </div>
-              </div>
-
-              {/* 核心结论 */}
-              <div className="mt-4 bg-[#0052FF]/10 border border-[#0052FF]/20 rounded-xl py-3 px-4 flex items-center justify-center gap-2 shrink-0">
-                <span className="text-[16px] font-black text-white font-['MiSans']">
-                  结论：视频画面及深层内容对回答结果无影响
+                <span className="text-[24px] font-black text-white tracking-widest uppercase">机制验证与拆解图表</span>
+                <span className="text-[16px] mt-3 text-zinc-500 font-medium max-w-[600px] leading-relaxed">
+                  请在 <code className="text-zinc-300 font-mono">public/charts/</code> 目录中放入图片 <code className="text-blue-400 font-mono">doubao_high_weight_analysis.png</code>。
+                  <br />
+                  该图应整合：1. 豆包对话模拟与真假信源列表验证；2. 引用的高粉丝账号拆解；3. 视频只解析字幕结论。
                 </span>
               </div>
             </div>
-
           </div>
 
         </div>
