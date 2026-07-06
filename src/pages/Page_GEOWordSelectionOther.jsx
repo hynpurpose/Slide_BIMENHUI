@@ -17,11 +17,11 @@ export default function Page_GEOWordSelectionOther() {
       <div className="absolute w-[600px] h-[600px] rounded-full bg-blue-600/5 blur-[160px] -right-48 -top-48 pointer-events-none" />
       <div className="absolute w-[500px] h-[500px] rounded-full bg-blue-900/5 blur-[140px] left-24 bottom-24 pointer-events-none" />
 
-      {/* Main Container */}
-      <div className="w-full h-full flex items-center justify-between gap-12 relative z-10 select-none">
+      {/* Main Container：三栏布局，过渡区独占中间缝隙 */}
+      <div className="w-full h-full flex items-stretch relative z-10 select-none">
 
         {/* 左侧：百度营销/小红书聚光月均搜索指数 */}
-        <div className="w-[880px] h-full bg-[#09090b]/90 border border-zinc-800 rounded-[28px] overflow-hidden flex flex-col shadow-[0_20px_50px_rgba(0,0,0,0.4)] shrink-0">
+        <div className="w-[850px] h-full bg-[#09090b]/90 border border-zinc-800 rounded-[28px] overflow-hidden flex flex-col shadow-[0_20px_50px_rgba(0,0,0,0.4)] shrink-0">
           {/* Card Header */}
           <div className="flex items-center justify-between p-6 border-b border-zinc-900 bg-zinc-950 shrink-0">
             <div className="flex items-center gap-4">
@@ -63,8 +63,19 @@ export default function Page_GEOWordSelectionOther() {
           </div>
         </div>
 
+        {/* 中间过渡：横平居中于两框缝隙 */}
+        <div className="w-[140px] shrink-0 flex flex-col items-center justify-center gap-3 self-center">
+          <span className="text-[20px] font-black text-white font-['MiSans'] text-center leading-tight px-3 py-1.5 rounded-full bg-black/85 border border-zinc-700/80 shadow-[0_4px_20px_rgba(0,0,0,0.6)]">
+            AI搜索形式变了
+          </span>
+          <svg width="72" height="20" viewBox="0 0 72 20" fill="none" aria-hidden="true">
+            <path d="M0 10H56" stroke="#2E6BFF" strokeWidth="3" strokeLinecap="round" />
+            <path d="M48 4L64 10L48 16" stroke="#2E6BFF" strokeWidth="3" strokeLinecap="round" strokeLinejoin="round" />
+          </svg>
+        </div>
+
         {/* 右侧：手机端真实搜索截图 */}
-        <div className="w-[880px] h-full bg-[#09090b]/90 border border-zinc-800 rounded-[28px] overflow-hidden flex flex-col shadow-[0_20px_50px_rgba(0,0,0,0.4)] shrink-0">
+        <div className="w-[850px] h-full bg-[#09090b]/90 border border-zinc-800 rounded-[28px] overflow-hidden flex flex-col shadow-[0_20px_50px_rgba(0,0,0,0.4)] shrink-0">
           {/* Card Header */}
           <div className="flex items-center justify-between p-6 border-b border-zinc-900 bg-zinc-950 shrink-0">
             <div className="flex items-center gap-4">
@@ -114,19 +125,8 @@ export default function Page_GEOWordSelectionOther() {
           </div>
         </div>
 
-        {/* 中间过渡标识：文字在上、箭头在下，对齐卡片标题行 */}
-        <div className="absolute left-1/2 top-[52px] -translate-x-1/2 z-30 flex flex-col items-center gap-2 pointer-events-none">
-          <span className="text-[20px] font-black text-white font-['MiSans'] text-center leading-tight whitespace-nowrap px-4 py-1.5 rounded-full bg-black/85 border border-zinc-700/80 shadow-[0_4px_20px_rgba(0,0,0,0.6)]">
-            AI搜索形式变了
-          </span>
-          <svg width="56" height="20" viewBox="0 0 56 20" fill="none" aria-hidden="true">
-            <path d="M0 10H44" stroke="#2E6BFF" strokeWidth="3" strokeLinecap="round" />
-            <path d="M36 4L48 10L36 16" stroke="#2E6BFF" strokeWidth="3" strokeLinecap="round" strokeLinejoin="round" />
-          </svg>
-        </div>
-
         {/* Footnote */}
-        <div className="absolute bottom-[-48px] left-0 w-[880px] text-center text-white text-[22px] font-sans font-bold z-20">
+        <div className="absolute bottom-[-48px] left-0 w-[850px] text-center text-white text-[22px] font-sans font-bold z-20">
           数据来源：百度广告搜索指数
         </div>
 
