@@ -8,26 +8,40 @@ import SlideLayout from '../components/SlideLayout';
  *      → 右侧词条示例干净整洁、层级分明
  * ──────────────────────────────────────────────────────────── */
 
-const OPT_CATEGORY_WORDS = ['壁纸电视品牌排行榜', '电视排行榜前十名'];
+/* 产品标签配色：每款产品一个固定色，全系列词用中性色 */
+const PRODUCT_STYLE = {
+  'A7H PRO': { color: '#60A5FA', bg: 'rgba(96,165,250,0.1)', border: 'rgba(96,165,250,0.35)' },
+  'A8H': { color: '#A78BFA', bg: 'rgba(167,139,250,0.1)', border: 'rgba(167,139,250,0.35)' },
+  'A10H': { color: '#FBBF24', bg: 'rgba(251,191,36,0.1)', border: 'rgba(251,191,36,0.35)' },
+  'Q7H': { color: '#FB7185', bg: 'rgba(251,113,133,0.1)', border: 'rgba(251,113,133,0.35)' },
+  'Q8H': { color: '#34D399', bg: 'rgba(52,211,153,0.1)', border: 'rgba(52,211,153,0.35)' },
+  '全系列': { color: '#A1A1AA', bg: 'rgba(161,161,170,0.1)', border: 'rgba(161,161,170,0.3)' },
+};
 
-const OPT_PRODUCT_WORDS = [
-  '销量最好的壁纸电视推荐',
-  '入门级高品质壁纸电视推荐',
-  '7000块钱左右的壁纸电视推荐',
-  '音画升级款壁纸电视推荐',
-  '一万块钱左右的壁纸电视推荐',
-  '有没有适合线上直接买的高性价比壁纸电视？',
-  '顶配旗舰款壁纸电视推荐',
-  '1.5万块钱左右的壁纸电视推荐',
-  '高端体验款壁纸电视推荐？',
-  '一万左右在线下能体验的壁纸电视推荐',
-  '实用店体验的高端壁纸电视推荐？',
-  '分体影院壁纸电视推荐',
-  '2万左右在线下能体验的壁纸电视推荐',
+/* 词条 → 产品集合，均来自 创维词条分类.xlsx（src/data/skyworthKeywords.json） */
+const OPT_CATEGORY_WORDS = [
+  { t: '壁纸电视品牌排行榜', p: '全系列' },
+  { t: '电视排行榜前十名', p: '全系列' },
 ];
 
-const MON_CATEGORY_WORDS = ['创维电视算一线品牌吗'];
-const MON_PRODUCT_WORDS = ['创维壁纸电视A7H Pro怎么样'];
+const OPT_PRODUCT_WORDS = [
+  { t: '销量最好的壁纸电视推荐', p: 'A7H PRO' },
+  { t: '入门级高品质壁纸电视推荐', p: 'A7H PRO' },
+  { t: '7000块钱左右的壁纸电视推荐', p: 'A7H PRO' },
+  { t: '音画升级款壁纸电视推荐', p: 'A8H' },
+  { t: '一万块钱左右的壁纸电视推荐', p: 'A8H' },
+  { t: '有没有适合线上直接买的高性价比壁纸电视？', p: 'A7H PRO' },
+  { t: '顶配旗舰款壁纸电视推荐', p: 'A10H' },
+  { t: '1.5万块钱左右的壁纸电视推荐', p: 'A10H' },
+  { t: '高端体验款壁纸电视推荐？', p: 'Q7H' },
+  { t: '一万左右在线下能体验的壁纸电视推荐', p: 'Q7H' },
+  { t: '有没有适合到店体验的高端壁纸电视？', p: 'Q7H' },
+  { t: '分体影院壁纸电视推荐', p: 'Q8H' },
+  { t: '2万左右在线下能体验的壁纸电视推荐', p: 'Q8H' },
+];
+
+const MON_CATEGORY_WORDS = [{ t: '创维电视算一线品牌吗', p: '全系列' }];
+const MON_PRODUCT_WORDS = [{ t: '创维壁纸电视A7H Pro怎么样', p: 'A7H PRO' }];
 
 const ACCENT = {
   blue: { core: '#60A5FA', soft: 'rgba(96,165,250,0.55)', chipBg: 'rgba(96,165,250,0.08)', chipBorder: 'rgba(96,165,250,0.35)' },
@@ -194,21 +208,35 @@ function FlowNode({ x, cy, w, h, label, sub, tone = 'blue', big = false }) {
   );
 }
 
-/* 词条条目：小色点 + 文本 */
+/* 词条条目：小色点 + 文本 + 对应产品标签（数据来自创维词条分类表） */
 function KeywordItems({ words, tone = 'blue', size = 17 }) {
   const a = ACCENT[tone];
   return (
     <ul className="list-none m-0 p-0 flex flex-col" style={{ rowGap: `${29 - size - 5}px` }}>
-      {words.map((word) => (
-        <li
-          key={word}
-          className="flex items-center gap-2.5 text-zinc-300 font-['MiSans'] min-w-0"
-          style={{ fontSize: `${size}px`, lineHeight: `${size + 12}px` }}
-        >
-          <span className="w-[5px] h-[5px] rounded-full shrink-0" style={{ background: a.core }} />
-          <span className="truncate">{word}</span>
-        </li>
-      ))}
+      {words.map(({ t, p }) => {
+        const ps = PRODUCT_STYLE[p] || PRODUCT_STYLE['全系列'];
+        return (
+          <li
+            key={t}
+            className="flex items-center gap-2.5 text-zinc-300 font-['MiSans'] min-w-0"
+            style={{ fontSize: `${size}px`, lineHeight: `${size + 12}px` }}
+          >
+            <span className="w-[5px] h-[5px] rounded-full shrink-0" style={{ background: a.core }} />
+            <span className="truncate">{t}</span>
+            <span
+              className="shrink-0 font-semibold rounded-md px-1.5 py-[1px] leading-none"
+              style={{
+                fontSize: `${size - 4}px`,
+                color: ps.color,
+                background: ps.bg,
+                border: `1px solid ${ps.border}`,
+              }}
+            >
+              {p}
+            </span>
+          </li>
+        );
+      })}
     </ul>
   );
 }
