@@ -59,8 +59,8 @@ export default function Page_SkyworthContentStrategyDeconstruct() {
               </div>
 
               {/* 省略号代表还有很多 */}
-              <div className="pt-2 text-center text-zinc-400 text-[20px] font-black shrink-0 border-t border-zinc-200 mt-1 tracking-[0.4em] flex items-center justify-center">
-                ...
+              <div className="pt-2 text-center text-[#004CE5] text-[28px] font-black shrink-0 border-t border-zinc-200 mt-1 tracking-[0.3em] flex items-center justify-center leading-none">
+                •••
               </div>
             </div>
           </div>
