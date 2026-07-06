@@ -54,7 +54,7 @@ function MentionBlock({ phase, text }) {
       }`}
     >
       <span className="text-[36px] leading-none font-bold shrink-0 font-['MiSans'] text-white">
-        {isBefore ? '优化前' : '优化后'}
+        {isBefore ? '优化前：' : '优化后：'}
       </span>
       <p className="text-[36px] leading-none font-bold font-['MiSans'] text-white">
         {text}
