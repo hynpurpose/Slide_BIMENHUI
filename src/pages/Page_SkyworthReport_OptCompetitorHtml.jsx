@@ -4,7 +4,6 @@ import report from '../data/geoReport.json';
 
 /**
  * 优化词竞品横向对比 · 数据驱动版。
- * 样式与原手写页 Page_SkyworthReport_OptCompetitor 完全一致，
  * 三张排名表分别读取 geoReport.json 的：
  *   - compare.mention_rate_ranking（/api/competitors/compare）
  *   - compare.top1_ranking（/api/competitors/top-mention-rate，top_type=top1）
