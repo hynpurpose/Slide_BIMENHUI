@@ -4,20 +4,18 @@ import keywordData from '../data/skyworthKeywords.json';
 
 const ROWS_PER_PAGE = 26;
 
-// 列顺序与 创维词条分类.xlsx 原表保持一致
+// 列顺序与 创维词条分类.xlsx 原表保持一致（讲解/新增两列按需求不展示）
 const OPT_COLUMNS = [
   { key: 'index', label: '序号', width: '3.5%' },
-  { key: '词条', label: '词条', width: '17.5%' },
+  { key: '词条', label: '词条', width: '18%' },
   { key: '原始来源', label: '来源', width: '5.5%' },
   { key: '备注', label: '备注', width: '8%' },
   { key: '词类', label: '词类', width: '7%' },
   { key: '产品集合', label: '产品集合', width: '7.5%' },
   { key: '标签类', label: '标签类', width: '7%' },
   { key: '类别', label: '类别', width: '8.5%' },
-  { key: '名称', label: '名称', width: '9.5%' },
-  { key: '名称解释', label: '名称解释', width: '17%' },
-  { key: '讲解标记', label: '讲解', width: '4.5%' },
-  { key: '是否新增', label: '新增', width: '4.5%' },
+  { key: '名称', label: '名称', width: '10%' },
+  { key: '名称解释', label: '名称解释', width: '25%' },
 ];
 
 const MON_COLUMNS = [
@@ -27,9 +25,8 @@ const MON_COLUMNS = [
   { key: '产品集合', label: '产品集合', width: '8%' },
   { key: '标签类', label: '标签类', width: '8.5%' },
   { key: '类别', label: '类别', width: '9.5%' },
-  { key: '名称', label: '名称', width: '12%' },
-  { key: '名称解释', label: '名称解释', width: '26.5%' },
-  { key: '是否讲解', label: '讲解', width: '5%' },
+  { key: '名称', label: '名称', width: '12.5%' },
+  { key: '名称解释', label: '名称解释', width: '31%' },
 ];
 
 // 飞书单选标签风格的柔和色板（深色背景适配：低透明度底色 + 亮色文字）
@@ -81,27 +78,6 @@ function chunkArray(arr, size) {
 }
 
 function Cell({ colKey, value }) {
-  const text = value === undefined || value === null ? '' : String(value).trim();
-
-  if (colKey === '讲解标记' || colKey === '是否讲解') {
-    if (!text) return null;
-    return (
-      <span className="inline-flex items-center h-[22px] px-2 rounded-md text-[12px] leading-none font-medium font-['MiSans'] whitespace-nowrap bg-[#004CE5]/25 text-[#8FBFFF]">
-        讲解
-      </span>
-    );
-  }
-  if (colKey === '是否新增') {
-    if (!text) return null;
-    return (
-      <span
-        className="inline-flex items-center h-[22px] px-2 rounded-md text-[12px] leading-none font-medium font-['MiSans'] whitespace-nowrap"
-        style={{ backgroundColor: TAG_PALETTE.amber.bg, color: TAG_PALETTE.amber.text }}
-      >
-        ★新增
-      </span>
-    );
-  }
   if (colKey === 'index') {
     return (
       <span className="text-[13px] text-zinc-600 font-mono tabular-nums">
