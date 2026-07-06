@@ -2,11 +2,10 @@ import React from 'react';
 import SlideLayout from '../components/SlideLayout';
 
 /* ────────────────────────────────────────────────────────────
- * 词条分类逻辑 · 精致版
- * 三个版本共用同一套视觉语言：
- *  - 细线 SVG 连接线（1.5px 核心线 + 微光晕 + 端点圆点）
- *  - 节点卡片带英文小字标签与色彩点缀
- *  - 右侧词条示例按分组承载，不与任何区块重叠
+ * 词条分类逻辑 · 极简排印版
+ * 叙事：左侧一团散乱无体系的词条（混沌词云）
+ *      → 经过「创维词条」体系梳理，分流为优化词 / 监测词
+ *      → 右侧词条示例干净整洁、层级分明
  * ──────────────────────────────────────────────────────────── */
 
 const OPT_CATEGORY_WORDS = ['壁纸电视品牌排行榜', '电视排行榜前十名'];
@@ -36,10 +35,33 @@ const ACCENT = {
   white: { core: 'rgba(255,255,255,0.85)', soft: 'rgba(255,255,255,0.4)', chipBg: 'rgba(255,255,255,0.06)', chipBorder: 'rgba(255,255,255,0.25)' },
 };
 
-const PANEL_X = 1040;
-const PANEL_W = 800;
+const PANEL_X = 1060;
+const PANEL_W = 780;
 
-/* 细线连接：柔和光晕 + 1.5px 核心贝塞尔曲线 + 两端圆点 */
+/* 混沌词云：圆心与半径（相对 1840x795 内容区） */
+const CLOUD_CX = 190;
+const CLOUD_CY = 397;
+const CLOUD_R = 185;
+
+/* 散乱词条：位置为相对圆心的偏移，字号/旋转/透明度各不相同，刻意杂乱 */
+const CHAOS_WORDS = [
+  { t: '壁纸电视', dx: -62, dy: -128, size: 25, rot: -8, o: 0.72 },
+  { t: '创维电视', dx: 48, dy: -86, size: 21, rot: 5, o: 0.6 },
+  { t: '排行榜', dx: -118, dy: -68, size: 16, rot: 10, o: 0.42 },
+  { t: 'A7H Pro', dx: 92, dy: -40, size: 15, rot: -12, o: 0.38 },
+  { t: '品牌词', dx: -34, dy: -46, size: 23, rot: 3, o: 0.66 },
+  { t: '哪个好', dx: 112, dy: 2, size: 14, rot: 8, o: 0.35 },
+  { t: '原形词', dx: -108, dy: -4, size: 19, rot: -6, o: 0.55 },
+  { t: '电视推荐', dx: 22, dy: 22, size: 18, rot: -3, o: 0.5 },
+  { t: '产品词', dx: -52, dy: 58, size: 24, rot: 7, o: 0.68 },
+  { t: '价格', dx: 96, dy: 52, size: 13, rot: 12, o: 0.32 },
+  { t: '竞品词', dx: 38, dy: 92, size: 20, rot: -9, o: 0.58 },
+  { t: '高端电视', dx: -116, dy: 92, size: 15, rot: 5, o: 0.4 },
+  { t: '怎么样', dx: -20, dy: 128, size: 16, rot: -5, o: 0.44 },
+  { t: '创维A5D', dx: 62, dy: 138, size: 13, rot: 9, o: 0.34 },
+];
+
+/* 细线连接：柔和光晕 + 核心贝塞尔曲线 + 两端圆点 */
 function Connectors({ links }) {
   return (
     <svg
@@ -65,6 +87,80 @@ function Connectors({ links }) {
         );
       })}
     </svg>
+  );
+}
+
+/* 混沌词云：双层虚线圆 + 内部散乱词条，表达“处理前一团乱” */
+function ChaosCloud() {
+  return (
+    <>
+      <svg
+        className="absolute inset-0 z-0 pointer-events-none"
+        width={1840}
+        height={795}
+        viewBox="0 0 1840 795"
+        aria-hidden
+      >
+        <defs>
+          <radialGradient id="chaosGlow" cx="50%" cy="50%" r="50%">
+            <stop offset="0%" stopColor="rgba(255,255,255,0.05)" />
+            <stop offset="72%" stopColor="rgba(255,255,255,0.015)" />
+            <stop offset="100%" stopColor="rgba(255,255,255,0)" />
+          </radialGradient>
+        </defs>
+        <circle cx={CLOUD_CX} cy={CLOUD_CY} r={CLOUD_R} fill="url(#chaosGlow)" />
+        <circle
+          cx={CLOUD_CX}
+          cy={CLOUD_CY}
+          r={CLOUD_R}
+          fill="none"
+          stroke="rgba(255,255,255,0.22)"
+          strokeWidth="1.5"
+          strokeDasharray="3 9"
+          strokeLinecap="round"
+        />
+        <circle
+          cx={CLOUD_CX}
+          cy={CLOUD_CY}
+          r={CLOUD_R - 22}
+          fill="none"
+          stroke="rgba(255,255,255,0.07)"
+          strokeWidth="1"
+          strokeDasharray="2 12"
+          strokeLinecap="round"
+        />
+      </svg>
+
+      {CHAOS_WORDS.map(({ t, dx, dy, size, rot, o }) => (
+        <span
+          key={t}
+          className="absolute z-10 text-zinc-300 font-['MiSans'] font-bold whitespace-nowrap select-none"
+          style={{
+            left: `${CLOUD_CX + dx}px`,
+            top: `${CLOUD_CY + dy}px`,
+            fontSize: `${size}px`,
+            lineHeight: 1,
+            opacity: o,
+            transform: `translate(-50%, -50%) rotate(${rot}deg)`,
+          }}
+        >
+          {t}
+        </span>
+      ))}
+
+      {/* 圆下方的小注脚，代替原来的面板大标题 */}
+      <div
+        className="absolute z-10 flex flex-col items-center gap-2"
+        style={{ left: `${CLOUD_CX}px`, top: `${CLOUD_CY + CLOUD_R + 34}px`, transform: 'translateX(-50%)' }}
+      >
+        <span className="text-[17px] text-zinc-500 font-['MiSans'] leading-none whitespace-nowrap">
+          散乱的无体系词条
+        </span>
+        <span className="text-[10px] tracking-[0.32em] text-zinc-700 font-['MiSans'] leading-none whitespace-nowrap">
+          UNSTRUCTURED
+        </span>
+      </div>
+    </>
   );
 }
 
@@ -98,19 +194,16 @@ function FlowNode({ x, cy, w, h, label, sub, tone = 'blue', big = false }) {
   );
 }
 
-/* 词条条目：小色点 + 文本，可单列或双列 */
-function KeywordItems({ words, tone = 'blue', cols = 1, size = 17, lh = 28 }) {
+/* 词条条目：小色点 + 文本 */
+function KeywordItems({ words, tone = 'blue', size = 17 }) {
   const a = ACCENT[tone];
   return (
-    <ul
-      className="list-none m-0 p-0 grid gap-x-10"
-      style={{ gridTemplateColumns: `repeat(${cols}, minmax(0, 1fr))`, rowGap: `${lh - size - 5}px` }}
-    >
+    <ul className="list-none m-0 p-0 flex flex-col" style={{ rowGap: `${29 - size - 5}px` }}>
       {words.map((word) => (
         <li
           key={word}
           className="flex items-center gap-2.5 text-zinc-300 font-['MiSans'] min-w-0"
-          style={{ fontSize: `${size}px`, lineHeight: `${size + 5}px` }}
+          style={{ fontSize: `${size}px`, lineHeight: `${size + 12}px` }}
         >
           <span className="w-[5px] h-[5px] rounded-full shrink-0" style={{ background: a.core }} />
           <span className="truncate">{word}</span>
@@ -120,51 +213,16 @@ function KeywordItems({ words, tone = 'blue', cols = 1, size = 17, lh = 28 }) {
   );
 }
 
-/* 分组面板：色条 + 标题 + 数量胶囊的头部，下方为词条列表 */
-function GroupPanel({ top, height, title, count, tone = 'blue', children }) {
-  const a = ACCENT[tone];
-  return (
-    <div
-      className="absolute z-10 rounded-2xl overflow-hidden"
-      style={{
-        left: `${PANEL_X}px`,
-        top: `${top}px`,
-        width: `${PANEL_W}px`,
-        height: `${height}px`,
-        background: 'rgba(13,13,16,0.72)',
-        border: '1px solid rgba(63,63,70,0.55)',
-      }}
-    >
-      <div
-        className="flex items-center gap-3 px-6 h-[44px] border-b"
-        style={{ borderColor: 'rgba(63,63,70,0.45)', background: 'rgba(255,255,255,0.02)' }}
-      >
-        <span className="w-[3px] h-[18px] rounded-full" style={{ background: a.core }} />
-        <span className="text-[20px] font-bold text-white font-['MiSans'] leading-none">{title}</span>
-        <span
-          className="text-[12px] font-semibold px-2 py-[2px] rounded-full border font-['MiSans'] leading-none"
-          style={{ color: a.core, borderColor: a.chipBorder, background: a.chipBg }}
-        >
-          {count} 条
-        </span>
-      </div>
-      <div className="px-6 flex items-center" style={{ height: `${height - 44}px` }}>
-        <div className="flex-1 min-w-0">{children}</div>
-      </div>
-    </div>
-  );
-}
-
-/* 版本 C 专用：无边框排印分组，仅左侧细色条 + 标题行 */
+/* 排印分组：左侧细色条 + 标题行 + 词条列表，无边框 */
 function TypoGroup({ top, height, title, count, tone = 'blue', children }) {
   const a = ACCENT[tone];
   return (
     <div
       className="absolute z-10 flex flex-col justify-center"
       style={{
-        left: `${PANEL_X + 20}px`,
+        left: `${PANEL_X}px`,
         top: `${top}px`,
-        width: `${PANEL_W - 20}px`,
+        width: `${PANEL_W}px`,
         height: `${height}px`,
         borderLeft: `2px solid ${a.soft}`,
         paddingLeft: '28px',
@@ -181,131 +239,7 @@ function TypoGroup({ top, height, title, count, tone = 'blue', children }) {
   );
 }
 
-/* 共用骨架：左侧无体系词条面板 + 创维词条 + 优化词/监测词节点 + 连接线 */
-function KeywordLogicBase({ optY, monY, branches, panelX = PANEL_X, children }) {
-  const links = [
-    [320, 397, 450, 397, 'white'],
-    [690, 397, 790, optY, 'blue'],
-    [690, 397, 790, monY, 'teal'],
-    ...branches.opt.map((y) => [970, optY, panelX, y, 'blue']),
-    ...branches.mon.map((y) => [970, monY, panelX, y, 'teal']),
-  ];
-  return (
-    <SlideLayout title="词条分类逻辑">
-      <div className="absolute left-0 top-0 w-[1840px] select-none" style={{ height: '795px' }}>
-        <Connectors links={links} />
-        {children}
-
-        {/* 左侧“无体系词条”面板 */}
-        <div
-          className="absolute z-10 rounded-2xl overflow-hidden"
-          style={{
-            left: '0px',
-            top: '0px',
-            width: '320px',
-            height: '795px',
-            background: 'rgba(13,13,16,0.72)',
-            border: '1px solid rgba(63,63,70,0.55)',
-          }}
-        >
-          <div
-            className="px-7 pt-6 pb-5 border-b"
-            style={{ borderColor: 'rgba(63,63,70,0.45)' }}
-          >
-            <div className="text-[26px] font-bold text-zinc-300 font-['MiSans'] leading-none">无体系词条</div>
-            <div className="mt-2.5 text-[11px] tracking-[0.28em] text-zinc-600 font-['MiSans'] leading-none">
-              UNSTRUCTURED WORDS
-            </div>
-          </div>
-          <div className="flex flex-col gap-6 px-7 justify-center" style={{ height: 'calc(100% - 108px)' }}>
-            {['品牌词', '原形词', '产品词', '竞品词'].map((word, i) => (
-              <div
-                key={word}
-                className="rounded-xl py-6 px-6 flex items-center justify-between"
-                style={{ background: 'rgba(255,255,255,0.025)', border: '1px solid rgba(63,63,70,0.5)' }}
-              >
-                <span className="text-[30px] font-bold text-zinc-300 font-['MiSans'] leading-none">{word}</span>
-                <span className="text-[13px] font-mono text-zinc-600 leading-none">0{i + 1}</span>
-              </div>
-            ))}
-          </div>
-        </div>
-
-        {/* 主干节点 */}
-        <FlowNode x={450} cy={397} w={240} h={116} label="创维词条" sub="SKYWORTH KEYWORDS" tone="white" big />
-        <FlowNode x={790} cy={optY} w={180} h={96} label="优化词" sub="OPTIMIZE" tone="blue" />
-        <FlowNode x={790} cy={monY} w={180} h={96} label="监测词" sub="MONITOR" tone="teal" />
-      </div>
-    </SlideLayout>
-  );
-}
-
-/* ────────────────────────────────────────────────────────────
- * 版本 A · 面板分组：四个分组面板，全部 17 条词条完整展示
- * ──────────────────────────────────────────────────────────── */
-export function Page_SkyworthKeywordLogic_A() {
-  const P1 = { top: 8, h: 124 };
-  const P2 = { top: 156, h: 424 };
-  const P3 = { top: 608, h: 92 };
-  const P4 = { top: 700, h: 92 };
-  const mid = (p) => p.top + p.h / 2;
-  const optY = Math.round((mid(P1) + mid(P2)) / 2);
-  const monY = Math.round((mid(P3) + mid(P4)) / 2);
-  const branches = { opt: [mid(P1), mid(P2)], mon: [mid(P3), mid(P4)] };
-
-  return (
-    <KeywordLogicBase optY={optY} monY={monY} branches={branches}>
-      <GroupPanel top={P1.top} height={P1.h} title="品类词" count={OPT_CATEGORY_WORDS.length} tone="blue">
-        <KeywordItems words={OPT_CATEGORY_WORDS} tone="blue" />
-      </GroupPanel>
-      <GroupPanel top={P2.top} height={P2.h} title="产品专属词" count={OPT_PRODUCT_WORDS.length} tone="blue">
-        <KeywordItems words={OPT_PRODUCT_WORDS} tone="blue" />
-      </GroupPanel>
-      <GroupPanel top={P3.top} height={P3.h} title="品类词" count={MON_CATEGORY_WORDS.length} tone="teal">
-        <KeywordItems words={MON_CATEGORY_WORDS} tone="teal" />
-      </GroupPanel>
-      <GroupPanel top={P4.top} height={P4.h} title="产品专属词" count={MON_PRODUCT_WORDS.length} tone="teal">
-        <KeywordItems words={MON_PRODUCT_WORDS} tone="teal" />
-      </GroupPanel>
-    </KeywordLogicBase>
-  );
-}
-
-/* ────────────────────────────────────────────────────────────
- * 版本 B · 双栏紧凑：产品专属词双栏排布，版面更疏朗居中
- * ──────────────────────────────────────────────────────────── */
-export function Page_SkyworthKeywordLogic_B() {
-  const P1 = { top: 46, h: 124 };
-  const P2 = { top: 194, h: 264 };
-  const P3 = { top: 528, h: 92 };
-  const P4 = { top: 652, h: 92 };
-  const mid = (p) => p.top + p.h / 2;
-  const optY = Math.round((mid(P1) + mid(P2)) / 2);
-  const monY = Math.round((mid(P3) + mid(P4)) / 2);
-  const branches = { opt: [mid(P1), mid(P2)], mon: [mid(P3), mid(P4)] };
-
-  return (
-    <KeywordLogicBase optY={optY} monY={monY} branches={branches}>
-      <GroupPanel top={P1.top} height={P1.h} title="品类词" count={OPT_CATEGORY_WORDS.length} tone="blue">
-        <KeywordItems words={OPT_CATEGORY_WORDS} tone="blue" />
-      </GroupPanel>
-      <GroupPanel top={P2.top} height={P2.h} title="产品专属词" count={OPT_PRODUCT_WORDS.length} tone="blue">
-        <KeywordItems words={OPT_PRODUCT_WORDS} tone="blue" cols={2} size={16} lh={30} />
-      </GroupPanel>
-      <GroupPanel top={P3.top} height={P3.h} title="品类词" count={MON_CATEGORY_WORDS.length} tone="teal">
-        <KeywordItems words={MON_CATEGORY_WORDS} tone="teal" />
-      </GroupPanel>
-      <GroupPanel top={P4.top} height={P4.h} title="产品专属词" count={MON_PRODUCT_WORDS.length} tone="teal">
-        <KeywordItems words={MON_PRODUCT_WORDS} tone="teal" />
-      </GroupPanel>
-    </KeywordLogicBase>
-  );
-}
-
-/* ────────────────────────────────────────────────────────────
- * 版本 C · 极简排印：右侧去掉卡片框，只留细色条 + 排印层级
- * ──────────────────────────────────────────────────────────── */
-export function Page_SkyworthKeywordLogic_C() {
+export default function Page_SkyworthKeywordLogic() {
   const B1 = { top: 16, h: 104 };
   const B2 = { top: 160, h: 420 };
   const B3 = { top: 620, h: 74 };
@@ -313,24 +247,43 @@ export function Page_SkyworthKeywordLogic_C() {
   const mid = (p) => p.top + p.h / 2;
   const optY = Math.round((mid(B1) + mid(B2)) / 2);
   const monY = Math.round((mid(B3) + mid(B4)) / 2);
-  const branches = { opt: [mid(B1), mid(B2)], mon: [mid(B3), mid(B4)] };
+
+  const links = [
+    // 混沌词云右缘 → 创维词条
+    [CLOUD_CX + CLOUD_R, CLOUD_CY, 450, 397, 'white'],
+    // 创维词条 → 优化词 / 监测词
+    [690, 397, 790, optY, 'blue'],
+    [690, 397, 790, monY, 'teal'],
+    // 优化词 / 监测词 → 右侧分组
+    [970, optY, PANEL_X, mid(B1), 'blue'],
+    [970, optY, PANEL_X, mid(B2), 'blue'],
+    [970, monY, PANEL_X, mid(B3), 'teal'],
+    [970, monY, PANEL_X, mid(B4), 'teal'],
+  ];
 
   return (
-    <KeywordLogicBase optY={optY} monY={monY} branches={branches} panelX={PANEL_X + 20}>
-      <TypoGroup top={B1.top} height={B1.h} title="品类词" count={OPT_CATEGORY_WORDS.length} tone="blue">
-        <KeywordItems words={OPT_CATEGORY_WORDS} tone="blue" size={17} lh={29} />
-      </TypoGroup>
-      <TypoGroup top={B2.top} height={B2.h} title="产品专属词" count={OPT_PRODUCT_WORDS.length} tone="blue">
-        <KeywordItems words={OPT_PRODUCT_WORDS} tone="blue" size={17} lh={29} />
-      </TypoGroup>
-      <TypoGroup top={B3.top} height={B3.h} title="品类词" count={MON_CATEGORY_WORDS.length} tone="teal">
-        <KeywordItems words={MON_CATEGORY_WORDS} tone="teal" size={17} lh={29} />
-      </TypoGroup>
-      <TypoGroup top={B4.top} height={B4.h} title="产品专属词" count={MON_PRODUCT_WORDS.length} tone="teal">
-        <KeywordItems words={MON_PRODUCT_WORDS} tone="teal" size={17} lh={29} />
-      </TypoGroup>
-    </KeywordLogicBase>
+    <SlideLayout title="词条分类逻辑">
+      <div className="absolute left-0 top-0 w-[1840px] select-none" style={{ height: '795px' }}>
+        <Connectors links={links} />
+        <ChaosCloud />
+
+        <FlowNode x={450} cy={397} w={240} h={116} label="创维词条" sub="SKYWORTH KEYWORDS" tone="white" big />
+        <FlowNode x={790} cy={optY} w={180} h={96} label="优化词" sub="OPTIMIZE" tone="blue" />
+        <FlowNode x={790} cy={monY} w={180} h={96} label="监测词" sub="MONITOR" tone="teal" />
+
+        <TypoGroup top={B1.top} height={B1.h} title="品类词" count={OPT_CATEGORY_WORDS.length} tone="blue">
+          <KeywordItems words={OPT_CATEGORY_WORDS} tone="blue" />
+        </TypoGroup>
+        <TypoGroup top={B2.top} height={B2.h} title="产品专属词" count={OPT_PRODUCT_WORDS.length} tone="blue">
+          <KeywordItems words={OPT_PRODUCT_WORDS} tone="blue" />
+        </TypoGroup>
+        <TypoGroup top={B3.top} height={B3.h} title="品类词" count={MON_CATEGORY_WORDS.length} tone="teal">
+          <KeywordItems words={MON_CATEGORY_WORDS} tone="teal" />
+        </TypoGroup>
+        <TypoGroup top={B4.top} height={B4.h} title="产品专属词" count={MON_PRODUCT_WORDS.length} tone="teal">
+          <KeywordItems words={MON_PRODUCT_WORDS} tone="teal" />
+        </TypoGroup>
+      </div>
+    </SlideLayout>
   );
 }
-
-export default Page_SkyworthKeywordLogic_A;
