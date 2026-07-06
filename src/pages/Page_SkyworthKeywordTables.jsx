@@ -2,7 +2,8 @@ import React from 'react';
 import SlideLayout from '../components/SlideLayout';
 import keywordData from '../data/skyworthKeywords.json';
 
-const ROWS_PER_PAGE = 22;
+// 增加每页展示的词条数量，从 22 提升到 26
+const ROWS_PER_PAGE = 26;
 
 const OPT_COLUMNS = [
   { key: 'index', label: '序号', width: '4%' },
@@ -34,27 +35,27 @@ function chunkArray(arr, size) {
 function KeywordTablePage({ title, rows, columns, pageNum, totalPages, startIndex }) {
   return (
     <SlideLayout fullBleed>
-      <div className="w-full h-full flex flex-col text-white font-sans overflow-hidden animate-fade-in">
-        <div
-          className="absolute z-20 flex items-end justify-between"
-          style={{ top: '16px', left: '0', width: '100%' }}
-        >
+      {/* 调整页面为 flexbox 布局，并添加统一的 px-12 pt-6 pb-6 边距，完全避免 H1 和表格重叠 */}
+      <div className="w-full h-full flex flex-col text-white font-sans overflow-hidden animate-fade-in px-12 pt-6 pb-6">
+        {/* 标题栏改为普通块状元素，自动撑开高度 */}
+        <div className="flex items-end justify-between shrink-0 mb-4">
           <h1 className="text-[36px] font-extrabold text-white tracking-wider font-['AlimamaShuHeiTi'] select-none">
             {title}
           </h1>
-          <span className="text-[18px] text-zinc-500 font-['MiSans'] pr-1">
+          <span className="text-[18px] text-zinc-500 font-['MiSans'] pr-1 select-none">
             {pageNum} / {totalPages}
           </span>
         </div>
 
-        <div className="flex-1 min-h-0 mt-[48px] rounded-2xl border border-white/[0.08] bg-white/[0.02] overflow-hidden">
-          <table className="w-full h-full text-left border-collapse table-fixed">
+        {/* 表格容器自动填充剩余高度 */}
+        <div className="flex-1 min-h-0 rounded-2xl border border-white/[0.08] bg-white/[0.02] overflow-hidden flex flex-col">
+          <table className="w-full text-left border-collapse table-fixed">
             <thead>
-              <tr className="border-b border-white/15 bg-white/[0.03]">
+              <tr className="border-b border-white/15 bg-white/[0.03] shrink-0">
                 {columns.map((col) => (
                   <th
                     key={col.key}
-                    className="py-1.5 px-2 text-[14px] font-bold text-zinc-400 font-['MiSans'] align-middle"
+                    className="py-2 px-2 text-[14px] font-bold text-zinc-400 font-['MiSans'] align-middle"
                     style={{ width: col.width }}
                   >
                     {col.label}
@@ -75,7 +76,7 @@ function KeywordTablePage({ title, rows, columns, pageNum, totalPages, startInde
                     return (
                       <td
                         key={col.key}
-                        className={`py-1 px-2 align-top font-['MiSans'] leading-tight ${
+                        className={`py-1 px-2 align-middle font-['MiSans'] leading-tight ${
                           isKeyword
                             ? 'text-[14px] text-white font-semibold'
                             : isExplain
