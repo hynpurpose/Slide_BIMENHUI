@@ -4,21 +4,8 @@ import keywordData from '../data/skyworthKeywords.json';
 
 const ROWS_PER_PAGE = 26;
 
-// 列顺序与 创维词条分类.xlsx 原表保持一致（讲解/新增两列按需求不展示）
-const OPT_COLUMNS = [
-  { key: 'index', label: '序号', width: '3.5%' },
-  { key: '词条', label: '词条', width: '18%' },
-  { key: '原始来源', label: '来源', width: '5.5%' },
-  { key: '备注', label: '备注', width: '8%' },
-  { key: '词类', label: '词类', width: '7%' },
-  { key: '产品集合', label: '产品集合', width: '7.5%' },
-  { key: '标签类', label: '标签类', width: '7%' },
-  { key: '类别', label: '类别', width: '8.5%' },
-  { key: '名称', label: '名称', width: '10%' },
-  { key: '名称解释', label: '名称解释', width: '25%' },
-];
-
-const MON_COLUMNS = [
+// 展示列（按需求固定）：词条、词类、产品集合、标签类、类别、名称、名称解释
+const KEYWORD_COLUMNS = [
   { key: 'index', label: '序号', width: '4%' },
   { key: '词条', label: '词条', width: '19%' },
   { key: '词类', label: '词类', width: '7.5%' },
@@ -50,10 +37,6 @@ const TAG_COLOR_MAP = {
   // 词类
   品类词: 'blue',
   产品专属词: 'purple',
-  // 来源
-  产品词: 'teal',
-  补充词: 'amber',
-  AI补词: 'pink',
   // 标签类（优化词）
   排名类: 'orange',
   价格类: 'green',
@@ -92,7 +75,7 @@ function Cell({ colKey, value }) {
       </span>
     );
   }
-  if (colKey === '词类' || colKey === '标签类' || colKey === '原始来源') {
+  if (colKey === '词类' || colKey === '标签类') {
     const color = TAG_PALETTE[TAG_COLOR_MAP[value]] || TAG_PALETTE.gray;
     return (
       <span
@@ -206,13 +189,13 @@ function createPages(sheetKey, sheetLabel, columns, rows) {
 export const OPT_KEYWORD_PAGES = createPages(
   'opt',
   '优化词',
-  OPT_COLUMNS,
+  KEYWORD_COLUMNS,
   keywordData.optimization,
 );
 
 export const MON_KEYWORD_PAGES = createPages(
   'mon',
   '监测词',
-  MON_COLUMNS,
+  KEYWORD_COLUMNS,
   keywordData.monitor,
 );
