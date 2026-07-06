@@ -167,8 +167,10 @@ import { Page_SkyworthReport_MonitorWordOverview } from '../pages/Page_SkyworthR
 import { Page_SkyworthReport_OptDashboard } from '../pages/Page_SkyworthReport_OptDashboard';
 import { Page_SkyworthReport_OptDashboardHtml } from '../pages/Page_SkyworthReport_OptDashboardHtml';
 import { Page_SkyworthReport_OptEntries } from '../pages/Page_SkyworthReport_OptEntries';
+import { Page_SkyworthReport_OptEntriesHtml } from '../pages/Page_SkyworthReport_OptEntriesHtml';
 import { Page_SkyworthReport_OptCompetitor } from '../pages/Page_SkyworthReport_OptCompetitor';
 import { Page_SkyworthReport_OptSources } from '../pages/Page_SkyworthReport_OptSources';
+import { Page_SkyworthReport_OptSourcesHtml } from '../pages/Page_SkyworthReport_OptSourcesHtml';
 import {
   Page_SkyworthReport_OverviewScreenshot,
   Page_SkyworthReport_OverviewAnalysis,
@@ -279,8 +281,10 @@ export const slideConfig = [
   { type: 'page', title: '优化词总览数据', component: Page_SkyworthReport_OptDashboard, hideHeader: true },
   { type: 'page', title: '优化词总览数据（HTML版）', component: Page_SkyworthReport_OptDashboardHtml, hideHeader: true },
   { type: 'page', title: '优化词词条数据', component: Page_SkyworthReport_OptEntries, hideHeader: true },
+  { type: 'page', title: '优化词词条数据（HTML版）', component: Page_SkyworthReport_OptEntriesHtml, hideHeader: true },
   { type: 'page', title: '优化词竞品数据', component: Page_SkyworthReport_OptCompetitor, hideHeader: true },
   { type: 'page', title: '优化词引用源数据', component: Page_SkyworthReport_OptSources, hideHeader: true },
+  { type: 'page', title: '优化词引用源数据（HTML版）', component: Page_SkyworthReport_OptSourcesHtml, hideHeader: true },
 
   // ══════════════════════════════════════════════════════════
   // ——— 四、核心优化策略 ———
