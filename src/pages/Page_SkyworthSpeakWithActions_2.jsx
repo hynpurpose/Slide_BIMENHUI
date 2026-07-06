@@ -3,6 +3,7 @@ import { Image as ImageIcon } from 'lucide-react';
 import SlideLayout from '../components/SlideLayout';
 
 const IMAGE_SRC = '/images/speak_with_actions_detail_2.png';
+const IMAGE_SRC_2 = '/images/speak_with_actions_detail_3.png';
 
 function ImageSlot({ src, alt }) {
   const [failed, setFailed] = useState(false);
@@ -30,18 +31,28 @@ function ImageSlot({ src, alt }) {
   );
 }
 
-export default function Page_SkyworthSpeakWithActions_2() {
+function DetailPage({ src }) {
   return (
     <SlideLayout title="用行动说话" hideHeaderLeft={true}>
       <div className="absolute w-[500px] h-[500px] rounded-full bg-[#004CE5]/5 blur-[150px] -right-40 -bottom-40 pointer-events-none" />
 
       <div className="w-full h-full relative z-10 select-none animate-fadeIn flex flex-col justify-stretch">
         <div className="flex-1 min-h-0">
-          <ImageSlot src={IMAGE_SRC} alt="用行动说话投放效果截图" />
+          <ImageSlot src={src} alt="用行动说话投放效果截图" />
         </div>
       </div>
     </SlideLayout>
   );
 }
 
+export default function Page_SkyworthSpeakWithActions_2() {
+  return <DetailPage src={IMAGE_SRC} />;
+}
+
 Page_SkyworthSpeakWithActions_2.hideHeader = true;
+
+export function Page_SkyworthSpeakWithActions_2b() {
+  return <DetailPage src={IMAGE_SRC_2} />;
+}
+
+Page_SkyworthSpeakWithActions_2b.hideHeader = true;
