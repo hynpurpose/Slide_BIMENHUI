@@ -22,6 +22,7 @@ import {
 import { Page_SkyworthKeywordWhySplit_A } from '../pages/Page_SkyworthKeywordWhySplit';
 import { Page_SkyworthKeywordOptTwoTypes_C } from '../pages/Page_SkyworthKeywordOptTwoTypes';
 import Page_SkyworthKeywordLogic from '../pages/Page_SkyworthKeywordLogic';
+import { OPT_KEYWORD_PAGES, MON_KEYWORD_PAGES } from '../pages/Page_SkyworthKeywordTables';
 import Page_GEOWordSelectionOther from '../pages/Page_GEOWordSelectionOther';
 import Page_GEOWordSelectionOther2 from '../pages/Page_GEOWordSelectionOther2';
 import Page_GEOWordSelectionDataChain from '../pages/Page_GEOWordSelectionDataChain';
@@ -232,6 +233,20 @@ export const slideConfig = [
   { type: 'page', title: '监测词与优化词', component: Page_SkyworthKeywordWhySplit_A, hideHeader: true },
   { type: 'page', title: '优化词的两类', component: Page_SkyworthKeywordOptTwoTypes_C, hideHeader: true },
   { type: 'page', title: '我们的词条分类逻辑', component: Page_SkyworthKeywordLogic, hideHeader: true },
+
+  { type: 'section', title: '词条清单' },
+  ...OPT_KEYWORD_PAGES.map((comp, i) => ({
+    type: 'page',
+    title: `优化词词条清单 (${i + 1}/${OPT_KEYWORD_PAGES.length})`,
+    component: comp,
+    hideHeader: true,
+  })),
+  ...MON_KEYWORD_PAGES.map((comp, i) => ({
+    type: 'page',
+    title: `监测词词条清单 (${i + 1}/${MON_KEYWORD_PAGES.length})`,
+    component: comp,
+    hideHeader: true,
+  })),
 
   { type: 'section', title: '这些词是怎么选出来的' },
   { type: 'page', title: '市场上其他做法', component: Page_GEOWordSelectionOther, hideHeader: true },
