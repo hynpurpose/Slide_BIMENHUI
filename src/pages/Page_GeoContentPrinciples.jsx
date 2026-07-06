@@ -86,9 +86,9 @@ function RejectStamp({ className = 'absolute -right-2 top-1/2 -translate-y-1/2' 
       className={`${className} rotate-[-14deg] pointer-events-none select-none z-30`}
       aria-hidden
     >
-      <div className="relative flex items-center justify-center w-[128px] h-[128px] rounded-full border-[3px] border-red-500/85 text-red-500 shadow-[0_0_24px_rgba(239,68,68,0.18)] bg-black/40">
-        <span className="absolute inset-0 flex items-center justify-center text-[84px] font-black leading-none opacity-90">✕</span>
-        <span className="relative z-10 mt-12 text-[19px] font-black font-['MiSans'] tracking-[0.35em] text-red-400/95">
+      <div className="flex flex-col items-center justify-center w-[128px] h-[128px] rounded-full border-[3px] border-red-500/85 text-red-500 shadow-[0_0_24px_rgba(239,68,68,0.18)] bg-black/45">
+        <span className="text-[46px] font-black leading-none opacity-95">✕</span>
+        <span className="text-[17px] font-black font-['MiSans'] tracking-[0.25em] text-red-400/95 mt-1.5 pl-[3px]">
           不适配
         </span>
       </div>
