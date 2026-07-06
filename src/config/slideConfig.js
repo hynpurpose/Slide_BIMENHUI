@@ -19,11 +19,7 @@ import {
   Page_SkyworthResearchTech,
   Page_SkyworthResearchIndustry,
 } from '../pages/Page_SkyworthResearchAppendix';
-import {
-  Page_SkyworthKeywordWhySplit_A,
-  Page_SkyworthKeywordWhySplit_B,
-  Page_SkyworthKeywordWhySplit_C,
-} from '../pages/Page_SkyworthKeywordWhySplit';
+import { Page_SkyworthKeywordWhySplit_A } from '../pages/Page_SkyworthKeywordWhySplit';
 import Page_SkyworthKeywordWhySplitSummary from '../pages/Page_SkyworthKeywordWhySplitSummary';
 import {
   Page_SkyworthKeywordOptTwoTypes_A,
@@ -232,13 +228,13 @@ export const slideConfig = [
   // ══════════════════════════════════════════════════════════
   { type: 'chapter', title: '关键词策略', subtitle: 'KEYWORDS SYSTEM STRATEGY', backgroundImage: '' },
 
-  { type: 'section', title: '词条分类逻辑' },
-  { type: 'page', title: '监测词与优化词', variants: [Page_SkyworthKeywordWhySplit_A, Page_SkyworthKeywordWhySplit_B, Page_SkyworthKeywordWhySplit_C], hideHeader: true },
+  { type: 'section', title: '关键词怎么分类' },
+  { type: 'page', title: '监测词与优化词', component: Page_SkyworthKeywordWhySplit_A, hideHeader: true },
   { type: 'page', title: '监测词与优化词（总结）', component: Page_SkyworthKeywordWhySplitSummary, hideHeader: true },
   { type: 'page', title: '优化词的两类', variants: [Page_SkyworthKeywordOptTwoTypes_C, Page_SkyworthKeywordOptTwoTypes_A, Page_SkyworthKeywordOptTwoTypes_B], hideHeader: true },
   { type: 'page', title: '我们的词条分类逻辑', component: Page_SkyworthKeywordLogic, hideHeader: true },
 
-  { type: 'section', title: '如何选词条' },
+  { type: 'section', title: '这些词是怎么选出来的' },
   { type: 'page', title: '市场上其他做法', component: Page_GEOWordSelectionOther, hideHeader: true },
   { type: 'page', title: '传统搜索 VS AI 搜索', component: Page_GEOWordSelectionOther2, hideHeader: true },
   { type: 'page', title: '影子算法', component: Page_SkyworthShadowAlgorithm, hideHeader: true },

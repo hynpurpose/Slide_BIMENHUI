@@ -54,45 +54,85 @@ function WhyBar({ className = '' }) {
 }
 
 /* ============================================================
- * 版本 A — 极简对照 · 例子当主角
- * 去掉一切装饰，把两个「例子问法」放到最大，用一句判定 + 顶部色条
- * 区分两类，最克制、最聚焦。
+ * 版本 A — 两个例子 · 归类 → 指标
+ * 顶部保留一行判断标准，下方用两条横向行卡把例子落到归类与指标：
+ *   例子问法 → 归为 优化词/监测词 → 主要看的指标。
  * ============================================================ */
+const SUMMARY_ROWS = [
+  {
+    example: '“好看的电视推荐”',
+    name: '优化词',
+    focusLabel: '主要看',
+    focus: ['提及率', '出现位置'],
+    accent: '#5B8CFF',
+    accentText: '#8CB0FF',
+  },
+  {
+    example: '“创维跟海信比哪个好”',
+    name: '监测词',
+    focusLabel: '主要看',
+    focus: ['产品信息是否准确', '是否有负面信息'],
+    accent: '#F5A623',
+    accentText: '#F5C574',
+  },
+];
+
 export function Page_SkyworthKeywordWhySplit_A() {
-  const Card = ({ d }) => (
-    <div className="h-full rounded-[30px] border border-zinc-800 bg-[#0D0D10]/60 overflow-hidden flex flex-col">
-      {/* 顶部色条 + 分类名 */}
-      <div className="shrink-0 px-11 pt-9 pb-7" style={{ borderTop: `6px solid ${d.accent}` }}>
-        <div className="flex items-baseline justify-between">
-          <span className="text-[52px] font-black text-white font-['MiSans'] leading-none">{d.name}</span>
+  const LABEL_H = 'h-[36px]';
+
+  const Row = ({ d }) => (
+    <div
+      className="flex-1 rounded-[30px] flex items-stretch px-12 gap-10 py-10"
+      style={{ border: `1px solid ${d.accent}3A`, background: `${d.accent}0A` }}
+    >
+      {/* 例子 */}
+      <div className="w-[620px] shrink-0 flex flex-col">
+        <span className={`${LABEL_H} text-[24px] text-zinc-500 font-['MiSans']`}>用户会这么问</span>
+        <div className="flex-1 flex items-center">
+          <div className="text-[52px] font-black text-white font-['MiSans'] leading-tight">
+            {d.example}
+          </div>
+        </div>
+      </div>
+
+      {/* 归类箭头 */}
+      <div className="shrink-0 flex flex-col items-center">
+        <span className={`${LABEL_H} text-[22px] text-zinc-500 font-['MiSans']`}>归为</span>
+        <div className="flex-1 flex items-center">
+          <span className="text-[40px] leading-none" style={{ color: d.accent }}>→</span>
+        </div>
+      </div>
+
+      {/* 分类名 */}
+      <div className="shrink-0 w-[210px] flex flex-col">
+        <span className={LABEL_H} />
+        <div className="flex-1 flex items-center justify-center">
           <span
-            className="px-5 py-2 rounded-full text-[24px] font-bold font-['MiSans'] leading-none"
-            style={{ background: `${d.accent}1F`, color: d.accentText }}
+            className="px-8 py-4 rounded-2xl text-[46px] font-black font-['MiSans'] leading-none whitespace-nowrap"
+            style={{ background: `${d.accent}20`, border: `1.5px solid ${d.accent}66`, color: d.accentText }}
           >
-            创维{d.answer}
+            {d.name}
           </span>
         </div>
       </div>
 
-      {/* 例子当主角 */}
-      <div className="flex-1 min-h-0 px-11 flex flex-col justify-center">
-        <span className="text-[22px] text-zinc-500 font-['MiSans'] mb-3">用户会这么问</span>
-        <div className="text-[46px] text-white font-black font-['MiSans'] leading-[1.25]">{d.example}</div>
-        <div className="text-[25px] text-zinc-400 font-['MiSans'] mt-5 leading-snug">{d.purpose}</div>
-      </div>
+      <div className="w-px self-stretch bg-zinc-800" />
 
-      {/* 底部分析维度 */}
-      <div className="shrink-0 px-11 py-8 border-t border-zinc-800">
-        <span className="text-[22px] text-zinc-500 font-['MiSans']">这类词主要分析</span>
-        <div className="flex items-center gap-4 mt-3.5">
-          {d.metrics.map((m, i) => (
-            <React.Fragment key={m}>
-              {i > 0 && <span className="text-[26px] text-zinc-600">·</span>}
-              <span className="text-[34px] font-black font-['MiSans'] leading-none" style={{ color: d.accentText }}>
-                {m}
+      {/* 关注指标 */}
+      <div className="flex-1 min-w-0 flex flex-col">
+        <span className={`${LABEL_H} text-[24px] text-zinc-500 font-['MiSans']`}>{d.focusLabel}</span>
+        <div className="flex-1 flex items-center">
+          <div className="flex flex-wrap gap-4">
+            {d.focus.map((f) => (
+              <span
+                key={f}
+                className="px-7 py-3.5 rounded-xl text-[32px] font-bold font-['MiSans'] leading-none"
+                style={{ background: `${d.accent}26`, border: `1px solid ${d.accent}55`, color: d.accentText }}
+              >
+                {f}
               </span>
-            </React.Fragment>
-          ))}
+            ))}
+          </div>
         </div>
       </div>
     </div>
@@ -111,12 +151,18 @@ export function Page_SkyworthKeywordWhySplit_A() {
           <strong className="text-white font-bold">一定会出现吗？</strong>
         </p>
 
-        <div className="flex-1 min-h-0 grid grid-cols-2 gap-10">
-          <Card d={OPT} />
-          <Card d={MON} />
-        </div>
+        {/* 居中小结标题 */}
+        <p className="shrink-0 text-center text-[46px] font-black text-white font-['MiSans'] leading-[1.1] mb-9">
+          两个例子，两种<span style={{ color: '#5B8CFF' }}>归类</span>，看的是完全不同的
+          <span style={{ color: '#F5A623' }}>指标</span>
+        </p>
 
-        <WhyBar className="mt-8" />
+        {/* 两条总结行 */}
+        <div className="flex-1 min-h-0 flex flex-col gap-9">
+          {SUMMARY_ROWS.map((d) => (
+            <Row key={d.name} d={d} />
+          ))}
+        </div>
       </div>
     </SlideLayout>
   );

@@ -225,6 +225,34 @@
         "letterSpacing": "",
         "html": ""
       }
+    },
+    "chapter-1-0-0": {
+      "0.1.0.2.0": {
+        "dx": 0,
+        "dy": 0,
+        "rotate": 0,
+        "fontSize": "",
+        "color": "",
+        "fontFamily": "",
+        "fontWeight": "",
+        "textAlign": "",
+        "lineHeight": "",
+        "letterSpacing": "",
+        "html": "不同种类的词怎么分类？"
+      },
+      "0.1.0.3.0.0": {
+        "dx": 0,
+        "dy": 0,
+        "rotate": 0,
+        "fontSize": 40,
+        "color": "#ffffff",
+        "fontFamily": "",
+        "fontWeight": 700,
+        "textAlign": "",
+        "lineHeight": "",
+        "letterSpacing": "",
+        "html": "品牌词、产品词、场景词、竞品词、舆情词\n不同词混一起容易造成数据和优化方向混乱"
+      }
     }
   },
   "titleOverrides": {
@@ -232,6 +260,7 @@
     "chapter-0-0-0": "消费者视角下的AI品牌定位是什么？",
     "chapter-0-0-1": "没重新做AI品牌定位的“坑”",
     "chapter-0-1-0": "如何了解消费者真实感受和AI偏向",
-    "chapter-0-2-0": "创维AI品牌定位报告"
+    "chapter-0-2-0": "创维AI品牌定位报告",
+    "chapter-1-0-0": "不同种类的词怎么分类？"
   }
 }
