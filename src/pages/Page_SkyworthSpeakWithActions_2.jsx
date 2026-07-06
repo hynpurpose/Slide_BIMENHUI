@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import { Image as ImageIcon } from 'lucide-react';
 import SlideLayout from '../components/SlideLayout';
 
-const IMAGE_SRC = '/images/speak_with_actions_detail.png';
+const IMAGE_SRC = '/images/speak_with_actions_detail_2.png';
 
 function ImageSlot({ src, alt }) {
   const [failed, setFailed] = useState(false);
@@ -19,11 +19,11 @@ function ImageSlot({ src, alt }) {
   }
 
   return (
-    <div className="w-full h-full bg-white border border-zinc-200 rounded-3xl p-4 flex justify-start items-center">
+    <div className="w-full h-full bg-white border border-zinc-200 rounded-3xl p-4 flex justify-center items-center">
       <img
         src={src}
         alt={alt}
-        className="max-w-full max-h-full object-contain rounded-2xl"
+        className="w-full h-full object-contain rounded-2xl"
         onError={() => setFailed(true)}
       />
     </div>
