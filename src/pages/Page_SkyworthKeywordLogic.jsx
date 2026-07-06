@@ -1,5 +1,13 @@
-import React, { useEffect, useRef } from 'react';
+import React from 'react';
 import SlideLayout from '../components/SlideLayout';
+
+/* ────────────────────────────────────────────────────────────
+ * 词条分类逻辑 · 精致版
+ * 三个版本共用同一套视觉语言：
+ *  - 细线 SVG 连接线（1.5px 核心线 + 微光晕 + 端点圆点）
+ *  - 节点卡片带英文小字标签与色彩点缀
+ *  - 右侧词条示例按分组承载，不与任何区块重叠
+ * ──────────────────────────────────────────────────────────── */
 
 const OPT_CATEGORY_WORDS = ['壁纸电视品牌排行榜', '电视排行榜前十名'];
 
@@ -19,208 +27,310 @@ const OPT_PRODUCT_WORDS = [
   '2万左右在线下能体验的壁纸电视推荐',
 ];
 
-const CARD_X = 1060;
-const CARD_W = 200;
+const MON_CATEGORY_WORDS = ['创维电视算一线品牌吗'];
+const MON_PRODUCT_WORDS = ['创维壁纸电视A7H Pro怎么样'];
 
-const OPT_CAT_TOP = 20;
-const OPT_CAT_H = 78;
+const ACCENT = {
+  blue: { core: '#60A5FA', soft: 'rgba(96,165,250,0.55)', chipBg: 'rgba(96,165,250,0.08)', chipBorder: 'rgba(96,165,250,0.35)' },
+  teal: { core: '#2DD4BF', soft: 'rgba(45,212,191,0.55)', chipBg: 'rgba(45,212,191,0.08)', chipBorder: 'rgba(45,212,191,0.35)' },
+  white: { core: 'rgba(255,255,255,0.85)', soft: 'rgba(255,255,255,0.4)', chipBg: 'rgba(255,255,255,0.06)', chipBorder: 'rgba(255,255,255,0.25)' },
+};
 
-// 将优化专属词卡片下移至 280px，使其垂直居中对齐 170-470px 的列表区域 (Y中心 320px)
-const OPT_PROD_TOP = 280;
-const OPT_PROD_H = 78;
+const PANEL_X = 1040;
+const PANEL_W = 800;
 
-const MON_CAT_TOP = 480;
-const MON_CAT_H = 78;
-
-const MON_PROD_TOP = 580;
-const MON_PROD_H = 78;
-
-// 调整产品专属词列表的起始高度为 170px，与品类词列表 (高度78px) 之间拉开 72px 间距，消除混淆
-const OPT_PROD_LIST_TOP = 170;
-const OPT_PROD_LIST_H = 300;
-
-const midY = (top, h) => top + h / 2;
-
-const CURVES = [
-  // 左侧面板 (X=320) 到 创维词条 (X=450)
-  { pts: [320, 397, 360, 397, 410, 397, 450, 397], tone: 'white', opacity: 0.78 },
-  // 创维词条 (X=690) 到 优化词 (X=800)
-  { pts: [690, 397, 730, 397, 760, 180, 800, 180], tone: 'blue', opacity: 0.85 },
-  // 创维词条 (X=690) 到 监测词 (X=800)
-  { pts: [690, 397, 730, 397, 760, 580, 800, 580], tone: 'blue', opacity: 0.85 },
-  
-  // 优化词 (X=980) 到 品类词卡片 (X=1060, Y=59). 控制点从1080调整为1040以防越界进入卡片内部
-  { pts: [980, 180, 1020, 180, 1040, midY(OPT_CAT_TOP, OPT_CAT_H), CARD_X, midY(OPT_CAT_TOP, OPT_CAT_H)], tone: 'blue', opacity: 0.9 },
-  // 优化词 (X=980) 到 产品专属词卡片 (X=1060, Y=319)
-  { pts: [980, 180, 1020, 180, 1040, midY(OPT_PROD_TOP, OPT_PROD_H), CARD_X, midY(OPT_PROD_TOP, OPT_PROD_H)], tone: 'blue', opacity: 0.9 },
-  // 监测词 (X=980) 到 品类词卡片 (X=1060, Y=519)
-  { pts: [980, 580, 1020, 580, 1040, midY(MON_CAT_TOP, MON_CAT_H), CARD_X, midY(MON_CAT_TOP, MON_CAT_H)], tone: 'blue', opacity: 0.9 },
-  // 监测词 (X=980) 到 产品专属词卡片 (X=1060, Y=619)
-  { pts: [980, 580, 1020, 580, 1040, midY(MON_PROD_TOP, MON_PROD_H), CARD_X, midY(MON_PROD_TOP, MON_PROD_H)], tone: 'blue', opacity: 0.9 },
-
-  // 从卡片实际右边缘 (X=1260) 连接到外部具体词条示例列表 (X=1300)
-  { pts: [1260, midY(OPT_CAT_TOP, OPT_CAT_H), 1270, midY(OPT_CAT_TOP, OPT_CAT_H), 1290, midY(OPT_CAT_TOP, OPT_CAT_H), 1300, midY(OPT_CAT_TOP, OPT_CAT_H)], tone: 'blue', opacity: 0.7 },
-  { pts: [1260, midY(OPT_PROD_TOP, OPT_PROD_H), 1270, midY(OPT_PROD_TOP, OPT_PROD_H), 1290, midY(OPT_PROD_LIST_TOP, OPT_PROD_LIST_H), 1300, midY(OPT_PROD_LIST_TOP, OPT_PROD_LIST_H)], tone: 'blue', opacity: 0.7 },
-  { pts: [1260, midY(MON_CAT_TOP, MON_CAT_H), 1270, midY(MON_CAT_TOP, MON_CAT_H), 1290, midY(MON_CAT_TOP, MON_CAT_H), 1300, midY(MON_CAT_TOP, MON_CAT_H)], tone: 'blue', opacity: 0.7 },
-  { pts: [1260, midY(MON_PROD_TOP, MON_PROD_H), 1270, midY(MON_PROD_TOP, MON_PROD_H), 1290, midY(MON_PROD_TOP, MON_PROD_H), 1300, midY(MON_PROD_TOP, MON_PROD_H)], tone: 'blue', opacity: 0.7 },
-];
-
-function drawRibbonCurve(ctx, [x0, y0, cx1, cy1, cx2, cy2, x1, y1], tone, opacity) {
-  const glow = tone === 'white' ? 'rgba(255,255,255,0.35)' : 'rgba(59,130,246,0.45)';
-  const core = tone === 'white' ? 'rgba(255,255,255,0.88)' : '#60A5FA';
-
-  ctx.lineCap = 'round';
-  ctx.lineJoin = 'round';
-
-  ctx.beginPath();
-  ctx.moveTo(x0, y0);
-  ctx.bezierCurveTo(cx1, cy1, cx2, cy2, x1, y1);
-  ctx.strokeStyle = glow;
-  ctx.lineWidth = 22;
-  ctx.globalAlpha = opacity * 0.55;
-  ctx.stroke();
-
-  ctx.beginPath();
-  ctx.moveTo(x0, y0);
-  ctx.bezierCurveTo(cx1, cy1, cx2, cy2, x1, y1);
-  ctx.strokeStyle = core;
-  ctx.lineWidth = 12;
-  ctx.globalAlpha = opacity;
-  ctx.stroke();
-
-  ctx.globalAlpha = 1;
-}
-
-function FlowRibbons() {
-  const canvasRef = useRef(null);
-
-  useEffect(() => {
-    const canvas = canvasRef.current;
-    if (!canvas) return;
-    const ctx = canvas.getContext('2d');
-    if (!ctx) return;
-
-    ctx.clearRect(0, 0, canvas.width, canvas.height);
-    CURVES.forEach((curve) => drawRibbonCurve(ctx, curve.pts, curve.tone, curve.opacity));
-  }, []);
-
+/* 细线连接：柔和光晕 + 1.5px 核心贝塞尔曲线 + 两端圆点 */
+function Connectors({ links }) {
   return (
-    <canvas
-      ref={canvasRef}
+    <svg
+      className="absolute inset-0 z-0 pointer-events-none"
       width={1840}
       height={795}
-      className="absolute inset-0 pointer-events-none z-0"
+      viewBox="0 0 1840 795"
       aria-hidden
-    />
+    >
+      {links.map(([x0, y0, x1, y1, tone], i) => {
+        const a = ACCENT[tone];
+        const bend = Math.min(60, (x1 - x0) * 0.6);
+        const d = `M ${x0} ${y0} C ${x0 + bend} ${y0}, ${x1 - bend} ${y1}, ${x1} ${y1}`;
+        return (
+          <g key={i}>
+            <path d={d} fill="none" stroke={a.soft} strokeWidth="8" opacity="0.18" />
+            <path d={d} fill="none" stroke={a.core} strokeWidth="2" opacity="0.9" />
+            <circle cx={x0} cy={y0} r="7" fill={a.core} opacity="0.18" />
+            <circle cx={x0} cy={y0} r="3" fill={a.core} />
+            <circle cx={x1} cy={y1} r="7" fill={a.core} opacity="0.18" />
+            <circle cx={x1} cy={y1} r="3" fill={a.core} />
+          </g>
+        );
+      })}
+    </svg>
   );
 }
 
-// TerminalCard: 将“品类词”和“产品专属词”装在框框内
-function TerminalCard({ title, top, height }) {
+/* 流程节点：中文主标题 + 英文小字，垂直中心对齐到 cy */
+function FlowNode({ x, cy, w, h, label, sub, tone = 'blue', big = false }) {
+  const a = ACCENT[tone];
   return (
     <div
-      className="absolute bg-[#0D0D10]/80 border border-zinc-800 rounded-2xl flex items-center justify-center shadow-lg z-10 hover:border-zinc-700 transition-colors"
-      style={{ left: `${CARD_X}px`, top: `${top}px`, width: `${CARD_W}px`, height: `${height}px` }}
+      className="absolute z-10 rounded-2xl flex flex-col items-center justify-center"
+      style={{
+        left: `${x}px`,
+        top: `${cy - h / 2}px`,
+        width: `${w}px`,
+        height: `${h}px`,
+        background: 'linear-gradient(180deg, #15151A 0%, #0B0B0E 100%)',
+        border: `1px solid ${tone === 'white' ? 'rgba(255,255,255,0.14)' : a.chipBorder}`,
+        boxShadow: `0 12px 40px rgba(0,0,0,0.6), 0 0 24px ${a.chipBg}`,
+      }}
     >
-      <span className="text-[24px] font-bold text-white font-['MiSans'] leading-none">
-        {title}
+      <span
+        className={`${big ? 'text-[40px]' : 'text-[32px]'} font-black text-white font-['MiSans'] leading-none tracking-wide`}
+      >
+        {label}
       </span>
-    </div>
-  );
-}
-
-// KeywordsList: 具体的词条示例列表放在外面 (无框框，添加彩色 bullet 小点进一步做分类区隔)
-function KeywordsList({ keywords = [], top, height, bulletColor = '#3B82F6' }) {
-  return (
-    <div
-      className="absolute flex items-center z-10"
-      style={{ left: '1300px', top: `${top}px`, width: '510px', height: `${height}px` }}
-    >
-      {keywords.length > 0 ? (
-        <ul className="flex-1 flex flex-col gap-1.5 list-none m-0 p-0 justify-center">
-          {keywords.map((word) => (
-            <li key={word} className="text-[20px] text-zinc-300 font-['MiSans'] leading-[24px] flex items-baseline gap-2">
-              <span className="text-[14px] shrink-0" style={{ color: bulletColor }}>•</span>
-              <span className="truncate">{word}</span>
-            </li>
-          ))}
-        </ul>
-      ) : (
-        <div className="flex-1 flex items-center">
-          <span className="text-[20px] text-zinc-600 font-['MiSans']">—</span>
-        </div>
+      {sub && (
+        <span className="mt-2.5 text-[11px] tracking-[0.3em] text-zinc-500 font-['MiSans'] leading-none">
+          {sub}
+        </span>
       )}
     </div>
   );
 }
 
-export default function Page_SkyworthKeywordLogic() {
+/* 词条条目：小色点 + 文本，可单列或双列 */
+function KeywordItems({ words, tone = 'blue', cols = 1, size = 17, lh = 28 }) {
+  const a = ACCENT[tone];
+  return (
+    <ul
+      className="list-none m-0 p-0 grid gap-x-10"
+      style={{ gridTemplateColumns: `repeat(${cols}, minmax(0, 1fr))`, rowGap: `${lh - size - 5}px` }}
+    >
+      {words.map((word) => (
+        <li
+          key={word}
+          className="flex items-center gap-2.5 text-zinc-300 font-['MiSans'] min-w-0"
+          style={{ fontSize: `${size}px`, lineHeight: `${size + 5}px` }}
+        >
+          <span className="w-[5px] h-[5px] rounded-full shrink-0" style={{ background: a.core }} />
+          <span className="truncate">{word}</span>
+        </li>
+      ))}
+    </ul>
+  );
+}
+
+/* 分组面板：色条 + 标题 + 数量胶囊的头部，下方为词条列表 */
+function GroupPanel({ top, height, title, count, tone = 'blue', children }) {
+  const a = ACCENT[tone];
+  return (
+    <div
+      className="absolute z-10 rounded-2xl overflow-hidden"
+      style={{
+        left: `${PANEL_X}px`,
+        top: `${top}px`,
+        width: `${PANEL_W}px`,
+        height: `${height}px`,
+        background: 'rgba(13,13,16,0.72)',
+        border: '1px solid rgba(63,63,70,0.55)',
+      }}
+    >
+      <div
+        className="flex items-center gap-3 px-6 h-[44px] border-b"
+        style={{ borderColor: 'rgba(63,63,70,0.45)', background: 'rgba(255,255,255,0.02)' }}
+      >
+        <span className="w-[3px] h-[18px] rounded-full" style={{ background: a.core }} />
+        <span className="text-[20px] font-bold text-white font-['MiSans'] leading-none">{title}</span>
+        <span
+          className="text-[12px] font-semibold px-2 py-[2px] rounded-full border font-['MiSans'] leading-none"
+          style={{ color: a.core, borderColor: a.chipBorder, background: a.chipBg }}
+        >
+          {count} 条
+        </span>
+      </div>
+      <div className="px-6 flex items-center" style={{ height: `${height - 44}px` }}>
+        <div className="flex-1 min-w-0">{children}</div>
+      </div>
+    </div>
+  );
+}
+
+/* 版本 C 专用：无边框排印分组，仅左侧细色条 + 标题行 */
+function TypoGroup({ top, height, title, count, tone = 'blue', children }) {
+  const a = ACCENT[tone];
+  return (
+    <div
+      className="absolute z-10 flex flex-col justify-center"
+      style={{
+        left: `${PANEL_X + 20}px`,
+        top: `${top}px`,
+        width: `${PANEL_W - 20}px`,
+        height: `${height}px`,
+        borderLeft: `2px solid ${a.soft}`,
+        paddingLeft: '28px',
+      }}
+    >
+      <div className="flex items-baseline gap-3 mb-2.5">
+        <span className="text-[22px] font-bold text-white font-['MiSans'] leading-none">{title}</span>
+        <span className="text-[13px] font-semibold font-['MiSans'] leading-none" style={{ color: a.core }}>
+          {count} 条
+        </span>
+      </div>
+      {children}
+    </div>
+  );
+}
+
+/* 共用骨架：左侧无体系词条面板 + 创维词条 + 优化词/监测词节点 + 连接线 */
+function KeywordLogicBase({ optY, monY, branches, panelX = PANEL_X, children }) {
+  const links = [
+    [320, 397, 450, 397, 'white'],
+    [690, 397, 790, optY, 'blue'],
+    [690, 397, 790, monY, 'teal'],
+    ...branches.opt.map((y) => [970, optY, panelX, y, 'blue']),
+    ...branches.mon.map((y) => [970, monY, panelX, y, 'teal']),
+  ];
   return (
     <SlideLayout title="词条分类逻辑">
       <div className="absolute left-0 top-0 w-[1840px] select-none" style={{ height: '795px' }}>
-        <FlowRibbons />
+        <Connectors links={links} />
+        {children}
 
-        {/* 左侧“无体系词条”面板 - 仅展示分类标签，不列举具体词条例子 */}
+        {/* 左侧“无体系词条”面板 */}
         <div
-          className="absolute bg-[#0D0D10]/80 border border-zinc-800 rounded-2xl shadow-lg z-10 overflow-hidden"
-          style={{ left: '0px', top: '0px', width: '320px', height: '795px' }}
+          className="absolute z-10 rounded-2xl overflow-hidden"
+          style={{
+            left: '0px',
+            top: '0px',
+            width: '320px',
+            height: '795px',
+            background: 'rgba(13,13,16,0.72)',
+            border: '1px solid rgba(63,63,70,0.55)',
+          }}
         >
-          <div className="px-6 py-4 border-b border-zinc-800/80">
-            <span className="text-[30px] font-bold text-zinc-500 font-['MiSans']">无体系词条</span>
+          <div
+            className="px-7 pt-6 pb-5 border-b"
+            style={{ borderColor: 'rgba(63,63,70,0.45)' }}
+          >
+            <div className="text-[26px] font-bold text-zinc-300 font-['MiSans'] leading-none">无体系词条</div>
+            <div className="mt-2.5 text-[11px] tracking-[0.28em] text-zinc-600 font-['MiSans'] leading-none">
+              UNSTRUCTURED WORDS
+            </div>
           </div>
-          <div className="flex flex-col gap-8 p-6 justify-center h-[calc(100%-68px)]">
-            {['品牌词', '原形词', '产品词', '竞品词'].map((word) => (
-              <div 
-                key={word} 
-                className="border border-zinc-800 rounded-2xl py-6 px-4 flex items-center justify-center bg-zinc-900/20 shadow-md hover:border-zinc-700 transition-colors"
+          <div className="flex flex-col gap-6 px-7 justify-center" style={{ height: 'calc(100% - 108px)' }}>
+            {['品牌词', '原形词', '产品词', '竞品词'].map((word, i) => (
+              <div
+                key={word}
+                className="rounded-xl py-6 px-6 flex items-center justify-between"
+                style={{ background: 'rgba(255,255,255,0.025)', border: '1px solid rgba(63,63,70,0.5)' }}
               >
-                <span className="text-[34px] font-bold text-zinc-300 font-['MiSans']">{word}</span>
+                <span className="text-[30px] font-bold text-zinc-300 font-['MiSans'] leading-none">{word}</span>
+                <span className="text-[13px] font-mono text-zinc-600 leading-none">0{i + 1}</span>
               </div>
             ))}
           </div>
         </div>
 
-        {/* 创维词条 */}
-        <div
-          className="absolute bg-[#0D0D10] border border-zinc-800 rounded-3xl flex flex-col justify-center items-center shadow-[0_12px_40px_rgba(0,0,0,0.8)] z-10 border-blue-900/50"
-          style={{ left: '450px', top: '347px', width: '240px', height: '100px' }}
-        >
-          <h3 className="text-[38px] font-black text-white font-['MiSans'] tracking-wider text-center leading-none">
-            创维词条
-          </h3>
-        </div>
-
-        {/* 优化词 */}
-        <div
-          className="absolute bg-[#0D0D10] border border-zinc-800 rounded-2xl p-5 flex flex-col justify-center shadow-[0_12px_40px_rgba(0,0,0,0.6)] z-10"
-          style={{ left: '800px', top: '130px', width: '180px', height: '100px' }}
-        >
-          <h4 className="text-[36px] font-extrabold text-white font-['MiSans'] text-center leading-none">优化词</h4>
-        </div>
-
-        {/* 监测词 */}
-        <div
-          className="absolute bg-[#0D0D10] border border-zinc-800 rounded-2xl p-5 flex flex-col justify-center shadow-[0_12px_40px_rgba(0,0,0,0.6)] z-10"
-          style={{ left: '800px', top: '530px', width: '180px', height: '100px' }}
-        >
-          <h4 className="text-[36px] font-extrabold text-white font-['MiSans'] text-center leading-none">监测词</h4>
-        </div>
-
-        {/* 优化词分支：品类词和产品专属词放在框里 (height=78)，具体词条放在外面 (KeywordsList) */}
-        {/* 用蓝色小点标识品类词示例，用青色小点标识产品专属词示例，并在高度上留出 72px 显著空隙 */}
-        <TerminalCard title="品类词" top={OPT_CAT_TOP} height={OPT_CAT_H} />
-        <KeywordsList keywords={OPT_CATEGORY_WORDS} top={OPT_CAT_TOP} height={OPT_CAT_H} bulletColor="#3B82F6" />
-
-        <TerminalCard title="产品专属词" top={OPT_PROD_TOP} height={OPT_PROD_H} />
-        <KeywordsList keywords={OPT_PRODUCT_WORDS} top={OPT_PROD_LIST_TOP} height={OPT_PROD_LIST_H} bulletColor="#2DD4BF" />
-        
-        {/* 监测词分支：品类词和产品专属词放在框里 (height=78)，具体词条放在外面 (KeywordsList) */}
-        <TerminalCard title="品类词" top={MON_CAT_TOP} height={MON_CAT_H} />
-        <KeywordsList keywords={['创维电视算一线品牌吗']} top={MON_CAT_TOP} height={MON_CAT_H} bulletColor="#38BDF8" />
-
-        <TerminalCard title="产品专属词" top={MON_PROD_TOP} height={MON_PROD_H} />
-        <KeywordsList keywords={['创维壁纸电视A7H Pro怎么样']} top={MON_PROD_TOP} height={MON_PROD_H} bulletColor="#38BDF8" />
+        {/* 主干节点 */}
+        <FlowNode x={450} cy={397} w={240} h={116} label="创维词条" sub="SKYWORTH KEYWORDS" tone="white" big />
+        <FlowNode x={790} cy={optY} w={180} h={96} label="优化词" sub="OPTIMIZE" tone="blue" />
+        <FlowNode x={790} cy={monY} w={180} h={96} label="监测词" sub="MONITOR" tone="teal" />
       </div>
     </SlideLayout>
   );
 }
+
+/* ────────────────────────────────────────────────────────────
+ * 版本 A · 面板分组：四个分组面板，全部 17 条词条完整展示
+ * ──────────────────────────────────────────────────────────── */
+export function Page_SkyworthKeywordLogic_A() {
+  const P1 = { top: 8, h: 124 };
+  const P2 = { top: 156, h: 424 };
+  const P3 = { top: 608, h: 92 };
+  const P4 = { top: 700, h: 92 };
+  const mid = (p) => p.top + p.h / 2;
+  const optY = Math.round((mid(P1) + mid(P2)) / 2);
+  const monY = Math.round((mid(P3) + mid(P4)) / 2);
+  const branches = { opt: [mid(P1), mid(P2)], mon: [mid(P3), mid(P4)] };
+
+  return (
+    <KeywordLogicBase optY={optY} monY={monY} branches={branches}>
+      <GroupPanel top={P1.top} height={P1.h} title="品类词" count={OPT_CATEGORY_WORDS.length} tone="blue">
+        <KeywordItems words={OPT_CATEGORY_WORDS} tone="blue" />
+      </GroupPanel>
+      <GroupPanel top={P2.top} height={P2.h} title="产品专属词" count={OPT_PRODUCT_WORDS.length} tone="blue">
+        <KeywordItems words={OPT_PRODUCT_WORDS} tone="blue" />
+      </GroupPanel>
+      <GroupPanel top={P3.top} height={P3.h} title="品类词" count={MON_CATEGORY_WORDS.length} tone="teal">
+        <KeywordItems words={MON_CATEGORY_WORDS} tone="teal" />
+      </GroupPanel>
+      <GroupPanel top={P4.top} height={P4.h} title="产品专属词" count={MON_PRODUCT_WORDS.length} tone="teal">
+        <KeywordItems words={MON_PRODUCT_WORDS} tone="teal" />
+      </GroupPanel>
+    </KeywordLogicBase>
+  );
+}
+
+/* ────────────────────────────────────────────────────────────
+ * 版本 B · 双栏紧凑：产品专属词双栏排布，版面更疏朗居中
+ * ──────────────────────────────────────────────────────────── */
+export function Page_SkyworthKeywordLogic_B() {
+  const P1 = { top: 46, h: 124 };
+  const P2 = { top: 194, h: 264 };
+  const P3 = { top: 528, h: 92 };
+  const P4 = { top: 652, h: 92 };
+  const mid = (p) => p.top + p.h / 2;
+  const optY = Math.round((mid(P1) + mid(P2)) / 2);
+  const monY = Math.round((mid(P3) + mid(P4)) / 2);
+  const branches = { opt: [mid(P1), mid(P2)], mon: [mid(P3), mid(P4)] };
+
+  return (
+    <KeywordLogicBase optY={optY} monY={monY} branches={branches}>
+      <GroupPanel top={P1.top} height={P1.h} title="品类词" count={OPT_CATEGORY_WORDS.length} tone="blue">
+        <KeywordItems words={OPT_CATEGORY_WORDS} tone="blue" />
+      </GroupPanel>
+      <GroupPanel top={P2.top} height={P2.h} title="产品专属词" count={OPT_PRODUCT_WORDS.length} tone="blue">
+        <KeywordItems words={OPT_PRODUCT_WORDS} tone="blue" cols={2} size={16} lh={30} />
+      </GroupPanel>
+      <GroupPanel top={P3.top} height={P3.h} title="品类词" count={MON_CATEGORY_WORDS.length} tone="teal">
+        <KeywordItems words={MON_CATEGORY_WORDS} tone="teal" />
+      </GroupPanel>
+      <GroupPanel top={P4.top} height={P4.h} title="产品专属词" count={MON_PRODUCT_WORDS.length} tone="teal">
+        <KeywordItems words={MON_PRODUCT_WORDS} tone="teal" />
+      </GroupPanel>
+    </KeywordLogicBase>
+  );
+}
+
+/* ────────────────────────────────────────────────────────────
+ * 版本 C · 极简排印：右侧去掉卡片框，只留细色条 + 排印层级
+ * ──────────────────────────────────────────────────────────── */
+export function Page_SkyworthKeywordLogic_C() {
+  const B1 = { top: 16, h: 104 };
+  const B2 = { top: 160, h: 420 };
+  const B3 = { top: 620, h: 74 };
+  const B4 = { top: 714, h: 74 };
+  const mid = (p) => p.top + p.h / 2;
+  const optY = Math.round((mid(B1) + mid(B2)) / 2);
+  const monY = Math.round((mid(B3) + mid(B4)) / 2);
+  const branches = { opt: [mid(B1), mid(B2)], mon: [mid(B3), mid(B4)] };
+
+  return (
+    <KeywordLogicBase optY={optY} monY={monY} branches={branches} panelX={PANEL_X + 20}>
+      <TypoGroup top={B1.top} height={B1.h} title="品类词" count={OPT_CATEGORY_WORDS.length} tone="blue">
+        <KeywordItems words={OPT_CATEGORY_WORDS} tone="blue" size={17} lh={29} />
+      </TypoGroup>
+      <TypoGroup top={B2.top} height={B2.h} title="产品专属词" count={OPT_PRODUCT_WORDS.length} tone="blue">
+        <KeywordItems words={OPT_PRODUCT_WORDS} tone="blue" size={17} lh={29} />
+      </TypoGroup>
+      <TypoGroup top={B3.top} height={B3.h} title="品类词" count={MON_CATEGORY_WORDS.length} tone="teal">
+        <KeywordItems words={MON_CATEGORY_WORDS} tone="teal" size={17} lh={29} />
+      </TypoGroup>
+      <TypoGroup top={B4.top} height={B4.h} title="产品专属词" count={MON_PRODUCT_WORDS.length} tone="teal">
+        <KeywordItems words={MON_PRODUCT_WORDS} tone="teal" size={17} lh={29} />
+      </TypoGroup>
+    </KeywordLogicBase>
+  );
+}
+
+export default Page_SkyworthKeywordLogic_A;
