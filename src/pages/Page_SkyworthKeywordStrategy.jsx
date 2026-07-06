@@ -7,6 +7,28 @@ const C = {
   colorSky: '#38BDF8', // Sky Blue for Monitoring words
 };
 
+// 示例词条：矩形标签样式，更像“词条”
+const chipStyle = {
+  border: '1.5px solid rgba(255,255,255,0.28)',
+  background: 'rgba(255,255,255,0.05)',
+  borderRadius: '8px',
+  padding: '6px 14px',
+  fontSize: '21px',
+  color: '#e4e4e7',
+  whiteSpace: 'nowrap',
+  lineHeight: 1.1,
+};
+
+function Chips({ items }) {
+  return (
+    <div className="flex flex-wrap gap-[10px]">
+      {items.map((t) => (
+        <span key={t} style={chipStyle}>{t}</span>
+      ))}
+    </div>
+  );
+}
+
 export default function Page_SkyworthKeywordStrategy() {
   return (
     <SlideLayout title="核心优化策略">
@@ -28,16 +50,16 @@ export default function Page_SkyworthKeywordStrategy() {
             className="absolute inset-0 overflow-visible pointer-events-none z-0"
           >
             <defs>
-              {/* 蓝天色半透明渐变 - 监测词（外围防护罩） */}
+              {/* 白色半透明渐变 - 监测词（外围防护罩） */}
               <linearGradient id="domeGrad" x1="350" y1="60" x2="350" y2="560" gradientUnits="userSpaceOnUse">
-                <stop offset="0%" stopColor="#0284C7" stopOpacity="0.14" />
-                <stop offset="100%" stopColor="#38BDF8" stopOpacity="0.02" />
+                <stop offset="0%" stopColor="#FFFFFF" stopOpacity="0.14" />
+                <stop offset="100%" stopColor="#FFFFFF" stopOpacity="0.02" />
               </linearGradient>
               
-              {/* 青色渐变 - 产品专属词（内部中层） */}
+              {/* 灰色渐变 - 产品专属词（内部中层） */}
               <linearGradient id="tealGrad" x1="350" y1="160" x2="350" y2="360" gradientUnits="userSpaceOnUse">
-                <stop offset="0%" stopColor="#0D9488" stopOpacity="0.9" />
-                <stop offset="100%" stopColor="#2DD4BF" stopOpacity="0.5" />
+                <stop offset="0%" stopColor="#6B7280" stopOpacity="0.9" />
+                <stop offset="100%" stopColor="#9CA3AF" stopOpacity="0.45" />
               </linearGradient>
               
               {/* 宝蓝色渐变 - 品类词（内部底层） */}
@@ -62,7 +84,7 @@ export default function Page_SkyworthKeywordStrategy() {
             <path 
               d="M 20 560 A 330 500 0 0 1 680 560" 
               fill="none" 
-              stroke={C.colorSky} 
+              stroke="#FFFFFF" 
               strokeWidth="3" 
               strokeDasharray="6 6"
               filter="url(#neonGlow)" 
@@ -74,7 +96,7 @@ export default function Page_SkyworthKeywordStrategy() {
             <path 
               d="M 350 160 L 493 360 L 207 360 Z" 
               fill="url(#tealGrad)" 
-              stroke={C.colorTeal} 
+              stroke="#9CA3AF" 
               strokeWidth="2.5" 
             />
 
@@ -89,11 +111,11 @@ export default function Page_SkyworthKeywordStrategy() {
 
           {/* 放置在图形上的纯净大文字标签 */}
           <div className="absolute flex flex-col items-center justify-center pointer-events-none" style={{ left: '0px', top: '100px', width: '700px' }}>
-            <span className="text-[40px] font-black text-sky-300 leading-none tracking-wide filter drop-shadow-[0_2px_8px_rgba(0,0,0,0.8)]">监测词</span>
+            <span className="text-[40px] font-black text-white leading-none tracking-wide filter drop-shadow-[0_2px_8px_rgba(0,0,0,0.8)]">监测词</span>
           </div>
 
           <div className="absolute flex flex-col items-center justify-center pointer-events-none" style={{ left: '0px', top: '275px', width: '700px' }}>
-            <span className="text-[38px] font-black text-white leading-none tracking-wide">产品专属词</span>
+            <span className="text-[38px] font-black text-zinc-200 leading-none tracking-wide">产品专属词</span>
           </div>
 
           <div className="absolute flex flex-col items-center justify-center pointer-events-none" style={{ left: '0px', top: '445px', width: '700px' }}>
@@ -165,26 +187,26 @@ export default function Page_SkyworthKeywordStrategy() {
               <tr>
                 <td
                   rowSpan={4}
-                  className="text-[28px] font-black text-center align-middle"
-                  style={{ color: C.colorTeal, borderBottom: '1px solid rgba(255,255,255,0.10)', borderLeft: `4px solid ${C.colorTeal}`, background: 'rgba(45,212,191,0.05)' }}
+                  className="text-[28px] font-black text-center align-middle text-white"
+                  style={{ borderBottom: '1px solid rgba(255,255,255,0.10)', borderLeft: '4px solid rgba(255,255,255,0.55)', background: 'rgba(255,255,255,0.04)' }}
                 >
                   <span style={{ writingMode: 'vertical-rl', letterSpacing: '0.15em' }}>优化词</span>
                 </td>
                 <td
                   rowSpan={2}
-                  className="text-[23px] font-bold text-center align-middle"
-                  style={{ color: C.colorBlue, borderBottom: '1px solid rgba(255,255,255,0.10)' }}
+                  className="text-[23px] font-bold text-center align-middle text-white"
+                  style={{ borderBottom: '1px solid rgba(255,255,255,0.10)' }}
                 >
                   品类词
                 </td>
-                <td className="text-[23px] font-bold text-center align-middle" style={{ color: '#FBBF24', borderBottom: '1px solid rgba(255,255,255,0.06)', padding: '14px 4px' }}>
+                <td className="text-[23px] font-bold text-center align-middle text-white" style={{ borderBottom: '1px solid rgba(255,255,255,0.06)', padding: '14px 4px' }}>
                   优势词
                 </td>
                 <td className="align-middle" style={{ borderBottom: '1px solid rgba(255,255,255,0.06)', padding: '14px 20px' }}>
                   <Chips items={['壁纸电视品牌排行榜', '艺术电视品牌推荐', '超薄电视品牌推荐']} />
                 </td>
-                <td className="align-middle" style={{ borderBottom: '1px solid rgba(255,255,255,0.06)', padding: '14px 16px', background: 'rgba(251,191,36,0.06)' }}>
-                  <div className="text-[22px] font-black leading-tight" style={{ color: '#FBBF24' }}>拿到第一</div>
+                <td className="align-middle" style={{ borderBottom: '1px solid rgba(255,255,255,0.06)', padding: '14px 16px', background: 'rgba(255,255,255,0.06)' }}>
+                  <div className="text-[22px] font-black leading-tight text-white">拿到第一</div>
                   <div className="text-[18px] text-zinc-300 leading-snug mt-1">不给海信、TCL 等后来者机会</div>
                 </td>
               </tr>
@@ -205,12 +227,12 @@ export default function Page_SkyworthKeywordStrategy() {
               <tr>
                 <td
                   rowSpan={2}
-                  className="text-[23px] font-bold text-center align-middle"
-                  style={{ color: C.colorTeal, borderBottom: '1px solid rgba(255,255,255,0.10)' }}
+                  className="text-[23px] font-bold text-center align-middle text-white"
+                  style={{ borderBottom: '1px solid rgba(255,255,255,0.10)' }}
                 >
                   产品<br/>专属词
                 </td>
-                <td className="text-[23px] font-bold text-center align-middle" style={{ color: C.colorTeal, borderBottom: '1px solid rgba(255,255,255,0.06)', padding: '14px 4px' }}>
+                <td className="text-[23px] font-bold text-center align-middle text-white" style={{ borderBottom: '1px solid rgba(255,255,255,0.06)', padding: '14px 4px' }}>
                   A系列
                 </td>
                 <td className="align-middle" style={{ borderBottom: '1px solid rgba(255,255,255,0.06)', padding: '14px 20px' }}>
@@ -223,7 +245,7 @@ export default function Page_SkyworthKeywordStrategy() {
               </tr>
               {/* 产品专属词 · Q系列 */}
               <tr>
-                <td className="text-[23px] font-bold text-center align-middle" style={{ color: C.colorTeal, borderBottom: '1px solid rgba(255,255,255,0.10)', padding: '14px 4px' }}>
+                <td className="text-[23px] font-bold text-center align-middle text-white" style={{ borderBottom: '1px solid rgba(255,255,255,0.10)', padding: '14px 4px' }}>
                   Q系列
                 </td>
                 <td className="align-middle" style={{ borderBottom: '1px solid rgba(255,255,255,0.10)', padding: '14px 20px' }}>
@@ -239,12 +261,12 @@ export default function Page_SkyworthKeywordStrategy() {
               <tr>
                 <td
                   rowSpan={2}
-                  className="text-[28px] font-black text-center align-middle"
-                  style={{ color: C.colorSky, borderLeft: `4px solid ${C.colorSky}`, background: 'rgba(56,189,248,0.05)', borderBottom: '1px solid rgba(255,255,255,0.10)' }}
+                  className="text-[28px] font-black text-center align-middle text-white"
+                  style={{ borderLeft: '4px solid rgba(255,255,255,0.55)', background: 'rgba(255,255,255,0.04)', borderBottom: '1px solid rgba(255,255,255,0.10)' }}
                 >
                   <span style={{ writingMode: 'vertical-rl', letterSpacing: '0.15em' }}>监测词</span>
                 </td>
-                <td colSpan={2} className="text-[23px] font-bold text-center align-middle" style={{ color: C.colorSky, borderBottom: '1px solid rgba(255,255,255,0.06)', padding: '14px 4px' }}>
+                <td colSpan={2} className="text-[23px] font-bold text-center align-middle text-white" style={{ borderBottom: '1px solid rgba(255,255,255,0.06)', padding: '14px 4px' }}>
                   品类词
                 </td>
                 <td className="align-middle" style={{ borderBottom: '1px solid rgba(255,255,255,0.06)', padding: '14px 20px' }}>
@@ -260,7 +282,7 @@ export default function Page_SkyworthKeywordStrategy() {
                 </td>
               </tr>
               <tr>
-                <td colSpan={2} className="text-[23px] font-bold text-center align-middle" style={{ color: C.colorSky, borderBottom: '1px solid rgba(255,255,255,0.10)', padding: '14px 4px' }}>
+                <td colSpan={2} className="text-[23px] font-bold text-center align-middle text-white" style={{ borderBottom: '1px solid rgba(255,255,255,0.10)', padding: '14px 4px' }}>
                   产品专属词
                 </td>
                 <td className="align-middle" style={{ borderBottom: '1px solid rgba(255,255,255,0.10)', padding: '14px 20px' }}>
