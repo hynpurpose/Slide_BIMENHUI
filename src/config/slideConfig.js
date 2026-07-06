@@ -24,7 +24,6 @@ import { Page_SkyworthKeywordOptTwoTypes_C } from '../pages/Page_SkyworthKeyword
 import Page_SkyworthKeywordLogic from '../pages/Page_SkyworthKeywordLogic';
 import { OPT_KEYWORD_PAGES, MON_KEYWORD_PAGES } from '../pages/Page_SkyworthKeywordTables';
 import Page_GEOWordSelectionOther from '../pages/Page_GEOWordSelectionOther';
-import Page_GEOWordSelectionOther2 from '../pages/Page_GEOWordSelectionOther2';
 import Page_GEOWordSelectionDataChain from '../pages/Page_GEOWordSelectionDataChain';
 import Page_SkyworthAiProcess from '../pages/Page_SkyworthAiProcess';
 import Page_SkyworthSearchEngineModel from '../pages/Page_SkyworthSearchEngineModel';
@@ -251,7 +250,6 @@ export const slideConfig = [
 
   { type: 'section', title: '这些词是怎么选出来的' },
   { type: 'page', title: '市场上其他做法', component: Page_GEOWordSelectionOther, hideHeader: true },
-  { type: 'page', title: '传统搜索 VS AI 搜索', component: Page_GEOWordSelectionOther2, hideHeader: true },
   { type: 'page', title: 'AI 提问量数据从哪来', component: Page_GEOWordSelectionDataChain, hideHeader: true },
   { type: 'page', title: '影子算法', component: Page_SkyworthShadowAlgorithm, hideHeader: true },
   { type: 'page', title: 'AI 如何处理用户问题', component: Page_SkyworthAiProcess, hideHeader: true },
