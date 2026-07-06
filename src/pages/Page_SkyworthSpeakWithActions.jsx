@@ -53,18 +53,10 @@ function MentionBlock({ phase, text }) {
           : 'bg-[#004CE5]/8 border border-[#004CE5]/25'
       }`}
     >
-      <span
-        className={`text-[16px] font-bold tracking-wide shrink-0 font-['MiSans'] ${
-          isBefore ? 'text-zinc-500' : 'text-[#60A5FA]'
-        }`}
-      >
+      <span className="text-[18px] font-bold tracking-wide shrink-0 font-['MiSans'] text-white/70">
         {isBefore ? '优化前' : '优化后'}
       </span>
-      <p
-        className={`text-[28px] leading-none font-bold font-['MiSans'] ${
-          isBefore ? 'text-zinc-400' : 'text-white'
-        }`}
-      >
+      <p className="text-[36px] leading-none font-bold font-['MiSans'] text-white">
         {text}
       </p>
     </div>
