@@ -17,9 +17,9 @@ export default function Page_GeoMonitorModules() {
         {/* Left Column: 总览 (Maximized, White Background Card) */}
         <div className="w-full h-full flex flex-col justify-start items-stretch bg-white border border-[#004CE5]/30 rounded-2xl overflow-hidden shadow-lg">
           {/* Top: Title Block (Above the screenshot) */}
-          <div className="bg-[#eef1f6] px-8 h-[75px] border-b border-[#004CE5]/30 flex items-center gap-3 shrink-0">
-            <div className="w-3.5 h-3.5 bg-[#004CE5]" />
-            <div className="text-[28px] font-black text-black font-['MiSans'] tracking-wide">
+          <div className="bg-[#eef1f6] px-8 h-[85px] border-b border-[#004CE5]/30 flex items-center gap-3 shrink-0">
+            <div className="w-4 h-4 bg-[#7F22FE]" />
+            <div className="text-[34px] font-black text-black font-['MiSans'] tracking-wide">
               总览
             </div>
           </div>
@@ -53,9 +53,9 @@ export default function Page_GeoMonitorModules() {
           {/* Cell 1: 词条 */}
           <div className="bg-white border border-[#004CE5]/30 rounded-2xl flex flex-col justify-start items-stretch overflow-hidden relative shadow-md">
             {/* Top: Title Block */}
-            <div className="bg-[#eef1f6] px-6 h-[55px] border-b border-[#004CE5]/30 flex items-center gap-2 shrink-0">
-              <div className="w-2.5 h-2.5 bg-[#004CE5]" />
-              <div className="text-[22px] font-black text-black font-['MiSans'] tracking-wide">
+            <div className="bg-[#eef1f6] px-6 h-[65px] border-b border-[#004CE5]/30 flex items-center gap-2 shrink-0">
+              <div className="w-3 h-3 bg-[#1ED9A1]" />
+              <div className="text-[28px] font-black text-black font-['MiSans'] tracking-wide">
                 词条
               </div>
             </div>
@@ -84,9 +84,9 @@ export default function Page_GeoMonitorModules() {
           {/* Cell 2: 竞品 */}
           <div className="bg-white border border-[#004CE5]/30 rounded-2xl flex flex-col justify-start items-stretch overflow-hidden relative shadow-md">
             {/* Top: Title Block */}
-            <div className="bg-[#eef1f6] px-6 h-[55px] border-b border-[#004CE5]/30 flex items-center gap-2 shrink-0">
-              <div className="w-2.5 h-2.5 bg-[#004CE5]" />
-              <div className="text-[22px] font-black text-black font-['MiSans'] tracking-wide">
+            <div className="bg-[#eef1f6] px-6 h-[65px] border-b border-[#004CE5]/30 flex items-center gap-2 shrink-0">
+              <div className="w-3 h-3 bg-[#EC0040]" />
+              <div className="text-[28px] font-black text-black font-['MiSans'] tracking-wide">
                 竞品
               </div>
             </div>
@@ -115,9 +115,9 @@ export default function Page_GeoMonitorModules() {
           {/* Cell 3: 引用源 */}
           <div className="bg-white border border-[#004CE5]/30 rounded-2xl flex flex-col justify-start items-stretch overflow-hidden relative shadow-md">
             {/* Top: Title Block */}
-            <div className="bg-[#eef1f6] px-6 h-[55px] border-b border-[#004CE5]/30 flex items-center gap-2 shrink-0">
-              <div className="w-2.5 h-2.5 bg-[#004CE5]" />
-              <div className="text-[22px] font-black text-black font-['MiSans'] tracking-wide">
+            <div className="bg-[#eef1f6] px-6 h-[65px] border-b border-[#004CE5]/30 flex items-center gap-2 shrink-0">
+              <div className="w-3 h-3 bg-[#0084D1]" />
+              <div className="text-[28px] font-black text-black font-['MiSans'] tracking-wide">
                 引用源
               </div>
             </div>
@@ -146,9 +146,9 @@ export default function Page_GeoMonitorModules() {
           {/* Cell 4: 正负面 */}
           <div className="bg-white border border-[#004CE5]/30 rounded-2xl flex flex-col justify-start items-stretch overflow-hidden relative shadow-md">
             {/* Top: Title Block */}
-            <div className="bg-[#eef1f6] px-6 h-[55px] border-b border-[#004CE5]/30 flex items-center gap-2 shrink-0">
-              <div className="w-2.5 h-2.5 bg-[#004CE5]" />
-              <div className="text-[22px] font-black text-black font-['MiSans'] tracking-wide">
+            <div className="bg-[#eef1f6] px-6 h-[65px] border-b border-[#004CE5]/30 flex items-center gap-2 shrink-0">
+              <div className="w-3 h-3 bg-[#E17100]" />
+              <div className="text-[28px] font-black text-black font-['MiSans'] tracking-wide">
                 正负面
               </div>
             </div>

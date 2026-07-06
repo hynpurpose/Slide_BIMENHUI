@@ -1,77 +1,16 @@
-import React, { useRef, useState } from 'react';
+import React, { useState } from 'react';
 import SlideLayout from '../components/SlideLayout';
+import VideoFrame from '../components/VideoFrame';
 
-/* 视频占位框：优先加载 /public/videos/dazhong-zhenping-demo.mp4，
- * 找不到时回退为纯播放键占位框。后续把视频丢进该路径即可。 */
+/* 视频路径：/public/videos/dazhong-zhenping-demo.mp4，
+ * 找不到时 VideoFrame 回退为纯播放键占位框。 */
 const VIDEO_SRC = '/videos/dazhong-zhenping-demo.mp4';
-
-function VideoFrame({ radius = 24, showPlayHint = true, onPlayingChange }) {
-  const videoRef = useRef(null);
-  const [playing, setPlaying] = useState(false);
-  const [failed, setFailed] = useState(false);
-
-  const updatePlaying = (value) => {
-    setPlaying(value);
-    onPlayingChange?.(value);
-  };
-
-  return (
-    <div
-      className="relative w-full h-full bg-black overflow-hidden border border-white/20 shadow-[0_30px_90px_-25px_rgba(0,0,0,0.85)]"
-      style={{ borderRadius: radius }}
-    >
-      {!failed && (
-        <video
-          ref={videoRef}
-          src={VIDEO_SRC}
-          className="w-full h-full object-cover"
-          controls={playing}
-          playsInline
-          onPlay={() => updatePlaying(true)}
-          onPause={() => updatePlaying(false)}
-          onEnded={() => updatePlaying(false)}
-          onError={() => setFailed(true)}
-        />
-      )}
-
-      {/* 未播放时：居中播放键，点击开始播放 */}
-      {!failed && !playing && (
-        <button
-          type="button"
-          onClick={() => videoRef.current?.play()}
-          className="absolute inset-0 z-10 flex items-center justify-center cursor-pointer group"
-        >
-          <div className="w-[128px] h-[128px] rounded-full bg-white/10 backdrop-blur-md border border-white/30 flex items-center justify-center shadow-2xl transition-colors group-hover:bg-white/20">
-            <svg className="w-14 h-14 text-white ml-2" fill="currentColor" viewBox="0 0 24 24">
-              <path d="M8 5v14l11-7z" />
-            </svg>
-          </div>
-        </button>
-      )}
-
-      {/* Fallback 占位 */}
-      {failed && (
-        <div className="absolute inset-0 flex flex-col items-center justify-center bg-[#0b0b0f]">
-          {showPlayHint && (
-            <div className="w-[96px] h-[96px] rounded-full bg-[#004CE5]/15 border border-[#004CE5]/50 flex items-center justify-center">
-              <svg className="w-10 h-10 text-[#5B8CFF] ml-1" fill="currentColor" viewBox="0 0 24 24">
-                <path d="M8 5v14l11-7z" />
-              </svg>
-            </div>
-          )}
-        </div>
-      )}
-    </div>
-  );
-}
 
 /* ============================================================
  * 版本 A — 居中舞台
  * 一块大尺寸 16:9 视频框居中，四周留呼吸感，角标+底部字幕条营造“正在演示”的现场感。
  * ============================================================ */
 export function Page_DazhongZhenpingDemo_A() {
-  const [playing, setPlaying] = useState(false);
-
   return (
     <SlideLayout fullBleed>
       <div className="absolute w-[820px] h-[820px] rounded-full bg-[#004CE5]/[0.08] blur-[190px] left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 pointer-events-none z-0" />
@@ -80,17 +19,9 @@ export function Page_DazhongZhenpingDemo_A() {
         className="absolute inset-0 flex flex-col items-center justify-between z-10 animate-fadeIn"
         style={{ paddingTop: '48px', paddingBottom: '28px' }}
       >
-        {/* 放大后的视频框 */}
-        <div className="relative" style={{ width: '1760px', height: '820px' }}>
-          <VideoFrame radius={28} onPlayingChange={setPlaying} />
-
-          {/* 左上角：LIVE 角标（播放时隐藏） */}
-          {!playing && (
-            <div className="absolute top-6 left-6 z-20 flex items-center gap-3 px-5 py-2.5 rounded-full bg-black/55 backdrop-blur-md border border-white/15 pointer-events-none">
-              <span className="w-2.5 h-2.5 rounded-full bg-red-500 animate-pulse" />
-              <span className="text-[18px] font-bold text-white font-['MiSans'] tracking-wider">LIVE DEMO</span>
-            </div>
-          )}
+        {/* 放大后的视频框（比例 ≈1.983，与视频实际显示比例一致，不裁切画面） */}
+        <div className="relative" style={{ width: '1760px', height: '888px' }}>
+          <VideoFrame src={VIDEO_SRC} radius={28} liveBadge />
         </div>
 
         {/* 视频框底部：原大标题下沉为一句文字说明 */}
@@ -149,7 +80,7 @@ export function Page_DazhongZhenpingDemo_B() {
         {/* 右栏：视频框 */}
         <div className="flex-1 flex items-center">
           <div className="w-full" style={{ height: '675px' }}>
-            <VideoFrame radius={24} />
+            <VideoFrame src={VIDEO_SRC} radius={24} />
           </div>
         </div>
       </div>
@@ -168,7 +99,7 @@ export function Page_DazhongZhenpingDemo_C() {
     <SlideLayout title="大众真评系统 · 实时演示">
       <div className="absolute inset-0 z-10 animate-fadeIn" style={{ padding: '0' }}>
         <div className="relative w-full h-full">
-          <VideoFrame radius={32} showPlayHint={false} onPlayingChange={setPlaying} />
+          <VideoFrame src={VIDEO_SRC} radius={32} showPlayHint={false} onPlayingChange={setPlaying} />
 
           {/* 蓝色边角光效 */}
           <div className="absolute -top-20 -right-16 w-[520px] h-[520px] rounded-full bg-[#004CE5]/25 blur-[150px] pointer-events-none z-20" />

@@ -1,5 +1,10 @@
 import React from 'react';
 import SlideLayout from '../components/SlideLayout';
+import overview from '../data/geoOverview.json';
+
+const SCOPE = overview.scope;
+const fmtDate = (s) => (s ? s.replace(/-/g, '.') : '—');
+const fmtNum = (n) => (n === null || n === undefined ? '—' : n.toLocaleString('en-US'));
 
 function MontserratNum({ children, className = "" }) {
     return (
@@ -16,13 +21,13 @@ const CONFIG_ITEMS = [
         label: '监测词条',
         value: (
             <span>
-                共计 <MontserratNum className="font-extrabold text-[#004CE5]">120</MontserratNum> 项核心词条
+                共计 <MontserratNum className="font-extrabold text-[#004CE5]">{SCOPE.total_entries}</MontserratNum> 项核心词条
             </span>
         ),
         note: '/ 每日全频提问一次',
         detail: (
             <span>
-                已拆分为四类：品牌优化词 <MontserratNum className="font-semibold">20</MontserratNum> · 产品优化词 <MontserratNum className="font-semibold">60</MontserratNum> · 品牌监测词 <MontserratNum className="font-semibold">15</MontserratNum> · 产品监测词 <MontserratNum className="font-semibold">25</MontserratNum>
+                已拆分为四类：品类优化词 <MontserratNum className="font-semibold">{SCOPE.entry_breakdown.category_opt}</MontserratNum> · 产品优化词 <MontserratNum className="font-semibold">{SCOPE.entry_breakdown.product_opt}</MontserratNum> · 品类监测词 <MontserratNum className="font-semibold">{SCOPE.entry_breakdown.category_monitor}</MontserratNum> · 产品监测词 <MontserratNum className="font-semibold">{SCOPE.entry_breakdown.product_monitor}</MontserratNum>
             </span>
         ),
     },
@@ -30,10 +35,10 @@ const CONFIG_ITEMS = [
         label: '覆盖平台',
         value: (
             <span>
-                <MontserratNum className="font-extrabold text-[#004CE5]">4</MontserratNum> 个主流 AI 平台
+                <MontserratNum className="font-extrabold text-[#004CE5]">{SCOPE.platforms.length}</MontserratNum> 个主流 AI 平台
             </span>
         ),
-        tags: ['DeepSeek', '豆包', '元宝', '通义千问']
+        tags: SCOPE.platforms,
     },
 ];
 
@@ -103,9 +108,9 @@ export function Page_SkyworthReport_BasicInfo1() {
                                     周期范围
                                 </span>
                                 <p className="text-[22px] xl:text-[24px] text-zinc-300 leading-relaxed text-justify">
-                                    在 <strong className="text-white font-semibold"><MontserratNum>2026.06.01 – 2026.06.30</MontserratNum></strong>，围绕
-                                    <strong className="text-white font-semibold"> 创维电视-品牌与产品词条</strong> 数据监测工作按计划持续推进。累计执行周期
-                                    <strong className="text-white font-semibold"> <MontserratNum>30</MontserratNum> 天</strong>，覆盖 <MontserratNum className="font-semibold text-white">4</MontserratNum> 个主流 AI 平台（DeepSeek、豆包、元宝、通义千问）。
+                                    在 <strong className="text-white font-semibold"><MontserratNum>{fmtDate(SCOPE.start_date)} – {fmtDate(SCOPE.end_date)}</MontserratNum></strong>，围绕
+                                    <strong className="text-white font-semibold"> 创维电视-品牌与产品词条</strong> 数据监测工作按计划持续推进。各批词条已完成
+                                    <strong className="text-white font-semibold"> <MontserratNum>{SCOPE.days}</MontserratNum> 天</strong>全量采集，覆盖 <MontserratNum className="font-semibold text-white">{SCOPE.platforms.length}</MontserratNum> 个主流 AI 平台（{SCOPE.platforms.join('、')}）。
                                 </p>
                             </div>
 
@@ -115,10 +120,10 @@ export function Page_SkyworthReport_BasicInfo1() {
                                     指标详情
                                 </span>
                                 <p className="text-[22px] xl:text-[24px] text-zinc-300 leading-relaxed text-justify">
-                                    本周期共监测 <strong className="text-white font-semibold"><MontserratNum>120</MontserratNum></strong> 个关键词条，在 <strong className="text-white font-semibold"><MontserratNum>4</MontserratNum></strong> 个平台完成 <strong className="text-white font-semibold"><MontserratNum>30</MontserratNum></strong> 天连续查询，合计执行查询
-                                    <strong className="text-[#004CE5] font-extrabold text-[26px] xl:text-[30px]"><MontserratNum> 14,400 </MontserratNum></strong>次，
-                                    抓取并识别引用文章 <strong className="text-[#004CE5] font-extrabold text-[26px] xl:text-[30px]"><MontserratNum>3,268</MontserratNum></strong> 篇，
-                                    同期识别竞品品牌 <strong className="text-[#004CE5] font-extrabold text-[26px] xl:text-[30px]"><MontserratNum>46</MontserratNum></strong> 家，
+                                    本周期共监测 <strong className="text-white font-semibold"><MontserratNum>{SCOPE.total_entries}</MontserratNum></strong> 个关键词条，在 <strong className="text-white font-semibold"><MontserratNum>{SCOPE.platforms.length}</MontserratNum></strong> 个平台完成 <strong className="text-white font-semibold"><MontserratNum>{SCOPE.days}</MontserratNum></strong> 天连续查询，合计执行查询
+                                    <strong className="text-[#004CE5] font-extrabold text-[26px] xl:text-[30px]"><MontserratNum> {fmtNum(SCOPE.total_queries)} </MontserratNum></strong>次，
+                                    抓取并识别引用文章 <strong className="text-[#004CE5] font-extrabold text-[26px] xl:text-[30px]"><MontserratNum>{fmtNum(SCOPE.total_articles)}</MontserratNum></strong> 篇，
+                                    同期识别竞品品牌 <strong className="text-[#004CE5] font-extrabold text-[26px] xl:text-[30px]"><MontserratNum>{SCOPE.competitor_count}</MontserratNum></strong> 家，
                                     截图覆盖率达 <strong className="text-[#004CE5] font-extrabold text-[30px] xl:text-[34px]"><MontserratNum>100%</MontserratNum></strong>。各项数据指标均在预期执行范围内，整体运行稳定。
                                 </p>
                             </div>
@@ -165,12 +170,12 @@ function MetricCard({ title, value, unit, note, sparkId }) {
 
 export function Page_SkyworthReport_BasicInfo2() {
     const metrics = [
-        { title: '执行天数', value: '30', unit: '天', note: '连续监测周期' },
-        { title: '监测词条', value: '120', unit: '个', note: '四类词条合计' },
-        { title: '覆盖平台', value: '4', unit: '个', note: '主流 AI 平台' },
-        { title: '总查询', value: '14,400', unit: '次', note: '全平台累计' },
-        { title: '引用文章', value: '3,268', unit: '篇', note: '识别并抓取' },
-        { title: '识别竞品', value: '46', unit: '家', note: '同期出现品牌' },
+        { title: '执行天数', value: String(SCOPE.days), unit: '天', note: '连续监测周期' },
+        { title: '监测词条', value: String(SCOPE.total_entries), unit: '个', note: '四类词条合计' },
+        { title: '覆盖平台', value: String(SCOPE.platforms.length), unit: '个', note: '主流 AI 平台' },
+        { title: '总查询', value: fmtNum(SCOPE.total_queries), unit: '次', note: '全平台累计' },
+        { title: '引用文章', value: fmtNum(SCOPE.total_articles), unit: '篇', note: '识别并抓取' },
+        { title: '识别竞品', value: String(SCOPE.competitor_count), unit: '家', note: '同期出现品牌' },
     ];
 
     return (

@@ -1,5 +1,6 @@
 import React from 'react';
 import SlideLayout from '../components/SlideLayout';
+import overview from '../data/geoOverview.json';
 
 const FONT_IMPORT = `@import url('https://fonts.geekzu.org/css2?family=Montserrat:wght@400;500;600;700;800;900&display=swap');`;
 
@@ -11,7 +12,28 @@ function Num({ children, className = '' }) {
   );
 }
 
+const pct = (v) => (v === null || v === undefined ? '—' : `${v}%`);
+
 export function Page_SkyworthReport_CoreDataSelf() {
+  const cat = overview.category_opt;
+  const prodAvg = overview.product_opt_avg;
+
+  const rows = [
+    {
+      label: '品类优化词',
+      mention: cat.mention_rate,
+      top1: cat.top1_rate,
+      top3: cat.top3_rate,
+    },
+    {
+      label: '产品专属优化词',
+      sub: '(五款产品汇总)',
+      mention: prodAvg.mention_rate,
+      top1: prodAvg.top1_rate,
+      top3: prodAvg.top3_rate,
+    },
+  ];
+
   return (
     <SlideLayout fullBleed>
       <div className="w-full h-full flex flex-col relative text-white font-sans px-20 sm:px-28 py-16 overflow-hidden animate-fade-in bg-black">
@@ -37,47 +59,43 @@ export function Page_SkyworthReport_CoreDataSelf() {
                 </tr>
               </thead>
               <tbody>
-                <tr className="border-b border-white/20 hover:bg-white/[0.01] transition-colors duration-200">
-                  <td className="py-10 xl:py-12 pl-4 font-bold text-white text-[24px] xl:text-[26px] align-middle">
-                    品类优化词
-                  </td>
-                  <td className="py-10 xl:py-12 align-middle pl-6">
-                    <Num className="text-[64px] xl:text-[72px] font-extrabold text-white leading-none tracking-tight">73.6%</Num>
-                  </td>
-                  <td className="py-10 xl:py-12 align-middle pl-6">
-                    <Num className="text-[64px] xl:text-[72px] font-extrabold text-white leading-none tracking-tight">41.2%</Num>
-                  </td>
-                  <td className="py-10 xl:py-12 align-middle pl-6">
-                    <Num className="text-[64px] xl:text-[72px] font-extrabold text-white leading-none tracking-tight">63.5%</Num>
-                  </td>
-                </tr>
-                <tr className="hover:bg-white/[0.01] transition-colors duration-200">
-                  <td className="py-10 xl:py-12 pl-4 font-bold text-white text-[24px] xl:text-[26px] align-middle">
-                    <div className="flex flex-col">
-                      <span>产品专属优化词</span>
-                      <span className="text-[14px] xl:text-[16px] text-zinc-500 font-normal mt-1">(五款产品平均表现)</span>
-                    </div>
-                  </td>
-                  <td className="py-10 xl:py-12 align-middle pl-6">
-                    <Num className="text-[64px] xl:text-[72px] font-extrabold text-white leading-none tracking-tight">53.3%</Num>
-                  </td>
-                  <td className="py-10 xl:py-12 align-middle pl-6">
-                    <Num className="text-[64px] xl:text-[72px] font-extrabold text-white leading-none tracking-tight">19.5%</Num>
-                  </td>
-                  <td className="py-10 xl:py-12 align-middle pl-6">
-                    <Num className="text-[64px] xl:text-[72px] font-extrabold text-white leading-none tracking-tight">40.0%</Num>
-                  </td>
-                </tr>
+                {rows.map((row, i) => (
+                  <tr
+                    key={row.label}
+                    className={`${i < rows.length - 1 ? 'border-b border-white/20 ' : ''}hover:bg-white/[0.01] transition-colors duration-200`}
+                  >
+                    <td className="py-10 xl:py-12 pl-4 font-bold text-white text-[24px] xl:text-[26px] align-middle">
+                      {row.sub ? (
+                        <div className="flex flex-col">
+                          <span>{row.label}</span>
+                          <span className="text-[14px] xl:text-[16px] text-zinc-500 font-normal mt-1">{row.sub}</span>
+                        </div>
+                      ) : (
+                        row.label
+                      )}
+                    </td>
+                    <td className="py-10 xl:py-12 align-middle pl-6">
+                      <Num className="text-[64px] xl:text-[72px] font-extrabold text-white leading-none tracking-tight">{pct(row.mention)}</Num>
+                    </td>
+                    <td className="py-10 xl:py-12 align-middle pl-6">
+                      <Num className="text-[64px] xl:text-[72px] font-extrabold text-white leading-none tracking-tight">{pct(row.top1)}</Num>
+                    </td>
+                    <td className="py-10 xl:py-12 align-middle pl-6">
+                      <Num className="text-[64px] xl:text-[72px] font-extrabold text-white leading-none tracking-tight">{pct(row.top3)}</Num>
+                    </td>
+                  </tr>
+                ))}
               </tbody>
             </table>
           </div>
 
           {/* ===== 数据总结 ===== */}
+          {/* 注意：以下总结文案基于当前 geoOverview.json 数据撰写，重新采集数据后需人工同步更新 */}
           <div className="shrink-0 border-t border-white/10 pt-8 mt-6">
             <div className="flex items-start gap-6">
               <span className="text-[22px] xl:text-[24px] font-bold text-white shrink-0 bg-[#004CE5] px-5 py-2.5 rounded-xl shadow-[0_0_10px_rgba(0,76,229,0.3)]">数据总结</span>
               <p className="text-[22px] xl:text-[24px] text-zinc-200 leading-relaxed text-justify flex-1">
-                品牌层面，创维在品类大词的<strong className="text-white font-bold">提及率达 73.6%</strong>，AI 认知优势稳固，但 <strong className="text-white font-bold">TOP1 仅 41.2%</strong>，仍有近六成首推位被竞品分走。产品平均层面，五款重点产品平均提及率为 <strong className="text-[#60A5FA] font-bold">53.3%</strong>，平均 TOP1 仅为 <strong className="text-[#60A5FA] font-bold">19.5%</strong>，表明直接首推率（TOP1）仍有较大优化空间，亟需通过专属场景 and 长尾优化词的语料覆盖来拉升推荐精度。
+                品牌层面，创维在品类大词的<strong className="text-white font-bold">提及率为 59.4%</strong>，AI 已具备基础认知，但 <strong className="text-white font-bold">TOP1 仅 24.7%</strong>，超过七成首推位仍被竞品占据，首推转化是当前最大缺口。产品汇总层面，五款重点产品整体提及率为 <strong className="text-[#60A5FA] font-bold">35.5%</strong>，TOP1 仅为 <strong className="text-[#60A5FA] font-bold">15.5%</strong>，且各产品差异悬殊（A7H Pro 达 61.7%，Q7H 尚未被 AI 提及），亟需通过专属场景与长尾优化词的语料覆盖，整体拉升产品级的认知度与推荐精度。
               </p>
             </div>
           </div>

@@ -1,5 +1,8 @@
 import React from 'react';
 import SlideLayout from '../components/SlideLayout';
+import VideoFrame from '../components/VideoFrame';
+
+const VIDEO_SRC = '/videos/content-agent-demo.mp4';
 
 export default function Page_GeoWritingAgentIntro() {
   return (
@@ -40,35 +43,11 @@ export default function Page_GeoWritingAgentIntro() {
           </div>
         </div>
 
-        {/* ==================== 右栏：16:9 视频位 (留空 - 抵满 content top 和 bottom) ==================== */}
-        <div className="w-[1413px] h-full rounded-[32px] bg-black/60 border border-zinc-800/80 flex flex-col items-center justify-center gap-4 relative overflow-hidden shadow-[0_25px_60px_rgba(0,0,0,0.5)] shrink-0">
-          {/* 网格底纹 */}
-          <div
-            className="absolute inset-0 opacity-[0.05]"
-            style={{
-              backgroundImage:
-                'linear-gradient(rgba(255,255,255,0.4) 1px, transparent 1px), linear-gradient(90deg, rgba(255,255,255,0.4) 1px, transparent 1px)',
-              backgroundSize: '40px 40px',
-            }}
-          />
-          {/* 光晕 */}
-          <div className="absolute w-[500px] h-[500px] rounded-full bg-blue-600/5 blur-[120px] pointer-events-none" />
-
-          {/* 极简指示标记 */}
-          <div className="flex flex-col items-center gap-3 select-none z-10 opacity-30">
-            <svg xmlns="http://www.w3.org/2000/svg" width="64" height="64" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" className="text-zinc-500">
-              <rect x="2" y="2" width="20" height="20" rx="2.18" ry="2.18" />
-              <line x1="7" y1="2" x2="7" y2="22" />
-              <line x1="17" y1="2" x2="17" y2="22" />
-              <line x1="2" y1="12" x2="22" y2="12" />
-              <line x1="2" y1="7" x2="7" y2="7" />
-              <line x1="2" y1="17" x2="7" y2="17" />
-              <line x1="17" y1="17" x2="22" y2="17" />
-              <line x1="17" y1="7" x2="22" y2="7" />
-            </svg>
-            <span className="text-[20px] font-black text-zinc-500 font-['MiSans'] tracking-widest">
-              16:9 演示视频预留位
-            </span>
+        {/* ==================== 右栏：系统运行演示视频 ==================== */}
+        {/* 视频实际显示比例 ≈1.722（非方形像素），按满高 795px 配宽 1369px，不裁切画面 */}
+        <div className="w-[1413px] h-full shrink-0 flex justify-center">
+          <div className="w-[1369px] h-full">
+            <VideoFrame src={VIDEO_SRC} radius={32} liveBadge />
           </div>
         </div>
       </div>

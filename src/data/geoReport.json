@@ -1,6 +1,6 @@
 {
   "meta": {
-    "fetched_at": "2026-07-06T06:37:36.379Z",
+    "fetched_at": "2026-07-06T08:36:59.799Z",
     "api_base": "https://api.geotopone.com",
     "project_id": 316,
     "project_name": "品类优化词①",
@@ -1537,39 +1537,23 @@
     ],
     "position_ranking": [
       {
-        "brand_id": 58521,
-        "brand_name": "金画眉",
+        "brand_id": 110,
+        "brand_name": "海信",
         "product_id": null,
         "product_name": null,
-        "display_name": "金画眉",
-        "avg_position": 1,
+        "display_name": "海信",
+        "avg_position": 3.9,
+        "mention_count": 253,
         "is_target": false
       },
       {
-        "brand_id": 107,
-        "brand_name": "美的",
+        "brand_id": 9350,
+        "brand_name": "TCL",
         "product_id": null,
         "product_name": null,
-        "display_name": "美的",
-        "avg_position": 2,
-        "is_target": false
-      },
-      {
-        "brand_id": 39077,
-        "brand_name": "苏宁企业购",
-        "product_id": null,
-        "product_name": null,
-        "display_name": "苏宁企业购",
-        "avg_position": 3,
-        "is_target": false
-      },
-      {
-        "brand_id": 11251,
-        "brand_name": "卡萨帝",
-        "product_id": null,
-        "product_name": null,
-        "display_name": "卡萨帝",
-        "avg_position": 3.1,
+        "display_name": "TCL",
+        "avg_position": 4,
+        "mention_count": 244,
         "is_target": false
       },
       {
@@ -1578,8 +1562,29 @@
         "product_id": null,
         "product_name": null,
         "display_name": "创维",
-        "avg_position": 3.5,
+        "avg_position": 4.2,
+        "mention_count": 221,
         "is_target": true
+      },
+      {
+        "brand_id": 216,
+        "brand_name": "三星",
+        "product_id": null,
+        "product_name": null,
+        "display_name": "三星",
+        "avg_position": 4.8,
+        "mention_count": 128,
+        "is_target": false
+      },
+      {
+        "brand_id": 45492,
+        "brand_name": "雷鸟",
+        "product_id": null,
+        "product_name": null,
+        "display_name": "雷鸟",
+        "avg_position": 4.9,
+        "mention_count": 110,
+        "is_target": false
       }
     ],
     "rate_daily": [
@@ -1595,11 +1600,11 @@
     "position_daily": [
       {
         "date": "2026-07-03",
-        "金画眉": 1,
-        "美的": 2,
-        "苏宁企业购": 3,
-        "卡萨帝": 3.1,
-        "创维": 3.5
+        "海信": 3.9,
+        "TCL": 4,
+        "创维": 4.2,
+        "三星": 4.8,
+        "雷鸟": 4.9
       }
     ],
     "top1_ranking": [
