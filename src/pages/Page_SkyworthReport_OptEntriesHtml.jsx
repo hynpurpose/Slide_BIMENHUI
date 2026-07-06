@@ -39,8 +39,8 @@ function ScreenshotThumb({ src }) {
 
 const fmtDate = (iso) => new Date(iso).toLocaleDateString('zh-CN');
 
-/* 版面只放得下一页，与网页第一页一致：按提及率降序取前 15 条 */
-const PAGE_SIZE = 15;
+/* 版面只放得下一页：按提及率降序取前 14 条 */
+const PAGE_SIZE = 14;
 
 export function Page_SkyworthReport_OptEntriesHtml() {
   const { meta, platforms, entries } = report;
@@ -74,19 +74,20 @@ export function Page_SkyworthReport_OptEntriesHtml() {
 
   return (
     <SlideLayout fullBleed>
-      <GeoWebFrame slideTitle="优化词 · 词条表现分析" pageTitle="词条" meta={meta} toolbarExtra={toolbarExtra} zoom={0.84}>
+      <GeoWebFrame slideTitle="优化词 · 词条表现分析" pageTitle="词条" meta={meta} toolbarExtra={toolbarExtra} zoom={0.92}>
         <div className="overflow-hidden rounded-md border" style={{ borderColor: C.border }}>
           <table className="w-full table-fixed caption-bottom text-sm">
             <thead>
+              {/* 列宽按原截图比例：词条约32%，其余列 10%~15% */}
               <tr className="h-12 border-b" style={{ borderColor: C.border }}>
-                <th className={`${th} !w-[40px] !p-0 !px-2 text-center`}><Checkbox /></th>
-                <th className={`${th} !w-[50px] !p-0 !px-2 text-center`}></th>
+                <th className={`${th} w-[4%] !p-0 !px-2 text-center`}><Checkbox /></th>
+                <th className={`${th} w-[4%] !p-0 !px-2 text-center`}></th>
                 <th className={`${th} ps-4 text-left`} style={{ color: C.fg }}>词条</th>
-                <th className={`${th} w-[120px] text-center`} style={{ color: C.fg }}>提及率</th>
-                <th className={`${th} w-[130px] text-center`} style={{ color: C.fg }}>平均提及位次</th>
-                <th className={`${th} w-[110px] text-center`} style={{ color: C.fg }}>监测平台</th>
-                <th className={`${th} w-[120px] text-center`} style={{ color: C.fg }}>会话截图</th>
-                <th className={`${th} w-[160px] text-center`} style={{ color: C.fg }}>最近更新时间</th>
+                <th className={`${th} w-[11%] text-center`} style={{ color: C.fg }}>提及率</th>
+                <th className={`${th} w-[13%] text-center`} style={{ color: C.fg }}>平均提及位次</th>
+                <th className={`${th} w-[11%] text-center`} style={{ color: C.fg }}>监测平台</th>
+                <th className={`${th} w-[12%] text-center`} style={{ color: C.fg }}>会话截图</th>
+                <th className={`${th} w-[15%] text-center`} style={{ color: C.fg }}>最近更新时间</th>
               </tr>
             </thead>
             <tbody>
