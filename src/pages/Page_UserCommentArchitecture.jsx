@@ -2,9 +2,9 @@ import React from 'react';
 import SlideLayout from '../components/SlideLayout';
 
 /* ============================================================
- * 复刻自 J:\GEO\Fake_App 的真实 UI 资源
- * 设计系统、导航图标、SVG 图表算法、评论卡片均取自项目源码，
- * 用来在幻灯片里「搭」出真实产品界面与数据流，而非贴截图。
+ * 版本 A 复刻自 J:\GEO\Fake_App 的真实 UI 资源
+ * （设计系统、导航图标、SVG 图表算法、评论卡片均取自项目源码）
+ * 版本 B 使用项目真实界面截图。
  * ============================================================ */
 
 // —— 真实设计系统配色（src/index.css）——
@@ -17,7 +17,6 @@ const C = {
   text: '#f8fafc',
   sub: '#a1a1aa',
   tertiary: '#71717a',
-  faint: '#3f3f46',
   accent: '#6366f1',
   accentSoft: 'rgba(99,102,241,0.1)',
   accentLine: 'rgba(99,102,241,0.25)',
@@ -105,30 +104,8 @@ function SentimentRing({ size = 200, thickness = 18, fractions, centerTop, cente
   );
 }
 
-// —— 卖点四维雷达（复刻 Radar）——
-function Radar({ size = 200, axes, values, color = C.accent, levels = 4 }) {
-  const cx = size / 2;
-  const cy = size / 2;
-  const r = size / 2 - 30;
-  const n = axes.length;
-  const pt = (i, frac) => polar(cx, cy, r * frac, (360 / n) * i);
-  const toPath = (pts) => pts.map((p, i) => `${i === 0 ? 'M' : 'L'} ${p.x} ${p.y}`).join(' ') + ' Z';
-  const dataPts = values.map((v, i) => pt(i, v));
-  return (
-    <svg width={size} height={size} style={{ display: 'block', overflow: 'visible' }}>
-      {Array.from({ length: levels }).map((_, l) => (
-        <polygon key={l} points={axes.map((_, i) => { const p = pt(i, (l + 1) / levels); return `${p.x},${p.y}`; }).join(' ')} fill="none" stroke={C.line} strokeWidth={1} />
-      ))}
-      {axes.map((_, i) => { const p = pt(i, 1); return <line key={i} x1={cx} y1={cy} x2={p.x} y2={p.y} stroke={C.line} strokeWidth={1} />; })}
-      <path d={toPath(dataPts)} fill={color} fillOpacity={0.12} stroke={color} strokeWidth={2} strokeLinejoin="round" />
-      {dataPts.map((p, i) => <circle key={i} cx={p.x} cy={p.y} r={3} fill={color} />)}
-      {axes.map((label, i) => { const p = pt(i, 1.22); return <text key={label} x={p.x} y={p.y} textAnchor="middle" dominantBaseline="middle" fontSize={13} fontWeight={500} fill={C.sub}>{label}</text>; })}
-    </svg>
-  );
-}
-
 // —— 真实侧边栏（复刻 Sidebar）——
-function SidebarMock({ active = '刷评识别' }) {
+function SidebarMock({ active = '数据总览' }) {
   return (
     <div style={{ width: 300, flexShrink: 0, display: 'flex', flexDirection: 'column', background: C.elevated, borderRadius: 20, border: `1px solid ${C.line}`, overflow: 'hidden' }}>
       <div style={{ padding: '22px 20px 16px', display: 'flex', alignItems: 'center', gap: 12 }}>
@@ -193,29 +170,29 @@ function CommentCardMock() {
 
 const FRACTIONS = { positive: 0.49, negative: 0.04, fake: 0.21, invalid: 0.26 };
 
-const RightArrow = ({ small }) => (
-  <div className="flex items-center shrink-0">
-    <svg className={small ? 'w-6 h-6' : 'w-8 h-8'} style={{ color: C.accent }} fill="none" viewBox="0 0 24 24" stroke="currentColor">
-      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2.5} d="M9 5l7 7-7 7" />
-    </svg>
-  </div>
-);
+// —— 系统分析工作流（业务视角：评论 → 洞察）——
+const WORKFLOW = [
+  { t: '采集真实评论', d: '从淘宝 / 京东商品页抓取海量用户评论' },
+  { t: 'AI 情感四分类', d: '逐条判定 好评 / 差评 / 疑似刷评 / 无效' },
+  { t: '刷评识别与净化', d: '可疑评论标注判定依据，剔除水军与噪声' },
+  { t: '多维口碑拆解', d: '按 功能 / 质量 / 颜值 / 服务 归类，聚合 VOC、词云、趋势' },
+  { t: '输出决策洞察', d: '10 个视图呈现，可按商品筛选下钻', out: true },
+];
 
 /* ============================================================
- * 版本 A — 真实界面复刻 + 架构解说
- * 左侧「搭」出真实应用窗口（侧边栏 + 数据总览主区），右侧讲三层运行逻辑。
+ * 版本 A — 真实界面复刻 + 分析工作流
+ * 左侧「搭」出真实应用窗口，右侧讲这个系统如何把评论变成洞察。
  * ============================================================ */
 export function Page_UserCommentArchitecture_A() {
   return (
     <SlideLayout title="用户真评引擎架构">
       <div className="absolute top-[5px] left-0 w-full text-[22px] text-zinc-400 font-medium font-['MiSans'] leading-relaxed">
-        一套<span className="text-white font-bold">纯前端、零后端</span>的评论分析系统 —— 左为真实产品界面，右为它<span className="text-white font-bold">如何运行</span>。
+        左为系统真实界面，右为它<span className="text-white font-bold">如何工作</span> —— 把海量电商评论，一步步变成可决策的口碑洞察。
       </div>
 
       <div className="absolute left-0 top-[50px] w-full h-[740px] flex gap-6 font-['MiSans'] select-none">
         {/* 左：应用窗口复刻 */}
         <div className="flex-1 min-w-0 rounded-2xl overflow-hidden" style={{ background: C.bg, border: `1px solid ${C.lineStrong}`, boxShadow: '0 24px 60px rgba(0,0,0,0.8)' }}>
-          {/* 窗口标题栏 */}
           <div className="flex items-center gap-3 px-5" style={{ height: 46, background: C.elevated, borderBottom: `1px solid ${C.line}` }}>
             <div className="flex gap-2">
               <span className="w-3 h-3 rounded-full" style={{ background: '#ff5f57' }} />
@@ -225,12 +202,10 @@ export function Page_UserCommentArchitecture_A() {
             <div className="mx-auto px-4 py-1 rounded-md text-[13px]" style={{ background: C.inset, color: C.tertiary, fontFamily: 'Montserrat' }}>localhost:5654</div>
           </div>
 
-          {/* 窗口主体：侧边栏 + 主区 */}
           <div className="flex gap-5 p-5" style={{ height: 'calc(100% - 46px)' }}>
             <SidebarMock active="数据总览" />
 
             <div className="flex-1 min-w-0 flex flex-col gap-4">
-              {/* PageHeader */}
               <div className="flex items-end justify-between pb-3.5" style={{ borderBottom: `1px solid ${C.line}` }}>
                 <div>
                   <div style={{ fontSize: 12.5, fontWeight: 600, letterSpacing: '0.08em', color: C.tertiary }}>OVERVIEW</div>
@@ -242,7 +217,6 @@ export function Page_UserCommentArchitecture_A() {
                 </div>
               </div>
 
-              {/* 情感四分类 KPI */}
               <div className="grid grid-cols-4 gap-3 shrink-0">
                 {SENT_ORDER.map((k) => (
                   <div key={k} className="rounded-2xl px-4 py-4" style={{ background: C.elevated, border: `1px solid ${C.line}` }}>
@@ -254,7 +228,6 @@ export function Page_UserCommentArchitecture_A() {
                 ))}
               </div>
 
-              {/* 情感环 + 刷评卡 */}
               <div className="flex-1 flex gap-4 min-h-0">
                 <div className="rounded-2xl p-5 flex flex-col" style={{ background: C.elevated, border: `1px solid ${C.line}`, width: 320 }}>
                   <div style={{ fontSize: 16, fontWeight: 700, color: C.text }}>情感四分类分布</div>
@@ -280,40 +253,28 @@ export function Page_UserCommentArchitecture_A() {
           </div>
         </div>
 
-        {/* 右：三层运行逻辑 */}
-        <div className="w-[600px] shrink-0 flex flex-col gap-4">
+        {/* 右：系统如何工作（分析工作流） */}
+        <div className="w-[600px] shrink-0 flex flex-col gap-3">
           <div className="text-[22px] font-bold text-white flex items-center gap-2.5 shrink-0">
             <span className="w-1.5 h-6 rounded-full" style={{ background: C.accent }} />
-            系统怎么运行
+            这个系统怎么工作
           </div>
-
-          {[
-            { n: '①', t: '数据层', en: 'DATA', items: ['extract-data.mjs 离线管线', 'Excel 解析 · 清洗去伪 · 情感映射 · 聚合', '产出 dataset.json 静态数据集，随构建打包'] },
-            { n: '②', t: '逻辑层', en: 'LOGIC', core: true, items: ['StoreProvider 全局商品筛选范围', 'useScoped() 按范围实时派生数据', 'data.ts 统计 · lexicon.ts 词典匹配'] },
-            { n: '③', t: '视图层', en: 'VIEW', items: ['React Router · 10 个分析路由', '手写 SVG 图表：情感环 / 雷达 / 面积图', 'ModalProvider 弹窗 · Framer Motion 动画'] },
-          ].map((s) => (
-            <div key={s.t} className="flex-1 rounded-2xl p-5 flex flex-col justify-center" style={{ background: s.core ? C.accentSoft : C.elevated, border: `1px solid ${s.core ? C.accentLine : C.line}` }}>
-              <div className="flex items-center gap-3 mb-3">
-                <span style={{ fontSize: 26, fontWeight: 800, color: C.accent, fontFamily: 'Montserrat' }}>{s.n}</span>
-                <span style={{ fontSize: 23, fontWeight: 700, color: '#fff' }}>{s.t}</span>
-                <span style={{ fontSize: 14, fontWeight: 800, color: 'rgba(255,255,255,0.18)', fontFamily: 'Montserrat', letterSpacing: '0.2em', marginLeft: 'auto' }}>{s.en}</span>
+          {WORKFLOW.map((s, i) => (
+            <React.Fragment key={s.t}>
+              <div className="flex-1 rounded-2xl px-5 flex items-center gap-4" style={{ background: s.out ? C.accentSoft : C.elevated, border: `1px solid ${s.out ? C.accentLine : C.line}` }}>
+                <span className="shrink-0 flex items-center justify-center rounded-full" style={{ width: 46, height: 46, background: s.out ? C.accent : C.inset, color: s.out ? '#fff' : C.accent, fontSize: 21, fontWeight: 800, fontFamily: 'Montserrat' }}>{i + 1}</span>
+                <div className="min-w-0">
+                  <div style={{ fontSize: 22, fontWeight: 700, color: '#fff' }}>{s.t}</div>
+                  <div style={{ fontSize: 16, color: C.sub, marginTop: 3, lineHeight: 1.4 }}>{s.d}</div>
+                </div>
               </div>
-              <div className="flex flex-col gap-1.5">
-                {s.items.map((it, i) => (
-                  <div key={i} className="flex items-start gap-2.5" style={{ fontSize: 16, color: C.sub, lineHeight: 1.45 }}>
-                    <span className="mt-2 w-1.5 h-1.5 rounded-full shrink-0" style={{ background: C.accent }} />
-                    <span>{it}</span>
-                  </div>
-                ))}
-              </div>
-            </div>
+              {i < WORKFLOW.length - 1 && (
+                <div className="flex justify-center shrink-0" style={{ margin: '-3px 0' }}>
+                  <svg className="w-6 h-6" style={{ color: C.accent }} fill="none" viewBox="0 0 24 24" stroke="currentColor"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2.5} d="M19 9l-7 7-7-7" /></svg>
+                </div>
+              )}
+            </React.Fragment>
           ))}
-
-          <div className="shrink-0 flex flex-wrap gap-2">
-            {['React 18', 'TypeScript', 'Vite', 'React Router', 'Framer Motion', '纯手写 SVG', '零后端 · 可离线'].map((t) => (
-              <span key={t} style={{ fontSize: 14, fontWeight: 600, color: C.sub, background: C.inset, border: `1px solid ${C.line}`, padding: '5px 12px', borderRadius: 999 }}>{t}</span>
-            ))}
-          </div>
         </div>
       </div>
     </SlideLayout>
@@ -321,92 +282,60 @@ export function Page_UserCommentArchitecture_A() {
 }
 
 /* ============================================================
- * 版本 B — 数据流逻辑图（真实图表作为输出节点）
- * 上：构建时 → 运行时 数据流水线；下：视图层用真实 SVG 组件呈现。
+ * 版本 B — 真实界面截图（少文字，说明系统由哪些模块构成）
+ * 一个总览入口 + 多个深度分析模块，共享同一份评论数据。
  * ============================================================ */
+const MODULES = [
+  { src: '/user-comment/compare.png', label: '商品横向对比' },
+  { src: '/user-comment/sentiment.png', label: '好评 / 差评分布' },
+  { src: '/user-comment/voices.png', label: '用户之声 VOC' },
+  { src: '/user-comment/dimensions.png', label: '卖点维度' },
+  { src: '/user-comment/wordcloud.png', label: '关键词云' },
+  { src: '/user-comment/fake.png', label: '刷评识别', hot: true },
+];
+
 export function Page_UserCommentArchitecture_B() {
-  const buildFlow = [
-    { t: '电商评论源', d: 'Excel · 汇总表 + 明细', mono: false },
-    { t: 'extract-data.mjs', d: '清洗 · 情感映射 · 聚合', mono: true },
-    { t: 'dataset.json', d: '静态数据集，打包进前端', mono: true },
-    { t: 'StoreProvider + useScoped', d: '全局筛选 · 按范围派生数据', mono: true },
-  ];
   return (
     <SlideLayout title="用户真评引擎架构">
       <div className="absolute top-[5px] left-0 w-full text-[22px] text-zinc-400 font-medium font-['MiSans'] leading-relaxed">
-        原始评论经<span className="text-white font-bold">离线管线</span>加工为静态数据集，浏览器内的 React 状态层按需派生，最终由<span className="text-white font-bold">手写 SVG 组件</span>呈现。
+        同一份电商评论数据，拆解为 <span className="text-white font-bold">10 个分析视图</span> —— 一个总览入口，多个深度分析模块。
       </div>
 
-      <div className="absolute left-0 top-[50px] w-full h-[740px] rounded-3xl p-8 font-['MiSans'] select-none flex flex-col gap-6" style={{ background: C.elevated, border: `1px solid ${C.lineStrong}` }}>
-        <div className="absolute -top-4 right-8 bg-black px-4 py-1 flex items-center gap-2.5">
-          <div className="w-3 h-3 rounded-full" style={{ background: C.accent, boxShadow: `0 0 10px ${C.accent}` }} />
-          <span className="text-[24px] font-bold text-white tracking-wider">数据流</span>
+      <div className="absolute left-0 top-[50px] w-full h-[740px] flex gap-6 font-['MiSans'] select-none">
+        {/* 左：总览主界面大图 */}
+        <div className="w-[760px] shrink-0 flex flex-col">
+          <div className="flex items-center gap-2.5 mb-3 shrink-0">
+            <span className="text-[15px] font-bold text-white bg-[#6366f1] px-3 py-1 rounded-md">入口</span>
+            <span className="text-[22px] font-bold text-white">数据总览</span>
+            <span className="text-[17px] text-zinc-500">全局 KPI · 可信度 · 商品对比</span>
+          </div>
+          <div className="flex-1 rounded-2xl overflow-hidden border border-white/15 bg-black shadow-[0_24px_60px_-15px_rgba(0,0,0,0.8)]">
+            <img src="/user-comment/overview.png" alt="数据总览" className="w-full h-full object-cover object-top" draggable={false} />
+          </div>
         </div>
 
-        {/* 上：数据流水线 */}
-        <div className="shrink-0">
-          <div style={{ fontSize: 18, fontWeight: 700, color: C.sub, marginBottom: 14 }} className="flex items-center gap-2.5">
-            <span className="w-1.5 h-5 rounded-full" style={{ background: C.tertiary }} />
-            数据流水线 · 构建时（离线）→ 运行时（浏览器内）
+        {/* 右：深度分析模块网格 */}
+        <div className="flex-1 min-w-0 flex flex-col">
+          <div className="flex items-center gap-2.5 mb-3 shrink-0">
+            <span className="w-1.5 h-6 rounded-full bg-[#6366f1]" />
+            <span className="text-[22px] font-bold text-white">深度分析模块</span>
+            <span className="text-[17px] text-zinc-500">同源下钻 · 从不同角度剖析口碑</span>
           </div>
-          <div className="flex items-stretch gap-3">
-            {buildFlow.map((s, i) => (
-              <React.Fragment key={s.t}>
-                <div className="flex-1 rounded-2xl px-5 py-4 flex flex-col justify-center" style={{ background: i === buildFlow.length - 1 ? C.accentSoft : C.bg, border: `1px solid ${i === buildFlow.length - 1 ? C.accentLine : C.line}` }}>
-                  <div style={{ fontSize: 19, fontWeight: 700, color: '#fff', fontFamily: s.mono ? 'Montserrat' : undefined, letterSpacing: s.mono ? '-0.01em' : undefined }}>{s.t}</div>
-                  <div style={{ fontSize: 14.5, color: C.tertiary, marginTop: 4 }}>{s.d}</div>
+          <div className="flex-1 grid grid-cols-3 grid-rows-2 gap-4 min-h-0">
+            {MODULES.map((m) => (
+              <div
+                key={m.src}
+                className="relative rounded-xl overflow-hidden border bg-black shadow-lg"
+                style={{ borderColor: m.hot ? 'rgba(245,158,11,0.6)' : 'rgba(255,255,255,0.12)' }}
+              >
+                <img src={m.src} alt={m.label} className="w-full h-full object-cover object-top" draggable={false} />
+                <div className="absolute bottom-0 inset-x-0 flex items-center gap-2 bg-gradient-to-t from-black/90 to-transparent px-3 pt-5 pb-2">
+                  {m.hot && <span className="w-2 h-2 rounded-full" style={{ background: SENT.fake.c }} />}
+                  <span className="text-[15px] font-bold text-white/95">{m.label}</span>
+                  {m.hot && <span className="text-[12px] font-bold text-[#f59e0b] bg-[#f59e0b]/15 px-2 py-0.5 rounded-full ml-auto">核心差异</span>}
                 </div>
-                {i < buildFlow.length - 1 && <RightArrow small />}
-              </React.Fragment>
+              </div>
             ))}
-          </div>
-        </div>
-
-        <div className="flex items-center gap-4 shrink-0">
-          <div className="flex-1 h-px" style={{ background: C.line }} />
-          <span style={{ fontSize: 15, color: C.tertiary }}>渲染到视图层 · 10 路由共享同一份派生数据</span>
-          <div className="flex-1 h-px" style={{ background: C.line }} />
-        </div>
-
-        {/* 下：视图层真实组件 */}
-        <div className="flex-1 min-h-0 flex flex-col">
-          <div style={{ fontSize: 18, fontWeight: 700, color: C.sub, marginBottom: 14 }} className="flex items-center gap-2.5">
-            <span className="w-1.5 h-5 rounded-full" style={{ background: C.accent }} />
-            视图层 · 手写 SVG 可视化 + 评论卡片（真实组件）
-          </div>
-          <div className="flex-1 grid grid-cols-3 gap-5 min-h-0">
-            {/* 情感环 */}
-            <div className="rounded-2xl p-5 flex flex-col" style={{ background: C.bg, border: `1px solid ${C.line}` }}>
-              <div style={{ fontSize: 17, fontWeight: 700, color: C.text }}>情感四分类环</div>
-              <div style={{ fontSize: 13.5, color: C.tertiary, marginTop: 2 }}>好评 / 差评 / 疑似刷评 / 无效</div>
-              <div className="flex-1 flex items-center justify-center">
-                <SentimentRing size={196} fractions={FRACTIONS} centerTop="四分类" />
-              </div>
-              <div className="flex flex-wrap gap-x-4 gap-y-1.5">
-                {SENT_ORDER.map((k) => (
-                  <div key={k} className="flex items-center gap-2">
-                    <span className="w-2.5 h-2.5 rounded-sm" style={{ background: SENT[k].c }} />
-                    <span style={{ fontSize: 13, color: C.sub }}>{SENT[k].label}</span>
-                  </div>
-                ))}
-              </div>
-            </div>
-
-            {/* 雷达 */}
-            <div className="rounded-2xl p-5 flex flex-col" style={{ background: C.bg, border: `1px solid ${C.line}` }}>
-              <div style={{ fontSize: 17, fontWeight: 700, color: C.text }}>卖点四维雷达</div>
-              <div style={{ fontSize: 13.5, color: C.tertiary, marginTop: 2 }}>长评归类拆解</div>
-              <div className="flex-1 flex items-center justify-center">
-                <Radar size={224} axes={['功能', '质量', '颜值', '服务']} values={[0.86, 0.72, 0.92, 0.6]} />
-              </div>
-            </div>
-
-            {/* 评论卡 */}
-            <div className="rounded-2xl p-5 flex flex-col" style={{ background: C.bg, border: `1px solid ${C.line}` }}>
-              <div style={{ fontSize: 17, fontWeight: 700, color: C.text }}>刷评识别评论卡</div>
-              <div style={{ fontSize: 13.5, color: C.tertiary, marginTop: 2, marginBottom: 12 }}>判定依据与原文同框</div>
-              <CommentCardMock />
-            </div>
           </div>
         </div>
       </div>
