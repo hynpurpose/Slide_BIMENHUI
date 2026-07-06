@@ -175,14 +175,14 @@ export default function Page_SkyworthContentStrategyDeconstruct() {
             </div>
           </div>
 
-          {/* ── 右边：撰写内容 (70%由人工撰写) ── */}
-          <div className="w-[20%] flex justify-end items-center relative z-20 shrink-0 pr-[88px]">
-            <div className="w-[220px] h-[220px] bg-white/[0.02] rounded-full border border-white/10 backdrop-blur-xl flex flex-col items-center justify-center shadow-[0_0_40px_rgba(0,76,229,0.1)] relative">
+          {/* ── 右边：撰写内容 (70%由人工撰写) (整体圈子和字号放大) ── */}
+          <div className="w-[22%] flex justify-end items-center relative z-20 shrink-0 pr-[48px]">
+            <div className="w-[280px] h-[280px] bg-white/[0.02] rounded-full border border-white/10 backdrop-blur-xl flex flex-col items-center justify-center shadow-[0_0_50px_rgba(0,76,229,0.15)] relative">
               {/* Inner Circle */}
-              <div className="w-[180px] h-[180px] bg-white/[0.03] rounded-full flex flex-col items-center justify-center border border-white/10 shadow-inner p-4 text-center group cursor-default transition-all duration-300 hover:bg-white/[0.06] hover:border-white/20 hover:shadow-[0_0_30px_rgba(0,76,229,0.2)]">
-                <PenTool className="text-[#004CE5] mb-2 group-hover:scale-110 transition-transform duration-500 stroke-[1.5px]" size={36} />
-                <span className="text-white font-black text-[23px] tracking-widest mb-1.5">撰写内容</span>
-                <span className="text-white/60 font-medium text-[13px] tracking-wide leading-tight">70%由人工撰写</span>
+              <div className="w-[240px] h-[240px] bg-white/[0.03] rounded-full flex flex-col items-center justify-center border border-white/10 shadow-inner p-4 text-center group cursor-default transition-all duration-300 hover:bg-white/[0.06] hover:border-white/20 hover:shadow-[0_0_40px_rgba(0,76,229,0.25)]">
+                <PenTool className="text-[#004CE5] mb-4 group-hover:scale-110 transition-transform duration-500 stroke-[1.5px]" size={52} />
+                <span className="text-white font-black text-[32px] tracking-widest mb-2.5">撰写内容</span>
+                <span className="text-white/70 font-bold text-[18px] tracking-wide leading-tight">70%由人工撰写</span>
               </div>
               {/* Decorative Rings */}
               <div className="absolute inset-[-10px] rounded-full border border-[#004CE5]/20 opacity-50 animate-[spin_12s_linear_infinite] border-t-[#004CE5]/60 pointer-events-none"></div>
