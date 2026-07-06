@@ -86,17 +86,17 @@ export default function Page_SkyworthContentDirection() {
         className="absolute w-[1840px] select-none animate-fadeIn flex justify-between items-stretch"
         style={{ top: '0px', height: '795px' }}
       >
-        {/* ==================== 1. 数据采集板块 (460px) ==================== */}
-        <div className="w-[460px] h-full bg-zinc-950/20 border border-zinc-900 rounded-[24px] p-6 flex flex-col justify-between shadow-lg">
+        {/* ==================== 1. 数据采集板块 (460px，白底黑字) ==================== */}
+        <div className="w-[460px] h-full bg-white border border-zinc-200 rounded-[24px] p-6 flex flex-col justify-between shadow-[0_10px_30px_rgba(0,0,0,0.15)] relative overflow-hidden group hover:border-blue-500/20 transition-colors">
           <div className="shrink-0 mb-4">
-            <h3 className="text-[28px] font-black text-white font-['MiSans']">
+            <h3 className="text-[28px] font-black text-zinc-900 font-['MiSans']">
               1. 数据采集：AI 引用电视文章源
             </h3>
           </div>
 
           {/* 表格区域 */}
-          <div className="flex-grow overflow-hidden flex flex-col bg-black/40 rounded-xl border border-zinc-900 p-3">
-            <div className="flex items-center text-[12px] font-bold text-zinc-500 border-b border-zinc-900 pb-1.5 px-1 shrink-0">
+          <div className="flex-grow overflow-hidden flex flex-col bg-zinc-50/50 rounded-xl border border-zinc-200/60 p-3">
+            <div className="flex items-center text-[12px] font-bold text-zinc-400 border-b border-zinc-200 pb-1.5 px-1 shrink-0">
               <span className="w-8">排名</span>
               <span className="flex-grow">引用文章标题</span>
               <span className="w-16 text-right">文章分类</span>
@@ -106,10 +106,10 @@ export default function Page_SkyworthContentDirection() {
               {mockArticles.map((art, idx) => (
                 <div 
                   key={idx} 
-                  className="flex items-center h-[24px] text-[13px] border-b border-zinc-900/20 px-1 hover:bg-white/[0.01]"
+                  className="flex items-center h-[24px] text-[13px] border-b border-zinc-100/50 px-1 hover:bg-zinc-100/40"
                 >
-                  <span className="w-8 font-['Montserrat'] text-zinc-600 font-bold">{art.rank}</span>
-                  <span className="flex-grow truncate text-zinc-400 font-medium pr-3">{art.title}</span>
+                  <span className="w-8 font-['Montserrat'] text-zinc-400 font-bold">{art.rank}</span>
+                  <span className="flex-grow truncate text-zinc-750 font-bold pr-3">{art.title}</span>
                   <span className="w-16 text-right text-[11px] text-zinc-500 font-semibold shrink-0">
                     {art.category.replace('类', '')}
                   </span>
@@ -117,8 +117,8 @@ export default function Page_SkyworthContentDirection() {
               ))}
             </div>
 
-            <div className="pt-2 text-center text-zinc-500 text-[14px] font-bold shrink-0 border-t border-zinc-900 mt-1 flex items-center justify-center gap-1.5">
-              <span className="w-1 h-1 rounded-full bg-zinc-600 animate-pulse" />
+            <div className="pt-2 text-center text-zinc-400 text-[14px] font-bold shrink-0 border-t border-zinc-200 mt-1 flex items-center justify-center gap-1.5">
+              <span className="w-1 h-1 rounded-full bg-zinc-400 animate-pulse" />
               <span>共 <span className="font-['Montserrat'] text-zinc-400 font-bold">200</span> 篇高权威引用数据</span>
             </div>
           </div>
