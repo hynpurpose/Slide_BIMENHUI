@@ -72,23 +72,24 @@ export function Page_SkyworthReport_OptCompetitorHtml() {
     </>
   );
 
+  /* 白底排名卡：样式参照 GEO Web 竞品对比页（rank-badge.tsx 金银铜徽章 + shadcn 表格） */
   const renderTable = (title, headers, data) => {
     return (
       <div className="flex flex-col gap-2.5 h-full min-h-0">
-        <h3 className="text-[18px] xl:text-[20px] font-bold text-white shrink-0 flex items-center gap-2">
-          <span className="w-1.5 h-4.5 bg-[#004CE5] rounded-full shadow-[0_0_8px_rgba(0,76,229,0.8)]" />
+        <h3 className="text-[22px] xl:text-[24px] font-bold text-white shrink-0 flex items-center gap-2">
+          <span className="w-1.5 h-5 bg-[#004CE5] rounded-full shadow-[0_0_8px_rgba(0,76,229,0.8)]" />
           {title}
         </h3>
-        <div className="flex-grow rounded-2xl border border-white/[0.08] bg-white/[0.02] backdrop-blur-xl shadow-[0_8px_32px_rgba(0,0,0,0.37)] overflow-hidden flex flex-col p-4">
+        <div className="flex-grow rounded-2xl bg-white shadow-[0_8px_32px_rgba(0,0,0,0.45),0_0_0_1px_rgba(255,255,255,0.08)] overflow-hidden flex flex-col p-4">
           {data.length === 0 ? (
-            <div className="flex-grow flex items-center justify-center text-zinc-500 text-sm">暂无数据</div>
+            <div className="flex-grow flex items-center justify-center text-slate-400 text-sm">暂无数据</div>
           ) : (
             <table className="w-full text-left border-collapse table-fixed flex-grow h-full">
               <thead>
-                <tr className="border-b border-white/[0.08] bg-white/[0.03]">
+                <tr className="border-b border-slate-200">
                   <th className="py-2.5 px-3 w-[20%]"></th>
-                  <th className="py-2.5 px-2 text-[14px] xl:text-[15px] font-bold text-zinc-400 w-[50%] tracking-wider">{headers[0]}</th>
-                  <th className="py-2.5 px-4 text-[14px] xl:text-[15px] font-bold text-zinc-400 w-[30%] text-right pr-4 tracking-wider">{headers[1]}</th>
+                  <th className="py-2.5 px-2 text-[16px] xl:text-[17px] font-semibold text-slate-500 w-[50%] tracking-wider">{headers[0]}</th>
+                  <th className="py-2.5 px-4 text-[16px] xl:text-[17px] font-semibold text-slate-500 w-[30%] text-right pr-4 tracking-wider">{headers[1]}</th>
                 </tr>
               </thead>
               <tbody>
@@ -96,38 +97,26 @@ export function Page_SkyworthReport_OptCompetitorHtml() {
                   const isBrand = item.isBrand;
                   const rankNum = item.rank || (idx + 1);
 
-                  let rankElement;
-                  if (rankNum === 1) {
-                    rankElement = (
-                      <div className="w-7 h-7 rounded-full bg-gradient-to-br from-amber-300 to-amber-500 text-black flex items-center justify-center font-extrabold text-[13px] shadow-[0_0_10px_rgba(245,158,11,0.3)]">
-                        1
-                      </div>
-                    );
-                  } else if (rankNum === 2) {
-                    rankElement = (
-                      <div className="w-7 h-7 rounded-full bg-gradient-to-br from-zinc-300 to-zinc-500 text-black flex items-center justify-center font-extrabold text-[13px] shadow-[0_0_10px_rgba(156,163,175,0.2)]">
-                        2
-                      </div>
-                    );
-                  } else if (rankNum === 3) {
-                    rankElement = (
-                      <div className="w-7 h-7 rounded-full bg-gradient-to-br from-orange-300 to-orange-500 text-black flex items-center justify-center font-extrabold text-[13px] shadow-[0_0_10px_rgba(249,115,22,0.2)]">
-                        3
-                      </div>
-                    );
-                  } else {
-                    rankElement = (
-                      <div className="text-zinc-500 font-bold text-[15px] text-center w-7">
-                        {rankNum}
-                      </div>
-                    );
-                  }
+                  /* rank-badge.tsx：金 #FFD700 / 银 #E0E0E0 / 铜 #F5C28C，4名起纯数字 */
+                  const badgeColors = { 1: '#FFD700', 2: '#E0E0E0', 3: '#F5C28C' };
+                  const rankElement = badgeColors[rankNum] ? (
+                    <div
+                      className="w-8 h-8 rounded-full flex items-center justify-center font-semibold text-[15px]"
+                      style={{ backgroundColor: badgeColors[rankNum], color: '#1f2937' }}
+                    >
+                      {rankNum}
+                    </div>
+                  ) : (
+                    <div className="w-8 h-8 flex items-center justify-center font-medium text-[16px] text-slate-400">
+                      {rankNum}
+                    </div>
+                  );
 
                   return (
                     <tr
                       key={idx}
-                      className={`border-b border-white/[0.04] last:border-none hover:bg-white/[0.02] transition-colors ${
-                        isBrand ? 'bg-[#004CE5]/10 border-y border-[#004CE5]/20' : ''
+                      className={`border-b border-slate-100 last:border-none transition-colors ${
+                        isBrand ? 'bg-blue-50/80' : ''
                       }`}
                     >
                       <td className="py-2 px-3 align-middle">
@@ -135,18 +124,18 @@ export function Page_SkyworthReport_OptCompetitorHtml() {
                       </td>
                       <td className="py-2 px-2 align-middle">
                         <div className="flex items-center gap-2">
-                          <span className={`text-[15px] xl:text-[16px] ${isBrand ? 'font-extrabold text-[#60A5FA]' : 'font-medium text-zinc-200'}`}>
+                          <span className={`text-[19px] xl:text-[21px] ${isBrand ? 'font-bold text-[#2563EB]' : 'font-medium text-slate-700'}`}>
                             {item.name}
                           </span>
                           {isBrand && (
-                            <span className="px-1.5 py-0.5 text-[9px] font-bold rounded bg-[#004CE5]/20 text-[#60A5FA] border border-[#004CE5]/30">
+                            <span className="px-1.5 py-0.5 text-[11px] font-bold rounded bg-blue-100 text-[#2563EB]">
                               目标产品
                             </span>
                           )}
                         </div>
                       </td>
-                      <td className={`py-2 px-4 text-right pr-4 align-middle text-[18px] xl:text-[20px] font-extrabold font-mono ${
-                        isBrand ? 'text-white' : 'text-zinc-300'
+                      <td className={`py-2 px-4 text-right pr-4 align-middle text-[22px] xl:text-[24px] font-extrabold font-mono ${
+                        isBrand ? 'text-slate-900' : 'text-slate-600'
                       }`}>
                         {item.value}
                       </td>
@@ -167,7 +156,7 @@ export function Page_SkyworthReport_OptCompetitorHtml() {
         <style dangerouslySetInnerHTML={{ __html: FONT_IMPORT }} />
         <div className="w-full max-w-[1700px] mx-auto flex flex-col flex-1 min-h-0 relative z-10 gap-5">
           <div className="text-center shrink-0">
-            <h1 className="text-[32px] font-bold text-white tracking-widest leading-tight">
+            <h1 className="text-[36px] font-bold text-white tracking-widest leading-tight">
               优化词 · 竞品横向对比
             </h1>
           </div>
@@ -179,20 +168,20 @@ export function Page_SkyworthReport_OptCompetitorHtml() {
           </div>
 
           <div className="border border-[#004CE5]/20 border-l-4 border-l-[#004CE5] bg-white/[0.03] backdrop-blur-xl rounded-2xl px-6 py-4 shrink-0 flex items-center justify-between gap-4 mb-3">
-            <p className="text-[14px] xl:text-[15px] text-zinc-300 leading-relaxed">
+            <p className="text-[18px] xl:text-[20px] text-zinc-300 leading-relaxed">
               {conclusion}
             </p>
           </div>
 
           {/* 以下三张卡为分析文案，每次重新采集数据后需根据最新数值改写（当前基于 品类优化词① 2026-07-03 数据） */}
-          <div className="h-[30%] min-h-[200px] max-h-[260px] shrink-0 grid grid-cols-12 gap-5 mt-2">
+          <div className="h-[32%] min-h-[220px] max-h-[300px] shrink-0 grid grid-cols-12 gap-5 mt-2">
             <div className="col-span-4 flex flex-col min-h-0">
               <div className="bg-white/[0.02] backdrop-blur-xl border border-white/[0.06] rounded-2xl p-5 flex flex-col h-full justify-start gap-2.5">
-                <h3 className="text-[17px] xl:text-[18px] font-bold text-white shrink-0 flex items-center gap-2 mb-0.5">
+                <h3 className="text-[20px] xl:text-[22px] font-bold text-white shrink-0 flex items-center gap-2 mb-0.5">
                   <span className="w-1.5 h-4 bg-[#004CE5] rounded-full shadow-[0_0_8px_rgba(0,76,229,0.8)]" />
                   核心发现
                 </h3>
-                <div className="flex-grow flex flex-col gap-2.5 text-[13px] xl:text-[14px] text-zinc-300 leading-relaxed font-normal text-justify">
+                <div className="flex-grow flex flex-col gap-2.5 text-[16px] xl:text-[17px] text-zinc-300 leading-relaxed font-normal text-justify">
                   <p><strong className="text-white font-bold">首推优势突出：</strong>创维 Top1 提及率 24.7% 断层领先（第二名海信仅 10.8%），AI 在品类词下最倾向首推创维。</p>
                   <p className="border-t border-white/5 pt-2.5"><strong className="text-white font-bold">声量存在缺口：</strong>整体提及率 59.4% 落后海信（68.0%）与 TCL（65.6%），"被提到"的频次还不够。</p>
                 </div>
@@ -201,11 +190,11 @@ export function Page_SkyworthReport_OptCompetitorHtml() {
 
             <div className="col-span-4 flex flex-col min-h-0">
               <div className="bg-white/[0.02] backdrop-blur-xl border border-white/[0.06] rounded-2xl p-5 flex flex-col h-full justify-start gap-2.5">
-                <h3 className="text-[17px] xl:text-[18px] font-bold text-white shrink-0 flex items-center gap-2 mb-0.5">
+                <h3 className="text-[20px] xl:text-[22px] font-bold text-white shrink-0 flex items-center gap-2 mb-0.5">
                   <span className="w-1.5 h-4 bg-[#004CE5] rounded-full shadow-[0_0_8px_rgba(0,76,229,0.8)]" />
                   竞争格局总结
                 </h3>
-                <div className="flex-grow flex flex-col gap-2.5 text-[13px] xl:text-[14px] text-zinc-300 leading-relaxed font-normal text-justify">
+                <div className="flex-grow flex flex-col gap-2.5 text-[16px] xl:text-[17px] text-zinc-300 leading-relaxed font-normal text-justify">
                   <p><strong className="text-white font-bold">三强格局胶着：</strong>海信、TCL、创维提及率同处 59%~68% 第一梯队，行业影响力得分（69.2 / 67.4 / 62.8）咬得很紧。</p>
                   <p className="border-t border-white/5 pt-2.5"><strong className="text-white font-bold">外资品牌掉队：</strong>索尼（35.2%）、三星（34.4%）声量断档，竞争主要在国产三强之间展开。</p>
                 </div>
@@ -214,11 +203,11 @@ export function Page_SkyworthReport_OptCompetitorHtml() {
 
             <div className="col-span-4 flex flex-col min-h-0">
               <div className="bg-gradient-to-br from-[#004CE5]/10 to-white/[0.01] backdrop-blur-xl border border-[#004CE5]/25 rounded-2xl p-5 flex flex-col h-full justify-start gap-2.5 shadow-[0_0_20px_rgba(0,76,229,0.05)]">
-                <h3 className="text-[17px] xl:text-[18px] font-bold text-white shrink-0 flex items-center gap-2 mb-0.5">
+                <h3 className="text-[20px] xl:text-[22px] font-bold text-white shrink-0 flex items-center gap-2 mb-0.5">
                   <span className="w-1.5 h-4 bg-[#004CE5] rounded-full shadow-[0_0_8px_rgba(0,76,229,0.8)]" />
                   行动建议
                 </h3>
-                <div className="flex-grow flex flex-col gap-2.5 text-[13px] xl:text-[14px] text-zinc-300 leading-relaxed font-normal text-justify">
+                <div className="flex-grow flex flex-col gap-2.5 text-[16px] xl:text-[17px] text-zinc-300 leading-relaxed font-normal text-justify">
                   <p><strong className="text-white font-bold">补齐提及广度：</strong>对未提及创维的品类词补充测评、榜单类内容，把整体提及率从 59.4% 向海信的 68.0% 拉近。</p>
                   <p className="border-t border-white/5 pt-2.5"><strong className="text-white font-bold">巩固首推心智：</strong>持续维护高质量首推内容，守住 Top1 提及率 2 倍于第二名的领先优势。</p>
                 </div>

@@ -334,21 +334,6 @@
         "html": "“如7000块钱左右的壁纸电视推荐”<span style=\"color: rgb(94, 234, 212);\"> → A7H pro</span>"
       }
     },
-    "chapter-1-0-2": {
-      "0.1.0.3.0.0": {
-        "dx": 0,
-        "dy": 0,
-        "rotate": 0,
-        "fontSize": 38,
-        "color": "#ffffff",
-        "fontFamily": "",
-        "fontWeight": 700,
-        "textAlign": "",
-        "lineHeight": "",
-        "letterSpacing": "",
-        "html": "这样先把词分为优化类和监测类，再细分为品类词和产品专专属词，这样分完以后，每类词的统计口径和优化目标就都清楚了。"
-      }
-    },
     "chapter-6-1-2": {
       "0.1.0.2.0": {
         "dx": 0,
