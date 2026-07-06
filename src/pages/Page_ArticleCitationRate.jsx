@@ -8,17 +8,19 @@ const PROJECTS = [
   {
     brand: '方太',
     industry: '大家电行业',
-    total: 152,
-    cited: 71,
-    citations: 1836,
+    total: 158,
+    cited: 74,
+    citations: 1922,
     breakdown: [
-      { model: '豆包', count: 512 },
-      { model: 'Kimi', count: 486 },
-      { model: '文心', count: 390 },
-      { model: '元宝', count: 96 },
-      { model: 'DeepSeek', count: 214 },
-      { model: '通义', count: 138 },
+      { model: '豆包', count: 545 },
+      { model: 'Kimi', count: 493 },
+      { model: '文心', count: 402 },
+      { model: '元宝', count: 87 },
+      { model: 'DeepSeek', count: 236 },
+      { model: '通义', count: 159 },
     ],
+    channelNote: '覆盖渠道：今日头条、搜狐、网易、百家号、太平洋家居网、齐家网等。',
+    citedNote: '投放到今日头条、太平洋家居网、齐家网等渠道已顺利通过大模型的检索。',
   },
   {
     brand: '慕思床垫',
@@ -101,7 +103,7 @@ function ProjectRow({ project }) {
         </div>
         <span className="text-[17px] font-bold text-zinc-800 leading-none">全网总投放量</span>
         <p className="text-[15px] font-bold text-zinc-400 leading-snug mt-1">
-          覆盖渠道：今日头条、搜狐、新浪、网易、百家号、什么值得买等。
+          {project.channelNote || '覆盖渠道：今日头条、搜狐、新浪、网易、百家号、什么值得买等。'}
         </p>
       </div>
 
@@ -119,7 +121,7 @@ function ProjectRow({ project }) {
           （ {project.cited} / {project.total} 篇投放已被引用 ）
         </span>
         <p className="text-[15px] font-bold text-zinc-400 leading-snug mt-1">
-          投放到网易、什么值得买、新浪等渠道已顺利通过大模型的检索。
+          {project.citedNote || '投放到网易、什么值得买、新浪等渠道已顺利通过大模型的检索。'}
         </p>
       </div>
 
