@@ -116,6 +116,22 @@ export default function SlideLayout({
               {title}
             </h1>
           )}
+          {subtitle && (
+            <p
+              data-slide-subtitle
+              style={{
+                fontFamily: "'MiSans', sans-serif",
+                fontWeight: 400,
+                fontSize: '36px',
+                lineHeight: '48px',
+                color: 'rgba(255, 255, 255, 0.75)',
+                marginTop: '8px',
+                letterSpacing: '0.02em',
+              }}
+            >
+              {subtitle}
+            </p>
+          )}
         </div>
       )}
 
@@ -133,10 +149,10 @@ export default function SlideLayout({
         <div 
           className={`absolute z-10 ${contentClassName}`}
           style={{ 
-            top: '225px', 
+            top: subtitle ? '280px' : '225px', 
             left: '40px', 
             width: '1840px', 
-            height: '795px', // 避让底部字幕区：1080px - 225px (top) - 60px (bottom subtitle height) = 795px
+            height: subtitle ? '740px' : '795px', // 避让底部字幕区
           }}
         >
           {children}

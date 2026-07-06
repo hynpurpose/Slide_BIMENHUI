@@ -52,7 +52,7 @@ export default function Page_GEOWordSelectionOther() {
   return (
     <SlideLayout
       title="市场上其他做法"
-      subtitle="市场上其他做法：AI批量生成 与 复制百度、社媒热词"
+      subtitle="关键词是怎么来的，也就是我们怎么判断这些词最接近真实用户在 AI 平台上的提问。"
     >
       {/* Background glowing effects */}
       <div className="absolute w-[600px] h-[600px] rounded-full bg-blue-600/5 blur-[160px] -right-48 -top-48 pointer-events-none" />
