@@ -45,6 +45,7 @@ import {
   Page_SkyworthMonitorWordStrategy_B,
   Page_SkyworthMonitorWordStrategy_C,
 } from '../pages/Page_SkyworthMonitorWordStrategy';
+import Page_SkyworthKeywordStrategy from '../pages/Page_SkyworthKeywordStrategy';
 import Page_CompanyIntro from '../pages/Page_CompanyIntro';
 import Page_ServiceClients from '../pages/Page_ServiceClients';
 import Page_CaseStudy_Double_Combined from '../pages/Page_CaseStudy_Double_Combined';
@@ -83,6 +84,7 @@ import Page_GeoMonitor_Pic6 from '../pages/Page_GeoMonitor_Pic6';
 import Page_GeoMonitor_Pic7 from '../pages/Page_GeoMonitor_Pic7';
 import Page_ContentAgentIntro from '../pages/Page_ContentAgentIntro';
 import Page_ContentAgent from '../pages/Page_ContentAgent';
+import Page_ContentAgentModules from '../pages/Page_ContentAgentModules';
 import Page_ContentAgentDemo from '../pages/Page_ContentAgentDemo';
 import Page_ContentAgent_Pic1 from '../pages/Page_ContentAgent_Pic1';
 import Page_ContentAgent_Pic2 from '../pages/Page_ContentAgent_Pic2';
@@ -263,12 +265,8 @@ export const slideConfig = [
   // ══════════════════════════════════════════════════════════
   { type: 'chapter', title: '核心策略及KPI设定', subtitle: 'CORE OPTIMIZATION STRATEGY', backgroundImage: '' },
 
-  { type: 'section', title: '优化词策略' },
-  { type: 'page', title: '品牌词：优势保第一，弱势进 TOP3', variants: [Page_SkyworthBrandWordStrategy_D, Page_SkyworthBrandWordStrategy_C, Page_SkyworthBrandWordStrategy_A, Page_SkyworthBrandWordStrategy_B], hideHeader: true },
-  { type: 'page', title: '5款产品的侧重点和优化方向', variants: [Page_SkyworthProductStrategy_C, Page_SkyworthProductStrategy_A, Page_SkyworthProductStrategy_B], hideHeader: true },
-
-  { type: 'section', title: '监测词策略' },
-  { type: 'page', title: '监测词的意义', variants: [Page_SkyworthMonitorWordStrategy_A, Page_SkyworthMonitorWordStrategy_B, Page_SkyworthMonitorWordStrategy_C], hideHeader: true },
+  { type: 'section', title: '核心优化策略' },
+  { type: 'page', title: '核心词条分类与策略体系', component: Page_SkyworthKeywordStrategy, hideHeader: true },
 
   { type: 'section', title: 'KPI及工作安排' },
   { type: 'page', title: 'KPI 及验收标准', component: Page_SkyworthKpiAcceptance, hideHeader: true },
@@ -324,10 +322,10 @@ export const slideConfig = [
   { type: 'section', title: '公司介绍' },
   { type: 'page', title: '「GEO 索引未来」整体介绍', component: Page_CompanyIntro, hideHeader: true },
   { type: 'page', title: '服务客户', component: Page_ServiceClients, hideHeader: true },
-  { type: 'page', title: '服务案例', variants: [Page_CaseStudy_Double_Combined,Page_CaseStudy_Double_Combined_2], hideHeader: true },
-  { type: 'page', title: '服务案例 · 慕思 GEO 阶段性报告', variants: [Page_CaseStudy_Musi_A, Page_CaseStudy_Musi_B, Page_CaseStudy_Musi_C], hideHeader: true },
-  { type: 'page', title: '服务案例 · 菜鸟 GEO 阶段性报告', variants: [Page_CaseStudy_Cainiao_A, Page_CaseStudy_Cainiao_B, Page_CaseStudy_Cainiao_C], hideHeader: true },
-  { type: 'page', title: '服务案例 · 古井贡酒 GEO 阶段性报告', variants: [Page_CaseStudy_Gujing_A, Page_CaseStudy_Gujing_B, Page_CaseStudy_Gujing_C], hideHeader: true },
+  { type: 'page', title: '服务案例', variants: [Page_CaseStudy_Double_Combined, Page_CaseStudy_Double_Combined_2], hideHeader: true },
+  // { type: 'page', title: '服务案例 · 慕思 GEO 阶段性报告', variants: [Page_CaseStudy_Musi_A, Page_CaseStudy_Musi_B, Page_CaseStudy_Musi_C], hideHeader: true },
+  // { type: 'page', title: '服务案例 · 菜鸟 GEO 阶段性报告', variants: [Page_CaseStudy_Cainiao_A, Page_CaseStudy_Cainiao_B, Page_CaseStudy_Cainiao_C], hideHeader: true },
+  // { type: 'page', title: '服务案例 · 古井贡酒 GEO 阶段性报告', variants: [Page_CaseStudy_Gujing_A, Page_CaseStudy_Gujing_B, Page_CaseStudy_Gujing_C], hideHeader: true },
   { type: 'page', title: '团队背书', component: Page_TeamEndorsement, hideHeader: true },
   { type: 'page', title: '团队组织架构', component: Page_CompanyArchitecture, hideHeader: true },
   { type: 'page', title: '核心成员', component: Page_TeamIntro, hideHeader: true },
@@ -359,6 +357,7 @@ export const slideConfig = [
 
   { type: 'page', title: '内容撰写Agent介绍', component: Page_ContentAgentIntro, hideHeader: true },
   { type: 'page', title: '内容撰写Agent', component: Page_ContentAgent, hideHeader: true },
+  { type: 'page', title: '内容撰写Agent功能介绍', component: Page_ContentAgentModules, hideHeader: true },
   { type: 'page', title: '内容撰写Agent演示', component: Page_ContentAgentDemo, hideHeader: true },
   { type: 'page', title: '内容撰写Agent 1', component: Page_ContentAgent_Pic1, hideHeader: true },
   { type: 'page', title: '内容撰写Agent 2', component: Page_ContentAgent_Pic2, hideHeader: true },
