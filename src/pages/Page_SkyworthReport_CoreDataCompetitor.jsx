@@ -46,8 +46,7 @@ function SectionTitle({ children }) {
   );
 }
 
-function RankingCard({ title, valueLabel, data, showTargetMetric = false, compact = false, leading = false }) {
-  const selfItem = data.find((item) => item.self);
+function RankingCard({ title, valueLabel, data, compact = false, leading = false }) {
   const th = compact
     ? 'h-8 px-2 text-start align-middle text-xs font-medium whitespace-nowrap'
     : 'h-9 px-3 text-start align-middle text-sm font-medium whitespace-nowrap';
@@ -76,16 +75,6 @@ function RankingCard({ title, valueLabel, data, showTargetMetric = false, compac
         style={{ borderColor: C.border, color: C.fg }}
       >
         <div className={`flex flex-1 flex-col min-h-0 ${compact ? 'p-3' : 'p-4'}`}>
-          {showTargetMetric && selfItem && (
-            <div className="shrink-0 mb-2 pb-2 border-b" style={{ borderColor: C.border }}>
-              <div className="text-xs" style={{ color: C.mutedFg }}>
-                目标产品{valueLabel}
-              </div>
-              <div className={`font-bold leading-tight ${compact ? 'text-xl' : 'text-2xl'}`} style={{ color: C.fg }}>
-                {selfItem.value}
-              </div>
-            </div>
-          )}
           <div className="flex-grow min-h-0 overflow-hidden">
             <table className="w-full caption-bottom border-collapse table-fixed">
               <thead>
@@ -142,7 +131,6 @@ export function Page_SkyworthReport_CoreDataCompetitor() {
     { name: '海信', value: '38.5%' },
     { name: 'TCL', value: '29.7%' },
     { name: '华为智慧屏', value: '21.3%' },
-    { name: '小米', value: '18.6%' },
   ];
 
   const avgRankData = [
@@ -213,7 +201,7 @@ export function Page_SkyworthReport_CoreDataCompetitor() {
             <SectionTitle>品类优化词竞品对比</SectionTitle>
             <div className="grid grid-cols-3 gap-6 h-[280px]">
               <RankingCard leading title="提及率排名" valueLabel="提及率" data={mentionRateData} />
-              <RankingCard title="TOP1 提及率排名" valueLabel="Top1提及率" data={top1RateData} showTargetMetric />
+              <RankingCard title="TOP1 提及率排名" valueLabel="Top1提及率" data={top1RateData} />
               <RankingCard title="平均提及位次排名" valueLabel="平均提及位次" data={avgRankData} />
             </div>
           </div>
