@@ -42,43 +42,43 @@ export default function Page_DeliveryHighWeight() {
 
             {/* 表格容器 */}
             <div className="flex-grow flex flex-col bg-zinc-50/50 rounded-2xl border border-zinc-200/60 p-4">
-              <div className="flex justify-between items-center text-[13px] text-zinc-400 font-bold pb-2.5 border-b border-zinc-200 mb-3 px-2">
+              <div className="flex justify-between items-center text-[16px] xl:text-[18px] text-zinc-400 font-bold pb-2.5 border-b border-zinc-200 mb-3 px-2">
                 <span>平台名称</span>
                 <span className="pr-2">引用率</span>
               </div>
 
-              <div className="flex-grow flex flex-col justify-start gap-2.5 py-1">
+              <div className="flex-grow flex flex-col justify-start gap-3 py-1.5">
                 {leftTable.map((row, idx) => {
                   const isDouyin = row.name === "抖音";
                   return (
                     <div
                       key={idx}
-                      className={`flex justify-between items-center h-[72px] px-4 rounded-xl border transition-all duration-300 ${
+                      className={`flex justify-between items-center h-[80px] px-4 rounded-xl border transition-all duration-300 ${
                         isDouyin
                           ? "border-[#FF0050]/40 bg-[#FF0050]/5 shadow-[0_0_20px_rgba(255,0,80,0.06)]"
                           : "border-transparent hover:bg-zinc-100/60"
                       }`}
                     >
-                      <div className="flex items-center gap-3.5 min-w-0">
+                      <div className="flex items-center gap-4 min-w-0">
                         {/* 排名 */}
-                        <span className="font-['Montserrat'] text-[15px] font-black text-zinc-400 w-5">
+                        <span className="font-['Montserrat'] text-[18px] xl:text-[20px] font-black text-zinc-400 w-5">
                           {row.rank}
                         </span>
                         {/* 图标 */}
                         {row.isCustomIcon ? (
-                          <span className="w-[26px] h-[26px] bg-[#E02424] rounded-md flex items-center justify-center text-[9px] font-black text-white shrink-0 font-mono">
+                          <span className="w-[32px] h-[32px] bg-[#E02424] rounded-md flex items-center justify-center text-[12px] font-black text-white shrink-0 font-mono">
                             IT
                           </span>
                         ) : (
-                          <Globe className={`w-[22px] h-[22px] shrink-0 ${isDouyin ? 'text-[#FF0050]' : 'text-zinc-400'}`} />
+                          <Globe className={`w-[28px] h-[28px] shrink-0 ${isDouyin ? 'text-[#FF0050]' : 'text-zinc-400'}`} />
                         )}
                         {/* 名字 */}
-                        <span className={`text-[17px] font-bold font-['MiSans'] truncate ${isDouyin ? "text-zinc-900 font-black" : "text-zinc-700"}`}>
+                        <span className={`text-[20px] xl:text-[22px] font-bold font-['MiSans'] truncate ${isDouyin ? "text-zinc-900 font-black" : "text-zinc-700"}`}>
                           {row.name}
                         </span>
                       </div>
                       {/* 百分比 */}
-                      <span className={`text-[17px] font-black font-['Montserrat'] ${isDouyin ? "text-[#FF0050]" : "text-zinc-500 font-semibold"}`}>
+                      <span className={`text-[20px] xl:text-[22px] font-black font-['Montserrat'] ${isDouyin ? "text-[#FF0050]" : "text-zinc-500 font-semibold"}`}>
                         {row.rate}
                       </span>
                     </div>
@@ -89,35 +89,27 @@ export default function Page_DeliveryHighWeight() {
           </div>
 
           {/* ==================== 2. 右侧：图片展示区 (1376px) ==================== */}
-          <div className="w-[1376px] h-full bg-[#0B0D19]/45 border border-white/[0.06] backdrop-blur-md rounded-[24px] p-6 flex flex-col shadow-[0_15px_35px_rgba(0,0,0,0.3)] relative overflow-hidden group hover:border-blue-500/20 transition-all duration-300">
-            <div className="absolute inset-0 bg-gradient-to-br from-blue-500/5 to-transparent pointer-events-none" />
-            
-            <div className="flex items-center justify-between mb-4 relative z-10">
-              <h3 className="text-[24px] font-black text-white font-['MiSans'] tracking-wide">引用机制与抖音内容拆解</h3>
-            </div>
-
-            <div className="flex-1 w-full rounded-2xl overflow-hidden relative border border-white/10 bg-black/40 flex items-center justify-center">
-              <img
-                src="/charts/doubao_high_weight_analysis.png"
-                alt="豆包引用与内容拆解"
-                className="w-full h-full object-contain opacity-95 transition-opacity duration-500 group-hover:opacity-100"
-                onError={(e) => {
-                  e.currentTarget.style.display = 'none';
-                  e.currentTarget.nextElementSibling.style.display = 'flex';
-                }}
-              />
-              {/* 当图片加载失败时的占位 UI */}
-              <div className="hidden flex-col items-center justify-center w-full h-full text-zinc-400 p-8 text-center animate-fadeIn">
-                <div className="w-20 h-20 mb-6 rounded-2xl bg-white/[0.03] border border-white/10 flex items-center justify-center text-[#0052FF]">
-                  <AlertTriangle size={40} />
-                </div>
-                <span className="text-[24px] font-black text-white tracking-widest uppercase">机制验证与拆解图表</span>
-                <span className="text-[16px] mt-3 text-zinc-500 font-medium max-w-[600px] leading-relaxed">
-                  请在 <code className="text-zinc-300 font-mono">public/charts/</code> 目录中放入图片 <code className="text-blue-400 font-mono">doubao_high_weight_analysis.png</code>。
-                  <br />
-                  该图应整合：1. 豆包对话模拟与真假信源列表验证；2. 引用的高粉丝账号拆解；3. 视频只解析字幕结论。
-                </span>
+          <div className="w-[1376px] h-full rounded-[24px] overflow-hidden relative group">
+            <img
+              src="/charts/doubao_high_weight_analysis.png"
+              alt="豆包引用与内容拆解"
+              className="w-full h-full object-contain opacity-95 transition-opacity duration-500 group-hover:opacity-100"
+              onError={(e) => {
+                e.currentTarget.style.display = 'none';
+                e.currentTarget.nextElementSibling.style.display = 'flex';
+              }}
+            />
+            {/* 当图片加载失败时的占位 UI */}
+            <div className="hidden flex-col items-center justify-center w-full h-full text-zinc-400 p-8 text-center animate-fadeIn bg-[#0B0D19]/45 border border-white/[0.06] rounded-[24px]">
+              <div className="w-20 h-20 mb-6 rounded-2xl bg-white/[0.03] border border-white/10 flex items-center justify-center text-[#0052FF]">
+                <AlertTriangle size={40} />
               </div>
+              <span className="text-[24px] font-black text-white tracking-widest uppercase">机制验证与拆解图表</span>
+              <span className="text-[18px] mt-3 text-zinc-500 font-semibold max-w-[600px] leading-relaxed">
+                请在 <code className="text-zinc-300 font-mono">public/charts/</code> 目录中放入图片 <code className="text-blue-400 font-mono">doubao_high_weight_analysis.png</code>。
+                <br />
+                该图应整合：1. 豆包对话模拟与真假信源列表验证；2. 引用的高粉丝账号拆解；3. 视频只解析字幕结论。
+              </span>
             </div>
           </div>
 
