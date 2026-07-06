@@ -48,7 +48,7 @@ export default function Page_PotentialVerticalCommunity() {
 
           {/* 右栏：从上到下三个流程或步骤 (720px) */}
           <div className="flex-grow flex flex-col justify-between h-[630px] relative pl-4 select-none">
-            
+
             {/* 背景贯穿线 */}
             <div className="absolute left-[54px] top-[40px] bottom-[40px] w-0.5 border-l border-dashed border-zinc-800 z-0" />
 
@@ -77,7 +77,7 @@ export default function Page_PotentialVerticalCommunity() {
                   准确度极高
                 </h3>
                 <p className="text-[22px] font-black text-[#0052FF] mt-2 font-['MiSans']">
-                  —— 投一篇
+                  —— 投一篇用一篇
                 </p>
               </div>
             </div>

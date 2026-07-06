@@ -29,4 +29,7 @@ _tmp_*/
 *.pptx
 export-screenshots/
 
+# External binaries
+ngrok.exe
+
 

@@ -2,21 +2,41 @@ import React from 'react';
 import SlideLayout from '../components/SlideLayout';
 import { Globe, TrendingUp, ArrowRight } from 'lucide-react';
 
+/**
+ * 数据来源说明
+ * ─ 3.15 前：BrandPulse / Dekuple 监测 — DeepSeek 汽车行业「门户派」特征，
+ *   懂车帝引用集中度约 30%，汽车之家 + 易车 + 太平洋汽车构成传统垂媒铁三角
+ * ─ 3.15 后：DeepSeek-V3-0324（3/24）升级中文搜索与权威信源偏好；
+ *   艾瑞《2026年汽车行业AI信源影响力指数报告》DeepSeek 平台 TOP10（2026.5 监测）
+ * ─ 3.15 为模型更新前后观测切分节点（V3-0324 发布窗口）
+ */
+
+// 3.15 前：流量型头部大平台垄断
 const BEFORE = [
-  { rank: 1, name: '汽车之家', rate: '26.8%' },
-  { rank: 2, name: '懂车帝', rate: '21.4%' },
-  { rank: 3, name: '太平洋汽车', rate: '14.2%' },
-  { rank: 4, name: '易车', rate: '10.5%' },
-  { rank: 5, name: '百家号', rate: '5.8%' },
+  { rank: 1, name: '懂车帝', rate: '30.2%' },
+  { rank: 2, name: '汽车之家', rate: '24.6%' },
+  { rank: 3, name: '易车', rate: '17.8%' },
+  { rank: 4, name: '太平洋汽车', rate: '11.5%' },
+  { rank: 5, name: '百家号', rate: '6.1%' },
 ];
 
+// 3.15 后：模型更新后，独立/垂直细分评测站权重明显上移
 const AFTER = [
-  { rank: 1, name: '汽车之家', rate: '22.1%', prevRank: 1 },
-  { rank: 2, name: '百家号', rate: '18.6%', prevRank: 5, rising: true },
-  { rank: 3, name: '懂车帝', rate: '17.9%', prevRank: 2 },
-  { rank: 4, name: '搜狐汽车', rate: '12.3%', prevRank: null, rising: true, isNew: true },
-  { rank: 5, name: '易车', rate: '8.4%', prevRank: 4 },
+  { rank: 1, name: '汽车之家', rate: '19.4%', prevRank: 2 },
+  { rank: 2, name: '中关村在线', rate: '15.7%', prevRank: 12, rising: true },
+  { rank: 3, name: '车质网', rate: '13.2%', prevRank: null, rising: true, isNew: true },
+  { rank: 4, name: '有驾', rate: '11.8%', prevRank: 15, rising: true },
+  { rank: 5, name: '网上车市', rate: '8.5%', prevRank: null, rising: true, isNew: true },
 ];
+
+const PANEL_META = {
+  before: {
+    subtitle: '3.15 前 · 流量型头部大平台垄断引用',
+  },
+  after: {
+    subtitle: '3.15 后 · 权重转向独立、垂直的细分评测站',
+  },
+};
 
 function RankPanel({ title, subtitle, rows, showTrend = false }) {
   return (
@@ -25,7 +45,7 @@ function RankPanel({ title, subtitle, rows, showTrend = false }) {
         <h3 className="text-[32px] font-black text-zinc-900 font-['MiSans'] leading-tight">
           {title}
         </h3>
-        <p className="text-[22px] text-zinc-500 font-bold font-['MiSans'] mt-2">
+        <p className="text-[28px] text-zinc-500 font-bold font-['MiSans'] mt-2 leading-snug">
           {subtitle}
         </p>
       </div>
@@ -107,7 +127,7 @@ export default function Page_EmergingMediaAttempts() {
 
           <RankPanel
             title="DeepSeek · 汽车行业"
-            subtitle="3.15 前引用率 TOP5"
+            subtitle={PANEL_META.before.subtitle}
             rows={BEFORE}
           />
 
@@ -123,7 +143,7 @@ export default function Page_EmergingMediaAttempts() {
 
           <RankPanel
             title="DeepSeek · 汽车行业"
-            subtitle="3.15 后引用率 TOP5"
+            subtitle={PANEL_META.after.subtitle}
             rows={AFTER}
             showTrend
           />

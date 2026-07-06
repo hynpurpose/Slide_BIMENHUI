@@ -1,0 +1,1872 @@
+{
+  "meta": {
+    "fetched_at": "2026-07-06T06:37:36.379Z",
+    "api_base": "https://api.geotopone.com",
+    "project_id": 316,
+    "project_name": "品类优化词①",
+    "target_product": "创维",
+    "target_brand_name": null,
+    "start_date": "2026-07-03",
+    "end_date": "2026-07-03"
+  },
+  "platforms": [
+    {
+      "id": 1,
+      "name": "DeepSeek",
+      "url": "https://app.geoindexfuture.com/logo/deepseek.png",
+      "crawl_enabled": 1,
+      "max_crawl_accounts": null,
+      "crawl_rate_config": {
+        "requests_per_hour": 10,
+        "request_interval_sec": 120,
+        "batch_duration_sec": 24400,
+        "batch_max_requests": 60,
+        "batch_interval_sec": 24400
+      },
+      "crawl_rate_effective": {
+        "requests_per_hour": 10,
+        "request_interval_sec": 120,
+        "batch_duration_sec": 24400,
+        "batch_max_requests": 60,
+        "batch_interval_sec": 24400
+      },
+      "crawl_rate_source": "platform"
+    },
+    {
+      "id": 2,
+      "name": "豆包",
+      "url": "https://app.geoindexfuture.com/logo/doubao.png",
+      "crawl_enabled": 1,
+      "max_crawl_accounts": null,
+      "crawl_rate_config": null,
+      "crawl_rate_effective": {
+        "requests_per_hour": -1,
+        "request_interval_sec": 30,
+        "batch_duration_sec": 86400,
+        "batch_max_requests": 1000,
+        "batch_interval_sec": 60
+      },
+      "crawl_rate_source": "global"
+    },
+    {
+      "id": 3,
+      "name": "元宝",
+      "url": "https://app.geoindexfuture.com/logo/yuanbao.png",
+      "crawl_enabled": 1,
+      "max_crawl_accounts": null,
+      "crawl_rate_config": null,
+      "crawl_rate_effective": {
+        "requests_per_hour": -1,
+        "request_interval_sec": 30,
+        "batch_duration_sec": 86400,
+        "batch_max_requests": 1000,
+        "batch_interval_sec": 60
+      },
+      "crawl_rate_source": "global"
+    },
+    {
+      "id": 5,
+      "name": "通义千问",
+      "url": "https://app.geoindexfuture.com/logo/qwen.png",
+      "crawl_enabled": 1,
+      "max_crawl_accounts": null,
+      "crawl_rate_config": null,
+      "crawl_rate_effective": {
+        "requests_per_hour": -1,
+        "request_interval_sec": 30,
+        "batch_duration_sec": 86400,
+        "batch_max_requests": 1000,
+        "batch_interval_sec": 60
+      },
+      "crawl_rate_source": "global"
+    }
+  ],
+  "stats": {
+    "brand_mention_rate": 59.4,
+    "top1_mention_rate": null,
+    "top3_mention_rate": null,
+    "avg_position": 4.2,
+    "daily_stats": [
+      {
+        "date": "2026-07-03",
+        "mention_rate": 59.4,
+        "avg_position": 4.2
+      }
+    ],
+    "platform_stats": [
+      {
+        "platform_id": 1,
+        "platform_name": "DeepSeek",
+        "platform_logo": "https://app.geoindexfuture.com/logo/deepseek.png",
+        "brand_mention_rate": 58.1,
+        "avg_position": 3.7
+      },
+      {
+        "platform_id": 2,
+        "platform_name": "豆包",
+        "platform_logo": "https://app.geoindexfuture.com/logo/doubao.png",
+        "brand_mention_rate": 59.1,
+        "avg_position": 5.8
+      },
+      {
+        "platform_id": 3,
+        "platform_name": "元宝",
+        "platform_logo": "https://app.geoindexfuture.com/logo/yuanbao.png",
+        "brand_mention_rate": 60.2,
+        "avg_position": 3.7
+      },
+      {
+        "platform_id": 5,
+        "platform_name": "通义千问",
+        "platform_logo": "https://app.geoindexfuture.com/logo/qwen.png",
+        "brand_mention_rate": 60.2,
+        "avg_position": 3.5
+      }
+    ]
+  },
+  "influence": {
+    "total_conversations": 372,
+    "list": [
+      {
+        "rank": 1,
+        "brand_name": "海信",
+        "favicon_url": "https://image.qcc.com/logo/31d8f9b114df02101f8cd77541f0d192.jpg?x-oss-process=style/logo_200",
+        "influence_score": 69.2,
+        "mention_rate": 68,
+        "avg_position": 3.9,
+        "is_target": false
+      },
+      {
+        "rank": 2,
+        "brand_name": "TCL",
+        "favicon_url": "https://app.geoindexfuture.com/logo/brand/Group58.png",
+        "influence_score": 67.4,
+        "mention_rate": 65.6,
+        "avg_position": 4,
+        "is_target": false
+      },
+      {
+        "rank": 3,
+        "brand_name": "创维",
+        "favicon_url": null,
+        "influence_score": 62.8,
+        "mention_rate": 59.4,
+        "avg_position": 4.2,
+        "is_target": true
+      },
+      {
+        "rank": 4,
+        "brand_name": "三星",
+        "favicon_url": "https://image.qcc.com/logo/8334558a4f82ecabffe55ff4b8a61eaf.jpg?x-oss-process=style/logo_200",
+        "influence_score": 45.8,
+        "mention_rate": 34.4,
+        "avg_position": 4.7,
+        "is_target": false
+      },
+      {
+        "rank": 5,
+        "brand_name": "索尼",
+        "favicon_url": null,
+        "influence_score": 45.1,
+        "mention_rate": 35.2,
+        "avg_position": 5,
+        "is_target": false
+      }
+    ]
+  },
+  "entries": {
+    "total": 93,
+    "list": [
+      {
+        "entry_id": 5705,
+        "entry_name": "75英寸超薄电视推荐",
+        "mention_rate": 100,
+        "position": 2.5,
+        "platform_ids": [
+          1,
+          2,
+          3,
+          5
+        ],
+        "last_conversation_time": "2026-07-02T16:00:00.000Z",
+        "last_screenshot_url": "https://app.geoindexfuture.com/screenshots/20260704/6224097bf4d94278b680395c5375fd65.png"
+      },
+      {
+        "entry_id": 5710,
+        "entry_name": "不反光类纸质感的壁纸电视推荐",
+        "mention_rate": 100,
+        "position": 1,
+        "platform_ids": [
+          1,
+          2,
+          3,
+          5
+        ],
+        "last_conversation_time": "2026-07-02T16:00:00.000Z",
+        "last_screenshot_url": "https://app.geoindexfuture.com/screenshots/20260704/e90a3296a7e94ffeaf3562ccbcd3ea8f.png"
+      },
+      {
+        "entry_id": 5720,
+        "entry_name": "可以当装饰画的壁纸电视推荐",
+        "mention_rate": 100,
+        "position": 3.3,
+        "platform_ids": [
+          1,
+          2,
+          3,
+          5
+        ],
+        "last_conversation_time": "2026-07-03T12:02:15.000Z",
+        "last_screenshot_url": "https://app.geoindexfuture.com/screenshots/20260628/a55ec9531a744ea5bac0ac6eeff495de.png"
+      },
+      {
+        "entry_id": 5724,
+        "entry_name": "售后有保障的壁纸电视推荐",
+        "mention_rate": 100,
+        "position": 2.3,
+        "platform_ids": [
+          1,
+          2,
+          3,
+          5
+        ],
+        "last_conversation_time": "2026-07-03T12:02:15.000Z",
+        "last_screenshot_url": "https://app.geoindexfuture.com/screenshots/20260628/81eaf04914b64a9f825baa7f0e6959af.png"
+      },
+      {
+        "entry_id": 5726,
+        "entry_name": "四口之家专用的壁纸电视推荐",
+        "mention_rate": 100,
+        "position": 1.8,
+        "platform_ids": [
+          1,
+          2,
+          3,
+          5
+        ],
+        "last_conversation_time": "2026-07-02T16:00:00.000Z",
+        "last_screenshot_url": "https://app.geoindexfuture.com/screenshots/20260704/ceebe71de91d4998a691577dafb68d4c.png"
+      },
+      {
+        "entry_id": 5727,
+        "entry_name": "四口之家客厅专用的壁纸电视推荐",
+        "mention_rate": 100,
+        "position": 1.8,
+        "platform_ids": [
+          1,
+          2,
+          3,
+          5
+        ],
+        "last_conversation_time": "2026-07-02T16:00:00.000Z",
+        "last_screenshot_url": "https://app.geoindexfuture.com/screenshots/20260704/7ef157f454ab4d848f8bbfc7ed493e06.png"
+      },
+      {
+        "entry_id": 5729,
+        "entry_name": "壁纸电视品牌排行榜",
+        "mention_rate": 100,
+        "position": 2,
+        "platform_ids": [
+          1,
+          2,
+          3,
+          5
+        ],
+        "last_conversation_time": "2026-07-02T16:00:00.000Z",
+        "last_screenshot_url": "https://app.geoindexfuture.com/screenshots/20260704/1a6657bdd9b040878b095c4e524e6d76.png"
+      },
+      {
+        "entry_id": 5730,
+        "entry_name": "壁纸电视品牌推荐",
+        "mention_rate": 100,
+        "position": 1,
+        "platform_ids": [
+          1,
+          2,
+          3,
+          5
+        ],
+        "last_conversation_time": "2026-07-02T16:00:00.000Z",
+        "last_screenshot_url": "https://app.geoindexfuture.com/screenshots/20260704/94bc7662423e46acad6b9949c58a26f4.png"
+      },
+      {
+        "entry_id": 5731,
+        "entry_name": "壁纸电视机哪个牌子好",
+        "mention_rate": 100,
+        "position": 1,
+        "platform_ids": [
+          1,
+          2,
+          3,
+          5
+        ],
+        "last_conversation_time": "2026-07-02T16:00:00.000Z",
+        "last_screenshot_url": "https://app.geoindexfuture.com/screenshots/20260704/ac9d06aad8864b32ada0b2e14dc5fe9d.png"
+      },
+      {
+        "entry_id": 5734,
+        "entry_name": "大屏超薄电视推荐",
+        "mention_rate": 100,
+        "position": 2.8,
+        "platform_ids": [
+          1,
+          2,
+          3,
+          5
+        ],
+        "last_conversation_time": "2026-07-02T16:00:00.000Z",
+        "last_screenshot_url": "https://app.geoindexfuture.com/screenshots/20260704/0060badd3dd242739043da0e1da45ea9.png"
+      },
+      {
+        "entry_id": 5735,
+        "entry_name": "大平层客厅专用的壁纸电视推荐",
+        "mention_rate": 100,
+        "position": 1.8,
+        "platform_ids": [
+          1,
+          2,
+          3,
+          5
+        ],
+        "last_conversation_time": "2026-07-02T16:00:00.000Z",
+        "last_screenshot_url": "https://app.geoindexfuture.com/screenshots/20260704/fcaa90418c6243b9af7e46f2326727ec.png"
+      },
+      {
+        "entry_id": 5736,
+        "entry_name": "大平层影音一步到位的壁纸电视推荐",
+        "mention_rate": 100,
+        "position": 1,
+        "platform_ids": [
+          1,
+          2,
+          3,
+          5
+        ],
+        "last_conversation_time": "2026-07-02T16:00:00.000Z",
+        "last_screenshot_url": "https://app.geoindexfuture.com/screenshots/20260704/94dcfcf4ea564ddda19f6b73f372f80d.png"
+      },
+      {
+        "entry_id": 5738,
+        "entry_name": "完美融入家居设计的壁纸电视推荐",
+        "mention_rate": 100,
+        "position": 2,
+        "platform_ids": [
+          1,
+          2,
+          3,
+          5
+        ],
+        "last_conversation_time": "2026-07-02T16:00:00.000Z",
+        "last_screenshot_url": "https://app.geoindexfuture.com/screenshots/20260704/c52df5edb1304efcb4dcd0a1d5949105.png"
+      },
+      {
+        "entry_id": 5743,
+        "entry_name": "挂墙薄又好看的壁纸电视推荐",
+        "mention_rate": 100,
+        "position": 1.8,
+        "platform_ids": [
+          1,
+          2,
+          3,
+          5
+        ],
+        "last_conversation_time": "2026-07-02T16:00:00.000Z",
+        "last_screenshot_url": "https://app.geoindexfuture.com/screenshots/20260704/1783f79c2d4743f9bea534d1c0f8927b.png"
+      },
+      {
+        "entry_id": 5752,
+        "entry_name": "画质好的壁纸电视推荐",
+        "mention_rate": 100,
+        "position": 1.8,
+        "platform_ids": [
+          1,
+          2,
+          3,
+          5
+        ],
+        "last_conversation_time": "2026-07-02T16:00:00.000Z",
+        "last_screenshot_url": "https://app.geoindexfuture.com/screenshots/20260704/389837c3a0c14f1e979d1db2f3dd0e6c.png"
+      },
+      {
+        "entry_id": 5753,
+        "entry_name": "画质细节好的壁纸电视推荐",
+        "mention_rate": 100,
+        "position": 1.8,
+        "platform_ids": [
+          1,
+          2,
+          3,
+          5
+        ],
+        "last_conversation_time": "2026-07-02T16:00:00.000Z",
+        "last_screenshot_url": "https://app.geoindexfuture.com/screenshots/20260705/3d46e1ddca2540239a93bd8d96e2bea6.png"
+      },
+      {
+        "entry_id": 5759,
+        "entry_name": "艺术电视品牌排行榜",
+        "mention_rate": 100,
+        "position": 2.8,
+        "platform_ids": [
+          1,
+          2,
+          3,
+          5
+        ],
+        "last_conversation_time": "2026-07-03T12:02:15.000Z",
+        "last_screenshot_url": "https://app.geoindexfuture.com/screenshots/20260628/dcefba39cae3487799e50becb590ca12.png"
+      },
+      {
+        "entry_id": 5760,
+        "entry_name": "艺术电视品牌推荐",
+        "mention_rate": 100,
+        "position": 4,
+        "platform_ids": [
+          1,
+          2,
+          3,
+          5
+        ],
+        "last_conversation_time": "2026-07-03T12:02:15.000Z",
+        "last_screenshot_url": "https://app.geoindexfuture.com/screenshots/20260628/ef1d37f7d3fc49b39420ed8af54c32ae.png"
+      },
+      {
+        "entry_id": 5761,
+        "entry_name": "节省背景墙空间的壁纸电视推荐",
+        "mention_rate": 100,
+        "position": 1.3,
+        "platform_ids": [
+          1,
+          2,
+          3,
+          5
+        ],
+        "last_conversation_time": "2026-07-02T16:00:00.000Z",
+        "last_screenshot_url": "https://app.geoindexfuture.com/screenshots/20260704/3175e595b5d44c87b89b011a0cdd0ca0.png"
+      },
+      {
+        "entry_id": 5762,
+        "entry_name": "质量好的壁纸电视推荐",
+        "mention_rate": 100,
+        "position": 1.3,
+        "platform_ids": [
+          1,
+          2,
+          3,
+          5
+        ],
+        "last_conversation_time": "2026-07-02T16:00:00.000Z",
+        "last_screenshot_url": "https://app.geoindexfuture.com/screenshots/20260705/4d7272fd3edc4b04a4b27e407043bdd1.png"
+      },
+      {
+        "entry_id": 5767,
+        "entry_name": "贴墙好看画质也好的壁纸电视推荐",
+        "mention_rate": 100,
+        "position": 1.3,
+        "platform_ids": [
+          1,
+          2,
+          3,
+          5
+        ],
+        "last_conversation_time": "2026-07-02T16:00:00.000Z",
+        "last_screenshot_url": "https://app.geoindexfuture.com/screenshots/20260704/732c7923c08d444f8641550cb623caa0.png"
+      },
+      {
+        "entry_id": 5769,
+        "entry_name": "超薄电视品牌推荐",
+        "mention_rate": 100,
+        "position": 4.8,
+        "platform_ids": [
+          1,
+          2,
+          3,
+          5
+        ],
+        "last_conversation_time": "2026-07-02T16:00:00.000Z",
+        "last_screenshot_url": "https://app.geoindexfuture.com/screenshots/20260704/6f4f3f19fe7049b09c0ccc21ea8c4781.png"
+      },
+      {
+        "entry_id": 5770,
+        "entry_name": "超薄贴墙的电视推荐",
+        "mention_rate": 100,
+        "position": 1.8,
+        "platform_ids": [
+          1,
+          2,
+          3,
+          5
+        ],
+        "last_conversation_time": "2026-07-02T16:00:00.000Z",
+        "last_screenshot_url": "https://app.geoindexfuture.com/screenshots/20260704/8efcf3c2e6d44e94bd1352c09cf87eef.png"
+      },
+      {
+        "entry_id": 5771,
+        "entry_name": "超薄贴墙省空间的壁纸电视推荐",
+        "mention_rate": 100,
+        "position": 1.3,
+        "platform_ids": [
+          1,
+          2,
+          3,
+          5
+        ],
+        "last_conversation_time": "2026-07-02T16:00:00.000Z",
+        "last_screenshot_url": "https://app.geoindexfuture.com/screenshots/20260704/bf2f6ee0b69c4329833277347db9c252.png"
+      },
+      {
+        "entry_id": 5772,
+        "entry_name": "超薄贴墙省空间的艺术电视推荐",
+        "mention_rate": 100,
+        "position": 2.3,
+        "platform_ids": [
+          1,
+          2,
+          3,
+          5
+        ],
+        "last_conversation_time": "2026-07-02T16:00:00.000Z",
+        "last_screenshot_url": "https://app.geoindexfuture.com/screenshots/20260704/e9fd0847d22f4bed8beb871fcc7092e1.png"
+      },
+      {
+        "entry_id": 5773,
+        "entry_name": "超薄贴墙省空间的超薄电视推荐",
+        "mention_rate": 100,
+        "position": 1.5,
+        "platform_ids": [
+          1,
+          2,
+          3,
+          5
+        ],
+        "last_conversation_time": "2026-07-02T16:00:00.000Z",
+        "last_screenshot_url": "https://app.geoindexfuture.com/screenshots/20260705/00c5eb283721484c8fa1a9f661e79fb7.png"
+      },
+      {
+        "entry_id": 5774,
+        "entry_name": "适合全家人一起看的壁纸电视推荐",
+        "mention_rate": 100,
+        "position": 1.5,
+        "platform_ids": [
+          1,
+          2,
+          3,
+          5
+        ],
+        "last_conversation_time": "2026-07-02T16:00:00.000Z",
+        "last_screenshot_url": "https://app.geoindexfuture.com/screenshots/20260704/28537c7c99db4424aff473a1a0e55d44.png"
+      },
+      {
+        "entry_id": 5775,
+        "entry_name": "适合办公室接待区的壁纸电视推荐",
+        "mention_rate": 100,
+        "position": 2.3,
+        "platform_ids": [
+          1,
+          2,
+          3,
+          5
+        ],
+        "last_conversation_time": "2026-07-03T12:02:15.000Z",
+        "last_screenshot_url": "https://app.geoindexfuture.com/screenshots/20260628/fefbf75adc764fcf81a972388bdf06e8.png"
+      },
+      {
+        "entry_id": 5781,
+        "entry_name": "适合极简风装修的超薄电视推荐",
+        "mention_rate": 100,
+        "position": 1.8,
+        "platform_ids": [
+          1,
+          2,
+          3,
+          5
+        ],
+        "last_conversation_time": "2026-07-03T12:02:14.000Z",
+        "last_screenshot_url": "https://app.geoindexfuture.com/screenshots/20260628/e105f9f664cf46b0916e9f81c0a18402.png"
+      },
+      {
+        "entry_id": 5784,
+        "entry_name": "适配现代装修风格的电视推荐",
+        "mention_rate": 100,
+        "position": 2,
+        "platform_ids": [
+          1,
+          2,
+          3,
+          5
+        ],
+        "last_conversation_time": "2026-07-03T15:22:02.000Z",
+        "last_screenshot_url": "https://app.geoindexfuture.com/screenshots/20260630/d5f5bf0fca5b4170952e0ab3d40b08bd.png"
+      },
+      {
+        "entry_id": 5785,
+        "entry_name": "适配高档装修的壁纸电视推荐",
+        "mention_rate": 100,
+        "position": 2.5,
+        "platform_ids": [
+          1,
+          2,
+          3,
+          5
+        ],
+        "last_conversation_time": "2026-07-03T12:02:15.000Z",
+        "last_screenshot_url": "https://app.geoindexfuture.com/screenshots/20260628/1ebede0549ed4f1a8c633ec69f2caf08.png"
+      },
+      {
+        "entry_id": 5786,
+        "entry_name": "隐藏走线无缝贴墙的壁纸电视推荐",
+        "mention_rate": 100,
+        "position": 2,
+        "platform_ids": [
+          1,
+          2,
+          3,
+          5
+        ],
+        "last_conversation_time": "2026-07-02T16:00:00.000Z",
+        "last_screenshot_url": "https://app.geoindexfuture.com/screenshots/20260704/53fcadeebac045f6a39c312cc3eed7a2.png"
+      },
+      {
+        "entry_id": 5697,
+        "entry_name": "100英寸电视推荐",
+        "mention_rate": 75,
+        "position": 5.3,
+        "platform_ids": [
+          1,
+          2,
+          3,
+          5
+        ],
+        "last_conversation_time": "2026-07-03T15:22:02.000Z",
+        "last_screenshot_url": "https://app.geoindexfuture.com/screenshots/20260629/9a807121a042403fa067e87181ccbf74.png"
+      },
+      {
+        "entry_id": 5714,
+        "entry_name": "口碑好的壁纸电视推荐",
+        "mention_rate": 75,
+        "position": 2,
+        "platform_ids": [
+          1,
+          2,
+          3,
+          5
+        ],
+        "last_conversation_time": "2026-07-02T16:00:00.000Z",
+        "last_screenshot_url": "https://app.geoindexfuture.com/screenshots/20260704/5d73c23bc38b476dbe1fad9beb098e31.png"
+      },
+      {
+        "entry_id": 5718,
+        "entry_name": "口碑好的超薄电视推荐",
+        "mention_rate": 75,
+        "position": 2.5,
+        "platform_ids": [
+          1,
+          2,
+          3,
+          5
+        ],
+        "last_conversation_time": "2026-07-02T16:00:00.000Z",
+        "last_screenshot_url": "https://app.geoindexfuture.com/screenshots/20260704/2a7d581b2beb49658c3df9642a6b9fe2.png"
+      },
+      {
+        "entry_id": 5749,
+        "entry_name": "电视品牌排行榜",
+        "mention_rate": 75,
+        "position": 7.8,
+        "platform_ids": [
+          1,
+          2,
+          3,
+          5
+        ],
+        "last_conversation_time": "2026-07-03T15:22:02.000Z",
+        "last_screenshot_url": "https://app.geoindexfuture.com/screenshots/20260630/1bd0ba83572d45bcb3f5cbade264e1f6.png"
+      },
+      {
+        "entry_id": 5751,
+        "entry_name": "电视排行榜前十名",
+        "mention_rate": 75,
+        "position": 5,
+        "platform_ids": [
+          1,
+          2,
+          3,
+          5
+        ],
+        "last_conversation_time": "2026-07-02T16:00:00.000Z",
+        "last_screenshot_url": "https://app.geoindexfuture.com/screenshots/20260704/582d3f9683354cd4b42449d1cb524dcf.png"
+      },
+      {
+        "entry_id": 5755,
+        "entry_name": "画质细节好的超薄电视推荐",
+        "mention_rate": 75,
+        "position": 3.5,
+        "platform_ids": [
+          1,
+          2,
+          3,
+          5
+        ],
+        "last_conversation_time": "2026-07-03T12:02:15.000Z",
+        "last_screenshot_url": "https://app.geoindexfuture.com/screenshots/20260628/2dca24948431494097d7e44330c079e5.png"
+      },
+      {
+        "entry_id": 5765,
+        "entry_name": "质量好的艺术电视推荐",
+        "mention_rate": 75,
+        "position": 3.3,
+        "platform_ids": [
+          1,
+          2,
+          3,
+          5
+        ],
+        "last_conversation_time": "2026-07-03T12:02:15.000Z",
+        "last_screenshot_url": "https://app.geoindexfuture.com/screenshots/20260628/c1f42b7644d84223a3c05e85e86f1848.png"
+      },
+      {
+        "entry_id": 5768,
+        "entry_name": "超薄电视品牌排行榜",
+        "mention_rate": 75,
+        "position": 5,
+        "platform_ids": [
+          1,
+          2,
+          3,
+          5
+        ],
+        "last_conversation_time": "2026-07-03T12:02:15.000Z",
+        "last_screenshot_url": "https://app.geoindexfuture.com/screenshots/20260628/2f1806eeb45c40ef858dfc684ccd0ca8.png"
+      },
+      {
+        "entry_id": 5778,
+        "entry_name": "适合极简风客厅的电视推荐",
+        "mention_rate": 75,
+        "position": 3.5,
+        "platform_ids": [
+          1,
+          2,
+          3,
+          5
+        ],
+        "last_conversation_time": "2026-07-03T15:22:02.000Z",
+        "last_screenshot_url": "https://app.geoindexfuture.com/screenshots/20260630/3cc03471081d4599ad4462260794fab9.png"
+      },
+      {
+        "entry_id": 5779,
+        "entry_name": "适合极简风装修的壁纸电视推荐",
+        "mention_rate": 75,
+        "position": 1.8,
+        "platform_ids": [
+          1,
+          2,
+          3,
+          5
+        ],
+        "last_conversation_time": "2026-07-02T16:00:00.000Z",
+        "last_screenshot_url": "https://app.geoindexfuture.com/screenshots/20260704/1bd1949bbda8487397307a2e514257f9.png"
+      },
+      {
+        "entry_id": 5787,
+        "entry_name": "颜值高的电视推荐",
+        "mention_rate": 75,
+        "position": 3,
+        "platform_ids": [
+          1,
+          2,
+          3,
+          5
+        ],
+        "last_conversation_time": "2026-07-02T16:00:00.000Z",
+        "last_screenshot_url": "https://app.geoindexfuture.com/screenshots/20260704/e91132701cd248a49a075f3ca8b3139d.png"
+      },
+      {
+        "entry_id": 5788,
+        "entry_name": "颜值高的超薄电视推荐",
+        "mention_rate": 75,
+        "position": 3.8,
+        "platform_ids": [
+          1,
+          2,
+          3,
+          5
+        ],
+        "last_conversation_time": "2026-07-03T15:22:02.000Z",
+        "last_screenshot_url": "https://app.geoindexfuture.com/screenshots/20260630/d15a80e7f14a423ca7a2564966eee5fd.png"
+      },
+      {
+        "entry_id": 5698,
+        "entry_name": "100英寸超薄电视推荐",
+        "mention_rate": 50,
+        "position": 4,
+        "platform_ids": [
+          1,
+          2,
+          3,
+          5
+        ],
+        "last_conversation_time": "2026-07-02T16:00:00.000Z",
+        "last_screenshot_url": "https://app.geoindexfuture.com/screenshots/20260704/4e71d37b5fbc42b1a84acc3ea6099557.png"
+      },
+      {
+        "entry_id": 5699,
+        "entry_name": "3-6千的电视推荐",
+        "mention_rate": 50,
+        "position": 5,
+        "platform_ids": [
+          1,
+          2,
+          3,
+          5
+        ],
+        "last_conversation_time": "2026-07-02T16:00:00.000Z",
+        "last_screenshot_url": "https://app.geoindexfuture.com/screenshots/20260704/ec6ce28902de4c618c41f24977d8b124.png"
+      },
+      {
+        "entry_id": 5707,
+        "entry_name": "85英寸超薄电视推荐",
+        "mention_rate": 50,
+        "position": 3.5,
+        "platform_ids": [
+          1,
+          2,
+          3,
+          5
+        ],
+        "last_conversation_time": "2026-07-03T15:22:02.000Z",
+        "last_screenshot_url": "https://app.geoindexfuture.com/screenshots/20260629/c52e919df679410ca3903bf627ab4982.png"
+      },
+      {
+        "entry_id": 5708,
+        "entry_name": "Mini LED电视推荐",
+        "mention_rate": 50,
+        "position": 5.8,
+        "platform_ids": [
+          1,
+          2,
+          3,
+          5
+        ],
+        "last_conversation_time": "2026-07-03T10:46:02.000Z",
+        "last_screenshot_url": "https://app.geoindexfuture.com/screenshots/20260630/af803349e1a949f9a5442a6639265a77.png"
+      },
+      {
+        "entry_id": 5712,
+        "entry_name": "六千到1万五预算范围内的超薄电视推荐",
+        "mention_rate": 50,
+        "position": 2.8,
+        "platform_ids": [
+          1,
+          2,
+          3,
+          5
+        ],
+        "last_conversation_time": "2026-07-02T16:00:00.000Z",
+        "last_screenshot_url": "https://app.geoindexfuture.com/screenshots/20260704/393efc3da064429b9300fe0299dd3fbe.png"
+      },
+      {
+        "entry_id": 5713,
+        "entry_name": "卧室电视推荐",
+        "mention_rate": 50,
+        "position": 5,
+        "platform_ids": [
+          1,
+          2,
+          3,
+          5
+        ],
+        "last_conversation_time": "2026-07-02T16:00:00.000Z",
+        "last_screenshot_url": "https://app.geoindexfuture.com/screenshots/20260705/515ca4a9939c40b68571fb59c4a66071.png"
+      },
+      {
+        "entry_id": 5716,
+        "entry_name": "口碑好的电视推荐",
+        "mention_rate": 50,
+        "position": 7.5,
+        "platform_ids": [
+          1,
+          2,
+          3,
+          5
+        ],
+        "last_conversation_time": "2026-07-02T16:00:00.000Z",
+        "last_screenshot_url": "https://app.geoindexfuture.com/screenshots/20260704/ba5a4866301d4aeca186204f82b9f259.png"
+      },
+      {
+        "entry_id": 5717,
+        "entry_name": "口碑好的艺术电视推荐",
+        "mention_rate": 50,
+        "position": 3.5,
+        "platform_ids": [
+          1,
+          2,
+          3,
+          5
+        ],
+        "last_conversation_time": "2026-07-03T12:02:15.000Z",
+        "last_screenshot_url": "https://app.geoindexfuture.com/screenshots/20260628/23fa410182854df094d1a00fc2748eb9.png"
+      },
+      {
+        "entry_id": 5721,
+        "entry_name": "可以当装饰画的电视推荐",
+        "mention_rate": 50,
+        "position": 5.8,
+        "platform_ids": [
+          1,
+          2,
+          3,
+          5
+        ],
+        "last_conversation_time": "2026-07-03T15:22:02.000Z",
+        "last_screenshot_url": "https://app.geoindexfuture.com/screenshots/20260629/b1fe9f97fd0f4a0eb34b1620af5cbe04.png"
+      },
+      {
+        "entry_id": 5728,
+        "entry_name": "壁挂电视推荐",
+        "mention_rate": 50,
+        "position": 3.3,
+        "platform_ids": [
+          1,
+          2,
+          3,
+          5
+        ],
+        "last_conversation_time": "2026-07-02T16:00:00.000Z",
+        "last_screenshot_url": "https://app.geoindexfuture.com/screenshots/20260704/c0df2f088e5649518ed3a232c6609b4f.png"
+      },
+      {
+        "entry_id": 5733,
+        "entry_name": "大屏电视推荐",
+        "mention_rate": 50,
+        "position": 6.5,
+        "platform_ids": [
+          1,
+          2,
+          3,
+          5
+        ],
+        "last_conversation_time": "2026-07-02T16:00:00.000Z",
+        "last_screenshot_url": "https://app.geoindexfuture.com/screenshots/20260704/a733907f01a545eca48920b5e6905d63.png"
+      },
+      {
+        "entry_id": 5737,
+        "entry_name": "安装简单的电视推荐",
+        "mention_rate": 50,
+        "position": 6.5,
+        "platform_ids": [
+          1,
+          2,
+          3,
+          5
+        ],
+        "last_conversation_time": "2026-07-03T10:46:02.000Z",
+        "last_screenshot_url": "https://app.geoindexfuture.com/screenshots/20260630/2af28646b4664a8bb923267809b73591.png"
+      },
+      {
+        "entry_id": 5740,
+        "entry_name": "小户型客厅电视推荐",
+        "mention_rate": 50,
+        "position": 4,
+        "platform_ids": [
+          1,
+          2,
+          3,
+          5
+        ],
+        "last_conversation_time": "2026-07-02T16:00:00.000Z",
+        "last_screenshot_url": "https://app.geoindexfuture.com/screenshots/20260704/e5c91200671d408db654a31a9bca676b.png"
+      },
+      {
+        "entry_id": 5742,
+        "entry_name": "挂墙上好看的电视推荐",
+        "mention_rate": 50,
+        "position": 3.3,
+        "platform_ids": [
+          1,
+          2,
+          3,
+          5
+        ],
+        "last_conversation_time": "2026-07-03T15:22:02.000Z",
+        "last_screenshot_url": "https://app.geoindexfuture.com/screenshots/20260630/e1b1d34a18e5405894266bb51f4816d8.png"
+      },
+      {
+        "entry_id": 5744,
+        "entry_name": "新房电视推荐",
+        "mention_rate": 50,
+        "position": 7.3,
+        "platform_ids": [
+          1,
+          2,
+          3,
+          5
+        ],
+        "last_conversation_time": "2026-07-03T15:22:02.000Z",
+        "last_screenshot_url": "https://app.geoindexfuture.com/screenshots/20260630/3352885ace9d4aecb89641f7a0f796dc.png"
+      },
+      {
+        "entry_id": 5745,
+        "entry_name": "无频闪的电视推荐",
+        "mention_rate": 50,
+        "position": 6.5,
+        "platform_ids": [
+          1,
+          2,
+          3,
+          5
+        ],
+        "last_conversation_time": "2026-07-02T16:00:00.000Z",
+        "last_screenshot_url": "https://app.geoindexfuture.com/screenshots/20260704/65b5e48b62154ae5ada913a8700b9de0.png"
+      },
+      {
+        "entry_id": 5746,
+        "entry_name": "智能电视推荐",
+        "mention_rate": 50,
+        "position": 9,
+        "platform_ids": [
+          1,
+          2,
+          3,
+          5
+        ],
+        "last_conversation_time": "2026-07-02T16:00:00.000Z",
+        "last_screenshot_url": "https://app.geoindexfuture.com/screenshots/20260704/0d9da261a4cc4cf0bce6a6c7262061e2.png"
+      },
+      {
+        "entry_id": 5747,
+        "entry_name": "液晶电视品牌排行榜",
+        "mention_rate": 50,
+        "position": 7,
+        "platform_ids": [
+          1,
+          2,
+          3,
+          5
+        ],
+        "last_conversation_time": "2026-07-03T10:46:02.000Z",
+        "last_screenshot_url": "https://app.geoindexfuture.com/screenshots/20260630/537435ac7df34219aaeceaa8d6891b2d.png"
+      },
+      {
+        "entry_id": 5748,
+        "entry_name": "液晶电视品牌推荐",
+        "mention_rate": 50,
+        "position": 7.3,
+        "platform_ids": [
+          1,
+          2,
+          3,
+          5
+        ],
+        "last_conversation_time": "2026-07-02T16:00:00.000Z",
+        "last_screenshot_url": "https://app.geoindexfuture.com/screenshots/20260704/00676a7fdede4eec991635abc4a57568.png"
+      },
+      {
+        "entry_id": 5754,
+        "entry_name": "画质细节好的艺术电视推荐",
+        "mention_rate": 50,
+        "position": 3.8,
+        "platform_ids": [
+          1,
+          2,
+          3,
+          5
+        ],
+        "last_conversation_time": "2026-07-02T16:00:00.000Z",
+        "last_screenshot_url": "https://app.geoindexfuture.com/screenshots/20260704/9833e4e84754406990aaebd323ca0356.png"
+      },
+      {
+        "entry_id": 5766,
+        "entry_name": "质量好的超薄电视推荐",
+        "mention_rate": 50,
+        "position": 2.8,
+        "platform_ids": [
+          1,
+          2,
+          3,
+          5
+        ],
+        "last_conversation_time": "2026-07-02T16:00:00.000Z",
+        "last_screenshot_url": "https://app.geoindexfuture.com/screenshots/20260704/2b981a79afd34879a509628a9183f40f.png"
+      },
+      {
+        "entry_id": 5776,
+        "entry_name": "适合奶油风客厅的电视推荐",
+        "mention_rate": 50,
+        "position": 4,
+        "platform_ids": [
+          1,
+          2,
+          3,
+          5
+        ],
+        "last_conversation_time": "2026-07-03T15:22:02.000Z",
+        "last_screenshot_url": "https://app.geoindexfuture.com/screenshots/20260630/d044c755f8414000959dc5e7a918523b.png"
+      },
+      {
+        "entry_id": 5777,
+        "entry_name": "适合孩子的护眼电视推荐",
+        "mention_rate": 50,
+        "position": 5.8,
+        "platform_ids": [
+          1,
+          2,
+          3,
+          5
+        ],
+        "last_conversation_time": "2026-07-03T10:46:02.000Z",
+        "last_screenshot_url": "https://app.geoindexfuture.com/screenshots/20260630/704b92f1b3f5451a937592b2e380e3fa.png"
+      },
+      {
+        "entry_id": 5780,
+        "entry_name": "适合极简风装修的艺术电视推荐",
+        "mention_rate": 50,
+        "position": 3.3,
+        "platform_ids": [
+          1,
+          2,
+          3,
+          5
+        ],
+        "last_conversation_time": "2026-07-02T16:00:00.000Z",
+        "last_screenshot_url": "https://app.geoindexfuture.com/screenshots/20260704/99e08dfd8e994f6ba13731b16c03633a.png"
+      },
+      {
+        "entry_id": 5700,
+        "entry_name": "3000以内的电视推荐",
+        "mention_rate": 25,
+        "position": 5,
+        "platform_ids": [
+          1,
+          2,
+          3,
+          5
+        ],
+        "last_conversation_time": "2026-07-02T16:00:00.000Z",
+        "last_screenshot_url": "https://app.geoindexfuture.com/screenshots/20260704/729201d3bd344a02ba7c10bb64fe417d.png"
+      },
+      {
+        "entry_id": 5704,
+        "entry_name": "75英寸电视推荐",
+        "mention_rate": 25,
+        "position": 5,
+        "platform_ids": [
+          1,
+          2,
+          3,
+          5
+        ],
+        "last_conversation_time": "2026-07-02T16:00:00.000Z",
+        "last_screenshot_url": "https://app.geoindexfuture.com/screenshots/20260705/a031c63f5fb34bcd873f88db12ed15a6.png"
+      },
+      {
+        "entry_id": 5706,
+        "entry_name": "85英寸电视推荐",
+        "mention_rate": 25,
+        "position": 6.3,
+        "platform_ids": [
+          1,
+          2,
+          3,
+          5
+        ],
+        "last_conversation_time": "2026-07-02T16:00:00.000Z",
+        "last_screenshot_url": "https://app.geoindexfuture.com/screenshots/20260705/3795a5a1b845477c821c15ff403521bc.png"
+      },
+      {
+        "entry_id": 5719,
+        "entry_name": "可以上门安装的电视推荐",
+        "mention_rate": 25,
+        "position": 6.5,
+        "platform_ids": [
+          1,
+          2,
+          3,
+          5
+        ],
+        "last_conversation_time": "2026-07-03T10:46:02.000Z",
+        "last_screenshot_url": "https://app.geoindexfuture.com/screenshots/20260630/05d685247b9b4681b29b495266327664.png"
+      },
+      {
+        "entry_id": 5739,
+        "entry_name": "客厅电视推荐",
+        "mention_rate": 25,
+        "position": 7,
+        "platform_ids": [
+          1,
+          2,
+          3,
+          5
+        ],
+        "last_conversation_time": "2026-07-03T10:46:02.000Z",
+        "last_screenshot_url": "https://app.geoindexfuture.com/screenshots/20260630/932f2c357e13440b80496500d898d7bb.png"
+      },
+      {
+        "entry_id": 5750,
+        "entry_name": "电视品牌推荐",
+        "mention_rate": 25,
+        "position": 7.8,
+        "platform_ids": [
+          1,
+          2,
+          3,
+          5
+        ],
+        "last_conversation_time": "2026-07-03T15:22:02.000Z",
+        "last_screenshot_url": "https://app.geoindexfuture.com/screenshots/20260630/3ba91352f39a43018022f57217acfc09.png"
+      },
+      {
+        "entry_id": 5756,
+        "entry_name": "省电的电视推荐",
+        "mention_rate": 25,
+        "position": 5.8,
+        "platform_ids": [
+          1,
+          2,
+          3,
+          5
+        ],
+        "last_conversation_time": "2026-07-03T10:46:02.000Z",
+        "last_screenshot_url": "https://app.geoindexfuture.com/screenshots/20260630/163c419e83ce4dd3a1517989d1d5e230.png"
+      },
+      {
+        "entry_id": 5763,
+        "entry_name": "质量好的液晶电视推荐",
+        "mention_rate": 25,
+        "position": 6.3,
+        "platform_ids": [
+          1,
+          2,
+          3,
+          5
+        ],
+        "last_conversation_time": "2026-07-03T10:46:02.000Z",
+        "last_screenshot_url": "https://app.geoindexfuture.com/screenshots/20260630/037834406427453eb40fb9bc8e8a885f.png"
+      },
+      {
+        "entry_id": 5789,
+        "entry_name": "高清画质色彩好的电视推荐",
+        "mention_rate": 25,
+        "position": 7.8,
+        "platform_ids": [
+          1,
+          2,
+          3,
+          5
+        ],
+        "last_conversation_time": "2026-07-02T16:00:00.000Z",
+        "last_screenshot_url": "https://app.geoindexfuture.com/screenshots/20260704/b7d681f4cbfb480d878c763ff8bdd2bf.png"
+      },
+      {
+        "entry_id": 5701,
+        "entry_name": "4K高清电视推荐",
+        "mention_rate": 0,
+        "position": null,
+        "platform_ids": [
+          1,
+          2,
+          3,
+          5
+        ],
+        "last_conversation_time": "2026-07-03T10:46:02.000Z",
+        "last_screenshot_url": "https://app.geoindexfuture.com/screenshots/20260630/9bbbfcae16954e08a1f1b79d6b9b00fa.png"
+      },
+      {
+        "entry_id": 5702,
+        "entry_name": "55寸电视推荐",
+        "mention_rate": 0,
+        "position": null,
+        "platform_ids": [
+          1,
+          2,
+          3,
+          5
+        ],
+        "last_conversation_time": "2026-07-02T16:00:00.000Z",
+        "last_screenshot_url": "https://app.geoindexfuture.com/screenshots/20260704/b49445c0c4094cd6b9680c940a53f91b.png"
+      },
+      {
+        "entry_id": 5703,
+        "entry_name": "65寸电视推荐",
+        "mention_rate": 0,
+        "position": null,
+        "platform_ids": [
+          1,
+          2,
+          3,
+          5
+        ],
+        "last_conversation_time": "2026-07-02T16:00:00.000Z",
+        "last_screenshot_url": "https://app.geoindexfuture.com/screenshots/20260704/1c9f86b4f05d4c89a503afc681fed72c.png"
+      },
+      {
+        "entry_id": 5709,
+        "entry_name": "OLED电视推荐",
+        "mention_rate": 0,
+        "position": null,
+        "platform_ids": [
+          1,
+          2,
+          3,
+          5
+        ],
+        "last_conversation_time": "2026-07-02T16:00:00.000Z",
+        "last_screenshot_url": "https://app.geoindexfuture.com/screenshots/20260704/a51b033815bc4774a639db510ce67830.png"
+      },
+      {
+        "entry_id": 5711,
+        "entry_name": "六千到1万五预算范围内电视推荐",
+        "mention_rate": 0,
+        "position": null,
+        "platform_ids": [
+          1,
+          2,
+          3,
+          5
+        ],
+        "last_conversation_time": "2026-07-02T16:00:00.000Z",
+        "last_screenshot_url": "https://app.geoindexfuture.com/screenshots/20260705/66b0aa1984d64bb5a129b47e3105c192.png"
+      },
+      {
+        "entry_id": 5715,
+        "entry_name": "口碑好的液晶电视推荐",
+        "mention_rate": 0,
+        "position": null,
+        "platform_ids": [
+          1,
+          2,
+          3,
+          5
+        ],
+        "last_conversation_time": "2026-07-03T10:46:02.000Z",
+        "last_screenshot_url": "https://app.geoindexfuture.com/screenshots/20260630/ce6209dbb7a644db99e989127a2bb328.png"
+      },
+      {
+        "entry_id": 5722,
+        "entry_name": "可以投屏办公的电视推荐",
+        "mention_rate": 0,
+        "position": null,
+        "platform_ids": [
+          1,
+          2,
+          3,
+          5
+        ],
+        "last_conversation_time": "2026-07-02T16:00:00.000Z",
+        "last_screenshot_url": "https://app.geoindexfuture.com/screenshots/20260704/0d63f5f168324c3c9b090adeb5f5c667.png"
+      },
+      {
+        "entry_id": 5723,
+        "entry_name": "可以接入智能家居的电视推荐",
+        "mention_rate": 0,
+        "position": null,
+        "platform_ids": [
+          1,
+          2,
+          3,
+          5
+        ],
+        "last_conversation_time": "2026-07-03T10:46:02.000Z",
+        "last_screenshot_url": "https://app.geoindexfuture.com/screenshots/20260630/127e53e1f91b44bcb7196ff34c131f57.png"
+      },
+      {
+        "entry_id": 5725,
+        "entry_name": "售后服务好的电视推荐",
+        "mention_rate": 0,
+        "position": null,
+        "platform_ids": [
+          1,
+          2,
+          3,
+          5
+        ],
+        "last_conversation_time": "2026-07-02T16:00:00.000Z",
+        "last_screenshot_url": "https://app.geoindexfuture.com/screenshots/20260704/33df238bfdff4dd8bdb0403fc7dcd092.png"
+      },
+      {
+        "entry_id": 5732,
+        "entry_name": "大内存电视推荐",
+        "mention_rate": 0,
+        "position": null,
+        "platform_ids": [
+          1,
+          2,
+          3,
+          5
+        ],
+        "last_conversation_time": "2026-07-03T10:46:02.000Z",
+        "last_screenshot_url": "https://app.geoindexfuture.com/screenshots/20260630/7660e23e7b064abf9c46733ace0a80c8.png"
+      },
+      {
+        "entry_id": 5741,
+        "entry_name": "广告少的电视推荐",
+        "mention_rate": 0,
+        "position": null,
+        "platform_ids": [
+          1,
+          2,
+          3,
+          5
+        ],
+        "last_conversation_time": "2026-07-02T16:00:00.000Z",
+        "last_screenshot_url": "https://app.geoindexfuture.com/screenshots/20260705/50b60e5e20ef4ddd84edc9c6a5a5d38d.png"
+      },
+      {
+        "entry_id": 5757,
+        "entry_name": "租房党电视推荐",
+        "mention_rate": 0,
+        "position": null,
+        "platform_ids": [
+          1,
+          2,
+          3,
+          5
+        ],
+        "last_conversation_time": "2026-07-02T16:00:00.000Z",
+        "last_screenshot_url": "https://app.geoindexfuture.com/screenshots/20260704/ee8afc28760d4a37aadc472995d854da.png"
+      },
+      {
+        "entry_id": 5758,
+        "entry_name": "系统流畅的电视推荐",
+        "mention_rate": 0,
+        "position": null,
+        "platform_ids": [
+          1,
+          2,
+          3,
+          5
+        ],
+        "last_conversation_time": "2026-07-02T16:00:00.000Z",
+        "last_screenshot_url": "https://app.geoindexfuture.com/screenshots/20260705/1ce948de135e41c3a9be2780bd031fda.png"
+      },
+      {
+        "entry_id": 5764,
+        "entry_name": "质量好的电视推荐",
+        "mention_rate": 0,
+        "position": null,
+        "platform_ids": [
+          1,
+          2,
+          3,
+          5
+        ],
+        "last_conversation_time": "2026-07-03T15:22:02.000Z",
+        "last_screenshot_url": "https://app.geoindexfuture.com/screenshots/20260630/11fe8c35a92e4f23b39807ad37b62c31.png"
+      },
+      {
+        "entry_id": 5782,
+        "entry_name": "适合看球赛的电视推荐",
+        "mention_rate": 0,
+        "position": null,
+        "platform_ids": [
+          1,
+          2,
+          3,
+          5
+        ],
+        "last_conversation_time": "2026-07-02T16:00:00.000Z",
+        "last_screenshot_url": "https://app.geoindexfuture.com/screenshots/20260705/b164d46289344a4b8c32b4f00bf1dbe7.png"
+      },
+      {
+        "entry_id": 5783,
+        "entry_name": "适合追剧的电视推荐",
+        "mention_rate": 0,
+        "position": null,
+        "platform_ids": [
+          1,
+          2,
+          3,
+          5
+        ],
+        "last_conversation_time": "2026-07-03T10:46:02.000Z",
+        "last_screenshot_url": "https://app.geoindexfuture.com/screenshots/20260630/5fa4a3e06e70479885e108f8ce9dc8ea.png"
+      }
+    ]
+  },
+  "compare": {
+    "target_product": "创维",
+    "mention_rate_ranking": [
+      {
+        "brand_id": 110,
+        "brand_name": "海信",
+        "product_id": null,
+        "product_name": null,
+        "display_name": "海信",
+        "mention_count": 253,
+        "mention_rate": 68,
+        "is_target": false
+      },
+      {
+        "brand_id": 9350,
+        "brand_name": "TCL",
+        "product_id": null,
+        "product_name": null,
+        "display_name": "TCL",
+        "mention_count": 244,
+        "mention_rate": 65.6,
+        "is_target": false
+      },
+      {
+        "brand_id": 45486,
+        "brand_name": "创维",
+        "product_id": null,
+        "product_name": null,
+        "display_name": "创维",
+        "mention_count": 221,
+        "mention_rate": 59.4,
+        "is_target": true
+      },
+      {
+        "brand_id": 8627,
+        "brand_name": "索尼",
+        "product_id": null,
+        "product_name": null,
+        "display_name": "索尼",
+        "mention_count": 131,
+        "mention_rate": 35.2,
+        "is_target": false
+      },
+      {
+        "brand_id": 216,
+        "brand_name": "三星",
+        "product_id": null,
+        "product_name": null,
+        "display_name": "三星",
+        "mention_count": 128,
+        "mention_rate": 34.4,
+        "is_target": false
+      }
+    ],
+    "position_ranking": [
+      {
+        "brand_id": 58521,
+        "brand_name": "金画眉",
+        "product_id": null,
+        "product_name": null,
+        "display_name": "金画眉",
+        "avg_position": 1,
+        "is_target": false
+      },
+      {
+        "brand_id": 107,
+        "brand_name": "美的",
+        "product_id": null,
+        "product_name": null,
+        "display_name": "美的",
+        "avg_position": 2,
+        "is_target": false
+      },
+      {
+        "brand_id": 39077,
+        "brand_name": "苏宁企业购",
+        "product_id": null,
+        "product_name": null,
+        "display_name": "苏宁企业购",
+        "avg_position": 3,
+        "is_target": false
+      },
+      {
+        "brand_id": 11251,
+        "brand_name": "卡萨帝",
+        "product_id": null,
+        "product_name": null,
+        "display_name": "卡萨帝",
+        "avg_position": 3.1,
+        "is_target": false
+      },
+      {
+        "brand_id": 45486,
+        "brand_name": "创维",
+        "product_id": null,
+        "product_name": null,
+        "display_name": "创维",
+        "avg_position": 3.5,
+        "is_target": true
+      }
+    ],
+    "rate_daily": [
+      {
+        "date": "2026-07-03",
+        "海信": 68,
+        "TCL": 65.6,
+        "创维": 59.4,
+        "索尼": 35.2,
+        "三星": 34.4
+      }
+    ],
+    "position_daily": [
+      {
+        "date": "2026-07-03",
+        "金画眉": 1,
+        "美的": 2,
+        "苏宁企业购": 3,
+        "卡萨帝": 3.1,
+        "创维": 3.5
+      }
+    ],
+    "top1_ranking": [
+      {
+        "rank": 1,
+        "brand_name": "创维",
+        "top1_mention_rate": 24.7,
+        "is_target": true
+      },
+      {
+        "rank": 2,
+        "brand_name": "海信",
+        "top1_mention_rate": 10.8,
+        "is_target": false
+      },
+      {
+        "rank": 3,
+        "brand_name": "三星",
+        "top1_mention_rate": 10.5,
+        "is_target": false
+      },
+      {
+        "rank": 4,
+        "brand_name": "TCL",
+        "top1_mention_rate": 10.2,
+        "is_target": false
+      },
+      {
+        "rank": 5,
+        "brand_name": "索尼",
+        "top1_mention_rate": 7.8,
+        "is_target": false
+      },
+      {
+        "rank": 6,
+        "brand_name": "Vidda",
+        "top1_mention_rate": 6.2,
+        "is_target": false
+      },
+      {
+        "rank": 7,
+        "brand_name": "雷鸟",
+        "top1_mention_rate": 6.2,
+        "is_target": false
+      },
+      {
+        "rank": 8,
+        "brand_name": "LG",
+        "top1_mention_rate": 4,
+        "is_target": false
+      },
+      {
+        "rank": 9,
+        "brand_name": "小米",
+        "top1_mention_rate": 4,
+        "is_target": false
+      },
+      {
+        "rank": 10,
+        "brand_name": "长虹",
+        "top1_mention_rate": 4,
+        "is_target": false
+      },
+      {
+        "rank": 11,
+        "brand_name": "Redmi",
+        "top1_mention_rate": 3,
+        "is_target": false
+      },
+      {
+        "rank": 12,
+        "brand_name": "东芝",
+        "top1_mention_rate": 2.2,
+        "is_target": false
+      },
+      {
+        "rank": 13,
+        "brand_name": "酷开",
+        "top1_mention_rate": 2.2,
+        "is_target": false
+      },
+      {
+        "rank": 14,
+        "brand_name": "华为",
+        "top1_mention_rate": 1.9,
+        "is_target": false
+      },
+      {
+        "rank": 15,
+        "brand_name": "海尔",
+        "top1_mention_rate": 1.1,
+        "is_target": false
+      },
+      {
+        "rank": 16,
+        "brand_name": "京东",
+        "top1_mention_rate": 0.3,
+        "is_target": false
+      },
+      {
+        "rank": 17,
+        "brand_name": "康佳",
+        "top1_mention_rate": 0.3,
+        "is_target": false
+      },
+      {
+        "rank": 18,
+        "brand_name": "金画眉",
+        "top1_mention_rate": 0.3,
+        "is_target": false
+      },
+      {
+        "rank": 19,
+        "brand_name": "AENTGIU",
+        "top1_mention_rate": 0,
+        "is_target": false
+      },
+      {
+        "rank": 20,
+        "brand_name": "B&O",
+        "top1_mention_rate": 0,
+        "is_target": false
+      }
+    ]
+  },
+  "citations": {
+    "total_conversations": 372,
+    "citation_rate": 91.1,
+    "total_citations": 4264,
+    "platform_stats": [
+      {
+        "platform_name": "中关村在线",
+        "domain": "zol.com.cn",
+        "logo_url": "https://cdn.deepseek.com/site-icons/zol.com.cn",
+        "citation_count": 675,
+        "share": 15.8
+      },
+      {
+        "platform_name": "抖音",
+        "domain": "iesdouyin.com",
+        "logo_url": "https://p3-spider-image-sign.byteimg.com/isp-i18n-media/img/27422dd3ce8d2f41b45309e5aeca806b~tplv-e9ol9do63j-thumbnail.jpeg?rk3s=feb11e32&x-expires=1775816928&x-signature=W8ZL8IDW1iYKUjhoHgBVhf82%2BBM%3D",
+        "citation_count": 615,
+        "share": 14.4
+      },
+      {
+        "platform_name": "今日头条",
+        "domain": "toutiao.com",
+        "logo_url": "https://p26-spider-image-sign.byteimg.com/isp-i18n-media/image/118f7a3625ad8ebbbc11d04f118d2e10~tplv-e9ol9do63j-thumbnail.jpeg?rk3s=feb11e32&x-expires=1775816929&x-signature=0BCf7I6pCkxfK9gutZJAh6L1BLA%3D",
+        "citation_count": 388,
+        "share": 9.1
+      },
+      {
+        "platform_name": "QQ News",
+        "domain": "qq.com",
+        "logo_url": "https://cdn.deepseek.com/site-icons/qq.com",
+        "citation_count": 266,
+        "share": 6.2
+      },
+      {
+        "platform_name": "什么值得买社区频道",
+        "domain": "smzdm.com",
+        "logo_url": "https://p3-spider-image-sign.byteimg.com/isp-i18n-media/image/1a44b9ef64d4f823f24d9493b4fe660a~tplv-e9ol9do63j-thumbnail.jpeg?rk3s=feb11e32&x-expires=1775816928&x-signature=%2BwPsdoPoNDfa241xjO4mOLPKH4o%3D",
+        "citation_count": 224,
+        "share": 5.3
+      }
+    ],
+    "articles": [
+      {
+        "title": "七千左右壁纸电视怎么选？2026适配现代装修的贴墙电视推荐",
+        "link_url": "https://www.ithome.com/0/972/364.htm",
+        "domain": "ithome.com",
+        "platform_name": "IT之家",
+        "logo_url": "https://cdn.deepseek.com/site-icons/ithome.com",
+        "total_citations": 43,
+        "avg_citations": 43,
+        "has_target_product": true
+      },
+      {
+        "title": "创维壁纸电视连续九年蝉联艺术电视销冠，创维A7H Pro成26年“大爆款”-品玩",
+        "link_url": "https://www.pingwest.com/a/314612",
+        "domain": "pingwest.com",
+        "platform_name": "品玩",
+        "logo_url": "https://cdn.deepseek.com/site-icons/pingwest.com",
+        "total_citations": 27,
+        "avg_citations": 27,
+        "has_target_product": true
+      },
+      {
+        "title": "618提前购！值得买的电视神机有哪些？#海信 #tcl #创维 #vidda #雷鸟",
+        "link_url": "https://www.iesdouyin.com/share/video/7635974862725537393",
+        "domain": "iesdouyin.com",
+        "platform_name": "抖音",
+        "logo_url": "https://p3-spider-image-sign.byteimg.com/isp-i18n-media/img/27422dd3ce8d2f41b45309e5aeca806b~tplv-e9ol9do63j-thumbnail.jpeg?rk3s=feb11e32&x-expires=1775816928&x-signature=W8ZL8IDW1iYKUjhoHgBVhf82%2BBM%3D",
+        "total_citations": 23,
+        "avg_citations": 23,
+        "has_target_product": true
+      },
+      {
+        "title": "IT之家 www.ithome.com",
+        "link_url": "https://www.ithome.com/0/971/663.htm",
+        "domain": "ithome.com",
+        "platform_name": "IT之家",
+        "logo_url": "https://cdn.deepseek.com/site-icons/ithome.com",
+        "total_citations": 21,
+        "avg_citations": 21,
+        "has_target_product": true
+      },
+      {
+        "title": "2026电视性价比推荐 上班族居家影音高效之选",
+        "link_url": "https://tv.zol.com.cn/1208/12087723.html",
+        "domain": "zol.com.cn",
+        "platform_name": "中关村在线",
+        "logo_url": "https://cdn.deepseek.com/site-icons/zol.com.cn",
+        "total_citations": 19,
+        "avg_citations": 19,
+        "has_target_product": true
+      },
+      {
+        "title": "2026年壁画电视百搭家装!新款评测与口碑盘点",
+        "link_url": "https://caifuhao.eastmoney.com/news/20260519213718005176340",
+        "domain": "eastmoney.com",
+        "platform_name": "东方财富网",
+        "logo_url": "https://cdn-yb.icon.qq.com/zuowei_dir/caifuhao_eastmoney_com.ico",
+        "total_citations": 17,
+        "avg_citations": 17,
+        "has_target_product": true
+      },
+      {
+        "title": "10999元起！创维A10H系列发布：将顶级画质，塞进超薄机身？",
+        "link_url": "https://www.leikeji.com/article/75262",
+        "domain": "leikeji.com",
+        "platform_name": "雷科技",
+        "logo_url": "https://cdn.deepseek.com/site-icons/leikeji.com",
+        "total_citations": 16,
+        "avg_citations": 16,
+        "has_target_product": true
+      },
+      {
+        "title": "2026艺术电视品牌盘点：要换新房，客厅电视这样挑不踩坑",
+        "link_url": "https://software.it168.com/a2026/0704/6938/000006938534.shtml#articlecomment",
+        "domain": "it168.com",
+        "platform_name": "IT168",
+        "logo_url": "https://cdn.deepseek.com/site-icons/it168.com",
+        "total_citations": 16,
+        "avg_citations": 16,
+        "has_target_product": true
+      },
+      {
+        "title": "售后有保障的壁纸电视有哪些?2026艺术电视品牌分类一文盘点",
+        "link_url": "https://new.qq.com/rain/a/20260704A06R5R00",
+        "domain": "qq.com",
+        "platform_name": "QQ News",
+        "logo_url": "https://cdn.deepseek.com/site-icons/qq.com",
+        "total_citations": 16,
+        "avg_citations": 16,
+        "has_target_product": true
+      },
+      {
+        "title": "2026年壁纸电视市场观察:五大品牌技术路径与产品特点解析",
+        "link_url": "https://cj.sina.com.cn/articles/view/6116078131/16c8bf233001019wu0",
+        "domain": "sina.com.cn",
+        "platform_name": "手机新浪网",
+        "logo_url": "https://p3-spider-image-sign.byteimg.com/isp-i18n-media/image/17c8e4a8284b45c732ee53c74d1248a4~tplv-e9ol9do63j-thumbnail.jpeg?rk3s=feb11e32&x-expires=1777219535&x-signature=6nkIpR%2FVJVA6rep22dvYirEwVKA%3D",
+        "total_citations": 15,
+        "avg_citations": 15,
+        "has_target_product": false
+      }
+    ]
+  }
+}

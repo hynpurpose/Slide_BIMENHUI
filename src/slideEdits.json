@@ -254,6 +254,36 @@
         "html": "品牌词、产品词、场景词、竞品词、舆情词\n不同词混一起容易造成数据和优化方向混乱"
       }
     },
+    "chapter-6-0-8": {
+      "0.1.0.3.2.1.0.1": {
+        "dx": 0,
+        "dy": 0,
+        "rotate": 0,
+        "fontSize": "",
+        "color": "",
+        "fontFamily": "",
+        "fontWeight": "",
+        "textAlign": "",
+        "lineHeight": "",
+        "letterSpacing": "",
+        "html": "20+ "
+      }
+    },
+    "chapter-6-1-1": {
+      "0.1.0.3.0.0.1": {
+        "dx": 0,
+        "dy": 0,
+        "rotate": 0,
+        "fontSize": "",
+        "color": "",
+        "fontFamily": "",
+        "fontWeight": "",
+        "textAlign": "",
+        "lineHeight": "",
+        "letterSpacing": "",
+        "html": "<span class=\"block whitespace-nowrap\">GEO ONE</span><span class=\"block\">数据监测系统</span>"
+      }
+    },
     "chapter-1-0-1": {
       "0.1.0.3.0.1.0.0.0.0": {
         "dx": 0,
