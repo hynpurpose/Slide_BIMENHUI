@@ -126,29 +126,45 @@ export function Page_GeoContentPrinciples_A() {
           {/* 左：EEAT */}
           <div className="rounded-[30px] border border-zinc-900 bg-zinc-950/20 px-11 py-10 flex flex-col min-h-0 relative">
             <RejectStamp className="absolute right-8 top-8" />
-            <div className="shrink-0 mb-8 flex flex-col justify-end" style={{ height: headerH }}>
+            <div className="shrink-0 mb-6 flex flex-col justify-end" style={{ height: '110px' }}>
               <h3 className="text-[44px] xl:text-[48px] font-black text-zinc-100 font-['MiSans'] leading-tight">
                 讨论最多的是
               </h3>
-              <div className="mt-2.5">
-                <span className="text-zinc-500 font-['Montserrat'] font-black text-[28px] tracking-wider leading-none">
+              <div className="mt-1">
+                <span className="text-zinc-500 font-['Montserrat'] font-black text-[26px] tracking-wider leading-none">
                   E-E-A-T
                 </span>
               </div>
             </div>
 
-            <EeatExpansions variant="balanced" />
+            {/* EEAT与下面解释划为一个整体 */}
+            <div className="flex-1 min-h-0 rounded-[22px] px-8 py-7 flex flex-col justify-between bg-white/[0.02] border border-white/[0.08]">
+              {/* 4个EEAT解析 */}
+              <div className="grid grid-cols-2 gap-4">
+                {EEAT_ITEMS.map(({ en, zh }) => (
+                  <div key={en} className="rounded-xl border border-zinc-900 bg-black/30 px-5 py-3 flex flex-col justify-center h-[76px]">
+                    <span className="text-[17px] font-['Montserrat'] font-semibold text-zinc-500 leading-none">
+                      {en}
+                    </span>
+                    <span className="text-[21px] font-black text-zinc-300 font-['MiSans'] mt-2 leading-none">
+                      {zh}
+                    </span>
+                  </div>
+                ))}
+              </div>
 
-            <div className="shrink-0 mt-6 space-y-3">
-              <p className="text-[26px] text-zinc-400 leading-[40px] font-['MiSans']">
-                最早来自谷歌《搜索质量评估指南》
-              </p>
-              <p className="text-[26px] text-zinc-400 leading-[40px] font-['MiSans']">
-                常用于国外模型优化
-              </p>
-              <p className="text-[26px] text-zinc-300 leading-[40px] font-['MiSans']">
-                但和中国模型实际情况 <strong className="text-white font-bold">并不适配</strong>。
-              </p>
+              {/* 底部的3行解释文字，全部用白色，重点加大 */}
+              <div className="border-t border-zinc-900 pt-5 mt-4 space-y-3.5 text-white">
+                <p className="text-[22px] xl:text-[24px] leading-relaxed font-['MiSans']">
+                  最早来自 <strong className="text-[26px] xl:text-[28px] font-black text-white">谷歌《搜索质量评估指南》</strong>
+                </p>
+                <p className="text-[22px] xl:text-[24px] leading-relaxed font-['MiSans']">
+                  常用于 <strong className="text-[26px] xl:text-[28px] font-black text-white">国外模型优化</strong>
+                </p>
+                <p className="text-[22px] xl:text-[24px] leading-relaxed font-['MiSans']">
+                  但和中国模型实际情况 <strong className="text-[28px] xl:text-[30px] font-black text-white">并不适配</strong>。
+                </p>
+              </div>
             </div>
           </div>
 
@@ -156,12 +172,12 @@ export function Page_GeoContentPrinciples_A() {
           <div
             className="rounded-[30px] px-11 py-10 flex flex-col min-h-0 relative bg-gradient-to-br from-[#004CE5]/5 to-zinc-950/20 border border-[#004CE5]/30 shadow-[0_12px_40px_rgba(0,76,229,0.05)]"
           >
-            <div className="shrink-0 mb-8 flex flex-col justify-end" style={{ height: headerH }}>
+            <div className="shrink-0 mb-6 flex flex-col justify-end" style={{ height: '110px' }}>
               <h3 className="text-[44px] xl:text-[48px] font-black text-white font-['MiSans'] leading-tight">
                 我们实践最有效的是
               </h3>
-              <div className="mt-2.5">
-                <span className="text-[#004CE5] font-['MiSans'] font-extrabold text-[28px] leading-none">
+              <div className="mt-1">
+                <span className="text-[#004CE5] font-['MiSans'] font-extrabold text-[26px] leading-none">
                   写用户视角的议论文
                 </span>
               </div>
