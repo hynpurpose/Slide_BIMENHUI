@@ -221,6 +221,7 @@ function findChrome() {
             h: rect.height / rootRect.height,
             radiusPx: radius,
             cssW: rect.width,
+            cssH: rect.height,
             // roundRect 的 adj：圆角半径占短边的比例 × 100000
             adj: Math.round((radius / Math.min(rect.width, rect.height)) * 100000),
           };
@@ -265,25 +266,46 @@ function findChrome() {
             }
           } catch (_) {}
 
-          // Keynote 不认自带封面、直接拿视频第一帧当封面，
-          // 所以把封面画面烧进视频开头 0.2 秒：静态显示播放键/角标，开播即消失
+          // 网页里视频是 object-fit: cover（按框裁剪），PPT 里却是拉伸填满形状框，
+          // 宽高比不一致就会压扁/拉长。这里用 ffmpeg 按显示框比例居中裁剪，
+          // 并统一转码成 ≤1080p 的标准 H.264（4K/高帧率视频在 Keynote 下行为不稳定）。
+          // 同时把封面画面烧进视频开头 0.2 秒：Keynote 不认自带封面、
+          // 直接拿视频第一帧当封面，静态显示播放键/角标，开播即消失
           let mediaPath = videoPath;
-          if (cover) {
-            try {
-              const coverPng = path.join(screenshotsDir, `video-cover-${i}.png`);
+          try {
+            // 目标像素尺寸：显示框比例，宽度不超过 1920，取偶数
+            const boxAR = videoInfo.cssW / videoInfo.cssH;
+            const outW = 2 * Math.round(Math.min(1920, videoInfo.cssW * 2) / 2);
+            const outH = 2 * Math.round(outW / boxAR / 2);
+            const filters = [
+              // 居中裁剪到框比例（等效 object-fit: cover），再缩放到目标尺寸
+              `[0:v]crop='min(iw,ih*${boxAR})':'min(ih,iw/${boxAR})',scale=${outW}:${outH},fps=30[v]`,
+            ];
+            const inputs = ['-i', videoPath];
+            let lastLabel = '[v]';
+            const coverPng = path.join(screenshotsDir, `video-cover-${i}.png`);
+            if (cover) {
               fs.writeFileSync(coverPng, Buffer.from(cover.split(',')[1], 'base64'));
-              const bakedMp4 = path.join(screenshotsDir, `video-baked-${i}.mp4`);
-              execFileSync('ffmpeg', [
-                '-y', '-i', videoPath, '-i', coverPng,
-                '-filter_complex',
-                "[1:v][0:v]scale2ref[ov][base];[base][ov]overlay=0:0:enable='lte(t,0.2)'",
-                '-c:a', 'copy', '-pix_fmt', 'yuv420p', '-movflags', '+faststart',
-                bakedMp4,
-              ], { stdio: 'ignore' });
-              mediaPath = bakedMp4;
-            } catch (_) {
-              // ffmpeg 不可用时退回原视频（仅影响 Keynote 的静态封面样式）
+              inputs.push('-i', coverPng);
+              filters.push(
+                `[1:v]scale=${outW}:${outH}[ov]`,
+                `[v][ov]overlay=0:0:enable='lte(t,0.2)'[vout]`
+              );
+              lastLabel = '[vout]';
             }
+            const bakedMp4 = path.join(screenshotsDir, `video-baked-${i}.mp4`);
+            execFileSync('ffmpeg', [
+              '-y', ...inputs,
+              '-filter_complex', filters.join(';'),
+              '-map', lastLabel, '-map', '0:a?',
+              '-c:v', 'libx264', '-profile:v', 'high', '-level', '4.0',
+              '-crf', '20', '-c:a', 'aac',
+              '-pix_fmt', 'yuv420p', '-movflags', '+faststart',
+              bakedMp4,
+            ], { stdio: 'ignore' });
+            mediaPath = bakedMp4;
+          } catch (_) {
+            // ffmpeg 不可用时退回原视频（画面比例和 Keynote 兼容性会受影响）
           }
 
           slide.addMedia({
