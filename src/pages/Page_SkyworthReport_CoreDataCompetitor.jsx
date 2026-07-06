@@ -195,13 +195,13 @@ export function Page_SkyworthReport_CoreDataCompetitor() {
         <style dangerouslySetInnerHTML={{ __html: FONT_IMPORT }} />
 
         {/* 页面标题 */}
-        <div className="text-center shrink-0 mb-2">
+        <div className="text-center shrink-0 mb-4">
           <h1 className="text-[36px] xl:text-[40px] font-bold text-white tracking-widest leading-tight">
             竞品对比
           </h1>
         </div>
 
-        <div className="w-full max-w-[1840px] mx-auto flex flex-col flex-1 min-h-0 relative z-10 justify-center gap-10">
+        <div className="w-full max-w-[1840px] mx-auto flex flex-col flex-1 min-h-0 relative z-10 justify-between py-4">
 
           {/* ===== 品类优化词竞品对比 (并列三个表) ===== */}
           <div className="shrink-0 flex flex-col gap-3 text-left">
@@ -229,7 +229,7 @@ export function Page_SkyworthReport_CoreDataCompetitor() {
           </div>
 
           {/* ===== 极简数据总结 ===== */}
-          <div className="shrink-0 border-t border-white/10 pt-8 mt-2">
+          <div className="shrink-0 border-t border-white/10 pt-6">
             <div className="flex items-start gap-5">
               <span className="text-[20px] xl:text-[22px] font-bold text-white shrink-0 bg-[#004CE5] px-4 py-2 rounded-xl shadow-[0_0_10px_rgba(0,76,229,0.3)]">
                 数据总结
