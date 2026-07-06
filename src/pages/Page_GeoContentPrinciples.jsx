@@ -177,7 +177,7 @@ export function Page_GeoContentPrinciples_A() {
                 我们实践最有效的是
               </h3>
               <div className="mt-4">
-                <span className="text-[#004CE5] font-['MiSans'] font-extrabold text-[28px] leading-none">
+                <span className="text-[#004CE5] font-['MiSans'] font-black text-[38px] xl:text-[42px] leading-none">
                   写用户视角的议论文
                 </span>
               </div>
