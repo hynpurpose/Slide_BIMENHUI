@@ -126,6 +126,7 @@ import Page_SkyworthTutorialDeconstruct from '../pages/Page_SkyworthTutorialDeco
 import Page_SkyworthTutorialDemo from '../pages/Page_SkyworthTutorialDemo';
 import Page_SkyworthWordOfMouthDeconstruct from '../pages/Page_SkyworthWordOfMouthDeconstruct';
 import Page_SkyworthWordOfMouthDemo from '../pages/Page_SkyworthWordOfMouthDemo';
+import Page_ArticleCitationRate from '../pages/Page_ArticleCitationRate';
 import {
   Page_GeoContentPrinciples_A,
   Page_GeoContentPrinciples_B,
@@ -308,6 +309,7 @@ export const slideConfig = [
   { type: 'page', title: '用户口碑类文章示意', component: Page_SkyworthWordOfMouthDemo, hideHeader: true },
   { type: 'page', title: '场景教程类文章逆向拆解', component: Page_SkyworthTutorialDeconstruct, hideHeader: true },
   { type: 'page', title: '场景教程类文章示意', component: Page_SkyworthTutorialDemo, hideHeader: true },
+  { type: 'page', title: '文章引用率', component: Page_ArticleCitationRate, hideHeader: true },
 
   // ══════════════════════════════════════════════════════════
   // ——— 六、投放策略 ———
