@@ -74,7 +74,7 @@ async function dataRange(projectId) {
   return { dates, start: dates[0] || null, end: dates[dates.length - 1] || null };
 }
 
-/** 优化词项目：提及率 + TOP1/TOP3 提及率（取本品）+ 竞品品牌列表 */
+/** 优化词项目：提及率 + TOP1/TOP3 提及率（取本品）+ 竞品排名榜单 */
 async function fetchOptProject(p) {
   const { dates, start, end } = await dataRange(p.id);
   const range = { project_id: p.id, start_date: start, end_date: end };
@@ -82,17 +82,26 @@ async function fetchOptProject(p) {
   const stats = await api('/api/conversations/stats', range);
   const topRates = {};
   let brandNames = [];
+  let top1Ranking = [];
   for (const topType of ['top1', 'top3']) {
     try {
       const r = await api('/api/competitors/top-mention-rate', { ...range, top_type: topType, page_size: 100 });
       const list = r.data.list || [];
       const self = list.find((b) => b.is_self);
       topRates[topType] = self ? num(self.selected_top_mention_rate) : null;
-      if (topType === 'top1') brandNames = list.map((b) => b.brand_name).filter(Boolean);
+      if (topType === 'top1') {
+        brandNames = list.map((b) => b.brand_name).filter(Boolean);
+        top1Ranking = list.slice(0, 5).map((b) => ({
+          name: b.display_name || b.brand_name,
+          rate: num(b.selected_top_mention_rate),
+          is_target: !!b.is_self,
+        }));
+      }
     } catch {
       topRates[topType] = null;
     }
   }
+  const compare = await api('/api/competitors/compare', range);
   const citations = await api('/api/citations/stats', range);
   const articles = await api('/api/citations/articles', { ...range, page: 1, page_size: 1 });
 
@@ -107,6 +116,17 @@ async function fetchOptProject(p) {
     total_conversations: citations.data.total_conversations,
     total_articles: articles.data.total ?? null,
     brand_names: brandNames,
+    mention_ranking: (compare.data.mention_rate_ranking || []).slice(0, 5).map((b) => ({
+      name: b.display_name || b.brand_name,
+      rate: num(b.mention_rate),
+      is_target: !!b.is_target,
+    })),
+    position_ranking: (compare.data.position_ranking || []).slice(0, 5).map((b) => ({
+      name: b.display_name || b.brand_name,
+      position: num(b.avg_position),
+      is_target: !!b.is_target,
+    })),
+    top1_ranking: top1Ranking,
   };
 }
 
