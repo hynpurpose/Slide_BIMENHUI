@@ -73,8 +73,13 @@ async function main() {
     process.exit(1);
   }
 
-  const startDate = getFlag('start') || project.created_at.slice(0, 10);
-  const endDate = getFlag('end') || today();
+  // 默认区间：项目实际有数据的日期范围（/data-dates），取不到再退回“创建日~今天”
+  let dataDates = [];
+  try {
+    dataDates = (await api(`/api/projects/${projectId}/data-dates`)).data.dates || [];
+  } catch { /* 老版本后端无此接口 */ }
+  const startDate = getFlag('start') || dataDates[0] || project.created_at.slice(0, 10);
+  const endDate = getFlag('end') || dataDates[dataDates.length - 1] || today();
   const range = { project_id: projectId, start_date: startDate, end_date: endDate };
   console.log(`项目: ${project.project_name} / 目标产品: ${project.target_product}`);
   console.log(`数据区间: ${startDate} ~ ${endDate}`);

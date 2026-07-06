@@ -39,9 +39,13 @@ function ScreenshotThumb({ src }) {
 
 const fmtDate = (iso) => new Date(iso).toLocaleDateString('zh-CN');
 
+/* 版面只放得下一页，与网页第一页一致：按提及率降序取前 15 条 */
+const PAGE_SIZE = 15;
+
 export function Page_SkyworthReport_OptEntriesHtml() {
   const { meta, platforms, entries } = report;
   const platformMap = Object.fromEntries(platforms.map((p) => [p.id, p]));
+  const rows = entries.list.slice(0, PAGE_SIZE);
 
   const toolbarExtra = (
     <>
@@ -86,7 +90,7 @@ export function Page_SkyworthReport_OptEntriesHtml() {
               </tr>
             </thead>
             <tbody>
-              {entries.list.map((e, i) => (
+              {rows.map((e, i) => (
                 <tr key={e.entry_id} className="h-12 border-b last:border-0" style={{ borderColor: C.border }}>
                   <td className="!p-0 !px-2 text-center align-middle"><Checkbox /></td>
                   <td className="!p-0 !px-2 text-center align-middle">
