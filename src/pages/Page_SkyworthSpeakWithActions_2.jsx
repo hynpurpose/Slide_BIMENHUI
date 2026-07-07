@@ -1,6 +1,10 @@
 import React from 'react';
 import SlideLayout from '../components/SlideLayout';
-import rows from '../data/speakWithActionsCompareTop20.json';
+import rawRows from '../data/speakWithActionsCompareTop20.json';
+
+/* 排序：投放前「未提及」的行全部排在前面，组内保持原有顺序（stable sort）。
+   正好 10 条未提及 → 第一页全是新增提及，第二页全是名次上升 */
+const rows = [...rawRows].sort((a, b) => (a.base.m ? 1 : 0) - (b.base.m ? 1 : 0));
 
 /**
  * 用行动说话 · 投放效果对照（HTML 复刻版，每页 10 行）。
