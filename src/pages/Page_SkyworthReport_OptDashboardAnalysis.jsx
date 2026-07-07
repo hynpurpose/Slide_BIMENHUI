@@ -96,41 +96,41 @@ export function Page_SkyworthReport_OptDashboardAnalysis() {
 
             {/* 右：三大特征 */}
             <div className="col-span-6 flex flex-col min-h-0">
-              <div className="border border-[#004CE5]/20 bg-white/[0.03] backdrop-blur-xl rounded-2xl p-6 shadow-[-10px_0_30px_rgba(0,76,229,0.1)] flex flex-col h-full justify-start min-h-0 gap-3">
-                <h3 className="text-xl lg:text-2xl font-bold text-white mb-1 shrink-0 flex items-center gap-2">
+              <div className="border border-[#004CE5]/20 bg-white/[0.03] backdrop-blur-xl rounded-2xl p-6 shadow-[-10px_0_30px_rgba(0,76,229,0.1)] flex flex-col h-full min-h-0">
+                <h3 className="text-xl lg:text-2xl font-bold text-white mb-4 shrink-0 flex items-center gap-2">
                   <span className="w-1.5 h-4 bg-[#004CE5] rounded-full shadow-[0_0_8px_rgba(0,76,229,0.8)]" />
                   结合本次数据，{targetName}在 AI 问答里的表现呈现以下三大特征：
                 </h3>
-                <div className="flex-grow flex flex-col justify-start gap-4 min-h-0 pt-2 lg:pt-3">
-                  <div className="bg-white/[0.01] hover:bg-white/[0.02] border border-white/5 rounded-xl p-3 flex gap-3 transition-colors duration-300">
-                    <div className="text-[#004CE5] text-2xl lg:text-3xl font-mono font-bold select-none pt-0.5 shrink-0">01</div>
-                    <div className="min-h-0">
-                      <h4 className="text-[17px] lg:text-[18px] xl:text-[20px] font-bold text-white mb-0.5 leading-snug">
+                <div className="flex-1 flex flex-col justify-center gap-5 min-h-0">
+                  <div className="bg-white/[0.01] hover:bg-white/[0.02] border border-white/5 rounded-xl p-4 flex items-start gap-4 transition-colors duration-300">
+                    <div className="text-[#004CE5] text-[28px] font-mono font-bold select-none leading-none shrink-0 w-10 pt-1">01</div>
+                    <div className="min-w-0 flex-1">
+                      <h4 className="text-[20px] lg:text-[21px] font-bold text-white mb-1.5 leading-snug">
                         首推心智领先，Top1 提及率断层第一。
                       </h4>
-                      <p className="text-[15px] lg:text-[16px] xl:text-[18px] text-zinc-300 leading-relaxed text-justify">
+                      <p className="text-[18px] lg:text-[19px] text-zinc-300 leading-[1.65] text-justify">
                         Top1 提及率 {targetTop1?.top1_mention_rate}%，是第二名{runnerTop1?.brand_name}（{runnerTop1?.top1_mention_rate}%）的 {top1Ratio} 倍——在壁纸 / 艺术电视等品类词下，AI 最倾向首推创维。
                       </p>
                     </div>
                   </div>
-                  <div className="bg-white/[0.01] hover:bg-white/[0.02] border border-white/5 rounded-xl p-3 flex gap-3 transition-colors duration-300">
-                    <div className="text-[#004CE5] text-2xl lg:text-3xl font-mono font-bold select-none pt-0.5 shrink-0">02</div>
-                    <div className="min-h-0">
-                      <h4 className="text-[17px] lg:text-[18px] xl:text-[20px] font-bold text-white mb-0.5 leading-snug">
+                  <div className="bg-white/[0.01] hover:bg-white/[0.02] border border-white/5 rounded-xl p-4 flex items-start gap-4 transition-colors duration-300">
+                    <div className="text-[#004CE5] text-[28px] font-mono font-bold select-none leading-none shrink-0 w-10 pt-1">02</div>
+                    <div className="min-w-0 flex-1">
+                      <h4 className="text-[20px] lg:text-[21px] font-bold text-white mb-1.5 leading-snug">
                         四大平台表现均衡，品类词优化已成基本盘。
                       </h4>
-                      <p className="text-[15px] lg:text-[16px] xl:text-[18px] text-zinc-300 leading-relaxed text-justify">
+                      <p className="text-[18px] lg:text-[19px] text-zinc-300 leading-[1.65] text-justify">
                         DeepSeek、豆包、元宝、通义千问提及率同处 {minRate}%–{maxRate}%，无明显短板；细分场景词覆盖稳定，优化效果可复用。
                       </p>
                     </div>
                   </div>
-                  <div className="bg-white/[0.01] hover:bg-white/[0.02] border border-white/5 rounded-xl p-3 flex gap-3 transition-colors duration-300">
-                    <div className="text-[#004CE5] text-2xl lg:text-3xl font-mono font-bold select-none pt-0.5 shrink-0">03</div>
-                    <div className="min-h-0">
-                      <h4 className="text-[17px] lg:text-[18px] xl:text-[20px] font-bold text-white mb-0.5 leading-snug">
+                  <div className="bg-white/[0.01] hover:bg-white/[0.02] border border-white/5 rounded-xl p-4 flex items-start gap-4 transition-colors duration-300">
+                    <div className="text-[#004CE5] text-[28px] font-mono font-bold select-none leading-none shrink-0 w-10 pt-1">03</div>
+                    <div className="min-w-0 flex-1">
+                      <h4 className="text-[20px] lg:text-[21px] font-bold text-white mb-1.5 leading-snug">
                         整体声量仍有缺口，泛品类词待补强。
                       </h4>
-                      <p className="text-[15px] lg:text-[16px] xl:text-[18px] text-zinc-300 leading-relaxed text-justify">
+                      <p className="text-[18px] lg:text-[19px] text-zinc-300 leading-[1.65] text-justify">
                         综合提及率 {mentionRate}% 落后海信、TCL 约 6–9 个百分点；部分泛尺寸 / 泛品类词条尚未进入 AI 推荐，是下一步提声量的主要方向。
                       </p>
                     </div>
