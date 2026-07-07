@@ -28,7 +28,7 @@ const CSS = `
 .swa-cmp col.c-idx { width: 52px; } .swa-cmp col.c-type { width: 104px; } .swa-cmp col.c-plat { width: 148px; }
 .swa-cmp col.c-rank { width: 132px; } .swa-cmp col.c-chg { width: 158px; }
 /* 平台列与右侧对比组、文章列与左侧对比组之间留出呼吸空间 */
-.swa-cmp thead th:last-child, .swa-cmp tbody td:last-child { padding-left: 28px; }
+.swa-cmp thead th:last-child, .swa-cmp tbody td:last-child { padding-left: 56px; }
 .swa-cmp th.grp, .swa-cmp td.grp { text-align: center; background: #fbfcfe; }
 .swa-cmp thead th.grp { background: #f5f8fc; }
 .swa-cmp th.grp-l, .swa-cmp td.grp-l { border-left: 1px solid #eef1f6; }
