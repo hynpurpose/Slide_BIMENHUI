@@ -50,15 +50,15 @@ function MentionBlock({ phase, text }) {
 
   return (
     <div
-      className={`w-full rounded-xl px-4 py-4 flex flex-row justify-center items-center ${isBefore
+      className={`w-full rounded-xl px-4 py-4 flex flex-row flex-nowrap justify-center items-center ${isBefore
         ? 'bg-zinc-900/40 border border-zinc-800/70'
         : 'bg-[#004CE5]/8 border border-[#004CE5]/25'
       }`}
     >
-      <span className="text-[30px] leading-none font-bold font-['MiSans'] text-white shrink-0">
+      <span className="text-[30px] leading-none font-bold font-['MiSans'] text-white whitespace-nowrap">
         {label}
       </span>
-      <span className="text-[30px] leading-none font-black font-['MiSans'] text-white">
+      <span className="text-[30px] leading-none font-black font-['MiSans'] text-white whitespace-nowrap">
         {text}
       </span>
     </div>
@@ -69,7 +69,7 @@ function CaseCard({ data }) {
   return (
     <div className="flex-1 min-w-0 h-full flex flex-row bg-zinc-950/35 border border-zinc-800/70 rounded-[1.25rem] overflow-hidden">
       {/* Left Column: Content (Fixed Narrow Width) */}
-      <div className="w-[300px] shrink-0 flex flex-col justify-between p-6 pr-4">
+      <div className="w-[360px] shrink-0 flex flex-col justify-between p-6 pr-4">
         {/* Title */}
         <div className="shrink-0 flex flex-col gap-2 mb-4">
           <span className="text-[28px] font-black text-white tracking-wide max-w-fit">
