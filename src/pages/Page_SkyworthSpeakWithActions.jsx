@@ -38,7 +38,7 @@ function ImageSlot({ src, alt }) {
     <img
       src={src}
       alt={alt}
-      className="h-full w-auto max-w-none object-contain object-left"
+      className="h-full w-full object-contain object-left"
       onError={() => setFailed(true)}
     />
   );
