@@ -76,7 +76,7 @@ function CaseCard({ data }) {
             <span className="font-['MiSans']">词条</span>
             <span className="font-['Montserrat']">{data.id}</span>
           </span>
-          <h3 className="text-[26px] font-bold text-white tracking-tight font-['MiSans'] leading-snug">
+          <h3 className="text-[28px] font-bold text-white tracking-tight font-['MiSans'] leading-snug">
             {data.keyword}
           </h3>
         </div>
