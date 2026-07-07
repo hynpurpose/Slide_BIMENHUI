@@ -1,7 +1,7 @@
 import React from 'react';
 import SlideLayout from '../components/SlideLayout';
 import report from '../data/geoReport.json';
-import { AnalysisCardsDark, HlD } from '../components/GeoWebUI';
+import { AnalysisHighlightDark, HlD } from '../components/GeoWebUI';
 
 /**
  * 优化词总览 · HTML 复刻版。
@@ -103,8 +103,8 @@ function TargetProductButton({ name }) {
 /* overview-header.tsx 的 KPI 卡（Card py-3 + CardContent px-5 py-2） */
 function KpiCard({ label, children }) {
   return (
-    <div className="flex flex-col rounded-xl border bg-white py-3 shadow-sm" style={{ borderColor: C.border }}>
-      <div className="px-5 py-2">
+    <div className="flex flex-col rounded-xl border bg-white py-2 shadow-sm" style={{ borderColor: C.border }}>
+      <div className="px-5 py-1">
         <div className="flex flex-col gap-4">
           <div className="flex items-center gap-1">
             <span className="text-base font-bold" style={{ color: C.fg }}>{label}</span>
@@ -132,7 +132,7 @@ function CompetitorToggle() {
 /* 趋势图底部的复选框式图例（mention-rate-trend-chart CustomLegend） */
 function ChartLegend({ name }) {
   return (
-    <div className="flex flex-wrap justify-start gap-x-4 gap-y-2 pt-4 pl-[30px]">
+    <div className="flex flex-wrap justify-start gap-x-4 gap-y-2 pt-2 pl-[30px]">
       <div className="flex items-center gap-1.5">
         <span className="flex h-4 w-4 items-center justify-center rounded-[3px] border-2" style={{ backgroundColor: C.blue, borderColor: C.blue }}>
           <svg width="10" height="10" viewBox="0 0 10 10" fill="none">
@@ -158,7 +158,7 @@ const fmtChartDate = (dateStr) => {
 /* ── 两张图共用的几何参数：总高一致，保证 viewBox 缩放后文字大小一致 ── */
 const CHART = {
   width: 620,
-  height: 160,
+  height: 150,
   axisW: 50, // chart-base ChartYAxis width=50
 };
 
@@ -374,44 +374,25 @@ export function Page_SkyworthReport_OptDashboardHtml() {
   const byPos = [...stats.platform_stats].sort((a, b) => a.avg_position - b.avg_position);
   const bestPos = byPos[0];
   const worstPos = byPos[byPos.length - 1];
-  const analysisCards = [
+  const analysisLead = {
+    title: '首推心智领先',
+    body: (
+      <>
+        首位推荐率(Top1)高达 <HlD>{targetTop1?.top1_mention_rate}%</HlD>，<HlD>位列行业第一</HlD>，是{runnerTop1?.brand_name}({runnerTop1?.top1_mention_rate}%)的 {top1Ratio} 倍——AI 在品类词下最倾向首推创维。
+      </>
+    ),
+  };
+  const analysisPoints = [
     {
-      title: '核心表现',
+      title: '平台表现均衡',
       body: (
-        <>
-          <p>
-            首位推荐率(Top1)高达 <HlD>{targetTop1?.top1_mention_rate}%</HlD>，<HlD>行业第一</HlD>，是{runnerTop1?.brand_name}({runnerTop1?.top1_mention_rate}%)的 {top1Ratio} 倍，AI 在品类词下最倾向首推创维。
-          </p>
-          <p className="border-t border-white/5 pt-2.5">
-            综合提及率 <HlD>{mentionRate}%</HlD>，行业影响力排名 <HlD>NO.{targetRank}</HlD>。
-          </p>
-        </>
+        <>四大 AI 平台提及率同处 <HlD>{minRate}%–{maxRate}%</HlD>，无短板；平均位次 NO.{avgPosition}，{bestPos?.platform_name}最优({bestPos?.avg_position})、{worstPos?.platform_name}偏弱(<HlD>{worstPos?.avg_position}</HlD>)为提位重点。</>
       ),
     },
     {
-      title: '平台表现',
+      title: '声量存在缺口',
       body: (
-        <>
-          <p>
-            四大 AI 平台表现均衡（<HlD>{minRate}%–{maxRate}%</HlD>），无明显短板，品类词优化已形成稳定基本盘。
-          </p>
-          <p className="border-t border-white/5 pt-2.5">
-            平均位次 NO.{avgPosition}：{bestPos?.platform_name}最优({bestPos?.avg_position})，{worstPos?.platform_name}偏弱(<HlD>{worstPos?.avg_position}</HlD>)，为下一步提位重点。
-          </p>
-        </>
-      ),
-    },
-    {
-      title: '差距与建议',
-      body: (
-        <>
-          <p>
-            整体声量存缺口：提及率落后{rivals[0]?.brand_name}({rivals[0]?.mention_rate}%)、{rivals[1]?.brand_name}({rivals[1]?.mention_rate}%)约 <HlD>6–9 个百分点</HlD>。
-          </p>
-          <p className="border-t border-white/5 pt-2.5">
-            对未覆盖的品类词补充测评 / 榜单类内容，把整体提及率向头部拉近。
-          </p>
-        </>
+        <>综合提及率 <HlD>{mentionRate}%</HlD>（行业 NO.{targetRank}），落后{rivals[0]?.brand_name}({rivals[0]?.mention_rate}%)、{rivals[1]?.brand_name}({rivals[1]?.mention_rate}%)约 <HlD>6–9 个百分点</HlD>，需补品类词广度。</>
       ),
     },
   ];
@@ -553,7 +534,7 @@ export function Page_SkyworthReport_OptDashboardHtml() {
 
           {/* 文字分析：黑色底区域，浅色大字 */}
           <div className="shrink-0">
-            <AnalysisCardsDark cards={analysisCards} />
+            <AnalysisHighlightDark lead={analysisLead} points={analysisPoints} />
           </div>
         </div>
       </div>
