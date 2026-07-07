@@ -12,7 +12,8 @@ export const PRIMARY = {
   no: 'NO.1',
   screenshot: '/images/speak_with_actions_case1.png',
   citeShot: '/images/speak_with_actions_case1_cite.png',
-  fullShot: '/images/speak_with_actions_entry1_full.png',
+  // 高清版「对话 + 排名及引用来源」合成图（1771x2160，同事更新于 d027a8e）
+  fullShot: '/images/speak_with_actions_case1.png',
   citePositions: [3, 4],
   highlight: '创维 A10H、创维 65S8A 双型号霸占榜单前二',
   ranking: [
@@ -37,7 +38,7 @@ export const SECONDARY = {
   no: 'NO.3',
   screenshot: '/images/speak_with_actions_case2.png',
   citeShot: '/images/speak_with_actions_case2_cite.png',
-  fullShot: '/images/speak_with_actions_entry2_full.png',
+  fullShot: '/images/speak_with_actions_case2.png',
   citePositions: [4, 7],
   highlight: '创维 A7H Pro 第 3、创维 75A3F 第 8，双型号进前十',
   ranking: [
