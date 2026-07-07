@@ -384,14 +384,12 @@ export function Page_SkyworthReport_OptDashboardHtml() {
             </h1>
           </div>
 
-          {/* 深色外框（与截图页同款） */}
           <div className="flex-1 flex flex-col justify-center items-center min-h-0 pb-1">
             <div className="w-full h-full max-w-[1700px] bg-[#0a0a0a] border border-white/10 rounded-2xl p-3 shadow-2xl flex flex-col min-h-0">
               <div
                 className="flex-1 rounded-xl overflow-hidden bg-white text-left"
                 style={{ fontFamily: "'MiSans', 'Inter', sans-serif", color: C.fg }}
               >
-                {/* 用 zoom 放大到与截图页近似的观感比例 */}
                 <div style={{ zoom: 1.2 }}>
                   {/* Header 第一行：页面标题独占一行 */}
                   <div className="flex h-14 items-center px-4 pt-4">

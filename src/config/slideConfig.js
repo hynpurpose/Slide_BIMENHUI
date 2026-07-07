@@ -152,9 +152,12 @@ import {
 import { Page_SkyworthReport_CoreDataCompetitor } from '../pages/Page_SkyworthReport_CoreDataCompetitor';
 import { Page_SkyworthReport_MonitorWordOverview } from '../pages/Page_SkyworthReport_MonitorWordOverview';
 import { Page_SkyworthReport_OptDashboardHtml } from '../pages/Page_SkyworthReport_OptDashboardHtml';
+import { Page_SkyworthReport_OptDashboardAnalysis } from '../pages/Page_SkyworthReport_OptDashboardAnalysis';
 import { Page_SkyworthReport_OptEntriesHtml } from '../pages/Page_SkyworthReport_OptEntriesHtml';
+import { Page_SkyworthReport_OptEntriesAnalysis } from '../pages/Page_SkyworthReport_OptEntriesAnalysis';
 import { Page_SkyworthReport_OptCompetitorHtml } from '../pages/Page_SkyworthReport_OptCompetitorHtml';
 import { Page_SkyworthReport_OptSourcesHtml } from '../pages/Page_SkyworthReport_OptSourcesHtml';
+import { Page_SkyworthReport_OptSourcesAnalysis } from '../pages/Page_SkyworthReport_OptSourcesAnalysis';
 import {
   Page_SkyworthReport_OverviewScreenshot,
   Page_SkyworthReport_OverviewAnalysis,
@@ -279,10 +282,10 @@ export const slideConfig = [
   { type: 'page', title: '监测词总览', component: Page_SkyworthReport_MonitorWordOverview, hideHeader: true },
 
   { type: 'section', title: '详细数据' },
-  { type: 'page', title: '优化词总览数据', component: Page_SkyworthReport_OptDashboardHtml, hideHeader: true },
-  { type: 'page', title: '优化词词条数据', component: Page_SkyworthReport_OptEntriesHtml, hideHeader: true },
-  { type: 'page', title: '优化词竞品数据', component: Page_SkyworthReport_OptCompetitorHtml, hideHeader: true },
-  { type: 'page', title: '优化词引用源数据', component: Page_SkyworthReport_OptSourcesHtml, hideHeader: true },
+  { type: 'page', title: '优化词总览', components: [Page_SkyworthReport_OptDashboardHtml, Page_SkyworthReport_OptDashboardAnalysis], hideHeader: true },
+  { type: 'page', title: '优化词词条', components: [Page_SkyworthReport_OptEntriesHtml, Page_SkyworthReport_OptEntriesAnalysis], hideHeader: true },
+  { type: 'page', title: '优化词竞品', component: Page_SkyworthReport_OptCompetitorHtml, hideHeader: true },
+  { type: 'page', title: '优化词引用源', components: [Page_SkyworthReport_OptSourcesHtml, Page_SkyworthReport_OptSourcesAnalysis], hideHeader: true },
 
   // ══════════════════════════════════════════════════════════
   // ——— 四、核心优化策略 ———

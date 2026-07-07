@@ -123,6 +123,11 @@ export function FilterToolbar({ meta, extra }) {
   );
 }
 
+/* 深色背景上的数字/结论高亮（白色加粗） */
+export const HlD = ({ children }) => (
+  <strong className="text-white font-bold">{children}</strong>
+);
+
 /* 深色外框 + 白色面板 + GEO Web 页面骨架（Header 标题行 / 筛选条 / 内容区） */
 export function GeoWebFrame({ slideTitle, pageTitle, meta, toolbarExtra, zoom = 1.2, children }) {
   return (

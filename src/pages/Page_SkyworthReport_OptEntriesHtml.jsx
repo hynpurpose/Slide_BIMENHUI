@@ -4,7 +4,7 @@ import report from '../data/geoReport.json';
 import { C, GeoWebFrame, LogoWithFallback } from '../components/GeoWebUI';
 
 /**
- * 优化词词条 · HTML 复刻版。
+ * 优化词词条 · HTML 复刻版（纯数据页）。
  * 样式移植自 GEO Web 源码：
  *   - 页面骨架 features/prompt/index.tsx（Header「词条」+ PageFilterToolbar + 平台对比/管理列）
  *   - 表格 features/prompt/components/prompt-table.tsx + prompt-columns.tsx + ui/table.tsx
@@ -49,14 +49,12 @@ export function Page_SkyworthReport_OptEntriesHtml() {
 
   const toolbarExtra = (
     <>
-      {/* 平台对比 Switch（未选中态） */}
       <div className="flex h-8 items-center gap-2">
         <span className="inline-flex h-[1.15rem] w-8 items-center rounded-full p-0.5" style={{ backgroundColor: C.border }}>
           <span className="size-4 rounded-full bg-white shadow" />
         </span>
         <span className="text-sm font-normal whitespace-nowrap" style={{ color: C.fg }}>平台对比</span>
       </div>
-      {/* 管理列按钮（Button variant=outline size=sm） */}
       <button
         type="button"
         className="inline-flex h-8 items-center gap-1 rounded-md border bg-white px-3 text-sm font-medium shadow-xs"
@@ -74,11 +72,10 @@ export function Page_SkyworthReport_OptEntriesHtml() {
 
   return (
     <SlideLayout fullBleed>
-      <GeoWebFrame slideTitle="优化词 · 词条表现分析" pageTitle="词条" meta={meta} toolbarExtra={toolbarExtra} zoom={0.92}>
+      <GeoWebFrame slideTitle="优化词 · 词条表现" pageTitle="词条" meta={meta} toolbarExtra={toolbarExtra} zoom={0.92}>
         <div className="overflow-hidden rounded-md border" style={{ borderColor: C.border }}>
           <table className="w-full table-fixed caption-bottom text-sm">
             <thead>
-              {/* 列宽按原截图比例：词条约32%，其余列 10%~15% */}
               <tr className="h-12 border-b" style={{ borderColor: C.border }}>
                 <th className={`${th} w-[4%] !p-0 !px-2 text-center`}><Checkbox /></th>
                 <th className={`${th} w-[4%] !p-0 !px-2 text-center`}></th>

@@ -83,7 +83,7 @@ export function Page_SkyworthReport_OptSourcesHtml() {
 
   return (
     <SlideLayout fullBleed>
-      <GeoWebFrame slideTitle="优化词 · 引用源分析" pageTitle="引用来源" meta={meta} zoom={0.92}>
+      <GeoWebFrame slideTitle="优化词 · 引用源" pageTitle="引用来源" meta={meta} zoom={0.92}>
         {/* Top引用数据（chart-section-split.tsx） */}
         <div className="space-y-3">
           <div className="flex items-center gap-1">

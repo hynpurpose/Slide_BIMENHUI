@@ -47,6 +47,27 @@ function SummaryBlock({ className = '' }) {
           品牌层面，创维在品类大词的<strong className="text-white font-bold">提及率为 59.4%</strong>，AI 已具备基础认知，但 <strong className="text-white font-bold">TOP1 仅 24.7%</strong>，超过七成首推位仍被竞品占据，首推转化是当前最大缺口。产品汇总层面，五款重点产品整体提及率为 <strong className="text-[#60A5FA] font-bold">35.5%</strong>，TOP1 仅为 <strong className="text-[#60A5FA] font-bold">15.5%</strong>，且各产品差异悬殊（A7H Pro 达 61.7%，Q7H 尚未被 AI 提及），亟需通过专属场景与长尾优化词的语料覆盖，整体拉升产品级的认知度与推荐精度。
         </p>
       </div>
+
+      <div className="mt-6 flex justify-center">
+        <div className="inline-flex flex-col items-center gap-2 px-10 py-5 rounded-xl border border-white/10 bg-white/[0.02] backdrop-blur-sm shadow-[0_4px_24px_rgba(0,0,0,0.2)]">
+          <a
+            href="https://geotopone.com/dashboard"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="text-[24px] xl:text-[26px] font-semibold text-[#60A5FA] hover:text-[#93C5FD] underline underline-offset-[6px] decoration-[#60A5FA]/50 hover:decoration-[#93C5FD] transition-colors tracking-wide"
+          >
+            查看监测系统完整数据
+          </a>
+          <div className="flex items-center justify-center gap-12 text-[20px] xl:text-[22px]">
+            <span className="text-zinc-400">
+              帐号<span className="text-white font-medium ml-3">chuangweidianshi1</span>
+            </span>
+            <span className="text-zinc-400">
+              密码<Num className="text-white font-semibold ml-3">123456</Num>
+            </span>
+          </div>
+        </div>
+      </div>
     </div>
   );
 }
@@ -56,9 +77,9 @@ function CoreDataSelfPage({ TableComponent, contentClassName = '', summaryClassN
 
   return (
     <SlideLayout fullBleed>
-      <div className="w-full h-full flex flex-col relative text-white font-sans px-20 sm:px-28 py-16 overflow-hidden animate-fade-in bg-black">
+      <div className="w-full h-full flex flex-col relative text-white font-sans px-20 sm:px-28 py-12 overflow-hidden animate-fade-in bg-black">
         <style dangerouslySetInnerHTML={{ __html: FONT_IMPORT }} />
-        <div className={`w-full max-w-[1600px] mx-auto flex flex-col flex-1 min-h-0 relative z-10 gap-10 ${contentClassName}`}>
+        <div className={`w-full max-w-[1600px] mx-auto flex flex-col flex-1 min-h-0 relative z-10 gap-6 ${contentClassName}`}>
 
           <div className="text-center shrink-0 mb-4">
             <h1 className="text-[36px] xl:text-[40px] font-bold text-white tracking-widest leading-tight">
@@ -212,7 +233,7 @@ export function Page_SkyworthReport_CoreDataSelf_A() {
     <CoreDataSelfPage
       TableComponent={TableVariantA}
       contentClassName="pt-4"
-      summaryClassName="mt-14 pt-10"
+      summaryClassName="mt-8 pt-6"
     />
   );
 }

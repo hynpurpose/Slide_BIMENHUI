@@ -124,7 +124,7 @@ export function Page_SkyworthKpiAcceptance() {
                     <td rowSpan={2} className="py-2.5 xl:py-3 pl-4 font-semibold text-zinc-100 align-top">
                       <div className="flex flex-col gap-1">
                         <span className="text-[20px] xl:text-[22px] text-white font-extrabold">优化词</span>
-                        <span className="text-[14px] xl:text-[15px] text-zinc-400 font-normal">高相关词 · 低相关词</span>
+                        <span className="text-[14px] xl:text-[15px] text-zinc-400 font-normal">优势词 · 常规词</span>
                       </div>
                     </td>
 
@@ -134,7 +134,7 @@ export function Page_SkyworthKpiAcceptance() {
                         <span className="w-[80px] shrink-0 text-[15px] xl:text-[16px] font-black bg-white/10 text-zinc-200 py-[2px] rounded text-center">阶段一</span>
                         <div className="text-[19px] xl:text-[21px] leading-snug text-justify">
                           <span className="text-white font-black">稳提升｜2个月</span>
-                          <span className="text-zinc-400 ml-2.5">高相关词持续拉升，低相关词挤入核心推荐榜</span>
+                          <span className="text-zinc-400 ml-2.5">优势词持续拉升，常规词挤入核心推荐榜</span>
                         </div>
                       </div>
                     </td>
@@ -145,7 +145,7 @@ export function Page_SkyworthKpiAcceptance() {
                         <span className="w-[110px] shrink-0 text-[15px] xl:text-[16px] font-black bg-[#004CE5]/20 text-[#8cb1ff] border border-[#004CE5]/40 py-[2px] rounded text-center">阶段一考核</span>
                         <div className="text-[19px] xl:text-[21px] leading-snug text-zinc-200 flex flex-col gap-3">
                           <div className="flex flex-col gap-1">
-                            <strong className="text-white font-bold">高相关词</strong>
+                            <strong className="text-white font-bold">优势词</strong>
                             <div className="flex items-center gap-2">
                               <span className="w-1 h-1 rounded-full bg-[#8cb1ff] shrink-0" />
                               提及率 <strong className="text-white font-black">≥ 90%</strong>
@@ -156,7 +156,7 @@ export function Page_SkyworthKpiAcceptance() {
                             </div>
                           </div>
                           <div className="flex flex-col gap-1">
-                            <strong className="text-white font-bold">低相关词</strong>
+                            <strong className="text-white font-bold">常规词</strong>
                             <div className="flex items-center gap-2">
                               <span className="w-1 h-1 rounded-full bg-[#8cb1ff] shrink-0" />
                               提及率 <strong className="text-white font-black">≥ 80%</strong>
@@ -190,7 +190,7 @@ export function Page_SkyworthKpiAcceptance() {
                         <span className="w-[80px] shrink-0 text-[15px] xl:text-[16px] font-black bg-white/10 text-zinc-200 py-[2px] rounded text-center">阶段二</span>
                         <div className="text-[19px] xl:text-[21px] leading-snug text-justify">
                           <span className="text-white font-black">占高位｜4个月</span>
-                          <span className="text-zinc-400 ml-2.5">高相关词双指标达标，低相关词全面拉升至目标线</span>
+                          <span className="text-zinc-400 ml-2.5">优势词双指标达标，常规词全面拉升至目标线</span>
                         </div>
                       </div>
                     </td>
