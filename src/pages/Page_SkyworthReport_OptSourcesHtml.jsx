@@ -1,7 +1,7 @@
 import React from 'react';
 import SlideLayout from '../components/SlideLayout';
 import report from '../data/geoReport.json';
-import { C, GeoWebFrame, HelpIcon, LogoWithFallback, AnalysisCardsDark, HlD } from '../components/GeoWebUI';
+import { C, GeoWebFrame, HelpIcon, LogoWithFallback, AnalysisPanelDark, HlD } from '../components/GeoWebUI';
 
 /**
  * 优化词引用源 · HTML 复刻版。
@@ -80,38 +80,10 @@ export function Page_SkyworthReport_OptSourcesHtml() {
 
   const top5Sum = citations.platform_stats.slice(0, 5).reduce((s, p) => s + (p.share ?? 0), 0);
   const mentionedCount = citations.articles.filter((a) => a.has_target_product).length;
-  const analysisCards = [
-    {
-      title: '引用规模',
-      body: (
-        <p>
-          整体被引率 <HlD>{citations.citation_rate}%</HlD>，{citations.total_conversations} 轮对话累计触发{' '}
-          <HlD>{citations.total_citations.toLocaleString()}</HlD> 次内容引用，创维相关内容已被 AI 大规模抓取采信。
-        </p>
-      ),
-    },
-    {
-      title: '来源分散',
-      body: (
-        <>
-          <p>
-            Top5 平台合计仅 <HlD>{top5Sum.toFixed(1)}%</HlD>，头部「{best?.platform_name}」也只占{' '}
-            <HlD>{best ? Number(best.share).toFixed(1) : '-'}%</HlD>，需多渠道并行布局而非押注单一媒体。
-          </p>
-          <p className="border-t border-white/5 pt-2.5">
-            生态呈<HlD>「垂直科技媒体 + 社交种草」双轮</HlD>：中关村在线 / IT之家 / 雷科技 与 抖音 / 什么值得买 并重。
-          </p>
-        </>
-      ),
-    },
-    {
-      title: '阵地覆盖 · 建议',
-      body: (
-        <p>
-          Top10 引用文章中 <HlD>{mentionedCount} 篇</HlD>正面提及创维，仅个别财经稿缺位；可将其作为<HlD>定向补投切口</HlD>，进一步扩大高权重媒体的正面覆盖。
-        </p>
-      ),
-    },
+  const analysisPoints = [
+    <>整体被引率 <HlD>{citations.citation_rate}%</HlD>，{citations.total_conversations} 轮对话累计触发 <HlD>{citations.total_citations.toLocaleString()}</HlD> 次引用，创维内容已被 AI 大规模采信。</>,
+    <>来源高度分散：Top5 平台合计仅 <HlD>{top5Sum.toFixed(1)}%</HlD>，头部「{best?.platform_name}」也只占 <HlD>{best ? Number(best.share).toFixed(1) : '-'}%</HlD>，宜多渠道并行布局。</>,
+    <>生态呈<HlD>「垂直科技媒体 + 社交种草」双轮</HlD>；Top10 引用文章 <HlD>{mentionedCount} 篇</HlD>正面提及创维，可作定向补投切口。</>,
   ];
 
   const card = 'flex h-full flex-col rounded-xl border bg-white shadow-sm';
@@ -124,7 +96,7 @@ export function Page_SkyworthReport_OptSourcesHtml() {
         pageTitle="引用来源"
         meta={meta}
         zoom={0.82}
-        analysis={<AnalysisCardsDark cards={analysisCards} />}
+        analysis={<AnalysisPanelDark title="引用源洞察" subtitle="创维 · 品类优化词" points={analysisPoints} />}
       >
         {/* Top引用数据（chart-section-split.tsx） */}
         <div className="space-y-3">
