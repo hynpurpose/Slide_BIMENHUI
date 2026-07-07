@@ -14,7 +14,7 @@ const CASES = [
     id: '2',
     keyword: '口碑好的电视推荐',
     before: '未提及',
-    after: '第一名',
+    after: '第三名',
     image: '/images/speak_with_actions_case2.png',
   },
 ];
