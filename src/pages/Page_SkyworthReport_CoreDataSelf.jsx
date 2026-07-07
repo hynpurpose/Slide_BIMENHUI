@@ -48,22 +48,25 @@ function SummaryBlock({ className = '' }) {
         </p>
       </div>
 
-      <div className="mt-5 flex flex-col items-center gap-2.5 text-center">
-        <a
-          href="https://geotopone.com/dashboard"
-          target="_blank"
-          rel="noopener noreferrer"
-          className="text-[20px] xl:text-[22px] font-semibold text-[#60A5FA] hover:text-[#93C5FD] underline underline-offset-4 decoration-[#60A5FA]/50 transition-colors"
-        >
-          查看监测系统完整数据
-        </a>
-        <div className="flex items-center justify-center gap-8 text-[17px] xl:text-[18px] text-zinc-400">
-          <span>
-            帐号：<span className="text-zinc-200 font-medium">chuangweidianshi1</span>
-          </span>
-          <span>
-            密码：<Num className="text-zinc-200 font-medium">123456</Num>
-          </span>
+      <div className="mt-6 flex justify-center">
+        <div className="inline-flex flex-col items-center gap-5 px-12 py-7 rounded-2xl border border-white/20 bg-white/[0.03] backdrop-blur-sm shadow-[0_8px_32px_rgba(0,0,0,0.25)] border-t-2 border-t-[#004CE5]">
+          <a
+            href="https://geotopone.com/dashboard"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="text-[24px] xl:text-[26px] font-semibold text-[#60A5FA] hover:text-[#93C5FD] underline underline-offset-[6px] decoration-[#60A5FA]/50 hover:decoration-[#93C5FD] transition-colors tracking-wide"
+          >
+            查看监测系统完整数据
+          </a>
+          <div className="w-full h-px bg-white/12" />
+          <div className="flex items-center justify-center gap-12 text-[20px] xl:text-[22px]">
+            <span className="text-zinc-400">
+              帐号<span className="text-white font-medium ml-3">chuangweidianshi1</span>
+            </span>
+            <span className="text-zinc-400">
+              密码<Num className="text-white font-semibold ml-3">123456</Num>
+            </span>
+          </div>
         </div>
       </div>
     </div>
