@@ -1,7 +1,6 @@
 import React from 'react';
 import SlideLayout from '../components/SlideLayout';
 import report from '../data/geoReport.json';
-import { AnalysisHighlightDark, HlD } from '../components/GeoWebUI';
 
 /**
  * 优化词总览 · HTML 复刻版。
@@ -103,8 +102,8 @@ function TargetProductButton({ name }) {
 /* overview-header.tsx 的 KPI 卡（Card py-3 + CardContent px-5 py-2） */
 function KpiCard({ label, children }) {
   return (
-    <div className="flex flex-col rounded-xl border bg-white py-2 shadow-sm" style={{ borderColor: C.border }}>
-      <div className="px-5 py-1">
+    <div className="flex flex-col rounded-xl border bg-white py-3 shadow-sm" style={{ borderColor: C.border }}>
+      <div className="px-5 py-2">
         <div className="flex flex-col gap-4">
           <div className="flex items-center gap-1">
             <span className="text-base font-bold" style={{ color: C.fg }}>{label}</span>
@@ -132,7 +131,7 @@ function CompetitorToggle() {
 /* 趋势图底部的复选框式图例（mention-rate-trend-chart CustomLegend） */
 function ChartLegend({ name }) {
   return (
-    <div className="flex flex-wrap justify-start gap-x-4 gap-y-2 pt-2 pl-[30px]">
+    <div className="flex flex-wrap justify-start gap-x-4 gap-y-2 pt-4 pl-[30px]">
       <div className="flex items-center gap-1.5">
         <span className="flex h-4 w-4 items-center justify-center rounded-[3px] border-2" style={{ backgroundColor: C.blue, borderColor: C.blue }}>
           <svg width="10" height="10" viewBox="0 0 10 10" fill="none">
@@ -158,7 +157,7 @@ const fmtChartDate = (dateStr) => {
 /* ── 两张图共用的几何参数：总高一致，保证 viewBox 缩放后文字大小一致 ── */
 const CHART = {
   width: 620,
-  height: 150,
+  height: 220,
   axisW: 50, // chart-base ChartYAxis width=50
 };
 
@@ -356,46 +355,12 @@ function ChartSection({ title, items }) {
 }
 
 export function Page_SkyworthReport_OptDashboardHtml() {
-  const { meta, stats, influence, citations, compare } = report;
+  const { meta, stats, influence, citations } = report;
   const mentionRate = stats.brand_mention_rate;
   const avgPosition = stats.avg_position;
   const targetRank = influence.list.find((b) => b.is_target)?.rank ?? null;
   const topPlatforms = citations.platform_stats.slice(0, 3);
   const targetName = meta.target_brand_name || meta.target_product;
-
-  /* ── 分析洞察：均以真实数据计算 ── */
-  const rivals = influence.list.filter((b) => !b.is_target).slice(0, 2); // 海信、TCL
-  const targetTop1 = compare.top1_ranking.find((b) => b.is_target); // 创维 首位推荐率
-  const runnerTop1 = compare.top1_ranking.find((b) => !b.is_target); // 亚军
-  const top1Ratio = targetTop1 && runnerTop1 ? (targetTop1.top1_mention_rate / runnerTop1.top1_mention_rate).toFixed(1) : null;
-  const pRates = stats.platform_stats.map((p) => p.brand_mention_rate);
-  const minRate = Math.min(...pRates);
-  const maxRate = Math.max(...pRates);
-  const byPos = [...stats.platform_stats].sort((a, b) => a.avg_position - b.avg_position);
-  const bestPos = byPos[0];
-  const worstPos = byPos[byPos.length - 1];
-  const analysisLead = {
-    title: '首推心智领先',
-    body: (
-      <>
-        首位推荐率(Top1)高达 <HlD>{targetTop1?.top1_mention_rate}%</HlD>，<HlD>位列行业第一</HlD>，是{runnerTop1?.brand_name}({runnerTop1?.top1_mention_rate}%)的 {top1Ratio} 倍——AI 在品类词下最倾向首推创维。
-      </>
-    ),
-  };
-  const analysisPoints = [
-    {
-      title: '平台表现均衡',
-      body: (
-        <>四大 AI 平台提及率同处 <HlD>{minRate}%–{maxRate}%</HlD>，无短板；平均位次 NO.{avgPosition}，{bestPos?.platform_name}最优({bestPos?.avg_position})、{worstPos?.platform_name}偏弱(<HlD>{worstPos?.avg_position}</HlD>)为提位重点。</>
-      ),
-    },
-    {
-      title: '声量存在缺口',
-      body: (
-        <>综合提及率 <HlD>{mentionRate}%</HlD>（行业 NO.{targetRank}），落后{rivals[0]?.brand_name}({rivals[0]?.mention_rate}%)、{rivals[1]?.brand_name}({rivals[1]?.mention_rate}%)约 <HlD>6–9 个百分点</HlD>，需补品类词广度。</>
-      ),
-    },
-  ];
 
   const fmtHeaderDate = (s) => {
     const [yy, mm, dd] = s.split('-');
@@ -412,22 +377,20 @@ export function Page_SkyworthReport_OptDashboardHtml() {
   return (
     <SlideLayout fullBleed>
       <div className="w-full h-full flex flex-col relative text-white font-sans px-12 sm:px-16 pt-6 lg:pt-8 pb-4 overflow-hidden animate-fade-in">
-        <div className="w-full max-w-[1700px] mx-auto flex flex-col flex-1 min-h-0 relative z-10 gap-4">
+        <div className="w-full max-w-[1700px] mx-auto flex flex-col flex-1 min-h-0 relative z-10 gap-5">
           <div className="text-center shrink-0">
             <h1 className="text-[32px] font-bold text-white tracking-widest leading-tight">
               优化词 · 核心指标表现概览
             </h1>
           </div>
 
-          {/* 深色外框（与截图页同款）：白色面板只放数据，占据剩余空间 */}
-          <div className="flex-1 flex flex-col justify-center items-center min-h-0">
+          <div className="flex-1 flex flex-col justify-center items-center min-h-0 pb-1">
             <div className="w-full h-full max-w-[1700px] bg-[#0a0a0a] border border-white/10 rounded-2xl p-3 shadow-2xl flex flex-col min-h-0">
               <div
                 className="flex-1 rounded-xl overflow-hidden bg-white text-left"
                 style={{ fontFamily: "'MiSans', 'Inter', sans-serif", color: C.fg }}
               >
-                {/* 用 zoom 放大到与截图页近似的观感比例 */}
-                <div style={{ zoom: 1.0 }}>
+                <div style={{ zoom: 1.2 }}>
                   {/* Header 第一行：页面标题独占一行 */}
                   <div className="flex h-14 items-center px-4 pt-4">
                     <h1 className="text-xl font-semibold" style={{ color: C.fg }}>总览</h1>
@@ -466,7 +429,7 @@ export function Page_SkyworthReport_OptDashboardHtml() {
                   </div>
 
                   {/* Main 内容区 */}
-                  <div className="flex flex-col gap-4 px-4 pb-4">
+                  <div className="flex flex-col gap-6 px-4 pb-4">
                     {/* KPI 卡片 */}
                     <div className="grid grid-cols-4 gap-4">
                       <KpiCard label="提及率">
@@ -530,11 +493,6 @@ export function Page_SkyworthReport_OptDashboardHtml() {
                 </div>
               </div>
             </div>
-          </div>
-
-          {/* 文字分析：黑色底区域，浅色大字 */}
-          <div className="shrink-0">
-            <AnalysisHighlightDark lead={analysisLead} points={analysisPoints} />
           </div>
         </div>
       </div>
