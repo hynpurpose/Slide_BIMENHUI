@@ -95,7 +95,7 @@ export function Page_SkyworthReport_OptSourcesHtml() {
         slideTitle="优化词 · 引用源分析"
         pageTitle="引用来源"
         meta={meta}
-        zoom={0.82}
+        zoom={0.78}
         analysis={<AnalysisPanelDark title="引用源洞察" subtitle="创维 · 品类优化词" points={analysisPoints} />}
       >
         {/* Top引用数据（chart-section-split.tsx） */}

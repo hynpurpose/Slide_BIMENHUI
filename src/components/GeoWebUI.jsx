@@ -185,18 +185,18 @@ export function AnalysisFlowDark({ steps }) {
 export function AnalysisPanelDark({ title, subtitle, points }) {
   const colClass = { 1: 'grid-cols-1', 2: 'grid-cols-2', 3: 'grid-cols-3' }[points.length] || 'grid-cols-3';
   return (
-    <div className="flex gap-6 rounded-2xl border border-white/[0.08] bg-white/[0.03] p-5 backdrop-blur-xl">
-      <div className="flex w-[190px] shrink-0 flex-col justify-center gap-1 border-r border-white/10 pr-6">
-        <div className="flex items-center gap-2">
-          <span className="h-6 w-1.5 rounded-full bg-[#004CE5] shadow-[0_0_8px_rgba(0,76,229,0.8)]" />
-          <span className="text-[21px] font-bold text-white">{title}</span>
+    <div className="flex min-h-[148px] gap-7 rounded-2xl border border-white/[0.08] bg-white/[0.03] px-7 py-6 backdrop-blur-xl">
+      <div className="flex w-[230px] shrink-0 flex-col justify-center gap-1.5 border-r border-white/10 pr-7">
+        <div className="flex items-center gap-2.5">
+          <span className="h-7 w-1.5 rounded-full bg-[#004CE5] shadow-[0_0_8px_rgba(0,76,229,0.8)]" />
+          <span className="text-[24px] font-bold text-white">{title}</span>
         </div>
-        {subtitle && <span className="pl-3.5 text-[13px] text-zinc-400">{subtitle}</span>}
+        {subtitle && <span className="pl-4 text-[15px] text-zinc-400">{subtitle}</span>}
       </div>
-      <ul className={`grid flex-1 gap-x-7 gap-y-2 ${colClass}`}>
+      <ul className={`grid flex-1 items-center gap-x-8 gap-y-3 ${colClass}`}>
         {points.map((p, i) => (
-          <li key={i} className="flex gap-2.5 text-[18px] leading-relaxed text-zinc-300">
-            <span className="mt-[10px] inline-block size-2 shrink-0 rounded-full bg-[#004CE5]" />
+          <li key={i} className="flex gap-3 text-[20px] leading-[1.65] text-zinc-200">
+            <span className="mt-[11px] inline-block size-2.5 shrink-0 rounded-full bg-[#004CE5]" />
             <span>{p}</span>
           </li>
         ))}
@@ -214,8 +214,9 @@ export function GeoWebFrame({ slideTitle, pageTitle, meta, toolbarExtra, zoom = 
         <div className="text-center shrink-0">
           <h1 className="text-[32px] font-bold text-white tracking-widest leading-tight">{slideTitle}</h1>
         </div>
-        {/* 白色数据面板：只放数据，占据剩余空间 */}
-        <div className="flex-1 flex flex-col justify-center items-center min-h-0">
+        {/* 白色数据面板 + 下方分析区：分析区预留固定高度，数据区占剩余空间 */}
+        <div className="flex flex-1 flex-col min-h-0 gap-3">
+        <div className="flex flex-1 flex-col justify-center items-center min-h-0">
           <div className="w-full h-full max-w-[1700px] bg-[#0a0a0a] border border-white/10 rounded-2xl p-3 shadow-2xl flex flex-col min-h-0">
             <div
               className="flex-1 rounded-xl overflow-hidden bg-white text-left"
@@ -232,7 +233,8 @@ export function GeoWebFrame({ slideTitle, pageTitle, meta, toolbarExtra, zoom = 
           </div>
         </div>
         {/* 文字分析：黑色底区域，浅色大字 */}
-        {analysis && <div className="shrink-0">{analysis}</div>}
+        {analysis && <div className="shrink-0 pb-1">{analysis}</div>}
+        </div>
       </div>
     </div>
   );
