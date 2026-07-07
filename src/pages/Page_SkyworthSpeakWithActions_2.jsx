@@ -11,49 +11,50 @@ import rows from '../data/speakWithActionsCompareTop20.json';
 
 const ROWS_PER_PAGE = 10;
 
-/* p304-315-top20.html <style> 原样移植，选择器加 .swa-cmp 前缀；
+/* p304-315-top20.html <style> 移植，选择器加 .swa-cmp 前缀；
+   为适配 1920 版面整体放大字号（表头/词性/词条/平台/文章列），列宽同步加宽，
    table 增加 height:100% 让 10 行均分高度，避免底部留白 */
 const CSS = `
-.swa-cmp { font-family: -apple-system, "PingFang SC", "Microsoft YaHei", sans-serif; background: #fff; color: #1f2329; font-size: 13px; }
+.swa-cmp { font-family: -apple-system, "PingFang SC", "Microsoft YaHei", sans-serif; background: #fff; color: #1f2329; font-size: 16px; }
 .swa-cmp table { width: 100%; height: 100%; table-layout: fixed; border-collapse: separate; border-spacing: 0; background: #fff; border: 1px solid #e8eaee; border-radius: 10px; overflow: hidden; }
-.swa-cmp thead th { background: #fafbfc; text-align: left; padding: 10px 12px; font-size: 14px; color: #646a73; font-weight: 500; border-bottom: 1px solid #e8eaee; white-space: nowrap; }
-.swa-cmp thead th .thsub { display: block; font-size: 10px; color: #a0a5ad; font-weight: 400; line-height: 1.4; }
-.swa-cmp tbody td { padding: 8px 12px; border-bottom: 1px solid #f0f1f4; vertical-align: middle; overflow: hidden; font-size: 14px; }
+.swa-cmp thead th { background: #fafbfc; text-align: left; padding: 10px 12px; font-size: 18px; color: #646a73; font-weight: 500; border-bottom: 1px solid #e8eaee; white-space: nowrap; }
+.swa-cmp thead th .thsub { display: block; font-size: 13px; color: #a0a5ad; font-weight: 400; line-height: 1.4; }
+.swa-cmp tbody td { padding: 8px 12px; border-bottom: 1px solid #f0f1f4; vertical-align: middle; overflow: hidden; font-size: 17px; }
 .swa-cmp tbody tr:last-child td { border-bottom: none; }
-.swa-cmp col.c-idx { width: 44px; } .swa-cmp col.c-type { width: 86px; } .swa-cmp col.c-plat { width: 90px; }
-.swa-cmp col.c-rank { width: 118px; } .swa-cmp col.c-chg { width: 136px; }
+.swa-cmp col.c-idx { width: 52px; } .swa-cmp col.c-type { width: 104px; } .swa-cmp col.c-plat { width: 116px; }
+.swa-cmp col.c-rank { width: 132px; } .swa-cmp col.c-chg { width: 158px; }
 .swa-cmp th.grp, .swa-cmp td.grp { text-align: center; background: #fbfcfe; }
 .swa-cmp thead th.grp { background: #f5f8fc; }
 .swa-cmp th.grp-l, .swa-cmp td.grp-l { border-left: 1px solid #eef1f6; }
 .swa-cmp th.grp-r, .swa-cmp td.grp-r { border-right: 1px solid #eef1f6; }
 .swa-cmp td.grp { padding-left: 6px; padding-right: 6px; }
-.swa-cmp .entry { font-weight: 600; line-height: 1.45; font-size: 14px; }
-.swa-cmp .ptag { display: inline-block; vertical-align: 1px; margin-left: 6px; padding: 0 7px; font-size: 10px; font-weight: 600; border-radius: 4px; background: #eef2f8; color: #47536b; border: 1px solid #dde4ef; }
-.swa-cmp .mtag { display: inline-block; vertical-align: 1px; margin-left: 4px; padding: 0 6px; font-size: 10px; border-radius: 4px; background: #f7f8fa; color: #8a9099; border: 1px solid #eceef2; }
-.swa-cmp .tag { display: inline-block; border-radius: 5px; padding: 2px 9px; font-size: 12px; white-space: nowrap; font-weight: 500; }
+.swa-cmp .entry { font-weight: 600; line-height: 1.45; font-size: 18px; }
+.swa-cmp .ptag { display: inline-block; vertical-align: 1px; margin-left: 6px; padding: 0 7px; font-size: 13px; font-weight: 600; border-radius: 4px; background: #eef2f8; color: #47536b; border: 1px solid #dde4ef; }
+.swa-cmp .mtag { display: inline-block; vertical-align: 1px; margin-left: 4px; padding: 0 6px; font-size: 13px; border-radius: 4px; background: #f7f8fa; color: #8a9099; border: 1px solid #eceef2; }
+.swa-cmp .tag { display: inline-block; border-radius: 5px; padding: 2px 10px; font-size: 15px; white-space: nowrap; font-weight: 500; }
 .swa-cmp .tag.t品类词 { background: #e8f3ff; color: #1958c9; }
 .swa-cmp .tag.t产品专属词 { background: #f0f0f3; color: #5c6370; }
-.swa-cmp .chg { font-weight: 600; font-size: 18px; white-space: nowrap; }
+.swa-cmp .chg { font-weight: 600; font-size: 20px; white-space: nowrap; }
 .swa-cmp .chg.持平 { color: #8a9099; font-weight: 400; }
 .swa-cmp .chg.名次下降, .swa-cmp .chg.丢失提及 { color: #d63f3f; }
 .swa-cmp .chg.持续未提及 { color: #b26a00; }
-.swa-cmp .chg-badge { display: inline-block; padding: 3px 14px; border-radius: 999px; font-size: 17px; font-weight: 700; white-space: nowrap; line-height: 1.4; }
+.swa-cmp .chg-badge { display: inline-block; padding: 3px 15px; border-radius: 999px; font-size: 19px; font-weight: 700; white-space: nowrap; line-height: 1.4; }
 .swa-cmp .chg-badge.b-top { background: #0a7a4a; color: #fff; box-shadow: 0 1px 6px rgba(10,122,74,.35); }
 .swa-cmp .chg-badge.b-top3 { background: #15b462; color: #fff; }
 .swa-cmp .chg-badge.b-top5 { background: #52b896; color: #fff; }
 .swa-cmp .chg-badge.b-new { background: #e2f6ec; color: #0a7a4a; }
 .swa-cmp .chg-badge.b-up { background: #e8f3ff; color: #1958c9; }
-.swa-cmp .chg-sub { display: block; font-size: 11px; font-weight: 400; color: #8a9099; margin-top: 3px; line-height: 1.2; }
-.swa-cmp .rk { display: inline-block; font-weight: 700; font-variant-numeric: tabular-nums; font-size: 18px; color: #1f2329; line-height: 1.3; }
+.swa-cmp .chg-sub { display: block; font-size: 13px; font-weight: 400; color: #8a9099; margin-top: 3px; line-height: 1.2; }
+.swa-cmp .rk { display: inline-block; font-weight: 700; font-variant-numeric: tabular-nums; font-size: 20px; color: #1f2329; line-height: 1.3; }
 .swa-cmp .rk.top1 .rt { color: #0a7a4a; }
-.swa-cmp .rk.miss { font-weight: 400; font-size: 18px; }
+.swa-cmp .rk.miss { font-weight: 400; font-size: 20px; }
 .swa-cmp .rk.miss .rt { color: #1f2329; }
 .swa-cmp .arts .arts-box { display: flex; flex-direction: column; justify-content: center; overflow: hidden; }
-.swa-cmp .arts a { display: block; color: #2b5fd9; text-decoration: none; font-size: 13px; line-height: 20px; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+.swa-cmp .arts a { display: block; color: #2b5fd9; text-decoration: none; font-size: 16px; line-height: 25px; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
 .swa-cmp .arts a:hover { text-decoration: underline; }
 .swa-cmp .arts .ap { color: #8a9099; margin-right: 4px; }
-.swa-cmp .arts .none { color: #c0c4cc; font-size: 13px; }
-.swa-cmp .arts .more { color: #8a9099; font-size: 13px; line-height: 20px; }
+.swa-cmp .arts .none { color: #c0c4cc; font-size: 16px; }
+.swa-cmp .arts .more { color: #8a9099; font-size: 16px; line-height: 25px; }
 `;
 
 /* rkHtml：未提及 / 第 N 名（第 1 名标绿）/ 提及 */
@@ -102,7 +103,8 @@ function ArtsCell({ arts }) {
 function ComparePage({ pageIndex }) {
   const startIndex = pageIndex * ROWS_PER_PAGE;
   const pageRows = rows.slice(startIndex, startIndex + ROWS_PER_PAGE);
-  const zoom = 1.1;
+  // 字号已直接放大，zoom 保持 1；再大第 10 行会被挤出白框
+  const zoom = 1;
 
   return (
     <SlideLayout title="用行动说话" hideHeaderLeft={true}>
