@@ -123,45 +123,47 @@ export function FilterToolbar({ meta, extra }) {
   );
 }
 
-/* 数字高亮：把分析文字里的关键数值/结论加粗成深色 */
-export const Hl = ({ children }) => (
-  <b style={{ color: C.fg, fontWeight: 700 }}>{children}</b>
+/* 深色背景上的数字/结论高亮（白色加粗） */
+export const HlD = ({ children }) => (
+  <strong className="text-white font-bold">{children}</strong>
 );
 
-/* 分析洞察块：左侧蓝色竖条标题 + 蓝点条目（默认双列），风格与 shadcn 面板一致 */
-export function AnalysisBlock({ title = '分析洞察', tag, points, columns = 2 }) {
+/* 深色分析卡片组：放在白色数据面板【外部】的黑色底区域，文字浅色、字号大、可读性优先。
+   样式参照 优化词竞品对比页（bg-white/[0.03] + 蓝色竖条标题 + text-zinc-300）。
+   cards = [{ title, body }]，body 为 React 节点（可含多段 <p> 与 <HlD> 高亮）。 */
+export function AnalysisCardsDark({ cards }) {
+  const colClass = { 1: 'grid-cols-1', 2: 'grid-cols-2', 3: 'grid-cols-3', 4: 'grid-cols-4' }[cards.length] || 'grid-cols-3';
   return (
-    <div className="rounded-xl border p-4" style={{ borderColor: C.border, backgroundColor: 'rgba(241,245,249,0.45)' }}>
-      <div className="mb-2.5 flex items-center gap-2">
-        <span className="inline-block h-4 w-1 rounded-full" style={{ backgroundColor: C.blue }} />
-        <span className="text-sm font-bold tracking-tight" style={{ color: C.fg }}>{title}</span>
-        {tag && (
-          <span className="ml-1 rounded px-1.5 py-0.5 text-[11px] font-medium" style={{ backgroundColor: '#fff', color: C.mutedFg, border: `1px solid ${C.border}` }}>
-            {tag}
-          </span>
-        )}
-      </div>
-      <ul className={`grid gap-x-8 gap-y-1.5 ${columns === 2 ? 'grid-cols-2' : 'grid-cols-1'}`}>
-        {points.map((p, i) => (
-          <li key={i} className="flex gap-2 text-[13px] leading-relaxed" style={{ color: C.mutedFg }}>
-            <span className="mt-[7px] inline-block size-1.5 shrink-0 rounded-full" style={{ backgroundColor: C.blue }} />
-            <span>{p}</span>
-          </li>
-        ))}
-      </ul>
+    <div className={`grid gap-5 ${colClass}`}>
+      {cards.map((c, i) => (
+        <div
+          key={i}
+          className="flex h-full flex-col gap-2.5 rounded-2xl border border-white/[0.08] bg-white/[0.03] p-5 backdrop-blur-xl"
+        >
+          <h3 className="flex shrink-0 items-center gap-2 text-[22px] font-bold text-white">
+            <span className="h-5 w-1.5 rounded-full bg-[#004CE5] shadow-[0_0_8px_rgba(0,76,229,0.8)]" />
+            {c.title}
+          </h3>
+          <div className="flex flex-grow flex-col gap-2.5 text-justify text-[17px] font-normal leading-relaxed text-zinc-300">
+            {c.body}
+          </div>
+        </div>
+      ))}
     </div>
   );
 }
 
-/* 深色外框 + 白色面板 + GEO Web 页面骨架（Header 标题行 / 筛选条 / 内容区） */
-export function GeoWebFrame({ slideTitle, pageTitle, meta, toolbarExtra, zoom = 1.2, children }) {
+/* 深色外框 + 白色面板 + GEO Web 页面骨架（Header 标题行 / 筛选条 / 内容区）。
+   analysis：可选，渲染在白色数据面板【外部】的黑色底区域（用 AnalysisCardsDark）。 */
+export function GeoWebFrame({ slideTitle, pageTitle, meta, toolbarExtra, zoom = 1.2, children, analysis }) {
   return (
     <div className="w-full h-full flex flex-col relative text-white font-sans px-12 sm:px-16 pt-6 lg:pt-8 pb-4 overflow-hidden animate-fade-in">
-      <div className="w-full max-w-[1700px] mx-auto flex flex-col flex-1 min-h-0 relative z-10 gap-5">
+      <div className="w-full max-w-[1700px] mx-auto flex flex-col flex-1 min-h-0 relative z-10 gap-4">
         <div className="text-center shrink-0">
           <h1 className="text-[32px] font-bold text-white tracking-widest leading-tight">{slideTitle}</h1>
         </div>
-        <div className="flex-1 flex flex-col justify-center items-center min-h-0 pb-1">
+        {/* 白色数据面板：只放数据，占据剩余空间 */}
+        <div className="flex-1 flex flex-col justify-center items-center min-h-0">
           <div className="w-full h-full max-w-[1700px] bg-[#0a0a0a] border border-white/10 rounded-2xl p-3 shadow-2xl flex flex-col min-h-0">
             <div
               className="flex-1 rounded-xl overflow-hidden bg-white text-left"
@@ -172,11 +174,13 @@ export function GeoWebFrame({ slideTitle, pageTitle, meta, toolbarExtra, zoom = 
                   <h1 className="text-xl font-semibold" style={{ color: C.fg }}>{pageTitle}</h1>
                 </div>
                 <FilterToolbar meta={meta} extra={toolbarExtra} />
-                <div className="flex flex-col gap-6 px-4 pb-4">{children}</div>
+                <div className="flex flex-col gap-4 px-4 pb-4">{children}</div>
               </div>
             </div>
           </div>
         </div>
+        {/* 文字分析：黑色底区域，浅色大字 */}
+        {analysis && <div className="shrink-0">{analysis}</div>}
       </div>
     </div>
   );

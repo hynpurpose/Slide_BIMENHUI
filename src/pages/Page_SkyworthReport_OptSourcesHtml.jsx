@@ -1,7 +1,7 @@
 import React from 'react';
 import SlideLayout from '../components/SlideLayout';
 import report from '../data/geoReport.json';
-import { C, GeoWebFrame, HelpIcon, LogoWithFallback, AnalysisBlock, Hl } from '../components/GeoWebUI';
+import { C, GeoWebFrame, HelpIcon, LogoWithFallback, AnalysisCardsDark, HlD } from '../components/GeoWebUI';
 
 /**
  * 优化词引用源 · HTML 复刻版。
@@ -80,11 +80,38 @@ export function Page_SkyworthReport_OptSourcesHtml() {
 
   const top5Sum = citations.platform_stats.slice(0, 5).reduce((s, p) => s + (p.share ?? 0), 0);
   const mentionedCount = citations.articles.filter((a) => a.has_target_product).length;
-  const analysisPoints = [
-    <>整体被引率 <Hl>{citations.citation_rate}%</Hl>：{citations.total_conversations} 轮对话累计触发 <Hl>{citations.total_citations.toLocaleString()}</Hl> 次内容引用，创维相关内容已被 AI 大规模抓取采信。</>,
-    <>引用来源高度分散：Top5 平台合计仅 <Hl>{top5Sum.toFixed(1)}%</Hl>，头部「{best?.platform_name}」也只占 <Hl>{best ? Number(best.share).toFixed(1) : '-'}%</Hl>，需多渠道并行布局而非押注单一媒体。</>,
-    <>生态呈「垂直科技媒体 + 社交种草」<Hl>双轮驱动</Hl>：中关村在线 / IT之家 / 雷科技 与 抖音 / 什么值得买 并重。</>,
-    <>高价值阵地覆盖良好：Top10 引用文章中 <Hl>{mentionedCount} 篇</Hl>正面提及创维，仅个别财经稿缺位，可作为定向补投切口。</>,
+  const analysisCards = [
+    {
+      title: '引用规模',
+      body: (
+        <p>
+          整体被引率 <HlD>{citations.citation_rate}%</HlD>，{citations.total_conversations} 轮对话累计触发{' '}
+          <HlD>{citations.total_citations.toLocaleString()}</HlD> 次内容引用，创维相关内容已被 AI 大规模抓取采信。
+        </p>
+      ),
+    },
+    {
+      title: '来源分散',
+      body: (
+        <>
+          <p>
+            Top5 平台合计仅 <HlD>{top5Sum.toFixed(1)}%</HlD>，头部「{best?.platform_name}」也只占{' '}
+            <HlD>{best ? Number(best.share).toFixed(1) : '-'}%</HlD>，需多渠道并行布局而非押注单一媒体。
+          </p>
+          <p className="border-t border-white/5 pt-2.5">
+            生态呈<HlD>「垂直科技媒体 + 社交种草」双轮</HlD>：中关村在线 / IT之家 / 雷科技 与 抖音 / 什么值得买 并重。
+          </p>
+        </>
+      ),
+    },
+    {
+      title: '阵地覆盖 · 建议',
+      body: (
+        <p>
+          Top10 引用文章中 <HlD>{mentionedCount} 篇</HlD>正面提及创维，仅个别财经稿缺位；可将其作为<HlD>定向补投切口</HlD>，进一步扩大高权重媒体的正面覆盖。
+        </p>
+      ),
+    },
   ];
 
   const card = 'flex h-full flex-col rounded-xl border bg-white shadow-sm';
@@ -92,7 +119,13 @@ export function Page_SkyworthReport_OptSourcesHtml() {
 
   return (
     <SlideLayout fullBleed>
-      <GeoWebFrame slideTitle="优化词 · 引用源分析" pageTitle="引用来源" meta={meta} zoom={0.85}>
+      <GeoWebFrame
+        slideTitle="优化词 · 引用源分析"
+        pageTitle="引用来源"
+        meta={meta}
+        zoom={0.82}
+        analysis={<AnalysisCardsDark cards={analysisCards} />}
+      >
         {/* Top引用数据（chart-section-split.tsx） */}
         <div className="space-y-3">
           <div className="flex items-center gap-1">
@@ -104,7 +137,7 @@ export function Page_SkyworthReport_OptSourcesHtml() {
             <div className="flex flex-col gap-2">
               <span className="text-sm" style={{ color: C.itemTitle }}>目标词条引用来源分布</span>
               <div className={card} style={{ borderColor: C.border }}>
-                <div className="flex flex-1 flex-col p-6">
+                <div className="flex flex-1 flex-col p-4">
                   <span className="text-sm" style={{ color: C.mutedFg }}>引用率最高的平台</span>
                   <div className="mt-1 flex items-center gap-2">
                     <LogoWithFallback src={best?.logo_url} alt={best?.platform_name} className="size-5 rounded object-contain" />
@@ -117,7 +150,7 @@ export function Page_SkyworthReport_OptSourcesHtml() {
                       className="absolute inset-x-0 top-0 h-full"
                       style={{ backgroundImage: 'radial-gradient(#f5f5f5 1px, transparent 1px)', backgroundSize: '20px 20px' }}
                     />
-                    <div className="relative"><DonutChart data={pieData} /></div>
+                    <div className="relative"><DonutChart data={pieData} size={124} /></div>
                   </div>
                   {/* 图例：彩色勾选块 + 平台名 */}
                   <div className="flex flex-wrap gap-x-4 gap-y-2 pt-2">
@@ -140,7 +173,7 @@ export function Page_SkyworthReport_OptSourcesHtml() {
             <div className="flex flex-col gap-2">
               <span className="text-sm" style={{ color: C.itemTitle }}>目标词条高频引用平台榜单</span>
               <div className={card} style={{ borderColor: C.border }}>
-                <div className="flex flex-1 flex-col p-6">
+                <div className="flex flex-1 flex-col p-4">
                   <table className="w-full caption-bottom text-sm">
                     <thead>
                       <tr className="border-b" style={{ borderColor: C.border }}>
@@ -152,14 +185,14 @@ export function Page_SkyworthReport_OptSourcesHtml() {
                     <tbody>
                       {topPlatforms.map((p, i) => (
                         <tr key={i} className="border-b last:border-0" style={{ borderColor: C.border }}>
-                          <td className="w-10 px-4 py-3 align-middle"><RankBadge rank={i + 1} /></td>
-                          <td className="px-4 py-3 align-middle">
+                          <td className="w-10 px-4 py-2 align-middle"><RankBadge rank={i + 1} /></td>
+                          <td className="px-4 py-2 align-middle">
                             <div className="flex items-center gap-2">
                               <LogoWithFallback src={p.logo_url} alt={p.platform_name} className="size-4 rounded object-contain" fallbackSize={16} />
                               <span className="font-medium" style={{ color: C.fg }}>{p.platform_name}</span>
                             </div>
                           </td>
-                          <td className="px-4 py-3 text-right align-middle" style={{ color: C.fg }}>
+                          <td className="px-4 py-2 text-right align-middle" style={{ color: C.fg }}>
                             {p.share === null ? '-' : `${Number(p.share).toFixed(1)}%`}
                           </td>
                         </tr>
@@ -183,7 +216,7 @@ export function Page_SkyworthReport_OptSourcesHtml() {
 
         {/* 引用文章列表（article-list.tsx） */}
         <div className="space-y-3">
-          <h2 className="text-2xl font-bold tracking-tight" style={{ color: C.fg }}>引用文章列表</h2>
+          <h2 className="text-lg font-bold tracking-tight" style={{ color: C.fg }}>引用文章列表</h2>
           <div className="overflow-hidden rounded-md border" style={{ borderColor: C.border }}>
             <table className="w-full caption-bottom text-sm">
               <thead style={{ backgroundColor: 'rgba(241,245,249,0.5)' }}>
@@ -242,9 +275,6 @@ export function Page_SkyworthReport_OptSourcesHtml() {
             </table>
           </div>
         </div>
-
-        {/* 引用源分析洞察 */}
-        <AnalysisBlock title="引用源分析洞察" tag="创维 · 品类优化词" points={analysisPoints} />
       </GeoWebFrame>
     </SlideLayout>
   );
