@@ -1,7 +1,7 @@
 import React from 'react';
 import SlideLayout from '../components/SlideLayout';
 import report from '../data/geoReport.json';
-import { C, GeoWebFrame, HelpIcon, LogoWithFallback } from '../components/GeoWebUI';
+import { C, GeoWebFrame, HelpIcon, LogoWithFallback, AnalysisBlock, Hl } from '../components/GeoWebUI';
 
 /**
  * 优化词引用源 · HTML 复刻版。
@@ -78,12 +78,21 @@ export function Page_SkyworthReport_OptSourcesHtml() {
 
   const articles = citations.articles.slice(0, 3);
 
+  const top5Sum = citations.platform_stats.slice(0, 5).reduce((s, p) => s + (p.share ?? 0), 0);
+  const mentionedCount = citations.articles.filter((a) => a.has_target_product).length;
+  const analysisPoints = [
+    <>整体被引率 <Hl>{citations.citation_rate}%</Hl>：{citations.total_conversations} 轮对话累计触发 <Hl>{citations.total_citations.toLocaleString()}</Hl> 次内容引用，创维相关内容已被 AI 大规模抓取采信。</>,
+    <>引用来源高度分散：Top5 平台合计仅 <Hl>{top5Sum.toFixed(1)}%</Hl>，头部「{best?.platform_name}」也只占 <Hl>{best ? Number(best.share).toFixed(1) : '-'}%</Hl>，需多渠道并行布局而非押注单一媒体。</>,
+    <>生态呈「垂直科技媒体 + 社交种草」<Hl>双轮驱动</Hl>：中关村在线 / IT之家 / 雷科技 与 抖音 / 什么值得买 并重。</>,
+    <>高价值阵地覆盖良好：Top10 引用文章中 <Hl>{mentionedCount} 篇</Hl>正面提及创维，仅个别财经稿缺位，可作为定向补投切口。</>,
+  ];
+
   const card = 'flex h-full flex-col rounded-xl border bg-white shadow-sm';
   const th = 'h-10 px-4 text-start align-middle font-medium whitespace-nowrap';
 
   return (
     <SlideLayout fullBleed>
-      <GeoWebFrame slideTitle="优化词 · 引用源分析" pageTitle="引用来源" meta={meta} zoom={0.92}>
+      <GeoWebFrame slideTitle="优化词 · 引用源分析" pageTitle="引用来源" meta={meta} zoom={0.85}>
         {/* Top引用数据（chart-section-split.tsx） */}
         <div className="space-y-3">
           <div className="flex items-center gap-1">
@@ -233,6 +242,9 @@ export function Page_SkyworthReport_OptSourcesHtml() {
             </table>
           </div>
         </div>
+
+        {/* 引用源分析洞察 */}
+        <AnalysisBlock title="引用源分析洞察" tag="创维 · 品类优化词" points={analysisPoints} />
       </GeoWebFrame>
     </SlideLayout>
   );

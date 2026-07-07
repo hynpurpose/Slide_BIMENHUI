@@ -123,6 +123,36 @@ export function FilterToolbar({ meta, extra }) {
   );
 }
 
+/* 数字高亮：把分析文字里的关键数值/结论加粗成深色 */
+export const Hl = ({ children }) => (
+  <b style={{ color: C.fg, fontWeight: 700 }}>{children}</b>
+);
+
+/* 分析洞察块：左侧蓝色竖条标题 + 蓝点条目（默认双列），风格与 shadcn 面板一致 */
+export function AnalysisBlock({ title = '分析洞察', tag, points, columns = 2 }) {
+  return (
+    <div className="rounded-xl border p-4" style={{ borderColor: C.border, backgroundColor: 'rgba(241,245,249,0.45)' }}>
+      <div className="mb-2.5 flex items-center gap-2">
+        <span className="inline-block h-4 w-1 rounded-full" style={{ backgroundColor: C.blue }} />
+        <span className="text-sm font-bold tracking-tight" style={{ color: C.fg }}>{title}</span>
+        {tag && (
+          <span className="ml-1 rounded px-1.5 py-0.5 text-[11px] font-medium" style={{ backgroundColor: '#fff', color: C.mutedFg, border: `1px solid ${C.border}` }}>
+            {tag}
+          </span>
+        )}
+      </div>
+      <ul className={`grid gap-x-8 gap-y-1.5 ${columns === 2 ? 'grid-cols-2' : 'grid-cols-1'}`}>
+        {points.map((p, i) => (
+          <li key={i} className="flex gap-2 text-[13px] leading-relaxed" style={{ color: C.mutedFg }}>
+            <span className="mt-[7px] inline-block size-1.5 shrink-0 rounded-full" style={{ backgroundColor: C.blue }} />
+            <span>{p}</span>
+          </li>
+        ))}
+      </ul>
+    </div>
+  );
+}
+
 /* 深色外框 + 白色面板 + GEO Web 页面骨架（Header 标题行 / 筛选条 / 内容区） */
 export function GeoWebFrame({ slideTitle, pageTitle, meta, toolbarExtra, zoom = 1.2, children }) {
   return (
