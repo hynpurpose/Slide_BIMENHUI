@@ -28,8 +28,8 @@ function EntryCard({ data }) {
       {/* 窄信息列 */}
       <div className="w-[280px] shrink-0 flex flex-col justify-center gap-5">
         <PlatformChip>{data.platform} · 7月6日</PlatformChip>
-        <h3 className="text-[32px] font-black text-white font-['MiSans'] leading-snug tracking-tight">
-          {data.keyword}
+        <h3 className="text-[32px] font-black text-white font-['MiSans'] leading-snug tracking-tight whitespace-pre-line">
+          {data.keywordDisplay || data.keyword}
         </h3>
 
         <div className="flex flex-col gap-2.5">
