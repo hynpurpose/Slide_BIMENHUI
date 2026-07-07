@@ -4,14 +4,14 @@ import SlideLayout from '../components/SlideLayout';
 
 const CASES = [
   {
-    id: '01',
+    id: '1',
     keyword: '超薄电视品牌排行榜',
     before: '未提及',
     after: '第一名',
     image: '/images/speak_with_actions_case1.png',
   },
   {
-    id: '02',
+    id: '2',
     keyword: '口碑好的电视推荐',
     before: '未提及',
     after: '第一名',
