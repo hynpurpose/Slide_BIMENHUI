@@ -128,95 +128,15 @@ export const HlD = ({ children }) => (
   <strong className="text-white font-bold">{children}</strong>
 );
 
-/* 深色分析区（放在白色数据面板【外部】的黑色底区域），文字浅色、字号大、可读性优先。
-   以下三种布局共享同一视觉语言（蓝色 #004CE5 点缀 + text-zinc-300 正文），
-   但排布不同，避免每页都是一排三个并列框。 */
-
-/* 布局①：主结论 + 副要点（左侧一块高亮主结论 + 右侧两块副要点） */
-export function AnalysisHighlightDark({ lead, points }) {
-  return (
-    <div className="grid grid-cols-12 gap-4">
-      <div className="col-span-4 flex flex-col justify-center gap-2 rounded-2xl border border-[#004CE5]/25 bg-gradient-to-br from-[#004CE5]/15 to-white/[0.01] p-5 backdrop-blur-xl shadow-[0_0_20px_rgba(0,76,229,0.06)]">
-        <div className="flex items-center gap-2">
-          <span className="h-5 w-1.5 rounded-full bg-[#004CE5] shadow-[0_0_8px_rgba(0,76,229,0.8)]" />
-          <span className="text-[20px] font-bold text-white">{lead.title}</span>
-        </div>
-        <div className="text-[17px] leading-relaxed text-zinc-200">{lead.body}</div>
-      </div>
-      <div className="col-span-8 grid grid-cols-2 gap-4">
-        {points.map((p, i) => (
-          <div key={i} className="flex flex-col justify-center gap-1.5 rounded-2xl border border-white/[0.08] bg-white/[0.03] p-5 backdrop-blur-xl">
-            <span className="text-[18px] font-bold text-white">{p.title}</span>
-            <div className="text-[16px] leading-relaxed text-zinc-300">{p.body}</div>
-          </div>
-        ))}
-      </div>
-    </div>
-  );
-}
-
-/* 布局②：递进流程（步骤卡片 + 箭头连接） */
-export function AnalysisFlowDark({ steps }) {
-  return (
-    <div className="flex items-stretch gap-2">
-      {steps.map((s, i) => (
-        <React.Fragment key={i}>
-          <div className="flex flex-1 flex-col gap-2 rounded-2xl border border-white/[0.08] bg-white/[0.03] p-5 backdrop-blur-xl">
-            <div className="flex items-center gap-2">
-              <span className="flex size-7 shrink-0 items-center justify-center rounded-full bg-[#004CE5] text-[15px] font-bold text-white shadow-[0_0_8px_rgba(0,76,229,0.6)]">{i + 1}</span>
-              <span className="text-[19px] font-bold text-white">{s.title}</span>
-            </div>
-            <div className="text-[16px] leading-relaxed text-zinc-300">{s.body}</div>
-          </div>
-          {i < steps.length - 1 && (
-            <div className="flex shrink-0 items-center text-[#004CE5]">
-              <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round">
-                <path d="M5 12h14M13 6l6 6-6 6" />
-              </svg>
-            </div>
-          )}
-        </React.Fragment>
-      ))}
-    </div>
-  );
-}
-
-/* 布局③：横向面板（左侧竖排标题 + 右侧多列蓝点要点） */
-export function AnalysisPanelDark({ title, subtitle, points }) {
-  const colClass = { 1: 'grid-cols-1', 2: 'grid-cols-2', 3: 'grid-cols-3' }[points.length] || 'grid-cols-3';
-  return (
-    <div className="flex min-h-[148px] gap-7 rounded-2xl border border-white/[0.08] bg-white/[0.03] px-7 py-6 backdrop-blur-xl">
-      <div className="flex w-[230px] shrink-0 flex-col justify-center gap-1.5 border-r border-white/10 pr-7">
-        <div className="flex items-center gap-2.5">
-          <span className="h-7 w-1.5 rounded-full bg-[#004CE5] shadow-[0_0_8px_rgba(0,76,229,0.8)]" />
-          <span className="text-[24px] font-bold text-white">{title}</span>
-        </div>
-        {subtitle && <span className="pl-4 text-[15px] text-zinc-400">{subtitle}</span>}
-      </div>
-      <ul className={`grid flex-1 items-center gap-x-8 gap-y-3 ${colClass}`}>
-        {points.map((p, i) => (
-          <li key={i} className="flex gap-3 text-[20px] leading-[1.65] text-zinc-200">
-            <span className="mt-[11px] inline-block size-2.5 shrink-0 rounded-full bg-[#004CE5]" />
-            <span>{p}</span>
-          </li>
-        ))}
-      </ul>
-    </div>
-  );
-}
-
-/* 深色外框 + 白色面板 + GEO Web 页面骨架（Header 标题行 / 筛选条 / 内容区）。
-   analysis：可选，渲染在白色数据面板【外部】的黑色底区域（用 AnalysisCardsDark）。 */
-export function GeoWebFrame({ slideTitle, pageTitle, meta, toolbarExtra, zoom = 1.2, children, analysis }) {
+/* 深色外框 + 白色面板 + GEO Web 页面骨架（Header 标题行 / 筛选条 / 内容区） */
+export function GeoWebFrame({ slideTitle, pageTitle, meta, toolbarExtra, zoom = 1.2, children }) {
   return (
     <div className="w-full h-full flex flex-col relative text-white font-sans px-12 sm:px-16 pt-6 lg:pt-8 pb-4 overflow-hidden animate-fade-in">
-      <div className="w-full max-w-[1700px] mx-auto flex flex-col flex-1 min-h-0 relative z-10 gap-4">
+      <div className="w-full max-w-[1700px] mx-auto flex flex-col flex-1 min-h-0 relative z-10 gap-5">
         <div className="text-center shrink-0">
           <h1 className="text-[32px] font-bold text-white tracking-widest leading-tight">{slideTitle}</h1>
         </div>
-        {/* 白色数据面板 + 下方分析区：分析区预留固定高度，数据区占剩余空间 */}
-        <div className="flex flex-1 flex-col min-h-0 gap-3">
-        <div className="flex flex-1 flex-col justify-center items-center min-h-0">
+        <div className="flex-1 flex flex-col justify-center items-center min-h-0 pb-1">
           <div className="w-full h-full max-w-[1700px] bg-[#0a0a0a] border border-white/10 rounded-2xl p-3 shadow-2xl flex flex-col min-h-0">
             <div
               className="flex-1 rounded-xl overflow-hidden bg-white text-left"
@@ -227,13 +147,10 @@ export function GeoWebFrame({ slideTitle, pageTitle, meta, toolbarExtra, zoom = 
                   <h1 className="text-xl font-semibold" style={{ color: C.fg }}>{pageTitle}</h1>
                 </div>
                 <FilterToolbar meta={meta} extra={toolbarExtra} />
-                <div className="flex flex-col gap-4 px-4 pb-4">{children}</div>
+                <div className="flex flex-col gap-6 px-4 pb-4">{children}</div>
               </div>
             </div>
           </div>
-        </div>
-        {/* 文字分析：黑色底区域，浅色大字 */}
-        {analysis && <div className="shrink-0 pb-1">{analysis}</div>}
         </div>
       </div>
     </div>
