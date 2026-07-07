@@ -195,8 +195,8 @@ export function AnalysisPanelDark({ title, subtitle, points }) {
       </div>
       <ul className={`grid flex-1 gap-x-7 gap-y-2 ${colClass}`}>
         {points.map((p, i) => (
-          <li key={i} className="flex gap-2.5 text-[16px] leading-relaxed text-zinc-300">
-            <span className="mt-[9px] inline-block size-1.5 shrink-0 rounded-full bg-[#004CE5]" />
+          <li key={i} className="flex gap-2.5 text-[18px] leading-relaxed text-zinc-300">
+            <span className="mt-[10px] inline-block size-2 shrink-0 rounded-full bg-[#004CE5]" />
             <span>{p}</span>
           </li>
         ))}
