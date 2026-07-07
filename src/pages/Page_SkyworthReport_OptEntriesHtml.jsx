@@ -1,7 +1,7 @@
 import React from 'react';
 import SlideLayout from '../components/SlideLayout';
 import report from '../data/geoReport.json';
-import { C, GeoWebFrame, LogoWithFallback, AnalysisBlock, Hl } from '../components/GeoWebUI';
+import { C, GeoWebFrame, LogoWithFallback, AnalysisCardsDark, HlD } from '../components/GeoWebUI';
 
 /**
  * 优化词词条 · HTML 复刻版。
@@ -39,8 +39,8 @@ function ScreenshotThumb({ src }) {
 
 const fmtDate = (iso) => new Date(iso).toLocaleDateString('zh-CN');
 
-/* 版面：表格 + 底部分析块，按提及率降序取前 11 条 */
-const PAGE_SIZE = 11;
+/* 版面：白色数据面板（表格）+ 黑色底文字分析。表格取前 10 条 */
+const PAGE_SIZE = 10;
 
 export function Page_SkyworthReport_OptEntriesHtml() {
   const { meta, platforms, entries } = report;
@@ -51,11 +51,31 @@ export function Page_SkyworthReport_OptEntriesHtml() {
   const fullCount = entries.list.filter((e) => e.mention_rate === 100).length;
   const zeroCount = entries.list.filter((e) => e.mention_rate === 0).length;
   const fullPct = Math.round((fullCount / total) * 100);
-  const analysisPoints = [
-    <>{total} 个优化词中 <Hl>{fullCount} 个</Hl>提及率达 100%（约占 {fullPct}%），集中在「壁纸 / 艺术 / 超薄电视」场景，构成创维的绝对优势词库。</>,
-    <>优势词条平均提及位次多在 <Hl>NO.1–2</Hl>，在这些细分定位场景中创维已被 AI 稳定首推。</>,
-    <>仍有 <Hl>{zeroCount} 个词</Hl>提及率为 0，多为泛尺寸 / 泛品类词（4K、OLED、55/65 寸、「质量好的电视」等），是当前内容盲区。</>,
-    <>策略：巩固壁纸 / 艺术电视的认知优势，同时补强泛尺寸、价格段等大流量泛词的内容供给。</>,
+  const analysisCards = [
+    {
+      title: '优势词库',
+      body: (
+        <p>
+          {total} 个优化词中 <HlD>{fullCount} 个</HlD>提及率达 100%（约占 {fullPct}%），集中在「壁纸 / 艺术 / 超薄电视」场景，且平均位次多在 <HlD>NO.1–2</HlD>，已被 AI 稳定首推。
+        </p>
+      ),
+    },
+    {
+      title: '内容盲区',
+      body: (
+        <p>
+          仍有 <HlD>{zeroCount} 个词</HlD>提及率为 0，多为泛尺寸 / 泛品类词（4K、OLED、55/65 寸、「质量好的电视」等），尚未进入 AI 推荐。
+        </p>
+      ),
+    },
+    {
+      title: '优化方向',
+      body: (
+        <p>
+          巩固壁纸 / 艺术电视的<HlD>认知优势</HlD>，同时补强泛尺寸、价格段等<HlD>大流量泛词</HlD>的内容供给，扩大整体提及覆盖面。
+        </p>
+      ),
+    },
   ];
 
   const toolbarExtra = (
@@ -85,7 +105,14 @@ export function Page_SkyworthReport_OptEntriesHtml() {
 
   return (
     <SlideLayout fullBleed>
-      <GeoWebFrame slideTitle="优化词 · 词条表现分析" pageTitle="词条" meta={meta} toolbarExtra={toolbarExtra} zoom={0.92}>
+      <GeoWebFrame
+        slideTitle="优化词 · 词条表现分析"
+        pageTitle="词条"
+        meta={meta}
+        toolbarExtra={toolbarExtra}
+        zoom={0.9}
+        analysis={<AnalysisCardsDark cards={analysisCards} />}
+      >
         <div className="overflow-hidden rounded-md border" style={{ borderColor: C.border }}>
           <table className="w-full table-fixed caption-bottom text-sm">
             <thead>
@@ -144,9 +171,6 @@ export function Page_SkyworthReport_OptEntriesHtml() {
             </tbody>
           </table>
         </div>
-
-        {/* 词条表现分析洞察 */}
-        <AnalysisBlock title="词条分析洞察" tag="创维 · 品类优化词" points={analysisPoints} />
       </GeoWebFrame>
     </SlideLayout>
   );
