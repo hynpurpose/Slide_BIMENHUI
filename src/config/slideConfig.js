@@ -183,12 +183,7 @@ import {
   Page_SkyworthReport_SentimentDetail,
 } from '../pages/Page_SkyworthReport_Sentiment';
 import Page_SkyworthThankYou from '../pages/Page_SkyworthThankYou';
-import {
-  Page_SkyworthSpeakWithActions_A,
-  Page_SkyworthSpeakWithActions_B,
-  Page_SkyworthSpeakWithActions_C,
-  Page_SkyworthSpeakWithActions_D,
-} from '../pages/Page_SkyworthSpeakWithActions';
+import Page_SkyworthSpeakWithActions from '../pages/Page_SkyworthSpeakWithActions';
 import Page_SkyworthSpeakWithActions_2, {
   Page_SkyworthSpeakWithActions_2b,
 } from '../pages/Page_SkyworthSpeakWithActions_2';
@@ -414,7 +409,7 @@ export const slideConfig = [
   { type: 'page', title: '真评系统 · 关键词云', component: Page_UserComment_WordCloud, hideHeader: true },
   { type: 'page', title: '真评系统 · 时间趋势', component: Page_UserComment_Trend, hideHeader: true },
   { type: 'page', title: '真评系统 · 刷评识别', component: Page_UserComment_Fake, hideHeader: true },
-  { type: 'page', title: '用行动说话', variants: [Page_SkyworthSpeakWithActions_A, Page_SkyworthSpeakWithActions_B, Page_SkyworthSpeakWithActions_C, Page_SkyworthSpeakWithActions_D], hideHeader: true },
+  { type: 'page', title: '用行动说话', component: Page_SkyworthSpeakWithActions, hideHeader: true },
   { type: 'page', title: '用行动说话 2', component: Page_SkyworthSpeakWithActions_2, hideHeader: true },
   { type: 'page', title: '用行动说话 3', component: Page_SkyworthSpeakWithActions_2b, hideHeader: true },
   { type: 'page', title: 'Thank You', component: Page_SkyworthThankYou, hideHeader: true },
