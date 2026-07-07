@@ -1,5 +1,4 @@
 import React from 'react';
-import { ExternalLink } from 'lucide-react';
 import SlideLayout from '../components/SlideLayout';
 import overview from '../data/geoOverview.json';
 
@@ -49,45 +48,22 @@ function SummaryBlock({ className = '' }) {
         </p>
       </div>
 
-      <div className="mt-8 pl-[calc(7.5rem+1.5rem)]">
-        <div className="inline-flex flex-col rounded-2xl border border-white/15 bg-white/[0.03] backdrop-blur-md overflow-hidden shadow-[0_12px_40px_rgba(0,0,0,0.35)]">
-          <a
-            href="https://geotopone.com/dashboard"
-            target="_blank"
-            rel="noopener noreferrer"
-            className="group flex items-center gap-5 px-6 py-5 border-b border-white/10 hover:bg-[#004CE5]/10 transition-all duration-300"
-          >
-            <div className="w-11 h-11 rounded-xl bg-[#004CE5]/15 border border-[#004CE5]/35 flex items-center justify-center shrink-0 shadow-[0_0_16px_rgba(0,76,229,0.2)] group-hover:bg-[#004CE5]/25 transition-colors">
-              <ExternalLink className="w-5 h-5 text-[#60A5FA] group-hover:text-[#93C5FD] transition-colors" strokeWidth={2.2} />
-            </div>
-            <div className="flex flex-col gap-1">
-              <span className="text-[20px] xl:text-[22px] font-semibold text-white group-hover:text-[#93C5FD] transition-colors">
-                查看监测系统完整数据
-              </span>
-              <span className="text-[14px] xl:text-[15px] text-zinc-500 tracking-wide">
-                geotopone.com/dashboard
-              </span>
-            </div>
-            <span className="ml-4 text-[#60A5FA]/60 group-hover:text-[#93C5FD] group-hover:translate-x-0.5 transition-all text-[22px] leading-none">
-              →
-            </span>
-          </a>
-
-          <div className="flex items-center gap-8 px-6 py-4 bg-white/[0.02]">
-            <div className="flex items-center gap-3">
-              <span className="text-[15px] xl:text-[16px] text-zinc-500 font-medium shrink-0">帐号</span>
-              <span className="px-4 py-2 rounded-lg bg-white/[0.06] border border-white/12 text-[17px] xl:text-[18px] text-zinc-100 font-medium tracking-wide">
-                chuangweidianshi1
-              </span>
-            </div>
-            <div className="w-px h-9 bg-white/12 shrink-0" />
-            <div className="flex items-center gap-3">
-              <span className="text-[15px] xl:text-[16px] text-zinc-500 font-medium shrink-0">密码</span>
-              <Num className="px-4 py-2 rounded-lg bg-white/[0.06] border border-white/12 text-[17px] xl:text-[18px] text-zinc-100 font-semibold tracking-wider">
-                123456
-              </Num>
-            </div>
-          </div>
+      <div className="mt-5 flex flex-col items-center gap-2.5 text-center">
+        <a
+          href="https://geotopone.com/dashboard"
+          target="_blank"
+          rel="noopener noreferrer"
+          className="text-[20px] xl:text-[22px] font-semibold text-[#60A5FA] hover:text-[#93C5FD] underline underline-offset-4 decoration-[#60A5FA]/50 transition-colors"
+        >
+          查看监测系统完整数据
+        </a>
+        <div className="flex items-center justify-center gap-8 text-[17px] xl:text-[18px] text-zinc-400">
+          <span>
+            帐号：<span className="text-zinc-200 font-medium">chuangweidianshi1</span>
+          </span>
+          <span>
+            密码：<Num className="text-zinc-200 font-medium">123456</Num>
+          </span>
         </div>
       </div>
     </div>
@@ -99,9 +75,9 @@ function CoreDataSelfPage({ TableComponent, contentClassName = '', summaryClassN
 
   return (
     <SlideLayout fullBleed>
-      <div className="w-full h-full flex flex-col relative text-white font-sans px-20 sm:px-28 py-16 overflow-hidden animate-fade-in bg-black">
+      <div className="w-full h-full flex flex-col relative text-white font-sans px-20 sm:px-28 py-12 overflow-hidden animate-fade-in bg-black">
         <style dangerouslySetInnerHTML={{ __html: FONT_IMPORT }} />
-        <div className={`w-full max-w-[1600px] mx-auto flex flex-col flex-1 min-h-0 relative z-10 gap-10 ${contentClassName}`}>
+        <div className={`w-full max-w-[1600px] mx-auto flex flex-col flex-1 min-h-0 relative z-10 gap-6 ${contentClassName}`}>
 
           <div className="text-center shrink-0 mb-4">
             <h1 className="text-[36px] xl:text-[40px] font-bold text-white tracking-widest leading-tight">
@@ -255,7 +231,7 @@ export function Page_SkyworthReport_CoreDataSelf_A() {
     <CoreDataSelfPage
       TableComponent={TableVariantA}
       contentClassName="pt-4"
-      summaryClassName="mt-14 pt-10"
+      summaryClassName="mt-8 pt-6"
     />
   );
 }
