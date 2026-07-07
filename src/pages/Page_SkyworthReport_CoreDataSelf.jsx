@@ -47,6 +47,25 @@ function SummaryBlock({ className = '' }) {
           品牌层面，创维在品类大词的<strong className="text-white font-bold">提及率为 59.4%</strong>，AI 已具备基础认知，但 <strong className="text-white font-bold">TOP1 仅 24.7%</strong>，超过七成首推位仍被竞品占据，首推转化是当前最大缺口。产品汇总层面，五款重点产品整体提及率为 <strong className="text-[#60A5FA] font-bold">35.5%</strong>，TOP1 仅为 <strong className="text-[#60A5FA] font-bold">15.5%</strong>，且各产品差异悬殊（A7H Pro 达 61.7%，Q7H 尚未被 AI 提及），亟需通过专属场景与长尾优化词的语料覆盖，整体拉升产品级的认知度与推荐精度。
         </p>
       </div>
+
+      <div className="mt-6 pl-[calc(7.5rem+1.5rem)] flex flex-col gap-2">
+        <a
+          href="https://geotopone.com/dashboard"
+          target="_blank"
+          rel="noopener noreferrer"
+          className="text-[20px] xl:text-[22px] font-semibold text-[#60A5FA] hover:text-[#93C5FD] underline underline-offset-4 decoration-[#60A5FA]/60 hover:decoration-[#93C5FD] transition-colors w-fit"
+        >
+          查看监测系统完整数据
+        </a>
+        <div className="flex flex-col gap-1 text-[18px] xl:text-[20px] text-zinc-400 leading-relaxed">
+          <p>
+            帐号：<span className="text-zinc-200 font-medium">chuangweidianshi1</span>
+          </p>
+          <p>
+            密码：<span className="text-zinc-200 font-medium">123456</span>
+          </p>
+        </div>
+      </div>
     </div>
   );
 }
