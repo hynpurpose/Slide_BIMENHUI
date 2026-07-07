@@ -25,8 +25,10 @@ const CSS = `
 .swa-cmp thead th .thsub { display: block; font-size: 13px; color: #a0a5ad; font-weight: 400; line-height: 1.4; }
 .swa-cmp tbody td { padding: 8px 12px; border-bottom: 1px solid #f0f1f4; vertical-align: middle; overflow: hidden; font-size: 17px; }
 .swa-cmp tbody tr:last-child td { border-bottom: none; }
-.swa-cmp col.c-idx { width: 52px; } .swa-cmp col.c-type { width: 104px; } .swa-cmp col.c-plat { width: 116px; }
+.swa-cmp col.c-idx { width: 52px; } .swa-cmp col.c-type { width: 104px; } .swa-cmp col.c-plat { width: 148px; }
 .swa-cmp col.c-rank { width: 132px; } .swa-cmp col.c-chg { width: 158px; }
+/* 平台列与右侧对比组、文章列与左侧对比组之间留出呼吸空间 */
+.swa-cmp thead th:last-child, .swa-cmp tbody td:last-child { padding-left: 28px; }
 .swa-cmp th.grp, .swa-cmp td.grp { text-align: center; background: #fbfcfe; }
 .swa-cmp thead th.grp { background: #f5f8fc; }
 .swa-cmp th.grp-l, .swa-cmp td.grp-l { border-left: 1px solid #eef1f6; }
