@@ -1,4 +1,5 @@
 import React from 'react';
+import { ExternalLink } from 'lucide-react';
 import SlideLayout from '../components/SlideLayout';
 import overview from '../data/geoOverview.json';
 
@@ -48,22 +49,45 @@ function SummaryBlock({ className = '' }) {
         </p>
       </div>
 
-      <div className="mt-6 pl-[calc(7.5rem+1.5rem)] flex flex-col gap-2">
-        <a
-          href="https://geotopone.com/dashboard"
-          target="_blank"
-          rel="noopener noreferrer"
-          className="text-[20px] xl:text-[22px] font-semibold text-[#60A5FA] hover:text-[#93C5FD] underline underline-offset-4 decoration-[#60A5FA]/60 hover:decoration-[#93C5FD] transition-colors w-fit"
-        >
-          查看监测系统完整数据
-        </a>
-        <div className="flex flex-col gap-1 text-[18px] xl:text-[20px] text-zinc-400 leading-relaxed">
-          <p>
-            帐号：<span className="text-zinc-200 font-medium">chuangweidianshi1</span>
-          </p>
-          <p>
-            密码：<span className="text-zinc-200 font-medium">123456</span>
-          </p>
+      <div className="mt-8 pl-[calc(7.5rem+1.5rem)]">
+        <div className="inline-flex flex-col rounded-2xl border border-white/15 bg-white/[0.03] backdrop-blur-md overflow-hidden shadow-[0_12px_40px_rgba(0,0,0,0.35)]">
+          <a
+            href="https://geotopone.com/dashboard"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="group flex items-center gap-5 px-6 py-5 border-b border-white/10 hover:bg-[#004CE5]/10 transition-all duration-300"
+          >
+            <div className="w-11 h-11 rounded-xl bg-[#004CE5]/15 border border-[#004CE5]/35 flex items-center justify-center shrink-0 shadow-[0_0_16px_rgba(0,76,229,0.2)] group-hover:bg-[#004CE5]/25 transition-colors">
+              <ExternalLink className="w-5 h-5 text-[#60A5FA] group-hover:text-[#93C5FD] transition-colors" strokeWidth={2.2} />
+            </div>
+            <div className="flex flex-col gap-1">
+              <span className="text-[20px] xl:text-[22px] font-semibold text-white group-hover:text-[#93C5FD] transition-colors">
+                查看监测系统完整数据
+              </span>
+              <span className="text-[14px] xl:text-[15px] text-zinc-500 tracking-wide">
+                geotopone.com/dashboard
+              </span>
+            </div>
+            <span className="ml-4 text-[#60A5FA]/60 group-hover:text-[#93C5FD] group-hover:translate-x-0.5 transition-all text-[22px] leading-none">
+              →
+            </span>
+          </a>
+
+          <div className="flex items-center gap-8 px-6 py-4 bg-white/[0.02]">
+            <div className="flex items-center gap-3">
+              <span className="text-[15px] xl:text-[16px] text-zinc-500 font-medium shrink-0">帐号</span>
+              <span className="px-4 py-2 rounded-lg bg-white/[0.06] border border-white/12 text-[17px] xl:text-[18px] text-zinc-100 font-medium tracking-wide">
+                chuangweidianshi1
+              </span>
+            </div>
+            <div className="w-px h-9 bg-white/12 shrink-0" />
+            <div className="flex items-center gap-3">
+              <span className="text-[15px] xl:text-[16px] text-zinc-500 font-medium shrink-0">密码</span>
+              <Num className="px-4 py-2 rounded-lg bg-white/[0.06] border border-white/12 text-[17px] xl:text-[18px] text-zinc-100 font-semibold tracking-wider">
+                123456
+              </Num>
+            </div>
+          </div>
         </div>
       </div>
     </div>
