@@ -38,7 +38,7 @@ function ImageSlot({ src, alt }) {
     <img
       src={src}
       alt={alt}
-      className="max-w-full max-h-full object-contain rounded-xl"
+      className="h-full w-auto max-w-none object-contain object-left"
       onError={() => setFailed(true)}
     />
   );
@@ -69,7 +69,7 @@ function CaseCard({ data }) {
   return (
     <div className="flex-1 min-w-0 h-full flex flex-row bg-zinc-950/35 border border-zinc-800/70 rounded-[1.25rem] overflow-hidden">
       {/* Left Column: Content (Fixed Narrow Width) */}
-      <div className="w-[360px] shrink-0 flex flex-col justify-between p-6 pr-4">
+      <div className="w-[320px] shrink-0 flex flex-col justify-between p-6 pr-3">
         {/* Title */}
         <div className="shrink-0 flex flex-col gap-2 mb-4">
           <span className="text-[28px] font-black text-white tracking-wide max-w-fit">
@@ -95,7 +95,7 @@ function CaseCard({ data }) {
       </div>
 
       {/* Right Column: Tall Image Slot (Flex-Grow, White Background) */}
-      <div className="flex-grow flex-1 h-full bg-white p-4 flex items-center justify-center overflow-hidden">
+      <div className="flex-grow min-w-0 h-full bg-white pl-2 pr-3 overflow-hidden flex items-stretch justify-start">
         <ImageSlot src={data.image} alt={`${data.keyword}案例截图`} />
       </div>
     </div>
