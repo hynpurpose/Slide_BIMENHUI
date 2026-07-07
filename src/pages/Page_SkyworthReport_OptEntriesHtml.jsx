@@ -1,7 +1,7 @@
 import React from 'react';
 import SlideLayout from '../components/SlideLayout';
 import report from '../data/geoReport.json';
-import { C, GeoWebFrame, LogoWithFallback, AnalysisCardsDark, HlD } from '../components/GeoWebUI';
+import { C, GeoWebFrame, LogoWithFallback, AnalysisFlowDark, HlD } from '../components/GeoWebUI';
 
 /**
  * 优化词词条 · HTML 复刻版。
@@ -51,29 +51,23 @@ export function Page_SkyworthReport_OptEntriesHtml() {
   const fullCount = entries.list.filter((e) => e.mention_rate === 100).length;
   const zeroCount = entries.list.filter((e) => e.mention_rate === 0).length;
   const fullPct = Math.round((fullCount / total) * 100);
-  const analysisCards = [
+  const analysisSteps = [
     {
       title: '优势词库',
       body: (
-        <p>
-          {total} 个优化词中 <HlD>{fullCount} 个</HlD>提及率达 100%（约占 {fullPct}%），集中在「壁纸 / 艺术 / 超薄电视」场景，且平均位次多在 <HlD>NO.1–2</HlD>，已被 AI 稳定首推。
-        </p>
+        <>{total} 个优化词中 <HlD>{fullCount} 个</HlD>提及率达 100%（约占 {fullPct}%），集中在「壁纸 / 艺术 / 超薄电视」场景，且平均位次多在 <HlD>NO.1–2</HlD>，已被 AI 稳定首推。</>
       ),
     },
     {
       title: '内容盲区',
       body: (
-        <p>
-          仍有 <HlD>{zeroCount} 个词</HlD>提及率为 0，多为泛尺寸 / 泛品类词（4K、OLED、55/65 寸、「质量好的电视」等），尚未进入 AI 推荐。
-        </p>
+        <>仍有 <HlD>{zeroCount} 个词</HlD>提及率为 0，多为泛尺寸 / 泛品类词（4K、OLED、55/65 寸、「质量好的电视」等），尚未进入 AI 推荐。</>
       ),
     },
     {
       title: '优化方向',
       body: (
-        <p>
-          巩固壁纸 / 艺术电视的<HlD>认知优势</HlD>，同时补强泛尺寸、价格段等<HlD>大流量泛词</HlD>的内容供给，扩大整体提及覆盖面。
-        </p>
+        <>巩固壁纸 / 艺术电视<HlD>认知优势</HlD>，同时补强泛尺寸、价格段等<HlD>大流量泛词</HlD>的内容供给，扩大整体提及覆盖面。</>
       ),
     },
   ];
@@ -111,7 +105,7 @@ export function Page_SkyworthReport_OptEntriesHtml() {
         meta={meta}
         toolbarExtra={toolbarExtra}
         zoom={0.9}
-        analysis={<AnalysisCardsDark cards={analysisCards} />}
+        analysis={<AnalysisFlowDark steps={analysisSteps} />}
       >
         <div className="overflow-hidden rounded-md border" style={{ borderColor: C.border }}>
           <table className="w-full table-fixed caption-bottom text-sm">
