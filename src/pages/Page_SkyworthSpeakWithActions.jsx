@@ -49,13 +49,13 @@ function MentionBlock({ phase, text }) {
 
   return (
     <div
-      className={`w-full rounded-xl px-4 py-4 flex flex-row justify-center items-center gap-1.5 ${isBefore
+      className={`w-full rounded-xl px-4 py-4 flex flex-col justify-center items-center gap-1.5 ${isBefore
         ? 'bg-zinc-900/40 border border-zinc-800/70'
         : 'bg-[#004CE5]/8 border border-[#004CE5]/25'
       }`}
     >
-      <span className="text-[28px] leading-none font-bold font-['MiSans'] text-white shrink-0">
-        {isBefore ? '优化前：' : '优化后：'}
+      <span className="text-[20px] leading-tight font-medium font-['MiSans'] text-white/70 text-center">
+        {isBefore ? '6月28日优化前：' : '我们优化后：'}
       </span>
       <span
         className={`text-[28px] leading-none font-black font-['MiSans'] ${isBefore ? 'text-white/90' : 'text-white drop-shadow-[0_0_8px_rgba(255,255,255,0.2)]'
@@ -74,8 +74,9 @@ function CaseCard({ data }) {
       <div className="w-[300px] shrink-0 flex flex-col justify-between p-6 pr-4">
         {/* Title */}
         <div className="shrink-0 flex flex-col gap-2 mb-4">
-          <span className="text-[12px] font-black tracking-[0.15em] text-[#004CE5] bg-[#004CE5]/10 border border-[#004CE5]/20 rounded-md px-2.5 py-1 font-['Montserrat'] max-w-fit">
-            {data.id}
+          <span className="text-[13px] font-black tracking-[0.12em] text-[#004CE5] bg-[#004CE5]/10 border border-[#004CE5]/20 rounded-md px-2.5 py-1 max-w-fit">
+            <span className="font-['MiSans']">词条</span>
+            <span className="font-['Montserrat']">{data.id}</span>
           </span>
           <h3 className="text-[26px] font-bold text-white tracking-tight font-['MiSans'] leading-snug">
             {data.keyword}
