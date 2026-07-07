@@ -49,7 +49,7 @@ function SummaryBlock({ className = '' }) {
       </div>
 
       <div className="mt-6 flex justify-center">
-        <div className="inline-flex flex-col items-center gap-5 px-12 py-7 rounded-2xl border border-white/20 bg-white/[0.03] backdrop-blur-sm shadow-[0_8px_32px_rgba(0,0,0,0.25)] border-t-2 border-t-[#004CE5]">
+        <div className="inline-flex flex-col items-center gap-2 px-10 py-5 rounded-xl border border-white/10 bg-white/[0.02] backdrop-blur-sm shadow-[0_4px_24px_rgba(0,0,0,0.2)]">
           <a
             href="https://geotopone.com/dashboard"
             target="_blank"
@@ -58,7 +58,6 @@ function SummaryBlock({ className = '' }) {
           >
             查看监测系统完整数据
           </a>
-          <div className="w-full h-px bg-white/12" />
           <div className="flex items-center justify-center gap-12 text-[20px] xl:text-[22px]">
             <span className="text-zinc-400">
               帐号<span className="text-white font-medium ml-3">chuangweidianshi1</span>
