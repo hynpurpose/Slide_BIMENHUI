@@ -1,7 +1,7 @@
 import React from 'react';
 import SlideLayout from '../components/SlideLayout';
 import report from '../data/geoReport.json';
-import { AnalysisBlock, Hl } from '../components/GeoWebUI';
+import { AnalysisCardsDark, HlD } from '../components/GeoWebUI';
 
 /**
  * 优化词总览 · HTML 复刻版。
@@ -374,11 +374,46 @@ export function Page_SkyworthReport_OptDashboardHtml() {
   const byPos = [...stats.platform_stats].sort((a, b) => a.avg_position - b.avg_position);
   const bestPos = byPos[0];
   const worstPos = byPos[byPos.length - 1];
-  const analysisPoints = [
-    <>提及率 <Hl>{mentionRate}%</Hl>，行业排名 <Hl>NO.{targetRank}</Hl>，落后{rivals[0]?.brand_name}({rivals[0]?.mention_rate}%)、{rivals[1]?.brand_name}({rivals[1]?.mention_rate}%)约 6–9 个百分点，处于第一梯队边缘。</>,
-    <>首位推荐率(Top1)高达 <Hl>{targetTop1?.top1_mention_rate}%</Hl>，<Hl>位列行业第一</Hl>，是{runnerTop1?.brand_name}({runnerTop1?.top1_mention_rate}%)的 {top1Ratio} 倍——被 AI 优先推荐的能力显著领先。</>,
-    <>四大 AI 平台表现均衡（<Hl>{minRate}%–{maxRate}%</Hl>），无明显短板，品类词优化已形成稳定基本盘。</>,
-    <>平均位次 NO.{avgPosition}：{bestPos?.platform_name}最优({bestPos?.avg_position})、{worstPos?.platform_name}偏弱(<Hl>{worstPos?.avg_position}</Hl>)，{worstPos?.platform_name}为下一步提位重点。</>,
+  const analysisCards = [
+    {
+      title: '核心表现',
+      body: (
+        <>
+          <p>
+            首位推荐率(Top1)高达 <HlD>{targetTop1?.top1_mention_rate}%</HlD>，<HlD>行业第一</HlD>，是{runnerTop1?.brand_name}({runnerTop1?.top1_mention_rate}%)的 {top1Ratio} 倍，AI 在品类词下最倾向首推创维。
+          </p>
+          <p className="border-t border-white/5 pt-2.5">
+            综合提及率 <HlD>{mentionRate}%</HlD>，行业影响力排名 <HlD>NO.{targetRank}</HlD>。
+          </p>
+        </>
+      ),
+    },
+    {
+      title: '平台表现',
+      body: (
+        <>
+          <p>
+            四大 AI 平台表现均衡（<HlD>{minRate}%–{maxRate}%</HlD>），无明显短板，品类词优化已形成稳定基本盘。
+          </p>
+          <p className="border-t border-white/5 pt-2.5">
+            平均位次 NO.{avgPosition}：{bestPos?.platform_name}最优({bestPos?.avg_position})，{worstPos?.platform_name}偏弱(<HlD>{worstPos?.avg_position}</HlD>)，为下一步提位重点。
+          </p>
+        </>
+      ),
+    },
+    {
+      title: '差距与建议',
+      body: (
+        <>
+          <p>
+            整体声量存缺口：提及率落后{rivals[0]?.brand_name}({rivals[0]?.mention_rate}%)、{rivals[1]?.brand_name}({rivals[1]?.mention_rate}%)约 <HlD>6–9 个百分点</HlD>。
+          </p>
+          <p className="border-t border-white/5 pt-2.5">
+            对未覆盖的品类词补充测评 / 榜单类内容，把整体提及率向头部拉近。
+          </p>
+        </>
+      ),
+    },
   ];
 
   const fmtHeaderDate = (s) => {
@@ -396,15 +431,15 @@ export function Page_SkyworthReport_OptDashboardHtml() {
   return (
     <SlideLayout fullBleed>
       <div className="w-full h-full flex flex-col relative text-white font-sans px-12 sm:px-16 pt-6 lg:pt-8 pb-4 overflow-hidden animate-fade-in">
-        <div className="w-full max-w-[1700px] mx-auto flex flex-col flex-1 min-h-0 relative z-10 gap-5">
+        <div className="w-full max-w-[1700px] mx-auto flex flex-col flex-1 min-h-0 relative z-10 gap-4">
           <div className="text-center shrink-0">
             <h1 className="text-[32px] font-bold text-white tracking-widest leading-tight">
               优化词 · 核心指标表现概览
             </h1>
           </div>
 
-          {/* 深色外框（与截图页同款） */}
-          <div className="flex-1 flex flex-col justify-center items-center min-h-0 pb-1">
+          {/* 深色外框（与截图页同款）：白色面板只放数据，占据剩余空间 */}
+          <div className="flex-1 flex flex-col justify-center items-center min-h-0">
             <div className="w-full h-full max-w-[1700px] bg-[#0a0a0a] border border-white/10 rounded-2xl p-3 shadow-2xl flex flex-col min-h-0">
               <div
                 className="flex-1 rounded-xl overflow-hidden bg-white text-left"
@@ -510,13 +545,15 @@ export function Page_SkyworthReport_OptDashboardHtml() {
                         },
                       ]}
                     />
-
-                    {/* 总览分析洞察 */}
-                    <AnalysisBlock title="核心指标分析洞察" tag="创维 · 品类优化词" points={analysisPoints} />
                   </div>
                 </div>
               </div>
             </div>
+          </div>
+
+          {/* 文字分析：黑色底区域，浅色大字 */}
+          <div className="shrink-0">
+            <AnalysisCardsDark cards={analysisCards} />
           </div>
         </div>
       </div>
