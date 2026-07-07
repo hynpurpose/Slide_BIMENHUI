@@ -7,13 +7,14 @@ const FONT_IMPORT = `@import url('https://fonts.geekzu.org/css2?family=Montserra
 const SUBTITLE = '两个核心词条的战果 · 6月28日 → 7月6日';
 
 /* ── 数据来源：创维GEO投放效果TOP20（7月7日导出）+ GEO ONE 监测截图 ── */
-const PRIMARY = {
+export const PRIMARY = {
   tag: '核心战果 01',
   keyword: '超薄电视品牌排行榜',
   platform: '通义千问',
   afterLabel: '第 1 名',
   no: 'NO.1',
   screenshot: '/images/speak_with_actions_case1.png',
+  citeShot: '/images/speak_with_actions_case1_cite.png',
   highlight: '创维 A10H、创维 65S8A 双型号霸占榜单前二',
   ranking: [
     { rank: 1, name: '创维 A10H', ours: true },
@@ -29,13 +30,14 @@ const PRIMARY = {
   ],
 };
 
-const SECONDARY = {
+export const SECONDARY = {
   tag: '战果 02',
   keyword: '口碑好的电视推荐',
   platform: 'DeepSeek',
   afterLabel: '第 3 名',
   no: 'NO.3',
   screenshot: '/images/speak_with_actions_case2.png',
+  citeShot: '/images/speak_with_actions_case2_cite.png',
   highlight: '创维 A7H Pro 第 3、创维 75A3F 第 8，双型号进前十',
   ranking: [
     { rank: 1, name: '索尼电视7系二代 XR70M2' },
@@ -51,7 +53,7 @@ const SECONDARY = {
   ],
 };
 
-function PlatformChip({ children }) {
+export function PlatformChip({ children }) {
   return (
     <span className="inline-flex items-center px-3 py-1 rounded-md text-[17px] font-semibold font-['MiSans'] bg-[#004CE5]/15 text-[#8FBFFF] border border-[#004CE5]/25 whitespace-nowrap leading-snug">
       {children}
@@ -59,7 +61,7 @@ function PlatformChip({ children }) {
   );
 }
 
-function DateChip({ children }) {
+export function DateChip({ children }) {
   return (
     <span className="inline-flex items-center px-3 py-1 rounded-md text-[17px] font-medium font-['MiSans'] bg-white/[0.06] text-zinc-400 border border-white/10 whitespace-nowrap leading-snug">
       {children}
@@ -67,11 +69,30 @@ function DateChip({ children }) {
   );
 }
 
+/* AI 引用来源截图面板：橙标「我们投放」是核心证据 */
+export function CitePanel({ data, className = '' }) {
+  return (
+    <div className={`min-h-0 flex flex-col rounded-2xl overflow-hidden border border-[#F97316]/40 ${className}`}>
+      <div className="shrink-0 h-[44px] px-4 flex items-center gap-2.5 bg-[#F97316]/15 border-b border-[#F97316]/30">
+        <span className="px-2 py-0.5 rounded bg-[#F97316] text-white text-[14px] font-bold font-['MiSans'] shrink-0">
+          我们投放
+        </span>
+        <span className="text-[16px] text-[#FDBA74] font-bold font-['MiSans'] truncate">
+          {data.platform}引用来源实拍 · 橙标 = 引用了我们的文章
+        </span>
+      </div>
+      <div className="flex-1 min-h-0 bg-white flex items-center justify-center overflow-hidden">
+        <img src={data.citeShot} alt={`${data.keyword} 引用来源截图`} className="w-full h-full object-contain" />
+      </div>
+    </div>
+  );
+}
+
 /* ═══════════════════════════════════════════════════════════
    版本 A · 主次双卡 + AI 榜单还原（无截图，纯数据渲染）
    ═══════════════════════════════════════════════════════════ */
 
-function RankList({ data, compact }) {
+export function RankList({ data, compact }) {
   const nameSize = compact ? 'text-[21px]' : 'text-[24px]';
   const rankSize = compact ? 'text-[22px]' : 'text-[26px]';
   return (
@@ -114,7 +135,7 @@ function RankList({ data, compact }) {
   );
 }
 
-function BeforeAfterStrip({ data, hero }) {
+export function BeforeAfterStrip({ data, hero }) {
   const afterSize = hero ? 'text-[64px]' : 'text-[46px]';
   return (
     <div className="shrink-0 flex items-center gap-5">
@@ -154,7 +175,10 @@ export function Page_SkyworthSpeakWithActions_A() {
             {PRIMARY.keyword}
           </h3>
           <BeforeAfterStrip data={PRIMARY} hero />
-          <RankList data={PRIMARY} />
+          <div className="flex-1 min-h-0 flex gap-4">
+            <RankList data={PRIMARY} />
+            <CitePanel data={PRIMARY} className="w-[45%] shrink-0" />
+          </div>
           <p className="shrink-0 text-[21px] font-bold text-[#8FBFFF] font-['MiSans'] leading-snug">
             ✦ {PRIMARY.highlight}
           </p>
@@ -172,7 +196,7 @@ export function Page_SkyworthSpeakWithActions_A() {
             {SECONDARY.keyword}
           </h3>
           <BeforeAfterStrip data={SECONDARY} />
-          <RankList data={SECONDARY} compact />
+          <CitePanel data={SECONDARY} className="flex-1" />
           <p className="shrink-0 text-[18px] font-bold text-zinc-400 font-['MiSans'] leading-snug">
             ✦ {SECONDARY.highlight}
           </p>
@@ -287,13 +311,13 @@ function TimeLane({ data, hero }) {
       </div>
 
       {/* 右：投放后 */}
-      <div className="flex-1 min-w-0 flex items-center gap-10 pl-20 pr-10">
+      <div className="flex-1 min-w-0 flex items-center gap-8 pl-20 pr-8">
         <span
-          className={`${hero ? 'text-[150px]' : 'text-[92px]'} font-black text-white font-['MiSans'] leading-none tracking-tight shrink-0 drop-shadow-[0_0_30px_rgba(255,255,255,0.25)]`}
+          className={`${hero ? 'text-[130px]' : 'text-[84px]'} font-black text-white font-['MiSans'] leading-none tracking-tight shrink-0 drop-shadow-[0_0_30px_rgba(255,255,255,0.25)]`}
         >
           {data.afterLabel}
         </span>
-        <div className="min-w-0 flex flex-col gap-2.5">
+        <div className="flex-1 min-w-0 flex flex-col gap-2.5">
           <span className={`inline-flex max-w-fit items-center px-3.5 py-1 rounded-full ${hero ? 'bg-[#4ADE80] text-[#03240f]' : 'bg-[#4ADE80]/20 text-[#4ADE80] border border-[#4ADE80]/40'} text-[19px] font-black font-['MiSans']`}>
             {hero ? '提升至榜首' : '冲进前三'}
           </span>
@@ -302,6 +326,7 @@ function TimeLane({ data, hero }) {
           </span>
           <span className="text-[17px] text-white/50 font-['MiSans']">{data.platform} · {data.totalNote.replace('…… ', '')}</span>
         </div>
+        <CitePanel data={data} className={`shrink-0 ${hero ? 'w-[500px] self-stretch my-6' : 'w-[440px] self-stretch my-4'}`} />
       </div>
     </div>
   );
