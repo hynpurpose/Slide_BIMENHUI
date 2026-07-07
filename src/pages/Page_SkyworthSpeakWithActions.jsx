@@ -7,8 +7,6 @@ import React from 'react';
 export const PRIMARY = {
   tag: '核心战果 01',
   keyword: '超薄电视品牌排行榜',
-  // 窄栏展示用：手动控制断行，避免「榜」字单独落在行尾
-  keywordDisplay: '超薄电视品牌\n排行榜',
   platform: '通义千问',
   afterLabel: '第 1 名',
   no: 'NO.1',
