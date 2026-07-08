@@ -50,7 +50,7 @@ export function Page_SkyworthReport_OverviewScreenshot() {
                     </div>
                     <ScreenshotSlot
                         src="/geo-report/skyworth-dashboard.jpg"
-                        alt="创维核心指标看板大图"
+                        alt="某家电品牌核心指标看板大图"
                         hint="此处为数据系统核心指标看板截图 (支持任意比例自适应)"
                     />
                 </div>
@@ -133,7 +133,7 @@ export function Page_SkyworthReport_OverviewAnalysis() {
                                             <div className="flex flex-col"><span className="text-zinc-400 text-[13px]">平均位次</span><span className="text-[28px] font-black text-rose-300 leading-none">NO.6.3</span></div>
                                         </div>
                                         <p className="text-[14px] lg:text-[15px] text-zinc-300 leading-relaxed mt-2.5">
-                                            质量好 / 画质好 / 音响好等通用词被海信、TCL 挤压，落在推荐列表中后段。
+                                            质量好 / 画质好 / 音响好等通用词被竞品A、竞品B 挤压，落在推荐列表中后段。
                                         </p>
                                     </div>
                                 </div>
@@ -145,14 +145,14 @@ export function Page_SkyworthReport_OverviewAnalysis() {
                             <div className="bg-white/[0.03] backdrop-blur-xl border border-[#004CE5]/20 rounded-2xl p-6 flex flex-col h-full justify-start gap-3">
                                 <h3 className="text-xl lg:text-2xl font-bold text-white shrink-0 flex items-center gap-2.5 mb-1">
                                     <span className="w-1.5 h-5 bg-[#004CE5] rounded-full shadow-[0_0_8px_rgba(0,76,229,0.8)]" />
-                                    结合本次数据，创维在 AI 问答里呈现三大特征
+                                    结合本次数据，某家电品牌在 AI 问答里呈现三大特征
                                 </h3>
 
                                 <div className="flex-1 flex flex-col justify-center gap-3.5 min-h-0">
                                     {[
-                                        { n: '01', t: '“好看的电视”心智已被 AI 采信', d: '在壁纸电视相关的品类大词中，创维几乎是 AI 的默认首选，品牌与品类深度绑定。' },
-                                        { n: '02', t: '通用电视词竞争激烈、声量偏弱', d: '一旦脱离“好看”标签进入通用性能词，AI 更倾向推荐海信、TCL，创维存在感明显下降。' },
-                                        { n: '03', t: '五款产品冷热不均，长尾词覆盖不足', d: '旗舰 A10H 表现突出，但走量款与线下款在专属参数词、场景词上的语料覆盖仍有缺口。' },
+                                        { n: '01', t: '“好看的电视”心智已被 AI 采信', d: '在壁纸电视相关的品类大词中，某家电品牌几乎是 AI 的默认首选，品牌与品类深度绑定。' },
+                                        { n: '02', t: '通用电视词竞争激烈、声量偏弱', d: '一旦脱离“好看”标签进入通用性能词，AI 更倾向推荐竞品A、竞品B，某家电品牌存在感明显下降。' },
+                                        { n: '03', t: '五款产品冷热不均，长尾词覆盖不足', d: '旗舰 旗舰款C 表现突出，但走量款与线下款在专属参数词、场景词上的语料覆盖仍有缺口。' },
                                     ].map((b) => (
                                         <div key={b.n} className="bg-white/[0.01] hover:bg-white/[0.02] border border-white/5 rounded-xl p-3.5 flex gap-3 transition-colors duration-300">
                                             <div className="text-[#004CE5] text-2xl lg:text-3xl font-mono font-bold select-none pt-0.5 shrink-0">{b.n}</div>
@@ -171,7 +171,7 @@ export function Page_SkyworthReport_OverviewAnalysis() {
                     <div className="border border-[#004CE5]/20 border-l-4 border-l-[#004CE5] bg-white/[0.03] backdrop-blur-xl rounded-2xl px-6 py-4 shrink-0 flex items-center gap-4">
                         <span className="text-[18px] lg:text-[20px] font-black text-white shrink-0">核心结论</span>
                         <p className="text-[15px] lg:text-[16px] xl:text-[18px] text-zinc-300 leading-relaxed text-justify">
-                            创维在“好看的电视”赛道已建立 AI 认知优势，<strong className="text-white font-bold">守住第一是底线</strong>；真正的增长空间在于把通用电视词与五款产品的专属词声量补齐，<strong className="text-white font-bold">从“单点领先”走向“全面覆盖”</strong>。
+                            某家电品牌在“好看的电视”赛道已建立 AI 认知优势，<strong className="text-white font-bold">守住第一是底线</strong>；真正的增长空间在于把通用电视词与五款产品的专属词声量补齐，<strong className="text-white font-bold">从“单点领先”走向“全面覆盖”</strong>。
                         </p>
                     </div>
                 </div>

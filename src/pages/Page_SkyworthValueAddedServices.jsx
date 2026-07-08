@@ -31,7 +31,7 @@ export function Page_SkyworthValueAddedServices() {
                 <td className="py-4 text-zinc-300 align-middle pr-6 pl-6">
                   <div className="flex flex-col gap-2">
                     <p>
-                      <strong className="text-white font-bold">1. 舆情监测:</strong> 实时监测各大模型中关于创维电视的错漏或负面言论。
+                      <strong className="text-white font-bold">1. 舆情监测:</strong> 实时监测各大模型中关于某家电品牌电视的错漏或负面言论。
                     </p>
                     <p>
                       <strong className="text-white font-bold">2. 快速净化:</strong> 部署高权重澄清与正面说明语料，快速纠正 AI 异常记忆。
@@ -112,7 +112,7 @@ export function Page_SkyworthValueAddedServices() {
                 <td className="py-4 text-zinc-300 align-middle pr-6 pl-6">
                   <div className="flex flex-col gap-2">
                     <p>
-                      <strong className="text-white font-bold">1. 份额追踪:</strong> 持续监测海信、TCL 等核心竞品在 AI 大盘的份额变化。
+                      <strong className="text-white font-bold">1. 份额追踪:</strong> 持续监测竞品A、竞品B 等核心竞品在 AI 大盘的份额变化。
                     </p>
                     <p>
                       <strong className="text-white font-bold">2. 动态防守:</strong> 针对竞品最新的拦截动作，及时调整本品的对线策略。
@@ -122,7 +122,7 @@ export function Page_SkyworthValueAddedServices() {
                 <td className="py-4 align-middle pr-6 pl-6">
                   <div className="bg-[#004CE5]/10 border border-[#004CE5]/20 px-4 py-3 rounded-2xl">
                     <p className="text-zinc-100 font-medium">
-                      掌握竞品在 AI 端策略走向，<strong className="text-white font-bold">守护创维的推荐位次</strong>。
+                      掌握竞品在 AI 端策略走向，<strong className="text-white font-bold">守护某家电品牌的推荐位次</strong>。
                     </p>
                   </div>
                 </td>

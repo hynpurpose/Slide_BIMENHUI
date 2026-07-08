@@ -2,27 +2,27 @@ import React from 'react';
 import SlideLayout from '../components/SlideLayout';
 
 const mentionRateData = [
-    { name: '创维', value: '73.6%', isBrand: true, rank: 1 },
-    { name: '海信', value: '68.2%' },
-    { name: 'TCL', value: '61.4%' },
-    { name: '华为智慧屏', value: '52.7%' },
-    { name: '小米', value: '48.1%' },
+    { name: '某家电品牌', value: '73.6%', isBrand: true, rank: 1 },
+    { name: '竞品A', value: '68.2%' },
+    { name: '竞品B', value: '61.4%' },
+    { name: '竞品D智慧屏', value: '52.7%' },
+    { name: '竞品C', value: '48.1%' },
 ];
 
 const top1RateData = [
-    { name: '创维', value: '41.2%', isBrand: true, rank: 1 },
-    { name: '海信', value: '38.5%' },
-    { name: 'TCL', value: '29.7%' },
-    { name: '华为智慧屏', value: '21.3%' },
-    { name: '小米', value: '18.6%' },
+    { name: '某家电品牌', value: '41.2%', isBrand: true, rank: 1 },
+    { name: '竞品A', value: '38.5%' },
+    { name: '竞品B', value: '29.7%' },
+    { name: '竞品D智慧屏', value: '21.3%' },
+    { name: '竞品C', value: '18.6%' },
 ];
 
 const avgRankData = [
-    { name: '海信', value: 'NO. 2.6', rank: 1 },
-    { name: '创维', value: 'NO. 2.8', isBrand: true, rank: 2 },
-    { name: 'TCL', value: 'NO. 3.5' },
-    { name: '华为智慧屏', value: 'NO. 4.8' },
-    { name: '小米', value: 'NO. 5.2' },
+    { name: '竞品A', value: 'NO. 2.6', rank: 1 },
+    { name: '某家电品牌', value: 'NO. 2.8', isBrand: true, rank: 2 },
+    { name: '竞品B', value: 'NO. 3.5' },
+    { name: '竞品D智慧屏', value: 'NO. 4.8' },
+    { name: '竞品C', value: 'NO. 5.2' },
 ];
 
 function renderTable(title, headers, data) {
@@ -95,7 +95,7 @@ export function Page_SkyworthReport_CompetitorsAnalysis() {
 
                     <div className="border border-[#004CE5]/30 border-l-4 border-l-blue-500 bg-[#004CE5]/10 rounded-xl px-6 py-3.5 shrink-0 flex items-center gap-4 mb-2">
                         <p className="text-[17px] lg:text-[18.5px] xl:text-[20.5px] text-zinc-100 leading-relaxed">
-                            <strong className="text-blue-400 font-black">核心结论：</strong>创维在 <strong className="text-white font-black">提及率（73.6%）</strong> 与 <strong className="text-white font-black">Top1 提及率（41.2%）</strong> 上高居行业第一，但在 <strong className="text-white font-black">平均提及位次</strong> 上以 NO.2.8 微弱落后于海信（NO.2.6）——创维“被提及得多”，但海信“被排得更靠前”。
+                            <strong className="text-blue-400 font-black">核心结论：</strong>某家电品牌在 <strong className="text-white font-black">提及率（73.6%）</strong> 与 <strong className="text-white font-black">Top1 提及率（41.2%）</strong> 上高居行业第一，但在 <strong className="text-white font-black">平均提及位次</strong> 上以 NO.2.8 微弱落后于竞品A（NO.2.6）——某家电品牌“被提及得多”，但竞品A“被排得更靠前”。
                         </p>
                     </div>
 
@@ -108,8 +108,8 @@ export function Page_SkyworthReport_CompetitorsAnalysis() {
                                     核心发现
                                 </h3>
                                 <div className="flex-grow flex flex-col gap-3 text-[15px] lg:text-[16px] xl:text-[18px] text-zinc-300 leading-relaxed text-justify">
-                                    <p><strong className="text-white font-bold">品类优势明显：</strong>“好看的电视”词群拉高了创维整体提及率，声量领先海信、TCL。</p>
-                                    <p className="border-t border-white/5 pt-2.5"><strong className="text-white font-bold">位次略逊一筹：</strong>海信在通用性能词的首推位更稳，把平均位次拉到了行业第一。</p>
+                                    <p><strong className="text-white font-bold">品类优势明显：</strong>“好看的电视”词群拉高了某家电品牌整体提及率，声量领先竞品A、竞品B。</p>
+                                    <p className="border-t border-white/5 pt-2.5"><strong className="text-white font-bold">位次略逊一筹：</strong>竞品A在通用性能词的首推位更稳，把平均位次拉到了行业第一。</p>
                                 </div>
                             </div>
                         </div>
@@ -121,8 +121,8 @@ export function Page_SkyworthReport_CompetitorsAnalysis() {
                                     竞争格局总结
                                 </h3>
                                 <div className="flex-grow flex flex-col gap-3 text-[15px] lg:text-[16px] xl:text-[18px] text-zinc-300 leading-relaxed text-justify">
-                                    <p><strong className="text-white font-bold">海信最强对手：</strong>海信在参数词、性能词上语料密集，是创维通用赛道的头号劲敌。</p>
-                                    <p className="border-t border-white/5 pt-2.5"><strong className="text-white font-bold">华为来势凶猛：</strong>华为智慧屏靠生态与话题度快速上位，需重点监测其增速。</p>
+                                    <p><strong className="text-white font-bold">竞品A最强对手：</strong>竞品A在参数词、性能词上语料密集，是某家电品牌通用赛道的头号劲敌。</p>
+                                    <p className="border-t border-white/5 pt-2.5"><strong className="text-white font-bold">竞品D来势凶猛：</strong>竞品D智慧屏靠生态与话题度快速上位，需重点监测其增速。</p>
                                 </div>
                             </div>
                         </div>
@@ -157,7 +157,7 @@ export function Page_SkyworthReport_CompetitorsDetail() {
 
                     <div className="text-center shrink-0 mb-1">
                         <h1 className="text-[32px] font-bold text-white tracking-widest leading-tight">
-                            主要竞品（海信）分析
+                            主要竞品（竞品A）分析
                         </h1>
                     </div>
 
@@ -168,14 +168,14 @@ export function Page_SkyworthReport_CompetitorsDetail() {
                             <div className="bg-white/[0.02] backdrop-blur-xl border border-white/[0.08] rounded-2xl p-5 lg:p-6 flex flex-col h-full justify-start gap-4">
                                 <h3 className="text-[22px] lg:text-[24px] font-bold text-white shrink-0 flex items-center gap-2 mb-1">
                                     <span className="w-1.5 h-4.5 bg-blue-500 rounded-full shadow-[0_0_8px_rgba(59,130,246,0.8)]" />
-                                    海信在 AI 里的现状
+                                    竞品A在 AI 里的现状
                                 </h3>
 
                                 <div className="flex-grow flex flex-col justify-between gap-3 min-h-0">
                                     {[
-                                        { n: '01', t: '通用性能词首推位垄断', d: '在“画质好的电视”“护眼电视”等通用性能词下，海信 ULED 语料铺设密集，长期占据 AI 首推位，平均位次做到行业第一（NO.2.6）。' },
-                                        { n: '02', t: '高频引用源大面积占位', d: '在今日头条、什么值得买、太平洋电脑网等 AI 高频引用平台，海信铺设了大量参数横评与技术科普，为大模型提供了丰富抓取素材。' },
-                                        { n: '03', t: '参数话术强绑定', d: 'AI 生成电视推荐时，推荐理由高度契合海信的“背光分区、峰值亮度”话术，底层语料已被成功“喂养”。' },
+                                        { n: '01', t: '通用性能词首推位垄断', d: '在“画质好的电视”“护眼电视”等通用性能词下，竞品A ULED 语料铺设密集，长期占据 AI 首推位，平均位次做到行业第一（NO.2.6）。' },
+                                        { n: '02', t: '高频引用源大面积占位', d: '在今日头条、什么值得买、太平洋电脑网等 AI 高频引用平台，竞品A铺设了大量参数横评与技术科普，为大模型提供了丰富抓取素材。' },
+                                        { n: '03', t: '参数话术强绑定', d: 'AI 生成电视推荐时，推荐理由高度契合竞品A的“背光分区、峰值亮度”话术，底层语料已被成功“喂养”。' },
                                     ].map((b) => (
                                         <div key={b.n} className="bg-white/[0.01] hover:bg-white/[0.02] border border-white/5 rounded-xl p-3.5 flex gap-4 transition-colors duration-300">
                                             <div className="text-blue-400 text-2xl lg:text-3xl font-mono font-bold select-none pt-0.5 shrink-0">{b.n}</div>
@@ -201,13 +201,13 @@ export function Page_SkyworthReport_CompetitorsDetail() {
                                         </div>
                                         <p className="text-zinc-300 font-bold text-base mb-1">此处为竞品 AI 对话对比截图展示位</p>
                                         <div className="bg-black border border-white/10 px-3 py-1.5 rounded-lg text-[10px] font-mono text-[#004CE5]">
-                                            存放路径: /geo-report/skyworth-haixin-analysis.jpg
+                                            存放路径: /geo-report/brand-haixin-analysis.jpg
                                         </div>
                                     </div>
                                 </div>
                                 <div className="border-t border-[#004CE5]/10 mt-2.5 pt-2 px-1 shrink-0">
                                     <p className="text-[14px] lg:text-[15.5px] xl:text-[17px] text-zinc-300 leading-normal text-center">
-                                        海信与创维 AI 对话对比场景：通用性能词下 AI <strong className="text-blue-400 font-bold">首推海信</strong>
+                                        竞品A与某家电品牌 AI 对话对比场景：通用性能词下 AI <strong className="text-blue-400 font-bold">首推竞品A</strong>
                                     </p>
                                 </div>
                             </div>
@@ -216,7 +216,7 @@ export function Page_SkyworthReport_CompetitorsDetail() {
 
                     <div className="border border-red-500/25 border-l-4 border-l-red-500 bg-red-950/20 rounded-xl px-6 py-3.5 shrink-0 flex items-center gap-4">
                         <p className="text-[16px] lg:text-[17.5px] xl:text-[19.5px] text-red-200 leading-relaxed">
-                            <strong className="text-red-400 font-black">核心建议：</strong>海信已在通用性能词构建体系化 GEO 优势。创维须在守住“好看的电视”品类心智的同时，立刻在通用性能词密集投放对标横评与参数科普，抢回被海信垄断的首推位次！
+                            <strong className="text-red-400 font-black">核心建议：</strong>竞品A已在通用性能词构建体系化 GEO 优势。某家电品牌须在守住“好看的电视”品类心智的同时，立刻在通用性能词密集投放对标横评与参数科普，抢回被竞品A垄断的首推位次！
                         </p>
                     </div>
                 </div>

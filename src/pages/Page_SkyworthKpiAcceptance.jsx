@@ -174,7 +174,7 @@ export function Page_SkyworthKpiAcceptance() {
                     <td rowSpan={2} className="py-2.5 xl:py-3 text-zinc-300 align-top pr-4 border-l border-white/[0.22] pl-6">
                       <div className="flex flex-col gap-3 justify-start">
                         <p className="text-zinc-200 text-[19px] xl:text-[21px] leading-snug text-justify">
-                          在 <strong className="text-white font-bold">DeepSeek、豆包、元宝、通义千问</strong> 四个 AI 平台搜索约定词条时，AI 回答中应出现创维品牌/产品推荐、推荐理由及基于官方信息的产品表述。
+                          在 <strong className="text-white font-bold">DeepSeek、豆包、元宝、通义千问</strong> 四个 AI 平台搜索约定词条时，AI 回答中应出现某家电品牌品牌/产品推荐、推荐理由及基于官方信息的产品表述。
                         </p>
                         <p className="border-t border-white/10 pt-2.5 text-zinc-400 text-[14px] xl:text-[15.5px] leading-relaxed text-justify">
                           本次运营 <strong className="text-white font-bold">50 条核心词条</strong>（覆盖 500 种以上延展问法）。因 AI 平台升级及回答随机性等不可控因素，达标不少于 16 条即视为有效交付；低于 16 条的，按未达标比例退款。

@@ -29,7 +29,7 @@ export default function Page_SkyworthResearchConclusions() {
           {/* Cover Titles (Enlarged) */}
           <div className="my-auto space-y-4">
             <h2 className="text-[76px] font-black text-zinc-950 font-sans leading-none tracking-wide">
-              创维电视
+              某家电品牌电视
             </h2>
             <h2 className="text-[58px] font-black text-zinc-800 font-sans leading-snug">
               品牌调研报告
@@ -75,10 +75,10 @@ export default function Page_SkyworthResearchConclusions() {
               <span className="font-['Montserrat'] text-[46px] font-black text-blue-600 shrink-0 leading-none">2.</span>
               <div className="flex flex-col gap-3 min-w-0 pt-1">
                 <h3 className="text-[34px] font-black text-zinc-950 font-sans leading-snug">
-                  创维壁纸电视 VS 竞品壁纸电视
+                  某家电品牌壁纸电视 VS 竞品壁纸电视
                 </h3>
                 <p className="text-[22px] text-zinc-400 font-normal font-['MiSans'] leading-relaxed">
-                  消费者为什么买创维壁纸电视，而不是竞品壁纸电视？
+                  消费者为什么买某家电品牌壁纸电视，而不是竞品壁纸电视？
                 </p>
               </div>
             </div>
@@ -87,10 +87,10 @@ export default function Page_SkyworthResearchConclusions() {
               <span className="font-['Montserrat'] text-[46px] font-black text-blue-600 shrink-0 leading-none">3.</span>
               <div className="flex flex-col gap-3 min-w-0 pt-1">
                 <h3 className="text-[34px] font-black text-zinc-950 font-sans leading-tight">
-                  创维五款壁纸电视的区别
+                  某家电品牌五款壁纸电视的区别
                 </h3>
                 <p className="text-[22px] text-zinc-400 font-normal font-['MiSans'] leading-relaxed">
-                  消费者如果买创维壁纸电视，会选择哪一款？
+                  消费者如果买某家电品牌壁纸电视，会选择哪一款？
                 </p>
               </div>
             </div>

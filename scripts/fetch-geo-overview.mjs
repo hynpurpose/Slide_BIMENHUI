@@ -197,9 +197,9 @@ async function main() {
   const totalEntries = all.reduce((s, p) => s + (p.entry_count || 0), 0);
   const totalQueries = all.reduce((s, p) => s + (p.total_conversations || 0), 0);
   const totalArticles = all.reduce((s, p) => s + (p.total_articles || 0), 0);
-  // 识别竞品：优化词项目竞品榜中去重的品牌数（不含本品「创维」）
+  // 识别竞品：优化词项目竞品榜中去重的品牌数（不含本品「某家电品牌」）
   const brandSet = new Set([categoryOpt, ...productOpt].flatMap((p) => p.brand_names));
-  brandSet.delete('创维');
+  brandSet.delete('某家电品牌');
   const platformIds = categoryOptProj.monitor_platforms || [];
   const platforms = (await api('/api/platforms', { project_id: categoryOptProj.id })).data
     .filter((pl) => platformIds.includes(pl.id))

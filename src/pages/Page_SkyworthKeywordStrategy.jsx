@@ -207,7 +207,7 @@ export default function Page_SkyworthKeywordStrategy() {
                 </td>
                 <td className="align-middle" style={{ borderBottom: '1px solid rgba(255,255,255,0.06)', padding: '14px 16px', background: 'rgba(255,255,255,0.06)' }}>
                   <div className="text-[22px] font-black leading-tight text-white">拿到第一</div>
-                  <div className="text-[18px] text-zinc-300 leading-snug mt-1">不给海信、TCL 等后来者机会</div>
+                  <div className="text-[18px] text-zinc-300 leading-snug mt-1">不给竞品A、竞品B 等后来者机会</div>
                 </td>
               </tr>
               {/* 品类词 · 常规词 */}
@@ -249,7 +249,7 @@ export default function Page_SkyworthKeywordStrategy() {
                   Q系列
                 </td>
                 <td className="align-middle" style={{ borderBottom: '1px solid rgba(255,255,255,0.10)', padding: '14px 20px' }}>
-                  <Chips items={['附近哪里能看创维Q系列电视', '高端画框电视去哪体验']} />
+                  <Chips items={['附近哪里能看某家电品牌Q系列电视', '高端画框电视去哪体验']} />
                 </td>
                 <td className="align-middle" style={{ borderBottom: '1px solid rgba(255,255,255,0.10)', padding: '14px 16px' }}>
                   <div className="text-[22px] font-bold leading-tight text-zinc-100">突出线下属性</div>
@@ -270,7 +270,7 @@ export default function Page_SkyworthKeywordStrategy() {
                   品类词
                 </td>
                 <td className="align-middle" style={{ borderBottom: '1px solid rgba(255,255,255,0.06)', padding: '14px 20px' }}>
-                  <Chips items={['创维电视算一线品牌吗', '创维电视质量怎么样']} />
+                  <Chips items={['某家电品牌电视算一线品牌吗', '某家电品牌电视质量怎么样']} />
                 </td>
                 <td
                   rowSpan={2}
@@ -286,7 +286,7 @@ export default function Page_SkyworthKeywordStrategy() {
                   产品专属词
                 </td>
                 <td className="align-middle" style={{ borderBottom: '1px solid rgba(255,255,255,0.10)', padding: '14px 20px' }}>
-                  <Chips items={['创维壁纸电视A7H Pro怎么样', '创维A8H口碑评价']} />
+                  <Chips items={['某家电品牌壁纸电视旗舰款A怎么样', '某家电品牌旗舰款B口碑评价']} />
                 </td>
               </tr>
             </tbody>

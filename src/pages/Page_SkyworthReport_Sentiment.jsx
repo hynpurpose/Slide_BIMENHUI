@@ -52,7 +52,7 @@ export function Page_SkyworthReport_SentimentPre() {
                                 </h3>
                                 <div className="text-[18px] lg:text-[19.5px] xl:text-[21px] text-zinc-300 leading-normal font-normal flex flex-col gap-1.5">
                                     <p>
-                                        在针对<strong className="text-white font-semibold">创维电视</strong>的品牌监测词强搜提问中，正面回答率为 <strong className="text-emerald-400 font-bold">88.5%</strong>，负面/异常回答占 <strong className="text-rose-400 font-bold">11.5%</strong>，主要集中在“<strong className="text-white font-semibold">系统卡顿、售后体验、参数虚标质疑</strong>”。
+                                        在针对<strong className="text-white font-semibold">某家电品牌电视</strong>的品牌监测词强搜提问中，正面回答率为 <strong className="text-emerald-400 font-bold">88.5%</strong>，负面/异常回答占 <strong className="text-rose-400 font-bold">11.5%</strong>，主要集中在“<strong className="text-white font-semibold">系统卡顿、售后体验、参数虚标质疑</strong>”。
                                     </p>
                                     <p className="border-t border-white/5 pt-1.5">
                                         负面声量虽不高，但集中在影响购买决策的关键环节。监测词的意义正在于第一时间发现这些苗头，在其被 AI 反复引用、固化为“默认印象”之前及时干预。
@@ -126,7 +126,7 @@ export function Page_SkyworthReport_SentimentDetail() {
                                                 主要毒点：系统体验与参数质疑
                                             </h4>
                                             <p className="text-[14.5px] lg:text-[15.5px] xl:text-[16.5px] text-zinc-300 leading-relaxed font-normal">
-                                                当强搜“<strong className="text-white font-semibold">创维电视怎么样 / 值不值得买</strong>”时，AI 会引用早期论坛帖，输出“系统偶有卡顿、开机广告、部分参数存疑”等评价，且个别回答把旧款问题错误套用到新品上。
+                                                当强搜“<strong className="text-white font-semibold">某家电品牌电视怎么样 / 值不值得买</strong>”时，AI 会引用早期论坛帖，输出“系统偶有卡顿、开机广告、部分参数存疑”等评价，且个别回答把旧款问题错误套用到新品上。
                                             </p>
                                         </div>
                                     </div>

@@ -44,7 +44,7 @@ export default function Page_SkyworthPositioningShift() {
                 用户第一反应都是“<HlOld>太贵了，不值</HlOld>”。
               </p>
               <p className="text-[24px] text-rose-50/90 leading-[1.65] font-medium font-['MiSans']">
-                于是拿它跟 LG 等两三万的进口艺术电视比，反证万元级创维<HlOld>极具性价比</HlOld>。
+                于是拿它跟 进口品牌B 等两三万的进口艺术电视比，反证万元级某家电品牌<HlOld>极具性价比</HlOld>。
               </p>
               <p className="text-[24px] text-rose-50/90 leading-[1.65] font-medium font-['MiSans']">
                 再强调艺术定位、画质音响，论证这笔投入<HlOld>物有所值</HlOld>。
@@ -107,11 +107,11 @@ Page_SkyworthPositioningShift.hideHeader = true;
  * ============================================================ */
 const OLD_PARAS = [
   '提到壁纸艺术电视，很多人的第一反应都是“太贵了”。',
-  '但如果跟 LG 等两三万的进口艺术电视对比，万元级的创维其实极具性价比。',
+  '但如果跟 进口品牌B 等两三万的进口艺术电视对比，万元级的某家电品牌其实极具性价比。',
   '极致贴墙外观配合高品质声学系统，无论外观还是体验，这笔投入都物有所值。',
 ];
 const NEW_PARAS = [
-  '老实说，创维这款电视不算便宜，甚至比普通大屏电视贵出一截。',
+  '老实说，某家电品牌这款电视不算便宜，甚至比普通大屏电视贵出一截。',
   '它的溢价，完全花在了极致贴墙的外观工艺，以及独立声学系统的用料上。',
   '想要个屏幕看片、追求纯粹性价比，建议你直接绕道；但若对客厅美学有挑剔要求，它能换来不一样的改变。',
 ];

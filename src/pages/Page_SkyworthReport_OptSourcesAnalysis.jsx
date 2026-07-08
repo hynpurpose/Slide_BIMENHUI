@@ -98,7 +98,7 @@ export function Page_SkyworthReport_OptSourcesAnalysis() {
                         </h4>
                       </div>
                       <p className="text-[15px] lg:text-[16px] xl:text-[18px] text-zinc-300 leading-relaxed font-normal text-justify">
-                        Top10 引用文章中 <strong className="text-white font-semibold">{mentionedCount} 篇</strong>正面提及{targetName}；引用量最高的「{topArticle?.title.slice(0, 28)}…」累计被引 {topArticle?.total_citations} 次，AI 已建立对创维壁纸电视的正面认知。
+                        Top10 引用文章中 <strong className="text-white font-semibold">{mentionedCount} 篇</strong>正面提及{targetName}；引用量最高的「{topArticle?.title.slice(0, 28)}…」累计被引 {topArticle?.total_citations} 次，AI 已建立对某家电品牌壁纸电视的正面认知。
                       </p>
                     </div>
                     <div className="bg-white/[0.03] border border-white/5 border-l-4 border-l-emerald-500 p-5 lg:p-6 rounded-r-xl transition-all duration-300 hover:bg-white/[0.05]">

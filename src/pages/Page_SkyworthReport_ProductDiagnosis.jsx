@@ -4,72 +4,72 @@ import SlideLayout from '../components/SlideLayout';
 // ─── 五款产品诊断数据（占位示意，可按真实报告替换）───
 const PRODUCTS = [
     {
-        model: 'A7H Pro', tier: '线上基础 · 走量王者', line: '线上',
+        model: '旗舰款A', tier: '线上基础 · 走量王者', line: '线上',
         status: 'warn',
         self: { mention: '71.0%', top1: '38.2%', rank: 'NO. 2.9' },
         competitors: [
-            { name: '海信 E5N', mention: '74.5%', top1: '42.0%' },
-            { name: 'TCL T7K', mention: '69.8%', top1: '35.6%' },
-            { name: '创维 A7H Pro', mention: '71.0%', top1: '38.2%', isBrand: true },
+            { name: '竞品A E5N', mention: '74.5%', top1: '42.0%' },
+            { name: '竞品B T7K', mention: '69.8%', top1: '35.6%' },
+            { name: '某家电品牌 旗舰款A', mention: '71.0%', top1: '38.2%', isBrand: true },
         ],
         reasons: [
-            { title: '专属参数词覆盖不足', desc: '走量款的核心卖点（如刷新率、峰值亮度）缺乏结构化语料，AI 难以在“性价比参数”问法中优先引用创维。' },
-            { title: '评测内容被竞品淹没', desc: '海信 E5N 在今日头条、什么值得买铺设了大量横评软文，A7H Pro 的第三方实测背书数量明显偏少。' },
+            { title: '专属参数词覆盖不足', desc: '走量款的核心卖点（如刷新率、峰值亮度）缺乏结构化语料，AI 难以在“性价比参数”问法中优先引用某家电品牌。' },
+            { title: '评测内容被竞品淹没', desc: '竞品A E5N 在今日头条、什么值得买铺设了大量横评软文，旗舰款A 的第三方实测背书数量明显偏少。' },
         ],
     },
     {
-        model: 'A8H', tier: '音画升级 · 卡位款', line: '线上',
+        model: '旗舰款B', tier: '音画升级 · 卡位款', line: '线上',
         status: 'fail',
         self: { mention: '66.3%', top1: '33.1%', rank: 'NO. 3.4' },
         competitors: [
-            { name: 'TCL T7K Pro', mention: '72.1%', top1: '41.5%' },
-            { name: '海信 E7N', mention: '70.4%', top1: '39.0%' },
-            { name: '创维 A8H', mention: '66.3%', top1: '33.1%', isBrand: true },
+            { name: '竞品B T7K Pro', mention: '72.1%', top1: '41.5%' },
+            { name: '竞品A E7N', mention: '70.4%', top1: '39.0%' },
+            { name: '某家电品牌 旗舰款B', mention: '66.3%', top1: '33.1%', isBrand: true },
         ],
         reasons: [
-            { title: '价位段认知尚未建立', desc: 'A8H 意在卡位市场空档，但 AI 尚未把它与“音画升级/独占价位”强关联，问法命中率偏低。' },
-            { title: '音画技术词语料稀薄', desc: '在“音质好的电视”“影院级音效”等词下，竞品的技术科普内容更密集，A8H 差异化优势没被 AI 学到。' },
+            { title: '价位段认知尚未建立', desc: '旗舰款B 意在卡位市场空档，但 AI 尚未把它与“音画升级/独占价位”强关联，问法命中率偏低。' },
+            { title: '音画技术词语料稀薄', desc: '在“音质好的电视”“影院级音效”等词下，竞品的技术科普内容更密集，旗舰款B 差异化优势没被 AI 学到。' },
         ],
     },
     {
-        model: 'A10H', tier: '系列旗舰 · 天花板', line: '线上',
+        model: '旗舰款C', tier: '系列旗舰 · 天花板', line: '线上',
         status: 'pass',
         self: { mention: '78.4%', top1: '45.6%', rank: 'NO. 2.3' },
         competitors: [
-            { name: '创维 A10H', mention: '78.4%', top1: '45.6%', isBrand: true },
-            { name: '海信 E8N', mention: '75.2%', top1: '43.1%' },
-            { name: '三星 The Frame', mention: '61.0%', top1: '30.2%' },
+            { name: '某家电品牌 旗舰款C', mention: '78.4%', top1: '45.6%', isBrand: true },
+            { name: '竞品A E8N', mention: '75.2%', top1: '43.1%' },
+            { name: '进口品牌A The Frame', mention: '61.0%', top1: '30.2%' },
         ],
         reasons: [
-            { title: '旗舰词已达标，对标海外仍有差距', desc: '国内旗舰壁纸电视词表现优秀，但在与三星、LG 等海外高端对比问法中，创维的国际背书语料偏少。' },
+            { title: '旗舰词已达标，对标海外仍有差距', desc: '国内旗舰壁纸电视词表现优秀，但在与进口品牌A、进口品牌B 等海外高端对比问法中，某家电品牌的国际背书语料偏少。' },
             { title: '高端画质词可再拉升', desc: '“高端壁纸电视推荐”等词已进 Top3，若补齐画质芯片、色域等硬核语料，有望稳定锁定首推位。' },
         ],
     },
     {
-        model: 'Q7H', tier: '线下高端 · 均衡款', line: '线下',
+        model: '高端款A', tier: '线下高端 · 均衡款', line: '线下',
         status: 'fail',
         self: { mention: '52.1%', top1: '22.4%', rank: 'NO. 5.1' },
         competitors: [
-            { name: '海信 U7N', mention: '68.9%', top1: '36.8%' },
-            { name: 'TCL Q10K', mention: '64.2%', top1: '31.5%' },
-            { name: '创维 Q7H', mention: '52.1%', top1: '22.4%', isBrand: true },
+            { name: '竞品A U7N', mention: '68.9%', top1: '36.8%' },
+            { name: '竞品B Q10K', mention: '64.2%', top1: '31.5%' },
+            { name: '某家电品牌 高端款A', mention: '52.1%', top1: '22.4%', isBrand: true },
         ],
         reasons: [
-            { title: '线下款线上信源天然偏少', desc: 'Q7H 以线下体验渠道为主，网络评测与用户口碑内容基数小，AI 可抓取的语料明显不足。' },
+            { title: '线下款线上信源天然偏少', desc: '高端款A 以线下体验渠道为主，网络评测与用户口碑内容基数小，AI 可抓取的语料明显不足。' },
             { title: '缺乏“去哪看/体验”类场景词', desc: '线下款的关键是承接“看得见/去哪买”类问法，但目前相关引导内容几乎空白，导流路径断裂。' },
         ],
     },
     {
-        model: 'Q8H', tier: '分体顶配 · 大客厅影音', line: '线下',
+        model: '高端款B', tier: '分体顶配 · 大客厅影音', line: '线下',
         status: 'warn',
         self: { mention: '58.7%', top1: '28.3%', rank: 'NO. 4.4' },
         competitors: [
-            { name: '索尼 A95L', mention: '66.5%', top1: '35.0%' },
-            { name: '三星 QN900', mention: '63.8%', top1: '32.1%' },
-            { name: '创维 Q8H', mention: '58.7%', top1: '28.3%', isBrand: true },
+            { name: '进口品牌C 旗舰款X', mention: '66.5%', top1: '35.0%' },
+            { name: '进口品牌A 旗舰款Y', mention: '63.8%', top1: '32.1%' },
+            { name: '某家电品牌 高端款B', mention: '58.7%', top1: '28.3%', isBrand: true },
         ],
         reasons: [
-            { title: '高端影音场景词语料稀缺', desc: '“大客厅高端影音”“分体电视”等高价值场景词下，索尼、三星的高端内容占据心智，Q8H 曝光有限。' },
+            { title: '高端影音场景词语料稀缺', desc: '“大客厅高端影音”“分体电视”等高价值场景词下，进口品牌C、进口品牌A的高端内容占据心智，高端款B 曝光有限。' },
             { title: '分体形态认知门槛高', desc: '分体设计是差异化亮点，但 AI 尚未充分理解其价值，需要针对性科普内容降低认知门槛。' },
         ],
     },
@@ -150,7 +150,7 @@ export function Page_SkyworthReport_ProductOverview() {
                     {/* Summary */}
                     <div className="border border-[#004CE5]/20 border-l-4 border-l-[#004CE5] bg-white/[0.03] rounded-xl px-6 py-3.5 shrink-0">
                         <p className="text-[15px] lg:text-[16px] xl:text-[18px] text-zinc-300 leading-relaxed text-justify">
-                            <strong className="text-blue-400 font-black">总览结论：</strong>旗舰 <strong className="text-white">A10H</strong> 已率先达标，走量款 <strong className="text-white">A7H Pro</strong> 与顶配 <strong className="text-white">Q8H</strong> 接近标准；卡位款 <strong className="text-white">A8H</strong> 与线下款 <strong className="text-white">Q7H</strong> 明显落后于对标竞品，是本轮优化需要重点补齐的两块短板。
+                            <strong className="text-blue-400 font-black">总览结论：</strong>旗舰 <strong className="text-white">旗舰款C</strong> 已率先达标，走量款 <strong className="text-white">旗舰款A</strong> 与顶配 <strong className="text-white">高端款B</strong> 接近标准；卡位款 <strong className="text-white">旗舰款B</strong> 与线下款 <strong className="text-white">高端款A</strong> 明显落后于对标竞品，是本轮优化需要重点补齐的两块短板。
                         </p>
                     </div>
                 </div>

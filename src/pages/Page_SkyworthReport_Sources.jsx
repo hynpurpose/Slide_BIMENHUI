@@ -93,7 +93,7 @@ export function Page_SkyworthReport_SourcesAnalysis() {
                                                 <strong className="text-white font-bold">哔哩哔哩（5.1%）</strong>。
                                             </p>
                                             <p className="mt-2.5 border-t border-white/5 pt-2.5">
-                                                创维在“好看的电视”相关词的信源布局较好，但在通用性能词、五款产品的专属参数词上，头部评测平台的有效内容仍显不足，导致大模型可引用素材偏少。
+                                                某家电品牌在“好看的电视”相关词的信源布局较好，但在通用性能词、五款产品的专属参数词上，头部评测平台的有效内容仍显不足，导致大模型可引用素材偏少。
                                             </p>
                                         </div>
 
@@ -132,7 +132,7 @@ export function Page_SkyworthReport_SourcesAnalysis() {
                                                 <h4 className="text-[18px] lg:text-[20px] font-bold text-white leading-tight">竞品深谙“评测榜单”之道</h4>
                                             </div>
                                             <p className="text-[15px] lg:text-[16px] xl:text-[18px] text-zinc-300 leading-relaxed text-justify">
-                                                从高频引用文章看（如《2026 高端电视权威横评：海信、创维、TCL 谁更值得买》），AI 极其偏爱抓取“权威榜单”“参数实测”“选购攻略”类内容，海信在这类内容上投放更密集。
+                                                从高频引用文章看（如《2026 高端电视权威横评：竞品A、某家电品牌、竞品B 谁更值得买》），AI 极其偏爱抓取“权威榜单”“参数实测”“选购攻略”类内容，竞品A在这类内容上投放更密集。
                                             </p>
                                         </div>
 
@@ -142,7 +142,7 @@ export function Page_SkyworthReport_SourcesAnalysis() {
                                                 <h4 className="text-[18px] lg:text-[20px] font-bold text-white leading-tight">产品专属词信源仍有缺口</h4>
                                             </div>
                                             <p className="text-[15px] lg:text-[16px] xl:text-[18px] text-zinc-300 leading-relaxed text-justify">
-                                                A8H、Q7H 等产品的专属参数与场景内容在头部平台几乎断档。需对准今日头条、什么值得买、太平洋电脑网三大主力平台，批量铺设“分产品实测”与“选购指南”，给 AI 提供抓取素材。
+                                                旗舰款B、高端款A 等产品的专属参数与场景内容在头部平台几乎断档。需对准今日头条、什么值得买、太平洋电脑网三大主力平台，批量铺设“分产品实测”与“选购指南”，给 AI 提供抓取素材。
                                             </p>
                                         </div>
                                     </div>

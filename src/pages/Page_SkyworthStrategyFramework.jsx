@@ -3,7 +3,7 @@ import SlideLayout from '../components/SlideLayout';
 
 const questions = [
   { num: '01', text: '五款产品分别的\n侧重与方向' },
-  { num: '02', text: '如何用五款产品整体抬升\n「艺术电视」与创维品牌' },
+  { num: '02', text: '如何用五款产品整体抬升\n「艺术电视」与某家电品牌品牌' },
   { num: '03', text: '监测词的\n意义与价值' },
 ];
 

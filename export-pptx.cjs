@@ -17,14 +17,39 @@ const OUTPUT = getArg('output') || path.join(__dirname, 'Presentation_2026.pptx'
 const SLIDE_W = 1920;
 const SLIDE_H = 1080;
 
-// --pages=8 或 --pages=8-10：只导出指定页码范围（1 起始）
+// --pages=8 或 --pages=8-10 或 --pages=41,44-50,127：只导出指定页码（1 起始）
 const PAGES = getArg('pages');
+let pageIndices = null;
 let startIdx = 0;
 let endIdx = slideOrder.length - 1;
+
+function parsePageSpec(spec) {
+  const indices = [];
+  for (const part of spec.split(',')) {
+    const trimmed = part.trim();
+    if (!trimmed) continue;
+    if (trimmed.includes('-')) {
+      const [s, e] = trimmed.split('-').map(Number);
+      const from = s || 1;
+      const to = e || from;
+      for (let p = from; p <= to; p++) indices.push(p - 1);
+    } else {
+      indices.push(Number(trimmed) - 1);
+    }
+  }
+  return [...new Set(indices)].filter((i) => i >= 0 && i < slideOrder.length);
+}
+
 if (PAGES) {
-  const [s, e] = PAGES.split('-').map(Number);
-  startIdx = Math.max(0, (s || 1) - 1);
-  endIdx = Math.min(slideOrder.length - 1, (e || s || slideOrder.length) - 1);
+  if (PAGES.includes(',')) {
+    pageIndices = parsePageSpec(PAGES);
+    startIdx = pageIndices[0];
+    endIdx = pageIndices[pageIndices.length - 1];
+  } else {
+    const [s, e] = PAGES.split('-').map(Number);
+    startIdx = Math.max(0, (s || 1) - 1);
+    endIdx = Math.min(slideOrder.length - 1, (e || s || slideOrder.length) - 1);
+  }
 }
 
 function emit(data) {
@@ -95,6 +120,9 @@ async function postProcessVideoSlides(pptxPath, adjBySlide) {
 function findChrome() {
   const candidates = [
     process.env.PUPPETEER_EXECUTABLE_PATH,
+    'C:\\Program Files\\Google\\Chrome\\Application\\chrome.exe',
+    'C:\\Program Files (x86)\\Google\\Chrome\\Application\\chrome.exe',
+    path.join(process.env.LOCALAPPDATA || '', 'Google', 'Chrome', 'Application', 'chrome.exe'),
     '/Applications/Google Chrome.app/Contents/MacOS/Google Chrome',
   ];
 
@@ -115,7 +143,7 @@ function findChrome() {
 }
 
 (async () => {
-  const totalSlides = endIdx - startIdx + 1;
+  const totalSlides = pageIndices ? pageIndices.length : endIdx - startIdx + 1;
   emit({ type: 'start', total: totalSlides });
 
   const executablePath = findChrome();
@@ -185,11 +213,22 @@ function findChrome() {
 
     const videoAdjBySlide = {};
 
-    for (let i = startIdx; i <= endIdx; i++) {
-      const label = slideOrder[i];
-      emit({ type: 'progress', current: i - startIdx + 1, total: totalSlides, slide: label });
+    const exportIndices = pageIndices || Array.from({ length: endIdx - startIdx + 1 }, (_, k) => startIdx + k);
 
-      await new Promise((r) => setTimeout(r, 1000));
+    for (let seq = 0; seq < exportIndices.length; seq++) {
+      const i = exportIndices[seq];
+      const label = slideOrder[i];
+      emit({ type: 'progress', current: seq + 1, total: totalSlides, slide: label });
+
+      if (seq > 0) {
+        const steps = exportIndices[seq] - exportIndices[seq - 1];
+        for (let step = 0; step < steps; step++) {
+          await page.keyboard.press('ArrowRight');
+          await new Promise((r) => setTimeout(r, 600));
+        }
+      } else {
+        await new Promise((r) => setTimeout(r, 1000));
+      }
 
       const slideEl = await page.$('div[style*="width: 1920px"]');
 
@@ -202,6 +241,41 @@ function findChrome() {
 
         const slide = pptx.addSlide();
         slide.addImage({ path: imgPath, x: 0, y: 0, w: '100%', h: '100%' });
+
+        // 保留页面内 <a href> 超链接：在截图上方叠加透明可点击区域
+        const linkAreas = await page.evaluate(() => {
+          const root = document.querySelector('div[style*="width: 1920px"]');
+          if (!root) return [];
+          const rootRect = root.getBoundingClientRect();
+          if (!rootRect.width || !rootRect.height) return [];
+          return [...root.querySelectorAll('a[href]')]
+            .map((a) => {
+              const r = a.getBoundingClientRect();
+              return {
+                href: a.href,
+                text: (a.textContent || '').trim(),
+                x: (r.left - rootRect.left) / rootRect.width,
+                y: (r.top - rootRect.top) / rootRect.height,
+                w: r.width / rootRect.width,
+                h: r.height / rootRect.height,
+              };
+            })
+            .filter((l) => l.href && l.w > 0 && l.h > 0);
+        });
+
+        for (const link of linkAreas) {
+          const padX = 4 / SLIDE_W;
+          const padY = 4 / SLIDE_H;
+          slide.addShape(pptx.ShapeType.rect, {
+            x: Math.max(0, (link.x - padX) * 10),
+            y: Math.max(0, (link.y - padY) * 5.625),
+            w: Math.min(10, (link.w + padX * 2) * 10),
+            h: Math.min(5.625, (link.h + padY * 2) * 5.625),
+            fill: { color: 'FFFFFF', transparency: 100 },
+            line: { width: 0, transparency: 100 },
+            hyperlink: { url: link.href, tooltip: link.text || link.href },
+          });
+        }
 
         // 页面里若有 <video>：视频叠在整页截图上方（保证放映时可点击播放），
         // 四角用「角贴片」小图盖住，圆角效果不依赖播放器对形状几何的支持（Keynote 兼容）
@@ -317,7 +391,7 @@ function findChrome() {
             w: videoInfo.w * 10,
             h: videoInfo.h * 5.625,
           });
-          videoAdjBySlide[i - startIdx + 1] = videoInfo.adj;
+          videoAdjBySlide[seq + 1] = videoInfo.adj;
 
           // 四角贴片：从整页截图上裁下视频四个角、抠掉圆角内区域，
           // 盖在视频上方还原圆角边框，同时不遮挡视频主体的点击
@@ -374,10 +448,6 @@ function findChrome() {
             });
           }
         }
-      }
-
-      if (i < endIdx) {
-        await page.keyboard.press('ArrowRight');
       }
     }
 

@@ -4,42 +4,42 @@ import SlideLayout from '../components/SlideLayout';
 export default function Page_SkyworthVsCompetitor() {
   const tableData = [
     {
-      brand: "创维\nA10H / A8H / A7H 系列",
+      brand: "某家电品牌\n旗舰款C / 旗舰款B / 旗舰款A 系列",
       sales: "全球出货：约 1500 万台",
       target: "注重客厅美学与整体硬装格调，同时对音画参数有高要求的中高产家庭",
-      prosCons: "优势：多价位段矩阵覆盖，壁纸厚度与四声道独立声学系统契合，兼顾美学与影音表现\n劣势：屏幕消光拟真工艺较三星画框相比，在强光环境反射下仍有优化空间",
+      prosCons: "优势：多价位段矩阵覆盖，壁纸厚度与四声道独立声学系统契合，兼顾美学与影音表现\n劣势：屏幕消光拟真工艺较进口品牌A画框相比，在强光环境反射下仍有优化空间",
       isHighlight: true
     },
     {
-      brand: "海信\nCanvas TV 艺术系列",
+      brand: "竞品A\n艺术电视系列",
       sales: "全球出货：约 2990 万台",
       target: "信赖传统大厂质量，看重稳妥售后服务，追求高分区常规MiniLED画质的主流群体",
       prosCons: "优势：背光分区与峰值亮度常规参数极强，品牌实力深厚且售后网络覆盖完备\n劣势：壁纸细分类目缺乏深度投入与技术积淀，独立贴画生态相对单一匮乏",
       isHighlight: false
     },
     {
-      brand: "TCL\nArt 7M / A300 系列",
+      brand: "竞品B\nArt 系列",
       sales: "全球出货：约 3040 万台",
       target: "看重艺术边框格调与极致性价比，追求年轻化潮流感设计的年轻一代消费者",
       prosCons: "优势：外形主打时尚年轻化画轴风格，常规MiniLED画质强，在大尺寸段性价比高\n劣势：无独立声学腔体设计，壁纸电视生态刚刚起步，厚度与散热妥协较多",
       isHighlight: false
     },
     {
-      brand: "长虹\nD8S 壁纸系列",
+      brand: "竞品F\nD 系列壁纸款",
       sales: "全球出货：约 900 万台",
       target: "追求基础壁画上墙效果，预算相对有限、注重低价格门槛的实用性价比用户",
       prosCons: "优势：极具价格杀伤力，让壁画级电视的零售门槛降到最低，性价比极其强悍\n劣势：屏幕面板参数偏低端，整体做工精细度、金属质感与贴墙贴合度有待优化",
       isHighlight: false
     },
     {
-      brand: "三星\nThe Frame 画框系列",
+      brand: "进口品牌A\n画框系列",
       sales: "全球出货：约 3800 万台",
       target: "高预算且对美学极度洁癖，追求拟真消光画框效果，不敏感核心画质参数者",
       prosCons: "优势: 哑光消光屏（Matte Display）技术业界领先，防眩光极强，拟真度完美\n劣势: 电视核心音画画质较为平庸，且依赖厚重外置集线盒（One Connect）",
       isHighlight: false
     },
     {
-      brand: "LG\nOLED evo G 系列",
+      brand: "进口品牌B\nOLED evo G 系列",
       sales: "全球出货：约 2400 万台",
       target: "顶级预算，既要求顶尖OLED黑场画质，又要求超薄无缝贴合的双重影音发烧友",
       prosCons: "优势: 顶级OLED面板黑场画质巅峰，黑场响应极快，画廊超薄无缝贴合度极佳\n劣势: OLED面板成本高昂导致价格极其昂贵。",
@@ -48,7 +48,7 @@ export default function Page_SkyworthVsCompetitor() {
   ];
 
   return (
-    <SlideLayout title="创维壁纸电视 VS 竞品壁纸电视">
+    <SlideLayout title="某家电品牌壁纸电视 VS 竞品壁纸电视">
       <div className="w-full h-full relative select-none animate-fadeIn">
 
         {/* ==================== 左栏：用户认知定位 ( w-[590px] ) ==================== */}
@@ -58,20 +58,15 @@ export default function Page_SkyworthVsCompetitor() {
           </h2>
 
           <div className="flex flex-col flex-1 justify-between gap-2.5">
-            {/* 创维单独一个框 */}
+            {/* 某家电品牌单独一个框 */}
             <div className="bg-zinc-900/60 border-2 border-blue-400 rounded-2xl overflow-hidden flex items-stretch h-[110px] shrink-0 shadow-[0_0_30px_rgba(59,130,246,0.45)]">
               {/* Left Logo (Full Height, White Background) */}
-              <div className="w-[110px] bg-white flex items-center justify-center p-2.5 shrink-0 border-r border-blue-400">
-                <img
-                  src="/brand-logos/skyworth.png"
-                  alt="创维"
-                  className="w-full h-full object-contain"
-                  onError={(e) => { e.currentTarget.parentNode.style.display = 'none'; }}
-                />
+              <div className="w-[110px] bg-[#004CE5]/20 flex items-center justify-center shrink-0 border-r border-blue-400">
+                <span className="text-[28px] font-black text-white font-['MiSans']">品牌</span>
               </div>
               {/* Right Content */}
               <div className="flex-grow p-4 flex flex-col justify-center gap-1">
-                <span className="text-[24px] font-extrabold text-white leading-tight">创维</span>
+                <span className="text-[24px] font-extrabold text-white leading-tight">某家电品牌</span>
                 <span className="text-[18px] xl:text-[20px] text-zinc-300 leading-tight">平衡家居美学与音画，产品线最齐全</span>
               </div>
             </div>
@@ -83,86 +78,61 @@ export default function Page_SkyworthVsCompetitor() {
 
             {/* 其他竞品单独一个框 - 填充并抵到最底部 */}
             <div className="bg-zinc-900/40 border-2 border-white/[0.12] rounded-2xl p-4 flex flex-col justify-between flex-grow shadow-[0_0_30px_rgba(255,255,255,0.05)]">
-              {/* 海信 */}
+              {/* 竞品A */}
               <div className="flex items-stretch gap-4 h-[72px] xl:h-[76px]">
-                <div className="w-[72px] h-[72px] xl:w-[76px] xl:h-[76px] bg-white flex items-center justify-center p-1.5 shrink-0 rounded-lg">
-                  <img
-                    src="/brand-logos/hisense.png"
-                    alt="海信"
-                    className="w-full h-full object-contain"
-                    onError={(e) => { e.currentTarget.parentNode.style.display = 'none'; }}
-                  />
+                <div className="w-[72px] h-[72px] xl:w-[76px] xl:h-[76px] bg-zinc-800 flex items-center justify-center shrink-0 rounded-lg border border-white/10">
+                  <span className="text-[18px] font-black text-zinc-200">竞A</span>
                 </div>
                 <div className="flex flex-col justify-center gap-0.5">
-                  <span className="text-[20px] xl:text-[22px] font-extrabold text-zinc-200 leading-tight">海信</span>
+                  <span className="text-[20px] xl:text-[22px] font-extrabold text-zinc-200 leading-tight">竞品A</span>
                   <span className="text-[17px] xl:text-[19px] text-zinc-400 leading-tight font-medium">有独家技术，品牌背书高</span>
                 </div>
               </div>
               <div className="border-t border-dashed border-zinc-800" />
 
-              {/* TCL */}
+              {/* 竞品B */}
               <div className="flex items-stretch gap-4 h-[72px] xl:h-[76px]">
-                <div className="w-[72px] h-[72px] xl:w-[76px] xl:h-[76px] bg-white flex items-center justify-center p-1.5 shrink-0 rounded-lg">
-                  <img
-                    src="/brand-logos/tcl.png"
-                    alt="TCL"
-                    className="w-full h-full object-contain"
-                    onError={(e) => { e.currentTarget.parentNode.style.display = 'none'; }}
-                  />
+                <div className="w-[72px] h-[72px] xl:w-[76px] xl:h-[76px] bg-zinc-800 flex items-center justify-center shrink-0 rounded-lg border border-white/10">
+                  <span className="text-[18px] font-black text-zinc-200">竞B</span>
                 </div>
                 <div className="flex flex-col justify-center gap-0.5">
-                  <span className="text-[20px] xl:text-[22px] font-extrabold text-zinc-200 leading-tight">TCL</span>
+                  <span className="text-[20px] xl:text-[22px] font-extrabold text-zinc-200 leading-tight">竞品B</span>
                   <span className="text-[17px] xl:text-[19px] text-zinc-400 leading-tight font-medium">年轻化与高性价比</span>
                 </div>
               </div>
               <div className="border-t border-dashed border-zinc-800" />
 
-              {/* 长虹 */}
+              {/* 竞品F */}
               <div className="flex items-stretch gap-4 h-[72px] xl:h-[76px]">
-                <div className="w-[72px] h-[72px] xl:w-[76px] xl:h-[76px] bg-white flex items-center justify-center p-1.5 shrink-0 rounded-lg">
-                  <img
-                    src="/brand-logos/changhong.png"
-                    alt="长虹"
-                    className="w-full h-full object-contain"
-                    onError={(e) => { e.currentTarget.parentNode.style.display = 'none'; }}
-                  />
+                <div className="w-[72px] h-[72px] xl:w-[76px] xl:h-[76px] bg-zinc-800 flex items-center justify-center shrink-0 rounded-lg border border-white/10">
+                  <span className="text-[18px] font-black text-zinc-200">竞F</span>
                 </div>
                 <div className="flex flex-col justify-center gap-0.5">
-                  <span className="text-[20px] xl:text-[22px] font-extrabold text-zinc-200 leading-tight">长虹</span>
+                  <span className="text-[20px] xl:text-[22px] font-extrabold text-zinc-200 leading-tight">竞品F</span>
                   <span className="text-[17px] xl:text-[19px] text-zinc-400 leading-tight font-medium">极致的性价比</span>
                 </div>
               </div>
               <div className="border-t border-dashed border-zinc-800" />
 
-              {/* 三星 */}
+              {/* 进口品牌A */}
               <div className="flex items-stretch gap-4 h-[72px] xl:h-[76px]">
-                <div className="w-[72px] h-[72px] xl:w-[76px] xl:h-[76px] bg-white flex items-center justify-center p-1.5 shrink-0 rounded-lg">
-                  <img
-                    src="/brand-logos/samsung.png"
-                    alt="三星"
-                    className="w-full h-full object-contain"
-                    onError={(e) => { e.currentTarget.parentNode.style.display = 'none'; }}
-                  />
+                <div className="w-[72px] h-[72px] xl:w-[76px] xl:h-[76px] bg-zinc-800 flex items-center justify-center shrink-0 rounded-lg border border-white/10">
+                  <span className="text-[16px] font-black text-zinc-200">进A</span>
                 </div>
                 <div className="flex flex-col justify-center gap-0.5">
-                  <span className="text-[20px] xl:text-[22px] font-extrabold text-zinc-200 leading-tight">三星</span>
+                  <span className="text-[20px] xl:text-[22px] font-extrabold text-zinc-200 leading-tight">进口品牌A</span>
                   <span className="text-[17px] xl:text-[19px] text-zinc-400 leading-tight font-medium font-['MiSans']">壁画效果最佳</span>
                 </div>
               </div>
               <div className="border-t border-dashed border-zinc-800" />
 
-              {/* LG */}
+              {/* 进口品牌B */}
               <div className="flex items-stretch gap-4 h-[72px] xl:h-[76px]">
-                <div className="w-[72px] h-[72px] xl:w-[76px] xl:h-[76px] bg-white flex items-center justify-center p-1.5 shrink-0 rounded-lg">
-                  <img
-                    src="/brand-logos/lg.png"
-                    alt="LG"
-                    className="w-full h-full object-contain"
-                    onError={(e) => { e.currentTarget.parentNode.style.display = 'none'; }}
-                  />
+                <div className="w-[72px] h-[72px] xl:w-[76px] xl:h-[76px] bg-zinc-800 flex items-center justify-center shrink-0 rounded-lg border border-white/10">
+                  <span className="text-[16px] font-black text-zinc-200">进B</span>
                 </div>
                 <div className="flex flex-col justify-center gap-0.5">
-                  <span className="text-[20px] xl:text-[22px] font-extrabold text-zinc-200 leading-tight">LG</span>
+                  <span className="text-[20px] xl:text-[22px] font-extrabold text-zinc-200 leading-tight">进口品牌B</span>
                   <span className="text-[17px] xl:text-[19px] text-zinc-400 leading-tight font-medium">顶级画质</span>
                 </div>
               </div>

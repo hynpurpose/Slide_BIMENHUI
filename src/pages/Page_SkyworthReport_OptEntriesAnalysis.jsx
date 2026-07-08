@@ -43,7 +43,7 @@ export function Page_SkyworthReport_OptEntriesAnalysis() {
                       <span className={tag}>占比 {fullPct}%</span>
                     </div>
                     <p className={body}>
-                      {total} 个优化词中 {fullCount} 个提及率达 100%，集中在「壁纸 / 艺术 / 超薄电视」等细分场景，且平均位次多在 NO.1–2，创维已被 AI 稳定首推。
+                      {total} 个优化词中 {fullCount} 个提及率达 100%，集中在「壁纸 / 艺术 / 超薄电视」等细分场景，且平均位次多在 NO.1–2，某家电品牌已被 AI 稳定首推。
                     </p>
                   </div>
                   <div className="rounded-xl border border-white/[0.06] bg-white/[0.02] p-5 flex flex-col gap-3">
@@ -52,7 +52,7 @@ export function Page_SkyworthReport_OptEntriesAnalysis() {
                       <span className={tag}>提及率 25–75%</span>
                     </div>
                     <p className={body}>
-                      如「100 英寸电视推荐」「电视品牌排行榜」等大流量泛词，创维仅在部分 AI 平台被提及，存在平台间表现不一致的情况，需针对性补投。
+                      如「100 英寸电视推荐」「电视品牌排行榜」等大流量泛词，某家电品牌仅在部分 AI 平台被提及，存在平台间表现不一致的情况，需针对性补投。
                     </p>
                   </div>
                   <div className="rounded-xl border border-white/[0.06] bg-white/[0.02] p-5 flex flex-col gap-3">
@@ -88,7 +88,7 @@ export function Page_SkyworthReport_OptEntriesAnalysis() {
                       </p>
                       <p className="border-t border-white/[0.06] pt-3">
                         <span className={label}>策略：</span>
-                        持续维护该场景下的高质量首推内容，巩固 AI 对创维壁纸电视的品类认知，形成竞争壁垒。
+                        持续维护该场景下的高质量首推内容，巩固 AI 对某家电品牌壁纸电视的品类认知，形成竞争壁垒。
                       </p>
                     </div>
                   </div>

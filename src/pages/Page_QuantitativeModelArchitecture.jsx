@@ -68,7 +68,7 @@ export default function Page_QuantitativeModelArchitecture() {
           <div className="flex-1 bg-white/[0.03] border border-white/10 rounded-2xl p-5 flex flex-col">
             {/* 图例 */}
             <div className="flex items-center gap-6 mb-2 shrink-0">
-              <div className="flex items-center gap-2"><span className="w-6 h-1.5 rounded-full bg-[#60A5FA]" /><span className="text-[16px] text-white font-bold">创维（模型驱动）</span></div>
+              <div className="flex items-center gap-2"><span className="w-6 h-1.5 rounded-full bg-[#60A5FA]" /><span className="text-[16px] text-white font-bold">某家电品牌（模型驱动）</span></div>
               <div className="flex items-center gap-2"><span className="w-6 h-1.5 rounded-full bg-zinc-500" /><span className="text-[16px] text-zinc-400 font-bold">竞品（经验驱动）</span></div>
             </div>
             <svg viewBox="0 0 480 300" className="w-full flex-1" preserveAspectRatio="none">
@@ -88,7 +88,7 @@ export default function Page_QuantitativeModelArchitecture() {
               ))}
               {/* Alpha 区域填充 */}
               <path d="M50,158 130,140 210,122 290,107 370,94 450,83 L450,151 370,153 290,153 210,155 130,158 50,162 Z" fill="url(#alphaFill)" />
-              {/* 创维线 */}
+              {/* 某家电品牌线 */}
               <polyline points="50,158 130,140 210,122 290,107 370,94 450,83" fill="none" stroke="#60A5FA" strokeWidth="3.5" strokeLinecap="round" strokeLinejoin="round" />
               {/* 竞品线 */}
               <polyline points="50,162 130,158 210,155 290,153 370,153 450,151" fill="none" stroke="#71717a" strokeWidth="3" strokeDasharray="6 5" strokeLinecap="round" strokeLinejoin="round" />

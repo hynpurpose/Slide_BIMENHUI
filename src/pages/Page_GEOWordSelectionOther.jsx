@@ -52,7 +52,7 @@ function SearchIndexDashboard() {
     { keyword: '家装电视尺寸怎么选', tag: '场景搭配', volume: '11.8w' },
     { keyword: '壁挂电视隐藏线避坑', tag: '家装指南', volume: '9.6w' },
     { keyword: '适合打游戏的电视', tag: '人群细分', volume: '8.4w' },
-    { keyword: '创维电视测评', tag: '品牌对比', volume: '7.2w' },
+    { keyword: '某家电品牌电视测评', tag: '品牌对比', volume: '7.2w' },
     { keyword: '客厅背景墙电视搭配', tag: '美观设计', volume: '5.8w' },
     { keyword: '75寸电视性价比之王', tag: '购买决策', volume: '4.5w' },
     { keyword: '护眼防蓝光电视推荐', tag: '健康护眼', volume: '3.9w' },

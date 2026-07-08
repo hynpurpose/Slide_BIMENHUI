@@ -3,9 +3,9 @@ import SlideLayout from '../components/SlideLayout';
 
 /* ============================================================
  * 讲稿核心：分类只看「一件事」——
- *   这句话的答案里，「创维」一定会出现吗？
+ *   这句话的答案里，「某家电品牌」一定会出现吗？
  *     · 不一定出现 → 优化词（例：好看的电视推荐）→ 看 提及率 / 出现位置
- *     · 一定会出现 → 监测词（例：创维跟海信比哪个好，问题里已带“创维”）→ 看 信息准确 / 有无负面
+ *     · 一定会出现 → 监测词（例：某家电品牌跟竞品A比哪个好，问题里已带“某家电品牌”）→ 看 信息准确 / 有无负面
  *   为什么要分：混在一起算，监测词天然 100% 提及，会把整体提及率虚高，数据失去意义。
  *
  * 统一配色：优化词 = 蓝 (#5B8CFF)；监测词 = 琥珀 (#F5A623)
@@ -17,7 +17,7 @@ const OPT = {
   answer: '不一定出现',
   mark: '✕',
   example: '“好看的电视推荐”',
-  purpose: '答案里不一定有创维，要靠优化去争取',
+  purpose: '答案里不一定有某家电品牌，要靠优化去争取',
   metrics: ['提及率', '出现位置'],
   accent: '#5B8CFF',
   accentText: '#8CB0FF',
@@ -28,8 +28,8 @@ const MON = {
   tag: '守住信息底线',
   answer: '一定会出现',
   mark: '✓',
-  example: '“创维跟海信比哪个好”',
-  purpose: '问题里已带“创维”，创维必然在场',
+  example: '“某家电品牌跟竞品A比哪个好”',
+  purpose: '问题里已带“某家电品牌”，某家电品牌必然在场',
   metrics: ['信息准确', '有无负面'],
   accent: '#F5A623',
   accentText: '#F5C574',
@@ -68,7 +68,7 @@ const SUMMARY_ROWS = [
     accentText: '#8CB0FF',
   },
   {
-    example: '“创维跟海信比哪个好”',
+    example: '“某家电品牌跟竞品A比哪个好”',
     name: '监测词',
     focusLabel: '主要看',
     focus: ['产品信息是否准确', '是否有负面信息'],
@@ -147,7 +147,7 @@ export function Page_SkyworthKeywordWhySplit_A() {
         {/* 顶部单行判断标准 */}
         <p className="shrink-0 text-[38px] text-zinc-300 font-['MiSans'] leading-tight mb-8">
           分类只看一件事：用户的搜索问法中，
-          <strong className="text-white font-bold" style={{ color: '#5B8CFF' }}>「创维」</strong>
+          <strong className="text-white font-bold" style={{ color: '#5B8CFF' }}>「某家电品牌」</strong>
           <strong className="text-white font-bold">一定会出现吗？</strong>
         </p>
 
@@ -181,7 +181,7 @@ export function Page_SkyworthKeywordWhySplit_B() {
         className="absolute left-1/2 -translate-x-1/2 -top-5 z-10 px-8 py-3 rounded-full bg-[#0b0b0f] text-[28px] font-black font-['MiSans'] leading-none whitespace-nowrap"
         style={{ border: `1.5px solid ${d.accent}80`, color: d.accentText }}
       >
-        {d.mark} 创维{d.answer}
+        {d.mark} 某家电品牌{d.answer}
       </span>
 
       <div
@@ -230,7 +230,7 @@ export function Page_SkyworthKeywordWhySplit_B() {
             分类只看一件事
           </span>
           <p className="text-[54px] font-black text-white font-['MiSans'] leading-[1.1]">
-            用户的搜索问法中，<span style={{ color: '#5B8CFF' }}>「创维」</span>一定会出现吗？
+            用户的搜索问法中，<span style={{ color: '#5B8CFF' }}>「某家电品牌」</span>一定会出现吗？
           </p>
         </div>
 
@@ -264,7 +264,7 @@ export function Page_SkyworthKeywordWhySplit_C() {
           className="inline-flex items-center gap-2.5 mt-4 px-5 py-2 rounded-full text-[24px] font-bold font-['MiSans'] leading-none"
           style={{ background: `${d.accent}20`, color: d.accentText }}
         >
-          <span className="text-[26px] leading-none">{d.mark}</span> 创维{d.answer}
+          <span className="text-[26px] leading-none">{d.mark}</span> 某家电品牌{d.answer}
         </div>
       </div>
 
@@ -310,7 +310,7 @@ export function Page_SkyworthKeywordWhySplit_C() {
             </span>
             <p className="text-[46px] font-black text-white font-['MiSans'] leading-[1.2]">
               用户的搜索问法中，<br />
-              <span style={{ color: '#5B8CFF' }}>「创维」</span>一定会出现吗？
+              <span style={{ color: '#5B8CFF' }}>「某家电品牌」</span>一定会出现吗？
             </p>
             <p className="text-[26px] text-zinc-400 font-['MiSans'] leading-relaxed mt-8">
               答案不同，<strong className="text-white font-bold">归类不同</strong>，

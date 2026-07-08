@@ -1,7 +1,7 @@
 {
   "meta": {
     "source": "J:/GEO/Fake_App/src/data/dataset.json",
-    "sourceFile": "创维真评数据.xlsx",
+    "sourceFile": "某家电品牌真评数据.xlsx",
     "sampleSize": 64,
     "sampleNote": "关键差评 64 条；赠品画框、客服售后不作为独立统计维度",
     "generatedAt": "2026-07-04"
@@ -460,7 +460,7 @@
       "top": 242
     },
     {
-      "text": "Vidda",
+      "text": "竞品I",
       "size": 11,
       "weight": "normal",
       "color": "zinc-600",

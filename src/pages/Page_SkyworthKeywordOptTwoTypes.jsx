@@ -4,9 +4,9 @@ import SlideLayout from '../components/SlideLayout';
 /* ============================================================
  * 讲稿核心：优化词再往下拆成「两类」，判定标准完全不同——
  *   · 大类词（品类选择阶段）：问法只圈品类、不锁型号。
- *       只要 AI 端出「任意一款创维」，这一问就算赢 → 看 有没有被推「进来」
+ *       只要 AI 端出「任意一款某家电品牌」，这一问就算赢 → 看 有没有被推「进来」
  *   · 产品专属词（框定特征/人群）：问法已锁定唯一那款。
- *       必须端出「框定的那款(A8H)」才算数，端错型号=没推准 → 看 有没有被推「准」
+ *       必须端出「框定的那款(旗舰款B)」才算数，端错型号=没推准 → 看 有没有被推「准」
  *
  *   关键教学点：同一批 AI 推荐结果，两类词用「两把不同的尺子」去判命中。
  *
@@ -15,21 +15,21 @@ import SlideLayout from '../components/SlideLayout';
 
 // AI 实际回答里会混合推荐多个品牌与型号（两类词共用同一批结果）
 const POOL = [
-  { brand: '索尼', model: 'X90L', sw: false },
-  { brand: '创维', model: 'A7H Pro', sw: true },
-  { brand: '三星', model: 'The Frame', sw: false },
-  { brand: '创维', model: 'A8H', sw: true },
-  { brand: 'TCL', model: 'T7K', sw: false },
-  { brand: '海信', model: 'E8N', sw: false },
-  { brand: '创维', model: 'A10H', sw: true },
-  { brand: 'LG', model: 'B4', sw: false },
-  { brand: '小米', model: 'S Pro', sw: false },
-  { brand: '创维', model: 'Q8H', sw: true },
-  { brand: '华为', model: '智慧屏 V5', sw: false },
-  { brand: '创维', model: 'A5D', sw: true },
+  { brand: '进口品牌C', model: 'X90L', sw: false },
+  { brand: '某家电品牌', model: '旗舰款A', sw: true },
+  { brand: '进口品牌A', model: 'The Frame', sw: false },
+  { brand: '某家电品牌', model: '旗舰款B', sw: true },
+  { brand: '竞品B', model: 'T7K', sw: false },
+  { brand: '竞品A', model: 'E8N', sw: false },
+  { brand: '某家电品牌', model: '旗舰款C', sw: true },
+  { brand: '进口品牌B', model: 'B4', sw: false },
+  { brand: '竞品C', model: 'S Pro', sw: false },
+  { brand: '某家电品牌', model: '高端款B', sw: true },
+  { brand: '竞品D', model: '智慧屏 V5', sw: false },
+  { brand: '某家电品牌', model: '经典款A', sw: true },
 ];
-const TARGET = 'A8H';
-const SW_COUNT = POOL.filter((p) => p.sw).length; // 5 款创维
+const TARGET = '旗舰款B';
+const SW_COUNT = POOL.filter((p) => p.sw).length; // 5 款某家电品牌
 
 const BROAD = {
   name: '大类词',
@@ -38,8 +38,8 @@ const BROAD = {
   accentText: '#8CB0FF',
   examples: [{ q: '“画质好的壁纸电视推荐”' }, { q: '“壁纸电视怎么选”' }],
   key: '有没有被推进来',
-  rule: '任意一款创维被推荐，即算有效提及',
-  exNote: '问法只圈定「品类」、没锁型号 —— 只要 AI 端出任意一款创维，这一问就算赢。',
+  rule: '任意一款某家电品牌被推荐，即算有效提及',
+  exNote: '问法只圈定「品类」、没锁型号 —— 只要 AI 端出任意一款某家电品牌，这一问就算赢。',
   hitBadge: `命中 ${SW_COUNT} 款 · 全部计入`,
 };
 
@@ -49,17 +49,17 @@ const EXACT = {
   accent: '#2DD4BF',
   accentText: '#5EEAD4',
   examples: [
-    { q: '“适合小客厅的入门壁纸电视”', m: 'A8H' },
-    { q: '“主打线下的高端壁纸电视”', m: 'A10H' },
+    { q: '“适合小客厅的入门壁纸电视”', m: '旗舰款B' },
+    { q: '“主打线下的高端壁纸电视”', m: '旗舰款C' },
   ],
   key: '有没有被推准',
-  rule: '只有框定的那款（A8H）被推准，才算命中',
-  exNote: '问法已锁定「场景 / 人群」、指向唯一那款 —— AI 端出别的创维型号，也算没推准。',
-  note: '虚线框：是创维、但不是框定的那款，不算推准',
+  rule: '只有框定的那款（旗舰款B）被推准，才算命中',
+  exNote: '问法已锁定「场景 / 人群」、指向唯一那款 —— AI 端出别的某家电品牌型号，也算没推准。',
+  note: '虚线框：是某家电品牌、但不是框定的那款，不算推准',
   hitBadge: '命中 1 款 · 另 4 款不算',
 };
 
-/* 单个推荐结果标签。state: 'hit' | 'sw'(创维但不算) | 'other' */
+/* 单个推荐结果标签。state: 'hit' | 'sw'(某家电品牌但不算) | 'other' */
 function Chip({ label, state, accent, accentText, sm = false }) {
   const base = `rounded-xl font-bold font-['MiSans'] leading-none text-center truncate ${
     sm ? 'px-3 py-2 text-[20px]' : 'px-4 py-2.5 text-[25px]'
@@ -86,7 +86,7 @@ function Chip({ label, state, accent, accentText, sm = false }) {
 }
 
 function chipState(p, mode) {
-  // mode: 'broad' → 任意创维命中；'exact' → 仅 TARGET 命中，其余创维为 sw
+  // mode: 'broad' → 任意某家电品牌命中；'exact' → 仅 TARGET 命中，其余某家电品牌为 sw
   if (!p.sw) return 'other';
   if (mode === 'broad') return 'hit';
   return p.model === TARGET ? 'hit' : 'sw';
@@ -110,7 +110,7 @@ export function Page_SkyworthKeywordOptTwoTypes_A() {
           <span className="text-[24px] text-zinc-400 font-['MiSans']">{d.stage}</span>
         </div>
         <div className="mt-4 text-[27px] font-['MiSans'] text-zinc-400 leading-none">
-          看创维<strong className="font-black" style={{ color: d.accentText }}>「{d.key}」</strong>
+          看某家电品牌<strong className="font-black" style={{ color: d.accentText }}>「{d.key}」</strong>
         </div>
       </div>
 
@@ -175,7 +175,7 @@ export function Page_SkyworthKeywordOptTwoTypes_A() {
           className="text-zinc-300 font-normal font-['MiSans'] shrink-0 mb-6"
           style={{ fontSize: '38px', lineHeight: '1.2' }}
         >
-          大类词看<strong className="text-white font-bold">创维有没有被推进来</strong>；专属词看<strong className="text-white font-bold">框定那款有没有被推准</strong>。
+          大类词看<strong className="text-white font-bold">某家电品牌有没有被推进来</strong>；专属词看<strong className="text-white font-bold">框定那款有没有被推准</strong>。
         </p>
 
         <div className="flex-1 min-h-0 grid grid-cols-2 gap-8">
@@ -265,7 +265,7 @@ export function Page_SkyworthKeywordOptTwoTypes_B() {
           className="text-zinc-300 font-normal font-['MiSans'] shrink-0 mb-6"
           style={{ fontSize: '38px', lineHeight: '1.2' }}
         >
-          大类词看<strong className="text-white font-bold">创维有没有被推进来</strong>；专属词看<strong className="text-white font-bold">框定那款有没有被推准</strong>。
+          大类词看<strong className="text-white font-bold">某家电品牌有没有被推进来</strong>；专属词看<strong className="text-white font-bold">框定那款有没有被推准</strong>。
         </p>
 
         <div className="flex-1 min-h-0 rounded-[28px] border border-zinc-800 bg-[#0D0D10]/60 overflow-hidden grid grid-cols-[210px_1fr_1fr]">
@@ -311,7 +311,7 @@ export function Page_SkyworthKeywordOptTwoTypes_C() {
           <span className="text-[23px] text-zinc-500 font-['MiSans']">{d.stage}</span>
         </div>
         <div className="mt-4 text-[30px] font-['MiSans'] text-zinc-300 leading-none">
-          看创维<strong className="font-black" style={{ color: d.accentText }}>「{d.key}」</strong>
+          看某家电品牌<strong className="font-black" style={{ color: d.accentText }}>「{d.key}」</strong>
         </div>
       </div>
 
@@ -344,7 +344,7 @@ export function Page_SkyworthKeywordOptTwoTypes_C() {
           {POOL.filter((p) => p.sw).map((p) => (
             <Chip
               key={p.brand + p.model}
-              label={`创维 ${p.model}`}
+              label={`某家电品牌 ${p.model}`}
               state={chipState(p, mode)}
               accent={d.accent}
               accentText={d.accentText}
@@ -368,7 +368,7 @@ export function Page_SkyworthKeywordOptTwoTypes_C() {
           className="text-zinc-300 font-normal font-['MiSans'] shrink-0 mb-6"
           style={{ fontSize: '38px', lineHeight: '1.2' }}
         >
-          大类词看<strong className="text-white font-bold">创维有没有被推进来</strong>；专属词看<strong className="text-white font-bold">框定那款有没有被推准</strong>。
+          大类词看<strong className="text-white font-bold">某家电品牌有没有被推进来</strong>；专属词看<strong className="text-white font-bold">框定那款有没有被推准</strong>。
         </p>
 
         <div className="flex-1 min-h-0 grid grid-cols-2 gap-8">

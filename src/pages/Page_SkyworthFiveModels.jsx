@@ -5,31 +5,31 @@ export default function Page_SkyworthFiveModels() {
   const tableData = [
     {
       series: "A系列 | 线上配置线",
-      model: "A7H Pro (基础款)",
+      model: "旗舰款A (基础款)",
       target: "预算有限、看重无缝壁画美学的年轻家庭",
       price: "¥10,499 (正常)\n¥8,499 (国补后)",
       specs: "QD-Mini LED | 1344 分区\n3800 尼特 | 300Hz | 99% DCI-P3",
-      compNotes: "直接竞品（此价位段参数竞争激烈）：\n• 长虹 D8S Pro (¥9411 / 国补 ¥7999)：Mini LED | 5000 尼特\n• TCL 85Art 7M (¥7763 / 国补 ¥6599)：Mini LED | 288Hz"
+      compNotes: "直接竞品（此价位段参数竞争激烈）：\n• 竞品F D 系列 Pro (¥9411 / 国补 ¥7999)：Mini LED | 5000 尼特\n• 竞品B 85寸 Art 款 (¥7763 / 国补 ¥6599)：Mini LED | 288Hz"
     },
     {
       series: "A系列 | 线上配置线",
-      model: "A8H (音画升级款)",
+      model: "旗舰款B (音画升级款)",
       target: "追求客厅影音体验、不愿妥协音质的消费者",
       price: "¥11,499 (正常)\n¥9,999 (国补后)",
       specs: "SQD-Mini LED | 3600 分区\n5500 尼特 | 300Hz | 110% DCI-P3",
-      compNotes: "市场真空期：\n• 暂无直接竞品。创维深度卡位，抢占空位独占市场。"
+      compNotes: "市场真空期：\n• 暂无直接竞品。某家电品牌深度卡位，抢占空位独占市场。"
     },
     {
       series: "A系列 | 线上配置线",
-      model: "A10H (系列旗舰款)",
+      model: "旗舰款C (系列旗舰款)",
       target: "高预算、对背光分区与亮度有极致追求的科技发烧友",
       price: "¥17,499 (正常)\n¥15,999 (国补后)",
       specs: "SQD-Mini LED | 11520 分区\n10000 尼特 | 330Hz | 103% BT.2020",
-      compNotes: "主流对标（消费者会与海外设计品牌对比）：\n• 三星 LS03D (¥21999 / 国补 ¥18699)：ELED | 无分区\n• 海信 A7Q (¥14999 / 无国补)：LCD | 40 分区 | 132Hz"
+      compNotes: "主流对标（消费者会与海外设计品牌对比）：\n• 进口品牌A 画框款 (¥21999 / 国补 ¥18699)：ELED | 无分区\n• 竞品A 旗舰款 (¥14999 / 无国补)：LCD | 40 分区 | 132Hz"
     },
     {
       series: "Q系列 | 线下体验线",
-      model: "Q7H (高端均衡款)",
+      model: "高端款A (高端均衡款)",
       target: "习惯线下消费、看重真机质感的高端用户",
       price: "¥14,999 (渠道)\n¥10,999 (三方最低)",
       specs: "QD-Mini LED | 2160 分区\n4500 尼特 | 480Hz | 110% DCI-P3",
@@ -37,7 +37,7 @@ export default function Page_SkyworthFiveModels() {
     },
     {
       series: "Q系列 | 线下体验线",
-      model: "Q8H (分体顶配款)",
+      model: "高端款B (分体顶配款)",
       target: "大平层或别墅业主，有分体独立环绕声学需求的高端群体",
       price: "¥20,999 (渠道)\n¥14,999 (三方最低)",
       specs: "QD-Mini LED | 4350 分区\n4500 尼特 | 480Hz | 103% BT.2020",
@@ -46,7 +46,7 @@ export default function Page_SkyworthFiveModels() {
   ];
 
   return (
-    <SlideLayout title="创维五款壁纸电视的区别">
+    <SlideLayout title="五款壁纸电视的区别">
       <div className="w-full h-full relative select-none animate-fadeIn">
 
         {/* ==================== 左栏：人群定位 ( w-[590px] ) ==================== */}
@@ -64,15 +64,15 @@ export default function Page_SkyworthFiveModels() {
               </div>
               <div className="flex flex-col gap-4 pl-1">
                 <div className="leading-relaxed">
-                  <span className="text-white font-bold block text-[19px] xl:text-[21px] mb-1">A7H Pro (基础款)</span>
+                  <span className="text-white font-bold block text-[19px] xl:text-[21px] mb-1">旗舰款A (基础款)</span>
                   <span className="text-zinc-400 text-[17px] xl:text-[19px]">想买艺术/壁纸电视但预算不想太高的新装家庭</span>
                 </div>
                 <div className="leading-relaxed border-t border-white/[0.06] pt-3.5">
-                  <span className="text-white font-bold block text-[19px] xl:text-[21px] mb-1">A8H (音画升级款)</span>
+                  <span className="text-white font-bold block text-[19px] xl:text-[21px] mb-1">旗舰款B (音画升级款)</span>
                   <span className="text-zinc-400 text-[17px] xl:text-[19px]">预算高一些，希望明显提升画质与高级感的进阶用户</span>
                 </div>
                 <div className="leading-relaxed border-t border-white/[0.06] pt-3.5">
-                  <span className="text-white font-bold block text-[19px] xl:text-[21px] mb-1">A10H (系列旗舰款)</span>
+                  <span className="text-white font-bold block text-[19px] xl:text-[21px] mb-1">旗舰款C (系列旗舰款)</span>
                   <span className="text-zinc-400 text-[17px] xl:text-[19px]">追求A系列最顶尖配置与最强参数的科技发烧友</span>
                 </div>
               </div>
@@ -85,11 +85,11 @@ export default function Page_SkyworthFiveModels() {
               </div>
               <div className="flex flex-col gap-4 pl-1">
                 <div className="leading-relaxed">
-                  <span className="text-white font-bold block text-[19px] xl:text-[21px] mb-1">Q7H (高端均衡款)</span>
+                  <span className="text-white font-bold block text-[19px] xl:text-[21px] mb-1">高端款A (高端均衡款)</span>
                   <span className="text-zinc-400 text-[17px] xl:text-[19px]">被壁画功能吸引，看重线下真机质感的品质用户</span>
                 </div>
                 <div className="leading-relaxed border-t border-white/[0.06] pt-3.5">
-                  <span className="text-white font-bold block text-[19px] xl:text-[21px] mb-1">Q8H (分体顶配款)</span>
+                  <span className="text-white font-bold block text-[19px] xl:text-[21px] mb-1">高端款B (分体顶配款)</span>
                   <span className="text-zinc-400 text-[17px] xl:text-[19px]">被壁画功能吸引，同时要求极致画质与分体声学的高端家庭</span>
                 </div>
               </div>

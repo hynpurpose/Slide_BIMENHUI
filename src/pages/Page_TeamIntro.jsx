@@ -49,7 +49,7 @@ const aiAgents = [
   {
     id: "monitor",
     title: "数据监测Agent",
-    desc: "依托 GEO ONE 系统，7×24 小时监测各大模型对创维及竞品的引用、排名与情绪变化。"
+    desc: "依托 GEO ONE 系统，7×24 小时监测各大模型对某家电品牌及竞品的引用、排名与情绪变化。"
   },
   {
     id: "review",

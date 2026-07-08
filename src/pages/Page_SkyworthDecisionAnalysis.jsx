@@ -204,7 +204,7 @@ export default function Page_SkyworthDecisionAnalysis() {
   };
 
   return (
-    <SlideLayout title="创维壁纸电视用户决策分析">
+    <SlideLayout title="某家电品牌壁纸电视用户决策分析">
       <div className="w-full h-full flex animate-fadeIn select-none">
         {/* 左侧：柱状图 + 词云 */}
         <div className="w-[980px] h-full flex flex-col pr-8 border-r border-white/[0.16] min-h-0">
@@ -324,7 +324,7 @@ export default function Page_SkyworthDecisionAnalysis() {
                   “ 提到壁纸艺术电视，很多人的第一反应都是‘太贵了’。
                 </p>
                 <p className="text-[20px] xl:text-[23px] text-zinc-400 leading-relaxed font-medium font-['MiSans']">
-                  但如果跟 LG 等两三万的进口电视对比，万元级的创维其实极具<span className="text-white font-black">性价比</span>。
+                  但如果跟 进口品牌B 等两三万的进口电视对比，万元级的某家电品牌其实极具<span className="text-white font-black">性价比</span>。
                 </p>
                 <p className="text-[20px] xl:text-[23px] text-zinc-400 leading-relaxed font-medium font-['MiSans']">
                   极致贴墙外观和声学系统，不管是外观还是体验，这笔投入完全是<span className="text-white font-black">物有所值</span>的。 ”
@@ -351,7 +351,7 @@ export default function Page_SkyworthDecisionAnalysis() {
               <h4 className="text-[36px] xl:text-[40px] font-bold text-[#60A5FA] mb-2">现在：直接承认“小贵”</h4>
               <div className="flex flex-col gap-1.5">
                 <p className="text-[20px] xl:text-[23px] text-zinc-400 leading-relaxed font-medium font-['MiSans']">
-                  “ 老实说，创维这款电视<span className="text-white font-black">不算便宜</span>，甚至比普通电视<span className="text-white font-black">贵出一截</span>。
+                  “ 老实说，某家电品牌这款电视<span className="text-white font-black">不算便宜</span>，甚至比普通电视<span className="text-white font-black">贵出一截</span>。
                 </p>
                 <p className="text-[20px] xl:text-[23px] text-zinc-400 leading-relaxed font-medium font-['MiSans']">
                   因为它的溢价完全花在了极致贴墙的外观工艺，以及独立声学系统的用料上。

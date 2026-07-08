@@ -5,7 +5,7 @@ import SlideLayout from '../components/SlideLayout';
 // 15篇评测类高引用参考文章标题 (用于左侧普通表格展示)
 const mockReviewArticles = [
   '2026年艺术画壁电视排行榜：谁是真正的客厅颜值担当？',
-  '实测创维A7D Pro壁纸电视：超薄贴墙与哈曼卡顿音响深度横评',
+  '实测某家电品牌旗舰款A壁纸电视：超薄贴墙与品牌联名音响深度横评',
   '客厅极简电视选购指南：背光分区与无缝挂载的避坑要点',
   '传统电视OUT了？壁纸电视无缝贴墙安装与散热深度对比评测',
   '高端电视音画质怎么看？壁纸电视画质调校与背光芯片解析',
@@ -74,7 +74,7 @@ export default function Page_SkyworthContentStrategyDeconstruct() {
             </div>
           </div>
 
-          {/* ── 中间：高引用法则拆解 (完全保留排版与大小，仅移除具体品牌如海信/索尼信息) ── */}
+          {/* ── 中间：高引用法则拆解 (完全保留排版与大小，仅移除具体品牌如竞品A/索尼信息) ── */}
           <div className="flex-grow flex flex-col h-full bg-white/[0.01]">
             <div className="flex items-center gap-3 mb-4 shrink-0">
               <div className="h-8 w-1 bg-[#004CE5] rounded-full" />

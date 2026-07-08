@@ -5,8 +5,8 @@ import { fileURLToPath } from 'url';
 const __dirname = path.dirname(fileURLToPath(import.meta.url));
 const OUTPUT_DIR = path.join(__dirname, '../screenshots');
 const SLIDE_URL = 'http://localhost:4466';
-const SLIDE_ID = 'chapter-0-0-2'; // 创维壁纸电视用户决策分析
-const NEW_TITLE = '一个创维壁纸电视 AI品牌定位的例子';
+const SLIDE_ID = 'chapter-0-0-2'; // 某家电品牌壁纸电视用户决策分析
+const NEW_TITLE = '一个某家电品牌壁纸电视 AI品牌定位的例子';
 
 async function main() {
   const browser = await puppeteer.launch({

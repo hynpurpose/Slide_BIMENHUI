@@ -4,45 +4,45 @@ import SlideLayout from '../components/SlideLayout';
 /* ────────────────────────────────────────────────────────────
  * 词条分类逻辑 · 极简排印版
  * 叙事：左侧一团散乱无体系的词条（混沌词云）
- *      → 经过「创维词条」体系梳理，分流为优化词 / 监测词
+ *      → 经过「品牌词条」体系梳理，分流为优化词 / 监测词
  *      → 右侧词条示例干净整洁、层级分明
  * ──────────────────────────────────────────────────────────── */
 
 /* 产品标签配色：每款产品一个固定色，全系列词用中性色 */
 const PRODUCT_STYLE = {
-  'A7H PRO': { color: '#60A5FA', bg: 'rgba(96,165,250,0.1)', border: 'rgba(96,165,250,0.35)' },
-  'A8H': { color: '#A78BFA', bg: 'rgba(167,139,250,0.1)', border: 'rgba(167,139,250,0.35)' },
-  'A10H': { color: '#FBBF24', bg: 'rgba(251,191,36,0.1)', border: 'rgba(251,191,36,0.35)' },
-  'Q7H': { color: '#FB7185', bg: 'rgba(251,113,133,0.1)', border: 'rgba(251,113,133,0.35)' },
-  'Q8H': { color: '#34D399', bg: 'rgba(52,211,153,0.1)', border: 'rgba(52,211,153,0.35)' },
+  '旗舰款A': { color: '#60A5FA', bg: 'rgba(96,165,250,0.1)', border: 'rgba(96,165,250,0.35)' },
+  '旗舰款B': { color: '#A78BFA', bg: 'rgba(167,139,250,0.1)', border: 'rgba(167,139,250,0.35)' },
+  '旗舰款C': { color: '#FBBF24', bg: 'rgba(251,191,36,0.1)', border: 'rgba(251,191,36,0.35)' },
+  '高端款A': { color: '#FB7185', bg: 'rgba(251,113,133,0.1)', border: 'rgba(251,113,133,0.35)' },
+  '高端款B': { color: '#34D399', bg: 'rgba(52,211,153,0.1)', border: 'rgba(52,211,153,0.35)' },
   '全系列': { color: '#A1A1AA', bg: 'rgba(161,161,170,0.1)', border: 'rgba(161,161,170,0.3)' },
 };
 
-/* 词条 → 产品集合，均来自 创维词条分类.xlsx（src/data/skyworthKeywords.json） */
+/* 词条 → 产品集合，均来自 品牌词条分类.xlsx（src/data/skyworthKeywords.json） */
 const OPT_CATEGORY_WORDS = [
   { t: '壁纸电视品牌排行榜', p: '全系列' },
   { t: '电视排行榜前十名', p: '全系列' },
 ];
 
-/* 按产品分组排序：A7H PRO → A8H → A10H → Q7H → Q8H */
+/* 按产品分组排序：旗舰款A → 旗舰款B → 旗舰款C → 高端款A → 高端款B */
 const OPT_PRODUCT_WORDS = [
-  { t: '销量最好的壁纸电视推荐', p: 'A7H PRO' },
-  { t: '入门级高品质壁纸电视推荐', p: 'A7H PRO' },
-  { t: '7000块钱左右的壁纸电视推荐', p: 'A7H PRO' },
-  { t: '有没有适合线上直接买的高性价比壁纸电视？', p: 'A7H PRO' },
-  { t: '音画升级款壁纸电视推荐', p: 'A8H' },
-  { t: '一万块钱左右的壁纸电视推荐', p: 'A8H' },
-  { t: '顶配旗舰款壁纸电视推荐', p: 'A10H' },
-  { t: '1.5万块钱左右的壁纸电视推荐', p: 'A10H' },
-  { t: '高端体验款壁纸电视推荐？', p: 'Q7H' },
-  { t: '一万左右在线下能体验的壁纸电视推荐', p: 'Q7H' },
-  { t: '有没有适合到店体验的高端壁纸电视？', p: 'Q7H' },
-  { t: '分体影院壁纸电视推荐', p: 'Q8H' },
-  { t: '2万左右在线下能体验的壁纸电视推荐', p: 'Q8H' },
+  { t: '销量最好的壁纸电视推荐', p: '旗舰款A' },
+  { t: '入门级高品质壁纸电视推荐', p: '旗舰款A' },
+  { t: '7000块钱左右的壁纸电视推荐', p: '旗舰款A' },
+  { t: '有没有适合线上直接买的高性价比壁纸电视？', p: '旗舰款A' },
+  { t: '音画升级款壁纸电视推荐', p: '旗舰款B' },
+  { t: '一万块钱左右的壁纸电视推荐', p: '旗舰款B' },
+  { t: '顶配旗舰款壁纸电视推荐', p: '旗舰款C' },
+  { t: '1.5万块钱左右的壁纸电视推荐', p: '旗舰款C' },
+  { t: '高端体验款壁纸电视推荐？', p: '高端款A' },
+  { t: '一万左右在线下能体验的壁纸电视推荐', p: '高端款A' },
+  { t: '有没有适合到店体验的高端壁纸电视？', p: '高端款A' },
+  { t: '分体影院壁纸电视推荐', p: '高端款B' },
+  { t: '2万左右在线下能体验的壁纸电视推荐', p: '高端款B' },
 ];
 
-const MON_CATEGORY_WORDS = [{ t: '创维电视算一线品牌吗', p: '全系列' }];
-const MON_PRODUCT_WORDS = [{ t: '创维壁纸电视A7H Pro怎么样', p: 'A7H PRO' }];
+const MON_CATEGORY_WORDS = [{ t: '某家电品牌电视算一线品牌吗', p: '全系列' }];
+const MON_PRODUCT_WORDS = [{ t: '某家电品牌壁纸电视旗舰款A怎么样', p: '旗舰款A' }];
 
 const ACCENT = {
   blue: { core: '#60A5FA', soft: 'rgba(96,165,250,0.55)', chipBg: 'rgba(96,165,250,0.08)', chipBorder: 'rgba(96,165,250,0.35)' },
@@ -50,7 +50,7 @@ const ACCENT = {
   white: { core: 'rgba(255,255,255,0.85)', soft: 'rgba(255,255,255,0.4)', chipBg: 'rgba(255,255,255,0.06)', chipBorder: 'rgba(255,255,255,0.25)' },
 };
 
-/* 横向四列均匀分布：词云 5-375 / 创维词条 545-785 / 优化·监测 965-1145 / 词条列表 1300-1840 */
+/* 横向四列均匀分布：词云 5-375 / 品牌词条 545-785 / 优化·监测 965-1145 / 词条列表 1300-1840 */
 const HUB_X = 545;
 const HUB_W = 240;
 const NODE_X = 965;
@@ -66,9 +66,9 @@ const CLOUD_R = 185;
 /* 散乱词条：位置为相对圆心的偏移，字号/旋转/透明度各不相同，刻意杂乱 */
 const CHAOS_WORDS = [
   { t: '壁纸电视', dx: -62, dy: -128, size: 25, rot: -8, o: 0.72 },
-  { t: '创维电视', dx: 48, dy: -86, size: 21, rot: 5, o: 0.6 },
+  { t: '某家电品牌电视', dx: 48, dy: -86, size: 21, rot: 5, o: 0.6 },
   { t: '排行榜', dx: -118, dy: -68, size: 16, rot: 10, o: 0.42 },
-  { t: 'A7H Pro', dx: 92, dy: -40, size: 15, rot: -12, o: 0.38 },
+  { t: '旗舰款A', dx: 92, dy: -40, size: 15, rot: -12, o: 0.38 },
   { t: '品牌词', dx: -34, dy: -46, size: 23, rot: 3, o: 0.66 },
   { t: '哪个好', dx: 112, dy: 2, size: 14, rot: 8, o: 0.35 },
   { t: '原形词', dx: -108, dy: -4, size: 19, rot: -6, o: 0.55 },
@@ -78,7 +78,7 @@ const CHAOS_WORDS = [
   { t: '竞品词', dx: 38, dy: 92, size: 20, rot: -9, o: 0.58 },
   { t: '高端电视', dx: -116, dy: 92, size: 15, rot: 5, o: 0.4 },
   { t: '怎么样', dx: -20, dy: 128, size: 16, rot: -5, o: 0.44 },
-  { t: '创维A5D', dx: 62, dy: 138, size: 13, rot: 9, o: 0.34 },
+  { t: '某家电品牌经典款A', dx: 62, dy: 138, size: 13, rot: 9, o: 0.34 },
 ];
 
 /* 细线连接：柔和光晕 + 核心贝塞尔曲线 + 两端圆点 */
@@ -214,7 +214,7 @@ function FlowNode({ x, cy, w, h, label, sub, tone = 'blue', big = false }) {
   );
 }
 
-/* 词条条目：小色点 + 文本 + 对应产品标签（数据来自创维词条分类表） */
+/* 词条条目：小色点 + 文本 + 对应产品标签（数据来自品牌词条分类表） */
 function KeywordItems({ words, tone = 'blue', size = 19 }) {
   const a = ACCENT[tone];
   return (
@@ -284,9 +284,9 @@ export default function Page_SkyworthKeywordLogic() {
   const monY = Math.round((mid(B3) + mid(B4)) / 2);
 
   const links = [
-    // 混沌词云右缘 → 创维词条
+    // 混沌词云右缘 → 品牌词条
     [CLOUD_CX + CLOUD_R, CLOUD_CY, HUB_X, 397, 'white'],
-    // 创维词条 → 优化词 / 监测词
+    // 品牌词条 → 优化词 / 监测词
     [HUB_X + HUB_W, 397, NODE_X, optY, 'blue'],
     [HUB_X + HUB_W, 397, NODE_X, monY, 'teal'],
     // 优化词 / 监测词 → 右侧分组
@@ -302,7 +302,7 @@ export default function Page_SkyworthKeywordLogic() {
         <Connectors links={links} />
         <ChaosCloud />
 
-        <FlowNode x={HUB_X} cy={397} w={HUB_W} h={116} label="创维词条" sub="SKYWORTH KEYWORDS" tone="white" big />
+        <FlowNode x={HUB_X} cy={397} w={HUB_W} h={116} label="品牌词条" sub="BRAND KEYWORDS" tone="white" big />
         <FlowNode x={NODE_X} cy={optY} w={NODE_W} h={96} label="优化词" sub="OPTIMIZE" tone="blue" />
         <FlowNode x={NODE_X} cy={monY} w={NODE_W} h={96} label="监测词" sub="MONITOR" tone="teal" />
 

@@ -182,8 +182,8 @@ export function Page_SkyworthReport_OptCompetitorHtml() {
                   核心发现
                 </h3>
                 <div className="flex-grow flex flex-col gap-2.5 text-[16px] xl:text-[17px] text-zinc-300 leading-relaxed font-normal text-justify">
-                  <p><strong className="text-white font-bold">首推优势突出：</strong>创维 Top1 提及率 24.7% 断层领先（第二名海信仅 10.8%），AI 在品类词下最倾向首推创维。</p>
-                  <p className="border-t border-white/5 pt-2.5"><strong className="text-white font-bold">声量存在缺口：</strong>整体提及率 59.4% 落后海信（68.0%）与 TCL（65.6%），"被提到"的频次还不够。</p>
+                  <p><strong className="text-white font-bold">首推优势突出：</strong>某家电品牌 Top1 提及率 24.7% 断层领先（第二名竞品A仅 10.8%），AI 在品类词下最倾向首推某家电品牌。</p>
+                  <p className="border-t border-white/5 pt-2.5"><strong className="text-white font-bold">声量存在缺口：</strong>整体提及率 59.4% 落后竞品A（68.0%）与 竞品B（65.6%），"被提到"的频次还不够。</p>
                 </div>
               </div>
             </div>
@@ -195,8 +195,8 @@ export function Page_SkyworthReport_OptCompetitorHtml() {
                   竞争格局总结
                 </h3>
                 <div className="flex-grow flex flex-col gap-2.5 text-[16px] xl:text-[17px] text-zinc-300 leading-relaxed font-normal text-justify">
-                  <p><strong className="text-white font-bold">三强格局胶着：</strong>海信、TCL、创维提及率同处 59%~68% 第一梯队，行业影响力得分（69.2 / 67.4 / 62.8）咬得很紧。</p>
-                  <p className="border-t border-white/5 pt-2.5"><strong className="text-white font-bold">外资品牌掉队：</strong>索尼（35.2%）、三星（34.4%）声量断档，竞争主要在国产三强之间展开。</p>
+                  <p><strong className="text-white font-bold">三强格局胶着：</strong>竞品A、竞品B、某家电品牌提及率同处 59%~68% 第一梯队，行业影响力得分（69.2 / 67.4 / 62.8）咬得很紧。</p>
+                  <p className="border-t border-white/5 pt-2.5"><strong className="text-white font-bold">外资品牌掉队：</strong>进口品牌C（35.2%）、进口品牌A（34.4%）声量断档，竞争主要在国产三强之间展开。</p>
                 </div>
               </div>
             </div>
@@ -208,7 +208,7 @@ export function Page_SkyworthReport_OptCompetitorHtml() {
                   行动建议
                 </h3>
                 <div className="flex-grow flex flex-col gap-2.5 text-[16px] xl:text-[17px] text-zinc-300 leading-relaxed font-normal text-justify">
-                  <p><strong className="text-white font-bold">补齐提及广度：</strong>对未提及创维的品类词补充测评、榜单类内容，把整体提及率从 59.4% 向海信的 68.0% 拉近。</p>
+                  <p><strong className="text-white font-bold">补齐提及广度：</strong>对未提及某家电品牌的品类词补充测评、榜单类内容，把整体提及率从 59.4% 向竞品A的 68.0% 拉近。</p>
                   <p className="border-t border-white/5 pt-2.5"><strong className="text-white font-bold">巩固首推心智：</strong>持续维护高质量首推内容，守住 Top1 提及率 2 倍于第二名的领先优势。</p>
                 </div>
               </div>

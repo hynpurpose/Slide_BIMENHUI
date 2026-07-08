@@ -5,7 +5,7 @@ const TITLE = '5款产品的侧重点和优化方向';
 
 const online = [
   {
-    model: 'A7H Pro',
+    model: '旗舰款A',
     tier: '入门款',
     role: '绝对销量担当',
     focus: (
@@ -19,7 +19,7 @@ const online = [
     star: true,
   },
   {
-    model: 'A8H',
+    model: '旗舰款B',
     tier: '中端款',
     role: '音画升级',
     focus: (
@@ -30,7 +30,7 @@ const online = [
     focusPlain: '卡位市场空档，独占对应价位段',
   },
   {
-    model: 'A10H',
+    model: '旗舰款C',
     tier: '旗舰款',
     role: '系列天花板',
     focus: (
@@ -43,8 +43,8 @@ const online = [
 ];
 
 const offline = [
-  { model: 'Q7H', tier: '高端均衡款', role: '线下质感体验' },
-  { model: 'Q8H', tier: '分体顶配款', role: '大客厅高端影音' },
+  { model: '高端款A', tier: '高端均衡款', role: '线下质感体验' },
+  { model: '高端款B', tier: '分体顶配款', role: '大客厅高端影音' },
 ];
 
 const OFFLINE_DIRECTION = (

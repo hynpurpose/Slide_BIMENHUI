@@ -109,7 +109,7 @@ export function Page_SkyworthReport_OptDashboardAnalysis() {
                         首推心智领先，Top1 提及率断层第一。
                       </h4>
                       <p className="text-[18px] lg:text-[19px] text-zinc-300 leading-[1.65] text-justify">
-                        Top1 提及率 {targetTop1?.top1_mention_rate}%，是第二名{runnerTop1?.brand_name}（{runnerTop1?.top1_mention_rate}%）的 {top1Ratio} 倍——在壁纸 / 艺术电视等品类词下，AI 最倾向首推创维。
+                        Top1 提及率 {targetTop1?.top1_mention_rate}%，是第二名{runnerTop1?.brand_name}（{runnerTop1?.top1_mention_rate}%）的 {top1Ratio} 倍——在壁纸 / 艺术电视等品类词下，AI 最倾向首推某家电品牌。
                       </p>
                     </div>
                   </div>
@@ -131,7 +131,7 @@ export function Page_SkyworthReport_OptDashboardAnalysis() {
                         整体声量仍有缺口，泛品类词待补强。
                       </h4>
                       <p className="text-[18px] lg:text-[19px] text-zinc-300 leading-[1.65] text-justify">
-                        综合提及率 {mentionRate}% 落后海信、TCL 约 6–9 个百分点；部分泛尺寸 / 泛品类词条尚未进入 AI 推荐，是下一步提声量的主要方向。
+                        综合提及率 {mentionRate}% 落后竞品A、竞品B 约 6–9 个百分点；部分泛尺寸 / 泛品类词条尚未进入 AI 推荐，是下一步提声量的主要方向。
                       </p>
                     </div>
                   </div>

@@ -4,8 +4,8 @@ import SlideLayout from '../components/SlideLayout';
 /* ============================================================
  * 讲稿核心（品牌词，优化词里的重中之重）——两个"层级"，不是攻守：
  *   第一层级（重中之重）· 优势词 —— 「好看的电视」
- *        品类：艺术/壁纸/超薄/画框电视。创维已占绝对优势，
- *        必须保住绝对第一，不给海信、TCL 以及华为这类有品牌
+ *        品类：艺术/壁纸/超薄/画框电视。某家电品牌已占绝对优势，
+ *        必须保住绝对第一，不给竞品A、竞品B 以及竞品D这类有品牌
  *        影响力的跟风者留机会（他们想用自家系列挤进这条赛道）。
  *   第二层级 · 弱势词 —— 「常规电视」
  *        词：质量好/画质好/音响好。持续加强，不追求第一，
@@ -25,7 +25,7 @@ const BLUE_T = '#93B4FF';
 
 const ADV_WORDS = ['艺术电视', '壁纸电视', '超薄电视', '画框电视'];
 const WEAK_WORDS = ['质量好', '画质好', '音响好'];
-const RIVALS = ['海信', 'TCL', '华为'];
+const RIVALS = ['竞品A', '竞品B', '竞品D'];
 
 /* ============================================================
  * 版本 A — 优先级分明双栏
@@ -63,7 +63,7 @@ export function Page_SkyworthBrandWordStrategy_A() {
                 <span className="text-[80px] font-black leading-none font-['MiSans']" style={{ color: GOLD }}>①</span>
                 <div className="flex flex-col">
                   <span className="text-[32px] text-white font-bold font-['MiSans'] leading-tight">优势词 · 好看的电视</span>
-                  <span className="text-[23px] text-zinc-400 font-['MiSans']">创维已占绝对优势</span>
+                  <span className="text-[23px] text-zinc-400 font-['MiSans']">某家电品牌已占绝对优势</span>
                 </div>
               </div>
               <span
@@ -193,7 +193,7 @@ export function Page_SkyworthBrandWordStrategy_B() {
               <h3 className="text-[74px] font-black text-white font-['MiSans'] leading-none mt-7">
                 保住<span style={{ color: GOLD_T }}>绝对第一</span>
               </h3>
-              <p className="text-[24px] text-zinc-400 font-['MiSans'] mt-4 leading-snug">创维已占绝对优势。</p>
+              <p className="text-[24px] text-zinc-400 font-['MiSans'] mt-4 leading-snug">某家电品牌已占绝对优势。</p>
             </div>
 
             {/* 右：品类词 + 跟风者警示 */}
@@ -296,7 +296,7 @@ export function Page_SkyworthBrandWordStrategy_C() {
                 >
                   ① 重中之重
                 </span>
-                <span className="text-[30px] text-white font-bold font-['MiSans']">优势词 · 好看的电视 · 创维已占绝对优势</span>
+                <span className="text-[30px] text-white font-bold font-['MiSans']">优势词 · 好看的电视 · 某家电品牌已占绝对优势</span>
               </div>
               <h3 className="font-black text-white font-['MiSans'] leading-[0.95] mt-8" style={{ fontSize: '112px' }}>
                 保住<br /><span style={{ color: GOLD_T }}>绝对第一</span>

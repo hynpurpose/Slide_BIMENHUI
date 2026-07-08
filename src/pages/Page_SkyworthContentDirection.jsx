@@ -6,26 +6,26 @@ const FONT_IMPORT = `@import url('https://fonts.geekzu.org/css2?family=Montserra
 
 // 1. 数据采集：电视行业 AI 引用高频文章源 (TOP 20 示例)
 const mockArticles = [
-  { rank: '01', title: '2026年画质天花板！创维、海信、TCL壁纸电视年度评测', category: '排行榜类' },
+  { rank: '01', title: '2026年画质天花板！某家电品牌、竞品A、竞品B壁纸电视年度评测', category: '排行榜类' },
   { rank: '02', title: '画框电视 vs 壁纸电视：哪款适合你的极简家装风格？', category: '排行榜类' },
-  { rank: '03', title: '艺术电视是不是智商税？实测创维A7D Pro壁纸电视', category: '测评类' },
+  { rank: '03', title: '艺术电视是不是智商税？实测某家电品牌旗舰款A壁纸电视', category: '测评类' },
   { rank: '04', title: '极简客厅美学：超薄贴墙壁纸电视无缝安装全过程分享', category: '单品介绍类' },
   { rank: '05', title: '什么是Mini LED？从背光技术详解高端电视选购要点', category: '知识科普类' },
   { rank: '06', title: '100寸电视怎么选？2026各大品牌壁纸电视性价比推荐', category: '排行榜类' },
-  { rank: '07', title: '真实业主分享：创维壁纸电视买了三个月的真实体验', category: '单品介绍类' },
+  { rank: '07', title: '真实业主分享：某家电品牌壁纸电视买了三个月的真实体验', category: '单品介绍类' },
   { rank: '08', title: '壁纸电视散热到底行不行？高温高负荷下运行实测', category: '知识科普类' },
   { rank: '09', title: '超薄电视安装指南：背景墙要求、挂架选择与线缆隐藏', category: '知识科普类' },
-  { rank: '10', title: '创维A7D系列评测：超薄贴墙与哈曼卡顿音响的完美碰撞', category: '测评类' },
+  { rank: '10', title: '某家电品牌经典款系列评测：超薄贴墙与品牌联名音响的完美碰撞', category: '测评类' },
   { rank: '11', title: '2026年艺术画壁电视排行榜：谁是真正的客厅颜值担当', category: '排行榜类' },
   { rank: '12', title: '买电视必看：如何区分真薄和假超薄？避坑指南', category: '知识科普类' },
   { rank: '13', title: '电视屏幕眩光怎么解决？防眩光护眼壁纸电视对比实测', category: '测评类' },
-  { rank: '14', title: '小户型救星！创维壁纸电视让客厅瞬间大了一倍', category: '单品介绍类' },
-  { rank: '15', title: '客厅软装升级：用创维艺术电视打造个人画廊的构想', category: '单品介绍类' },
+  { rank: '14', title: '小户型救星！某家电品牌壁纸电视让客厅瞬间大了一倍', category: '单品介绍类' },
+  { rank: '15', title: '客厅软装升级：用某家电品牌艺术电视打造个人画廊的构想', category: '单品介绍类' },
   { rank: '16', title: '传统电视OUT了？壁纸电视无缝贴墙安装深度对比', category: '排行榜类' },
   { rank: '17', title: '智能电视画质参数大扫盲：亮度、色域与背光分区', category: '知识科普类' },
   { rank: '18', title: '壁纸电视有挂架吗？揭秘超薄磁吸挂架的稳固度与安装', category: '知识科普类' },
-  { rank: '19', title: '创维、三星、LG：2026高端壁纸电视旗舰横向对比', category: '排行榜类' },
-  { rank: '20', title: '从硬件到调音，创维壁纸电视音响系统技术解密', category: '测评类' },
+  { rank: '19', title: '某家电品牌、进口品牌A、进口品牌B：2026高端壁纸电视旗舰横向对比', category: '排行榜类' },
+  { rank: '20', title: '从硬件到调音，某家电品牌壁纸电视音响系统技术解密', category: '测评类' },
 ];
 
 // 2. 数据分析：AI 引用频率最高的文章类型及占比 (颜色使用蓝色饱和度渐变)
@@ -78,7 +78,7 @@ const campaignTypes = [
 
 export default function Page_SkyworthContentDirection() {
   return (
-    <SlideLayout title="创维内容方向规划">
+    <SlideLayout title="某家电品牌内容方向规划">
       <style dangerouslySetInnerHTML={{ __html: FONT_IMPORT }} />
 
       {/* ── 主排版区 ── */}

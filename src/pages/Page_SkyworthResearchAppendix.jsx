@@ -8,7 +8,7 @@ import SlideLayout from '../components/SlideLayout';
  */
 
 /* ============================================================
- * 页一：创维集团概况与品牌资质
+ * 页一：某家电品牌概况与品牌资质
  * ==========================================================*/
 export function Page_SkyworthResearchGroup() {
   const stats = [
@@ -16,7 +16,7 @@ export function Page_SkyworthResearchGroup() {
     { label: '2025 财年营收', value: '703.24', sub: '亿元' },
     { label: '中国企业 500 强', value: 'No.380', sub: '2025' },
     { label: '《财富》中国 500 强', value: 'No.271', sub: '连续 16 年' },
-    { label: '全球电视销售额', value: 'TOP5', sub: '超越索尼' },
+    { label: '全球电视销售额', value: 'TOP5', sub: '第一梯队' },
     { label: '中国市场地位', value: 'TOP3', sub: '第一阵营' },
   ];
 
@@ -33,7 +33,7 @@ export function Page_SkyworthResearchGroup() {
   ];
 
   return (
-    <SlideLayout title="创维集团概况与品牌资质">
+    <SlideLayout title="某家电品牌概况与品牌资质">
       <div className="w-full h-full flex flex-col select-none animate-fadeIn font-['MiSans'] gap-5">
 
         {/* 顶部：6 指标条 */}
@@ -60,17 +60,17 @@ export function Page_SkyworthResearchGroup() {
               <div>
                 <h3 className="text-white text-[28px] font-bold mb-4 flex items-center gap-3"><span className="w-2.5 h-2.5 rounded-full bg-[#004CE5]" />集团概况</h3>
                 <p className="text-zinc-200 text-[23px] leading-[40px] text-justify">
-                  创维集团有限公司（Skyworth）成立于 1988 年，深耕智能显示领域 <strong className="text-white">37 年</strong>，是推动中国显示技术从「中国制造」走向「中国智造」的领军企业，业务覆盖智能电视、显示面板、机顶盒等全产业链。
+                  某家电品牌有限公司成立于 1988 年，深耕智能显示领域 <strong className="text-white">37 年</strong>，是推动中国显示技术从「中国制造」走向「中国智造」的头部企业，业务覆盖智能电视、显示面板、机顶盒等全产业链。
                 </p>
               </div>
               <div className="pt-5 border-t border-white/10 grid grid-cols-2 gap-4">
                 <div className="bg-black/40 border border-white/5 rounded-xl px-5 py-3.5">
-                  <div className="text-white text-[20px] font-black">创维集团</div>
-                  <div className="text-[#60A5FA] text-[17px] font-bold font-['Montserrat'] mt-1">HK.00751</div>
+                  <div className="text-white text-[20px] font-black">某家电品牌</div>
+                  <div className="text-[#60A5FA] text-[17px] font-bold mt-1">港股上市主体</div>
                 </div>
                 <div className="bg-black/40 border border-white/5 rounded-xl px-5 py-3.5">
-                  <div className="text-white text-[20px] font-black">创维数字</div>
-                  <div className="text-[#60A5FA] text-[17px] font-bold font-['Montserrat'] mt-1">SZ.000810</div>
+                  <div className="text-white text-[20px] font-black">关联业务主体</div>
+                  <div className="text-[#60A5FA] text-[17px] font-bold mt-1">A 股上市主体</div>
                 </div>
               </div>
             </div>
@@ -78,7 +78,7 @@ export function Page_SkyworthResearchGroup() {
             <div className="relative bg-gradient-to-r from-[#3a2a00]/70 to-transparent border border-amber-400/40 rounded-2xl px-7 py-6 shrink-0">
               <span className="text-amber-400 text-[15px] font-extrabold tracking-[0.25em]">品 牌 影 响</span>
               <p className="text-white text-[26px] font-bold leading-snug mt-2">
-                两度荣登天安门城楼<br /><span className="text-amber-400">2019 & 2025「阅兵电视」</span>指定品牌
+                多次承担国家级重大活动<br /><span className="text-amber-400">官方指定显示设备供应商</span>
               </p>
             </div>
           </div>
@@ -123,10 +123,10 @@ Page_SkyworthResearchGroup.hideHeader = true;
  * ==========================================================*/
 export function Page_SkyworthResearchMarket() {
   const records = [
-    { rank: 'TOP5', title: '全球电视品牌销售额前五', desc: '2025 Q1 跻身全球前五、超越索尼（Omdia）；稳居中国 TOP3 阵营。', hot: true },
+    { rank: 'TOP5', title: '全球电视品牌销售额前五', desc: '2025 Q1 跻身全球前五；稳居中国 TOP3 阵营。', hot: true },
     { rank: 'No.1', title: '百吋液晶电视中国销量第一', desc: '2024 & 2025 奥维云网；3 万元档高端大板包揽第一、第二。' },
     { rank: 'No.1', title: '艺术电视中国销量第一', desc: '2024 至今；壁纸电视持续研发十年，70w+ 用户品质之选。' },
-    { rank: 'No.1', title: 'Mini LED 电视品类增速行业第一', desc: '2024 年，创维为该赛道增速领跑者。' },
+    { rank: 'No.1', title: 'Mini LED 电视品类增速行业第一', desc: '2024 年，某家电品牌为该赛道增速领跑者。' },
     { rank: '1500万', title: '全球年出货体量（约）', desc: '国内电视年销售额约 216 亿元，稳居行业头部阵营。' },
   ];
 
@@ -137,7 +137,7 @@ export function Page_SkyworthResearchMarket() {
   ];
 
   return (
-    <SlideLayout title="创维市场战绩与全球化布局">
+    <SlideLayout title="某家电品牌市场战绩与全球化布局">
       <div className="w-full h-full grid grid-cols-[1fr_640px] gap-7 select-none animate-fadeIn font-['MiSans']">
 
         {/* 左栏：战绩榜单 */}
@@ -195,11 +195,11 @@ export function Page_SkyworthResearchMarket() {
 Page_SkyworthResearchMarket.hideHeader = true;
 
 /* ============================================================
- * 页三：创维核心技术优势
+ * 页三：某家电品牌核心技术优势
  * ==========================================================*/
 export function Page_SkyworthResearchTech() {
   const techs = [
-    { no: '01', title: '变色龙\n显示技术平台', spec: '自研 AI 画质芯片', desc: '创维自主研发的 AI 画质芯片技术体系，逐帧优化色彩、对比与清晰度，是画质的核心大脑。' },
+    { no: '01', title: '变色龙\n显示技术平台', spec: '自研 AI 画质芯片', desc: '某家电品牌自主研发的 AI 画质芯片技术体系，逐帧优化色彩、对比与清晰度，是画质的核心大脑。' },
     { no: '02', title: 'Mini LED\n显示技术', spec: '增速行业第一', desc: '率先将 Mini LED 应用于壁纸电视，是该赛道的开创者与领跑者，2024 年品类增速行业第一。' },
     { no: '03', title: '超薄\n散热专利', spec: '418 项专利', desc: '拥有 418 项超薄散热专利，攻克超薄电视散热的业界难题，为极致贴墙的壁纸形态提供硬件底座。' },
     { no: '04', title: 'SQD\n超级量子点', spec: '110% DCI-P3', desc: '第四代量子点材料，覆盖 110% DCI-P3 广色域，带来更纯净饱满的色彩表现。' },
@@ -213,7 +213,7 @@ export function Page_SkyworthResearchTech() {
   ];
 
   return (
-    <SlideLayout title="创维核心技术优势">
+    <SlideLayout title="某家电品牌核心技术优势">
       <div className="w-full h-full flex flex-col select-none animate-fadeIn font-['MiSans'] gap-5">
 
         {/* 四列技术 */}
@@ -247,10 +247,10 @@ export function Page_SkyworthResearchTech() {
         <div className="shrink-0 relative bg-[#004CE5]/10 border border-[#004CE5]/30 rounded-2xl px-8 py-5 flex items-center gap-7 overflow-hidden">
           <div className="shrink-0 border-r border-white/15 pr-7">
             <div className="text-zinc-400 text-[15px] font-bold tracking-widest mb-1.5">品牌愿景</div>
-            <div className="text-white text-[30px] font-black font-['AlimamaShuHeiTi'] leading-tight whitespace-nowrap">技术创维 · 敢创敢为</div>
+            <div className="text-white text-[30px] font-black font-['AlimamaShuHeiTi'] leading-tight whitespace-nowrap">技术某家电品牌 · 敢创敢为</div>
           </div>
           <p className="text-zinc-200 text-[19px] leading-[30px] text-justify flex-1">
-            持续推动中国显示技术从「中国制造」走向「中国智造」。2026 下半年，创维电视将通过 <strong className="text-[#60A5FA]">GEO 优化</strong>深化 AI 时代的品牌心智布局，确保品牌在国内主流 AI 平台中的可见性与正向认知，构建面向新一代消费者的品牌认知护城河。
+            持续推动中国显示技术从「中国制造」走向「中国智造」。2026 下半年，某家电品牌电视将通过 <strong className="text-[#60A5FA]">GEO 优化</strong>深化 AI 时代的品牌心智布局，确保品牌在国内主流 AI 平台中的可见性与正向认知，构建面向新一代消费者的品牌认知护城河。
           </p>
         </div>
 
@@ -299,7 +299,7 @@ export function Page_SkyworthResearchIndustry() {
     <SlideLayout title="壁纸电视品类的 GEO 难点解析">
       <div className="w-full h-full flex flex-col select-none animate-fadeIn font-['MiSans']">
         <p className="text-zinc-300 text-[24px] leading-relaxed mb-5 shrink-0">
-          从壁纸 / 艺术电视品类特性，以及我们服务过的同类客户经验中，总结出创维在 GEO 中可能遇到的<strong className="text-white">核心困境：</strong>
+          从壁纸 / 艺术电视品类特性，以及我们服务过的同类客户经验中，总结出某家电品牌在 GEO 中可能遇到的<strong className="text-white">核心困境：</strong>
         </p>
         <div className="flex-1 grid grid-cols-2 grid-rows-2 gap-6 min-h-0">
           {points.map((p, i) => (
