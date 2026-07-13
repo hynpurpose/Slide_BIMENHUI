@@ -20,10 +20,7 @@ export default function Page_QuantitativeModel() {
 
           {/* Narration text */}
           <p className="text-white text-[28px] font-normal leading-[48px] font-['MiSans'] text-justify mt-4 pr-20">
-            今年年初启动的内部研发项目，灵感来自股票领域的<span className="font-bold underline decoration-[#004CE5] decoration-2 underline-offset-8">量化交易</span>：
-            量化交易不是靠交易员拍脑袋买股票，而是用<span className="font-bold underline decoration-[#004CE5] decoration-2 underline-offset-8">数据和模型</span>判断机会。
-            放到 GEO 里也是一样。<span className="font-bold underline decoration-[#004CE5] decoration-2 underline-offset-8">我们不是简单对着监测数据做判断</span>：
-            AI 喜欢引用什么文章，我们就写什么文章；哪个平台引用率高，我们就投哪个平台。
+            GEO优化的核武器（2.0版本更新中）
           </p>
 
           {/* Decorative accent icon slot — place asset at public/icons/quantitative-model-accent.png */}
