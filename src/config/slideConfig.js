@@ -22,7 +22,7 @@ import {
 import { Page_SkyworthKeywordWhySplit_A } from '../pages/Page_SkyworthKeywordWhySplit';
 import { Page_SkyworthKeywordOptTwoTypes_C } from '../pages/Page_SkyworthKeywordOptTwoTypes';
 import Page_SkyworthKeywordLogic from '../pages/Page_SkyworthKeywordLogic';
-import { OPT_KEYWORD_PAGES, MON_KEYWORD_PAGES } from '../pages/Page_SkyworthKeywordTables';
+import { OPT_KEYWORD_PAGES } from '../pages/Page_SkyworthKeywordTables';
 import Page_GEOWordSelectionOther from '../pages/Page_GEOWordSelectionOther';
 import Page_GEOWordSelectionDataChain from '../pages/Page_GEOWordSelectionDataChain';
 import Page_SkyworthAiProcess from '../pages/Page_SkyworthAiProcess';
@@ -78,26 +78,17 @@ import Page_GeoOneDemo from '../pages/Page_GeoOneDemo';
 import Page_QuantitativeModel from '../pages/Page_QuantitativeModel';
 import Page_GeoMonitor from '../pages/Page_GeoMonitor';
 import Page_GeoMonitorDemo from '../pages/Page_GeoMonitorDemo';
-import Page_GeoMonitor_Pic1 from '../pages/Page_GeoMonitor_Pic1';
-import Page_GeoMonitor_Pic2 from '../pages/Page_GeoMonitor_Pic2';
-import Page_GeoMonitor_Pic3 from '../pages/Page_GeoMonitor_Pic3';
-import Page_GeoMonitor_Pic4 from '../pages/Page_GeoMonitor_Pic4';
-import Page_GeoMonitor_Pic5 from '../pages/Page_GeoMonitor_Pic5';
-import Page_GeoMonitor_Pic6 from '../pages/Page_GeoMonitor_Pic6';
-import Page_GeoMonitor_Pic7 from '../pages/Page_GeoMonitor_Pic7';
 import Page_ContentAgentIntro from '../pages/Page_ContentAgentIntro';
 import Page_ContentAgent from '../pages/Page_ContentAgent';
 import Page_ContentAgentModules from '../pages/Page_ContentAgentModules';
 import Page_ContentAgentDemo from '../pages/Page_ContentAgentDemo';
-import Page_ContentAgent_Pic1 from '../pages/Page_ContentAgent_Pic1';
-import Page_ContentAgent_Pic2 from '../pages/Page_ContentAgent_Pic2';
-import Page_ContentAgent_Pic3 from '../pages/Page_ContentAgent_Pic3';
-import Page_ContentAgent_Pic4 from '../pages/Page_ContentAgent_Pic4';
-import Page_ContentAgent_Pic5 from '../pages/Page_ContentAgent_Pic5';
-import Page_ContentAgent_Pic6 from '../pages/Page_ContentAgent_Pic6';
 import Page_UserCommentAnalysis from '../pages/Page_UserCommentAnalysis';
 import Page_GeoMonitorArchitecture from '../pages/Page_GeoMonitorArchitecture';
 import Page_QuantitativeModelArchitecture from '../pages/Page_QuantitativeModelArchitecture';
+import Page_QuantitativeModel_Why from '../pages/Page_QuantitativeModel_Why';
+import Page_QuantitativeModel_Goal from '../pages/Page_QuantitativeModel_Goal';
+import Page_QuantitativeModel_Roadmap from '../pages/Page_QuantitativeModel_Roadmap';
+import Page_QuantitativeModel_Exclusive from '../pages/Page_QuantitativeModel_Exclusive';
 import Page_QuantitativeModel_Pic1 from '../pages/Page_QuantitativeModel_Pic1';
 import Page_QuantitativeModel_Pic2 from '../pages/Page_QuantitativeModel_Pic2';
 import Page_QuantitativeModel_Pic3 from '../pages/Page_QuantitativeModel_Pic3';
@@ -107,16 +98,7 @@ import Page_QuantitativeModel_Pic6 from '../pages/Page_QuantitativeModel_Pic6';
 import Page_QuantitativeModel_Pic7 from '../pages/Page_QuantitativeModel_Pic7';
 import Page_UserCommentArchitecture from '../pages/Page_UserCommentArchitecture';
 import Page_UserCommentDemo from '../pages/Page_UserCommentDemo';
-import {
-  Page_UserComment_Overview,
-  Page_UserComment_Compare,
-  Page_UserComment_Sentiment,
-  Page_UserComment_Voices,
-  Page_UserComment_Dimensions,
-  Page_UserComment_WordCloud,
-  Page_UserComment_Trend,
-  Page_UserComment_Fake,
-} from '../pages/Page_UserCommentModules';
+
 import Page_SkyworthContentDetailsAI from '../pages/Page_SkyworthContentDetailsAI';
 import Page_HumanAiRatioApproach from '../pages/Page_HumanAiRatioApproach';
 import Page_ContentQualityValue from '../pages/Page_ContentQualityValue';
@@ -191,21 +173,23 @@ import {
   Page_SkyworthSpeakWithActions_3,
   Page_SkyworthSpeakWithActions_4,
 } from '../pages/Page_SkyworthSpeakWithActions_3';
+import Page_ServiceIntro from '../pages/Page_ServiceIntro';
+import Page_Pricing from '../pages/Page_Pricing';
 
 export const slideConfig = [
   // ——— 封面 & 目录 ———
   {
     type: 'cover',
     title: '封面',
-    backgroundImage: '/proposal-cover/proposal-cover-new.png',
+    backgroundImage: '/proposal-cover/proposal-cover-company.png',
     brand: 'GEO索引未来',
-    subtitle: '创维电视\nGEO规划方案',
+    subtitle: 'GEO索引未来\n公司介绍',
     date: 'July 2026',
   },
 
   {
     type: 'toc',
-    title: '方案目录',
+    title: '公司介绍',
     backgroundImage: '',
     menuText: 'MENU',
     brandLabel: 'GEOINDEXFUTURE // 2026',
@@ -213,9 +197,90 @@ export const slideConfig = [
   },
 
   // ══════════════════════════════════════════════════════════
-  // ——— 一、消费者视角的AI brand定位 ———
+  // ——— 公司介绍（前半，group: company）———
   // ══════════════════════════════════════════════════════════
-  { type: 'chapter', title: '消费者视角的AI品牌定位', subtitle: 'AI BRAND POSITIONING', backgroundImage: '' },
+
+  // 01 公司简介
+  { type: 'chapter', title: '公司简介', subtitle: 'COMPANY PROFILE', group: 'company', backgroundImage: '' },
+  { type: 'section', title: '公司简介' },
+  { type: 'page', title: '「GEO 索引未来」整体介绍', component: Page_CompanyIntro, hideHeader: true },
+
+  // 02 服务案例
+  { type: 'chapter', title: '服务案例', subtitle: 'CLIENTS & CASES', group: 'company', backgroundImage: '' },
+  { type: 'section', title: '服务客户' },
+  { type: 'page', title: '服务客户', component: Page_ServiceClients, hideHeader: true },
+  { type: 'section', title: '服务案例' },
+  { type: 'page', title: '服务案例', component: Page_CaseStudy_Double_Combined, hideHeader: true },
+  { type: 'page', title: '服务案例', component: Page_CaseStudy_Double_Combined_2, hideHeader: true },
+  { type: 'page', title: '服务案例', component: Page_CaseStudy_Double_Combined_3, hideHeader: true },
+
+  // 03 团队背书
+  { type: 'chapter', title: '团队背书', subtitle: 'ENDORSEMENT', group: 'company', backgroundImage: '' },
+  { type: 'section', title: '团队背书' },
+  { type: 'page', title: '团队背书', component: Page_TeamEndorsement, hideHeader: true },
+
+  // 04 团队介绍
+  { type: 'chapter', title: '团队介绍', subtitle: 'TEAM', group: 'company', backgroundImage: '' },
+  { type: 'section', title: '组织架构' },
+  { type: 'page', title: '团队组织架构', component: Page_CompanyArchitecture, hideHeader: true },
+  { type: 'section', title: '核心成员' },
+  { type: 'page', title: '核心成员', component: Page_TeamIntro, hideHeader: true },
+
+  // 05 服务介绍
+  { type: 'chapter', title: '服务介绍', subtitle: 'SERVICE INTRO', group: 'company', backgroundImage: '' },
+  { type: 'section', title: '服务内容' },
+  { type: 'page', title: '服务内容', component: Page_ServiceIntro, hideHeader: true },
+  { type: 'section', title: '报价' },
+  { type: 'page', title: '报价', component: Page_Pricing, hideHeader: true },
+
+  // 06 核心能力 / 自研系统
+  { type: 'chapter', title: '核心能力', subtitle: 'CORE CAPABILITIES', group: 'company', backgroundImage: '' },
+  { type: 'section', title: '核心能力' },
+  { type: 'page', title: '核心能力', component: Page_CoreCapabilities, hideHeader: true },
+  { type: 'section', title: 'GEO ONE数据监测系统' },
+  { type: 'page', title: 'GEO ONE 数据监测系统介绍', component: Page_GeoMonitorIntro, hideHeader: true },
+  { type: 'page', title: 'GEO ONE数据系统功能介绍', component: Page_GeoMonitorModules, hideHeader: true },
+  { type: 'page', title: 'Geo One数据系统演示', component: Page_GeoOneDemo, hideHeader: true },
+  { type: 'page', title: 'GEO ONE 数据监测系统', component: Page_GeoMonitor, hideHeader: true },
+  { type: 'page', title: 'GEO ONE数据系统后台运行录屏演示', component: Page_GeoMonitorDemo, hideHeader: true },
+
+  { type: 'section', title: '量化竞争模型' },
+  { type: 'page', title: '量化竞争模型(Alpha模型)', component: Page_QuantitativeModel, hideHeader: true },
+  { type: 'page', title: '为什么不能只看监测数据', component: Page_QuantitativeModel_Why, hideHeader: true },
+  { type: 'page', title: '同样的钱，第3到第1', component: Page_QuantitativeModel_Goal, hideHeader: true },
+  { type: 'page', title: '1.0到2.0与成本壁垒', component: Page_QuantitativeModel_Roadmap, hideHeader: true },
+  { type: 'page', title: '排他服务原则', component: Page_QuantitativeModel_Exclusive, hideHeader: true },
+  { type: 'page', title: 'Alpha模型运作逻辑', component: Page_QuantitativeModelArchitecture, hideHeader: true },
+  { type: 'page', title: 'Alpha模型运作逻辑 1', component: Page_QuantitativeModel_Pic1, hideHeader: true },
+  { type: 'page', title: 'Alpha模型运作逻辑 2', component: Page_QuantitativeModel_Pic2, hideHeader: true },
+  { type: 'page', title: 'Alpha模型运作逻辑 3', component: Page_QuantitativeModel_Pic3, hideHeader: true },
+  { type: 'page', title: 'Alpha模型运作逻辑 4', component: Page_QuantitativeModel_Pic4, hideHeader: true },
+  { type: 'page', title: 'Alpha模型运作逻辑 5', component: Page_QuantitativeModel_Pic5, hideHeader: true },
+  { type: 'page', title: 'Alpha模型运作逻辑 6', component: Page_QuantitativeModel_Pic6, hideHeader: true },
+  { type: 'page', title: 'Alpha模型运作逻辑 7', component: Page_QuantitativeModel_Pic7, hideHeader: true },
+
+  { type: 'section', title: '内容撰写Agent' },
+  { type: 'page', title: '内容撰写Agent介绍', component: Page_ContentAgentIntro, hideHeader: true },
+  { type: 'page', title: '内容撰写Agent', component: Page_ContentAgent, hideHeader: true },
+  { type: 'page', title: '内容撰写Agent功能介绍', component: Page_ContentAgentModules, hideHeader: true },
+  { type: 'page', title: '内容撰写Agent演示', component: Page_ContentAgentDemo, hideHeader: true },
+
+  { type: 'section', title: '用户评论分析系统' },
+  { type: 'page', title: '用户评论分析系统', component: Page_UserCommentAnalysis, hideHeader: true },
+  { type: 'page', title: '用户评论分析系统架构', component: Page_UserCommentArchitecture, hideHeader: true },
+  { type: 'page', title: '用户真评系统演示', component: Page_UserCommentDemo, hideHeader: true },
+
+  // 07 服务流程（章节封面 / 分隔页；其内部 6 章见下方 group: service）
+  { type: 'chapter', title: '服务流程', subtitle: 'SERVICE PROCESS', group: 'company', backgroundImage: '' },
+  { type: 'section', title: '服务流程' },
+  { type: 'page', title: '方案封面', component: 'proposal-cover', hideHeader: true },
+  { type: 'page', title: '方案目录', component: 'proposal-toc', hideHeader: true },
+
+  // ══════════════════════════════════════════════════════════
+  // ——— 服务流程内部（后半，group: service）———
+  // ——— 一、消费者视角的AI品牌定位 ———
+  // ══════════════════════════════════════════════════════════
+  { type: 'chapter', title: '消费者视角的AI品牌定位', subtitle: 'AI BRAND POSITIONING', group: 'service', backgroundImage: '' },
 
   { type: 'section', title: '为什么要做' },
   { type: 'page', title: '消费者视角下的AI品牌定位', component: Page_SkyworthConsumerPerspective, hideHeader: true },
@@ -242,7 +307,7 @@ export const slideConfig = [
   // ══════════════════════════════════════════════════════════
   // ——— 二、关键词体系策略 ———
   // ══════════════════════════════════════════════════════════
-  { type: 'chapter', title: '关键词策略', subtitle: 'KEYWORDS SYSTEM STRATEGY', backgroundImage: '' },
+  { type: 'chapter', title: '关键词策略', subtitle: 'KEYWORDS SYSTEM STRATEGY', group: 'service', backgroundImage: '' },
 
   { type: 'section', title: '关键词怎么分类' },
   { type: 'page', title: '监测词与优化词', component: Page_SkyworthKeywordWhySplit_A, hideHeader: true },
@@ -256,12 +321,7 @@ export const slideConfig = [
     component: comp,
     hideHeader: true,
   })),
-  ...MON_KEYWORD_PAGES.map((comp, i) => ({
-    type: 'page',
-    title: `监测词词条清单 (${i + 1}/${MON_KEYWORD_PAGES.length})`,
-    component: comp,
-    hideHeader: true,
-  })),
+
 
   { type: 'section', title: '这些词是怎么选出来的' },
   { type: 'page', title: '市场上其他做法', component: Page_GEOWordSelectionOther, hideHeader: true },
@@ -274,7 +334,7 @@ export const slideConfig = [
   // ══════════════════════════════════════════════════════════
   // ——— 三、现状诊断报告 ———
   // ══════════════════════════════════════════════════════════
-  { type: 'chapter', title: '现状诊断报告', subtitle: 'DIAGNOSTIC REPORT', backgroundImage: '' },
+  { type: 'chapter', title: '现状诊断报告', subtitle: 'DIAGNOSTIC REPORT', group: 'service', backgroundImage: '' },
 
   { type: 'section', title: '数据总览' },
   { type: 'page', title: '核心数据总览', component: Page_SkyworthReport_CoreDataSelf, hideHeader: true },
@@ -290,7 +350,7 @@ export const slideConfig = [
   // ══════════════════════════════════════════════════════════
   // ——— 四、核心优化策略 ———
   // ══════════════════════════════════════════════════════════
-  { type: 'chapter', title: '核心策略及KPI设定', subtitle: 'CORE OPTIMIZATION STRATEGY', backgroundImage: '' },
+  { type: 'chapter', title: '核心策略及KPI设定', subtitle: 'CORE OPTIMIZATION STRATEGY', group: 'service', backgroundImage: '' },
 
   { type: 'section', title: '核心优化策略' },
   { type: 'page', title: '核心优化策略', component: Page_SkyworthKeywordStrategy, hideHeader: true },
@@ -304,7 +364,7 @@ export const slideConfig = [
   // ══════════════════════════════════════════════════════════
   // ——— 五、内容策略 ———
   // ══════════════════════════════════════════════════════════
-  { type: 'chapter', title: '内容策略', subtitle: 'CONTENT STRATEGY', backgroundImage: '' },
+  { type: 'chapter', title: '内容策略', subtitle: 'CONTENT STRATEGY', group: 'service', backgroundImage: '' },
 
   { type: 'section', title: '我们到底用AI还是用人写内容' },
   { type: 'page', title: '我们到底用AI还是用人工写内容', variants: [Page_SkyworthContentDetailsAI, Page_HumanAiRatioApproach], hideHeader: true },
@@ -329,7 +389,7 @@ export const slideConfig = [
   // ══════════════════════════════════════════════════════════
   // ——— 六、投放策略 ———
   // ══════════════════════════════════════════════════════════
-  { type: 'chapter', title: '投放策略', subtitle: 'DELIVERY STRATEGY', backgroundImage: '' },
+  { type: 'chapter', title: '投放策略', subtitle: 'DELIVERY STRATEGY', group: 'service', backgroundImage: '' },
 
   { type: 'section', title: '投放原则' },
   { type: 'page', title: '长期投放', component: Page_DeliveryLongTerm, hideHeader: true },
@@ -343,74 +403,10 @@ export const slideConfig = [
   { type: 'section', title: '新兴媒体尝试' },
   { type: 'page', title: '新兴媒体尝试', component: Page_EmergingMediaAttempts, hideHeader: true },
 
-  // ══════════════════════════════════════════════════════════
-  // ——— 七、关于我们 ———
-  // ══════════════════════════════════════════════════════════
-  { type: 'chapter', title: '关于我们', subtitle: 'ABOUT US', backgroundImage: '' },
-
-  { type: 'section', title: '公司介绍' },
-  { type: 'page', title: '「GEO 索引未来」整体介绍', component: Page_CompanyIntro, hideHeader: true },
-  { type: 'page', title: '服务客户', component: Page_ServiceClients, hideHeader: true },
-  { type: 'page', title: '服务案例', component: Page_CaseStudy_Double_Combined, hideHeader: true },
-  { type: 'page', title: '服务案例', component: Page_CaseStudy_Double_Combined_2, hideHeader: true },
-  { type: 'page', title: '服务案例', component: Page_CaseStudy_Double_Combined_3, hideHeader: true },
-  // { type: 'page', title: '服务案例 · 慕思 GEO 阶段性报告', variants: [Page_CaseStudy_Musi_A, Page_CaseStudy_Musi_B, Page_CaseStudy_Musi_C], hideHeader: true },
-  // { type: 'page', title: '服务案例 · 菜鸟 GEO 阶段性报告', variants: [Page_CaseStudy_Cainiao_A, Page_CaseStudy_Cainiao_B, Page_CaseStudy_Cainiao_C], hideHeader: true },
-  // { type: 'page', title: '服务案例 · 古井贡酒 GEO 阶段性报告', variants: [Page_CaseStudy_Gujing_A, Page_CaseStudy_Gujing_B, Page_CaseStudy_Gujing_C], hideHeader: true },
-  { type: 'page', title: '团队背书', component: Page_TeamEndorsement, hideHeader: true },
-  { type: 'page', title: '团队组织架构', component: Page_CompanyArchitecture, hideHeader: true },
-  { type: 'page', title: '核心成员', component: Page_TeamIntro, hideHeader: true },
-
-  { type: 'section', title: '核心能力' },
-  { type: 'page', title: '核心能力', component: Page_CoreCapabilities, hideHeader: true },
-  { type: 'page', title: 'GEO ONE 数据监测系统介绍', component: Page_GeoMonitorIntro, hideHeader: true },
-  // { type: 'page', title: 'GEO ONE 系统架构', component: Page_GeoMonitorArchitecture, hideHeader: true },
-  { type: 'page', title: 'GEO ONE数据系统功能介绍', component: Page_GeoMonitorModules, hideHeader: true },
-  { type: 'page', title: 'Geo One数据系统演示', component: Page_GeoOneDemo, hideHeader: true },
-  { type: 'page', title: 'GEO ONE 数据监测系统', component: Page_GeoMonitor, hideHeader: true },
-  { type: 'page', title: 'GEO ONE数据系统后台运行录屏演示', component: Page_GeoMonitorDemo, hideHeader: true },
-  { type: 'page', title: 'GEO ONE 数据监测系统 1', component: Page_GeoMonitor_Pic1, hideHeader: true },
-  { type: 'page', title: 'GEO ONE 数据监测系统 2', component: Page_GeoMonitor_Pic2, hideHeader: true },
-  { type: 'page', title: 'GEO ONE 数据监测系统 3', component: Page_GeoMonitor_Pic3, hideHeader: true },
-  { type: 'page', title: 'GEO ONE 数据监测系统 4', component: Page_GeoMonitor_Pic4, hideHeader: true },
-  { type: 'page', title: 'GEO ONE 数据监测系统 5', component: Page_GeoMonitor_Pic5, hideHeader: true },
-  { type: 'page', title: 'GEO ONE 数据监测系统 6', component: Page_GeoMonitor_Pic6, hideHeader: true },
-  { type: 'page', title: 'GEO ONE 数据监测系统 7', component: Page_GeoMonitor_Pic7, hideHeader: true },
-
-  { type: 'page', title: 'GEO量化竞争模型（Alpha模型）', component: Page_QuantitativeModel, hideHeader: true },
-  { type: 'page', title: 'Alpha 模型运作逻辑', component: Page_QuantitativeModelArchitecture, hideHeader: true },
-  { type: 'page', title: 'Alpha 模型运作逻辑 1', component: Page_QuantitativeModel_Pic1, hideHeader: true },
-  { type: 'page', title: 'Alpha 模型运作逻辑 2', component: Page_QuantitativeModel_Pic2, hideHeader: true },
-  { type: 'page', title: 'Alpha 模型运作逻辑 3', component: Page_QuantitativeModel_Pic3, hideHeader: true },
-  { type: 'page', title: 'Alpha 模型运作逻辑 4', component: Page_QuantitativeModel_Pic4, hideHeader: true },
-  { type: 'page', title: 'Alpha 模型运作逻辑 5', component: Page_QuantitativeModel_Pic5, hideHeader: true },
-  { type: 'page', title: 'Alpha 模型运作逻辑 6', component: Page_QuantitativeModel_Pic6, hideHeader: true },
-  { type: 'page', title: 'Alpha 模型运作逻辑 7', component: Page_QuantitativeModel_Pic7, hideHeader: true },
-
-  { type: 'page', title: '内容撰写Agent介绍', component: Page_ContentAgentIntro, hideHeader: true },
-  { type: 'page', title: '内容撰写Agent', component: Page_ContentAgent, hideHeader: true },
-  { type: 'page', title: '内容撰写Agent功能介绍', component: Page_ContentAgentModules, hideHeader: true },
-  { type: 'page', title: '内容撰写Agent演示', component: Page_ContentAgentDemo, hideHeader: true },
-  { type: 'page', title: '内容撰写Agent 1', component: Page_ContentAgent_Pic1, hideHeader: true },
-  { type: 'page', title: '内容撰写Agent 2', component: Page_ContentAgent_Pic2, hideHeader: true },
-  { type: 'page', title: '内容撰写Agent 3', component: Page_ContentAgent_Pic3, hideHeader: true },
-  { type: 'page', title: '内容撰写Agent 4', component: Page_ContentAgent_Pic4, hideHeader: true },
-  { type: 'page', title: '内容撰写Agent 5', component: Page_ContentAgent_Pic5, hideHeader: true },
-  { type: 'page', title: '内容撰写Agent 6', component: Page_ContentAgent_Pic6, hideHeader: true },
-
-  { type: 'page', title: '用户评论分析系统', component: Page_UserCommentAnalysis, hideHeader: true },
-  { type: 'page', title: '用户评论分析系统架构', component: Page_UserCommentArchitecture, hideHeader: true },
-  { type: 'page', title: '用户真评系统演示', component: Page_UserCommentDemo, hideHeader: true },
-  { type: 'page', title: '真评系统 · 数据总览', component: Page_UserComment_Overview, hideHeader: true },
-  { type: 'page', title: '真评系统 · 商品横向对比', component: Page_UserComment_Compare, hideHeader: true },
-  { type: 'page', title: '真评系统 · 好评差评分布', component: Page_UserComment_Sentiment, hideHeader: true },
-  { type: 'page', title: '真评系统 · 用户之声VOC', component: Page_UserComment_Voices, hideHeader: true },
-  { type: 'page', title: '真评系统 · 卖点维度', component: Page_UserComment_Dimensions, hideHeader: true },
-  { type: 'page', title: '真评系统 · 关键词云', component: Page_UserComment_WordCloud, hideHeader: true },
-  { type: 'page', title: '真评系统 · 时间趋势', component: Page_UserComment_Trend, hideHeader: true },
-  { type: 'page', title: '真评系统 · 刷评识别', component: Page_UserComment_Fake, hideHeader: true },
+  { type: 'section', title: '优化成效' },
   { type: 'page', title: '用行动说话', component: Page_SkyworthSpeakWithActions, hideHeader: true },
   { type: 'page', title: '用行动说话 2', component: Page_SkyworthSpeakWithActions_2, hideHeader: true },
   { type: 'page', title: '用行动说话 3', component: Page_SkyworthSpeakWithActions_2b, hideHeader: true },
+
   { type: 'page', title: 'Thank You', component: Page_SkyworthThankYou, hideHeader: true },
 ];

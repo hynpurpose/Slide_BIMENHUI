@@ -4,7 +4,7 @@ export default function CoverSlide({ bgImage, brand, subtitle, date }) {
     const subtitleLines = subtitle ? subtitle.split('\n') : [];
 
     return (
-        <div className="w-full h-full flex flex-col relative overflow-hidden bg-black">
+        <div className="w-full h-full flex flex-col relative overflow-hidden" style={{ backgroundColor: '#04020D' }}>
             {/* Background image */}
             {bgImage && (
                 <div
