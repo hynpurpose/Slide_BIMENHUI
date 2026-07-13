@@ -9,7 +9,8 @@ export default function Page_ServiceClients() {
         { src: '/images/client-home-mus.png', label: '慕思' },
         { src: '/images/client-home-fotile.png', label: '方太厨具' },
         { src: '/images/client-home-daikin.png', label: '大金空调' },
-        { src: '/images/client-home-macio.png', label: '玛格全屋定制' }
+        { src: '/images/client-home-macio.png', label: '玛格全屋定制' },
+        { src: '/brand-logos/skyworth.png', label: '创维' }
       ]
     },
     {
@@ -229,11 +230,11 @@ export default function Page_ServiceClients() {
           </div>
 
           {/* Image Area */}
-          <div className="flex-1 overflow-hidden flex items-center justify-center">
+          <div className="flex-1 overflow-hidden flex items-center justify-center bg-black">
             <img
               src="/images/service_clients.png"
               alt="Service Clients"
-              className="w-full h-full object-cover"
+              className="w-full h-full object-contain"
               onError={(e) => {
                 e.target.style.display = 'none';
               }}
