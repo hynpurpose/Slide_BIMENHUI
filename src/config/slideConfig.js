@@ -28,6 +28,10 @@ import Page_DeliveryLongTerm from '../pages/Page_DeliveryLongTerm';
 import Page_DeliveryHighWeight from '../pages/Page_DeliveryHighWeight';
 import Page_PotentialVerticalCommunity from '../pages/Page_PotentialVerticalCommunity';
 import Page_EmergingMediaAttempts from '../pages/Page_EmergingMediaAttempts';
+import Page_SuningRhythmAndFramework from '../pages/Page_SuningRhythmAndFramework';
+import Page_SuningDailyStrategy from '../pages/Page_SuningDailyStrategy';
+import Page_SuningCampaignStrategy from '../pages/Page_SuningCampaignStrategy';
+import Page_SuningNodeSchedule from '../pages/Page_SuningNodeSchedule';
 import Page_CompanyIntro from '../pages/Page_CompanyIntro';
 import Page_ServiceClients from '../pages/Page_ServiceClients';
 import Page_CaseStudy_Double_Combined from '../pages/Page_CaseStudy_Double_Combined';
@@ -139,6 +143,10 @@ export const slideConfig = [
   { type: 'page', title: '精准高权重账号', component: Page_DeliveryHighWeight, hideHeader: true },
   { type: 'page', title: '有潜力的垂直社区', component: Page_PotentialVerticalCommunity, hideHeader: true },
   { type: 'page', title: '新兴媒体尝试', component: Page_EmergingMediaAttempts, hideHeader: true },
+  { type: 'page', title: '投放节奏与原则', component: Page_SuningRhythmAndFramework, hideHeader: true },
+  { type: 'page', title: '日常投放策略', component: Page_SuningDailyStrategy, hideHeader: true },
+  { type: 'page', title: '大促投放策略', component: Page_SuningCampaignStrategy, hideHeader: true },
+  { type: 'page', title: '五大营销节点', component: Page_SuningNodeSchedule, hideHeader: true },
 
   // ══════════════════════════════════════════════════════════
   // 七、关于我们
