@@ -1,8 +1,10 @@
 import React from 'react';
 import { parsedConfig } from '../config/parseConfig';
 
-export default function TOCSlide({ bgImage, title, menuText, brandLabel, serviceGuide }) {
-  const { chapters } = parsedConfig;
+export default function TOCSlide({ bgImage, title, menuText, brandLabel, serviceGuide, group }) {
+  const all = parsedConfig.chapters;
+  const filteredChapters = group ? all.filter((c) => c.group === group) : all.filter((c) => c.group === 'company');
+  const chapters = filteredChapters.length ? filteredChapters : all;
   const debug = false;
   const dbg = debug ? 'bg-red-500/40' : '';
 
@@ -57,7 +59,7 @@ export default function TOCSlide({ bgImage, title, menuText, brandLabel, service
                 width: isLargeList ? '100px' : '130px'
               }}
             >
-              {String(i + 1).padStart(2, '0')}.
+              {String(chapter.navNumber ?? (i + 1)).padStart(2, '0')}.
             </span>
             <span
               className="text-white"

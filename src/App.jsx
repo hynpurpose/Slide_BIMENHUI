@@ -38,26 +38,50 @@ flatSlides.forEach((slide) => {
           coverSubtitle={slide.coverSubtitle}
           coverLabel={slide.coverLabel}
           brandLabel={slide.brandLabel || parsedConfig.toc?.brandLabel}
-          chapterIndex={slide.chapterIndex}
-          chapters={parsedConfig.chapters}
+          navNumber={slide.navNumber}
+          groupChapters={parsedConfig.chapters.filter(
+            (c) => (c.group || 'default') === (slide.group || 'default')
+          )}
         />
       );
       break;
     case 'content':
+      let contentComponent = slide.component;
+      if (contentComponent === 'proposal-cover') {
+        contentComponent = () => (
+          <CoverSlide
+            bgImage="/proposal-cover/proposal-cover-new.png"
+            brand="GEO索引未来"
+            subtitle={"创维电视\nGEO优化方案"}
+            date="July 2026"
+            layout="fullscreen"
+          />
+        );
+      } else if (contentComponent === 'proposal-toc') {
+        contentComponent = () => (
+          <TOCSlide
+            title="目录"
+            menuText="MENU"
+            brandLabel="GEOINDEXFUTURE // 2026"
+            serviceGuide="GEO SERVICE GUIDE"
+            group="service"
+          />
+        );
+      }
+
       component = (
         <ChapterPage
           key={slide.id}
           chapterIndex={slide.chapterIndex}
           sectionIndex={slide.sectionIndex}
           pageIndex={slide.pageIndex}
-          component={slide.component}
+          component={contentComponent}
           title={slide.name}
           hideHeader={slide.hideHeader}
         />
       );
       break;
   }
-
   let variants = null;
   if (slide.type === 'content' && slide.variants) {
     variants = slide.variants.map((Comp, i) => (
@@ -682,9 +706,8 @@ export default function App() {
 
       {/* TOC Sidebar (Keynote-style navigator, side-by-side) */}
       <aside
-        className={`h-full bg-zinc-950 border-r border-zinc-800/50 flex-shrink-0 overflow-hidden transition-[width] duration-300 ease-out ${
-          isMenuOpen && !isFullscreen ? 'w-64 sm:w-80' : 'w-0'
-        }`}
+        className={`h-full bg-zinc-950 border-r border-zinc-800/50 flex-shrink-0 overflow-hidden transition-[width] duration-300 ease-out ${isMenuOpen && !isFullscreen ? 'w-64 sm:w-80' : 'w-0'
+          }`}
       >
         <div className="w-64 sm:w-80 h-full p-8 flex flex-col">
           <div className="flex justify-between items-center mb-12">
@@ -726,15 +749,13 @@ export default function App() {
                           <div
                             ref={provided.innerRef}
                             {...provided.draggableProps}
-                            className={`flex items-center rounded-xl transition-all duration-200 ${
-                              block.level > 0 ? 'ml-6' : ''
-                            } ${
-                              snapshot.isDragging
+                            className={`flex items-center rounded-xl transition-all duration-200 ${block.level > 0 ? 'ml-6' : ''
+                              } ${snapshot.isDragging
                                 ? 'bg-zinc-800 shadow-xl opacity-90 z-50 scale-[1.02]'
                                 : isActive
                                   ? 'bg-zinc-800 text-white font-medium'
                                   : 'text-zinc-400 hover:bg-zinc-900/80 hover:text-zinc-200 cursor-pointer'
-                            }`}
+                              }`}
                             onClick={() => jumpToSlide(block.index)}
                             onMouseEnter={(e) => {
                               if (snapshot.isDragging) return;
@@ -791,9 +812,8 @@ export default function App() {
                                   strokeWidth="2.5"
                                   strokeLinecap="round"
                                   strokeLinejoin="round"
-                                  className={`transition-transform duration-200 ${
-                                    block.collapsed ? '' : 'rotate-90'
-                                  }`}
+                                  className={`transition-transform duration-200 ${block.collapsed ? '' : 'rotate-90'
+                                    }`}
                                 >
                                   <polyline points="9 18 15 12 9 6" />
                                 </svg>
@@ -836,13 +856,12 @@ export default function App() {
                 <button
                   onClick={saveOrder}
                   disabled={isSaving}
-                  className={`w-full py-3 rounded-xl font-medium text-sm flex items-center justify-center gap-2 transition-all duration-300 shadow-lg ${
-                    saveStatus === 'success'
+                  className={`w-full py-3 rounded-xl font-medium text-sm flex items-center justify-center gap-2 transition-all duration-300 shadow-lg ${saveStatus === 'success'
                       ? 'bg-emerald-500/20 text-emerald-400 border border-emerald-500/50'
                       : saveStatus === 'error'
                         ? 'bg-red-500/20 text-red-400 border border-red-500/50'
                         : 'bg-blue-600 hover:bg-blue-500 text-white shadow-blue-900/20'
-                  }`}
+                    }`}
                 >
                   {isSaving ? (
                     <span className="animate-pulse">保存中...</span>
@@ -929,7 +948,7 @@ export default function App() {
                 e.stopPropagation();
                 setVariantIndex(
                   (safeVariantIndex - 1 + currentVariants.length) %
-                    currentVariants.length
+                  currentVariants.length
                 );
               }}
               className="absolute left-4 sm:left-8 top-1/2 -translate-y-1/2 z-50 p-3 rounded-full bg-zinc-900/60 hover:bg-zinc-800 text-white transition-colors backdrop-blur-md export-hide"
@@ -970,11 +989,10 @@ export default function App() {
                       e.stopPropagation();
                       setVariantIndex(i);
                     }}
-                    className={`w-2 h-2 rounded-full transition-colors ${
-                      i === safeVariantIndex
+                    className={`w-2 h-2 rounded-full transition-colors ${i === safeVariantIndex
                         ? 'bg-white'
                         : 'bg-zinc-600 hover:bg-zinc-400'
-                    }`}
+                      }`}
                     title={`版本 ${i + 1}`}
                   />
                 ))}
@@ -1011,7 +1029,7 @@ export default function App() {
           onClick={(e) => {
             e.stopPropagation();
             if (!document.fullscreenElement) {
-              document.documentElement.requestFullscreen().catch(() => {});
+              document.documentElement.requestFullscreen().catch(() => { });
             } else {
               if (document.exitFullscreen) document.exitFullscreen();
             }
@@ -1041,11 +1059,10 @@ export default function App() {
               e.stopPropagation();
               setEditMode((v) => !v);
             }}
-            className={`absolute bottom-4 right-16 sm:right-20 z-50 flex items-center gap-2 px-4 py-2.5 rounded-full transition-colors backdrop-blur-md text-sm font-medium ${
-              editMode
+            className={`absolute bottom-4 right-16 sm:right-20 z-50 flex items-center gap-2 px-4 py-2.5 rounded-full transition-colors backdrop-blur-md text-sm font-medium ${editMode
                 ? 'bg-blue-600 hover:bg-blue-500 text-white'
                 : 'bg-zinc-900/50 hover:bg-zinc-800 text-zinc-400 hover:text-white'
-            }`}
+              }`}
             title="单击选中文字 · 双击画面也可直接进入编辑"
           >
             <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">

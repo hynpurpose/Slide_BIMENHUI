@@ -29,6 +29,7 @@ export function parseConfig(flatConfig) {
         currentChapter = {
           title: item.title,
           subtitle: item.subtitle || '',
+          group: item.group || 'default',
           brandLabel: item.brandLabel || '',
           coverTitle: item.coverTitle || '',
           coverSubtitle: item.coverSubtitle || '',
@@ -59,6 +60,14 @@ export function parseConfig(flatConfig) {
         }
         break;
     }
+  }
+
+  // 组内序号：每个 group 内部从 1 开始独立编号（导航条 / 章节封面 / 目录都用它）
+  const groupCounters = {};
+  for (const ch of result.chapters) {
+    const g = ch.group || 'default';
+    groupCounters[g] = (groupCounters[g] || 0) + 1;
+    ch.navNumber = groupCounters[g];
   }
 
   return result;
@@ -103,6 +112,8 @@ export function generateSlides(parsed) {
       brandLabel: chapter.brandLabel,
       backgroundImage: chapter.backgroundImage,
       chapterIndex: ci,
+      group: chapter.group,
+      navNumber: chapter.navNumber,
     });
 
     chapter.sections.forEach((section, si) => {

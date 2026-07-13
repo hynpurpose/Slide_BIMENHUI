@@ -175,13 +175,14 @@ import {
 } from '../pages/Page_SkyworthSpeakWithActions_3';
 import Page_ServiceIntro from '../pages/Page_ServiceIntro';
 import Page_Pricing from '../pages/Page_Pricing';
+import Page_ServiceStandard from '../pages/Page_ServiceStandard';
 
 export const slideConfig = [
   // ——— 封面 & 目录 ———
   {
     type: 'cover',
     title: '封面',
-    backgroundImage: '/proposal-cover/proposal-cover-company.png',
+    backgroundImage: '/proposal-cover/proposal-cover-new.jpg',
     brand: 'GEO索引未来',
     subtitle: 'GEO索引未来\n公司介绍',
     date: 'July 2026',
@@ -189,7 +190,7 @@ export const slideConfig = [
 
   {
     type: 'toc',
-    title: '公司介绍',
+    title: '目录',
     backgroundImage: '',
     menuText: 'MENU',
     brandLabel: 'GEOINDEXFUTURE // 2026',
@@ -202,40 +203,34 @@ export const slideConfig = [
 
   // 01 公司简介
   { type: 'chapter', title: '公司简介', subtitle: 'COMPANY PROFILE', group: 'company', backgroundImage: '' },
-  { type: 'section', title: '公司简介' },
+  { type: 'section', title: '公司概览' },
   { type: 'page', title: '「GEO 索引未来」整体介绍', component: Page_CompanyIntro, hideHeader: true },
 
-  // 02 服务案例
-  { type: 'chapter', title: '服务案例', subtitle: 'CLIENTS & CASES', group: 'company', backgroundImage: '' },
   { type: 'section', title: '服务客户' },
   { type: 'page', title: '服务客户', component: Page_ServiceClients, hideHeader: true },
-  { type: 'section', title: '服务案例' },
+  { type: 'section', title: '案例展示' },
   { type: 'page', title: '服务案例', component: Page_CaseStudy_Double_Combined, hideHeader: true },
   { type: 'page', title: '服务案例', component: Page_CaseStudy_Double_Combined_2, hideHeader: true },
   { type: 'page', title: '服务案例', component: Page_CaseStudy_Double_Combined_3, hideHeader: true },
 
-  // 03 团队背书
-  { type: 'chapter', title: '团队背书', subtitle: 'ENDORSEMENT', group: 'company', backgroundImage: '' },
   { type: 'section', title: '团队背书' },
   { type: 'page', title: '团队背书', component: Page_TeamEndorsement, hideHeader: true },
 
-  // 04 团队介绍
-  { type: 'chapter', title: '团队介绍', subtitle: 'TEAM', group: 'company', backgroundImage: '' },
   { type: 'section', title: '组织架构' },
   { type: 'page', title: '团队组织架构', component: Page_CompanyArchitecture, hideHeader: true },
   { type: 'section', title: '核心成员' },
   { type: 'page', title: '核心成员', component: Page_TeamIntro, hideHeader: true },
 
-  // 05 服务介绍
+  // 02 服务介绍
   { type: 'chapter', title: '服务介绍', subtitle: 'SERVICE INTRO', group: 'company', backgroundImage: '' },
   { type: 'section', title: '服务内容' },
   { type: 'page', title: '服务内容', component: Page_ServiceIntro, hideHeader: true },
   { type: 'section', title: '报价' },
   { type: 'page', title: '报价', component: Page_Pricing, hideHeader: true },
 
-  // 06 核心能力 / 自研系统
+  // 03 核心能力 / 自研系统
   { type: 'chapter', title: '核心能力', subtitle: 'CORE CAPABILITIES', group: 'company', backgroundImage: '' },
-  { type: 'section', title: '核心能力' },
+  { type: 'section', title: '总览' },
   { type: 'page', title: '核心能力', component: Page_CoreCapabilities, hideHeader: true },
   { type: 'section', title: 'GEO ONE数据监测系统' },
   { type: 'page', title: 'GEO ONE 数据监测系统介绍', component: Page_GeoMonitorIntro, hideHeader: true },
@@ -247,7 +242,6 @@ export const slideConfig = [
   { type: 'section', title: '量化竞争模型' },
   { type: 'page', title: '量化竞争模型(Alpha模型)', component: Page_QuantitativeModel, hideHeader: true },
   { type: 'page', title: '为什么不能只看监测数据', component: Page_QuantitativeModel_Why, hideHeader: true },
-  { type: 'page', title: '同样的钱，第3到第1', component: Page_QuantitativeModel_Goal, hideHeader: true },
   { type: 'page', title: '1.0到2.0与成本壁垒', component: Page_QuantitativeModel_Roadmap, hideHeader: true },
   { type: 'page', title: '排他服务原则', component: Page_QuantitativeModel_Exclusive, hideHeader: true },
   { type: 'page', title: 'Alpha模型运作逻辑', component: Page_QuantitativeModelArchitecture, hideHeader: true },
@@ -270,9 +264,14 @@ export const slideConfig = [
   { type: 'page', title: '用户评论分析系统架构', component: Page_UserCommentArchitecture, hideHeader: true },
   { type: 'page', title: '用户真评系统演示', component: Page_UserCommentDemo, hideHeader: true },
 
-  // 07 服务流程（章节封面 / 分隔页；其内部 6 章见下方 group: service）
-  { type: 'chapter', title: '服务流程', subtitle: 'SERVICE PROCESS', group: 'company', backgroundImage: '' },
+  // 04 服务流程
+  { type: 'chapter', title: '服务流程', subtitle: 'SERVICE TIMELINE', group: 'company', backgroundImage: '' },
   { type: 'section', title: '服务流程' },
+  { type: 'page', title: '服务流程', component: Page_ServiceStandard, hideHeader: true },
+
+  // 05 方案详解（章节封面 / 分隔页；其内部 6 章见下方 group: service）
+  { type: 'chapter', title: '方案详解', subtitle: 'SERVICE PROCESS', group: 'company', backgroundImage: '' },
+  { type: 'section', title: '方案详解' },
   { type: 'page', title: '方案封面', component: 'proposal-cover', hideHeader: true },
   { type: 'page', title: '方案目录', component: 'proposal-toc', hideHeader: true },
 

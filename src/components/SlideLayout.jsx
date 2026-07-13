@@ -49,7 +49,7 @@ export default function SlideLayout({
               letterSpacing: '0.02em'
             }}
           >
-            {String(context.chapterIndex + 1).padStart(2, '0')} {chapter.title.replace(/\n/g, '')}
+            {String(chapter.navNumber ?? (context.chapterIndex + 1)).padStart(2, '0')} {chapter.title.replace(/\n/g, '')}
           </span>
           {sections.length > 0 && <div className="w-[2px] h-[28px] bg-white/40 rounded-full" />}
           <div className="flex items-center gap-[12px]">

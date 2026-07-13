@@ -5,10 +5,10 @@ export default function Page_ProposalChapterCover({
     title,
     subtitle,
     brandLabel,
-    chapterIndex = 0,
-    chapters = [],
+    navNumber = 1,
+    groupChapters = [],
 }) {
-    const chapterNum = String(chapterIndex + 1).padStart(2, '0');
+    const chapterNum = String(navNumber).padStart(2, '0');
 
     return (
         <div className="w-full h-full relative overflow-hidden bg-black">
@@ -58,9 +58,9 @@ export default function Page_ProposalChapterCover({
                 className="absolute flex flex-col gap-[10px]"
                 style={{ bottom: '90px', left: '96px' }}
             >
-                {chapters.map((ch, i) => {
-                    const isActive = i === chapterIndex;
-                    const num = String(i + 1).padStart(2, '0');
+                {groupChapters.map((ch, i) => {
+                    const isActive = ch.navNumber === navNumber;
+                    const num = String(ch.navNumber ?? (i + 1)).padStart(2, '0');
                     return (
                         <div
                             key={i}

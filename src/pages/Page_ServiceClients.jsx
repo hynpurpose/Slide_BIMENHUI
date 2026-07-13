@@ -25,8 +25,7 @@ export default function Page_ServiceClients() {
       logos: [
         { src: '/images/client-3c-oppo.png', label: 'OPPO' },
         { src: '/images/client-3c-edifier.png', label: '漫步者' },
-        { src: '/images/client-3c-qingxian.png', label: '清闲' },
-        { src: '/images/client-3c-maisi.png', label: '麦思智能' }
+        { src: '/images/client-3c-qingxian.png', label: '清闲' }
       ]
     },
     {
@@ -34,17 +33,14 @@ export default function Page_ServiceClients() {
       logos: [
         { src: '/images/client-health-diqiao.png', label: '迪巧' },
         { src: '/images/client-health-xingqi.png', label: '兴齐眼药' },
-        { src: '/images/client-health-ufh.png', label: '和睦家医疗' },
-        { src: '/images/client-health-jinxin.png', label: '锦欣国际' },
-        { src: '/images/client-health-crystalpharm.png', label: '晶云药物' }
+        { src: '/images/client-health-ufh.png', label: '和睦家医疗' }
       ]
     },
     {
       category: '宠物',
       logos: [
         { src: '/images/client-pet-royalcanin.png', label: '皇家宠物' },
-        { src: '/images/client-pet-simu.png', label: '思慕宠物' },
-        { src: '/images/client-pet-beixin.png', label: '贝芯宠' }
+        { src: '/images/client-pet-simu.png', label: '思慕宠物' }
       ]
     },
     {
@@ -52,14 +48,12 @@ export default function Page_ServiceClients() {
       logos: [
         { src: '/images/client-saas-cainiao.png', label: '菜鸟' },
         { src: '/images/client-saas-kingdee.png', label: '金蝶' },
-        { src: '/images/client-saas-fadada.png', label: '法大大' },
-        { src: '/images/client-saas-yunji.png', label: '云济科技' }
+        { src: '/images/client-saas-fadada.png', label: '法大大' }
       ]
     },
     {
       category: '教育/金融',
       logos: [
-        { src: '/images/client-edufin-zhibo.png', label: '智博教育' },
         { src: '/images/client-edufin-meten.png', label: '美联英语' },
         { src: '/images/client-edufin-immersivetranslate.png', label: '沉浸式翻译' },
         { src: '/images/client-edufin-pingan.png', label: '平安银行' }
@@ -69,7 +63,6 @@ export default function Page_ServiceClients() {
       category: '房地产/汽车',
       logos: [
         { src: '/images/client-estate-shenye.png', label: '深业集团' },
-        { src: '/images/client-estate-luma.png', label: '鹿马智能' },
         { src: '/images/client-estate-bmwmini.png', label: '宝马mini' }
       ]
     }
@@ -221,19 +214,19 @@ export default function Page_ServiceClients() {
               className="text-white font-bold tracking-wide font-['AlimamaShuHeiTi'] text-center"
               style={{ fontSize: '42px' }}
             >
-              两个百万客户
+              2个百万客户
             </span>
             <span className="text-white font-bold font-['MiSans'] text-[24px] leading-snug text-center">
-              据不完全统计，近半年来预算到百万的真实GEO项目不超过5个，<span className="underline decoration-white/70 decoration-2 underline-offset-4">我们拿到两个</span>。
+              据不完全统计，近半年来预算到百万的真实GEO项目不超过5个，<span className="underline decoration-white/70 decoration-2 underline-offset-4">我们拿到2个</span>。
             </span>
           </div>
 
           {/* Image Area */}
-          <div className="flex-1 overflow-hidden flex items-center justify-center">
+          <div className="flex-1 overflow-hidden flex items-center justify-center bg-black">
             <img
               src="/images/service_clients.png"
               alt="Service Clients"
-              className="w-full h-full object-cover"
+              className="w-full h-full object-contain"
               onError={(e) => {
                 e.target.style.display = 'none';
               }}
