@@ -85,7 +85,13 @@ import Page_ContentAgentDemo from '../pages/Page_ContentAgentDemo';
 import Page_UserCommentAnalysis from '../pages/Page_UserCommentAnalysis';
 import Page_GeoMonitorArchitecture from '../pages/Page_GeoMonitorArchitecture';
 import Page_QuantitativeModelArchitecture from '../pages/Page_QuantitativeModelArchitecture';
-import Page_QuantitativeModel_Why from '../pages/Page_QuantitativeModel_Why';
+import {
+  Page_QuantitativeModel_Why_A,
+  Page_QuantitativeModel_Why_B,
+  Page_QuantitativeModel_Why_C,
+  Page_QuantitativeModel_Why_D,
+  Page_QuantitativeModel_Why_E,
+} from '../pages/Page_QuantitativeModel_Why';
 import Page_QuantitativeModel_Goal from '../pages/Page_QuantitativeModel_Goal';
 import Page_QuantitativeModel_Roadmap from '../pages/Page_QuantitativeModel_Roadmap';
 import Page_QuantitativeModel_Exclusive from '../pages/Page_QuantitativeModel_Exclusive';
@@ -241,7 +247,7 @@ export const slideConfig = [
 
   { type: 'section', title: '量化竞争模型' },
   { type: 'page', title: '量化竞争模型(Alpha模型)', component: Page_QuantitativeModel, hideHeader: true },
-  { type: 'page', title: '为什么不能只看监测数据', component: Page_QuantitativeModel_Why, hideHeader: true },
+  { type: 'page', title: 'GEO量化竞争模型的目标', variants: [Page_QuantitativeModel_Why_A, Page_QuantitativeModel_Why_B, Page_QuantitativeModel_Why_C, Page_QuantitativeModel_Why_D, Page_QuantitativeModel_Why_E], hideHeader: true },
   { type: 'page', title: '1.0到2.0与成本壁垒', component: Page_QuantitativeModel_Roadmap, hideHeader: true },
   { type: 'page', title: '排他服务原则', component: Page_QuantitativeModel_Exclusive, hideHeader: true },
   { type: 'page', title: 'Alpha模型运作逻辑', component: Page_QuantitativeModelArchitecture, hideHeader: true },
