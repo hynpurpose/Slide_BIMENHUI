@@ -5,7 +5,6 @@ const FONT_IMPORT = `@import url('https://fonts.geekzu.org/css2?family=Montserra
 export default function Page_SkyworthThankYou() {
   const subtitle = "Thank You";
   const bgImage = "/proposal-cover/proposal-cover-new.png";
-  const date = "July 2026";
 
   return (
     <div className="w-full h-full flex flex-col relative overflow-hidden bg-black select-none">
@@ -46,21 +45,30 @@ export default function Page_SkyworthThankYou() {
         </h1>
       </div>
 
-      {/* Bottom-right: date */}
-      {date && (
-        <div className="absolute z-10" style={{ bottom: '29px', right: '69px' }}>
-          <span
-            className="text-white font-bold"
+      {/* Bottom Contact Info */}
+      <div className="absolute z-10" style={{ bottom: '30px', left: '40px', right: '40px' }}>
+        <div 
+          className="w-full" 
+          style={{ 
+            borderTop: '1px solid rgba(255, 255, 255, 0.4)',
+            paddingTop: '20px'
+          }}
+        >
+          <div 
+            className="grid grid-cols-3 text-white" 
             style={{ 
               fontFamily: "'Montserrat', sans-serif",
-              fontSize: '25px', 
-              letterSpacing: '0.05em' 
+              fontSize: '30px', 
+              fontWeight: '500',
+              letterSpacing: '0.02em'
             }}
           >
-            {date}
-          </span>
+            <div className="text-left">Contact: Neeson</div>
+            <div className="text-center">Email: neeson.ren@jimingtech.com.cn</div>
+            <div className="text-right">Tel: 139 0231 5880</div>
+          </div>
         </div>
-      )}
+      </div>
     </div>
   );
 }

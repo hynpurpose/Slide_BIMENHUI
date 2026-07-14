@@ -1,6 +1,6 @@
 {
   "visualEdits": {
-    "chapter-10-cover": {
+    "chapter-8-cover": {
       "0.1": {
         "dx": 2,
         "dy": 1,
@@ -11,7 +11,7 @@
         "text": "核心策略\n及KPI设定"
       }
     },
-    "chapter-7-0-0": {
+    "chapter-5-0-0": {
       "0.1.0.2.0": {
         "dx": 0,
         "dy": 0,
@@ -39,7 +39,7 @@
         "html": "如果我们反复讲的品牌<span style=\"font-size: 55px;\">卖点</span>，和消费者<span style=\"font-size: 56px;\"><span style=\"font-size: 55px;\">真实感受</span></span>是<span style=\"font-size: 55px;\">冲突</span>的<br>那内容发得<span style=\"font-size: 55px;\">越多</span>，反而越容易加深AI对品牌的<span style=\"font-size: 55px;\">误解</span>"
       }
     },
-    "chapter-7-0-1": {
+    "chapter-5-0-1": {
       "0.1.0.2.0": {
         "dx": 0,
         "dy": 0,
@@ -54,7 +54,7 @@
         "html": "没重新做AI品牌定位的“坑”"
       }
     },
-    "chapter-7-0-2": {
+    "chapter-5-0-2": {
       "0.1.0.2.0": {
         "dx": 0,
         "dy": 0,
@@ -69,7 +69,7 @@
         "html": "一个创维壁纸电视 AI品牌定位的例子"
       }
     },
-    "chapter-7-1-0": {
+    "chapter-5-1-0": {
       "0.1.0.2.0": {
         "dx": 0,
         "dy": 0,
@@ -97,7 +97,7 @@
         "html": "评论采集和分析Agent「大众真评」：它会从京东、淘宝、小红书、B 站等平台，分析大量用户评论和内容反馈，提炼出消费者真正关心的购买理由、核心顾虑和真实吐槽"
       }
     },
-    "chapter-7-2-0": {
+    "chapter-5-2-0": {
       "0.1.0.2.0": {
         "dx": 0,
         "dy": 0,
@@ -138,7 +138,7 @@
         "html": "<div class=\"absolute top-[5px] left-0 w-full text-[22px] text-zinc-400 font-medium font-['MiSans'] leading-relaxed select-none\">厘清壁纸电视品类优势与品牌定位矩阵。</div><div class=\"absolute w-[1500px] flex items-center justify-between select-none animate-fadeIn overflow-visible\" style=\"top: 120px; left: 170px; height: 580px;\"><div class=\"relative w-[750px] h-[580px] bg-gray-50 rounded-l-3xl shadow-[0_20px_50px_rgba(0,0,0,0.65)] p-16 pr-20 flex flex-col justify-between border-r border-zinc-200 text-black z-10 pl-10\"><div class=\"absolute right-0 top-0 bottom-0 w-[40px] bg-gradient-to-l from-black/12 to-transparent pointer-events-none\"></div><div class=\"text-[18px] text-zinc-400 font-bold tracking-wider font-sans\">5 July 2026</div><div class=\"my-auto space-y-4\"><h2 class=\"text-[76px] font-black text-zinc-950 font-sans leading-none tracking-wide\">创维电视</h2><h2 class=\"text-[58px] font-black text-zinc-800 font-sans leading-snug\" style=\"\"><span style=\"font-weight: 400;\">AI</span>品牌定位报告</h2></div><div class=\"text-[18px] text-zinc-400 font-bold font-sans\">GEO 索引未来项目组</div></div><div class=\"absolute w-[18px] h-[48px] rounded-full border-[3px] border-zinc-300 bg-gradient-to-r from-zinc-400 via-zinc-150 to-zinc-400 shadow-md z-30\" style=\"left: 741px; top: 60px;\"></div><div class=\"absolute w-[18px] h-[48px] rounded-full border-[3px] border-zinc-300 bg-gradient-to-r from-zinc-400 via-zinc-150 to-zinc-400 shadow-md z-30\" style=\"left: 741px; top: 160px;\"></div><div class=\"absolute w-[18px] h-[48px] rounded-full border-[3px] border-zinc-300 bg-gradient-to-r from-zinc-400 via-zinc-150 to-zinc-400 shadow-md z-30\" style=\"left: 741px; top: 260px;\"></div><div class=\"absolute w-[18px] h-[48px] rounded-full border-[3px] border-zinc-300 bg-gradient-to-r from-zinc-400 via-zinc-150 to-zinc-400 shadow-md z-30\" style=\"left: 741px; top: 360px;\"></div><div class=\"absolute w-[18px] h-[48px] rounded-full border-[3px] border-zinc-300 bg-gradient-to-r from-zinc-400 via-zinc-150 to-zinc-400 shadow-md z-30\" style=\"left: 741px; top: 460px;\"></div><div class=\"relative w-[750px] h-[580px] bg-white rounded-r-3xl shadow-[0_20px_50px_rgba(0,0,0,0.65)] p-16 pl-20 flex flex-col justify-between\"><div class=\"absolute left-0 top-0 bottom-0 w-[40px] bg-gradient-to-r from-black/12 to-transparent pointer-events-none\"></div><div class=\"flex-grow flex flex-col h-full py-4 justify-between\"><div class=\"flex-1 flex items-start border-b border-zinc-150 py-4 pr-4 gap-5\"><span class=\"font-['Montserrat'] text-[46px] font-black text-blue-600 shrink-0 leading-none\">1.</span><div class=\"flex flex-col gap-3 min-w-0 pt-1\"><h3 class=\"text-[34px] font-black text-zinc-950 font-sans leading-snug\">壁纸电视 VS 常规电视</h3><p class=\"text-[22px] text-zinc-400 font-normal font-['MiSans'] leading-relaxed\">消费者为什么买壁纸电视，而不是传统电视？</p></div></div><div class=\"flex-1 flex items-start border-b border-zinc-150 py-4 pr-4 gap-5\"><span class=\"font-['Montserrat'] text-[46px] font-black text-blue-600 shrink-0 leading-none\">2.</span><div class=\"flex flex-col gap-3 min-w-0 pt-1\"><h3 class=\"text-[34px] font-black text-zinc-950 font-sans leading-snug\">创维壁纸电视 VS 竞品壁纸电视</h3><p class=\"text-[22px] text-zinc-400 font-normal font-['MiSans'] leading-relaxed\">消费者为什么买创维壁纸电视，而不是竞品壁纸电视？</p></div></div><div class=\"flex-1 flex items-start pt-6 pr-4 gap-5\"><span class=\"font-['Montserrat'] text-[46px] font-black text-blue-600 shrink-0 leading-none\">3.</span><div class=\"flex flex-col gap-3 min-w-0 pt-1\"><h3 class=\"text-[34px] font-black text-zinc-950 font-sans leading-tight\">创维五款壁纸电视的区别</h3><p class=\"text-[22px] text-zinc-400 font-normal font-['MiSans'] leading-relaxed\">消费者如果买创维壁纸电视，会选择哪一款？</p></div></div></div></div></div>"
       }
     },
-    "chapter-12-1-0": {
+    "chapter-10-1-0": {
       "0.1.0.3.1.1.1": {
         "dx": 0,
         "dy": 0,
@@ -153,7 +153,7 @@
         "html": ""
       }
     },
-    "chapter-8-0-0": {
+    "chapter-6-0-0": {
       "0.1.0.2.0": {
         "dx": 0,
         "dy": 0,
@@ -194,7 +194,7 @@
         "html": "<br>"
       }
     },
-    "chapter-8-0-1": {
+    "chapter-6-0-1": {
       "0.1.0.3.0.1.0.0.0.0": {
         "dx": 0,
         "dy": 0,
@@ -261,7 +261,7 @@
         "html": "“如7000块钱左右的壁纸电视推荐”<span style=\"color: rgb(94, 234, 212);\"> → A7H pro</span>"
       }
     },
-    "chapter-5-0-2": {
+    "chapter-2-1-1": {
       "0.1.0.2.0": {
         "dx": 0,
         "dy": 0,
@@ -276,7 +276,7 @@
         "html": "GEO ONE数据系统功能介绍"
       }
     },
-    "chapter-9-1-0": {
+    "chapter-7-1-0-0": {
       "0.1.0.3.0.1.0.1.2.2.0": {
         "dx": 0,
         "dy": 0,
@@ -317,7 +317,7 @@
         "html": "本周期共监测 338 个关键词条，在 4 个平台完成 1 天查询，合计执行查询 1,352 次， 抓取并识别引用文章 9,609 篇， 同期识别竞品品牌 43 家， 截图覆盖率达 100%。各项数据指标均在预期执行范围内，整体运行稳定。"
       }
     },
-    "chapter-9-0-1": {
+    "chapter-7-0-1": {
       "0.1.0.2.0.2.0.1.0.1.0.0.0.2": {
         "dx": 0,
         "dy": 0,
@@ -424,13 +424,13 @@
     }
   },
   "titleOverrides": {
-    "chapter-7-0-2": "一个创维壁纸电视 AI品牌定位的例子",
-    "chapter-7-0-0": "消费者视角下的AI品牌定位是什么？",
-    "chapter-7-0-1": "没重新做AI品牌定位的“坑”",
-    "chapter-7-1-0": "如何了解消费者真实感受和AI偏向",
-    "chapter-7-2-0": "创维AI品牌定位报告",
-    "chapter-8-0-0": "不同种类的词怎么分类？",
-    "chapter-8-0-1": "优化词和监测词下面再分成两类",
-    "chapter-5-0-2": "GEO ONE数据系统功能介绍"
+    "chapter-5-0-2": "一个创维壁纸电视 AI品牌定位的例子",
+    "chapter-5-0-0": "消费者视角下的AI品牌定位是什么？",
+    "chapter-5-0-1": "没重新做AI品牌定位的“坑”",
+    "chapter-5-1-0": "如何了解消费者真实感受和AI偏向",
+    "chapter-5-2-0": "创维AI品牌定位报告",
+    "chapter-6-0-0": "不同种类的词怎么分类？",
+    "chapter-6-0-1": "优化词和监测词下面再分成两类",
+    "chapter-2-1-1": "GEO ONE数据系统功能介绍"
   }
 }

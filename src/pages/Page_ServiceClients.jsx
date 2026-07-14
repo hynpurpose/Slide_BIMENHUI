@@ -6,10 +6,10 @@ export default function Page_ServiceClients() {
     {
       category: '家居家电',
       logos: [
+        { src: '/brand-logos/skyworth.png', label: '创维' },
         { src: '/images/client-home-mus.png', label: '慕思' },
         { src: '/images/client-home-fotile.png', label: '方太厨具' },
-        { src: '/images/client-home-daikin.png', label: '大金空调' },
-        { src: '/images/client-home-macio.png', label: '玛格全屋定制' }
+        { src: '/images/client-home-daikin.png', label: '大金空调' }
       ]
     },
     {

@@ -95,16 +95,30 @@ async function postProcessVideoSlides(pptxPath, adjBySlide) {
 function findChrome() {
   const candidates = [
     process.env.PUPPETEER_EXECUTABLE_PATH,
+    'C:\\Program Files\\Google\\Chrome\\Application\\chrome.exe',
+    'C:\\Program Files (x86)\\Google\\Chrome\\Application\\chrome.exe',
+    path.join(process.env.LOCALAPPDATA || '', 'Google\\Chrome\\Application\\chrome.exe'),
+    'C:\\Program Files (x86)\\Microsoft\\Edge\\Application\\msedge.exe',
+    'C:\\Program Files\\Microsoft\\Edge\\Application\\msedge.exe',
     '/Applications/Google Chrome.app/Contents/MacOS/Google Chrome',
   ];
 
   const homeCache = path.join(os.homedir(), '.cache', 'puppeteer', 'chrome');
   if (fs.existsSync(homeCache)) {
-    const versions = fs.readdirSync(homeCache).filter(d => d.startsWith('mac'));
+    const versions = fs.readdirSync(homeCache).filter((d) => d.startsWith('mac') || d.startsWith('win'));
     for (const v of versions.sort().reverse()) {
-      const bin = path.join(homeCache, v, 'chrome-mac-arm64',
-        'Google Chrome for Testing.app', 'Contents', 'MacOS', 'Google Chrome for Testing');
-      candidates.push(bin);
+      candidates.push(
+        path.join(
+          homeCache,
+          v,
+          'chrome-mac-arm64',
+          'Google Chrome for Testing.app',
+          'Contents',
+          'MacOS',
+          'Google Chrome for Testing'
+        )
+      );
+      candidates.push(path.join(homeCache, v, 'chrome-win64', 'chrome.exe'));
     }
   }
 
@@ -202,6 +216,44 @@ function findChrome() {
 
         const slide = pptx.addSlide();
         slide.addImage({ path: imgPath, x: 0, y: 0, w: '100%', h: '100%' });
+
+        // 页面里的 <a href>：用透明形状覆盖，保证 PPT 里超链接可点击
+        const linkInfos = await page.evaluate(() => {
+          const root = document.querySelector('div[style*="width: 1920px"]');
+          if (!root) return [];
+          const rootRect = root.getBoundingClientRect();
+          const links = [];
+          for (const a of root.querySelectorAll('a[href]')) {
+            const href = (a.getAttribute('href') || '').trim();
+            if (!href || href.startsWith('#') || href.startsWith('javascript:')) continue;
+            const rect = a.getBoundingClientRect();
+            if (rect.width < 2 || rect.height < 2) continue;
+            // 相对路径补成绝对 URL（导出后仍可打开）
+            let url = href;
+            try {
+              url = new URL(href, window.location.origin).href;
+            } catch (_) {}
+            links.push({
+              url,
+              x: (rect.left - rootRect.left) / rootRect.width,
+              y: (rect.top - rootRect.top) / rootRect.height,
+              w: rect.width / rootRect.width,
+              h: rect.height / rootRect.height,
+            });
+          }
+          return links;
+        });
+        for (const link of linkInfos) {
+          slide.addShape(pptx.ShapeType.rect, {
+            x: link.x * 10,
+            y: link.y * 5.625,
+            w: Math.max(link.w * 10, 0.15),
+            h: Math.max(link.h * 5.625, 0.12),
+            fill: { type: 'solid', color: 'FFFFFF', transparency: 99 },
+            line: { color: 'FFFFFF', transparency: 100 },
+            hyperlink: { url: link.url },
+          });
+        }
 
         // 页面里若有 <video>：视频叠在整页截图上方（保证放映时可点击播放），
         // 四角用「角贴片」小图盖住，圆角效果不依赖播放器对形状几何的支持（Keynote 兼容）

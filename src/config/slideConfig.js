@@ -86,11 +86,10 @@ import Page_UserCommentAnalysis from '../pages/Page_UserCommentAnalysis';
 import Page_GeoMonitorArchitecture from '../pages/Page_GeoMonitorArchitecture';
 import Page_QuantitativeModelArchitecture from '../pages/Page_QuantitativeModelArchitecture';
 import {
-  Page_QuantitativeModel_Why_A,
-  Page_QuantitativeModel_Why_B,
-  Page_QuantitativeModel_Why_C,
-  Page_QuantitativeModel_Why_D,
-  Page_QuantitativeModel_Why_E,
+  Page_QuantitativeModel_Why_V1,
+  Page_QuantitativeModel_Why_V2,
+  Page_QuantitativeModel_Why_V3,
+  Page_QuantitativeModel_Why_V4,
 } from '../pages/Page_QuantitativeModel_Why';
 import Page_QuantitativeModel_Goal from '../pages/Page_QuantitativeModel_Goal';
 import Page_QuantitativeModel_Roadmap from '../pages/Page_QuantitativeModel_Roadmap';
@@ -247,9 +246,8 @@ export const slideConfig = [
 
   { type: 'section', title: '量化竞争模型' },
   { type: 'page', title: '量化竞争模型(Alpha模型)', component: Page_QuantitativeModel, hideHeader: true },
-  { type: 'page', title: 'GEO量化竞争模型的目标', variants: [Page_QuantitativeModel_Why_A, Page_QuantitativeModel_Why_B, Page_QuantitativeModel_Why_C, Page_QuantitativeModel_Why_D, Page_QuantitativeModel_Why_E], hideHeader: true },
+  { type: 'page', title: '为什么不能只看监测数据', variants: [Page_QuantitativeModel_Why_V3, Page_QuantitativeModel_Why_V2, Page_QuantitativeModel_Why_V1, Page_QuantitativeModel_Why_V4], hideHeader: true },
   { type: 'page', title: '1.0到2.0与成本壁垒', component: Page_QuantitativeModel_Roadmap, hideHeader: true },
-  { type: 'page', title: '排他服务原则', component: Page_QuantitativeModel_Exclusive, hideHeader: true },
   { type: 'page', title: 'Alpha模型运作逻辑', component: Page_QuantitativeModelArchitecture, hideHeader: true },
   { type: 'page', title: 'Alpha模型运作逻辑 1', component: Page_QuantitativeModel_Pic1, hideHeader: true },
   { type: 'page', title: 'Alpha模型运作逻辑 2', component: Page_QuantitativeModel_Pic2, hideHeader: true },
@@ -355,7 +353,7 @@ export const slideConfig = [
   // ══════════════════════════════════════════════════════════
   // ——— 四、核心优化策略 ———
   // ══════════════════════════════════════════════════════════
-  { type: 'chapter', title: '核心策略及KPI设定', subtitle: 'CORE OPTIMIZATION STRATEGY', group: 'service', backgroundImage: '' },
+  { type: 'chapter', title: '核心策略\n及KPI设定', subtitle: 'CORE OPTIMIZATION STRATEGY', group: 'service', backgroundImage: '' },
 
   { type: 'section', title: '核心优化策略' },
   { type: 'page', title: '核心优化策略', component: Page_SkyworthKeywordStrategy, hideHeader: true },
